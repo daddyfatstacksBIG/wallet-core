@@ -6,8 +6,8 @@
 
 #include "TWTestUtilities.h"
 
-#include <TrustWalletCore/TWHRP.h>
 #include <TrustWalletCore/TWCoinType.h>
+#include <TrustWalletCore/TWHRP.h>
 
 #include <gtest/gtest.h>
 

@@ -24,8 +24,8 @@
 #include "IOST/Account.h"
 #include "Icon/Address.h"
 #include "IoTeX/Address.h"
-#include "NEO/Address.h"
 #include "NEAR/Address.h"
+#include "NEO/Address.h"
 #include "Nano/Address.h"
 #include "Nebulas/Address.h"
 #include "Nimiq/Address.h"
@@ -72,11 +72,11 @@ bool TW::validateAddress(TWCoinType coin, const std::string &string) {
     case TWCoinTypeQtum:
     case TWCoinTypeViacoin:
         return Bitcoin::SegwitAddress::isValid(string, hrp) ||
-        Bitcoin::Address::isValid(string, {{p2pkh}, {p2sh}});
+               Bitcoin::Address::isValid(string, {{p2pkh}, {p2sh}});
 
     case TWCoinTypeBitcoinCash:
         return Bitcoin::CashAddress::isValid(string) ||
-        Bitcoin::Address::isValid(string, {{p2pkh}, {p2sh}});
+               Bitcoin::Address::isValid(string, {{p2pkh}, {p2sh}});
 
     case TWCoinTypeBravoCoin:
         return Bravo::Address::isValid(string);
@@ -130,7 +130,7 @@ bool TW::validateAddress(TWCoinType coin, const std::string &string) {
 
     case TWCoinTypeSteem:
         return Bravo::Address::isValid(string,
-        {TW::Steem::MainnetPrefix, TW::Steem::TestnetPrefix});
+                                       {TW::Steem::MainnetPrefix, TW::Steem::TestnetPrefix});
 
     case TWCoinTypeStellar:
     case TWCoinTypeKin:
@@ -145,8 +145,7 @@ bool TW::validateAddress(TWCoinType coin, const std::string &string) {
     case TWCoinTypeZelcash:
     case TWCoinTypeZcash:
         return Zcash::TAddress::isValid(string, {{Zcash::TAddress::staticPrefix, p2pkh},
-            {Zcash::TAddress::staticPrefix, p2sh}
-        });
+                                                 {Zcash::TAddress::staticPrefix, p2sh}});
 
     case TWCoinTypeZilliqa:
         return Zilliqa::isValidAddress(string);
