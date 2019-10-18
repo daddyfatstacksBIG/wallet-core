@@ -23,7 +23,7 @@ const std::array<byte, 3> tz1Prefix{6, 161, 159};
 const std::array<byte, 3> tz2Prefix{6, 161, 161};
 const std::array<byte, 3> tz3Prefix{6, 161, 164};
 
-bool Address::isValid(const std::string& string) {
+bool Address::isValid(const std::string &string) {
     const auto decoded = Base58::bitcoin.decodeCheck(string);
     if (decoded.size() != Address::size) {
         return false;
@@ -31,15 +31,15 @@ bool Address::isValid(const std::string& string) {
 
     // verify prefix
     if (std::equal(tz1Prefix.begin(), tz1Prefix.end(), decoded.begin()) ||
-            std::equal(tz2Prefix.begin(), tz2Prefix.end(), decoded.begin()) ||
-            std::equal(tz3Prefix.begin(), tz3Prefix.end(), decoded.begin())) {
+        std::equal(tz2Prefix.begin(), tz2Prefix.end(), decoded.begin()) ||
+        std::equal(tz3Prefix.begin(), tz3Prefix.end(), decoded.begin())) {
         return true;
     }
 
     return false;
 }
 
-Address::Address(const PublicKey& publicKey) {
+Address::Address(const PublicKey &publicKey) {
     auto encoded = Data(publicKey.bytes.begin(), publicKey.bytes.end());
     auto hash = Hash::blake2b(encoded, 20);
     auto addressData = Data({6, 161, 159});
@@ -49,7 +49,7 @@ Address::Address(const PublicKey& publicKey) {
     std::copy(addressData.data(), addressData.data() + Address::size, bytes.begin());
 }
 
-std::string Address::deriveOriginatedAddress(const std::string& operationHash, int operationIndex) {
+std::string Address::deriveOriginatedAddress(const std::string &operationHash, int operationIndex) {
     // Decode and remove 2 byte prefix.
     auto decoded = Base58::bitcoin.decodeCheck(operationHash);
     decoded.erase(decoded.begin(), decoded.begin() + 2);

@@ -4,8 +4,8 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include "OperationList.h"
 #include "Signer.h"
+#include "OperationList.h"
 #include "../Hash.h"
 #include "../HexCoding.h"
 
@@ -16,12 +16,12 @@
 using namespace TW;
 using namespace TW::Tezos;
 
-Data Signer::signOperationList(const PrivateKey& privateKey, const OperationList& operationList) {
+Data Signer::signOperationList(const PrivateKey &privateKey, const OperationList &operationList) {
     auto forged = operationList.forge(privateKey);
     return signData(privateKey, forged);
 }
 
-Data Signer::signData(const PrivateKey& privateKey, Data data) {
+Data Signer::signData(const PrivateKey &privateKey, Data data) {
     Data watermarkedData = Data();
     watermarkedData.push_back(0x03);
     append(watermarkedData, data);

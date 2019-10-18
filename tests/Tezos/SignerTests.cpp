@@ -4,12 +4,12 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
+#include "Base58.h"
+#include "HexCoding.h"
+#include "PrivateKey.h"
 #include "Tezos/BinaryCoding.h"
 #include "Tezos/OperationList.h"
 #include "Tezos/Signer.h"
-#include "PrivateKey.h"
-#include "Base58.h"
-#include "HexCoding.h"
 
 #include <gtest/gtest.h>
 
@@ -18,12 +18,15 @@ using namespace TW::Tezos;
 
 TEST(TezosSigner, SignString) {
     Data bytesToSign = parse_hex("ffaa");
-    Data expectedSignature = parse_hex("eaab7f4066217b072b79609a9f76cdfadd93f8dde41763887e131c02324f18c8e41b1009e334baf87f9d2e917bf4c0e73165622e5522409a0c5817234a48cc02");
+    Data expectedSignature =
+        parse_hex("eaab7f4066217b072b79609a9f76cdfadd93f8dde41763887e131c02324f18c8e41b1009e334baf8"
+                  "7f9d2e917bf4c0e73165622e5522409a0c5817234a48cc02");
     Data expected = Data();
     append(expected, bytesToSign);
     append(expected, expectedSignature);
 
-    auto key = PrivateKey(parse_hex("0x2e8905819b8723fe2c1d161860e5ee1830318dbf49a83bd451cfb8440c28bd6f"));
+    auto key =
+        PrivateKey(parse_hex("0x2e8905819b8723fe2c1d161860e5ee1830318dbf49a83bd451cfb8440c28bd6f"));
     auto signedBytes = Signer().signData(key, bytesToSign);
 
     ASSERT_EQ(signedBytes, expected);
@@ -77,11 +80,14 @@ TEST(TezosSigner, SignOperationList) {
 
     op_list.addOperation(delegateOperation);
 
-    auto decodedPrivateKey = Base58::bitcoin.decodeCheck("edsk4bMQMM6HYtMazF3m7mYhQ6KQ1WCEcBuRwh6DTtdnoqAvC3nPCc");
+    auto decodedPrivateKey =
+        Base58::bitcoin.decodeCheck("edsk4bMQMM6HYtMazF3m7mYhQ6KQ1WCEcBuRwh6DTtdnoqAvC3nPCc");
     auto key = PrivateKey(Data(decodedPrivateKey.begin() + 4, decodedPrivateKey.end()));
 
     std::string expectedForgedBytesToSign = hex(op_list.forge(key));
-    std::string expectedSignature = "871693145f2dc72861ff6816e7ac3ce93c57611ac09a4c657a5a35270fa57153334c14cd8cae94ee228b6ef52f0e3f10948721e666318bc54b6c455404b11e03";
+    std::string expectedSignature =
+        "871693145f2dc72861ff6816e7ac3ce93c57611ac09a4c657a5a35270fa57153334c14cd8cae94ee228b6ef52f"
+        "0e3f10948721e666318bc54b6c455404b11e03";
     std::string expectedSignedBytes = expectedForgedBytesToSign + expectedSignature;
 
     auto signedBytes = Signer().signOperationList(key, op_list);

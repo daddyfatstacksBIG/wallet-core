@@ -7,15 +7,15 @@
 #include "../Base58.h"
 #include "../Data.h"
 #include "../HexCoding.h"
-#include "../PublicKey.h"
 #include "../PrivateKey.h"
+#include "../PublicKey.h"
 
 #include <TrezorCrypto/ecdsa.h>
 #include <string>
 
 using namespace TW;
 
-std::string base58ToHex(const std::string& string, size_t prefixLength, uint8_t* prefix) {
+std::string base58ToHex(const std::string &string, size_t prefixLength, uint8_t *prefix) {
     const auto decoded = Base58::bitcoin.decodeCheck(string);
     if (decoded.size() < prefixLength) {
         return "";
@@ -23,7 +23,7 @@ std::string base58ToHex(const std::string& string, size_t prefixLength, uint8_t*
     return TW::hex(decoded.data() + prefixLength, decoded.data() + decoded.size());
 }
 
-PublicKey parsePublicKey(const std::string& publicKey) {
+PublicKey parsePublicKey(const std::string &publicKey) {
     const auto decoded = Base58::bitcoin.decodeCheck(publicKey);
 
     std::array<byte, 4> prefix = {13, 15, 37, 217};
@@ -37,7 +37,7 @@ PublicKey parsePublicKey(const std::string& publicKey) {
     return PublicKey(pk, TWPublicKeyTypeED25519);
 }
 
-PrivateKey parsePrivateKey(const std::string& privateKey) {
+PrivateKey parsePrivateKey(const std::string &privateKey) {
     const auto decoded = Base58::bitcoin.decodeCheck(privateKey);
     auto pk = Data();
     auto prefix_size = 4;

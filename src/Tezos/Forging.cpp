@@ -25,7 +25,7 @@ Data forgeBool(bool input) {
 
 // Forge the given public key hash into a hex encoded string.
 // Note: This function supports tz1, tz2 and tz3 addresses.
-Data forgePublicKeyHash(const std::string& publicKeyHash) {
+Data forgePublicKeyHash(const std::string &publicKeyHash) {
     Data forged = Data();
     // Adjust prefix based on tz1, tz2 or tz3.
     switch ((char)publicKeyHash[2]) {
@@ -71,7 +71,7 @@ Data forgeZarith(uint64_t input) {
 }
 
 // Forge the given operation.
-Data forgeOperation(const Operation& operation) {
+Data forgeOperation(const Operation &operation) {
     auto forged = Data();
     auto source = Address(operation.source());
     auto forgedSource = source.forge();
@@ -81,7 +81,8 @@ Data forgeOperation(const Operation& operation) {
     auto forgedStorageLimit = forgeZarith(operation.storage_limit());
 
     if (operation.kind() == Operation_OperationKind_REVEAL) {
-        auto publicKey = PublicKey(operation.reveal_operation_data().public_key(), TWPublicKeyTypeED25519);
+        auto publicKey =
+            PublicKey(operation.reveal_operation_data().public_key(), TWPublicKeyTypeED25519);
         auto forgedPublicKey = forgePublicKey(publicKey);
 
         /* Uncomment for debugging */
@@ -91,7 +92,6 @@ Data forgeOperation(const Operation& operation) {
         auto forgedGasLimitHex = hex(forgedGasLimit.begin(), forgedGasLimit.end());
         auto forgedStorageLimitHex = hex(forgedStorageLimit.begin(), forgedStorageLimit.end());
         auto forgedPublicKeyHex = hex(forgedPublicKey.begin(), forgedPublicKey.end());
-
 
         forged.push_back(Operation_OperationKind_REVEAL);
         append(forged, forgedSource);
@@ -133,7 +133,8 @@ Data forgeOperation(const Operation& operation) {
 
     if (operation.kind() == Operation_OperationKind_TRANSACTION) {
         auto forgedAmount = forgeZarith(operation.transaction_operation_data().amount());
-        auto forgedDestination = Address(operation.transaction_operation_data().destination()).forge();
+        auto forgedDestination =
+            Address(operation.transaction_operation_data().destination()).forge();
 
         /* Uncomment for debug
         auto forgedSourceHex = hex(forgedSource.begin(), forgedSource.end());
