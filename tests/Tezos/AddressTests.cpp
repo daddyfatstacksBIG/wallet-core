@@ -42,9 +42,9 @@ TEST(TezosAddress, forge_tz3) {
 
 TEST(TezosAddress, isInvalid) {
     std::array<std::string, 3> invalidAddresses {
-      "NmH7tmeJUmHcncBDvpr7aJNEBk7rp5zYsB1qt", // Invalid prefix, valid checksum
-      "tz1eZwq8b5cvE2bPKokatLkVMzkxz24z3AAAA", // Valid prefix, invalid checksum
-      "1tzeZwq8b5cvE2bPKokatLkVMzkxz24zAAAAA"  // Invalid prefix, invalid checksum
+        "NmH7tmeJUmHcncBDvpr7aJNEBk7rp5zYsB1qt", // Invalid prefix, valid checksum
+        "tz1eZwq8b5cvE2bPKokatLkVMzkxz24z3AAAA", // Valid prefix, invalid checksum
+        "1tzeZwq8b5cvE2bPKokatLkVMzkxz24zAAAAA"  // Invalid prefix, invalid checksum
     };
 
     for (auto& address : invalidAddresses) {
@@ -60,7 +60,7 @@ TEST(TezosAddress, isValid) {
     };
 
     for (auto &address : validAddresses) {
-      ASSERT_TRUE(Address::isValid(address));
+        ASSERT_TRUE(Address::isValid(address));
     }
 }
 
@@ -74,7 +74,7 @@ TEST(TezosAddress, deriveOriginatedAddress) {
     auto operationHash = "oo7VeTEPjEusPKnsHtKcGYbYa7i4RWpcEhUVo3Suugbbs6K62Ro";
     auto operationIndex = 0;
     auto expected = "KT1WrtjtAYQSrUVvSNJPTZTebiUWoopQL5hw";
-        
+
     ASSERT_EQ(Address::deriveOriginatedAddress(operationHash, operationIndex), expected);
 }
 

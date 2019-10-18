@@ -11,7 +11,7 @@ using namespace TW::Tezos::Proto;
 namespace TW::Tezos {
 
 class OperationList {
-  public:
+public:
     std::string branch;
     std::vector<Operation> operation_list;
     OperationList(const std::string& string);
@@ -25,5 +25,5 @@ class OperationList {
 
 /// Wrapper for C interface.
 struct TWTezosOperationList {
-  TW::Tezos::OperationList impl;
+    TW::Tezos::OperationList impl;
 };

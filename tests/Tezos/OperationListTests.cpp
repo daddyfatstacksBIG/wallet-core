@@ -109,7 +109,7 @@ TEST(TezosOperationList, ForgeOperationList_Delegation_AddDelegate) {
     delegationOperation.set_storage_limit(0);
     delegationOperation.set_kind(TW::Tezos::Proto::Operation::DELEGATION);
     delegationOperation.set_allocated_delegation_operation_data(delegationOperationData);
-    
+
     op_list.addOperation(delegationOperation);
     auto expected = "7105102c032807994dd9b5edf219261896a559876ca16cbf9d31dbe3612b89f26e00315b1206ec00b1b1e64cc3b8b93059f58fa2fc39e90944904e00ff00c4650fd609f88c67356e5fe01e37cd3ff654b18c";
     auto forged = op_list.forge(key);
@@ -133,7 +133,7 @@ TEST(TezosOperationList, ForgeOperationList_TransactionAndReveal) {
     revealOperation.set_storage_limit(257);
     revealOperation.set_kind(TW::Tezos::Proto::Operation::REVEAL);
     revealOperation.set_allocated_reveal_operation_data(revealOperationData);
-    
+
     auto transactionOperationData = new TW::Tezos::Proto::TransactionOperationData();
     transactionOperationData -> set_amount(1);
     transactionOperationData -> set_destination("tz1gSM6yiwr85jEASZ1q3UekgHEoxYt7wg2M");
