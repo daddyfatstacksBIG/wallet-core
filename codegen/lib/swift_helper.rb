@@ -2,11 +2,76 @@
 
 module SwiftHelper
   KEYWORDS = %w[
-    associatedtype class deinit enum extension fileprivate func import init inout internal let open operator private protocol public static struct subscript typealias var
-    break case continue default defer do else fallthrough for guard if in repeat return switch where while
-    as Any catch false is nil rethrows super self Self throw throws true try
+    associatedtype
+    class
+    deinit
+    enum
+    extension
+    fileprivate
+    func
+    import
+    init
+    inout
+    internal
+    let
+    open
+    operator
+    private
+    protocol
+    public
+    static
+    struct
+    subscript
+    typealias
+    var
+    break
+    case
+    continue
+    default
+    defer
+    do
+    else
+    fallthrough
+    for
+    guard
+    if
+    in
+    repeat
+    return
+    switch
+    where
+    while
+    as
+    Any
+    catch
+    false
+    is
+    nil
+    rethrows
+    super
+    self
+    Self
+    throw
+    throws
+    true
+    try
     _
-    #available #colorLiteral #column #else #elseif #endif #error #file #fileLiteral #function #if #imageLiteral #line #selector #sourceLocation #warning
+    #available
+    #colorLiteral
+    #column
+    #else
+    #elseif
+    #endif
+    #error
+    #file
+    #fileLiteral
+    #function
+    #if
+    #imageLiteral
+    #line
+    #selector
+    #sourceLocation
+    #warning
   ].freeze
 
   # Transforms an interface name to a Swift method or property name
@@ -23,9 +88,8 @@ module SwiftHelper
   end
 
   def self.parameters(params)
-    names = params.map do |param|
-      "#{param.name || '_ value'}: #{type(param.type)}"
-    end
+    names =
+      params.map { |param| "#{param.name || '_ value'}: #{type(param.type)}" }
     names.join(', ')
   end
 
@@ -36,7 +100,8 @@ module SwiftHelper
       elsif param.type.name == :string
         (param.name || 'value') + 'String'
       elsif param.type.is_struct || param.type.is_class
-        (param.name || 'value') + (param.type.is_nullable ? '?' : '') + '.rawValue'
+        (param.name || 'value') + (param.type.is_nullable ? '?' : '') +
+          '.rawValue'
       elsif param.type.is_proto
         (param.name || 'value') + 'Data'
       elsif param.type.name == :int
@@ -76,17 +141,9 @@ module SwiftHelper
     when :size
       'Int'
     when :data
-      if t.is_nullable
-        'Data?'
-      else
-        'Data'
-      end
+      t.is_nullable ? 'Data?' : 'Data'
     when :string
-      if t.is_nullable
-        'String?'
-      else
-        'String'
-      end
+      t.is_nullable ? 'String?' : 'String'
     else
       if t.is_proto
         t.name
@@ -100,10 +157,6 @@ module SwiftHelper
 
   # Returns the protocols a given entity should conform to.
   def self.protocol(entity)
-    if entity.name.end_with?('Address')
-      ['Address']
-    else
-      []
-    end
+    entity.name.end_with?('Address') ? %w[Address] : []
   end
 end

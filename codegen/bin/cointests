@@ -19,16 +19,14 @@ end
 
 # Transforms number to hex
 def self.to_hex(i)
-  hex = i.to_i().to_s(16)
+  hex = i.to_i.to_s(16)
   hex
 end
 
 # Display name, or name if not specified
 def self.display_name(coin)
   name = coin['displayName']
-  if name == nil
-    name = coin['name']
-  end
+  name = coin['name'] if name == nil
   name
 end
 
@@ -37,7 +35,11 @@ def self.coin_type(path)
 end
 
 def self.generate_coin_test_file(coin, templateFile)
-  path = File.expand_path(templateFile, File.join(File.dirname(__FILE__), '..', 'lib', 'templates'))
+  path =
+    File.expand_path(
+      templateFile,
+      File.join(File.dirname(__FILE__), '..', 'lib', 'templates')
+    )
   template = ERB.new(File.read(path), nil, '-')
   result = template.result(binding)
 
@@ -46,7 +48,7 @@ def self.generate_coin_test_file(coin, templateFile)
   FileUtils.mkdir_p folder
   path = File.join(folder, file)
   File.write(path, result)
-  puts "Generated file " + path
+  puts 'Generated file ' + path
 end
 
 json_string = File.read('coins.json')
@@ -54,11 +56,13 @@ coins = JSON.parse(json_string).sort_by { |x| x['name'] }
 coins_md = coins.sort_by { |x| Integer(coin_type(x['derivationPath'])) }
 
 erbs = [
-  {'template' => 'TWCoinTypeTests.cpp.erb', 'folder' => 'tests/interface', 'file' => 'TWCoinTypeTests.cpp'}
+  {
+    'template' => 'TWCoinTypeTests.cpp.erb',
+    'folder' => 'tests/interface',
+    'file' => 'TWCoinTypeTests.cpp'
+  }
 ]
 
 templateFile = 'TWCoinTypeTests.cpp.erb'
 
-coins.each do |coin|
-  generate_coin_test_file(coin, templateFile)
-end
+coins.each { |coin| generate_coin_test_file(coin, templateFile) }

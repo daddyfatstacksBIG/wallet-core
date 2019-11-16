@@ -30,16 +30,13 @@ module JavaHelper
   end
 
   def self.parameters(params)
-    names = params.map do |param|
-      "#{type(param.type)} #{param.name || 'value'}"
-    end
+    names =
+      params.map { |param| "#{type(param.type)} #{param.name || 'value'}" }
     names.join(', ')
   end
 
   def self.arguments(params)
-    params.map do |param|
-      param.name || 'value'
-    end.join(', ')
+    params.map { |param| param.name || 'value' }.join(', ')
   end
 
   def self.type(t)
@@ -75,11 +72,7 @@ module JavaHelper
     when :string
       'String'
     else
-      if t.is_proto
-        proto_to_class(t.name)
-      else
-        t.name
-      end
+      t.is_proto ? proto_to_class(t.name) : t.name
     end
   end
 end

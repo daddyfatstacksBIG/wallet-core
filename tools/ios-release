@@ -37,7 +37,9 @@ puts 'Publishing...'
 podspec = <<-PODSPEC
 Pod::Spec.new do |s|
   s.name         = 'TrustWalletCore'
-  s.version      = '#{version}'
+  s.version      = '#{
+  version
+}'
   s.summary      = 'Trust Wallet core data structures and algorithms.'
   s.homepage     = 'https://github.com/TrustWallet/wallet-core'
   s.license      = 'MIT'
@@ -48,7 +50,9 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
 
   s.source = {
-    http: "https://s3.amazonaws.com/wallet-core/TrustWalletCore-iOS-#{version}.zip"
+    http: "https://s3.amazonaws.com/wallet-core/TrustWalletCore-iOS-#{
+  version
+}.zip"
   }
   s.preserve_paths = 'build/ios/*.a'
   s.vendored_libraries =

@@ -3,7 +3,13 @@
 # Type declaration
 class TypeDecl
   attr_reader :name
-  attr_accessor :is_class, :is_struct, :is_enum, :is_proto, :is_nullable, :is_inout, :size
+  attr_accessor :is_class,
+                :is_struct,
+                :is_enum,
+                :is_proto,
+                :is_nullable,
+                :is_inout,
+                :size
 
   def initialize(name:, **options)
     @name = name

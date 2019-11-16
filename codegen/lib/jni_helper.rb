@@ -34,9 +34,8 @@ module JNIHelper
   end
 
   def self.parameters(params)
-    names = params.map do |param|
-      ", #{type(param.type)} #{param.name || 'value'}"
-    end
+    names =
+      params.map { |param| ", #{type(param.type)} #{param.name || 'value'}" }
     names.join('')
   end
 
@@ -111,7 +110,11 @@ module JNIHelper
       entity: entity,
       is_method: true,
       return_type: TypeDecl.new(name: :int),
-      parameters: [Parameter.new(name: 'thisObject', type: entity.type), Parameter.new(name: 'other', type: entity.type)],
-      static: false)
+      parameters: [
+        Parameter.new(name: 'thisObject', type: entity.type),
+        Parameter.new(name: 'other', type: entity.type)
+      ],
+      static: false
+    )
   end
 end

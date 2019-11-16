@@ -21,16 +21,14 @@ class CoinTestGen
 
   # Transforms number to hex
   def to_hex(i)
-    hex = i.to_i().to_s(16)
+    hex = i.to_i.to_s(16)
     hex
   end
 
   # Display name, or name if not specified
   def display_name(coin)
     name = coin['displayName']
-    if name == nil
-      name = coin['name']
-    end
+    name = coin['name'] if name == nil
     name
   end
 
@@ -39,7 +37,11 @@ class CoinTestGen
   end
 
   def generate_coin_test_file(coin)
-    path = File.expand_path(templateFile, File.join(File.dirname(__FILE__), '..', 'lib', 'templates'))
+    path =
+      File.expand_path(
+        templateFile,
+        File.join(File.dirname(__FILE__), '..', 'lib', 'templates')
+      )
     template = ERB.new(File.read(path), nil, '-')
     result = template.result(binding)
 
@@ -48,6 +50,6 @@ class CoinTestGen
     FileUtils.mkdir_p folder
     path = File.join(folder, file)
     File.write(path, result)
-    puts "Generated file " + path
+    puts 'Generated file ' + path
   end
 end
