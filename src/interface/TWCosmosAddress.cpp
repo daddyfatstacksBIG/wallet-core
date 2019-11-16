@@ -7,40 +7,43 @@
 #include "../Cosmos/Address.h"
 
 #include <TrezorCrypto/ecdsa.h>
-#include <TrustWalletCore/TWHash.h>
-#include <TrustWalletCore/TWHRP.h>
-#include <TrustWalletCore/TWPublicKey.h>
 #include <TrustWalletCore/TWCosmosAddress.h>
+#include <TrustWalletCore/TWHRP.h>
+#include <TrustWalletCore/TWHash.h>
+#include <TrustWalletCore/TWPublicKey.h>
 
 using namespace TW;
 using namespace TW::Cosmos;
 
-bool TWCosmosAddressEqual(struct TWCosmosAddress *_Nonnull lhs, struct TWCosmosAddress *_Nonnull rhs) {
+bool TWCosmosAddressEqual(struct TWCosmosAddress *_Nonnull lhs,
+                          struct TWCosmosAddress *_Nonnull rhs) {
     return lhs->impl == rhs->impl;
 }
 
 bool TWCosmosAddressIsValidString(TWString *_Nonnull string) {
-    auto s = reinterpret_cast<const std::string*>(string);
+    auto s = reinterpret_cast<const std::string *>(string);
     return Address::isValid(*s);
 }
 
 struct TWCosmosAddress *_Nullable TWCosmosAddressCreateWithString(TWString *_Nonnull string) {
-    auto s = reinterpret_cast<const std::string*>(string);
+    auto s = reinterpret_cast<const std::string *>(string);
     Address address;
     if (!Address::decode(*s, address)) {
         return nullptr;
     }
 
-    return new TWCosmosAddress{ address };
+    return new TWCosmosAddress{address};
 }
 
-struct TWCosmosAddress *_Nullable TWCosmosAddressCreateWithKeyHash(enum TWHRP hrp, TWData *_Nonnull keyHash) {
-    auto d = reinterpret_cast<const std::vector<uint8_t>*>(keyHash);
-    return new TWCosmosAddress{ Address(stringForHRP(hrp), *d) };
+struct TWCosmosAddress *_Nullable TWCosmosAddressCreateWithKeyHash(enum TWHRP hrp,
+                                                                   TWData *_Nonnull keyHash) {
+    auto d = reinterpret_cast<const std::vector<uint8_t> *>(keyHash);
+    return new TWCosmosAddress{Address(stringForHRP(hrp), *d)};
 }
 
-struct TWCosmosAddress *_Nonnull TWCosmosAddressCreateWithPublicKey(enum TWHRP hrp, struct TWPublicKey *_Nonnull publicKey) {
-    return new TWCosmosAddress{ Address(stringForHRP(hrp), publicKey->impl) };
+struct TWCosmosAddress *_Nonnull TWCosmosAddressCreateWithPublicKey(
+    enum TWHRP hrp, struct TWPublicKey *_Nonnull publicKey) {
+    return new TWCosmosAddress{Address(stringForHRP(hrp), publicKey->impl)};
 }
 
 void TWCosmosAddressDelete(struct TWCosmosAddress *_Nonnull address) {
@@ -57,5 +60,6 @@ enum TWHRP TWCosmosAddressHRP(struct TWCosmosAddress *_Nonnull address) {
 }
 
 TWData *_Nonnull TWCosmosAddressKeyHash(struct TWCosmosAddress *_Nonnull address) {
-    return TWDataCreateWithBytes(address->impl.getKeyHash().data(), address->impl.getKeyHash().size());
+    return TWDataCreateWithBytes(address->impl.getKeyHash().data(),
+                                 address->impl.getKeyHash().size());
 }

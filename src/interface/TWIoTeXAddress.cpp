@@ -24,30 +24,31 @@ bool TWIoTeXAddressEqual(struct TWIoTeXAddress *_Nonnull lhs, struct TWIoTeXAddr
 }
 
 bool TWIoTeXAddressIsValidString(TWString *_Nonnull string) {
-    auto s = reinterpret_cast<const std::string*>(string);
+    auto s = reinterpret_cast<const std::string *>(string);
     return Address::isValid(*s);
 }
 
 struct TWIoTeXAddress *_Nullable TWIoTeXAddressCreateWithString(TWString *_Nonnull string) {
-    auto s = reinterpret_cast<const std::string*>(string);
+    auto s = reinterpret_cast<const std::string *>(string);
     Address address;
     if (!Address::decode(*s, address)) {
         return nullptr;
     }
-    return new TWIoTeXAddress{ address };
+    return new TWIoTeXAddress{address};
 }
 
 struct TWIoTeXAddress *_Nullable TWIoTeXAddressCreateWithKeyHash(TWData *_Nonnull keyHash) {
-    auto d = reinterpret_cast<const Data*>(keyHash);
+    auto d = reinterpret_cast<const Data *>(keyHash);
     if (d->size() != 20) {
         return nullptr;
     }
     Address address(*d);
-    return new TWIoTeXAddress{ address };
+    return new TWIoTeXAddress{address};
 }
 
-struct TWIoTeXAddress *_Nonnull TWIoTeXAddressCreateWithPublicKey(struct TWPublicKey *_Nonnull publicKey) {
-    return new TWIoTeXAddress{ Address(publicKey->impl) };
+struct TWIoTeXAddress *_Nonnull TWIoTeXAddressCreateWithPublicKey(
+    struct TWPublicKey *_Nonnull publicKey) {
+    return new TWIoTeXAddress{Address(publicKey->impl)};
 }
 
 void TWIoTeXAddressDelete(struct TWIoTeXAddress *_Nonnull address) {
@@ -60,5 +61,6 @@ TWString *_Nonnull TWIoTeXAddressDescription(struct TWIoTeXAddress *_Nonnull add
 }
 
 TWData *_Nonnull TWIoTeXAddressKeyHash(struct TWIoTeXAddress *_Nonnull address) {
-    return TWDataCreateWithBytes(address->impl.getKeyHash().data(), address->impl.getKeyHash().size());
+    return TWDataCreateWithBytes(address->impl.getKeyHash().data(),
+                                 address->impl.getKeyHash().size());
 }

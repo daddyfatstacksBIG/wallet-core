@@ -7,9 +7,9 @@
 #include "Signer.h"
 #include "Serialization.h"
 
+#include "../Data.h"
 #include "../Hash.h"
 #include "../PrivateKey.h"
-#include "../Data.h"
 
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 #include <string>
@@ -19,7 +19,7 @@ using namespace TW::Cosmos;
 
 using json = nlohmann::json;
 
-Signer::Signer(Proto::SigningInput&& input) {
+Signer::Signer(Proto::SigningInput &&input) {
     if (input.type_prefix().empty()) {
         input.set_type_prefix(AMINO_PREFIX_SEND_COIN_MESSAGE);
     }
@@ -36,19 +36,19 @@ Signer::Signer(Proto::SigningInput&& input) {
             message.set_type_prefix(AMINO_PREFIX_STAKE_MESSAGE);
         }
         *input.mutable_stake_message() = message;
-    } else if(input.has_unstake_message()) {
+    } else if (input.has_unstake_message()) {
         auto message = input.unstake_message();
         if (message.type_prefix().empty()) {
             message.set_type_prefix(AMINO_PREFIX_UNSTAKE_MESSAGE);
         }
         *input.mutable_unstake_message() = message;
-    } else if(input.has_withdraw_stake_reward_message()) {
+    } else if (input.has_withdraw_stake_reward_message()) {
         auto message = input.withdraw_stake_reward_message();
         if (message.type_prefix().empty()) {
             message.set_type_prefix(AMINO_PREFIX_WITHDRAW_STAKE_MESSAGE);
         }
         *input.mutable_withdraw_stake_reward_message() = message;
-    } else if(input.has_restake_message()) {
+    } else if (input.has_restake_message()) {
         auto message = input.restake_message();
         if (message.type_prefix().empty()) {
             message.set_type_prefix(AMINO_PREFIX_RESTAKE_MESSAGE);
@@ -70,7 +70,7 @@ std::string Signer::signaturePreimage() const {
     return signaturePreimageJSON(input).dump();
 }
 
-json Signer::buildTransactionJSON(const Data& signature) const {
+json Signer::buildTransactionJSON(const Data &signature) const {
     auto sig = Cosmos::Proto::Signature();
     sig.set_signature(signature.data(), signature.size());
     auto privateKey = PrivateKey(input.private_key());
@@ -90,7 +90,8 @@ json Signer::buildTransactionJSON(const Data& signature) const {
     } else if (input.has_restake_message()) {
         *transaction.mutable_restake_message() = input.restake_message();
     } else if (input.has_withdraw_stake_reward_message()) {
-        *transaction.mutable_withdraw_stake_reward_message() = input.withdraw_stake_reward_message();
+        *transaction.mutable_withdraw_stake_reward_message() =
+            input.withdraw_stake_reward_message();
     }
 
     *transaction.mutable_signature() = sig;

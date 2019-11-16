@@ -10,8 +10,8 @@
 #include "../../Data.h"
 #include "../../uint256.h"
 
-#include <string>
 #include <cassert>
+#include <string>
 
 using namespace TW;
 using namespace TW::Ethereum::ABI;
@@ -21,7 +21,7 @@ void ParamUIntN::setVal(uint256_t val) {
     _val = val & _mask;
 }
 
-bool ParamUIntN::decode(const Data& encoded, size_t& offset_inout) {
+bool ParamUIntN::decode(const Data &encoded, size_t &offset_inout) {
     uint256_t temp;
     auto res = decodeNumber(encoded, temp, offset_inout);
     setVal(temp);
@@ -42,22 +42,21 @@ void ParamIntN::setVal(int256_t val) {
     }
 }
 
-bool ParamIntN::decodeNumber(const Data& encoded, int256_t& decoded, size_t& offset_inout) {
+bool ParamIntN::decodeNumber(const Data &encoded, int256_t &decoded, size_t &offset_inout) {
     uint256_t valU;
     auto res = ABI::decode(encoded, valU, offset_inout);
     decoded = Util::int256FromUint256(valU);
     return res;
 }
 
-bool ParamIntN::decode(const Data& encoded, size_t& offset_inout) {
+bool ParamIntN::decode(const Data &encoded, size_t &offset_inout) {
     int256_t temp;
     auto res = decodeNumber(encoded, temp, offset_inout);
     setVal(temp);
     return res;
 }
 
-void ParamIntN::init()
-{
+void ParamIntN::init() {
     assert(bits >= 8 && bits <= 256 && (bits % 8) == 0);
     _mask = (uint256_t(1) << bits) - 1;
 }

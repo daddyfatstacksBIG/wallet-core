@@ -17,7 +17,7 @@ using uint256_t = boost::multiprecision::uint256_t;
 
 /// Loads a `uint256_t` from a collection of bytes.
 /// The rightmost bytes are taken from data
-inline uint256_t load(const Data& data) {
+inline uint256_t load(const Data &data) {
     using boost::multiprecision::cpp_int;
     if (data.empty()) {
         return uint256_t(0);
@@ -28,33 +28,34 @@ inline uint256_t load(const Data& data) {
 }
 
 /// Loads a `uint256_t` from a collection of bytes.
-/// The leftmost offset bytes are skipped, and the next 32 bytes are taken.  At least 32 (+offset) bytes are needed.
-inline uint256_t loadWithOffset(const Data& data, size_t offset) {
+/// The leftmost offset bytes are skipped, and the next 32 bytes are taken.  At least 32 (+offset)
+/// bytes are needed.
+inline uint256_t loadWithOffset(const Data &data, size_t offset) {
     using boost::multiprecision::cpp_int;
-    if (data.empty() || (data.size() < (256/8 + offset))) {
+    if (data.empty() || (data.size() < (256 / 8 + offset))) {
         // not enough bytes in data
         return uint256_t(0);
     }
     uint256_t result;
-    import_bits(result, data.begin() + offset, data.begin() + offset + 256/8);
+    import_bits(result, data.begin() + offset, data.begin() + offset + 256 / 8);
     return result;
 }
 
 /// Loads a `uint256_t` from Protobuf bytes (which are wrongly represented as
 /// std::string).
-inline uint256_t load(const std::string& data) {
+inline uint256_t load(const std::string &data) {
     using boost::multiprecision::cpp_int;
     if (data.empty()) {
         return uint256_t(0);
     }
     uint256_t result;
-    import_bits(result, reinterpret_cast<const byte*>(data.data()),
-                reinterpret_cast<const byte*>(data.data() + data.size()));
+    import_bits(result, reinterpret_cast<const byte *>(data.data()),
+                reinterpret_cast<const byte *>(data.data() + data.size()));
     return result;
 }
 
 /// Stores a `uint256_t` as a collection of bytes.
-inline Data store(const uint256_t& v) {
+inline Data store(const uint256_t &v) {
     using boost::multiprecision::cpp_int;
     Data bytes;
     bytes.reserve(32);

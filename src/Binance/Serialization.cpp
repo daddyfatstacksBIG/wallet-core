@@ -14,13 +14,13 @@ using namespace TW::Binance;
 
 using json = nlohmann::json;
 
-static inline std::string addressString(const std::string& bytes) {
+static inline std::string addressString(const std::string &bytes) {
     auto data = std::vector<uint8_t>(bytes.begin(), bytes.end());
     auto address = Address(data);
     return address.string();
 }
 
-json Binance::signatureJSON(const Binance::Proto::SigningInput& input) {
+json Binance::signatureJSON(const Binance::Proto::SigningInput &input) {
     json j;
     j["account_number"] = std::to_string(input.account_number());
     j["chain_id"] = input.chain_id();
@@ -32,7 +32,7 @@ json Binance::signatureJSON(const Binance::Proto::SigningInput& input) {
     return j;
 }
 
-json Binance::orderJSON(const Binance::Proto::SigningInput& input) {
+json Binance::orderJSON(const Binance::Proto::SigningInput &input) {
     json j;
     if (input.has_trade_order()) {
         j["id"] = input.trade_order().id();
@@ -84,9 +84,9 @@ json Binance::orderJSON(const Binance::Proto::SigningInput& input) {
     return j;
 }
 
-json Binance::inputsJSON(const Binance::Proto::SendOrder& order) {
+json Binance::inputsJSON(const Binance::Proto::SendOrder &order) {
     json j = json::array();
-    for (auto& input : order.inputs()) {
+    for (auto &input : order.inputs()) {
         json sj;
         sj["address"] = addressString(input.address());
         sj["coins"] = tokensJSON(input.coins());
@@ -95,9 +95,9 @@ json Binance::inputsJSON(const Binance::Proto::SendOrder& order) {
     return j;
 }
 
-json Binance::outputsJSON(const Binance::Proto::SendOrder& order) {
+json Binance::outputsJSON(const Binance::Proto::SendOrder &order) {
     json j = json::array();
-    for (auto& output : order.outputs()) {
+    for (auto &output : order.outputs()) {
         json sj;
         sj["address"] = addressString(output.address());
         sj["coins"] = tokensJSON(output.coins());
@@ -107,9 +107,9 @@ json Binance::outputsJSON(const Binance::Proto::SendOrder& order) {
 }
 
 json Binance::tokensJSON(
-    const ::google::protobuf::RepeatedPtrField<Binance::Proto::SendOrder_Token>& tokens) {
+    const ::google::protobuf::RepeatedPtrField<Binance::Proto::SendOrder_Token> &tokens) {
     json j = json::array();
-    for (auto& token : tokens) {
+    for (auto &token : tokens) {
         json sj;
         sj["denom"] = token.denom();
         sj["amount"] = token.amount();

@@ -10,19 +10,19 @@
 
 using namespace TW::Ethereum::ABI;
 
-int ParamArray::addParam(const std::shared_ptr<ParamBase>& param) {
+int ParamArray::addParam(const std::shared_ptr<ParamBase> &param) {
     assert(param != nullptr);
     if (param == nullptr) {
         return -1;
     }
     if (_params.getCount() >= 1 && param->getType() != getFirstType()) {
-        return -2;    // do not add different types
+        return -2; // do not add different types
     }
     return _params.addParam(param);
 }
 
-void ParamArray::addParams(const std::vector<std::shared_ptr<ParamBase>>& params) {
-    for (auto p: params) {
+void ParamArray::addParams(const std::vector<std::shared_ptr<ParamBase>> &params) {
+    for (auto p : params) {
         addParam(p);
     }
 }
@@ -34,7 +34,7 @@ std::string ParamArray::getFirstType() const {
     return _params.getParamUnsafe(0)->getType();
 }
 
-void ParamArray::encode(Data& data) const {
+void ParamArray::encode(Data &data) const {
     size_t n = _params.getCount();
     ABI::encode(uint256_t(n), data);
 
@@ -67,7 +67,7 @@ void ParamArray::encode(Data& data) const {
     }
 }
 
-bool ParamArray::decode(const Data& encoded, size_t& offset_inout) {
+bool ParamArray::decode(const Data &encoded, size_t &offset_inout) {
     size_t origOffset = offset_inout;
     // read length
     uint256_t len256;
@@ -82,8 +82,9 @@ bool ParamArray::decode(const Data& encoded, size_t& offset_inout) {
     // read values
     auto n = _params.getCount();
     if (n != len) {
-        // Element number mismatch: the proto has to have exact same number of values as in the encoded form
-        // Note: this could be handles in a smarter way, and create more elements as needed
+        // Element number mismatch: the proto has to have exact same number of values as in the
+        // encoded form Note: this could be handles in a smarter way, and create more elements as
+        // needed
         return false;
     }
     for (auto i = 0; i < n; ++i) {

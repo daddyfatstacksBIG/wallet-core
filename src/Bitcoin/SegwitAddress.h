@@ -16,7 +16,7 @@ namespace TW::Bitcoin {
 /// A Segwit address.
 /// Note: Similar to Bech32Address, but it differs enough so that reuse makes no sense.
 class SegwitAddress {
-public:
+  public:
     /// Human-readable part.
     ///
     /// \see https://github.com/satoshilabs/slips/blob/master/slip-0173.md
@@ -29,11 +29,11 @@ public:
     std::vector<uint8_t> witnessProgram;
 
     /// Determines whether a string makes a valid Bech32 address.
-    static bool isValid(const std::string& string);
+    static bool isValid(const std::string &string);
 
     /// Determines whether a string makes a valid Bech32 address, and the HRP
     /// matches.
-    static bool isValid(const std::string& string, const std::string& hrp);
+    static bool isValid(const std::string &string, const std::string &hrp);
 
     /// Initializes a Bech32 address with a human-readable part, a witness
     /// version, and a witness program.
@@ -41,12 +41,12 @@ public:
         : hrp(std::move(hrp)), witnessVersion(witver), witnessProgram(std::move(witprog)) {}
 
     /// Initializes a Bech32 address with a public key and a HRP prefix.
-    SegwitAddress(const PublicKey& publicKey, int witver, std::string hrp);
+    SegwitAddress(const PublicKey &publicKey, int witver, std::string hrp);
 
     /// Decodes a SegWit address.
     ///
     /// \returns a pair with the address and a success flag.
-    static std::pair<SegwitAddress, bool> decode(const std::string& addr);
+    static std::pair<SegwitAddress, bool> decode(const std::string &addr);
 
     /// Encodes the SegWit address.
     ///
@@ -54,15 +54,15 @@ public:
     std::string string() const;
 
     /// Initializes a Bech32 address with raw data.
-    static std::pair<SegwitAddress, bool> fromRaw(const std::string& hrp,
-            const std::vector<uint8_t>& data);
+    static std::pair<SegwitAddress, bool> fromRaw(const std::string &hrp,
+                                                  const std::vector<uint8_t> &data);
 
-    bool operator==(const SegwitAddress& rhs) const {
+    bool operator==(const SegwitAddress &rhs) const {
         return hrp == rhs.hrp && witnessVersion == rhs.witnessVersion &&
                witnessProgram == rhs.witnessProgram;
     }
 
-private:
+  private:
     SegwitAddress() = default;
 };
 

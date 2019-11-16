@@ -62,5 +62,6 @@ TWString *_Nonnull TWHarmonyAddressDescription(struct TWHarmonyAddress *_Nonnull
 }
 
 TWData *_Nonnull TWHarmonyAddressKeyHash(struct TWHarmonyAddress *_Nonnull address) {
-    return TWDataCreateWithBytes(address->impl.getKeyHash().data(), address->impl.getKeyHash().size());
+    return TWDataCreateWithBytes(address->impl.getKeyHash().data(),
+                                 address->impl.getKeyHash().size());
 }

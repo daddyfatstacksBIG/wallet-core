@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "../Bech32Address.h"
 #include "AddressChecksum.h"
+#include "../Bech32Address.h"
 
 #include <string>
 
@@ -17,13 +17,11 @@
 namespace TW::Zilliqa {
 
 /// Zilliqa address is a Bech32Address, with "zil" prefix and Sha2 hash.
-class Address: public Bech32Address {
-public:
+class Address : public Bech32Address {
+  public:
     static const std::string hrp; // HRP_ZILLIQA
 
-    static bool isValid(const std::string addr) {
-        return Bech32Address::isValid(addr, hrp);
-    }
+    static bool isValid(const std::string addr) { return Bech32Address::isValid(addr, hrp); }
 
     Address() : Bech32Address(hrp) {}
 
@@ -31,9 +29,9 @@ public:
     Address(Data keyHash) : Bech32Address(hrp, keyHash) {}
 
     /// Initializes an address with a public key.
-    Address(const PublicKey& publicKey) : Bech32Address(hrp, HASHER_SHA2, publicKey) {}
+    Address(const PublicKey &publicKey) : Bech32Address(hrp, HASHER_SHA2, publicKey) {}
 
-    static bool decode(const std::string& addr, Address& obj_out) {
+    static bool decode(const std::string &addr, Address &obj_out) {
         return Bech32Address::decode(addr, obj_out, hrp);
     }
 };

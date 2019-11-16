@@ -7,8 +7,8 @@
 #pragma once
 
 #include "TWBase.h"
-#include "TWString.h"
 #include "TWData.h"
+#include "TWString.h"
 
 // Wrapper class for Ethereum ABI encoding & decoding.  Also builder for Function objects.
 // See also TWEthereumAbiFunction.
@@ -20,8 +20,8 @@ struct TWEthereumAbiFunction;
 TW_EXPORT_CLASS
 struct TWEthereumAbiEncoder;
 
-/// Creates a function object, with the given name and empty parameter list.  It must be deleted at the end.
-/// Note: Create name is reserved for own-class creation in the codegen toolchain
+/// Creates a function object, with the given name and empty parameter list.  It must be deleted at
+/// the end. Note: Create name is reserved for own-class creation in the codegen toolchain
 TW_EXPORT_STATIC_METHOD
 struct TWEthereumAbiFunction *_Nullable TWEthereumAbiEncoderBuildFunction(TWString *_Nonnull name);
 
@@ -32,10 +32,11 @@ void TWEthereumAbiEncoderDeleteFunction(struct TWEthereumAbiFunction *_Nonnull f
 
 /// Encode function to Eth ABI binary
 TW_EXPORT_STATIC_METHOD
-TWData*_Nonnull TWEthereumAbiEncoderEncode(struct TWEthereumAbiFunction *_Nonnull func_in);
+TWData *_Nonnull TWEthereumAbiEncoderEncode(struct TWEthereumAbiFunction *_Nonnull func_in);
 
 /// Decode function output from Eth ABI binary, fill output parameters
 TW_EXPORT_STATIC_METHOD
-bool TWEthereumAbiEncoderDecodeOutput(struct TWEthereumAbiFunction *_Nonnull func_in, TWData *_Nonnull encoded);
+bool TWEthereumAbiEncoderDecodeOutput(struct TWEthereumAbiFunction *_Nonnull func_in,
+                                      TWData *_Nonnull encoded);
 
 TW_EXTERN_C_END

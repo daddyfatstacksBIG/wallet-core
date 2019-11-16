@@ -17,7 +17,7 @@
 using namespace TW;
 using namespace TW::Zilliqa;
 
-static inline Data prependZero(Data& data) {
+static inline Data prependZero(Data &data) {
     if (data.size() < 16) {
         Data zero = Data(16 - data.size(), 0);
         zero.insert(zero.end(), data.begin(), data.end());
@@ -26,7 +26,7 @@ static inline Data prependZero(Data& data) {
     return Data(data);
 }
 
-Data Signer::getPreImage(const Proto::SigningInput& input) noexcept {
+Data Signer::getPreImage(const Proto::SigningInput &input) noexcept {
     auto internal = ZilliqaMessage::ProtoTransactionCoreInfo();
 
     const auto key = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));
@@ -64,7 +64,7 @@ Data Signer::getPreImage(const Proto::SigningInput& input) noexcept {
     return Data(serialized.begin(), serialized.end());
 }
 
-Proto::SigningOutput Signer::sign(const Data& preImage, const PrivateKey& key) noexcept {
+Proto::SigningOutput Signer::sign(const Data &preImage, const PrivateKey &key) noexcept {
     auto output = Proto::SigningOutput();
 
     const auto signature = key.signSchnorr(preImage, TWCurveSECP256k1);

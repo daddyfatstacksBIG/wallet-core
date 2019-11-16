@@ -13,21 +13,19 @@
 namespace TW::Ethereum::ABI {
 
 /// Abstract base class for parameters.
-class ParamBase
-{
-public:
+class ParamBase {
+  public:
     virtual ~ParamBase() = default;
     virtual std::string getType() const = 0;
     virtual size_t getSize() const = 0;
     virtual bool isDynamic() const = 0;
-    virtual void encode(Data& data) const = 0;
-    virtual bool decode(const Data& encoded, size_t& offset_inout) = 0;
+    virtual void encode(Data &data) const = 0;
+    virtual bool decode(const Data &encoded, size_t &offset_inout) = 0;
 };
 
 /// Collection parameters base class
-class ParamCollection: public ParamBase
-{
-public:
+class ParamCollection : public ParamBase {
+  public:
     virtual size_t getCount() const = 0;
 };
 

@@ -18,7 +18,8 @@ extern const std::string AMINO_PREFIX_PUBLIC_KEY;
 
 namespace TW::Cosmos {
 
-nlohmann::json signaturePreimageJSON(const Proto::SigningInput& input);
-nlohmann::json transactionJSON(const Proto::Transaction& transaction, const std::string& type_prefix);
+nlohmann::json signaturePreimageJSON(const Proto::SigningInput &input);
+nlohmann::json transactionJSON(const Proto::Transaction &transaction,
+                               const std::string &type_prefix);
 
-} // namespace
+} // namespace TW::Cosmos

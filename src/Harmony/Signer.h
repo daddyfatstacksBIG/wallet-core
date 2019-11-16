@@ -22,26 +22,20 @@ namespace TW::Harmony {
 
 /// Helper class that performs Harmony transaction signing.
 class Signer {
-private:
-    static Proto::SigningOutput
-    signTransaction(const Proto::SigningInput &input) noexcept;
+  private:
+    static Proto::SigningOutput signTransaction(const Proto::SigningInput &input) noexcept;
 
-    static Proto::SigningOutput
-    signCreateValidator(const Proto::SigningInput &input) noexcept;
+    static Proto::SigningOutput signCreateValidator(const Proto::SigningInput &input) noexcept;
 
-    static Proto::SigningOutput
-    signEditValidator(const Proto::SigningInput &input) noexcept;
+    static Proto::SigningOutput signEditValidator(const Proto::SigningInput &input) noexcept;
 
-    static Proto::SigningOutput
-    signDelegate(const Proto::SigningInput &input) noexcept;
+    static Proto::SigningOutput signDelegate(const Proto::SigningInput &input) noexcept;
 
-    static Proto::SigningOutput
-    signUndelegate(const Proto::SigningInput &input) noexcept;
+    static Proto::SigningOutput signUndelegate(const Proto::SigningInput &input) noexcept;
 
-    static Proto::SigningOutput
-    signCollectRewards(const Proto::SigningInput &input) noexcept;
+    static Proto::SigningOutput signCollectRewards(const Proto::SigningInput &input) noexcept;
 
-public:
+  public:
     uint256_t chainID;
 
     /// Initializes a signer with a chain identifier.
@@ -67,14 +61,14 @@ public:
     ///
     /// @returns the r, s, and v values of the transaction signature
     static std::tuple<uint256_t, uint256_t, uint256_t> values(const uint256_t &chainID,
-            const Data &signature) noexcept;
+                                                              const Data &signature) noexcept;
 
     std::string txnAsRLPHex(Transaction &transaction) const noexcept;
 
     template <typename Directive>
     std::string txnAsRLPHex(Staking<Directive> &transaction) const noexcept;
 
-protected:
+  protected:
     /// Computes the transaction hash.
     Data hash(const Transaction &transaction) const noexcept;
     /// Computes the staking transaction hash.

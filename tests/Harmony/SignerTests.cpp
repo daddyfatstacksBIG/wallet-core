@@ -18,7 +18,7 @@ namespace TW::Harmony {
 using namespace boost::multiprecision;
 
 class SignerExposed : public Signer {
-public:
+  public:
     SignerExposed(uint256_t chainID) : Signer(chainID) {}
     using Signer::hash;
 };
@@ -34,13 +34,13 @@ static bool testReceiverDecodeResult =
     Address::decode("one1d2rngmem4x2c6zxsjjz29dlah0jzkr0k2n88wc", TEST_RECEIVER);
 
 static auto TEST_TRANSACTION = Transaction(/* nonce: */ 0x9,
-                               /* gasPrice: */ 0x0,
-                               /* gasLimit: */ 0x5208,
-                               /* fromShardID */ 0x1,
-                               /* toShardID */ 0x0,
-                               /* to: */ TEST_RECEIVER,
-                               /* amount: */ TEST_AMOUNT,
-/* payload: */ {});
+                                           /* gasPrice: */ 0x0,
+                                           /* gasLimit: */ 0x5208,
+                                           /* fromShardID */ 0x1,
+                                           /* toShardID */ 0x0,
+                                           /* to: */ TEST_RECEIVER,
+                                           /* amount: */ TEST_AMOUNT,
+                                           /* payload: */ {});
 
 TEST(HarmonySigner, RLPEncodingAndHashAssumeLocalNet) {
     auto rlpUnhashedShouldBe = "e909808252080180946a87346f3ba9958d08d09484a"

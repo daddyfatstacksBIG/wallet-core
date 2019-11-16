@@ -6,8 +6,8 @@
 
 #include "Serialization.h"
 
-#include "../Cosmos/Address.h"
 #include "../Base64.h"
+#include "../Cosmos/Address.h"
 
 using namespace TW;
 using namespace TW::Cosmos;
@@ -23,7 +23,7 @@ const string AMINO_PREFIX_RESTAKE_MESSAGE = "cosmos-sdk/MsgBeginRedelegate";
 const string AMINO_PREFIX_WITHDRAW_STAKE_MESSAGE = "cosmos-sdk/MsgWithdrawDelegationReward";
 const string AMINO_PREFIX_PUBLIC_KEY = "tendermint/PubKeySecp256k1";
 
-static json broadcastJSON(json& jsonObj) {
+static json broadcastJSON(json &jsonObj) {
     json jsonMsgWrapper;
 
     jsonMsgWrapper["tx"] = jsonObj;
@@ -32,7 +32,7 @@ static json broadcastJSON(json& jsonObj) {
     return jsonMsgWrapper;
 }
 
-static json wrapperJSON(const string& type, json& jsonObj) {
+static json wrapperJSON(const string &type, json &jsonObj) {
     json jsonMsgWrapper;
 
     jsonMsgWrapper["type"] = type;
@@ -41,7 +41,7 @@ static json wrapperJSON(const string& type, json& jsonObj) {
     return jsonMsgWrapper;
 }
 
-static json amountJSON(const string& amount, const string& denom) {
+static json amountJSON(const string &amount, const string &denom) {
     json jsonAmount;
 
     jsonAmount["amount"] = amount;
@@ -50,12 +50,11 @@ static json amountJSON(const string& amount, const string& denom) {
     return jsonAmount;
 }
 
-static json feeJSON(const Fee& fee) {
+static json feeJSON(const Fee &fee) {
     json jsonAmounts = json::array();
 
-    for (auto& amount : fee.amounts()) {
-        jsonAmounts.push_back(
-            amountJSON(std::to_string(amount.amount()), amount.denom()));
+    for (auto &amount : fee.amounts()) {
+        jsonAmounts.push_back(amountJSON(std::to_string(amount.amount()), amount.denom()));
     }
 
     json jsonFee;
@@ -66,7 +65,8 @@ static json feeJSON(const Fee& fee) {
     return jsonFee;
 }
 
-static json sendCoinsMessageJSON(json& amounts, const string& from_address, const string& to_address, const string& type_prefix) {
+static json sendCoinsMessageJSON(json &amounts, const string &from_address,
+                                 const string &to_address, const string &type_prefix) {
     json jsonMsg;
 
     jsonMsg["amount"] = amounts;
@@ -76,7 +76,8 @@ static json sendCoinsMessageJSON(json& amounts, const string& from_address, cons
     return wrapperJSON(type_prefix, jsonMsg);
 }
 
-static json stakeMessageJSON(json& amount, const string& delegator_address, const string& validator_address, const string& type_prefix) {
+static json stakeMessageJSON(json &amount, const string &delegator_address,
+                             const string &validator_address, const string &type_prefix) {
     json jsonMsg;
 
     jsonMsg["amount"] = amount;
@@ -86,7 +87,9 @@ static json stakeMessageJSON(json& amount, const string& delegator_address, cons
     return wrapperJSON(type_prefix, jsonMsg);
 }
 
-static json restakeMessageJSON(json& amount, const string& delegator_address, const string& validator_src_address, const string& validator_dst_address, const string& type_prefix) {
+static json restakeMessageJSON(json &amount, const string &delegator_address,
+                               const string &validator_src_address,
+                               const string &validator_dst_address, const string &type_prefix) {
     json jsonMsg;
 
     jsonMsg["amount"] = amount;
@@ -97,7 +100,9 @@ static json restakeMessageJSON(json& amount, const string& delegator_address, co
     return wrapperJSON(type_prefix, jsonMsg);
 }
 
-static json withdrawStakeRewardMessageJSON(const string& delegator_address, const string& validator_address, const string& type_prefix) {
+static json withdrawStakeRewardMessageJSON(const string &delegator_address,
+                                           const string &validator_address,
+                                           const string &type_prefix) {
     json jsonMsg;
 
     jsonMsg["delegator_address"] = delegator_address;
@@ -106,38 +111,40 @@ static json withdrawStakeRewardMessageJSON(const string& delegator_address, cons
     return wrapperJSON(type_prefix, jsonMsg);
 }
 
-static json sendCoinsMessageJSON(const SendCoinsMessage& message) {
+static json sendCoinsMessageJSON(const SendCoinsMessage &message) {
     json jsonAmounts = json::array();
 
-    for (auto& amount : message.amounts()) {
+    for (auto &amount : message.amounts()) {
         jsonAmounts.push_back(amountJSON(std::to_string(amount.amount()), amount.denom()));
     }
 
-    return sendCoinsMessageJSON(jsonAmounts, message.from_address(), message.to_address(), message.type_prefix());
+    return sendCoinsMessageJSON(jsonAmounts, message.from_address(), message.to_address(),
+                                message.type_prefix());
 }
 
-
-static json stakeMessageJSON(const StakeMessage& message) {
+static json stakeMessageJSON(const StakeMessage &message) {
     auto amount = message.amount();
     json jsonAmount = amountJSON(std::to_string(amount.amount()), amount.denom());
 
-    return stakeMessageJSON(jsonAmount, message.delegator_address(), message.validator_address(), message.type_prefix());
+    return stakeMessageJSON(jsonAmount, message.delegator_address(), message.validator_address(),
+                            message.type_prefix());
 }
 
-static json restakeMessageJSON(const ReStakeMessage& message) {
+static json restakeMessageJSON(const ReStakeMessage &message) {
     auto amount = message.amount();
     json jsonAmount = amountJSON(std::to_string(amount.amount()), amount.denom());
 
-    return restakeMessageJSON(jsonAmount, message.delegator_address(), message.validator_src_address(),
-                              message.validator_dst_address(), message.type_prefix());
+    return restakeMessageJSON(jsonAmount, message.delegator_address(),
+                              message.validator_src_address(), message.validator_dst_address(),
+                              message.type_prefix());
 }
 
-
-static json withdrawStakeRewardMessageJSON(const WithdrawStakeRewardMessage& message) {
-    return withdrawStakeRewardMessageJSON(message.delegator_address(), message.validator_address(), message.type_prefix());
+static json withdrawStakeRewardMessageJSON(const WithdrawStakeRewardMessage &message) {
+    return withdrawStakeRewardMessageJSON(message.delegator_address(), message.validator_address(),
+                                          message.type_prefix());
 }
 
-static json messageJSON(const SigningInput& input) {
+static json messageJSON(const SigningInput &input) {
     if (input.has_send_coins_message()) {
         return sendCoinsMessageJSON(input.send_coins_message());
     } else if (input.has_stake_message()) {
@@ -153,7 +160,7 @@ static json messageJSON(const SigningInput& input) {
     return nullptr;
 }
 
-static json messageJSON(const Transaction& transaction) {
+static json messageJSON(const Transaction &transaction) {
     if (transaction.has_send_coins_message()) {
         return sendCoinsMessageJSON(transaction.send_coins_message());
     } else if (transaction.has_stake_message()) {
@@ -169,17 +176,19 @@ static json messageJSON(const Transaction& transaction) {
     return nullptr;
 }
 
-static json signatureJSON(const Signature& signature) {
+static json signatureJSON(const Signature &signature) {
     json jsonSignature;
 
     jsonSignature["pub_key"]["type"] = AMINO_PREFIX_PUBLIC_KEY;
-    jsonSignature["pub_key"]["value"] = Base64::encode(Data(signature.public_key().begin(), signature.public_key().end()));
-    jsonSignature["signature"] = Base64::encode(Data(signature.signature().begin(), signature.signature().end()));
+    jsonSignature["pub_key"]["value"] =
+        Base64::encode(Data(signature.public_key().begin(), signature.public_key().end()));
+    jsonSignature["signature"] =
+        Base64::encode(Data(signature.signature().begin(), signature.signature().end()));
 
     return jsonSignature;
 }
 
-json TW::Cosmos::signaturePreimageJSON(const SigningInput& input) {
+json TW::Cosmos::signaturePreimageJSON(const SigningInput &input) {
     json jsonForSigning;
 
     jsonForSigning["account_number"] = std::to_string(input.account_number());
@@ -192,7 +201,7 @@ json TW::Cosmos::signaturePreimageJSON(const SigningInput& input) {
     return jsonForSigning;
 }
 
-json TW::Cosmos::transactionJSON(const Transaction& transaction, const string& type_prefix) {
+json TW::Cosmos::transactionJSON(const Transaction &transaction, const string &type_prefix) {
     json jsonTx;
 
     jsonTx["type"] = type_prefix;

@@ -12,4 +12,3 @@
 using namespace TW::Binance;
 
 const std::string Address::hrp = HRP_BINANCE;
-

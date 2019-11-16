@@ -20,13 +20,13 @@ Data Function::getSignature() const {
     return signature;
 }
 
-void Function::encode(Data& data) const {
+void Function::encode(Data &data) const {
     Data signature = getSignature();
     append(data, signature);
     _inParams.encode(data);
 }
 
-bool Function::decodeOutput(const Data& encoded, size_t& offset_inout) {
+bool Function::decodeOutput(const Data &encoded, size_t &offset_inout) {
     // read parameter values
     if (!_outParams.decode(encoded, offset_inout)) {
         return false;
@@ -34,7 +34,7 @@ bool Function::decodeOutput(const Data& encoded, size_t& offset_inout) {
     return true;
 }
 
-bool Function::decodeInput(const Data& encoded, size_t& offset_inout) {
+bool Function::decodeInput(const Data &encoded, size_t &offset_inout) {
     // read 4-byte hash
     auto p = ParamByteArrayFix(4);
     if (!p.decode(encoded, offset_inout)) {

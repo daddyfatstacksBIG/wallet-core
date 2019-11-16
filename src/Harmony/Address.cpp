@@ -13,4 +13,3 @@
 using namespace TW::Harmony;
 
 const std::string Address::hrp = HRP_HARMONY;
-
