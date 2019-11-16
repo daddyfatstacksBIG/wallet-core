@@ -18,7 +18,9 @@ public:
 
     static const std::string hrp; // HRP_IOTEX
 
-    static bool isValid(const std::string addr) { return Bech32Address::isValid(addr, hrp); }
+    static bool isValid(const std::string addr) {
+        return Bech32Address::isValid(addr, hrp);
+    }
 
     Address() : Bech32Address(hrp) {}
 
@@ -33,7 +35,7 @@ public:
     Address(const PublicKey& publicKey) : Bech32Address(hrp, HASHER_SHA3K, publicKey) {
         if (publicKey.type != TWPublicKeyTypeSECP256k1Extended) {
             throw std::invalid_argument("address may only be an extended SECP256k1 public key");
-        }      
+        }
     }
 
     static bool decode(const std::string& addr, Address& obj_out) {

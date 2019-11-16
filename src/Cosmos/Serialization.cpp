@@ -129,7 +129,7 @@ static json restakeMessageJSON(const ReStakeMessage& message) {
     json jsonAmount = amountJSON(std::to_string(amount.amount()), amount.denom());
 
     return restakeMessageJSON(jsonAmount, message.delegator_address(), message.validator_src_address(),
-            message.validator_dst_address(), message.type_prefix());
+                              message.validator_dst_address(), message.type_prefix());
 }
 
 

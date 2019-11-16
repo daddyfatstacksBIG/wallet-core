@@ -70,7 +70,7 @@ std::string Signer::signaturePreimage() const {
     return signaturePreimageJSON(input).dump();
 }
 
-json Signer::buildTransactionJSON(const Data& signature) const {    
+json Signer::buildTransactionJSON(const Data& signature) const {
     auto sig = Cosmos::Proto::Signature();
     sig.set_signature(signature.data(), signature.size());
     auto privateKey = PrivateKey(input.private_key());
@@ -92,13 +92,13 @@ json Signer::buildTransactionJSON(const Data& signature) const {
     } else if (input.has_withdraw_stake_reward_message()) {
         *transaction.mutable_withdraw_stake_reward_message() = input.withdraw_stake_reward_message();
     }
-    
+
     *transaction.mutable_signature() = sig;
-    
+
     return transactionJSON(transaction, input.type_prefix());
 }
 
-std::string Signer::buildTransaction() const {    
+std::string Signer::buildTransaction() const {
     auto signature = sign();
     return buildTransactionJSON(signature).dump();
 }

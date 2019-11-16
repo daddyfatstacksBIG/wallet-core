@@ -28,14 +28,18 @@ void Function::encode(Data& data) const {
 
 bool Function::decodeOutput(const Data& encoded, size_t& offset_inout) {
     // read parameter values
-    if (!_outParams.decode(encoded, offset_inout)) { return false; }
+    if (!_outParams.decode(encoded, offset_inout)) {
+        return false;
+    }
     return true;
 }
 
 bool Function::decodeInput(const Data& encoded, size_t& offset_inout) {
     // read 4-byte hash
     auto p = ParamByteArrayFix(4);
-    if (!p.decode(encoded, offset_inout)) { return false; }
+    if (!p.decode(encoded, offset_inout)) {
+        return false;
+    }
     std::vector<byte> hash = p.getVal();
     // adjust offset; hash is NOT padded to 32 bytes
     offset_inout = offset_inout - 32 + 4;
@@ -46,6 +50,8 @@ bool Function::decodeInput(const Data& encoded, size_t& offset_inout) {
         return false;
     }
     // read parameters
-    if (!_inParams.decode(encoded, offset_inout)) { return false; }
+    if (!_inParams.decode(encoded, offset_inout)) {
+        return false;
+    }
     return true;
 }

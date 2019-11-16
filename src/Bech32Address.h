@@ -32,7 +32,7 @@ public:
     /// Determines whether a string makes a valid Bech32 address, and the HRP matches.
     static bool isValid(const std::string& addr, const std::string& hrp);
 
-    /// Decodes an address and create an address object out of it.  
+    /// Decodes an address and create an address object out of it.
     /// obj_out:  Pass-by-ref, result is initialized here if possible, it can be a derived address type.
     /// hrp: the expected hrp prefix (if missing ("") no prefix check is done).
     /// \returns true if success.
@@ -47,18 +47,28 @@ public:
     /// Initialization from public key --> chain specific hash methods
     Bech32Address(const std::string& hrp, HasherType hasher, const PublicKey& publicKey);
 
-    void setHrp(const std::string& hrp_in) { hrp = std::move(hrp_in); }
-    void setKey(Data keyHash_in) { keyHash = std::move(keyHash_in); }
+    void setHrp(const std::string& hrp_in) {
+        hrp = std::move(hrp_in);
+    }
+    void setKey(Data keyHash_in) {
+        keyHash = std::move(keyHash_in);
+    }
 
-    inline const std::string& getHrp() const { return hrp; }
+    inline const std::string& getHrp() const {
+        return hrp;
+    }
 
-    inline const Data& getKeyHash() const { return keyHash; }
+    inline const Data& getKeyHash() const {
+        return keyHash;
+    }
 
     /// Encodes the address.
     /// \returns encoded address string, or empty string on failure.
     std::string string() const;
 
-    bool operator==(const Bech32Address& rhs) const { return hrp == rhs.hrp && keyHash == rhs.keyHash; }
+    bool operator==(const Bech32Address& rhs) const {
+        return hrp == rhs.hrp && keyHash == rhs.keyHash;
+    }
 
 private:
     Bech32Address() = default;

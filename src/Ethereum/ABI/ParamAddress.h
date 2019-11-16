@@ -19,7 +19,9 @@ public:
     static const size_t bytes = 160/8;
     ParamAddress(): ParamByteArrayFix(bytes) {}
     ParamAddress(const Data& val): ParamByteArrayFix(bytes, val) {}
-    virtual std::string getType() const { return "address"; };
+    virtual std::string getType() const {
+        return "address";
+    };
 };
 
 } // namespace TW::Ethereum::ABI

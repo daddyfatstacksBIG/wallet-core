@@ -16,7 +16,7 @@ namespace TW::Bitcoin {
 /// A Segwit address.
 /// Note: Similar to Bech32Address, but it differs enough so that reuse makes no sense.
 class SegwitAddress {
-  public:
+public:
     /// Human-readable part.
     ///
     /// \see https://github.com/satoshilabs/slips/blob/master/slip-0173.md
@@ -55,14 +55,14 @@ class SegwitAddress {
 
     /// Initializes a Bech32 address with raw data.
     static std::pair<SegwitAddress, bool> fromRaw(const std::string& hrp,
-                                                  const std::vector<uint8_t>& data);
+            const std::vector<uint8_t>& data);
 
     bool operator==(const SegwitAddress& rhs) const {
         return hrp == rhs.hrp && witnessVersion == rhs.witnessVersion &&
                witnessProgram == rhs.witnessProgram;
     }
 
-  private:
+private:
     SegwitAddress() = default;
 };
 

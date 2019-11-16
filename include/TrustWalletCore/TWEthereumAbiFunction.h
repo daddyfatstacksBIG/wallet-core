@@ -27,7 +27,7 @@ void TWEthereumAbiFunctionDelete(struct TWEthereumAbiFunction *_Nonnull func_in)
 TW_EXPORT_METHOD
 TWString *_Nonnull TWEthereumAbiFunctionGetType(struct TWEthereumAbiFunction *_Nonnull func_in);
 
-/// Methods for adding parameters of the given type (input or output).  
+/// Methods for adding parameters of the given type (input or output).
 /// For output parameters (isOutput=true) a value has to be specified, although usually not needd.
 /// Returns the index of the parameter (0-based).
 TW_EXPORT_METHOD

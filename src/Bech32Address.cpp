@@ -56,36 +56,36 @@ bool Bech32Address::decode(const std::string& addr, Bech32Address& obj_out, cons
 }
 
 Bech32Address::Bech32Address(const std::string& hrp, HasherType hasher, const PublicKey& publicKey)
-: hrp(hrp) {
+    : hrp(hrp) {
     switch (hasher) {
-        case HASHER_SHA2_RIPEMD:
-            {
-                auto key = Data(20);
-                ecdsa_get_pubkeyhash(publicKey.compressed().bytes.data(), HASHER_SHA2_RIPEMD, key.data());
-                setKey(key);
-            }
-            break;
-        
-        case HASHER_SHA2:
-            {
-                const auto hash = Hash::sha256(publicKey.bytes);
-                auto key = Data(20);
-                std::copy(hash.end() - 20, hash.end(), key.begin());
-                setKey(key);
-            }
-            break;
+    case HASHER_SHA2_RIPEMD:
+    {
+        auto key = Data(20);
+        ecdsa_get_pubkeyhash(publicKey.compressed().bytes.data(), HASHER_SHA2_RIPEMD, key.data());
+        setKey(key);
+    }
+    break;
 
-        case HASHER_SHA3K:
-            {
-                const auto hash = publicKey.hash({}, static_cast<Data (*)(const byte *, const byte *)>(Hash::keccak256), true);
-                auto key = Data(20);
-                std::copy(hash.end() - 20, hash.end(), key.begin());
-                setKey(key);
-            }
-            break;
+    case HASHER_SHA2:
+    {
+        const auto hash = Hash::sha256(publicKey.bytes);
+        auto key = Data(20);
+        std::copy(hash.end() - 20, hash.end(), key.begin());
+        setKey(key);
+    }
+    break;
 
-        default:
-            throw std::invalid_argument("Invalid HasherType in Bech32Address");
+    case HASHER_SHA3K:
+    {
+        const auto hash = publicKey.hash({}, static_cast<Data (*)(const byte *, const byte *)>(Hash::keccak256), true);
+        auto key = Data(20);
+        std::copy(hash.end() - 20, hash.end(), key.begin());
+        setKey(key);
+    }
+    break;
+
+    default:
+        throw std::invalid_argument("Invalid HasherType in Bech32Address");
     }
 }
 

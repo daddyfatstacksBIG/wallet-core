@@ -21,7 +21,9 @@ class Address: public Bech32Address {
 public:
     static const std::string hrp; // HRP_ZILLIQA
 
-    static bool isValid(const std::string addr) { return Bech32Address::isValid(addr, hrp); }
+    static bool isValid(const std::string addr) {
+        return Bech32Address::isValid(addr, hrp);
+    }
 
     Address() : Bech32Address(hrp) {}
 

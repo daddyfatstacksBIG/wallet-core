@@ -20,7 +20,7 @@ using namespace TW;
 using namespace TW::IoTeX;
 
 bool TWIoTeXAddressEqual(struct TWIoTeXAddress *_Nonnull lhs, struct TWIoTeXAddress *_Nonnull rhs) {
-   return lhs->impl == rhs->impl;
+    return lhs->impl == rhs->impl;
 }
 
 bool TWIoTeXAddressIsValidString(TWString *_Nonnull string) {

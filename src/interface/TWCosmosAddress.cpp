@@ -16,7 +16,7 @@ using namespace TW;
 using namespace TW::Cosmos;
 
 bool TWCosmosAddressEqual(struct TWCosmosAddress *_Nonnull lhs, struct TWCosmosAddress *_Nonnull rhs) {
-   return lhs->impl == rhs->impl;
+    return lhs->impl == rhs->impl;
 }
 
 bool TWCosmosAddressIsValidString(TWString *_Nonnull string) {

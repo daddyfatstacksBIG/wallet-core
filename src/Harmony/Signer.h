@@ -22,7 +22,7 @@ namespace TW::Harmony {
 
 /// Helper class that performs Harmony transaction signing.
 class Signer {
-  private:
+private:
     static Proto::SigningOutput
     signTransaction(const Proto::SigningInput &input) noexcept;
 
@@ -41,7 +41,7 @@ class Signer {
     static Proto::SigningOutput
     signCollectRewards(const Proto::SigningInput &input) noexcept;
 
-  public:
+public:
     uint256_t chainID;
 
     /// Initializes a signer with a chain identifier.
@@ -67,14 +67,14 @@ class Signer {
     ///
     /// @returns the r, s, and v values of the transaction signature
     static std::tuple<uint256_t, uint256_t, uint256_t> values(const uint256_t &chainID,
-                                                              const Data &signature) noexcept;
+            const Data &signature) noexcept;
 
     std::string txnAsRLPHex(Transaction &transaction) const noexcept;
 
     template <typename Directive>
     std::string txnAsRLPHex(Staking<Directive> &transaction) const noexcept;
 
-  protected:
+protected:
     /// Computes the transaction hash.
     Data hash(const Transaction &transaction) const noexcept;
     /// Computes the staking transaction hash.

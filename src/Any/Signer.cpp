@@ -192,7 +192,7 @@ void Any::Signer::parse(const std::string &transaction, Message *message,
 }
 
 void Any::Signer::toJson(const google::protobuf::Message &message, std::string *json_string) const
-    noexcept {
+noexcept {
     util::JsonPrintOptions options;
     options.preserve_proto_field_names = true;
 
