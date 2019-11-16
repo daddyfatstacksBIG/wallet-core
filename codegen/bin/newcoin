@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 # Sript for creating new skeleton files for a new coin
 # 1. Add relevsant entry to coins.json (in order to minimize merge conflict, don't add at the very end)
@@ -22,7 +23,7 @@ end
 # Transforms a coin name to a C++ name
 def self.format_name(coin)
   formatted = coin['name']
-  #formatted = formatted.sub(/^([a-z]+)/, &:upcase)
+  # formatted = formatted.sub(/^([a-z]+)/, &:upcase)
   formatted = formatted.sub(/\s/, '')
   formatted
 end
@@ -48,7 +49,7 @@ def self.generate_file(templateFile, folder, fileName, coin)
 end
 
 command_line_args = ARGV
-if command_line_args.length < 1
+if command_line_args.empty?
   puts 'Usage: newcoin <new_coin_id>'
   return
 end
@@ -71,7 +72,7 @@ coin_test_gen = CoinTestGen.new
 
 # Find coin in list of coins, by Id
 coinSelect = coins.select { |c| c['id'] == coin_id }
-if coinSelect.length == 0
+if coinSelect.empty?
   puts "Error: coin #{coin_id} not found!"
   return
 end
@@ -146,17 +147,13 @@ generate_file(
 coin_test_gen.generate_coin_test_file(coin)
 generate_file(
   'newcoin/AddressTests.kt.erb',
-  "android/app/src/androidTest/java/com/trustwallet/core/app/blockchains/#{
-    format_name_lowercase(coin)
-  }",
+  "android/app/src/androidTest/java/com/trustwallet/core/app/blockchains/#{format_name_lowercase(coin)}",
   "AddressTests#{format_name(coin)}.kt",
   coin
 )
 generate_file(
   'newcoin/SignerTests.kt.erb',
-  "android/app/src/androidTest/java/com/trustwallet/core/app/blockchains/#{
-    format_name_lowercase(coin)
-  }",
+  "android/app/src/androidTest/java/com/trustwallet/core/app/blockchains/#{format_name_lowercase(coin)}",
   "SignerTests#{format_name(coin)}.kt",
   coin
 )

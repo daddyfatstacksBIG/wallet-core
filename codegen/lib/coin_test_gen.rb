@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Helper for creating/updating CoinType unit tests, based on the coins.json file
 
 require 'erb'
@@ -7,14 +9,14 @@ require 'json'
 class CoinTestGen
   attr_accessor :templateFile
 
-  def initialize()
+  def initialize
     @templateFile = 'TWCoinTypeTests.cpp.erb'
   end
 
   # Transforms a coin name to a C++ name
   def format_name(n)
     formatted = n
-    #formatted = formatted.sub(/^([a-z]+)/, &:upcase)
+    # formatted = formatted.sub(/^([a-z]+)/, &:upcase)
     formatted = formatted.sub(/\s/, '')
     formatted
   end
@@ -28,7 +30,7 @@ class CoinTestGen
   # Display name, or name if not specified
   def display_name(coin)
     name = coin['displayName']
-    name = coin['name'] if name == nil
+    name = coin['name'] if name.nil?
     name
   end
 

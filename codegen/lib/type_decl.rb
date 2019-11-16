@@ -48,8 +48,6 @@ class TypeDecl
       TypeDecl.new(name: :int32)
     when 'int64_t'
       TypeDecl.new(name: :int64)
-    else
-      nil
     end
   end
 end

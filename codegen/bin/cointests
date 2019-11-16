@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 # Sript for creating/updating CoinType unit tests, based on the coins.json file
 # It is intended as a one-time or occasional generation, not every time! (that way the tests would have zero added value)
@@ -12,7 +13,7 @@ require 'json'
 # Transforms a coin name to a C++ name
 def self.format_name(n)
   formatted = n
-  #formatted = formatted.sub(/^([a-z]+)/, &:upcase)
+  # formatted = formatted.sub(/^([a-z]+)/, &:upcase)
   formatted = formatted.sub(/\s/, '')
   formatted
 end
@@ -26,7 +27,7 @@ end
 # Display name, or name if not specified
 def self.display_name(coin)
   name = coin['displayName']
-  name = coin['name'] if name == nil
+  name = coin['name'] if name.nil?
   name
 end
 
