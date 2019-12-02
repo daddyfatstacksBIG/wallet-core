@@ -23,7 +23,7 @@ targets:
       - path: wallet-core
         headerVisibility: project
         excludes:
-        - ".vscode"
+          - ".vscode"
       - Sources
     dependencies:
       - target: trezor-crypto
