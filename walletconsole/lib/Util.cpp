@@ -7,13 +7,13 @@
 #include "Util.h"
 
 #include "Base64.h"
-#include "HexCoding.h"
 #include "Data.h"
+#include "HexCoding.h"
 
-#include <iostream>
-#include <vector>
 #include <cassert>
 #include <fstream>
+#include <iostream>
+#include <vector>
 
 namespace TW::WalletConsole {
 
@@ -54,11 +54,12 @@ bool Util::base64Decode(const string& p, string& res) {
 
 bool Util::fileW(const string& fileName, const string& data, string& res, ostream& out) {
     if (fileExists(fileName)) {
-        out << "Warning: File '" << fileName << "' already exists, not overwriting to be safe." << endl;
+        out << "Warning: File '" << fileName << "' already exists, not overwriting to be safe."
+            << endl;
         return false;
     }
     try {
-        ofstream outfile(fileName,  std::ios::out | std::ios::binary);
+        ofstream outfile(fileName, std::ios::out | std::ios::binary);
         Data bindata = parse_hex(data);
         outfile.write((const char*)bindata.data(), bindata.size());
         outfile.close();
@@ -75,11 +76,11 @@ bool Util::fileR(const string& fileName, string& res, ostream& out) {
         return false;
     }
     try {
-        ifstream infile(fileName,  std::ios::in | std::ios::binary);
+        ifstream infile(fileName, std::ios::in | std::ios::binary);
         // get length of file:
-        infile.seekg (0, infile.end);
+        infile.seekg(0, infile.end);
         int length = infile.tellg();
-        infile.seekg (0, infile.beg);
+        infile.seekg(0, infile.beg);
         char* buffer = new char[length];
         if (!infile.read(buffer, length)) {
             out << "Could not read file '" << fileName << "'" << endl;
@@ -119,20 +120,16 @@ vector<string> Util::tokenize(const string& line) {
 }
 
 void Util::trimLeft(std::string& s) {
-    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
-        return !std::isspace(ch);
-    }));
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) { return !std::isspace(ch); }));
 }
 
 void Util::toLower(std::string& s) {
-    std::transform(s.begin(), s.end(), s.begin(),
-    [](unsigned char c) {
-        return std::tolower(c);
-    });
+    std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c) { return std::tolower(c); });
 }
 
 bool Util::fileExists(const std::string& fileName) {
-    //return filesystem::exists(filesystem::path(fileName)); // not used due to compiler issues (on iOS)
+    // return filesystem::exists(filesystem::path(fileName)); // not used due to compiler issues (on
+    // iOS)
     ifstream f(fileName.c_str());
     return f.good();
 }

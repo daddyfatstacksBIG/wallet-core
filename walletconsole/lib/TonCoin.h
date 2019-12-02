@@ -6,17 +6,17 @@
 
 #pragma once
 
+#include "HexCoding.h"
+#include "PrivateKey.h"
+#include "PublicKey.h"
 #include "TON/Address.h"
 #include "TON/Cell.h"
 #include "TON/Signer.h"
-#include "PublicKey.h"
-#include "PrivateKey.h"
-#include "HexCoding.h"
 
-#include <string>
-#include <iostream>
-#include <vector>
 #include <cassert>
+#include <iostream>
+#include <string>
+#include <vector>
 
 namespace TW::WalletConsole {
 
@@ -25,7 +25,7 @@ using namespace TW;
 using namespace TW::TON;
 
 class TonCoin {
-public:
+  public:
     static bool tonInitMsg(const string& privkey, string& res) {
         PrivateKey privv = PrivateKey(parse_hex(privkey));
         Data extMsg = Signer::buildInitMessage(privv);

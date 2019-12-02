@@ -57,14 +57,14 @@ bool Script::isWitnessProgram() const {
 
 bool Script::matchPayToPubkey(Data& result) const {
     if (bytes.size() == PublicKey::secp256k1ExtendedSize + 2 &&
-            bytes[0] == PublicKey::secp256k1ExtendedSize && bytes.back() == OP_CHECKSIG) {
+        bytes[0] == PublicKey::secp256k1ExtendedSize && bytes.back() == OP_CHECKSIG) {
         result.clear();
         std::copy(std::begin(bytes) + 1, std::begin(bytes) + 1 + PublicKey::secp256k1Size,
                   std::back_inserter(result));
         return true;
     }
     if (bytes.size() == PublicKey::secp256k1Size + 2 && bytes[0] == PublicKey::secp256k1Size &&
-            bytes.back() == OP_CHECKSIG) {
+        bytes.back() == OP_CHECKSIG) {
         result.clear();
         std::copy(std::begin(bytes) + 1, std::begin(bytes) + 1 + PublicKey::secp256k1Size,
                   std::back_inserter(result));
@@ -75,7 +75,7 @@ bool Script::matchPayToPubkey(Data& result) const {
 
 bool Script::matchPayToPubkeyHash(Data& result) const {
     if (bytes.size() == 25 && bytes[0] == OP_DUP && bytes[1] == OP_HASH160 && bytes[2] == 20 &&
-            bytes[23] == OP_EQUALVERIFY && bytes[24] == OP_CHECKSIG) {
+        bytes[23] == OP_EQUALVERIFY && bytes[24] == OP_CHECKSIG) {
         result.clear();
         std::copy(std::begin(bytes) + 3, std::begin(bytes) + 3 + 20, std::back_inserter(result));
         return true;

@@ -6,36 +6,35 @@
 
 #pragma once
 
-#include "HexCoding.h"
 #include "Data.h"
+#include "HexCoding.h"
 
+#include <cassert>
 #include <iostream>
 #include <vector>
-#include <cassert>
 
 namespace TW::WalletConsole {
 
 using namespace std;
 
 class SavedValue {
-protected:
+  protected:
     string _val;
-public:
+
+  public:
     SavedValue() {}
     SavedValue(const string& v) : _val(v) {}
-    string get() const {
-        return _val;
-    }
+    string get() const { return _val; }
 };
 
 // Keep last result and buffer variables
 class Buffer {
-protected:
+  protected:
     ostream& _out;
     SavedValue _last;
     vector<SavedValue> _prev;
 
-public:
+  public:
     Buffer(ostream& out) : _out(out) {}
 
     void addResult(const string& val);

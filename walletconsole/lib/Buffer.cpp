@@ -5,14 +5,14 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "Buffer.h"
-#include "WalletConsole.h"
 #include "Util.h"
+#include "WalletConsole.h"
 
 #include "Data.h"
 
+#include <cassert>
 #include <iostream>
 #include <vector>
-#include <cassert>
 
 namespace TW::WalletConsole {
 
@@ -49,7 +49,8 @@ bool Buffer::prepareInput(const string& in, string& in_out) {
         // of the form #n
         int idx = n - 1;
         if (idx < 0 || idx >= _prev.size()) {
-            _out << "Requested " << in2 << ", but out of range of buffers (n=" << _prev.size() << ")." << endl;
+            _out << "Requested " << in2 << ", but out of range of buffers (n=" << _prev.size()
+                 << ")." << endl;
             return false;
         }
         in_out = _prev[idx].get();
