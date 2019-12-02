@@ -18,7 +18,9 @@ class CodeGenerator
   end
 
   # Renders an enum template
-  def render_swift_enum_template(file:, header:, template:, output_subfolder:, extension:)
+  def render_swift_enum_template(
+    file:, header:, template:, output_subfolder:, extension:
+  )
     # split Enum to Enum.swift and Enum+Extension.swift (easier to support cocoapods subspec)
     output_enum_subfolder = "#{output_subfolder + '/Enums'}"
     FileUtils.mkdir_p File.join(output_folder, output_enum_subfolder)
@@ -31,7 +33,14 @@ class CodeGenerator
       code = +''
       code << header
       code << string
-      path = File.expand_path(File.join(output_folder, output_enum_subfolder, "#{file}.#{extension}"))
+      path =
+        File.expand_path(
+          File.join(
+            output_folder,
+            output_enum_subfolder,
+            "#{file}.#{extension}"
+          )
+        )
       File.write(path, code)
     end
 
@@ -39,7 +48,14 @@ class CodeGenerator
       code = +''
       code << header
       code << render('swift/enum_extension.erb')
-      path = File.expand_path(File.join(output_folder, output_subfolder, "#{file + '+Extension'}.#{extension}"))
+      path =
+        File.expand_path(
+          File.join(
+            output_folder,
+            output_subfolder,
+            "#{file + '+Extension'}.#{extension}"
+          )
+        )
       File.write(path, code)
     end
   end
@@ -49,19 +65,30 @@ class CodeGenerator
     FileUtils.mkdir_p File.join(output_folder, output_subfolder)
     @entities.zip(files) do |entity, file|
       # Make current entity available to templates
-      @entity = entity
+      @entity =
+        entity
 
       if entity.type.is_enum && extension == 'swift'
-        render_swift_enum_template(file: file, header: header, template: template, output_subfolder: output_subfolder, extension: extension)
+        render_swift_enum_template(
+          file: file,
+          header: header,
+          template: template,
+          output_subfolder: output_subfolder,
+          extension: extension
+        )
       else
         code = +''
         code << render(header) unless header.nil?
         string = render(template)
+
         unless string.nil? || string.empty?
           code << "\n" unless header.nil?
           code << string
-  
-          path = File.expand_path(File.join(output_folder, output_subfolder, "#{file}.#{extension}"))
+
+          path =
+            File.expand_path(
+              File.join(output_folder, output_subfolder, "#{file}.#{extension}")
+            )
           File.write(path, code)
         end
       end
@@ -69,36 +96,66 @@ class CodeGenerator
   end
 
   def render_swift
-    render_template(header: 'swift/header.erb', template: 'swift.erb', output_subfolder: 'swift/Sources/Generated', extension: 'swift')
+    render_template(
+      header: 'swift/header.erb',
+      template: 'swift.erb',
+      output_subfolder: 'swift/Sources/Generated',
+      extension: 'swift'
+    )
 
     framework_header = render('swift/TrustWalletCore.h.erb')
-    framework_header_path = File.expand_path(File.join(output_folder, 'swift/Sources/Generated', 'TrustWalletCore.h'))
+    framework_header_path =
+      File.expand_path(
+        File.join(output_folder, 'swift/Sources/Generated', 'TrustWalletCore.h')
+      )
     File.write(framework_header_path, framework_header)
   end
 
   def render_java
-    render_template(header: 'java/header.erb', template: 'java.erb', output_subfolder: 'jni/java/wallet/core/jni', extension: 'java')
+    render_template(
+      header: 'java/header.erb',
+      template: 'java.erb',
+      output_subfolder: 'jni/java/wallet/core/jni',
+      extension: 'java'
+    )
   end
 
   def render_jni_h
-    render_template(header: 'jni/header.erb', template: 'jni_h.erb', output_subfolder: 'jni/cpp/generated', extension: 'h')
+    render_template(
+      header: 'jni/header.erb',
+      template: 'jni_h.erb',
+      output_subfolder: 'jni/cpp/generated',
+      extension: 'h'
+    )
   end
 
   def render_jni_c
-    render_template(header: 'jni/header.erb', template: 'jni_c.erb', output_subfolder: 'jni/cpp/generated', extension: 'c')
+    render_template(
+      header: 'jni/header.erb',
+      template: 'jni_c.erb',
+      output_subfolder: 'jni/cpp/generated',
+      extension: 'c'
+    )
   end
 
   def render_js
-    render_template(header: 'js/header.erb', template: 'js.erb', output_subfolder: 'js/js/generated', extension: 'ts')
+    render_template(
+      header: 'js/header.erb',
+      template: 'js.erb',
+      output_subfolder: 'js/js/generated',
+      extension: 'ts'
+    )
 
     index_ts = render('js/index.ts.erb')
-    index_ts_path = File.expand_path(File.join(output_folder, 'js/lib/', 'index.ts'))
+    index_ts_path =
+      File.expand_path(File.join(output_folder, 'js/lib/', 'index.ts'))
     File.write(index_ts_path, index_ts)
   end
 
   def render(file, locals = {})
     @locals = locals
-    path = File.expand_path(file, File.join(File.dirname(__FILE__), 'templates'))
+    path =
+      File.expand_path(file, File.join(File.dirname(__FILE__), 'templates'))
     template = ERB.new(File.read(path), nil, '-')
     template.result(binding)
   end
