@@ -27,9 +27,9 @@ using namespace TW;
 
 
 CommandExecutor::CommandExecutor(ostream& out)
-    : 
+    :
     _out(out),
-    _coins(out), 
+    _coins(out),
     _buffer(out),
     _keys(out, _coins),
     _address(out, _coins, _keys)
@@ -104,42 +104,143 @@ bool CommandExecutor::executeOne(const string& cmd, const vector<string>& params
         _out << "Error processing input(s)" << endl;
         return false;
     }
-    
-    if (cmd == "help") { help(); return false; }
+
+    if (cmd == "help") {
+        help();
+        return false;
+    }
     if (cmd[0] == '#') {
         // echo input, with substitution
         _out << "Previous result is:  " << params[0] << endl;
         return false;
     }
-    if (cmd == "buffer") { _buffer.buffer(); return false; }
+    if (cmd == "buffer") {
+        _buffer.buffer();
+        return false;
+    }
 
-    if (cmd == "coins") { _coins.coins(); return false; }
-    if (cmd == "coin") { if (!checkMinParams(params, 1)) { return false; } setCoin(params[1], true); return false; }
+    if (cmd == "coins") {
+        _coins.coins();
+        return false;
+    }
+    if (cmd == "coin") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        setCoin(params[1], true);
+        return false;
+    }
 
-    if (cmd == "newkey") { return _keys.newKey(res); }
-    if (cmd == "pubpri") { if (!checkMinParams(params, 1)) { return false; } return _keys.pubPri(_activeCoin, params[1], res); }
-    if (cmd == "pripub") { if (!checkMinParams(params, 1)) { return false; } return _keys.priPub(params[1], res); }
-    if (cmd == "setmnemonic" || cmd == "setmenmonic") { if (!checkMinParams(params, 1)) { return false; } _keys.setMnemonic(params); return false; }
-    if (cmd == "newmnemonic" || cmd == "newmenmonic") { if (!checkMinParams(params, 1)) { return false; } return _keys.newMnemonic(params[1], res); }
-    if (cmd == "dumpseed") { return _keys.dumpSeed(res); }
-    if (cmd == "dumpmnemonic" || cmd == "dumpmenmonic") { return _keys.dumpMnemonic(res); }
-    if (cmd == "dumpdp") { return _keys.dumpDP(_activeCoin, res); }
-    if (cmd == "pridp") { string dp; if (params.size() >= 2) dp = params[1]; return _keys.priDP(_activeCoin, dp, res); }
+    if (cmd == "newkey") {
+        return _keys.newKey(res);
+    }
+    if (cmd == "pubpri") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        return _keys.pubPri(_activeCoin, params[1], res);
+    }
+    if (cmd == "pripub") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        return _keys.priPub(params[1], res);
+    }
+    if (cmd == "setmnemonic" || cmd == "setmenmonic") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        _keys.setMnemonic(params);
+        return false;
+    }
+    if (cmd == "newmnemonic" || cmd == "newmenmonic") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        return _keys.newMnemonic(params[1], res);
+    }
+    if (cmd == "dumpseed") {
+        return _keys.dumpSeed(res);
+    }
+    if (cmd == "dumpmnemonic" || cmd == "dumpmenmonic") {
+        return _keys.dumpMnemonic(res);
+    }
+    if (cmd == "dumpdp") {
+        return _keys.dumpDP(_activeCoin, res);
+    }
+    if (cmd == "pridp") {
+        string dp;
+        if (params.size() >= 2) dp = params[1];
+        return _keys.priDP(_activeCoin, dp, res);
+    }
 
-    if (cmd == "addrpub") { if (!checkMinParams(params, 1)) { return false; } return _address.addrPub(_activeCoin, params[1], res); }
-    if (cmd == "addrpri") { if (!checkMinParams(params, 1)) { return false; } return _address.addrPri(_activeCoin, params[1], res); }
-    if (cmd == "addr") { if (!checkMinParams(params, 1)) { return false; } return _address.addr(_activeCoin, params[1], res); }
-    if (cmd == "addrdefault") { return _address.addrDefault(_activeCoin, res); }
-    if (cmd == "addrdp") { if (!checkMinParams(params, 1)) { return false; } return _address.addrDP(_activeCoin, params[1], res); }
+    if (cmd == "addrpub") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        return _address.addrPub(_activeCoin, params[1], res);
+    }
+    if (cmd == "addrpri") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        return _address.addrPri(_activeCoin, params[1], res);
+    }
+    if (cmd == "addr") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        return _address.addr(_activeCoin, params[1], res);
+    }
+    if (cmd == "addrdefault") {
+        return _address.addrDefault(_activeCoin, res);
+    }
+    if (cmd == "addrdp") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        return _address.addrDP(_activeCoin, params[1], res);
+    }
 
-    if (cmd == "toninitmsg") { if (!checkMinParams(params, 1)) { return false; } setCoin("ton", false); return TonCoin::tonInitMsg(params[1], res); }
+    if (cmd == "toninitmsg") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        setCoin("ton", false);
+        return TonCoin::tonInitMsg(params[1], res);
+    }
 
-    if (cmd == "hex") { if (!checkMinParams(params, 1)) { return false; } return Util::hex(params[1], res); }
-    if (cmd == "base64encode") { if (!checkMinParams(params, 1)) { return false; } return Util::base64Encode(params[1], res); }
-    if (cmd == "base64decode") { if (!checkMinParams(params, 1)) { return false; } return Util::base64Decode(params[1], res); }
-    
-    if (cmd == "filew") { if (!checkMinParams(params, 2)) { return false; } return Util::fileW(params[1], params[2], res, _out); }
-    if (cmd == "filer") { if (!checkMinParams(params, 1)) { return false; } return Util::fileR(params[1], res, _out); }
+    if (cmd == "hex") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        return Util::hex(params[1], res);
+    }
+    if (cmd == "base64encode") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        return Util::base64Encode(params[1], res);
+    }
+    if (cmd == "base64decode") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        return Util::base64Decode(params[1], res);
+    }
+
+    if (cmd == "filew") {
+        if (!checkMinParams(params, 2)) {
+            return false;
+        }
+        return Util::fileW(params[1], params[2], res, _out);
+    }
+    if (cmd == "filer") {
+        if (!checkMinParams(params, 1)) {
+            return false;
+        }
+        return Util::fileR(params[1], res, _out);
+    }
 
     // fallback
     _out << "Unknown command:  " << cmd << endl << "Type 'help' for list of commands." << endl;
@@ -167,7 +268,7 @@ void CommandExecutor::execute(const string& cmd, const vector<string>& params) {
 }
 
 bool CommandExecutor::prepareInputs(const vector<string>& p_in, vector<string>& p_out) {
-    p_out = vector<string>{};
+    p_out = vector<string> {};
     for (auto p: p_in) {
         string p2;
         if (!_buffer.prepareInput(p, p2)) {

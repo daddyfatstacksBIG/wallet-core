@@ -69,7 +69,9 @@ void Coins::scanCoinRange(int from, int to) {
     for (int i = from; i < to; ++i) {
         TWCoinType c = (TWCoinType)i;
         auto symbolTw = WRAPS(TWCoinTypeConfigurationGetSymbol(c));
-        if (TWStringSize(symbolTw.get()) == 0) { continue; }
+        if (TWStringSize(symbolTw.get()) == 0) {
+            continue;
+        }
         string id = TWStringUTF8Bytes(WRAPS(TWCoinTypeConfigurationGetID(c)).get());
         Util::toLower(id);
         string symbol = TWStringUTF8Bytes(symbolTw.get());
@@ -91,11 +93,21 @@ int Coins::pubKeyTypeFromCurve(int cc) {
     TWCurve c = (TWCurve)cc;
     TWPublicKeyType t;
     switch (c) {
-        case TWCurveSECP256k1: t = TWPublicKeyTypeSECP256k1; break;
-        case TWCurveED25519: t = TWPublicKeyTypeED25519; break;
-        case TWCurveED25519Blake2bNano: t = TWPublicKeyTypeED25519Blake2b; break;
-        case TWCurveCurve25519: t = TWPublicKeyTypeCURVE25519; break;
-        case TWCurveNIST256p1: t = TWPublicKeyTypeNIST256p1; break;
+    case TWCurveSECP256k1:
+        t = TWPublicKeyTypeSECP256k1;
+        break;
+    case TWCurveED25519:
+        t = TWPublicKeyTypeED25519;
+        break;
+    case TWCurveED25519Blake2bNano:
+        t = TWPublicKeyTypeED25519Blake2b;
+        break;
+    case TWCurveCurve25519:
+        t = TWPublicKeyTypeCURVE25519;
+        break;
+    case TWCurveNIST256p1:
+        t = TWPublicKeyTypeNIST256p1;
+        break;
     }
     return (int)t;
 }

@@ -45,15 +45,15 @@ PROTOBUF_NAMESPACE_CLOSE
 
 // Internal implementation detail -- do not use these members.
 struct TableStruct_TronInternal_2eproto {
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTableField entries[]
+    static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTableField entries[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
+    static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[15]
+    static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[15]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
-  static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
-  static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
+    static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
+    static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
+    static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_TronInternal_2eproto;
 namespace protocol {
@@ -123,18 +123,18 @@ PROTOBUF_NAMESPACE_CLOSE
 namespace protocol {
 
 enum Transaction_Contract_ContractType : int {
-  Transaction_Contract_ContractType_AccountCreateContract = 0,
-  Transaction_Contract_ContractType_TransferContract = 1,
-  Transaction_Contract_ContractType_TransferAssetContract = 2,
-  Transaction_Contract_ContractType_VoteAssetContract = 3,
-  Transaction_Contract_ContractType_VoteWitnessContract = 4,
-  Transaction_Contract_ContractType_FreezeBalanceContract = 11,
-  Transaction_Contract_ContractType_UnfreezeBalanceContract = 12,
-  Transaction_Contract_ContractType_WithdrawBalanceContract = 13,
-  Transaction_Contract_ContractType_UnfreezeAssetContract = 14,
-  Transaction_Contract_ContractType_TriggerSmartContract = 31,
-  Transaction_Contract_ContractType_Transaction_Contract_ContractType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
-  Transaction_Contract_ContractType_Transaction_Contract_ContractType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+    Transaction_Contract_ContractType_AccountCreateContract = 0,
+    Transaction_Contract_ContractType_TransferContract = 1,
+    Transaction_Contract_ContractType_TransferAssetContract = 2,
+    Transaction_Contract_ContractType_VoteAssetContract = 3,
+    Transaction_Contract_ContractType_VoteWitnessContract = 4,
+    Transaction_Contract_ContractType_FreezeBalanceContract = 11,
+    Transaction_Contract_ContractType_UnfreezeBalanceContract = 12,
+    Transaction_Contract_ContractType_WithdrawBalanceContract = 13,
+    Transaction_Contract_ContractType_UnfreezeAssetContract = 14,
+    Transaction_Contract_ContractType_TriggerSmartContract = 31,
+    Transaction_Contract_ContractType_Transaction_Contract_ContractType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+    Transaction_Contract_ContractType_Transaction_Contract_ContractType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool Transaction_Contract_ContractType_IsValid(int value);
 constexpr Transaction_Contract_ContractType Transaction_Contract_ContractType_ContractType_MIN = Transaction_Contract_ContractType_AccountCreateContract;
@@ -144,22 +144,22 @@ constexpr int Transaction_Contract_ContractType_ContractType_ARRAYSIZE = Transac
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Transaction_Contract_ContractType_descriptor();
 template<typename T>
 inline const std::string& Transaction_Contract_ContractType_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, Transaction_Contract_ContractType>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function Transaction_Contract_ContractType_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    Transaction_Contract_ContractType_descriptor(), enum_t_value);
+    static_assert(::std::is_same<T, Transaction_Contract_ContractType>::value ||
+                  ::std::is_integral<T>::value,
+                  "Incorrect type passed to function Transaction_Contract_ContractType_Name.");
+    return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+               Transaction_Contract_ContractType_descriptor(), enum_t_value);
 }
 inline bool Transaction_Contract_ContractType_Parse(
     const std::string& name, Transaction_Contract_ContractType* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Transaction_Contract_ContractType>(
-    Transaction_Contract_ContractType_descriptor(), name, value);
+    return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Transaction_Contract_ContractType>(
+               Transaction_Contract_ContractType_descriptor(), name, value);
 }
 enum ResourceCode : int {
-  BANDWIDTH = 0,
-  ENERGY = 1,
-  ResourceCode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
-  ResourceCode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+    BANDWIDTH = 0,
+    ENERGY = 1,
+    ResourceCode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+    ResourceCode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool ResourceCode_IsValid(int value);
 constexpr ResourceCode ResourceCode_MIN = BANDWIDTH;
@@ -169,2615 +169,2645 @@ constexpr int ResourceCode_ARRAYSIZE = ResourceCode_MAX + 1;
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ResourceCode_descriptor();
 template<typename T>
 inline const std::string& ResourceCode_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, ResourceCode>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function ResourceCode_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    ResourceCode_descriptor(), enum_t_value);
+    static_assert(::std::is_same<T, ResourceCode>::value ||
+                  ::std::is_integral<T>::value,
+                  "Incorrect type passed to function ResourceCode_Name.");
+    return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+               ResourceCode_descriptor(), enum_t_value);
 }
 inline bool ResourceCode_Parse(
     const std::string& name, ResourceCode* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ResourceCode>(
-    ResourceCode_descriptor(), name, value);
+    return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ResourceCode>(
+               ResourceCode_descriptor(), name, value);
 }
 // ===================================================================
 
 class Transaction_Contract :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.Transaction.Contract) */ {
- public:
-  Transaction_Contract();
-  virtual ~Transaction_Contract();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.Transaction.Contract) */
+public:
+    Transaction_Contract();
+    virtual ~Transaction_Contract();
 
-  Transaction_Contract(const Transaction_Contract& from);
-  Transaction_Contract(Transaction_Contract&& from) noexcept
-    : Transaction_Contract() {
-    *this = ::std::move(from);
-  }
-
-  inline Transaction_Contract& operator=(const Transaction_Contract& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Transaction_Contract& operator=(Transaction_Contract&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    Transaction_Contract(const Transaction_Contract& from);
+    Transaction_Contract(Transaction_Contract&& from) noexcept
+        : Transaction_Contract() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const Transaction_Contract& default_instance();
+    inline Transaction_Contract& operator=(const Transaction_Contract& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline Transaction_Contract& operator=(Transaction_Contract&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const Transaction_Contract* internal_default_instance() {
-    return reinterpret_cast<const Transaction_Contract*>(
-               &_Transaction_Contract_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    0;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const Transaction_Contract& default_instance();
 
-  friend void swap(Transaction_Contract& a, Transaction_Contract& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Transaction_Contract* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const Transaction_Contract* internal_default_instance() {
+        return reinterpret_cast<const Transaction_Contract*>(
+                   &_Transaction_Contract_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        0;
 
-  // implements Message ----------------------------------------------
+    friend void swap(Transaction_Contract& a, Transaction_Contract& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(Transaction_Contract* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline Transaction_Contract* New() const final {
-    return CreateMaybeMessage<Transaction_Contract>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  Transaction_Contract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<Transaction_Contract>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const Transaction_Contract& from);
-  void MergeFrom(const Transaction_Contract& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline Transaction_Contract* New() const final {
+        return CreateMaybeMessage<Transaction_Contract>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    Transaction_Contract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<Transaction_Contract>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const Transaction_Contract& from);
+    void MergeFrom(const Transaction_Contract& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(Transaction_Contract* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.Transaction.Contract";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(Transaction_Contract* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.Transaction.Contract";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  typedef Transaction_Contract_ContractType ContractType;
-  static constexpr ContractType AccountCreateContract =
-    Transaction_Contract_ContractType_AccountCreateContract;
-  static constexpr ContractType TransferContract =
-    Transaction_Contract_ContractType_TransferContract;
-  static constexpr ContractType TransferAssetContract =
-    Transaction_Contract_ContractType_TransferAssetContract;
-  static constexpr ContractType VoteAssetContract =
-    Transaction_Contract_ContractType_VoteAssetContract;
-  static constexpr ContractType VoteWitnessContract =
-    Transaction_Contract_ContractType_VoteWitnessContract;
-  static constexpr ContractType FreezeBalanceContract =
-    Transaction_Contract_ContractType_FreezeBalanceContract;
-  static constexpr ContractType UnfreezeBalanceContract =
-    Transaction_Contract_ContractType_UnfreezeBalanceContract;
-  static constexpr ContractType WithdrawBalanceContract =
-    Transaction_Contract_ContractType_WithdrawBalanceContract;
-  static constexpr ContractType UnfreezeAssetContract =
-    Transaction_Contract_ContractType_UnfreezeAssetContract;
-  static constexpr ContractType TriggerSmartContract =
-    Transaction_Contract_ContractType_TriggerSmartContract;
-  static inline bool ContractType_IsValid(int value) {
-    return Transaction_Contract_ContractType_IsValid(value);
-  }
-  static constexpr ContractType ContractType_MIN =
-    Transaction_Contract_ContractType_ContractType_MIN;
-  static constexpr ContractType ContractType_MAX =
-    Transaction_Contract_ContractType_ContractType_MAX;
-  static constexpr int ContractType_ARRAYSIZE =
-    Transaction_Contract_ContractType_ContractType_ARRAYSIZE;
-  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
-  ContractType_descriptor() {
-    return Transaction_Contract_ContractType_descriptor();
-  }
-  template<typename T>
-  static inline const std::string& ContractType_Name(T enum_t_value) {
-    static_assert(::std::is_same<T, ContractType>::value ||
-      ::std::is_integral<T>::value,
-      "Incorrect type passed to function ContractType_Name.");
-    return Transaction_Contract_ContractType_Name(enum_t_value);
-  }
-  static inline bool ContractType_Parse(const std::string& name,
-      ContractType* value) {
-    return Transaction_Contract_ContractType_Parse(name, value);
-  }
+    // nested types ----------------------------------------------------
 
-  // accessors -------------------------------------------------------
+    typedef Transaction_Contract_ContractType ContractType;
+    static constexpr ContractType AccountCreateContract =
+        Transaction_Contract_ContractType_AccountCreateContract;
+    static constexpr ContractType TransferContract =
+        Transaction_Contract_ContractType_TransferContract;
+    static constexpr ContractType TransferAssetContract =
+        Transaction_Contract_ContractType_TransferAssetContract;
+    static constexpr ContractType VoteAssetContract =
+        Transaction_Contract_ContractType_VoteAssetContract;
+    static constexpr ContractType VoteWitnessContract =
+        Transaction_Contract_ContractType_VoteWitnessContract;
+    static constexpr ContractType FreezeBalanceContract =
+        Transaction_Contract_ContractType_FreezeBalanceContract;
+    static constexpr ContractType UnfreezeBalanceContract =
+        Transaction_Contract_ContractType_UnfreezeBalanceContract;
+    static constexpr ContractType WithdrawBalanceContract =
+        Transaction_Contract_ContractType_WithdrawBalanceContract;
+    static constexpr ContractType UnfreezeAssetContract =
+        Transaction_Contract_ContractType_UnfreezeAssetContract;
+    static constexpr ContractType TriggerSmartContract =
+        Transaction_Contract_ContractType_TriggerSmartContract;
+    static inline bool ContractType_IsValid(int value) {
+        return Transaction_Contract_ContractType_IsValid(value);
+    }
+    static constexpr ContractType ContractType_MIN =
+        Transaction_Contract_ContractType_ContractType_MIN;
+    static constexpr ContractType ContractType_MAX =
+        Transaction_Contract_ContractType_ContractType_MAX;
+    static constexpr int ContractType_ARRAYSIZE =
+        Transaction_Contract_ContractType_ContractType_ARRAYSIZE;
+    static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+    ContractType_descriptor() {
+        return Transaction_Contract_ContractType_descriptor();
+    }
+    template<typename T>
+    static inline const std::string& ContractType_Name(T enum_t_value) {
+        static_assert(::std::is_same<T, ContractType>::value ||
+                      ::std::is_integral<T>::value,
+                      "Incorrect type passed to function ContractType_Name.");
+        return Transaction_Contract_ContractType_Name(enum_t_value);
+    }
+    static inline bool ContractType_Parse(const std::string& name,
+                                          ContractType* value) {
+        return Transaction_Contract_ContractType_Parse(name, value);
+    }
 
-  enum : int {
-    kProviderFieldNumber = 3,
-    kParameterFieldNumber = 2,
-    kTypeFieldNumber = 1,
-  };
-  // bytes provider = 3;
-  void clear_provider();
-  const std::string& provider() const;
-  void set_provider(const std::string& value);
-  void set_provider(std::string&& value);
-  void set_provider(const char* value);
-  void set_provider(const void* value, size_t size);
-  std::string* mutable_provider();
-  std::string* release_provider();
-  void set_allocated_provider(std::string* provider);
-  private:
-  const std::string& _internal_provider() const;
-  void _internal_set_provider(const std::string& value);
-  std::string* _internal_mutable_provider();
-  public:
+    // accessors -------------------------------------------------------
 
-  // .google.protobuf.Any parameter = 2;
-  bool has_parameter() const;
-  private:
-  bool _internal_has_parameter() const;
-  public:
-  void clear_parameter();
-  const PROTOBUF_NAMESPACE_ID::Any& parameter() const;
-  PROTOBUF_NAMESPACE_ID::Any* release_parameter();
-  PROTOBUF_NAMESPACE_ID::Any* mutable_parameter();
-  void set_allocated_parameter(PROTOBUF_NAMESPACE_ID::Any* parameter);
-  private:
-  const PROTOBUF_NAMESPACE_ID::Any& _internal_parameter() const;
-  PROTOBUF_NAMESPACE_ID::Any* _internal_mutable_parameter();
-  public:
+    enum : int {
+        kProviderFieldNumber = 3,
+        kParameterFieldNumber = 2,
+        kTypeFieldNumber = 1,
+    };
+    // bytes provider = 3;
+    void clear_provider();
+    const std::string& provider() const;
+    void set_provider(const std::string& value);
+    void set_provider(std::string&& value);
+    void set_provider(const char* value);
+    void set_provider(const void* value, size_t size);
+    std::string* mutable_provider();
+    std::string* release_provider();
+    void set_allocated_provider(std::string* provider);
+private:
+    const std::string& _internal_provider() const;
+    void _internal_set_provider(const std::string& value);
+    std::string* _internal_mutable_provider();
+public:
 
-  // .protocol.Transaction.Contract.ContractType type = 1;
-  void clear_type();
-  ::protocol::Transaction_Contract_ContractType type() const;
-  void set_type(::protocol::Transaction_Contract_ContractType value);
-  private:
-  ::protocol::Transaction_Contract_ContractType _internal_type() const;
-  void _internal_set_type(::protocol::Transaction_Contract_ContractType value);
-  public:
+    // .google.protobuf.Any parameter = 2;
+    bool has_parameter() const;
+private:
+    bool _internal_has_parameter() const;
+public:
+    void clear_parameter();
+    const PROTOBUF_NAMESPACE_ID::Any& parameter() const;
+    PROTOBUF_NAMESPACE_ID::Any* release_parameter();
+    PROTOBUF_NAMESPACE_ID::Any* mutable_parameter();
+    void set_allocated_parameter(PROTOBUF_NAMESPACE_ID::Any* parameter);
+private:
+    const PROTOBUF_NAMESPACE_ID::Any& _internal_parameter() const;
+    PROTOBUF_NAMESPACE_ID::Any* _internal_mutable_parameter();
+public:
 
-  // @@protoc_insertion_point(class_scope:protocol.Transaction.Contract)
- private:
-  class _Internal;
+    // .protocol.Transaction.Contract.ContractType type = 1;
+    void clear_type();
+    ::protocol::Transaction_Contract_ContractType type() const;
+    void set_type(::protocol::Transaction_Contract_ContractType value);
+private:
+    ::protocol::Transaction_Contract_ContractType _internal_type() const;
+    void _internal_set_type(::protocol::Transaction_Contract_ContractType value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr provider_;
-  PROTOBUF_NAMESPACE_ID::Any* parameter_;
-  int type_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.Transaction.Contract)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr provider_;
+    PROTOBUF_NAMESPACE_ID::Any* parameter_;
+    int type_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class Transaction_raw :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.Transaction.raw) */ {
- public:
-  Transaction_raw();
-  virtual ~Transaction_raw();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.Transaction.raw) */
+public:
+    Transaction_raw();
+    virtual ~Transaction_raw();
 
-  Transaction_raw(const Transaction_raw& from);
-  Transaction_raw(Transaction_raw&& from) noexcept
-    : Transaction_raw() {
-    *this = ::std::move(from);
-  }
-
-  inline Transaction_raw& operator=(const Transaction_raw& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Transaction_raw& operator=(Transaction_raw&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    Transaction_raw(const Transaction_raw& from);
+    Transaction_raw(Transaction_raw&& from) noexcept
+        : Transaction_raw() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const Transaction_raw& default_instance();
+    inline Transaction_raw& operator=(const Transaction_raw& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline Transaction_raw& operator=(Transaction_raw&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const Transaction_raw* internal_default_instance() {
-    return reinterpret_cast<const Transaction_raw*>(
-               &_Transaction_raw_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const Transaction_raw& default_instance();
 
-  friend void swap(Transaction_raw& a, Transaction_raw& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Transaction_raw* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const Transaction_raw* internal_default_instance() {
+        return reinterpret_cast<const Transaction_raw*>(
+                   &_Transaction_raw_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        1;
 
-  // implements Message ----------------------------------------------
+    friend void swap(Transaction_raw& a, Transaction_raw& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(Transaction_raw* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline Transaction_raw* New() const final {
-    return CreateMaybeMessage<Transaction_raw>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  Transaction_raw* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<Transaction_raw>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const Transaction_raw& from);
-  void MergeFrom(const Transaction_raw& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline Transaction_raw* New() const final {
+        return CreateMaybeMessage<Transaction_raw>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    Transaction_raw* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<Transaction_raw>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const Transaction_raw& from);
+    void MergeFrom(const Transaction_raw& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(Transaction_raw* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.Transaction.raw";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(Transaction_raw* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.Transaction.raw";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kContractFieldNumber = 11,
-    kRefBlockBytesFieldNumber = 1,
-    kRefBlockHashFieldNumber = 4,
-    kRefBlockNumFieldNumber = 3,
-    kExpirationFieldNumber = 8,
-    kTimestampFieldNumber = 14,
-    kFeeLimitFieldNumber = 18,
-  };
-  // repeated .protocol.Transaction.Contract contract = 11;
-  int contract_size() const;
-  private:
-  int _internal_contract_size() const;
-  public:
-  void clear_contract();
-  ::protocol::Transaction_Contract* mutable_contract(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::Transaction_Contract >*
-      mutable_contract();
-  private:
-  const ::protocol::Transaction_Contract& _internal_contract(int index) const;
-  ::protocol::Transaction_Contract* _internal_add_contract();
-  public:
-  const ::protocol::Transaction_Contract& contract(int index) const;
-  ::protocol::Transaction_Contract* add_contract();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::Transaction_Contract >&
-      contract() const;
+    // accessors -------------------------------------------------------
 
-  // bytes ref_block_bytes = 1;
-  void clear_ref_block_bytes();
-  const std::string& ref_block_bytes() const;
-  void set_ref_block_bytes(const std::string& value);
-  void set_ref_block_bytes(std::string&& value);
-  void set_ref_block_bytes(const char* value);
-  void set_ref_block_bytes(const void* value, size_t size);
-  std::string* mutable_ref_block_bytes();
-  std::string* release_ref_block_bytes();
-  void set_allocated_ref_block_bytes(std::string* ref_block_bytes);
-  private:
-  const std::string& _internal_ref_block_bytes() const;
-  void _internal_set_ref_block_bytes(const std::string& value);
-  std::string* _internal_mutable_ref_block_bytes();
-  public:
+    enum : int {
+        kContractFieldNumber = 11,
+        kRefBlockBytesFieldNumber = 1,
+        kRefBlockHashFieldNumber = 4,
+        kRefBlockNumFieldNumber = 3,
+        kExpirationFieldNumber = 8,
+        kTimestampFieldNumber = 14,
+        kFeeLimitFieldNumber = 18,
+    };
+    // repeated .protocol.Transaction.Contract contract = 11;
+    int contract_size() const;
+private:
+    int _internal_contract_size() const;
+public:
+    void clear_contract();
+    ::protocol::Transaction_Contract* mutable_contract(int index);
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::Transaction_Contract >*
+    mutable_contract();
+private:
+    const ::protocol::Transaction_Contract& _internal_contract(int index) const;
+    ::protocol::Transaction_Contract* _internal_add_contract();
+public:
+    const ::protocol::Transaction_Contract& contract(int index) const;
+    ::protocol::Transaction_Contract* add_contract();
+    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::Transaction_Contract >&
+    contract() const;
 
-  // bytes ref_block_hash = 4;
-  void clear_ref_block_hash();
-  const std::string& ref_block_hash() const;
-  void set_ref_block_hash(const std::string& value);
-  void set_ref_block_hash(std::string&& value);
-  void set_ref_block_hash(const char* value);
-  void set_ref_block_hash(const void* value, size_t size);
-  std::string* mutable_ref_block_hash();
-  std::string* release_ref_block_hash();
-  void set_allocated_ref_block_hash(std::string* ref_block_hash);
-  private:
-  const std::string& _internal_ref_block_hash() const;
-  void _internal_set_ref_block_hash(const std::string& value);
-  std::string* _internal_mutable_ref_block_hash();
-  public:
+    // bytes ref_block_bytes = 1;
+    void clear_ref_block_bytes();
+    const std::string& ref_block_bytes() const;
+    void set_ref_block_bytes(const std::string& value);
+    void set_ref_block_bytes(std::string&& value);
+    void set_ref_block_bytes(const char* value);
+    void set_ref_block_bytes(const void* value, size_t size);
+    std::string* mutable_ref_block_bytes();
+    std::string* release_ref_block_bytes();
+    void set_allocated_ref_block_bytes(std::string* ref_block_bytes);
+private:
+    const std::string& _internal_ref_block_bytes() const;
+    void _internal_set_ref_block_bytes(const std::string& value);
+    std::string* _internal_mutable_ref_block_bytes();
+public:
 
-  // int64 ref_block_num = 3;
-  void clear_ref_block_num();
-  ::PROTOBUF_NAMESPACE_ID::int64 ref_block_num() const;
-  void set_ref_block_num(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_ref_block_num() const;
-  void _internal_set_ref_block_num(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // bytes ref_block_hash = 4;
+    void clear_ref_block_hash();
+    const std::string& ref_block_hash() const;
+    void set_ref_block_hash(const std::string& value);
+    void set_ref_block_hash(std::string&& value);
+    void set_ref_block_hash(const char* value);
+    void set_ref_block_hash(const void* value, size_t size);
+    std::string* mutable_ref_block_hash();
+    std::string* release_ref_block_hash();
+    void set_allocated_ref_block_hash(std::string* ref_block_hash);
+private:
+    const std::string& _internal_ref_block_hash() const;
+    void _internal_set_ref_block_hash(const std::string& value);
+    std::string* _internal_mutable_ref_block_hash();
+public:
 
-  // int64 expiration = 8;
-  void clear_expiration();
-  ::PROTOBUF_NAMESPACE_ID::int64 expiration() const;
-  void set_expiration(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_expiration() const;
-  void _internal_set_expiration(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // int64 ref_block_num = 3;
+    void clear_ref_block_num();
+    ::PROTOBUF_NAMESPACE_ID::int64 ref_block_num() const;
+    void set_ref_block_num(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_ref_block_num() const;
+    void _internal_set_ref_block_num(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  // int64 timestamp = 14;
-  void clear_timestamp();
-  ::PROTOBUF_NAMESPACE_ID::int64 timestamp() const;
-  void set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_timestamp() const;
-  void _internal_set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // int64 expiration = 8;
+    void clear_expiration();
+    ::PROTOBUF_NAMESPACE_ID::int64 expiration() const;
+    void set_expiration(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_expiration() const;
+    void _internal_set_expiration(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  // int64 fee_limit = 18;
-  void clear_fee_limit();
-  ::PROTOBUF_NAMESPACE_ID::int64 fee_limit() const;
-  void set_fee_limit(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_fee_limit() const;
-  void _internal_set_fee_limit(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // int64 timestamp = 14;
+    void clear_timestamp();
+    ::PROTOBUF_NAMESPACE_ID::int64 timestamp() const;
+    void set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_timestamp() const;
+    void _internal_set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  // @@protoc_insertion_point(class_scope:protocol.Transaction.raw)
- private:
-  class _Internal;
+    // int64 fee_limit = 18;
+    void clear_fee_limit();
+    ::PROTOBUF_NAMESPACE_ID::int64 fee_limit() const;
+    void set_fee_limit(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_fee_limit() const;
+    void _internal_set_fee_limit(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::Transaction_Contract > contract_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ref_block_bytes_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ref_block_hash_;
-  ::PROTOBUF_NAMESPACE_ID::int64 ref_block_num_;
-  ::PROTOBUF_NAMESPACE_ID::int64 expiration_;
-  ::PROTOBUF_NAMESPACE_ID::int64 timestamp_;
-  ::PROTOBUF_NAMESPACE_ID::int64 fee_limit_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.Transaction.raw)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::Transaction_Contract > contract_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ref_block_bytes_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ref_block_hash_;
+    ::PROTOBUF_NAMESPACE_ID::int64 ref_block_num_;
+    ::PROTOBUF_NAMESPACE_ID::int64 expiration_;
+    ::PROTOBUF_NAMESPACE_ID::int64 timestamp_;
+    ::PROTOBUF_NAMESPACE_ID::int64 fee_limit_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class Transaction :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.Transaction) */ {
- public:
-  Transaction();
-  virtual ~Transaction();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.Transaction) */
+public:
+    Transaction();
+    virtual ~Transaction();
 
-  Transaction(const Transaction& from);
-  Transaction(Transaction&& from) noexcept
-    : Transaction() {
-    *this = ::std::move(from);
-  }
-
-  inline Transaction& operator=(const Transaction& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Transaction& operator=(Transaction&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    Transaction(const Transaction& from);
+    Transaction(Transaction&& from) noexcept
+        : Transaction() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const Transaction& default_instance();
+    inline Transaction& operator=(const Transaction& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline Transaction& operator=(Transaction&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const Transaction* internal_default_instance() {
-    return reinterpret_cast<const Transaction*>(
-               &_Transaction_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const Transaction& default_instance();
 
-  friend void swap(Transaction& a, Transaction& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Transaction* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const Transaction* internal_default_instance() {
+        return reinterpret_cast<const Transaction*>(
+                   &_Transaction_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        2;
 
-  // implements Message ----------------------------------------------
+    friend void swap(Transaction& a, Transaction& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(Transaction* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline Transaction* New() const final {
-    return CreateMaybeMessage<Transaction>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  Transaction* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<Transaction>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const Transaction& from);
-  void MergeFrom(const Transaction& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline Transaction* New() const final {
+        return CreateMaybeMessage<Transaction>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    Transaction* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<Transaction>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const Transaction& from);
+    void MergeFrom(const Transaction& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(Transaction* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.Transaction";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(Transaction* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.Transaction";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  typedef Transaction_Contract Contract;
-  typedef Transaction_raw raw;
+    // nested types ----------------------------------------------------
 
-  // accessors -------------------------------------------------------
+    typedef Transaction_Contract Contract;
+    typedef Transaction_raw raw;
 
-  enum : int {
-    kRawDataFieldNumber = 1,
-  };
-  // .protocol.Transaction.raw raw_data = 1;
-  bool has_raw_data() const;
-  private:
-  bool _internal_has_raw_data() const;
-  public:
-  void clear_raw_data();
-  const ::protocol::Transaction_raw& raw_data() const;
-  ::protocol::Transaction_raw* release_raw_data();
-  ::protocol::Transaction_raw* mutable_raw_data();
-  void set_allocated_raw_data(::protocol::Transaction_raw* raw_data);
-  private:
-  const ::protocol::Transaction_raw& _internal_raw_data() const;
-  ::protocol::Transaction_raw* _internal_mutable_raw_data();
-  public:
+    // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:protocol.Transaction)
- private:
-  class _Internal;
+    enum : int {
+        kRawDataFieldNumber = 1,
+    };
+    // .protocol.Transaction.raw raw_data = 1;
+    bool has_raw_data() const;
+private:
+    bool _internal_has_raw_data() const;
+public:
+    void clear_raw_data();
+    const ::protocol::Transaction_raw& raw_data() const;
+    ::protocol::Transaction_raw* release_raw_data();
+    ::protocol::Transaction_raw* mutable_raw_data();
+    void set_allocated_raw_data(::protocol::Transaction_raw* raw_data);
+private:
+    const ::protocol::Transaction_raw& _internal_raw_data() const;
+    ::protocol::Transaction_raw* _internal_mutable_raw_data();
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::protocol::Transaction_raw* raw_data_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.Transaction)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::protocol::Transaction_raw* raw_data_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class BlockHeader_raw :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.BlockHeader.raw) */ {
- public:
-  BlockHeader_raw();
-  virtual ~BlockHeader_raw();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.BlockHeader.raw) */
+public:
+    BlockHeader_raw();
+    virtual ~BlockHeader_raw();
 
-  BlockHeader_raw(const BlockHeader_raw& from);
-  BlockHeader_raw(BlockHeader_raw&& from) noexcept
-    : BlockHeader_raw() {
-    *this = ::std::move(from);
-  }
-
-  inline BlockHeader_raw& operator=(const BlockHeader_raw& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline BlockHeader_raw& operator=(BlockHeader_raw&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    BlockHeader_raw(const BlockHeader_raw& from);
+    BlockHeader_raw(BlockHeader_raw&& from) noexcept
+        : BlockHeader_raw() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const BlockHeader_raw& default_instance();
+    inline BlockHeader_raw& operator=(const BlockHeader_raw& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline BlockHeader_raw& operator=(BlockHeader_raw&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const BlockHeader_raw* internal_default_instance() {
-    return reinterpret_cast<const BlockHeader_raw*>(
-               &_BlockHeader_raw_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    3;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const BlockHeader_raw& default_instance();
 
-  friend void swap(BlockHeader_raw& a, BlockHeader_raw& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(BlockHeader_raw* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const BlockHeader_raw* internal_default_instance() {
+        return reinterpret_cast<const BlockHeader_raw*>(
+                   &_BlockHeader_raw_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        3;
 
-  // implements Message ----------------------------------------------
+    friend void swap(BlockHeader_raw& a, BlockHeader_raw& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(BlockHeader_raw* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline BlockHeader_raw* New() const final {
-    return CreateMaybeMessage<BlockHeader_raw>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  BlockHeader_raw* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<BlockHeader_raw>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const BlockHeader_raw& from);
-  void MergeFrom(const BlockHeader_raw& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline BlockHeader_raw* New() const final {
+        return CreateMaybeMessage<BlockHeader_raw>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    BlockHeader_raw* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<BlockHeader_raw>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const BlockHeader_raw& from);
+    void MergeFrom(const BlockHeader_raw& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(BlockHeader_raw* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.BlockHeader.raw";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(BlockHeader_raw* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.BlockHeader.raw";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kTxTrieRootFieldNumber = 2,
-    kParentHashFieldNumber = 3,
-    kWitnessAddressFieldNumber = 9,
-    kTimestampFieldNumber = 1,
-    kNumberFieldNumber = 7,
-    kWitnessIdFieldNumber = 8,
-    kVersionFieldNumber = 10,
-  };
-  // bytes tx_trie_root = 2;
-  void clear_tx_trie_root();
-  const std::string& tx_trie_root() const;
-  void set_tx_trie_root(const std::string& value);
-  void set_tx_trie_root(std::string&& value);
-  void set_tx_trie_root(const char* value);
-  void set_tx_trie_root(const void* value, size_t size);
-  std::string* mutable_tx_trie_root();
-  std::string* release_tx_trie_root();
-  void set_allocated_tx_trie_root(std::string* tx_trie_root);
-  private:
-  const std::string& _internal_tx_trie_root() const;
-  void _internal_set_tx_trie_root(const std::string& value);
-  std::string* _internal_mutable_tx_trie_root();
-  public:
+    // accessors -------------------------------------------------------
 
-  // bytes parent_hash = 3;
-  void clear_parent_hash();
-  const std::string& parent_hash() const;
-  void set_parent_hash(const std::string& value);
-  void set_parent_hash(std::string&& value);
-  void set_parent_hash(const char* value);
-  void set_parent_hash(const void* value, size_t size);
-  std::string* mutable_parent_hash();
-  std::string* release_parent_hash();
-  void set_allocated_parent_hash(std::string* parent_hash);
-  private:
-  const std::string& _internal_parent_hash() const;
-  void _internal_set_parent_hash(const std::string& value);
-  std::string* _internal_mutable_parent_hash();
-  public:
+    enum : int {
+        kTxTrieRootFieldNumber = 2,
+        kParentHashFieldNumber = 3,
+        kWitnessAddressFieldNumber = 9,
+        kTimestampFieldNumber = 1,
+        kNumberFieldNumber = 7,
+        kWitnessIdFieldNumber = 8,
+        kVersionFieldNumber = 10,
+    };
+    // bytes tx_trie_root = 2;
+    void clear_tx_trie_root();
+    const std::string& tx_trie_root() const;
+    void set_tx_trie_root(const std::string& value);
+    void set_tx_trie_root(std::string&& value);
+    void set_tx_trie_root(const char* value);
+    void set_tx_trie_root(const void* value, size_t size);
+    std::string* mutable_tx_trie_root();
+    std::string* release_tx_trie_root();
+    void set_allocated_tx_trie_root(std::string* tx_trie_root);
+private:
+    const std::string& _internal_tx_trie_root() const;
+    void _internal_set_tx_trie_root(const std::string& value);
+    std::string* _internal_mutable_tx_trie_root();
+public:
 
-  // bytes witness_address = 9;
-  void clear_witness_address();
-  const std::string& witness_address() const;
-  void set_witness_address(const std::string& value);
-  void set_witness_address(std::string&& value);
-  void set_witness_address(const char* value);
-  void set_witness_address(const void* value, size_t size);
-  std::string* mutable_witness_address();
-  std::string* release_witness_address();
-  void set_allocated_witness_address(std::string* witness_address);
-  private:
-  const std::string& _internal_witness_address() const;
-  void _internal_set_witness_address(const std::string& value);
-  std::string* _internal_mutable_witness_address();
-  public:
+    // bytes parent_hash = 3;
+    void clear_parent_hash();
+    const std::string& parent_hash() const;
+    void set_parent_hash(const std::string& value);
+    void set_parent_hash(std::string&& value);
+    void set_parent_hash(const char* value);
+    void set_parent_hash(const void* value, size_t size);
+    std::string* mutable_parent_hash();
+    std::string* release_parent_hash();
+    void set_allocated_parent_hash(std::string* parent_hash);
+private:
+    const std::string& _internal_parent_hash() const;
+    void _internal_set_parent_hash(const std::string& value);
+    std::string* _internal_mutable_parent_hash();
+public:
 
-  // int64 timestamp = 1;
-  void clear_timestamp();
-  ::PROTOBUF_NAMESPACE_ID::int64 timestamp() const;
-  void set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_timestamp() const;
-  void _internal_set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // bytes witness_address = 9;
+    void clear_witness_address();
+    const std::string& witness_address() const;
+    void set_witness_address(const std::string& value);
+    void set_witness_address(std::string&& value);
+    void set_witness_address(const char* value);
+    void set_witness_address(const void* value, size_t size);
+    std::string* mutable_witness_address();
+    std::string* release_witness_address();
+    void set_allocated_witness_address(std::string* witness_address);
+private:
+    const std::string& _internal_witness_address() const;
+    void _internal_set_witness_address(const std::string& value);
+    std::string* _internal_mutable_witness_address();
+public:
 
-  // int64 number = 7;
-  void clear_number();
-  ::PROTOBUF_NAMESPACE_ID::int64 number() const;
-  void set_number(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_number() const;
-  void _internal_set_number(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // int64 timestamp = 1;
+    void clear_timestamp();
+    ::PROTOBUF_NAMESPACE_ID::int64 timestamp() const;
+    void set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_timestamp() const;
+    void _internal_set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  // int64 witness_id = 8;
-  void clear_witness_id();
-  ::PROTOBUF_NAMESPACE_ID::int64 witness_id() const;
-  void set_witness_id(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_witness_id() const;
-  void _internal_set_witness_id(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // int64 number = 7;
+    void clear_number();
+    ::PROTOBUF_NAMESPACE_ID::int64 number() const;
+    void set_number(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_number() const;
+    void _internal_set_number(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  // int32 version = 10;
-  void clear_version();
-  ::PROTOBUF_NAMESPACE_ID::int32 version() const;
-  void set_version(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_version() const;
-  void _internal_set_version(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
+    // int64 witness_id = 8;
+    void clear_witness_id();
+    ::PROTOBUF_NAMESPACE_ID::int64 witness_id() const;
+    void set_witness_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_witness_id() const;
+    void _internal_set_witness_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  // @@protoc_insertion_point(class_scope:protocol.BlockHeader.raw)
- private:
-  class _Internal;
+    // int32 version = 10;
+    void clear_version();
+    ::PROTOBUF_NAMESPACE_ID::int32 version() const;
+    void set_version(::PROTOBUF_NAMESPACE_ID::int32 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int32 _internal_version() const;
+    void _internal_set_version(::PROTOBUF_NAMESPACE_ID::int32 value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tx_trie_root_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr parent_hash_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr witness_address_;
-  ::PROTOBUF_NAMESPACE_ID::int64 timestamp_;
-  ::PROTOBUF_NAMESPACE_ID::int64 number_;
-  ::PROTOBUF_NAMESPACE_ID::int64 witness_id_;
-  ::PROTOBUF_NAMESPACE_ID::int32 version_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.BlockHeader.raw)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tx_trie_root_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr parent_hash_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr witness_address_;
+    ::PROTOBUF_NAMESPACE_ID::int64 timestamp_;
+    ::PROTOBUF_NAMESPACE_ID::int64 number_;
+    ::PROTOBUF_NAMESPACE_ID::int64 witness_id_;
+    ::PROTOBUF_NAMESPACE_ID::int32 version_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class BlockHeader :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.BlockHeader) */ {
- public:
-  BlockHeader();
-  virtual ~BlockHeader();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.BlockHeader) */
+public:
+    BlockHeader();
+    virtual ~BlockHeader();
 
-  BlockHeader(const BlockHeader& from);
-  BlockHeader(BlockHeader&& from) noexcept
-    : BlockHeader() {
-    *this = ::std::move(from);
-  }
-
-  inline BlockHeader& operator=(const BlockHeader& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline BlockHeader& operator=(BlockHeader&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    BlockHeader(const BlockHeader& from);
+    BlockHeader(BlockHeader&& from) noexcept
+        : BlockHeader() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const BlockHeader& default_instance();
+    inline BlockHeader& operator=(const BlockHeader& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline BlockHeader& operator=(BlockHeader&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const BlockHeader* internal_default_instance() {
-    return reinterpret_cast<const BlockHeader*>(
-               &_BlockHeader_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    4;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const BlockHeader& default_instance();
 
-  friend void swap(BlockHeader& a, BlockHeader& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(BlockHeader* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const BlockHeader* internal_default_instance() {
+        return reinterpret_cast<const BlockHeader*>(
+                   &_BlockHeader_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        4;
 
-  // implements Message ----------------------------------------------
+    friend void swap(BlockHeader& a, BlockHeader& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(BlockHeader* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline BlockHeader* New() const final {
-    return CreateMaybeMessage<BlockHeader>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  BlockHeader* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<BlockHeader>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const BlockHeader& from);
-  void MergeFrom(const BlockHeader& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline BlockHeader* New() const final {
+        return CreateMaybeMessage<BlockHeader>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    BlockHeader* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<BlockHeader>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const BlockHeader& from);
+    void MergeFrom(const BlockHeader& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(BlockHeader* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.BlockHeader";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(BlockHeader* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.BlockHeader";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  typedef BlockHeader_raw raw;
+    // nested types ----------------------------------------------------
 
-  // accessors -------------------------------------------------------
+    typedef BlockHeader_raw raw;
 
-  enum : int {
-    kWitnessSignatureFieldNumber = 2,
-    kRawDataFieldNumber = 1,
-  };
-  // bytes witness_signature = 2;
-  void clear_witness_signature();
-  const std::string& witness_signature() const;
-  void set_witness_signature(const std::string& value);
-  void set_witness_signature(std::string&& value);
-  void set_witness_signature(const char* value);
-  void set_witness_signature(const void* value, size_t size);
-  std::string* mutable_witness_signature();
-  std::string* release_witness_signature();
-  void set_allocated_witness_signature(std::string* witness_signature);
-  private:
-  const std::string& _internal_witness_signature() const;
-  void _internal_set_witness_signature(const std::string& value);
-  std::string* _internal_mutable_witness_signature();
-  public:
+    // accessors -------------------------------------------------------
 
-  // .protocol.BlockHeader.raw raw_data = 1;
-  bool has_raw_data() const;
-  private:
-  bool _internal_has_raw_data() const;
-  public:
-  void clear_raw_data();
-  const ::protocol::BlockHeader_raw& raw_data() const;
-  ::protocol::BlockHeader_raw* release_raw_data();
-  ::protocol::BlockHeader_raw* mutable_raw_data();
-  void set_allocated_raw_data(::protocol::BlockHeader_raw* raw_data);
-  private:
-  const ::protocol::BlockHeader_raw& _internal_raw_data() const;
-  ::protocol::BlockHeader_raw* _internal_mutable_raw_data();
-  public:
+    enum : int {
+        kWitnessSignatureFieldNumber = 2,
+        kRawDataFieldNumber = 1,
+    };
+    // bytes witness_signature = 2;
+    void clear_witness_signature();
+    const std::string& witness_signature() const;
+    void set_witness_signature(const std::string& value);
+    void set_witness_signature(std::string&& value);
+    void set_witness_signature(const char* value);
+    void set_witness_signature(const void* value, size_t size);
+    std::string* mutable_witness_signature();
+    std::string* release_witness_signature();
+    void set_allocated_witness_signature(std::string* witness_signature);
+private:
+    const std::string& _internal_witness_signature() const;
+    void _internal_set_witness_signature(const std::string& value);
+    std::string* _internal_mutable_witness_signature();
+public:
 
-  // @@protoc_insertion_point(class_scope:protocol.BlockHeader)
- private:
-  class _Internal;
+    // .protocol.BlockHeader.raw raw_data = 1;
+    bool has_raw_data() const;
+private:
+    bool _internal_has_raw_data() const;
+public:
+    void clear_raw_data();
+    const ::protocol::BlockHeader_raw& raw_data() const;
+    ::protocol::BlockHeader_raw* release_raw_data();
+    ::protocol::BlockHeader_raw* mutable_raw_data();
+    void set_allocated_raw_data(::protocol::BlockHeader_raw* raw_data);
+private:
+    const ::protocol::BlockHeader_raw& _internal_raw_data() const;
+    ::protocol::BlockHeader_raw* _internal_mutable_raw_data();
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr witness_signature_;
-  ::protocol::BlockHeader_raw* raw_data_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.BlockHeader)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr witness_signature_;
+    ::protocol::BlockHeader_raw* raw_data_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class TransferContract :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.TransferContract) */ {
- public:
-  TransferContract();
-  virtual ~TransferContract();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.TransferContract) */
+public:
+    TransferContract();
+    virtual ~TransferContract();
 
-  TransferContract(const TransferContract& from);
-  TransferContract(TransferContract&& from) noexcept
-    : TransferContract() {
-    *this = ::std::move(from);
-  }
-
-  inline TransferContract& operator=(const TransferContract& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline TransferContract& operator=(TransferContract&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    TransferContract(const TransferContract& from);
+    TransferContract(TransferContract&& from) noexcept
+        : TransferContract() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const TransferContract& default_instance();
+    inline TransferContract& operator=(const TransferContract& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline TransferContract& operator=(TransferContract&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const TransferContract* internal_default_instance() {
-    return reinterpret_cast<const TransferContract*>(
-               &_TransferContract_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    5;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const TransferContract& default_instance();
 
-  friend void swap(TransferContract& a, TransferContract& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(TransferContract* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const TransferContract* internal_default_instance() {
+        return reinterpret_cast<const TransferContract*>(
+                   &_TransferContract_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        5;
 
-  // implements Message ----------------------------------------------
+    friend void swap(TransferContract& a, TransferContract& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(TransferContract* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline TransferContract* New() const final {
-    return CreateMaybeMessage<TransferContract>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  TransferContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<TransferContract>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const TransferContract& from);
-  void MergeFrom(const TransferContract& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline TransferContract* New() const final {
+        return CreateMaybeMessage<TransferContract>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    TransferContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<TransferContract>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const TransferContract& from);
+    void MergeFrom(const TransferContract& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(TransferContract* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.TransferContract";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(TransferContract* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.TransferContract";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kOwnerAddressFieldNumber = 1,
-    kToAddressFieldNumber = 2,
-    kAmountFieldNumber = 3,
-  };
-  // bytes owner_address = 1;
-  void clear_owner_address();
-  const std::string& owner_address() const;
-  void set_owner_address(const std::string& value);
-  void set_owner_address(std::string&& value);
-  void set_owner_address(const char* value);
-  void set_owner_address(const void* value, size_t size);
-  std::string* mutable_owner_address();
-  std::string* release_owner_address();
-  void set_allocated_owner_address(std::string* owner_address);
-  private:
-  const std::string& _internal_owner_address() const;
-  void _internal_set_owner_address(const std::string& value);
-  std::string* _internal_mutable_owner_address();
-  public:
+    // accessors -------------------------------------------------------
 
-  // bytes to_address = 2;
-  void clear_to_address();
-  const std::string& to_address() const;
-  void set_to_address(const std::string& value);
-  void set_to_address(std::string&& value);
-  void set_to_address(const char* value);
-  void set_to_address(const void* value, size_t size);
-  std::string* mutable_to_address();
-  std::string* release_to_address();
-  void set_allocated_to_address(std::string* to_address);
-  private:
-  const std::string& _internal_to_address() const;
-  void _internal_set_to_address(const std::string& value);
-  std::string* _internal_mutable_to_address();
-  public:
+    enum : int {
+        kOwnerAddressFieldNumber = 1,
+        kToAddressFieldNumber = 2,
+        kAmountFieldNumber = 3,
+    };
+    // bytes owner_address = 1;
+    void clear_owner_address();
+    const std::string& owner_address() const;
+    void set_owner_address(const std::string& value);
+    void set_owner_address(std::string&& value);
+    void set_owner_address(const char* value);
+    void set_owner_address(const void* value, size_t size);
+    std::string* mutable_owner_address();
+    std::string* release_owner_address();
+    void set_allocated_owner_address(std::string* owner_address);
+private:
+    const std::string& _internal_owner_address() const;
+    void _internal_set_owner_address(const std::string& value);
+    std::string* _internal_mutable_owner_address();
+public:
 
-  // int64 amount = 3;
-  void clear_amount();
-  ::PROTOBUF_NAMESPACE_ID::int64 amount() const;
-  void set_amount(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_amount() const;
-  void _internal_set_amount(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // bytes to_address = 2;
+    void clear_to_address();
+    const std::string& to_address() const;
+    void set_to_address(const std::string& value);
+    void set_to_address(std::string&& value);
+    void set_to_address(const char* value);
+    void set_to_address(const void* value, size_t size);
+    std::string* mutable_to_address();
+    std::string* release_to_address();
+    void set_allocated_to_address(std::string* to_address);
+private:
+    const std::string& _internal_to_address() const;
+    void _internal_set_to_address(const std::string& value);
+    std::string* _internal_mutable_to_address();
+public:
 
-  // @@protoc_insertion_point(class_scope:protocol.TransferContract)
- private:
-  class _Internal;
+    // int64 amount = 3;
+    void clear_amount();
+    ::PROTOBUF_NAMESPACE_ID::int64 amount() const;
+    void set_amount(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_amount() const;
+    void _internal_set_amount(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr to_address_;
-  ::PROTOBUF_NAMESPACE_ID::int64 amount_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.TransferContract)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr to_address_;
+    ::PROTOBUF_NAMESPACE_ID::int64 amount_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class TransferAssetContract :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.TransferAssetContract) */ {
- public:
-  TransferAssetContract();
-  virtual ~TransferAssetContract();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.TransferAssetContract) */
+public:
+    TransferAssetContract();
+    virtual ~TransferAssetContract();
 
-  TransferAssetContract(const TransferAssetContract& from);
-  TransferAssetContract(TransferAssetContract&& from) noexcept
-    : TransferAssetContract() {
-    *this = ::std::move(from);
-  }
-
-  inline TransferAssetContract& operator=(const TransferAssetContract& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline TransferAssetContract& operator=(TransferAssetContract&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    TransferAssetContract(const TransferAssetContract& from);
+    TransferAssetContract(TransferAssetContract&& from) noexcept
+        : TransferAssetContract() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const TransferAssetContract& default_instance();
+    inline TransferAssetContract& operator=(const TransferAssetContract& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline TransferAssetContract& operator=(TransferAssetContract&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const TransferAssetContract* internal_default_instance() {
-    return reinterpret_cast<const TransferAssetContract*>(
-               &_TransferAssetContract_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    6;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const TransferAssetContract& default_instance();
 
-  friend void swap(TransferAssetContract& a, TransferAssetContract& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(TransferAssetContract* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const TransferAssetContract* internal_default_instance() {
+        return reinterpret_cast<const TransferAssetContract*>(
+                   &_TransferAssetContract_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        6;
 
-  // implements Message ----------------------------------------------
+    friend void swap(TransferAssetContract& a, TransferAssetContract& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(TransferAssetContract* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline TransferAssetContract* New() const final {
-    return CreateMaybeMessage<TransferAssetContract>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  TransferAssetContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<TransferAssetContract>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const TransferAssetContract& from);
-  void MergeFrom(const TransferAssetContract& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline TransferAssetContract* New() const final {
+        return CreateMaybeMessage<TransferAssetContract>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    TransferAssetContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<TransferAssetContract>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const TransferAssetContract& from);
+    void MergeFrom(const TransferAssetContract& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(TransferAssetContract* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.TransferAssetContract";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(TransferAssetContract* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.TransferAssetContract";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kAssetNameFieldNumber = 1,
-    kOwnerAddressFieldNumber = 2,
-    kToAddressFieldNumber = 3,
-    kAmountFieldNumber = 4,
-  };
-  // bytes asset_name = 1;
-  void clear_asset_name();
-  const std::string& asset_name() const;
-  void set_asset_name(const std::string& value);
-  void set_asset_name(std::string&& value);
-  void set_asset_name(const char* value);
-  void set_asset_name(const void* value, size_t size);
-  std::string* mutable_asset_name();
-  std::string* release_asset_name();
-  void set_allocated_asset_name(std::string* asset_name);
-  private:
-  const std::string& _internal_asset_name() const;
-  void _internal_set_asset_name(const std::string& value);
-  std::string* _internal_mutable_asset_name();
-  public:
+    // accessors -------------------------------------------------------
 
-  // bytes owner_address = 2;
-  void clear_owner_address();
-  const std::string& owner_address() const;
-  void set_owner_address(const std::string& value);
-  void set_owner_address(std::string&& value);
-  void set_owner_address(const char* value);
-  void set_owner_address(const void* value, size_t size);
-  std::string* mutable_owner_address();
-  std::string* release_owner_address();
-  void set_allocated_owner_address(std::string* owner_address);
-  private:
-  const std::string& _internal_owner_address() const;
-  void _internal_set_owner_address(const std::string& value);
-  std::string* _internal_mutable_owner_address();
-  public:
+    enum : int {
+        kAssetNameFieldNumber = 1,
+        kOwnerAddressFieldNumber = 2,
+        kToAddressFieldNumber = 3,
+        kAmountFieldNumber = 4,
+    };
+    // bytes asset_name = 1;
+    void clear_asset_name();
+    const std::string& asset_name() const;
+    void set_asset_name(const std::string& value);
+    void set_asset_name(std::string&& value);
+    void set_asset_name(const char* value);
+    void set_asset_name(const void* value, size_t size);
+    std::string* mutable_asset_name();
+    std::string* release_asset_name();
+    void set_allocated_asset_name(std::string* asset_name);
+private:
+    const std::string& _internal_asset_name() const;
+    void _internal_set_asset_name(const std::string& value);
+    std::string* _internal_mutable_asset_name();
+public:
 
-  // bytes to_address = 3;
-  void clear_to_address();
-  const std::string& to_address() const;
-  void set_to_address(const std::string& value);
-  void set_to_address(std::string&& value);
-  void set_to_address(const char* value);
-  void set_to_address(const void* value, size_t size);
-  std::string* mutable_to_address();
-  std::string* release_to_address();
-  void set_allocated_to_address(std::string* to_address);
-  private:
-  const std::string& _internal_to_address() const;
-  void _internal_set_to_address(const std::string& value);
-  std::string* _internal_mutable_to_address();
-  public:
+    // bytes owner_address = 2;
+    void clear_owner_address();
+    const std::string& owner_address() const;
+    void set_owner_address(const std::string& value);
+    void set_owner_address(std::string&& value);
+    void set_owner_address(const char* value);
+    void set_owner_address(const void* value, size_t size);
+    std::string* mutable_owner_address();
+    std::string* release_owner_address();
+    void set_allocated_owner_address(std::string* owner_address);
+private:
+    const std::string& _internal_owner_address() const;
+    void _internal_set_owner_address(const std::string& value);
+    std::string* _internal_mutable_owner_address();
+public:
 
-  // int64 amount = 4;
-  void clear_amount();
-  ::PROTOBUF_NAMESPACE_ID::int64 amount() const;
-  void set_amount(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_amount() const;
-  void _internal_set_amount(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // bytes to_address = 3;
+    void clear_to_address();
+    const std::string& to_address() const;
+    void set_to_address(const std::string& value);
+    void set_to_address(std::string&& value);
+    void set_to_address(const char* value);
+    void set_to_address(const void* value, size_t size);
+    std::string* mutable_to_address();
+    std::string* release_to_address();
+    void set_allocated_to_address(std::string* to_address);
+private:
+    const std::string& _internal_to_address() const;
+    void _internal_set_to_address(const std::string& value);
+    std::string* _internal_mutable_to_address();
+public:
 
-  // @@protoc_insertion_point(class_scope:protocol.TransferAssetContract)
- private:
-  class _Internal;
+    // int64 amount = 4;
+    void clear_amount();
+    ::PROTOBUF_NAMESPACE_ID::int64 amount() const;
+    void set_amount(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_amount() const;
+    void _internal_set_amount(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr asset_name_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr to_address_;
-  ::PROTOBUF_NAMESPACE_ID::int64 amount_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.TransferAssetContract)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr asset_name_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr to_address_;
+    ::PROTOBUF_NAMESPACE_ID::int64 amount_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class FreezeBalanceContract :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.FreezeBalanceContract) */ {
- public:
-  FreezeBalanceContract();
-  virtual ~FreezeBalanceContract();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.FreezeBalanceContract) */
+public:
+    FreezeBalanceContract();
+    virtual ~FreezeBalanceContract();
 
-  FreezeBalanceContract(const FreezeBalanceContract& from);
-  FreezeBalanceContract(FreezeBalanceContract&& from) noexcept
-    : FreezeBalanceContract() {
-    *this = ::std::move(from);
-  }
-
-  inline FreezeBalanceContract& operator=(const FreezeBalanceContract& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline FreezeBalanceContract& operator=(FreezeBalanceContract&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    FreezeBalanceContract(const FreezeBalanceContract& from);
+    FreezeBalanceContract(FreezeBalanceContract&& from) noexcept
+        : FreezeBalanceContract() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const FreezeBalanceContract& default_instance();
+    inline FreezeBalanceContract& operator=(const FreezeBalanceContract& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline FreezeBalanceContract& operator=(FreezeBalanceContract&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const FreezeBalanceContract* internal_default_instance() {
-    return reinterpret_cast<const FreezeBalanceContract*>(
-               &_FreezeBalanceContract_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    7;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const FreezeBalanceContract& default_instance();
 
-  friend void swap(FreezeBalanceContract& a, FreezeBalanceContract& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(FreezeBalanceContract* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const FreezeBalanceContract* internal_default_instance() {
+        return reinterpret_cast<const FreezeBalanceContract*>(
+                   &_FreezeBalanceContract_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        7;
 
-  // implements Message ----------------------------------------------
+    friend void swap(FreezeBalanceContract& a, FreezeBalanceContract& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(FreezeBalanceContract* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline FreezeBalanceContract* New() const final {
-    return CreateMaybeMessage<FreezeBalanceContract>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  FreezeBalanceContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<FreezeBalanceContract>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const FreezeBalanceContract& from);
-  void MergeFrom(const FreezeBalanceContract& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline FreezeBalanceContract* New() const final {
+        return CreateMaybeMessage<FreezeBalanceContract>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    FreezeBalanceContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<FreezeBalanceContract>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const FreezeBalanceContract& from);
+    void MergeFrom(const FreezeBalanceContract& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(FreezeBalanceContract* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.FreezeBalanceContract";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(FreezeBalanceContract* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.FreezeBalanceContract";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kOwnerAddressFieldNumber = 1,
-    kReceiverAddressFieldNumber = 15,
-    kFrozenBalanceFieldNumber = 2,
-    kFrozenDurationFieldNumber = 3,
-    kResourceFieldNumber = 10,
-  };
-  // bytes owner_address = 1;
-  void clear_owner_address();
-  const std::string& owner_address() const;
-  void set_owner_address(const std::string& value);
-  void set_owner_address(std::string&& value);
-  void set_owner_address(const char* value);
-  void set_owner_address(const void* value, size_t size);
-  std::string* mutable_owner_address();
-  std::string* release_owner_address();
-  void set_allocated_owner_address(std::string* owner_address);
-  private:
-  const std::string& _internal_owner_address() const;
-  void _internal_set_owner_address(const std::string& value);
-  std::string* _internal_mutable_owner_address();
-  public:
+    // accessors -------------------------------------------------------
 
-  // bytes receiver_address = 15;
-  void clear_receiver_address();
-  const std::string& receiver_address() const;
-  void set_receiver_address(const std::string& value);
-  void set_receiver_address(std::string&& value);
-  void set_receiver_address(const char* value);
-  void set_receiver_address(const void* value, size_t size);
-  std::string* mutable_receiver_address();
-  std::string* release_receiver_address();
-  void set_allocated_receiver_address(std::string* receiver_address);
-  private:
-  const std::string& _internal_receiver_address() const;
-  void _internal_set_receiver_address(const std::string& value);
-  std::string* _internal_mutable_receiver_address();
-  public:
+    enum : int {
+        kOwnerAddressFieldNumber = 1,
+        kReceiverAddressFieldNumber = 15,
+        kFrozenBalanceFieldNumber = 2,
+        kFrozenDurationFieldNumber = 3,
+        kResourceFieldNumber = 10,
+    };
+    // bytes owner_address = 1;
+    void clear_owner_address();
+    const std::string& owner_address() const;
+    void set_owner_address(const std::string& value);
+    void set_owner_address(std::string&& value);
+    void set_owner_address(const char* value);
+    void set_owner_address(const void* value, size_t size);
+    std::string* mutable_owner_address();
+    std::string* release_owner_address();
+    void set_allocated_owner_address(std::string* owner_address);
+private:
+    const std::string& _internal_owner_address() const;
+    void _internal_set_owner_address(const std::string& value);
+    std::string* _internal_mutable_owner_address();
+public:
 
-  // int64 frozen_balance = 2;
-  void clear_frozen_balance();
-  ::PROTOBUF_NAMESPACE_ID::int64 frozen_balance() const;
-  void set_frozen_balance(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_frozen_balance() const;
-  void _internal_set_frozen_balance(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // bytes receiver_address = 15;
+    void clear_receiver_address();
+    const std::string& receiver_address() const;
+    void set_receiver_address(const std::string& value);
+    void set_receiver_address(std::string&& value);
+    void set_receiver_address(const char* value);
+    void set_receiver_address(const void* value, size_t size);
+    std::string* mutable_receiver_address();
+    std::string* release_receiver_address();
+    void set_allocated_receiver_address(std::string* receiver_address);
+private:
+    const std::string& _internal_receiver_address() const;
+    void _internal_set_receiver_address(const std::string& value);
+    std::string* _internal_mutable_receiver_address();
+public:
 
-  // int64 frozen_duration = 3;
-  void clear_frozen_duration();
-  ::PROTOBUF_NAMESPACE_ID::int64 frozen_duration() const;
-  void set_frozen_duration(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_frozen_duration() const;
-  void _internal_set_frozen_duration(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // int64 frozen_balance = 2;
+    void clear_frozen_balance();
+    ::PROTOBUF_NAMESPACE_ID::int64 frozen_balance() const;
+    void set_frozen_balance(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_frozen_balance() const;
+    void _internal_set_frozen_balance(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  // .protocol.ResourceCode resource = 10;
-  void clear_resource();
-  ::protocol::ResourceCode resource() const;
-  void set_resource(::protocol::ResourceCode value);
-  private:
-  ::protocol::ResourceCode _internal_resource() const;
-  void _internal_set_resource(::protocol::ResourceCode value);
-  public:
+    // int64 frozen_duration = 3;
+    void clear_frozen_duration();
+    ::PROTOBUF_NAMESPACE_ID::int64 frozen_duration() const;
+    void set_frozen_duration(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_frozen_duration() const;
+    void _internal_set_frozen_duration(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  // @@protoc_insertion_point(class_scope:protocol.FreezeBalanceContract)
- private:
-  class _Internal;
+    // .protocol.ResourceCode resource = 10;
+    void clear_resource();
+    ::protocol::ResourceCode resource() const;
+    void set_resource(::protocol::ResourceCode value);
+private:
+    ::protocol::ResourceCode _internal_resource() const;
+    void _internal_set_resource(::protocol::ResourceCode value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr receiver_address_;
-  ::PROTOBUF_NAMESPACE_ID::int64 frozen_balance_;
-  ::PROTOBUF_NAMESPACE_ID::int64 frozen_duration_;
-  int resource_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.FreezeBalanceContract)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr receiver_address_;
+    ::PROTOBUF_NAMESPACE_ID::int64 frozen_balance_;
+    ::PROTOBUF_NAMESPACE_ID::int64 frozen_duration_;
+    int resource_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class UnfreezeBalanceContract :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.UnfreezeBalanceContract) */ {
- public:
-  UnfreezeBalanceContract();
-  virtual ~UnfreezeBalanceContract();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.UnfreezeBalanceContract) */
+public:
+    UnfreezeBalanceContract();
+    virtual ~UnfreezeBalanceContract();
 
-  UnfreezeBalanceContract(const UnfreezeBalanceContract& from);
-  UnfreezeBalanceContract(UnfreezeBalanceContract&& from) noexcept
-    : UnfreezeBalanceContract() {
-    *this = ::std::move(from);
-  }
-
-  inline UnfreezeBalanceContract& operator=(const UnfreezeBalanceContract& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline UnfreezeBalanceContract& operator=(UnfreezeBalanceContract&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    UnfreezeBalanceContract(const UnfreezeBalanceContract& from);
+    UnfreezeBalanceContract(UnfreezeBalanceContract&& from) noexcept
+        : UnfreezeBalanceContract() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const UnfreezeBalanceContract& default_instance();
+    inline UnfreezeBalanceContract& operator=(const UnfreezeBalanceContract& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline UnfreezeBalanceContract& operator=(UnfreezeBalanceContract&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const UnfreezeBalanceContract* internal_default_instance() {
-    return reinterpret_cast<const UnfreezeBalanceContract*>(
-               &_UnfreezeBalanceContract_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    8;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const UnfreezeBalanceContract& default_instance();
 
-  friend void swap(UnfreezeBalanceContract& a, UnfreezeBalanceContract& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(UnfreezeBalanceContract* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const UnfreezeBalanceContract* internal_default_instance() {
+        return reinterpret_cast<const UnfreezeBalanceContract*>(
+                   &_UnfreezeBalanceContract_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        8;
 
-  // implements Message ----------------------------------------------
+    friend void swap(UnfreezeBalanceContract& a, UnfreezeBalanceContract& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(UnfreezeBalanceContract* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline UnfreezeBalanceContract* New() const final {
-    return CreateMaybeMessage<UnfreezeBalanceContract>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  UnfreezeBalanceContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<UnfreezeBalanceContract>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const UnfreezeBalanceContract& from);
-  void MergeFrom(const UnfreezeBalanceContract& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline UnfreezeBalanceContract* New() const final {
+        return CreateMaybeMessage<UnfreezeBalanceContract>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    UnfreezeBalanceContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<UnfreezeBalanceContract>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const UnfreezeBalanceContract& from);
+    void MergeFrom(const UnfreezeBalanceContract& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(UnfreezeBalanceContract* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.UnfreezeBalanceContract";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(UnfreezeBalanceContract* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.UnfreezeBalanceContract";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kOwnerAddressFieldNumber = 1,
-    kReceiverAddressFieldNumber = 15,
-    kResourceFieldNumber = 10,
-  };
-  // bytes owner_address = 1;
-  void clear_owner_address();
-  const std::string& owner_address() const;
-  void set_owner_address(const std::string& value);
-  void set_owner_address(std::string&& value);
-  void set_owner_address(const char* value);
-  void set_owner_address(const void* value, size_t size);
-  std::string* mutable_owner_address();
-  std::string* release_owner_address();
-  void set_allocated_owner_address(std::string* owner_address);
-  private:
-  const std::string& _internal_owner_address() const;
-  void _internal_set_owner_address(const std::string& value);
-  std::string* _internal_mutable_owner_address();
-  public:
+    // accessors -------------------------------------------------------
 
-  // bytes receiver_address = 15;
-  void clear_receiver_address();
-  const std::string& receiver_address() const;
-  void set_receiver_address(const std::string& value);
-  void set_receiver_address(std::string&& value);
-  void set_receiver_address(const char* value);
-  void set_receiver_address(const void* value, size_t size);
-  std::string* mutable_receiver_address();
-  std::string* release_receiver_address();
-  void set_allocated_receiver_address(std::string* receiver_address);
-  private:
-  const std::string& _internal_receiver_address() const;
-  void _internal_set_receiver_address(const std::string& value);
-  std::string* _internal_mutable_receiver_address();
-  public:
+    enum : int {
+        kOwnerAddressFieldNumber = 1,
+        kReceiverAddressFieldNumber = 15,
+        kResourceFieldNumber = 10,
+    };
+    // bytes owner_address = 1;
+    void clear_owner_address();
+    const std::string& owner_address() const;
+    void set_owner_address(const std::string& value);
+    void set_owner_address(std::string&& value);
+    void set_owner_address(const char* value);
+    void set_owner_address(const void* value, size_t size);
+    std::string* mutable_owner_address();
+    std::string* release_owner_address();
+    void set_allocated_owner_address(std::string* owner_address);
+private:
+    const std::string& _internal_owner_address() const;
+    void _internal_set_owner_address(const std::string& value);
+    std::string* _internal_mutable_owner_address();
+public:
 
-  // .protocol.ResourceCode resource = 10;
-  void clear_resource();
-  ::protocol::ResourceCode resource() const;
-  void set_resource(::protocol::ResourceCode value);
-  private:
-  ::protocol::ResourceCode _internal_resource() const;
-  void _internal_set_resource(::protocol::ResourceCode value);
-  public:
+    // bytes receiver_address = 15;
+    void clear_receiver_address();
+    const std::string& receiver_address() const;
+    void set_receiver_address(const std::string& value);
+    void set_receiver_address(std::string&& value);
+    void set_receiver_address(const char* value);
+    void set_receiver_address(const void* value, size_t size);
+    std::string* mutable_receiver_address();
+    std::string* release_receiver_address();
+    void set_allocated_receiver_address(std::string* receiver_address);
+private:
+    const std::string& _internal_receiver_address() const;
+    void _internal_set_receiver_address(const std::string& value);
+    std::string* _internal_mutable_receiver_address();
+public:
 
-  // @@protoc_insertion_point(class_scope:protocol.UnfreezeBalanceContract)
- private:
-  class _Internal;
+    // .protocol.ResourceCode resource = 10;
+    void clear_resource();
+    ::protocol::ResourceCode resource() const;
+    void set_resource(::protocol::ResourceCode value);
+private:
+    ::protocol::ResourceCode _internal_resource() const;
+    void _internal_set_resource(::protocol::ResourceCode value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr receiver_address_;
-  int resource_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.UnfreezeBalanceContract)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr receiver_address_;
+    int resource_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class UnfreezeAssetContract :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.UnfreezeAssetContract) */ {
- public:
-  UnfreezeAssetContract();
-  virtual ~UnfreezeAssetContract();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.UnfreezeAssetContract) */
+public:
+    UnfreezeAssetContract();
+    virtual ~UnfreezeAssetContract();
 
-  UnfreezeAssetContract(const UnfreezeAssetContract& from);
-  UnfreezeAssetContract(UnfreezeAssetContract&& from) noexcept
-    : UnfreezeAssetContract() {
-    *this = ::std::move(from);
-  }
-
-  inline UnfreezeAssetContract& operator=(const UnfreezeAssetContract& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline UnfreezeAssetContract& operator=(UnfreezeAssetContract&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    UnfreezeAssetContract(const UnfreezeAssetContract& from);
+    UnfreezeAssetContract(UnfreezeAssetContract&& from) noexcept
+        : UnfreezeAssetContract() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const UnfreezeAssetContract& default_instance();
+    inline UnfreezeAssetContract& operator=(const UnfreezeAssetContract& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline UnfreezeAssetContract& operator=(UnfreezeAssetContract&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const UnfreezeAssetContract* internal_default_instance() {
-    return reinterpret_cast<const UnfreezeAssetContract*>(
-               &_UnfreezeAssetContract_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    9;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const UnfreezeAssetContract& default_instance();
 
-  friend void swap(UnfreezeAssetContract& a, UnfreezeAssetContract& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(UnfreezeAssetContract* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const UnfreezeAssetContract* internal_default_instance() {
+        return reinterpret_cast<const UnfreezeAssetContract*>(
+                   &_UnfreezeAssetContract_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        9;
 
-  // implements Message ----------------------------------------------
+    friend void swap(UnfreezeAssetContract& a, UnfreezeAssetContract& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(UnfreezeAssetContract* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline UnfreezeAssetContract* New() const final {
-    return CreateMaybeMessage<UnfreezeAssetContract>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  UnfreezeAssetContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<UnfreezeAssetContract>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const UnfreezeAssetContract& from);
-  void MergeFrom(const UnfreezeAssetContract& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline UnfreezeAssetContract* New() const final {
+        return CreateMaybeMessage<UnfreezeAssetContract>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    UnfreezeAssetContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<UnfreezeAssetContract>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const UnfreezeAssetContract& from);
+    void MergeFrom(const UnfreezeAssetContract& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(UnfreezeAssetContract* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.UnfreezeAssetContract";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(UnfreezeAssetContract* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.UnfreezeAssetContract";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kOwnerAddressFieldNumber = 1,
-  };
-  // bytes owner_address = 1;
-  void clear_owner_address();
-  const std::string& owner_address() const;
-  void set_owner_address(const std::string& value);
-  void set_owner_address(std::string&& value);
-  void set_owner_address(const char* value);
-  void set_owner_address(const void* value, size_t size);
-  std::string* mutable_owner_address();
-  std::string* release_owner_address();
-  void set_allocated_owner_address(std::string* owner_address);
-  private:
-  const std::string& _internal_owner_address() const;
-  void _internal_set_owner_address(const std::string& value);
-  std::string* _internal_mutable_owner_address();
-  public:
+    // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:protocol.UnfreezeAssetContract)
- private:
-  class _Internal;
+    enum : int {
+        kOwnerAddressFieldNumber = 1,
+    };
+    // bytes owner_address = 1;
+    void clear_owner_address();
+    const std::string& owner_address() const;
+    void set_owner_address(const std::string& value);
+    void set_owner_address(std::string&& value);
+    void set_owner_address(const char* value);
+    void set_owner_address(const void* value, size_t size);
+    std::string* mutable_owner_address();
+    std::string* release_owner_address();
+    void set_allocated_owner_address(std::string* owner_address);
+private:
+    const std::string& _internal_owner_address() const;
+    void _internal_set_owner_address(const std::string& value);
+    std::string* _internal_mutable_owner_address();
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.UnfreezeAssetContract)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class VoteAssetContract :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.VoteAssetContract) */ {
- public:
-  VoteAssetContract();
-  virtual ~VoteAssetContract();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.VoteAssetContract) */
+public:
+    VoteAssetContract();
+    virtual ~VoteAssetContract();
 
-  VoteAssetContract(const VoteAssetContract& from);
-  VoteAssetContract(VoteAssetContract&& from) noexcept
-    : VoteAssetContract() {
-    *this = ::std::move(from);
-  }
-
-  inline VoteAssetContract& operator=(const VoteAssetContract& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline VoteAssetContract& operator=(VoteAssetContract&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    VoteAssetContract(const VoteAssetContract& from);
+    VoteAssetContract(VoteAssetContract&& from) noexcept
+        : VoteAssetContract() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const VoteAssetContract& default_instance();
+    inline VoteAssetContract& operator=(const VoteAssetContract& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline VoteAssetContract& operator=(VoteAssetContract&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const VoteAssetContract* internal_default_instance() {
-    return reinterpret_cast<const VoteAssetContract*>(
-               &_VoteAssetContract_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    10;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const VoteAssetContract& default_instance();
 
-  friend void swap(VoteAssetContract& a, VoteAssetContract& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(VoteAssetContract* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const VoteAssetContract* internal_default_instance() {
+        return reinterpret_cast<const VoteAssetContract*>(
+                   &_VoteAssetContract_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        10;
 
-  // implements Message ----------------------------------------------
+    friend void swap(VoteAssetContract& a, VoteAssetContract& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(VoteAssetContract* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline VoteAssetContract* New() const final {
-    return CreateMaybeMessage<VoteAssetContract>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  VoteAssetContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<VoteAssetContract>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const VoteAssetContract& from);
-  void MergeFrom(const VoteAssetContract& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline VoteAssetContract* New() const final {
+        return CreateMaybeMessage<VoteAssetContract>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    VoteAssetContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<VoteAssetContract>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const VoteAssetContract& from);
+    void MergeFrom(const VoteAssetContract& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(VoteAssetContract* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.VoteAssetContract";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(VoteAssetContract* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.VoteAssetContract";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kVoteAddressFieldNumber = 2,
-    kOwnerAddressFieldNumber = 1,
-    kSupportFieldNumber = 3,
-    kCountFieldNumber = 5,
-  };
-  // repeated bytes vote_address = 2;
-  int vote_address_size() const;
-  private:
-  int _internal_vote_address_size() const;
-  public:
-  void clear_vote_address();
-  const std::string& vote_address(int index) const;
-  std::string* mutable_vote_address(int index);
-  void set_vote_address(int index, const std::string& value);
-  void set_vote_address(int index, std::string&& value);
-  void set_vote_address(int index, const char* value);
-  void set_vote_address(int index, const void* value, size_t size);
-  std::string* add_vote_address();
-  void add_vote_address(const std::string& value);
-  void add_vote_address(std::string&& value);
-  void add_vote_address(const char* value);
-  void add_vote_address(const void* value, size_t size);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& vote_address() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_vote_address();
-  private:
-  const std::string& _internal_vote_address(int index) const;
-  std::string* _internal_add_vote_address();
-  public:
+    // accessors -------------------------------------------------------
 
-  // bytes owner_address = 1;
-  void clear_owner_address();
-  const std::string& owner_address() const;
-  void set_owner_address(const std::string& value);
-  void set_owner_address(std::string&& value);
-  void set_owner_address(const char* value);
-  void set_owner_address(const void* value, size_t size);
-  std::string* mutable_owner_address();
-  std::string* release_owner_address();
-  void set_allocated_owner_address(std::string* owner_address);
-  private:
-  const std::string& _internal_owner_address() const;
-  void _internal_set_owner_address(const std::string& value);
-  std::string* _internal_mutable_owner_address();
-  public:
+    enum : int {
+        kVoteAddressFieldNumber = 2,
+        kOwnerAddressFieldNumber = 1,
+        kSupportFieldNumber = 3,
+        kCountFieldNumber = 5,
+    };
+    // repeated bytes vote_address = 2;
+    int vote_address_size() const;
+private:
+    int _internal_vote_address_size() const;
+public:
+    void clear_vote_address();
+    const std::string& vote_address(int index) const;
+    std::string* mutable_vote_address(int index);
+    void set_vote_address(int index, const std::string& value);
+    void set_vote_address(int index, std::string&& value);
+    void set_vote_address(int index, const char* value);
+    void set_vote_address(int index, const void* value, size_t size);
+    std::string* add_vote_address();
+    void add_vote_address(const std::string& value);
+    void add_vote_address(std::string&& value);
+    void add_vote_address(const char* value);
+    void add_vote_address(const void* value, size_t size);
+    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& vote_address() const;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_vote_address();
+private:
+    const std::string& _internal_vote_address(int index) const;
+    std::string* _internal_add_vote_address();
+public:
 
-  // bool support = 3;
-  void clear_support();
-  bool support() const;
-  void set_support(bool value);
-  private:
-  bool _internal_support() const;
-  void _internal_set_support(bool value);
-  public:
+    // bytes owner_address = 1;
+    void clear_owner_address();
+    const std::string& owner_address() const;
+    void set_owner_address(const std::string& value);
+    void set_owner_address(std::string&& value);
+    void set_owner_address(const char* value);
+    void set_owner_address(const void* value, size_t size);
+    std::string* mutable_owner_address();
+    std::string* release_owner_address();
+    void set_allocated_owner_address(std::string* owner_address);
+private:
+    const std::string& _internal_owner_address() const;
+    void _internal_set_owner_address(const std::string& value);
+    std::string* _internal_mutable_owner_address();
+public:
 
-  // int32 count = 5;
-  void clear_count();
-  ::PROTOBUF_NAMESPACE_ID::int32 count() const;
-  void set_count(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_count() const;
-  void _internal_set_count(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
+    // bool support = 3;
+    void clear_support();
+    bool support() const;
+    void set_support(bool value);
+private:
+    bool _internal_support() const;
+    void _internal_set_support(bool value);
+public:
 
-  // @@protoc_insertion_point(class_scope:protocol.VoteAssetContract)
- private:
-  class _Internal;
+    // int32 count = 5;
+    void clear_count();
+    ::PROTOBUF_NAMESPACE_ID::int32 count() const;
+    void set_count(::PROTOBUF_NAMESPACE_ID::int32 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int32 _internal_count() const;
+    void _internal_set_count(::PROTOBUF_NAMESPACE_ID::int32 value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> vote_address_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
-  bool support_;
-  ::PROTOBUF_NAMESPACE_ID::int32 count_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.VoteAssetContract)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> vote_address_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
+    bool support_;
+    ::PROTOBUF_NAMESPACE_ID::int32 count_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class VoteWitnessContract_Vote :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.VoteWitnessContract.Vote) */ {
- public:
-  VoteWitnessContract_Vote();
-  virtual ~VoteWitnessContract_Vote();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.VoteWitnessContract.Vote) */
+public:
+    VoteWitnessContract_Vote();
+    virtual ~VoteWitnessContract_Vote();
 
-  VoteWitnessContract_Vote(const VoteWitnessContract_Vote& from);
-  VoteWitnessContract_Vote(VoteWitnessContract_Vote&& from) noexcept
-    : VoteWitnessContract_Vote() {
-    *this = ::std::move(from);
-  }
-
-  inline VoteWitnessContract_Vote& operator=(const VoteWitnessContract_Vote& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline VoteWitnessContract_Vote& operator=(VoteWitnessContract_Vote&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    VoteWitnessContract_Vote(const VoteWitnessContract_Vote& from);
+    VoteWitnessContract_Vote(VoteWitnessContract_Vote&& from) noexcept
+        : VoteWitnessContract_Vote() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const VoteWitnessContract_Vote& default_instance();
+    inline VoteWitnessContract_Vote& operator=(const VoteWitnessContract_Vote& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline VoteWitnessContract_Vote& operator=(VoteWitnessContract_Vote&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const VoteWitnessContract_Vote* internal_default_instance() {
-    return reinterpret_cast<const VoteWitnessContract_Vote*>(
-               &_VoteWitnessContract_Vote_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    11;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const VoteWitnessContract_Vote& default_instance();
 
-  friend void swap(VoteWitnessContract_Vote& a, VoteWitnessContract_Vote& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(VoteWitnessContract_Vote* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const VoteWitnessContract_Vote* internal_default_instance() {
+        return reinterpret_cast<const VoteWitnessContract_Vote*>(
+                   &_VoteWitnessContract_Vote_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        11;
 
-  // implements Message ----------------------------------------------
+    friend void swap(VoteWitnessContract_Vote& a, VoteWitnessContract_Vote& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(VoteWitnessContract_Vote* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline VoteWitnessContract_Vote* New() const final {
-    return CreateMaybeMessage<VoteWitnessContract_Vote>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  VoteWitnessContract_Vote* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<VoteWitnessContract_Vote>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const VoteWitnessContract_Vote& from);
-  void MergeFrom(const VoteWitnessContract_Vote& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline VoteWitnessContract_Vote* New() const final {
+        return CreateMaybeMessage<VoteWitnessContract_Vote>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    VoteWitnessContract_Vote* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<VoteWitnessContract_Vote>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const VoteWitnessContract_Vote& from);
+    void MergeFrom(const VoteWitnessContract_Vote& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(VoteWitnessContract_Vote* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.VoteWitnessContract.Vote";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(VoteWitnessContract_Vote* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.VoteWitnessContract.Vote";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kVoteAddressFieldNumber = 1,
-    kVoteCountFieldNumber = 2,
-  };
-  // bytes vote_address = 1;
-  void clear_vote_address();
-  const std::string& vote_address() const;
-  void set_vote_address(const std::string& value);
-  void set_vote_address(std::string&& value);
-  void set_vote_address(const char* value);
-  void set_vote_address(const void* value, size_t size);
-  std::string* mutable_vote_address();
-  std::string* release_vote_address();
-  void set_allocated_vote_address(std::string* vote_address);
-  private:
-  const std::string& _internal_vote_address() const;
-  void _internal_set_vote_address(const std::string& value);
-  std::string* _internal_mutable_vote_address();
-  public:
+    // accessors -------------------------------------------------------
 
-  // int64 vote_count = 2;
-  void clear_vote_count();
-  ::PROTOBUF_NAMESPACE_ID::int64 vote_count() const;
-  void set_vote_count(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_vote_count() const;
-  void _internal_set_vote_count(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    enum : int {
+        kVoteAddressFieldNumber = 1,
+        kVoteCountFieldNumber = 2,
+    };
+    // bytes vote_address = 1;
+    void clear_vote_address();
+    const std::string& vote_address() const;
+    void set_vote_address(const std::string& value);
+    void set_vote_address(std::string&& value);
+    void set_vote_address(const char* value);
+    void set_vote_address(const void* value, size_t size);
+    std::string* mutable_vote_address();
+    std::string* release_vote_address();
+    void set_allocated_vote_address(std::string* vote_address);
+private:
+    const std::string& _internal_vote_address() const;
+    void _internal_set_vote_address(const std::string& value);
+    std::string* _internal_mutable_vote_address();
+public:
 
-  // @@protoc_insertion_point(class_scope:protocol.VoteWitnessContract.Vote)
- private:
-  class _Internal;
+    // int64 vote_count = 2;
+    void clear_vote_count();
+    ::PROTOBUF_NAMESPACE_ID::int64 vote_count() const;
+    void set_vote_count(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_vote_count() const;
+    void _internal_set_vote_count(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr vote_address_;
-  ::PROTOBUF_NAMESPACE_ID::int64 vote_count_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.VoteWitnessContract.Vote)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr vote_address_;
+    ::PROTOBUF_NAMESPACE_ID::int64 vote_count_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class VoteWitnessContract :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.VoteWitnessContract) */ {
- public:
-  VoteWitnessContract();
-  virtual ~VoteWitnessContract();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.VoteWitnessContract) */
+public:
+    VoteWitnessContract();
+    virtual ~VoteWitnessContract();
 
-  VoteWitnessContract(const VoteWitnessContract& from);
-  VoteWitnessContract(VoteWitnessContract&& from) noexcept
-    : VoteWitnessContract() {
-    *this = ::std::move(from);
-  }
-
-  inline VoteWitnessContract& operator=(const VoteWitnessContract& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline VoteWitnessContract& operator=(VoteWitnessContract&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    VoteWitnessContract(const VoteWitnessContract& from);
+    VoteWitnessContract(VoteWitnessContract&& from) noexcept
+        : VoteWitnessContract() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const VoteWitnessContract& default_instance();
+    inline VoteWitnessContract& operator=(const VoteWitnessContract& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline VoteWitnessContract& operator=(VoteWitnessContract&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const VoteWitnessContract* internal_default_instance() {
-    return reinterpret_cast<const VoteWitnessContract*>(
-               &_VoteWitnessContract_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    12;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const VoteWitnessContract& default_instance();
 
-  friend void swap(VoteWitnessContract& a, VoteWitnessContract& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(VoteWitnessContract* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const VoteWitnessContract* internal_default_instance() {
+        return reinterpret_cast<const VoteWitnessContract*>(
+                   &_VoteWitnessContract_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        12;
 
-  // implements Message ----------------------------------------------
+    friend void swap(VoteWitnessContract& a, VoteWitnessContract& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(VoteWitnessContract* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline VoteWitnessContract* New() const final {
-    return CreateMaybeMessage<VoteWitnessContract>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  VoteWitnessContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<VoteWitnessContract>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const VoteWitnessContract& from);
-  void MergeFrom(const VoteWitnessContract& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline VoteWitnessContract* New() const final {
+        return CreateMaybeMessage<VoteWitnessContract>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    VoteWitnessContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<VoteWitnessContract>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const VoteWitnessContract& from);
+    void MergeFrom(const VoteWitnessContract& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(VoteWitnessContract* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.VoteWitnessContract";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(VoteWitnessContract* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.VoteWitnessContract";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  typedef VoteWitnessContract_Vote Vote;
+    // nested types ----------------------------------------------------
 
-  // accessors -------------------------------------------------------
+    typedef VoteWitnessContract_Vote Vote;
 
-  enum : int {
-    kVotesFieldNumber = 2,
-    kOwnerAddressFieldNumber = 1,
-    kSupportFieldNumber = 3,
-  };
-  // repeated .protocol.VoteWitnessContract.Vote votes = 2;
-  int votes_size() const;
-  private:
-  int _internal_votes_size() const;
-  public:
-  void clear_votes();
-  ::protocol::VoteWitnessContract_Vote* mutable_votes(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::VoteWitnessContract_Vote >*
-      mutable_votes();
-  private:
-  const ::protocol::VoteWitnessContract_Vote& _internal_votes(int index) const;
-  ::protocol::VoteWitnessContract_Vote* _internal_add_votes();
-  public:
-  const ::protocol::VoteWitnessContract_Vote& votes(int index) const;
-  ::protocol::VoteWitnessContract_Vote* add_votes();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::VoteWitnessContract_Vote >&
-      votes() const;
+    // accessors -------------------------------------------------------
 
-  // bytes owner_address = 1;
-  void clear_owner_address();
-  const std::string& owner_address() const;
-  void set_owner_address(const std::string& value);
-  void set_owner_address(std::string&& value);
-  void set_owner_address(const char* value);
-  void set_owner_address(const void* value, size_t size);
-  std::string* mutable_owner_address();
-  std::string* release_owner_address();
-  void set_allocated_owner_address(std::string* owner_address);
-  private:
-  const std::string& _internal_owner_address() const;
-  void _internal_set_owner_address(const std::string& value);
-  std::string* _internal_mutable_owner_address();
-  public:
+    enum : int {
+        kVotesFieldNumber = 2,
+        kOwnerAddressFieldNumber = 1,
+        kSupportFieldNumber = 3,
+    };
+    // repeated .protocol.VoteWitnessContract.Vote votes = 2;
+    int votes_size() const;
+private:
+    int _internal_votes_size() const;
+public:
+    void clear_votes();
+    ::protocol::VoteWitnessContract_Vote* mutable_votes(int index);
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::VoteWitnessContract_Vote >*
+    mutable_votes();
+private:
+    const ::protocol::VoteWitnessContract_Vote& _internal_votes(int index) const;
+    ::protocol::VoteWitnessContract_Vote* _internal_add_votes();
+public:
+    const ::protocol::VoteWitnessContract_Vote& votes(int index) const;
+    ::protocol::VoteWitnessContract_Vote* add_votes();
+    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::VoteWitnessContract_Vote >&
+    votes() const;
 
-  // bool support = 3;
-  void clear_support();
-  bool support() const;
-  void set_support(bool value);
-  private:
-  bool _internal_support() const;
-  void _internal_set_support(bool value);
-  public:
+    // bytes owner_address = 1;
+    void clear_owner_address();
+    const std::string& owner_address() const;
+    void set_owner_address(const std::string& value);
+    void set_owner_address(std::string&& value);
+    void set_owner_address(const char* value);
+    void set_owner_address(const void* value, size_t size);
+    std::string* mutable_owner_address();
+    std::string* release_owner_address();
+    void set_allocated_owner_address(std::string* owner_address);
+private:
+    const std::string& _internal_owner_address() const;
+    void _internal_set_owner_address(const std::string& value);
+    std::string* _internal_mutable_owner_address();
+public:
 
-  // @@protoc_insertion_point(class_scope:protocol.VoteWitnessContract)
- private:
-  class _Internal;
+    // bool support = 3;
+    void clear_support();
+    bool support() const;
+    void set_support(bool value);
+private:
+    bool _internal_support() const;
+    void _internal_set_support(bool value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::VoteWitnessContract_Vote > votes_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
-  bool support_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.VoteWitnessContract)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::VoteWitnessContract_Vote > votes_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
+    bool support_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class WithdrawBalanceContract :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.WithdrawBalanceContract) */ {
- public:
-  WithdrawBalanceContract();
-  virtual ~WithdrawBalanceContract();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.WithdrawBalanceContract) */
+public:
+    WithdrawBalanceContract();
+    virtual ~WithdrawBalanceContract();
 
-  WithdrawBalanceContract(const WithdrawBalanceContract& from);
-  WithdrawBalanceContract(WithdrawBalanceContract&& from) noexcept
-    : WithdrawBalanceContract() {
-    *this = ::std::move(from);
-  }
-
-  inline WithdrawBalanceContract& operator=(const WithdrawBalanceContract& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline WithdrawBalanceContract& operator=(WithdrawBalanceContract&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    WithdrawBalanceContract(const WithdrawBalanceContract& from);
+    WithdrawBalanceContract(WithdrawBalanceContract&& from) noexcept
+        : WithdrawBalanceContract() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const WithdrawBalanceContract& default_instance();
+    inline WithdrawBalanceContract& operator=(const WithdrawBalanceContract& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline WithdrawBalanceContract& operator=(WithdrawBalanceContract&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const WithdrawBalanceContract* internal_default_instance() {
-    return reinterpret_cast<const WithdrawBalanceContract*>(
-               &_WithdrawBalanceContract_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    13;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const WithdrawBalanceContract& default_instance();
 
-  friend void swap(WithdrawBalanceContract& a, WithdrawBalanceContract& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(WithdrawBalanceContract* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const WithdrawBalanceContract* internal_default_instance() {
+        return reinterpret_cast<const WithdrawBalanceContract*>(
+                   &_WithdrawBalanceContract_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        13;
 
-  // implements Message ----------------------------------------------
+    friend void swap(WithdrawBalanceContract& a, WithdrawBalanceContract& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(WithdrawBalanceContract* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline WithdrawBalanceContract* New() const final {
-    return CreateMaybeMessage<WithdrawBalanceContract>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  WithdrawBalanceContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<WithdrawBalanceContract>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const WithdrawBalanceContract& from);
-  void MergeFrom(const WithdrawBalanceContract& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline WithdrawBalanceContract* New() const final {
+        return CreateMaybeMessage<WithdrawBalanceContract>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    WithdrawBalanceContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<WithdrawBalanceContract>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const WithdrawBalanceContract& from);
+    void MergeFrom(const WithdrawBalanceContract& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(WithdrawBalanceContract* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.WithdrawBalanceContract";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(WithdrawBalanceContract* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.WithdrawBalanceContract";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kOwnerAddressFieldNumber = 1,
-  };
-  // bytes owner_address = 1;
-  void clear_owner_address();
-  const std::string& owner_address() const;
-  void set_owner_address(const std::string& value);
-  void set_owner_address(std::string&& value);
-  void set_owner_address(const char* value);
-  void set_owner_address(const void* value, size_t size);
-  std::string* mutable_owner_address();
-  std::string* release_owner_address();
-  void set_allocated_owner_address(std::string* owner_address);
-  private:
-  const std::string& _internal_owner_address() const;
-  void _internal_set_owner_address(const std::string& value);
-  std::string* _internal_mutable_owner_address();
-  public:
+    // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:protocol.WithdrawBalanceContract)
- private:
-  class _Internal;
+    enum : int {
+        kOwnerAddressFieldNumber = 1,
+    };
+    // bytes owner_address = 1;
+    void clear_owner_address();
+    const std::string& owner_address() const;
+    void set_owner_address(const std::string& value);
+    void set_owner_address(std::string&& value);
+    void set_owner_address(const char* value);
+    void set_owner_address(const void* value, size_t size);
+    std::string* mutable_owner_address();
+    std::string* release_owner_address();
+    void set_allocated_owner_address(std::string* owner_address);
+private:
+    const std::string& _internal_owner_address() const;
+    void _internal_set_owner_address(const std::string& value);
+    std::string* _internal_mutable_owner_address();
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.WithdrawBalanceContract)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // -------------------------------------------------------------------
 
 class TriggerSmartContract :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protocol.TriggerSmartContract) */ {
- public:
-  TriggerSmartContract();
-  virtual ~TriggerSmartContract();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:protocol.TriggerSmartContract) */
+public:
+    TriggerSmartContract();
+    virtual ~TriggerSmartContract();
 
-  TriggerSmartContract(const TriggerSmartContract& from);
-  TriggerSmartContract(TriggerSmartContract&& from) noexcept
-    : TriggerSmartContract() {
-    *this = ::std::move(from);
-  }
-
-  inline TriggerSmartContract& operator=(const TriggerSmartContract& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline TriggerSmartContract& operator=(TriggerSmartContract&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    TriggerSmartContract(const TriggerSmartContract& from);
+    TriggerSmartContract(TriggerSmartContract&& from) noexcept
+        : TriggerSmartContract() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const TriggerSmartContract& default_instance();
+    inline TriggerSmartContract& operator=(const TriggerSmartContract& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline TriggerSmartContract& operator=(TriggerSmartContract&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const TriggerSmartContract* internal_default_instance() {
-    return reinterpret_cast<const TriggerSmartContract*>(
-               &_TriggerSmartContract_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    14;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const TriggerSmartContract& default_instance();
 
-  friend void swap(TriggerSmartContract& a, TriggerSmartContract& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(TriggerSmartContract* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const TriggerSmartContract* internal_default_instance() {
+        return reinterpret_cast<const TriggerSmartContract*>(
+                   &_TriggerSmartContract_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        14;
 
-  // implements Message ----------------------------------------------
+    friend void swap(TriggerSmartContract& a, TriggerSmartContract& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(TriggerSmartContract* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline TriggerSmartContract* New() const final {
-    return CreateMaybeMessage<TriggerSmartContract>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  TriggerSmartContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<TriggerSmartContract>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const TriggerSmartContract& from);
-  void MergeFrom(const TriggerSmartContract& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline TriggerSmartContract* New() const final {
+        return CreateMaybeMessage<TriggerSmartContract>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    TriggerSmartContract* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<TriggerSmartContract>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const TriggerSmartContract& from);
+    void MergeFrom(const TriggerSmartContract& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(TriggerSmartContract* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protocol.TriggerSmartContract";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
-    return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(TriggerSmartContract* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "protocol.TriggerSmartContract";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_TronInternal_2eproto);
+        return ::descriptor_table_TronInternal_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kOwnerAddressFieldNumber = 1,
-    kContractAddressFieldNumber = 2,
-    kDataFieldNumber = 4,
-    kCallValueFieldNumber = 3,
-    kCallTokenValueFieldNumber = 5,
-    kTokenIdFieldNumber = 6,
-  };
-  // bytes owner_address = 1;
-  void clear_owner_address();
-  const std::string& owner_address() const;
-  void set_owner_address(const std::string& value);
-  void set_owner_address(std::string&& value);
-  void set_owner_address(const char* value);
-  void set_owner_address(const void* value, size_t size);
-  std::string* mutable_owner_address();
-  std::string* release_owner_address();
-  void set_allocated_owner_address(std::string* owner_address);
-  private:
-  const std::string& _internal_owner_address() const;
-  void _internal_set_owner_address(const std::string& value);
-  std::string* _internal_mutable_owner_address();
-  public:
+    // accessors -------------------------------------------------------
 
-  // bytes contract_address = 2;
-  void clear_contract_address();
-  const std::string& contract_address() const;
-  void set_contract_address(const std::string& value);
-  void set_contract_address(std::string&& value);
-  void set_contract_address(const char* value);
-  void set_contract_address(const void* value, size_t size);
-  std::string* mutable_contract_address();
-  std::string* release_contract_address();
-  void set_allocated_contract_address(std::string* contract_address);
-  private:
-  const std::string& _internal_contract_address() const;
-  void _internal_set_contract_address(const std::string& value);
-  std::string* _internal_mutable_contract_address();
-  public:
+    enum : int {
+        kOwnerAddressFieldNumber = 1,
+        kContractAddressFieldNumber = 2,
+        kDataFieldNumber = 4,
+        kCallValueFieldNumber = 3,
+        kCallTokenValueFieldNumber = 5,
+        kTokenIdFieldNumber = 6,
+    };
+    // bytes owner_address = 1;
+    void clear_owner_address();
+    const std::string& owner_address() const;
+    void set_owner_address(const std::string& value);
+    void set_owner_address(std::string&& value);
+    void set_owner_address(const char* value);
+    void set_owner_address(const void* value, size_t size);
+    std::string* mutable_owner_address();
+    std::string* release_owner_address();
+    void set_allocated_owner_address(std::string* owner_address);
+private:
+    const std::string& _internal_owner_address() const;
+    void _internal_set_owner_address(const std::string& value);
+    std::string* _internal_mutable_owner_address();
+public:
 
-  // bytes data = 4;
-  void clear_data();
-  const std::string& data() const;
-  void set_data(const std::string& value);
-  void set_data(std::string&& value);
-  void set_data(const char* value);
-  void set_data(const void* value, size_t size);
-  std::string* mutable_data();
-  std::string* release_data();
-  void set_allocated_data(std::string* data);
-  private:
-  const std::string& _internal_data() const;
-  void _internal_set_data(const std::string& value);
-  std::string* _internal_mutable_data();
-  public:
+    // bytes contract_address = 2;
+    void clear_contract_address();
+    const std::string& contract_address() const;
+    void set_contract_address(const std::string& value);
+    void set_contract_address(std::string&& value);
+    void set_contract_address(const char* value);
+    void set_contract_address(const void* value, size_t size);
+    std::string* mutable_contract_address();
+    std::string* release_contract_address();
+    void set_allocated_contract_address(std::string* contract_address);
+private:
+    const std::string& _internal_contract_address() const;
+    void _internal_set_contract_address(const std::string& value);
+    std::string* _internal_mutable_contract_address();
+public:
 
-  // int64 call_value = 3;
-  void clear_call_value();
-  ::PROTOBUF_NAMESPACE_ID::int64 call_value() const;
-  void set_call_value(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_call_value() const;
-  void _internal_set_call_value(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // bytes data = 4;
+    void clear_data();
+    const std::string& data() const;
+    void set_data(const std::string& value);
+    void set_data(std::string&& value);
+    void set_data(const char* value);
+    void set_data(const void* value, size_t size);
+    std::string* mutable_data();
+    std::string* release_data();
+    void set_allocated_data(std::string* data);
+private:
+    const std::string& _internal_data() const;
+    void _internal_set_data(const std::string& value);
+    std::string* _internal_mutable_data();
+public:
 
-  // int64 call_token_value = 5;
-  void clear_call_token_value();
-  ::PROTOBUF_NAMESPACE_ID::int64 call_token_value() const;
-  void set_call_token_value(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_call_token_value() const;
-  void _internal_set_call_token_value(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // int64 call_value = 3;
+    void clear_call_value();
+    ::PROTOBUF_NAMESPACE_ID::int64 call_value() const;
+    void set_call_value(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_call_value() const;
+    void _internal_set_call_value(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  // int64 token_id = 6;
-  void clear_token_id();
-  ::PROTOBUF_NAMESPACE_ID::int64 token_id() const;
-  void set_token_id(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_token_id() const;
-  void _internal_set_token_id(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+    // int64 call_token_value = 5;
+    void clear_call_token_value();
+    ::PROTOBUF_NAMESPACE_ID::int64 call_token_value() const;
+    void set_call_token_value(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_call_token_value() const;
+    void _internal_set_call_token_value(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  // @@protoc_insertion_point(class_scope:protocol.TriggerSmartContract)
- private:
-  class _Internal;
+    // int64 token_id = 6;
+    void clear_token_id();
+    ::PROTOBUF_NAMESPACE_ID::int64 token_id() const;
+    void set_token_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::int64 _internal_token_id() const;
+    void _internal_set_token_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr contract_address_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
-  ::PROTOBUF_NAMESPACE_ID::int64 call_value_;
-  ::PROTOBUF_NAMESPACE_ID::int64 call_token_value_;
-  ::PROTOBUF_NAMESPACE_ID::int64 token_id_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_TronInternal_2eproto;
+    // @@protoc_insertion_point(class_scope:protocol.TriggerSmartContract)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_address_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr contract_address_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
+    ::PROTOBUF_NAMESPACE_ID::int64 call_value_;
+    ::PROTOBUF_NAMESPACE_ID::int64 call_token_value_;
+    ::PROTOBUF_NAMESPACE_ID::int64 token_id_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    friend struct ::TableStruct_TronInternal_2eproto;
 };
 // ===================================================================
 
@@ -2785,143 +2815,143 @@ class TriggerSmartContract :
 // ===================================================================
 
 #ifdef __GNUC__
-  #pragma GCC diagnostic push
-  #pragma GCC diagnostic ignored "-Wstrict-aliasing"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
 // Transaction_Contract
 
 // .protocol.Transaction.Contract.ContractType type = 1;
 inline void Transaction_Contract::clear_type() {
-  type_ = 0;
+    type_ = 0;
 }
 inline ::protocol::Transaction_Contract_ContractType Transaction_Contract::_internal_type() const {
-  return static_cast< ::protocol::Transaction_Contract_ContractType >(type_);
+    return static_cast< ::protocol::Transaction_Contract_ContractType >(type_);
 }
 inline ::protocol::Transaction_Contract_ContractType Transaction_Contract::type() const {
-  // @@protoc_insertion_point(field_get:protocol.Transaction.Contract.type)
-  return _internal_type();
+    // @@protoc_insertion_point(field_get:protocol.Transaction.Contract.type)
+    return _internal_type();
 }
 inline void Transaction_Contract::_internal_set_type(::protocol::Transaction_Contract_ContractType value) {
-  
-  type_ = value;
+
+    type_ = value;
 }
 inline void Transaction_Contract::set_type(::protocol::Transaction_Contract_ContractType value) {
-  _internal_set_type(value);
-  // @@protoc_insertion_point(field_set:protocol.Transaction.Contract.type)
+    _internal_set_type(value);
+    // @@protoc_insertion_point(field_set:protocol.Transaction.Contract.type)
 }
 
 // .google.protobuf.Any parameter = 2;
 inline bool Transaction_Contract::_internal_has_parameter() const {
-  return this != internal_default_instance() && parameter_ != nullptr;
+    return this != internal_default_instance() && parameter_ != nullptr;
 }
 inline bool Transaction_Contract::has_parameter() const {
-  return _internal_has_parameter();
+    return _internal_has_parameter();
 }
 inline const PROTOBUF_NAMESPACE_ID::Any& Transaction_Contract::_internal_parameter() const {
-  const PROTOBUF_NAMESPACE_ID::Any* p = parameter_;
-  return p != nullptr ? *p : *reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Any*>(
-      &PROTOBUF_NAMESPACE_ID::_Any_default_instance_);
+    const PROTOBUF_NAMESPACE_ID::Any* p = parameter_;
+    return p != nullptr ? *p : *reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Any*>(
+               &PROTOBUF_NAMESPACE_ID::_Any_default_instance_);
 }
 inline const PROTOBUF_NAMESPACE_ID::Any& Transaction_Contract::parameter() const {
-  // @@protoc_insertion_point(field_get:protocol.Transaction.Contract.parameter)
-  return _internal_parameter();
+    // @@protoc_insertion_point(field_get:protocol.Transaction.Contract.parameter)
+    return _internal_parameter();
 }
 inline PROTOBUF_NAMESPACE_ID::Any* Transaction_Contract::release_parameter() {
-  // @@protoc_insertion_point(field_release:protocol.Transaction.Contract.parameter)
-  
-  PROTOBUF_NAMESPACE_ID::Any* temp = parameter_;
-  parameter_ = nullptr;
-  return temp;
+    // @@protoc_insertion_point(field_release:protocol.Transaction.Contract.parameter)
+
+    PROTOBUF_NAMESPACE_ID::Any* temp = parameter_;
+    parameter_ = nullptr;
+    return temp;
 }
 inline PROTOBUF_NAMESPACE_ID::Any* Transaction_Contract::_internal_mutable_parameter() {
-  
-  if (parameter_ == nullptr) {
-    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Any>(GetArenaNoVirtual());
-    parameter_ = p;
-  }
-  return parameter_;
+
+    if (parameter_ == nullptr) {
+        auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Any>(GetArenaNoVirtual());
+        parameter_ = p;
+    }
+    return parameter_;
 }
 inline PROTOBUF_NAMESPACE_ID::Any* Transaction_Contract::mutable_parameter() {
-  // @@protoc_insertion_point(field_mutable:protocol.Transaction.Contract.parameter)
-  return _internal_mutable_parameter();
+    // @@protoc_insertion_point(field_mutable:protocol.Transaction.Contract.parameter)
+    return _internal_mutable_parameter();
 }
 inline void Transaction_Contract::set_allocated_parameter(PROTOBUF_NAMESPACE_ID::Any* parameter) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(parameter_);
-  }
-  if (parameter) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
-    if (message_arena != submessage_arena) {
-      parameter = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, parameter, submessage_arena);
+    ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+    if (message_arena == nullptr) {
+        delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(parameter_);
     }
-    
-  } else {
-    
-  }
-  parameter_ = parameter;
-  // @@protoc_insertion_point(field_set_allocated:protocol.Transaction.Contract.parameter)
+    if (parameter) {
+        ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+        if (message_arena != submessage_arena) {
+            parameter = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+                            message_arena, parameter, submessage_arena);
+        }
+
+    } else {
+
+    }
+    parameter_ = parameter;
+    // @@protoc_insertion_point(field_set_allocated:protocol.Transaction.Contract.parameter)
 }
 
 // bytes provider = 3;
 inline void Transaction_Contract::clear_provider() {
-  provider_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    provider_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& Transaction_Contract::provider() const {
-  // @@protoc_insertion_point(field_get:protocol.Transaction.Contract.provider)
-  return _internal_provider();
+    // @@protoc_insertion_point(field_get:protocol.Transaction.Contract.provider)
+    return _internal_provider();
 }
 inline void Transaction_Contract::set_provider(const std::string& value) {
-  _internal_set_provider(value);
-  // @@protoc_insertion_point(field_set:protocol.Transaction.Contract.provider)
+    _internal_set_provider(value);
+    // @@protoc_insertion_point(field_set:protocol.Transaction.Contract.provider)
 }
 inline std::string* Transaction_Contract::mutable_provider() {
-  // @@protoc_insertion_point(field_mutable:protocol.Transaction.Contract.provider)
-  return _internal_mutable_provider();
+    // @@protoc_insertion_point(field_mutable:protocol.Transaction.Contract.provider)
+    return _internal_mutable_provider();
 }
 inline const std::string& Transaction_Contract::_internal_provider() const {
-  return provider_.GetNoArena();
+    return provider_.GetNoArena();
 }
 inline void Transaction_Contract::_internal_set_provider(const std::string& value) {
-  
-  provider_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    provider_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void Transaction_Contract::set_provider(std::string&& value) {
-  
-  provider_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.Transaction.Contract.provider)
+
+    provider_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.Transaction.Contract.provider)
 }
 inline void Transaction_Contract::set_provider(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  provider_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.Transaction.Contract.provider)
+    GOOGLE_DCHECK(value != nullptr);
+
+    provider_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.Transaction.Contract.provider)
 }
 inline void Transaction_Contract::set_provider(const void* value, size_t size) {
-  
-  provider_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.Transaction.Contract.provider)
+
+    provider_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                         ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.Transaction.Contract.provider)
 }
 inline std::string* Transaction_Contract::_internal_mutable_provider() {
-  
-  return provider_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return provider_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* Transaction_Contract::release_provider() {
-  // @@protoc_insertion_point(field_release:protocol.Transaction.Contract.provider)
-  
-  return provider_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.Transaction.Contract.provider)
+
+    return provider_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void Transaction_Contract::set_allocated_provider(std::string* provider) {
-  if (provider != nullptr) {
-    
-  } else {
-    
-  }
-  provider_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), provider);
-  // @@protoc_insertion_point(field_set_allocated:protocol.Transaction.Contract.provider)
+    if (provider != nullptr) {
+
+    } else {
+
+    }
+    provider_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), provider);
+    // @@protoc_insertion_point(field_set_allocated:protocol.Transaction.Contract.provider)
 }
 
 // -------------------------------------------------------------------
@@ -2930,241 +2960,241 @@ inline void Transaction_Contract::set_allocated_provider(std::string* provider) 
 
 // bytes ref_block_bytes = 1;
 inline void Transaction_raw::clear_ref_block_bytes() {
-  ref_block_bytes_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    ref_block_bytes_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& Transaction_raw::ref_block_bytes() const {
-  // @@protoc_insertion_point(field_get:protocol.Transaction.raw.ref_block_bytes)
-  return _internal_ref_block_bytes();
+    // @@protoc_insertion_point(field_get:protocol.Transaction.raw.ref_block_bytes)
+    return _internal_ref_block_bytes();
 }
 inline void Transaction_raw::set_ref_block_bytes(const std::string& value) {
-  _internal_set_ref_block_bytes(value);
-  // @@protoc_insertion_point(field_set:protocol.Transaction.raw.ref_block_bytes)
+    _internal_set_ref_block_bytes(value);
+    // @@protoc_insertion_point(field_set:protocol.Transaction.raw.ref_block_bytes)
 }
 inline std::string* Transaction_raw::mutable_ref_block_bytes() {
-  // @@protoc_insertion_point(field_mutable:protocol.Transaction.raw.ref_block_bytes)
-  return _internal_mutable_ref_block_bytes();
+    // @@protoc_insertion_point(field_mutable:protocol.Transaction.raw.ref_block_bytes)
+    return _internal_mutable_ref_block_bytes();
 }
 inline const std::string& Transaction_raw::_internal_ref_block_bytes() const {
-  return ref_block_bytes_.GetNoArena();
+    return ref_block_bytes_.GetNoArena();
 }
 inline void Transaction_raw::_internal_set_ref_block_bytes(const std::string& value) {
-  
-  ref_block_bytes_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    ref_block_bytes_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void Transaction_raw::set_ref_block_bytes(std::string&& value) {
-  
-  ref_block_bytes_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.Transaction.raw.ref_block_bytes)
+
+    ref_block_bytes_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.Transaction.raw.ref_block_bytes)
 }
 inline void Transaction_raw::set_ref_block_bytes(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  ref_block_bytes_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.Transaction.raw.ref_block_bytes)
+    GOOGLE_DCHECK(value != nullptr);
+
+    ref_block_bytes_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.Transaction.raw.ref_block_bytes)
 }
 inline void Transaction_raw::set_ref_block_bytes(const void* value, size_t size) {
-  
-  ref_block_bytes_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.Transaction.raw.ref_block_bytes)
+
+    ref_block_bytes_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                                ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.Transaction.raw.ref_block_bytes)
 }
 inline std::string* Transaction_raw::_internal_mutable_ref_block_bytes() {
-  
-  return ref_block_bytes_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return ref_block_bytes_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* Transaction_raw::release_ref_block_bytes() {
-  // @@protoc_insertion_point(field_release:protocol.Transaction.raw.ref_block_bytes)
-  
-  return ref_block_bytes_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.Transaction.raw.ref_block_bytes)
+
+    return ref_block_bytes_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void Transaction_raw::set_allocated_ref_block_bytes(std::string* ref_block_bytes) {
-  if (ref_block_bytes != nullptr) {
-    
-  } else {
-    
-  }
-  ref_block_bytes_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ref_block_bytes);
-  // @@protoc_insertion_point(field_set_allocated:protocol.Transaction.raw.ref_block_bytes)
+    if (ref_block_bytes != nullptr) {
+
+    } else {
+
+    }
+    ref_block_bytes_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ref_block_bytes);
+    // @@protoc_insertion_point(field_set_allocated:protocol.Transaction.raw.ref_block_bytes)
 }
 
 // int64 ref_block_num = 3;
 inline void Transaction_raw::clear_ref_block_num() {
-  ref_block_num_ = PROTOBUF_LONGLONG(0);
+    ref_block_num_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Transaction_raw::_internal_ref_block_num() const {
-  return ref_block_num_;
+    return ref_block_num_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Transaction_raw::ref_block_num() const {
-  // @@protoc_insertion_point(field_get:protocol.Transaction.raw.ref_block_num)
-  return _internal_ref_block_num();
+    // @@protoc_insertion_point(field_get:protocol.Transaction.raw.ref_block_num)
+    return _internal_ref_block_num();
 }
 inline void Transaction_raw::_internal_set_ref_block_num(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  ref_block_num_ = value;
+
+    ref_block_num_ = value;
 }
 inline void Transaction_raw::set_ref_block_num(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_ref_block_num(value);
-  // @@protoc_insertion_point(field_set:protocol.Transaction.raw.ref_block_num)
+    _internal_set_ref_block_num(value);
+    // @@protoc_insertion_point(field_set:protocol.Transaction.raw.ref_block_num)
 }
 
 // bytes ref_block_hash = 4;
 inline void Transaction_raw::clear_ref_block_hash() {
-  ref_block_hash_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    ref_block_hash_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& Transaction_raw::ref_block_hash() const {
-  // @@protoc_insertion_point(field_get:protocol.Transaction.raw.ref_block_hash)
-  return _internal_ref_block_hash();
+    // @@protoc_insertion_point(field_get:protocol.Transaction.raw.ref_block_hash)
+    return _internal_ref_block_hash();
 }
 inline void Transaction_raw::set_ref_block_hash(const std::string& value) {
-  _internal_set_ref_block_hash(value);
-  // @@protoc_insertion_point(field_set:protocol.Transaction.raw.ref_block_hash)
+    _internal_set_ref_block_hash(value);
+    // @@protoc_insertion_point(field_set:protocol.Transaction.raw.ref_block_hash)
 }
 inline std::string* Transaction_raw::mutable_ref_block_hash() {
-  // @@protoc_insertion_point(field_mutable:protocol.Transaction.raw.ref_block_hash)
-  return _internal_mutable_ref_block_hash();
+    // @@protoc_insertion_point(field_mutable:protocol.Transaction.raw.ref_block_hash)
+    return _internal_mutable_ref_block_hash();
 }
 inline const std::string& Transaction_raw::_internal_ref_block_hash() const {
-  return ref_block_hash_.GetNoArena();
+    return ref_block_hash_.GetNoArena();
 }
 inline void Transaction_raw::_internal_set_ref_block_hash(const std::string& value) {
-  
-  ref_block_hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    ref_block_hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void Transaction_raw::set_ref_block_hash(std::string&& value) {
-  
-  ref_block_hash_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.Transaction.raw.ref_block_hash)
+
+    ref_block_hash_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.Transaction.raw.ref_block_hash)
 }
 inline void Transaction_raw::set_ref_block_hash(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  ref_block_hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.Transaction.raw.ref_block_hash)
+    GOOGLE_DCHECK(value != nullptr);
+
+    ref_block_hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.Transaction.raw.ref_block_hash)
 }
 inline void Transaction_raw::set_ref_block_hash(const void* value, size_t size) {
-  
-  ref_block_hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.Transaction.raw.ref_block_hash)
+
+    ref_block_hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                               ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.Transaction.raw.ref_block_hash)
 }
 inline std::string* Transaction_raw::_internal_mutable_ref_block_hash() {
-  
-  return ref_block_hash_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return ref_block_hash_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* Transaction_raw::release_ref_block_hash() {
-  // @@protoc_insertion_point(field_release:protocol.Transaction.raw.ref_block_hash)
-  
-  return ref_block_hash_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.Transaction.raw.ref_block_hash)
+
+    return ref_block_hash_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void Transaction_raw::set_allocated_ref_block_hash(std::string* ref_block_hash) {
-  if (ref_block_hash != nullptr) {
-    
-  } else {
-    
-  }
-  ref_block_hash_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ref_block_hash);
-  // @@protoc_insertion_point(field_set_allocated:protocol.Transaction.raw.ref_block_hash)
+    if (ref_block_hash != nullptr) {
+
+    } else {
+
+    }
+    ref_block_hash_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ref_block_hash);
+    // @@protoc_insertion_point(field_set_allocated:protocol.Transaction.raw.ref_block_hash)
 }
 
 // int64 expiration = 8;
 inline void Transaction_raw::clear_expiration() {
-  expiration_ = PROTOBUF_LONGLONG(0);
+    expiration_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Transaction_raw::_internal_expiration() const {
-  return expiration_;
+    return expiration_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Transaction_raw::expiration() const {
-  // @@protoc_insertion_point(field_get:protocol.Transaction.raw.expiration)
-  return _internal_expiration();
+    // @@protoc_insertion_point(field_get:protocol.Transaction.raw.expiration)
+    return _internal_expiration();
 }
 inline void Transaction_raw::_internal_set_expiration(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  expiration_ = value;
+
+    expiration_ = value;
 }
 inline void Transaction_raw::set_expiration(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_expiration(value);
-  // @@protoc_insertion_point(field_set:protocol.Transaction.raw.expiration)
+    _internal_set_expiration(value);
+    // @@protoc_insertion_point(field_set:protocol.Transaction.raw.expiration)
 }
 
 // repeated .protocol.Transaction.Contract contract = 11;
 inline int Transaction_raw::_internal_contract_size() const {
-  return contract_.size();
+    return contract_.size();
 }
 inline int Transaction_raw::contract_size() const {
-  return _internal_contract_size();
+    return _internal_contract_size();
 }
 inline void Transaction_raw::clear_contract() {
-  contract_.Clear();
+    contract_.Clear();
 }
 inline ::protocol::Transaction_Contract* Transaction_raw::mutable_contract(int index) {
-  // @@protoc_insertion_point(field_mutable:protocol.Transaction.raw.contract)
-  return contract_.Mutable(index);
+    // @@protoc_insertion_point(field_mutable:protocol.Transaction.raw.contract)
+    return contract_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::Transaction_Contract >*
 Transaction_raw::mutable_contract() {
-  // @@protoc_insertion_point(field_mutable_list:protocol.Transaction.raw.contract)
-  return &contract_;
+    // @@protoc_insertion_point(field_mutable_list:protocol.Transaction.raw.contract)
+    return &contract_;
 }
 inline const ::protocol::Transaction_Contract& Transaction_raw::_internal_contract(int index) const {
-  return contract_.Get(index);
+    return contract_.Get(index);
 }
 inline const ::protocol::Transaction_Contract& Transaction_raw::contract(int index) const {
-  // @@protoc_insertion_point(field_get:protocol.Transaction.raw.contract)
-  return _internal_contract(index);
+    // @@protoc_insertion_point(field_get:protocol.Transaction.raw.contract)
+    return _internal_contract(index);
 }
 inline ::protocol::Transaction_Contract* Transaction_raw::_internal_add_contract() {
-  return contract_.Add();
+    return contract_.Add();
 }
 inline ::protocol::Transaction_Contract* Transaction_raw::add_contract() {
-  // @@protoc_insertion_point(field_add:protocol.Transaction.raw.contract)
-  return _internal_add_contract();
+    // @@protoc_insertion_point(field_add:protocol.Transaction.raw.contract)
+    return _internal_add_contract();
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::Transaction_Contract >&
 Transaction_raw::contract() const {
-  // @@protoc_insertion_point(field_list:protocol.Transaction.raw.contract)
-  return contract_;
+    // @@protoc_insertion_point(field_list:protocol.Transaction.raw.contract)
+    return contract_;
 }
 
 // int64 timestamp = 14;
 inline void Transaction_raw::clear_timestamp() {
-  timestamp_ = PROTOBUF_LONGLONG(0);
+    timestamp_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Transaction_raw::_internal_timestamp() const {
-  return timestamp_;
+    return timestamp_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Transaction_raw::timestamp() const {
-  // @@protoc_insertion_point(field_get:protocol.Transaction.raw.timestamp)
-  return _internal_timestamp();
+    // @@protoc_insertion_point(field_get:protocol.Transaction.raw.timestamp)
+    return _internal_timestamp();
 }
 inline void Transaction_raw::_internal_set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  timestamp_ = value;
+
+    timestamp_ = value;
 }
 inline void Transaction_raw::set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_timestamp(value);
-  // @@protoc_insertion_point(field_set:protocol.Transaction.raw.timestamp)
+    _internal_set_timestamp(value);
+    // @@protoc_insertion_point(field_set:protocol.Transaction.raw.timestamp)
 }
 
 // int64 fee_limit = 18;
 inline void Transaction_raw::clear_fee_limit() {
-  fee_limit_ = PROTOBUF_LONGLONG(0);
+    fee_limit_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Transaction_raw::_internal_fee_limit() const {
-  return fee_limit_;
+    return fee_limit_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Transaction_raw::fee_limit() const {
-  // @@protoc_insertion_point(field_get:protocol.Transaction.raw.fee_limit)
-  return _internal_fee_limit();
+    // @@protoc_insertion_point(field_get:protocol.Transaction.raw.fee_limit)
+    return _internal_fee_limit();
 }
 inline void Transaction_raw::_internal_set_fee_limit(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  fee_limit_ = value;
+
+    fee_limit_ = value;
 }
 inline void Transaction_raw::set_fee_limit(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_fee_limit(value);
-  // @@protoc_insertion_point(field_set:protocol.Transaction.raw.fee_limit)
+    _internal_set_fee_limit(value);
+    // @@protoc_insertion_point(field_set:protocol.Transaction.raw.fee_limit)
 }
 
 // -------------------------------------------------------------------
@@ -3173,62 +3203,62 @@ inline void Transaction_raw::set_fee_limit(::PROTOBUF_NAMESPACE_ID::int64 value)
 
 // .protocol.Transaction.raw raw_data = 1;
 inline bool Transaction::_internal_has_raw_data() const {
-  return this != internal_default_instance() && raw_data_ != nullptr;
+    return this != internal_default_instance() && raw_data_ != nullptr;
 }
 inline bool Transaction::has_raw_data() const {
-  return _internal_has_raw_data();
+    return _internal_has_raw_data();
 }
 inline void Transaction::clear_raw_data() {
-  if (GetArenaNoVirtual() == nullptr && raw_data_ != nullptr) {
-    delete raw_data_;
-  }
-  raw_data_ = nullptr;
+    if (GetArenaNoVirtual() == nullptr && raw_data_ != nullptr) {
+        delete raw_data_;
+    }
+    raw_data_ = nullptr;
 }
 inline const ::protocol::Transaction_raw& Transaction::_internal_raw_data() const {
-  const ::protocol::Transaction_raw* p = raw_data_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::protocol::Transaction_raw*>(
-      &::protocol::_Transaction_raw_default_instance_);
+    const ::protocol::Transaction_raw* p = raw_data_;
+    return p != nullptr ? *p : *reinterpret_cast<const ::protocol::Transaction_raw*>(
+               &::protocol::_Transaction_raw_default_instance_);
 }
 inline const ::protocol::Transaction_raw& Transaction::raw_data() const {
-  // @@protoc_insertion_point(field_get:protocol.Transaction.raw_data)
-  return _internal_raw_data();
+    // @@protoc_insertion_point(field_get:protocol.Transaction.raw_data)
+    return _internal_raw_data();
 }
 inline ::protocol::Transaction_raw* Transaction::release_raw_data() {
-  // @@protoc_insertion_point(field_release:protocol.Transaction.raw_data)
-  
-  ::protocol::Transaction_raw* temp = raw_data_;
-  raw_data_ = nullptr;
-  return temp;
+    // @@protoc_insertion_point(field_release:protocol.Transaction.raw_data)
+
+    ::protocol::Transaction_raw* temp = raw_data_;
+    raw_data_ = nullptr;
+    return temp;
 }
 inline ::protocol::Transaction_raw* Transaction::_internal_mutable_raw_data() {
-  
-  if (raw_data_ == nullptr) {
-    auto* p = CreateMaybeMessage<::protocol::Transaction_raw>(GetArenaNoVirtual());
-    raw_data_ = p;
-  }
-  return raw_data_;
+
+    if (raw_data_ == nullptr) {
+        auto* p = CreateMaybeMessage<::protocol::Transaction_raw>(GetArenaNoVirtual());
+        raw_data_ = p;
+    }
+    return raw_data_;
 }
 inline ::protocol::Transaction_raw* Transaction::mutable_raw_data() {
-  // @@protoc_insertion_point(field_mutable:protocol.Transaction.raw_data)
-  return _internal_mutable_raw_data();
+    // @@protoc_insertion_point(field_mutable:protocol.Transaction.raw_data)
+    return _internal_mutable_raw_data();
 }
 inline void Transaction::set_allocated_raw_data(::protocol::Transaction_raw* raw_data) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete raw_data_;
-  }
-  if (raw_data) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
-    if (message_arena != submessage_arena) {
-      raw_data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, raw_data, submessage_arena);
+    ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+    if (message_arena == nullptr) {
+        delete raw_data_;
     }
-    
-  } else {
-    
-  }
-  raw_data_ = raw_data;
-  // @@protoc_insertion_point(field_set_allocated:protocol.Transaction.raw_data)
+    if (raw_data) {
+        ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+        if (message_arena != submessage_arena) {
+            raw_data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+                           message_arena, raw_data, submessage_arena);
+        }
+
+    } else {
+
+    }
+    raw_data_ = raw_data;
+    // @@protoc_insertion_point(field_set_allocated:protocol.Transaction.raw_data)
 }
 
 // -------------------------------------------------------------------
@@ -3237,262 +3267,262 @@ inline void Transaction::set_allocated_raw_data(::protocol::Transaction_raw* raw
 
 // int64 timestamp = 1;
 inline void BlockHeader_raw::clear_timestamp() {
-  timestamp_ = PROTOBUF_LONGLONG(0);
+    timestamp_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 BlockHeader_raw::_internal_timestamp() const {
-  return timestamp_;
+    return timestamp_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 BlockHeader_raw::timestamp() const {
-  // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.timestamp)
-  return _internal_timestamp();
+    // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.timestamp)
+    return _internal_timestamp();
 }
 inline void BlockHeader_raw::_internal_set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  timestamp_ = value;
+
+    timestamp_ = value;
 }
 inline void BlockHeader_raw::set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_timestamp(value);
-  // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.timestamp)
+    _internal_set_timestamp(value);
+    // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.timestamp)
 }
 
 // bytes tx_trie_root = 2;
 inline void BlockHeader_raw::clear_tx_trie_root() {
-  tx_trie_root_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    tx_trie_root_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& BlockHeader_raw::tx_trie_root() const {
-  // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.tx_trie_root)
-  return _internal_tx_trie_root();
+    // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.tx_trie_root)
+    return _internal_tx_trie_root();
 }
 inline void BlockHeader_raw::set_tx_trie_root(const std::string& value) {
-  _internal_set_tx_trie_root(value);
-  // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.tx_trie_root)
+    _internal_set_tx_trie_root(value);
+    // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.tx_trie_root)
 }
 inline std::string* BlockHeader_raw::mutable_tx_trie_root() {
-  // @@protoc_insertion_point(field_mutable:protocol.BlockHeader.raw.tx_trie_root)
-  return _internal_mutable_tx_trie_root();
+    // @@protoc_insertion_point(field_mutable:protocol.BlockHeader.raw.tx_trie_root)
+    return _internal_mutable_tx_trie_root();
 }
 inline const std::string& BlockHeader_raw::_internal_tx_trie_root() const {
-  return tx_trie_root_.GetNoArena();
+    return tx_trie_root_.GetNoArena();
 }
 inline void BlockHeader_raw::_internal_set_tx_trie_root(const std::string& value) {
-  
-  tx_trie_root_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    tx_trie_root_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void BlockHeader_raw::set_tx_trie_root(std::string&& value) {
-  
-  tx_trie_root_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.BlockHeader.raw.tx_trie_root)
+
+    tx_trie_root_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.BlockHeader.raw.tx_trie_root)
 }
 inline void BlockHeader_raw::set_tx_trie_root(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  tx_trie_root_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.BlockHeader.raw.tx_trie_root)
+    GOOGLE_DCHECK(value != nullptr);
+
+    tx_trie_root_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.BlockHeader.raw.tx_trie_root)
 }
 inline void BlockHeader_raw::set_tx_trie_root(const void* value, size_t size) {
-  
-  tx_trie_root_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.BlockHeader.raw.tx_trie_root)
+
+    tx_trie_root_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                             ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.BlockHeader.raw.tx_trie_root)
 }
 inline std::string* BlockHeader_raw::_internal_mutable_tx_trie_root() {
-  
-  return tx_trie_root_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return tx_trie_root_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* BlockHeader_raw::release_tx_trie_root() {
-  // @@protoc_insertion_point(field_release:protocol.BlockHeader.raw.tx_trie_root)
-  
-  return tx_trie_root_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.BlockHeader.raw.tx_trie_root)
+
+    return tx_trie_root_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void BlockHeader_raw::set_allocated_tx_trie_root(std::string* tx_trie_root) {
-  if (tx_trie_root != nullptr) {
-    
-  } else {
-    
-  }
-  tx_trie_root_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), tx_trie_root);
-  // @@protoc_insertion_point(field_set_allocated:protocol.BlockHeader.raw.tx_trie_root)
+    if (tx_trie_root != nullptr) {
+
+    } else {
+
+    }
+    tx_trie_root_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), tx_trie_root);
+    // @@protoc_insertion_point(field_set_allocated:protocol.BlockHeader.raw.tx_trie_root)
 }
 
 // bytes parent_hash = 3;
 inline void BlockHeader_raw::clear_parent_hash() {
-  parent_hash_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    parent_hash_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& BlockHeader_raw::parent_hash() const {
-  // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.parent_hash)
-  return _internal_parent_hash();
+    // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.parent_hash)
+    return _internal_parent_hash();
 }
 inline void BlockHeader_raw::set_parent_hash(const std::string& value) {
-  _internal_set_parent_hash(value);
-  // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.parent_hash)
+    _internal_set_parent_hash(value);
+    // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.parent_hash)
 }
 inline std::string* BlockHeader_raw::mutable_parent_hash() {
-  // @@protoc_insertion_point(field_mutable:protocol.BlockHeader.raw.parent_hash)
-  return _internal_mutable_parent_hash();
+    // @@protoc_insertion_point(field_mutable:protocol.BlockHeader.raw.parent_hash)
+    return _internal_mutable_parent_hash();
 }
 inline const std::string& BlockHeader_raw::_internal_parent_hash() const {
-  return parent_hash_.GetNoArena();
+    return parent_hash_.GetNoArena();
 }
 inline void BlockHeader_raw::_internal_set_parent_hash(const std::string& value) {
-  
-  parent_hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    parent_hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void BlockHeader_raw::set_parent_hash(std::string&& value) {
-  
-  parent_hash_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.BlockHeader.raw.parent_hash)
+
+    parent_hash_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.BlockHeader.raw.parent_hash)
 }
 inline void BlockHeader_raw::set_parent_hash(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  parent_hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.BlockHeader.raw.parent_hash)
+    GOOGLE_DCHECK(value != nullptr);
+
+    parent_hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.BlockHeader.raw.parent_hash)
 }
 inline void BlockHeader_raw::set_parent_hash(const void* value, size_t size) {
-  
-  parent_hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.BlockHeader.raw.parent_hash)
+
+    parent_hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                            ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.BlockHeader.raw.parent_hash)
 }
 inline std::string* BlockHeader_raw::_internal_mutable_parent_hash() {
-  
-  return parent_hash_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return parent_hash_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* BlockHeader_raw::release_parent_hash() {
-  // @@protoc_insertion_point(field_release:protocol.BlockHeader.raw.parent_hash)
-  
-  return parent_hash_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.BlockHeader.raw.parent_hash)
+
+    return parent_hash_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void BlockHeader_raw::set_allocated_parent_hash(std::string* parent_hash) {
-  if (parent_hash != nullptr) {
-    
-  } else {
-    
-  }
-  parent_hash_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), parent_hash);
-  // @@protoc_insertion_point(field_set_allocated:protocol.BlockHeader.raw.parent_hash)
+    if (parent_hash != nullptr) {
+
+    } else {
+
+    }
+    parent_hash_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), parent_hash);
+    // @@protoc_insertion_point(field_set_allocated:protocol.BlockHeader.raw.parent_hash)
 }
 
 // int64 number = 7;
 inline void BlockHeader_raw::clear_number() {
-  number_ = PROTOBUF_LONGLONG(0);
+    number_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 BlockHeader_raw::_internal_number() const {
-  return number_;
+    return number_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 BlockHeader_raw::number() const {
-  // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.number)
-  return _internal_number();
+    // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.number)
+    return _internal_number();
 }
 inline void BlockHeader_raw::_internal_set_number(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  number_ = value;
+
+    number_ = value;
 }
 inline void BlockHeader_raw::set_number(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_number(value);
-  // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.number)
+    _internal_set_number(value);
+    // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.number)
 }
 
 // int64 witness_id = 8;
 inline void BlockHeader_raw::clear_witness_id() {
-  witness_id_ = PROTOBUF_LONGLONG(0);
+    witness_id_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 BlockHeader_raw::_internal_witness_id() const {
-  return witness_id_;
+    return witness_id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 BlockHeader_raw::witness_id() const {
-  // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.witness_id)
-  return _internal_witness_id();
+    // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.witness_id)
+    return _internal_witness_id();
 }
 inline void BlockHeader_raw::_internal_set_witness_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  witness_id_ = value;
+
+    witness_id_ = value;
 }
 inline void BlockHeader_raw::set_witness_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_witness_id(value);
-  // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.witness_id)
+    _internal_set_witness_id(value);
+    // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.witness_id)
 }
 
 // bytes witness_address = 9;
 inline void BlockHeader_raw::clear_witness_address() {
-  witness_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    witness_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& BlockHeader_raw::witness_address() const {
-  // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.witness_address)
-  return _internal_witness_address();
+    // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.witness_address)
+    return _internal_witness_address();
 }
 inline void BlockHeader_raw::set_witness_address(const std::string& value) {
-  _internal_set_witness_address(value);
-  // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.witness_address)
+    _internal_set_witness_address(value);
+    // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.witness_address)
 }
 inline std::string* BlockHeader_raw::mutable_witness_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.BlockHeader.raw.witness_address)
-  return _internal_mutable_witness_address();
+    // @@protoc_insertion_point(field_mutable:protocol.BlockHeader.raw.witness_address)
+    return _internal_mutable_witness_address();
 }
 inline const std::string& BlockHeader_raw::_internal_witness_address() const {
-  return witness_address_.GetNoArena();
+    return witness_address_.GetNoArena();
 }
 inline void BlockHeader_raw::_internal_set_witness_address(const std::string& value) {
-  
-  witness_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    witness_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void BlockHeader_raw::set_witness_address(std::string&& value) {
-  
-  witness_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.BlockHeader.raw.witness_address)
+
+    witness_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.BlockHeader.raw.witness_address)
 }
 inline void BlockHeader_raw::set_witness_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  witness_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.BlockHeader.raw.witness_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    witness_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.BlockHeader.raw.witness_address)
 }
 inline void BlockHeader_raw::set_witness_address(const void* value, size_t size) {
-  
-  witness_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.BlockHeader.raw.witness_address)
+
+    witness_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                                ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.BlockHeader.raw.witness_address)
 }
 inline std::string* BlockHeader_raw::_internal_mutable_witness_address() {
-  
-  return witness_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return witness_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* BlockHeader_raw::release_witness_address() {
-  // @@protoc_insertion_point(field_release:protocol.BlockHeader.raw.witness_address)
-  
-  return witness_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.BlockHeader.raw.witness_address)
+
+    return witness_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void BlockHeader_raw::set_allocated_witness_address(std::string* witness_address) {
-  if (witness_address != nullptr) {
-    
-  } else {
-    
-  }
-  witness_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), witness_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.BlockHeader.raw.witness_address)
+    if (witness_address != nullptr) {
+
+    } else {
+
+    }
+    witness_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), witness_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.BlockHeader.raw.witness_address)
 }
 
 // int32 version = 10;
 inline void BlockHeader_raw::clear_version() {
-  version_ = 0;
+    version_ = 0;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 BlockHeader_raw::_internal_version() const {
-  return version_;
+    return version_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 BlockHeader_raw::version() const {
-  // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.version)
-  return _internal_version();
+    // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw.version)
+    return _internal_version();
 }
 inline void BlockHeader_raw::_internal_set_version(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  
-  version_ = value;
+
+    version_ = value;
 }
 inline void BlockHeader_raw::set_version(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_version(value);
-  // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.version)
+    _internal_set_version(value);
+    // @@protoc_insertion_point(field_set:protocol.BlockHeader.raw.version)
 }
 
 // -------------------------------------------------------------------
@@ -3501,122 +3531,122 @@ inline void BlockHeader_raw::set_version(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // .protocol.BlockHeader.raw raw_data = 1;
 inline bool BlockHeader::_internal_has_raw_data() const {
-  return this != internal_default_instance() && raw_data_ != nullptr;
+    return this != internal_default_instance() && raw_data_ != nullptr;
 }
 inline bool BlockHeader::has_raw_data() const {
-  return _internal_has_raw_data();
+    return _internal_has_raw_data();
 }
 inline void BlockHeader::clear_raw_data() {
-  if (GetArenaNoVirtual() == nullptr && raw_data_ != nullptr) {
-    delete raw_data_;
-  }
-  raw_data_ = nullptr;
+    if (GetArenaNoVirtual() == nullptr && raw_data_ != nullptr) {
+        delete raw_data_;
+    }
+    raw_data_ = nullptr;
 }
 inline const ::protocol::BlockHeader_raw& BlockHeader::_internal_raw_data() const {
-  const ::protocol::BlockHeader_raw* p = raw_data_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::protocol::BlockHeader_raw*>(
-      &::protocol::_BlockHeader_raw_default_instance_);
+    const ::protocol::BlockHeader_raw* p = raw_data_;
+    return p != nullptr ? *p : *reinterpret_cast<const ::protocol::BlockHeader_raw*>(
+               &::protocol::_BlockHeader_raw_default_instance_);
 }
 inline const ::protocol::BlockHeader_raw& BlockHeader::raw_data() const {
-  // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw_data)
-  return _internal_raw_data();
+    // @@protoc_insertion_point(field_get:protocol.BlockHeader.raw_data)
+    return _internal_raw_data();
 }
 inline ::protocol::BlockHeader_raw* BlockHeader::release_raw_data() {
-  // @@protoc_insertion_point(field_release:protocol.BlockHeader.raw_data)
-  
-  ::protocol::BlockHeader_raw* temp = raw_data_;
-  raw_data_ = nullptr;
-  return temp;
+    // @@protoc_insertion_point(field_release:protocol.BlockHeader.raw_data)
+
+    ::protocol::BlockHeader_raw* temp = raw_data_;
+    raw_data_ = nullptr;
+    return temp;
 }
 inline ::protocol::BlockHeader_raw* BlockHeader::_internal_mutable_raw_data() {
-  
-  if (raw_data_ == nullptr) {
-    auto* p = CreateMaybeMessage<::protocol::BlockHeader_raw>(GetArenaNoVirtual());
-    raw_data_ = p;
-  }
-  return raw_data_;
+
+    if (raw_data_ == nullptr) {
+        auto* p = CreateMaybeMessage<::protocol::BlockHeader_raw>(GetArenaNoVirtual());
+        raw_data_ = p;
+    }
+    return raw_data_;
 }
 inline ::protocol::BlockHeader_raw* BlockHeader::mutable_raw_data() {
-  // @@protoc_insertion_point(field_mutable:protocol.BlockHeader.raw_data)
-  return _internal_mutable_raw_data();
+    // @@protoc_insertion_point(field_mutable:protocol.BlockHeader.raw_data)
+    return _internal_mutable_raw_data();
 }
 inline void BlockHeader::set_allocated_raw_data(::protocol::BlockHeader_raw* raw_data) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete raw_data_;
-  }
-  if (raw_data) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
-    if (message_arena != submessage_arena) {
-      raw_data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, raw_data, submessage_arena);
+    ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+    if (message_arena == nullptr) {
+        delete raw_data_;
     }
-    
-  } else {
-    
-  }
-  raw_data_ = raw_data;
-  // @@protoc_insertion_point(field_set_allocated:protocol.BlockHeader.raw_data)
+    if (raw_data) {
+        ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+        if (message_arena != submessage_arena) {
+            raw_data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+                           message_arena, raw_data, submessage_arena);
+        }
+
+    } else {
+
+    }
+    raw_data_ = raw_data;
+    // @@protoc_insertion_point(field_set_allocated:protocol.BlockHeader.raw_data)
 }
 
 // bytes witness_signature = 2;
 inline void BlockHeader::clear_witness_signature() {
-  witness_signature_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    witness_signature_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& BlockHeader::witness_signature() const {
-  // @@protoc_insertion_point(field_get:protocol.BlockHeader.witness_signature)
-  return _internal_witness_signature();
+    // @@protoc_insertion_point(field_get:protocol.BlockHeader.witness_signature)
+    return _internal_witness_signature();
 }
 inline void BlockHeader::set_witness_signature(const std::string& value) {
-  _internal_set_witness_signature(value);
-  // @@protoc_insertion_point(field_set:protocol.BlockHeader.witness_signature)
+    _internal_set_witness_signature(value);
+    // @@protoc_insertion_point(field_set:protocol.BlockHeader.witness_signature)
 }
 inline std::string* BlockHeader::mutable_witness_signature() {
-  // @@protoc_insertion_point(field_mutable:protocol.BlockHeader.witness_signature)
-  return _internal_mutable_witness_signature();
+    // @@protoc_insertion_point(field_mutable:protocol.BlockHeader.witness_signature)
+    return _internal_mutable_witness_signature();
 }
 inline const std::string& BlockHeader::_internal_witness_signature() const {
-  return witness_signature_.GetNoArena();
+    return witness_signature_.GetNoArena();
 }
 inline void BlockHeader::_internal_set_witness_signature(const std::string& value) {
-  
-  witness_signature_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    witness_signature_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void BlockHeader::set_witness_signature(std::string&& value) {
-  
-  witness_signature_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.BlockHeader.witness_signature)
+
+    witness_signature_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.BlockHeader.witness_signature)
 }
 inline void BlockHeader::set_witness_signature(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  witness_signature_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.BlockHeader.witness_signature)
+    GOOGLE_DCHECK(value != nullptr);
+
+    witness_signature_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.BlockHeader.witness_signature)
 }
 inline void BlockHeader::set_witness_signature(const void* value, size_t size) {
-  
-  witness_signature_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.BlockHeader.witness_signature)
+
+    witness_signature_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                                  ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.BlockHeader.witness_signature)
 }
 inline std::string* BlockHeader::_internal_mutable_witness_signature() {
-  
-  return witness_signature_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return witness_signature_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* BlockHeader::release_witness_signature() {
-  // @@protoc_insertion_point(field_release:protocol.BlockHeader.witness_signature)
-  
-  return witness_signature_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.BlockHeader.witness_signature)
+
+    return witness_signature_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void BlockHeader::set_allocated_witness_signature(std::string* witness_signature) {
-  if (witness_signature != nullptr) {
-    
-  } else {
-    
-  }
-  witness_signature_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), witness_signature);
-  // @@protoc_insertion_point(field_set_allocated:protocol.BlockHeader.witness_signature)
+    if (witness_signature != nullptr) {
+
+    } else {
+
+    }
+    witness_signature_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), witness_signature);
+    // @@protoc_insertion_point(field_set_allocated:protocol.BlockHeader.witness_signature)
 }
 
 // -------------------------------------------------------------------
@@ -3625,142 +3655,142 @@ inline void BlockHeader::set_allocated_witness_signature(std::string* witness_si
 
 // bytes owner_address = 1;
 inline void TransferContract::clear_owner_address() {
-  owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& TransferContract::owner_address() const {
-  // @@protoc_insertion_point(field_get:protocol.TransferContract.owner_address)
-  return _internal_owner_address();
+    // @@protoc_insertion_point(field_get:protocol.TransferContract.owner_address)
+    return _internal_owner_address();
 }
 inline void TransferContract::set_owner_address(const std::string& value) {
-  _internal_set_owner_address(value);
-  // @@protoc_insertion_point(field_set:protocol.TransferContract.owner_address)
+    _internal_set_owner_address(value);
+    // @@protoc_insertion_point(field_set:protocol.TransferContract.owner_address)
 }
 inline std::string* TransferContract::mutable_owner_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.TransferContract.owner_address)
-  return _internal_mutable_owner_address();
+    // @@protoc_insertion_point(field_mutable:protocol.TransferContract.owner_address)
+    return _internal_mutable_owner_address();
 }
 inline const std::string& TransferContract::_internal_owner_address() const {
-  return owner_address_.GetNoArena();
+    return owner_address_.GetNoArena();
 }
 inline void TransferContract::_internal_set_owner_address(const std::string& value) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void TransferContract::set_owner_address(std::string&& value) {
-  
-  owner_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.TransferContract.owner_address)
+
+    owner_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.TransferContract.owner_address)
 }
 inline void TransferContract::set_owner_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.TransferContract.owner_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.TransferContract.owner_address)
 }
 inline void TransferContract::set_owner_address(const void* value, size_t size) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.TransferContract.owner_address)
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                              ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.TransferContract.owner_address)
 }
 inline std::string* TransferContract::_internal_mutable_owner_address() {
-  
-  return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* TransferContract::release_owner_address() {
-  // @@protoc_insertion_point(field_release:protocol.TransferContract.owner_address)
-  
-  return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.TransferContract.owner_address)
+
+    return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void TransferContract::set_allocated_owner_address(std::string* owner_address) {
-  if (owner_address != nullptr) {
-    
-  } else {
-    
-  }
-  owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.TransferContract.owner_address)
+    if (owner_address != nullptr) {
+
+    } else {
+
+    }
+    owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.TransferContract.owner_address)
 }
 
 // bytes to_address = 2;
 inline void TransferContract::clear_to_address() {
-  to_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    to_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& TransferContract::to_address() const {
-  // @@protoc_insertion_point(field_get:protocol.TransferContract.to_address)
-  return _internal_to_address();
+    // @@protoc_insertion_point(field_get:protocol.TransferContract.to_address)
+    return _internal_to_address();
 }
 inline void TransferContract::set_to_address(const std::string& value) {
-  _internal_set_to_address(value);
-  // @@protoc_insertion_point(field_set:protocol.TransferContract.to_address)
+    _internal_set_to_address(value);
+    // @@protoc_insertion_point(field_set:protocol.TransferContract.to_address)
 }
 inline std::string* TransferContract::mutable_to_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.TransferContract.to_address)
-  return _internal_mutable_to_address();
+    // @@protoc_insertion_point(field_mutable:protocol.TransferContract.to_address)
+    return _internal_mutable_to_address();
 }
 inline const std::string& TransferContract::_internal_to_address() const {
-  return to_address_.GetNoArena();
+    return to_address_.GetNoArena();
 }
 inline void TransferContract::_internal_set_to_address(const std::string& value) {
-  
-  to_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    to_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void TransferContract::set_to_address(std::string&& value) {
-  
-  to_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.TransferContract.to_address)
+
+    to_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.TransferContract.to_address)
 }
 inline void TransferContract::set_to_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  to_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.TransferContract.to_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    to_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.TransferContract.to_address)
 }
 inline void TransferContract::set_to_address(const void* value, size_t size) {
-  
-  to_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.TransferContract.to_address)
+
+    to_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                           ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.TransferContract.to_address)
 }
 inline std::string* TransferContract::_internal_mutable_to_address() {
-  
-  return to_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return to_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* TransferContract::release_to_address() {
-  // @@protoc_insertion_point(field_release:protocol.TransferContract.to_address)
-  
-  return to_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.TransferContract.to_address)
+
+    return to_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void TransferContract::set_allocated_to_address(std::string* to_address) {
-  if (to_address != nullptr) {
-    
-  } else {
-    
-  }
-  to_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), to_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.TransferContract.to_address)
+    if (to_address != nullptr) {
+
+    } else {
+
+    }
+    to_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), to_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.TransferContract.to_address)
 }
 
 // int64 amount = 3;
 inline void TransferContract::clear_amount() {
-  amount_ = PROTOBUF_LONGLONG(0);
+    amount_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 TransferContract::_internal_amount() const {
-  return amount_;
+    return amount_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 TransferContract::amount() const {
-  // @@protoc_insertion_point(field_get:protocol.TransferContract.amount)
-  return _internal_amount();
+    // @@protoc_insertion_point(field_get:protocol.TransferContract.amount)
+    return _internal_amount();
 }
 inline void TransferContract::_internal_set_amount(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  amount_ = value;
+
+    amount_ = value;
 }
 inline void TransferContract::set_amount(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_amount(value);
-  // @@protoc_insertion_point(field_set:protocol.TransferContract.amount)
+    _internal_set_amount(value);
+    // @@protoc_insertion_point(field_set:protocol.TransferContract.amount)
 }
 
 // -------------------------------------------------------------------
@@ -3769,202 +3799,202 @@ inline void TransferContract::set_amount(::PROTOBUF_NAMESPACE_ID::int64 value) {
 
 // bytes asset_name = 1;
 inline void TransferAssetContract::clear_asset_name() {
-  asset_name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    asset_name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& TransferAssetContract::asset_name() const {
-  // @@protoc_insertion_point(field_get:protocol.TransferAssetContract.asset_name)
-  return _internal_asset_name();
+    // @@protoc_insertion_point(field_get:protocol.TransferAssetContract.asset_name)
+    return _internal_asset_name();
 }
 inline void TransferAssetContract::set_asset_name(const std::string& value) {
-  _internal_set_asset_name(value);
-  // @@protoc_insertion_point(field_set:protocol.TransferAssetContract.asset_name)
+    _internal_set_asset_name(value);
+    // @@protoc_insertion_point(field_set:protocol.TransferAssetContract.asset_name)
 }
 inline std::string* TransferAssetContract::mutable_asset_name() {
-  // @@protoc_insertion_point(field_mutable:protocol.TransferAssetContract.asset_name)
-  return _internal_mutable_asset_name();
+    // @@protoc_insertion_point(field_mutable:protocol.TransferAssetContract.asset_name)
+    return _internal_mutable_asset_name();
 }
 inline const std::string& TransferAssetContract::_internal_asset_name() const {
-  return asset_name_.GetNoArena();
+    return asset_name_.GetNoArena();
 }
 inline void TransferAssetContract::_internal_set_asset_name(const std::string& value) {
-  
-  asset_name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    asset_name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void TransferAssetContract::set_asset_name(std::string&& value) {
-  
-  asset_name_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.TransferAssetContract.asset_name)
+
+    asset_name_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.TransferAssetContract.asset_name)
 }
 inline void TransferAssetContract::set_asset_name(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  asset_name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.TransferAssetContract.asset_name)
+    GOOGLE_DCHECK(value != nullptr);
+
+    asset_name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.TransferAssetContract.asset_name)
 }
 inline void TransferAssetContract::set_asset_name(const void* value, size_t size) {
-  
-  asset_name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.TransferAssetContract.asset_name)
+
+    asset_name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                           ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.TransferAssetContract.asset_name)
 }
 inline std::string* TransferAssetContract::_internal_mutable_asset_name() {
-  
-  return asset_name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return asset_name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* TransferAssetContract::release_asset_name() {
-  // @@protoc_insertion_point(field_release:protocol.TransferAssetContract.asset_name)
-  
-  return asset_name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.TransferAssetContract.asset_name)
+
+    return asset_name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void TransferAssetContract::set_allocated_asset_name(std::string* asset_name) {
-  if (asset_name != nullptr) {
-    
-  } else {
-    
-  }
-  asset_name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), asset_name);
-  // @@protoc_insertion_point(field_set_allocated:protocol.TransferAssetContract.asset_name)
+    if (asset_name != nullptr) {
+
+    } else {
+
+    }
+    asset_name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), asset_name);
+    // @@protoc_insertion_point(field_set_allocated:protocol.TransferAssetContract.asset_name)
 }
 
 // bytes owner_address = 2;
 inline void TransferAssetContract::clear_owner_address() {
-  owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& TransferAssetContract::owner_address() const {
-  // @@protoc_insertion_point(field_get:protocol.TransferAssetContract.owner_address)
-  return _internal_owner_address();
+    // @@protoc_insertion_point(field_get:protocol.TransferAssetContract.owner_address)
+    return _internal_owner_address();
 }
 inline void TransferAssetContract::set_owner_address(const std::string& value) {
-  _internal_set_owner_address(value);
-  // @@protoc_insertion_point(field_set:protocol.TransferAssetContract.owner_address)
+    _internal_set_owner_address(value);
+    // @@protoc_insertion_point(field_set:protocol.TransferAssetContract.owner_address)
 }
 inline std::string* TransferAssetContract::mutable_owner_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.TransferAssetContract.owner_address)
-  return _internal_mutable_owner_address();
+    // @@protoc_insertion_point(field_mutable:protocol.TransferAssetContract.owner_address)
+    return _internal_mutable_owner_address();
 }
 inline const std::string& TransferAssetContract::_internal_owner_address() const {
-  return owner_address_.GetNoArena();
+    return owner_address_.GetNoArena();
 }
 inline void TransferAssetContract::_internal_set_owner_address(const std::string& value) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void TransferAssetContract::set_owner_address(std::string&& value) {
-  
-  owner_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.TransferAssetContract.owner_address)
+
+    owner_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.TransferAssetContract.owner_address)
 }
 inline void TransferAssetContract::set_owner_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.TransferAssetContract.owner_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.TransferAssetContract.owner_address)
 }
 inline void TransferAssetContract::set_owner_address(const void* value, size_t size) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.TransferAssetContract.owner_address)
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                              ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.TransferAssetContract.owner_address)
 }
 inline std::string* TransferAssetContract::_internal_mutable_owner_address() {
-  
-  return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* TransferAssetContract::release_owner_address() {
-  // @@protoc_insertion_point(field_release:protocol.TransferAssetContract.owner_address)
-  
-  return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.TransferAssetContract.owner_address)
+
+    return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void TransferAssetContract::set_allocated_owner_address(std::string* owner_address) {
-  if (owner_address != nullptr) {
-    
-  } else {
-    
-  }
-  owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.TransferAssetContract.owner_address)
+    if (owner_address != nullptr) {
+
+    } else {
+
+    }
+    owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.TransferAssetContract.owner_address)
 }
 
 // bytes to_address = 3;
 inline void TransferAssetContract::clear_to_address() {
-  to_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    to_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& TransferAssetContract::to_address() const {
-  // @@protoc_insertion_point(field_get:protocol.TransferAssetContract.to_address)
-  return _internal_to_address();
+    // @@protoc_insertion_point(field_get:protocol.TransferAssetContract.to_address)
+    return _internal_to_address();
 }
 inline void TransferAssetContract::set_to_address(const std::string& value) {
-  _internal_set_to_address(value);
-  // @@protoc_insertion_point(field_set:protocol.TransferAssetContract.to_address)
+    _internal_set_to_address(value);
+    // @@protoc_insertion_point(field_set:protocol.TransferAssetContract.to_address)
 }
 inline std::string* TransferAssetContract::mutable_to_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.TransferAssetContract.to_address)
-  return _internal_mutable_to_address();
+    // @@protoc_insertion_point(field_mutable:protocol.TransferAssetContract.to_address)
+    return _internal_mutable_to_address();
 }
 inline const std::string& TransferAssetContract::_internal_to_address() const {
-  return to_address_.GetNoArena();
+    return to_address_.GetNoArena();
 }
 inline void TransferAssetContract::_internal_set_to_address(const std::string& value) {
-  
-  to_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    to_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void TransferAssetContract::set_to_address(std::string&& value) {
-  
-  to_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.TransferAssetContract.to_address)
+
+    to_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.TransferAssetContract.to_address)
 }
 inline void TransferAssetContract::set_to_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  to_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.TransferAssetContract.to_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    to_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.TransferAssetContract.to_address)
 }
 inline void TransferAssetContract::set_to_address(const void* value, size_t size) {
-  
-  to_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.TransferAssetContract.to_address)
+
+    to_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                           ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.TransferAssetContract.to_address)
 }
 inline std::string* TransferAssetContract::_internal_mutable_to_address() {
-  
-  return to_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return to_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* TransferAssetContract::release_to_address() {
-  // @@protoc_insertion_point(field_release:protocol.TransferAssetContract.to_address)
-  
-  return to_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.TransferAssetContract.to_address)
+
+    return to_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void TransferAssetContract::set_allocated_to_address(std::string* to_address) {
-  if (to_address != nullptr) {
-    
-  } else {
-    
-  }
-  to_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), to_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.TransferAssetContract.to_address)
+    if (to_address != nullptr) {
+
+    } else {
+
+    }
+    to_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), to_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.TransferAssetContract.to_address)
 }
 
 // int64 amount = 4;
 inline void TransferAssetContract::clear_amount() {
-  amount_ = PROTOBUF_LONGLONG(0);
+    amount_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 TransferAssetContract::_internal_amount() const {
-  return amount_;
+    return amount_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 TransferAssetContract::amount() const {
-  // @@protoc_insertion_point(field_get:protocol.TransferAssetContract.amount)
-  return _internal_amount();
+    // @@protoc_insertion_point(field_get:protocol.TransferAssetContract.amount)
+    return _internal_amount();
 }
 inline void TransferAssetContract::_internal_set_amount(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  amount_ = value;
+
+    amount_ = value;
 }
 inline void TransferAssetContract::set_amount(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_amount(value);
-  // @@protoc_insertion_point(field_set:protocol.TransferAssetContract.amount)
+    _internal_set_amount(value);
+    // @@protoc_insertion_point(field_set:protocol.TransferAssetContract.amount)
 }
 
 // -------------------------------------------------------------------
@@ -3973,182 +4003,182 @@ inline void TransferAssetContract::set_amount(::PROTOBUF_NAMESPACE_ID::int64 val
 
 // bytes owner_address = 1;
 inline void FreezeBalanceContract::clear_owner_address() {
-  owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& FreezeBalanceContract::owner_address() const {
-  // @@protoc_insertion_point(field_get:protocol.FreezeBalanceContract.owner_address)
-  return _internal_owner_address();
+    // @@protoc_insertion_point(field_get:protocol.FreezeBalanceContract.owner_address)
+    return _internal_owner_address();
 }
 inline void FreezeBalanceContract::set_owner_address(const std::string& value) {
-  _internal_set_owner_address(value);
-  // @@protoc_insertion_point(field_set:protocol.FreezeBalanceContract.owner_address)
+    _internal_set_owner_address(value);
+    // @@protoc_insertion_point(field_set:protocol.FreezeBalanceContract.owner_address)
 }
 inline std::string* FreezeBalanceContract::mutable_owner_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.FreezeBalanceContract.owner_address)
-  return _internal_mutable_owner_address();
+    // @@protoc_insertion_point(field_mutable:protocol.FreezeBalanceContract.owner_address)
+    return _internal_mutable_owner_address();
 }
 inline const std::string& FreezeBalanceContract::_internal_owner_address() const {
-  return owner_address_.GetNoArena();
+    return owner_address_.GetNoArena();
 }
 inline void FreezeBalanceContract::_internal_set_owner_address(const std::string& value) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void FreezeBalanceContract::set_owner_address(std::string&& value) {
-  
-  owner_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.FreezeBalanceContract.owner_address)
+
+    owner_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.FreezeBalanceContract.owner_address)
 }
 inline void FreezeBalanceContract::set_owner_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.FreezeBalanceContract.owner_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.FreezeBalanceContract.owner_address)
 }
 inline void FreezeBalanceContract::set_owner_address(const void* value, size_t size) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.FreezeBalanceContract.owner_address)
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                              ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.FreezeBalanceContract.owner_address)
 }
 inline std::string* FreezeBalanceContract::_internal_mutable_owner_address() {
-  
-  return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* FreezeBalanceContract::release_owner_address() {
-  // @@protoc_insertion_point(field_release:protocol.FreezeBalanceContract.owner_address)
-  
-  return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.FreezeBalanceContract.owner_address)
+
+    return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void FreezeBalanceContract::set_allocated_owner_address(std::string* owner_address) {
-  if (owner_address != nullptr) {
-    
-  } else {
-    
-  }
-  owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.FreezeBalanceContract.owner_address)
+    if (owner_address != nullptr) {
+
+    } else {
+
+    }
+    owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.FreezeBalanceContract.owner_address)
 }
 
 // int64 frozen_balance = 2;
 inline void FreezeBalanceContract::clear_frozen_balance() {
-  frozen_balance_ = PROTOBUF_LONGLONG(0);
+    frozen_balance_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 FreezeBalanceContract::_internal_frozen_balance() const {
-  return frozen_balance_;
+    return frozen_balance_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 FreezeBalanceContract::frozen_balance() const {
-  // @@protoc_insertion_point(field_get:protocol.FreezeBalanceContract.frozen_balance)
-  return _internal_frozen_balance();
+    // @@protoc_insertion_point(field_get:protocol.FreezeBalanceContract.frozen_balance)
+    return _internal_frozen_balance();
 }
 inline void FreezeBalanceContract::_internal_set_frozen_balance(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  frozen_balance_ = value;
+
+    frozen_balance_ = value;
 }
 inline void FreezeBalanceContract::set_frozen_balance(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_frozen_balance(value);
-  // @@protoc_insertion_point(field_set:protocol.FreezeBalanceContract.frozen_balance)
+    _internal_set_frozen_balance(value);
+    // @@protoc_insertion_point(field_set:protocol.FreezeBalanceContract.frozen_balance)
 }
 
 // int64 frozen_duration = 3;
 inline void FreezeBalanceContract::clear_frozen_duration() {
-  frozen_duration_ = PROTOBUF_LONGLONG(0);
+    frozen_duration_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 FreezeBalanceContract::_internal_frozen_duration() const {
-  return frozen_duration_;
+    return frozen_duration_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 FreezeBalanceContract::frozen_duration() const {
-  // @@protoc_insertion_point(field_get:protocol.FreezeBalanceContract.frozen_duration)
-  return _internal_frozen_duration();
+    // @@protoc_insertion_point(field_get:protocol.FreezeBalanceContract.frozen_duration)
+    return _internal_frozen_duration();
 }
 inline void FreezeBalanceContract::_internal_set_frozen_duration(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  frozen_duration_ = value;
+
+    frozen_duration_ = value;
 }
 inline void FreezeBalanceContract::set_frozen_duration(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_frozen_duration(value);
-  // @@protoc_insertion_point(field_set:protocol.FreezeBalanceContract.frozen_duration)
+    _internal_set_frozen_duration(value);
+    // @@protoc_insertion_point(field_set:protocol.FreezeBalanceContract.frozen_duration)
 }
 
 // .protocol.ResourceCode resource = 10;
 inline void FreezeBalanceContract::clear_resource() {
-  resource_ = 0;
+    resource_ = 0;
 }
 inline ::protocol::ResourceCode FreezeBalanceContract::_internal_resource() const {
-  return static_cast< ::protocol::ResourceCode >(resource_);
+    return static_cast< ::protocol::ResourceCode >(resource_);
 }
 inline ::protocol::ResourceCode FreezeBalanceContract::resource() const {
-  // @@protoc_insertion_point(field_get:protocol.FreezeBalanceContract.resource)
-  return _internal_resource();
+    // @@protoc_insertion_point(field_get:protocol.FreezeBalanceContract.resource)
+    return _internal_resource();
 }
 inline void FreezeBalanceContract::_internal_set_resource(::protocol::ResourceCode value) {
-  
-  resource_ = value;
+
+    resource_ = value;
 }
 inline void FreezeBalanceContract::set_resource(::protocol::ResourceCode value) {
-  _internal_set_resource(value);
-  // @@protoc_insertion_point(field_set:protocol.FreezeBalanceContract.resource)
+    _internal_set_resource(value);
+    // @@protoc_insertion_point(field_set:protocol.FreezeBalanceContract.resource)
 }
 
 // bytes receiver_address = 15;
 inline void FreezeBalanceContract::clear_receiver_address() {
-  receiver_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    receiver_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& FreezeBalanceContract::receiver_address() const {
-  // @@protoc_insertion_point(field_get:protocol.FreezeBalanceContract.receiver_address)
-  return _internal_receiver_address();
+    // @@protoc_insertion_point(field_get:protocol.FreezeBalanceContract.receiver_address)
+    return _internal_receiver_address();
 }
 inline void FreezeBalanceContract::set_receiver_address(const std::string& value) {
-  _internal_set_receiver_address(value);
-  // @@protoc_insertion_point(field_set:protocol.FreezeBalanceContract.receiver_address)
+    _internal_set_receiver_address(value);
+    // @@protoc_insertion_point(field_set:protocol.FreezeBalanceContract.receiver_address)
 }
 inline std::string* FreezeBalanceContract::mutable_receiver_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.FreezeBalanceContract.receiver_address)
-  return _internal_mutable_receiver_address();
+    // @@protoc_insertion_point(field_mutable:protocol.FreezeBalanceContract.receiver_address)
+    return _internal_mutable_receiver_address();
 }
 inline const std::string& FreezeBalanceContract::_internal_receiver_address() const {
-  return receiver_address_.GetNoArena();
+    return receiver_address_.GetNoArena();
 }
 inline void FreezeBalanceContract::_internal_set_receiver_address(const std::string& value) {
-  
-  receiver_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    receiver_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void FreezeBalanceContract::set_receiver_address(std::string&& value) {
-  
-  receiver_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.FreezeBalanceContract.receiver_address)
+
+    receiver_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.FreezeBalanceContract.receiver_address)
 }
 inline void FreezeBalanceContract::set_receiver_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  receiver_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.FreezeBalanceContract.receiver_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    receiver_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.FreezeBalanceContract.receiver_address)
 }
 inline void FreezeBalanceContract::set_receiver_address(const void* value, size_t size) {
-  
-  receiver_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.FreezeBalanceContract.receiver_address)
+
+    receiver_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                                 ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.FreezeBalanceContract.receiver_address)
 }
 inline std::string* FreezeBalanceContract::_internal_mutable_receiver_address() {
-  
-  return receiver_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return receiver_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* FreezeBalanceContract::release_receiver_address() {
-  // @@protoc_insertion_point(field_release:protocol.FreezeBalanceContract.receiver_address)
-  
-  return receiver_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.FreezeBalanceContract.receiver_address)
+
+    return receiver_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void FreezeBalanceContract::set_allocated_receiver_address(std::string* receiver_address) {
-  if (receiver_address != nullptr) {
-    
-  } else {
-    
-  }
-  receiver_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), receiver_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.FreezeBalanceContract.receiver_address)
+    if (receiver_address != nullptr) {
+
+    } else {
+
+    }
+    receiver_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), receiver_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.FreezeBalanceContract.receiver_address)
 }
 
 // -------------------------------------------------------------------
@@ -4157,142 +4187,142 @@ inline void FreezeBalanceContract::set_allocated_receiver_address(std::string* r
 
 // bytes owner_address = 1;
 inline void UnfreezeBalanceContract::clear_owner_address() {
-  owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& UnfreezeBalanceContract::owner_address() const {
-  // @@protoc_insertion_point(field_get:protocol.UnfreezeBalanceContract.owner_address)
-  return _internal_owner_address();
+    // @@protoc_insertion_point(field_get:protocol.UnfreezeBalanceContract.owner_address)
+    return _internal_owner_address();
 }
 inline void UnfreezeBalanceContract::set_owner_address(const std::string& value) {
-  _internal_set_owner_address(value);
-  // @@protoc_insertion_point(field_set:protocol.UnfreezeBalanceContract.owner_address)
+    _internal_set_owner_address(value);
+    // @@protoc_insertion_point(field_set:protocol.UnfreezeBalanceContract.owner_address)
 }
 inline std::string* UnfreezeBalanceContract::mutable_owner_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.UnfreezeBalanceContract.owner_address)
-  return _internal_mutable_owner_address();
+    // @@protoc_insertion_point(field_mutable:protocol.UnfreezeBalanceContract.owner_address)
+    return _internal_mutable_owner_address();
 }
 inline const std::string& UnfreezeBalanceContract::_internal_owner_address() const {
-  return owner_address_.GetNoArena();
+    return owner_address_.GetNoArena();
 }
 inline void UnfreezeBalanceContract::_internal_set_owner_address(const std::string& value) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void UnfreezeBalanceContract::set_owner_address(std::string&& value) {
-  
-  owner_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.UnfreezeBalanceContract.owner_address)
+
+    owner_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.UnfreezeBalanceContract.owner_address)
 }
 inline void UnfreezeBalanceContract::set_owner_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.UnfreezeBalanceContract.owner_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.UnfreezeBalanceContract.owner_address)
 }
 inline void UnfreezeBalanceContract::set_owner_address(const void* value, size_t size) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.UnfreezeBalanceContract.owner_address)
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                              ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.UnfreezeBalanceContract.owner_address)
 }
 inline std::string* UnfreezeBalanceContract::_internal_mutable_owner_address() {
-  
-  return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* UnfreezeBalanceContract::release_owner_address() {
-  // @@protoc_insertion_point(field_release:protocol.UnfreezeBalanceContract.owner_address)
-  
-  return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.UnfreezeBalanceContract.owner_address)
+
+    return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void UnfreezeBalanceContract::set_allocated_owner_address(std::string* owner_address) {
-  if (owner_address != nullptr) {
-    
-  } else {
-    
-  }
-  owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.UnfreezeBalanceContract.owner_address)
+    if (owner_address != nullptr) {
+
+    } else {
+
+    }
+    owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.UnfreezeBalanceContract.owner_address)
 }
 
 // .protocol.ResourceCode resource = 10;
 inline void UnfreezeBalanceContract::clear_resource() {
-  resource_ = 0;
+    resource_ = 0;
 }
 inline ::protocol::ResourceCode UnfreezeBalanceContract::_internal_resource() const {
-  return static_cast< ::protocol::ResourceCode >(resource_);
+    return static_cast< ::protocol::ResourceCode >(resource_);
 }
 inline ::protocol::ResourceCode UnfreezeBalanceContract::resource() const {
-  // @@protoc_insertion_point(field_get:protocol.UnfreezeBalanceContract.resource)
-  return _internal_resource();
+    // @@protoc_insertion_point(field_get:protocol.UnfreezeBalanceContract.resource)
+    return _internal_resource();
 }
 inline void UnfreezeBalanceContract::_internal_set_resource(::protocol::ResourceCode value) {
-  
-  resource_ = value;
+
+    resource_ = value;
 }
 inline void UnfreezeBalanceContract::set_resource(::protocol::ResourceCode value) {
-  _internal_set_resource(value);
-  // @@protoc_insertion_point(field_set:protocol.UnfreezeBalanceContract.resource)
+    _internal_set_resource(value);
+    // @@protoc_insertion_point(field_set:protocol.UnfreezeBalanceContract.resource)
 }
 
 // bytes receiver_address = 15;
 inline void UnfreezeBalanceContract::clear_receiver_address() {
-  receiver_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    receiver_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& UnfreezeBalanceContract::receiver_address() const {
-  // @@protoc_insertion_point(field_get:protocol.UnfreezeBalanceContract.receiver_address)
-  return _internal_receiver_address();
+    // @@protoc_insertion_point(field_get:protocol.UnfreezeBalanceContract.receiver_address)
+    return _internal_receiver_address();
 }
 inline void UnfreezeBalanceContract::set_receiver_address(const std::string& value) {
-  _internal_set_receiver_address(value);
-  // @@protoc_insertion_point(field_set:protocol.UnfreezeBalanceContract.receiver_address)
+    _internal_set_receiver_address(value);
+    // @@protoc_insertion_point(field_set:protocol.UnfreezeBalanceContract.receiver_address)
 }
 inline std::string* UnfreezeBalanceContract::mutable_receiver_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.UnfreezeBalanceContract.receiver_address)
-  return _internal_mutable_receiver_address();
+    // @@protoc_insertion_point(field_mutable:protocol.UnfreezeBalanceContract.receiver_address)
+    return _internal_mutable_receiver_address();
 }
 inline const std::string& UnfreezeBalanceContract::_internal_receiver_address() const {
-  return receiver_address_.GetNoArena();
+    return receiver_address_.GetNoArena();
 }
 inline void UnfreezeBalanceContract::_internal_set_receiver_address(const std::string& value) {
-  
-  receiver_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    receiver_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void UnfreezeBalanceContract::set_receiver_address(std::string&& value) {
-  
-  receiver_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.UnfreezeBalanceContract.receiver_address)
+
+    receiver_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.UnfreezeBalanceContract.receiver_address)
 }
 inline void UnfreezeBalanceContract::set_receiver_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  receiver_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.UnfreezeBalanceContract.receiver_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    receiver_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.UnfreezeBalanceContract.receiver_address)
 }
 inline void UnfreezeBalanceContract::set_receiver_address(const void* value, size_t size) {
-  
-  receiver_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.UnfreezeBalanceContract.receiver_address)
+
+    receiver_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                                 ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.UnfreezeBalanceContract.receiver_address)
 }
 inline std::string* UnfreezeBalanceContract::_internal_mutable_receiver_address() {
-  
-  return receiver_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return receiver_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* UnfreezeBalanceContract::release_receiver_address() {
-  // @@protoc_insertion_point(field_release:protocol.UnfreezeBalanceContract.receiver_address)
-  
-  return receiver_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.UnfreezeBalanceContract.receiver_address)
+
+    return receiver_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void UnfreezeBalanceContract::set_allocated_receiver_address(std::string* receiver_address) {
-  if (receiver_address != nullptr) {
-    
-  } else {
-    
-  }
-  receiver_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), receiver_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.UnfreezeBalanceContract.receiver_address)
+    if (receiver_address != nullptr) {
+
+    } else {
+
+    }
+    receiver_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), receiver_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.UnfreezeBalanceContract.receiver_address)
 }
 
 // -------------------------------------------------------------------
@@ -4301,62 +4331,62 @@ inline void UnfreezeBalanceContract::set_allocated_receiver_address(std::string*
 
 // bytes owner_address = 1;
 inline void UnfreezeAssetContract::clear_owner_address() {
-  owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& UnfreezeAssetContract::owner_address() const {
-  // @@protoc_insertion_point(field_get:protocol.UnfreezeAssetContract.owner_address)
-  return _internal_owner_address();
+    // @@protoc_insertion_point(field_get:protocol.UnfreezeAssetContract.owner_address)
+    return _internal_owner_address();
 }
 inline void UnfreezeAssetContract::set_owner_address(const std::string& value) {
-  _internal_set_owner_address(value);
-  // @@protoc_insertion_point(field_set:protocol.UnfreezeAssetContract.owner_address)
+    _internal_set_owner_address(value);
+    // @@protoc_insertion_point(field_set:protocol.UnfreezeAssetContract.owner_address)
 }
 inline std::string* UnfreezeAssetContract::mutable_owner_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.UnfreezeAssetContract.owner_address)
-  return _internal_mutable_owner_address();
+    // @@protoc_insertion_point(field_mutable:protocol.UnfreezeAssetContract.owner_address)
+    return _internal_mutable_owner_address();
 }
 inline const std::string& UnfreezeAssetContract::_internal_owner_address() const {
-  return owner_address_.GetNoArena();
+    return owner_address_.GetNoArena();
 }
 inline void UnfreezeAssetContract::_internal_set_owner_address(const std::string& value) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void UnfreezeAssetContract::set_owner_address(std::string&& value) {
-  
-  owner_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.UnfreezeAssetContract.owner_address)
+
+    owner_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.UnfreezeAssetContract.owner_address)
 }
 inline void UnfreezeAssetContract::set_owner_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.UnfreezeAssetContract.owner_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.UnfreezeAssetContract.owner_address)
 }
 inline void UnfreezeAssetContract::set_owner_address(const void* value, size_t size) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.UnfreezeAssetContract.owner_address)
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                              ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.UnfreezeAssetContract.owner_address)
 }
 inline std::string* UnfreezeAssetContract::_internal_mutable_owner_address() {
-  
-  return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* UnfreezeAssetContract::release_owner_address() {
-  // @@protoc_insertion_point(field_release:protocol.UnfreezeAssetContract.owner_address)
-  
-  return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.UnfreezeAssetContract.owner_address)
+
+    return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void UnfreezeAssetContract::set_allocated_owner_address(std::string* owner_address) {
-  if (owner_address != nullptr) {
-    
-  } else {
-    
-  }
-  owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.UnfreezeAssetContract.owner_address)
+    if (owner_address != nullptr) {
+
+    } else {
+
+    }
+    owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.UnfreezeAssetContract.owner_address)
 }
 
 // -------------------------------------------------------------------
@@ -4365,176 +4395,176 @@ inline void UnfreezeAssetContract::set_allocated_owner_address(std::string* owne
 
 // bytes owner_address = 1;
 inline void VoteAssetContract::clear_owner_address() {
-  owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& VoteAssetContract::owner_address() const {
-  // @@protoc_insertion_point(field_get:protocol.VoteAssetContract.owner_address)
-  return _internal_owner_address();
+    // @@protoc_insertion_point(field_get:protocol.VoteAssetContract.owner_address)
+    return _internal_owner_address();
 }
 inline void VoteAssetContract::set_owner_address(const std::string& value) {
-  _internal_set_owner_address(value);
-  // @@protoc_insertion_point(field_set:protocol.VoteAssetContract.owner_address)
+    _internal_set_owner_address(value);
+    // @@protoc_insertion_point(field_set:protocol.VoteAssetContract.owner_address)
 }
 inline std::string* VoteAssetContract::mutable_owner_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.VoteAssetContract.owner_address)
-  return _internal_mutable_owner_address();
+    // @@protoc_insertion_point(field_mutable:protocol.VoteAssetContract.owner_address)
+    return _internal_mutable_owner_address();
 }
 inline const std::string& VoteAssetContract::_internal_owner_address() const {
-  return owner_address_.GetNoArena();
+    return owner_address_.GetNoArena();
 }
 inline void VoteAssetContract::_internal_set_owner_address(const std::string& value) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void VoteAssetContract::set_owner_address(std::string&& value) {
-  
-  owner_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.VoteAssetContract.owner_address)
+
+    owner_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.VoteAssetContract.owner_address)
 }
 inline void VoteAssetContract::set_owner_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.VoteAssetContract.owner_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.VoteAssetContract.owner_address)
 }
 inline void VoteAssetContract::set_owner_address(const void* value, size_t size) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.VoteAssetContract.owner_address)
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                              ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.VoteAssetContract.owner_address)
 }
 inline std::string* VoteAssetContract::_internal_mutable_owner_address() {
-  
-  return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* VoteAssetContract::release_owner_address() {
-  // @@protoc_insertion_point(field_release:protocol.VoteAssetContract.owner_address)
-  
-  return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.VoteAssetContract.owner_address)
+
+    return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void VoteAssetContract::set_allocated_owner_address(std::string* owner_address) {
-  if (owner_address != nullptr) {
-    
-  } else {
-    
-  }
-  owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.VoteAssetContract.owner_address)
+    if (owner_address != nullptr) {
+
+    } else {
+
+    }
+    owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.VoteAssetContract.owner_address)
 }
 
 // repeated bytes vote_address = 2;
 inline int VoteAssetContract::_internal_vote_address_size() const {
-  return vote_address_.size();
+    return vote_address_.size();
 }
 inline int VoteAssetContract::vote_address_size() const {
-  return _internal_vote_address_size();
+    return _internal_vote_address_size();
 }
 inline void VoteAssetContract::clear_vote_address() {
-  vote_address_.Clear();
+    vote_address_.Clear();
 }
 inline std::string* VoteAssetContract::add_vote_address() {
-  // @@protoc_insertion_point(field_add_mutable:protocol.VoteAssetContract.vote_address)
-  return _internal_add_vote_address();
+    // @@protoc_insertion_point(field_add_mutable:protocol.VoteAssetContract.vote_address)
+    return _internal_add_vote_address();
 }
 inline const std::string& VoteAssetContract::_internal_vote_address(int index) const {
-  return vote_address_.Get(index);
+    return vote_address_.Get(index);
 }
 inline const std::string& VoteAssetContract::vote_address(int index) const {
-  // @@protoc_insertion_point(field_get:protocol.VoteAssetContract.vote_address)
-  return _internal_vote_address(index);
+    // @@protoc_insertion_point(field_get:protocol.VoteAssetContract.vote_address)
+    return _internal_vote_address(index);
 }
 inline std::string* VoteAssetContract::mutable_vote_address(int index) {
-  // @@protoc_insertion_point(field_mutable:protocol.VoteAssetContract.vote_address)
-  return vote_address_.Mutable(index);
+    // @@protoc_insertion_point(field_mutable:protocol.VoteAssetContract.vote_address)
+    return vote_address_.Mutable(index);
 }
 inline void VoteAssetContract::set_vote_address(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:protocol.VoteAssetContract.vote_address)
-  vote_address_.Mutable(index)->assign(value);
+    // @@protoc_insertion_point(field_set:protocol.VoteAssetContract.vote_address)
+    vote_address_.Mutable(index)->assign(value);
 }
 inline void VoteAssetContract::set_vote_address(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:protocol.VoteAssetContract.vote_address)
-  vote_address_.Mutable(index)->assign(std::move(value));
+    // @@protoc_insertion_point(field_set:protocol.VoteAssetContract.vote_address)
+    vote_address_.Mutable(index)->assign(std::move(value));
 }
 inline void VoteAssetContract::set_vote_address(int index, const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  vote_address_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:protocol.VoteAssetContract.vote_address)
+    GOOGLE_DCHECK(value != nullptr);
+    vote_address_.Mutable(index)->assign(value);
+    // @@protoc_insertion_point(field_set_char:protocol.VoteAssetContract.vote_address)
 }
 inline void VoteAssetContract::set_vote_address(int index, const void* value, size_t size) {
-  vote_address_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:protocol.VoteAssetContract.vote_address)
+    vote_address_.Mutable(index)->assign(
+        reinterpret_cast<const char*>(value), size);
+    // @@protoc_insertion_point(field_set_pointer:protocol.VoteAssetContract.vote_address)
 }
 inline std::string* VoteAssetContract::_internal_add_vote_address() {
-  return vote_address_.Add();
+    return vote_address_.Add();
 }
 inline void VoteAssetContract::add_vote_address(const std::string& value) {
-  vote_address_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:protocol.VoteAssetContract.vote_address)
+    vote_address_.Add()->assign(value);
+    // @@protoc_insertion_point(field_add:protocol.VoteAssetContract.vote_address)
 }
 inline void VoteAssetContract::add_vote_address(std::string&& value) {
-  vote_address_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:protocol.VoteAssetContract.vote_address)
+    vote_address_.Add(std::move(value));
+    // @@protoc_insertion_point(field_add:protocol.VoteAssetContract.vote_address)
 }
 inline void VoteAssetContract::add_vote_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  vote_address_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:protocol.VoteAssetContract.vote_address)
+    GOOGLE_DCHECK(value != nullptr);
+    vote_address_.Add()->assign(value);
+    // @@protoc_insertion_point(field_add_char:protocol.VoteAssetContract.vote_address)
 }
 inline void VoteAssetContract::add_vote_address(const void* value, size_t size) {
-  vote_address_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:protocol.VoteAssetContract.vote_address)
+    vote_address_.Add()->assign(reinterpret_cast<const char*>(value), size);
+    // @@protoc_insertion_point(field_add_pointer:protocol.VoteAssetContract.vote_address)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 VoteAssetContract::vote_address() const {
-  // @@protoc_insertion_point(field_list:protocol.VoteAssetContract.vote_address)
-  return vote_address_;
+    // @@protoc_insertion_point(field_list:protocol.VoteAssetContract.vote_address)
+    return vote_address_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 VoteAssetContract::mutable_vote_address() {
-  // @@protoc_insertion_point(field_mutable_list:protocol.VoteAssetContract.vote_address)
-  return &vote_address_;
+    // @@protoc_insertion_point(field_mutable_list:protocol.VoteAssetContract.vote_address)
+    return &vote_address_;
 }
 
 // bool support = 3;
 inline void VoteAssetContract::clear_support() {
-  support_ = false;
+    support_ = false;
 }
 inline bool VoteAssetContract::_internal_support() const {
-  return support_;
+    return support_;
 }
 inline bool VoteAssetContract::support() const {
-  // @@protoc_insertion_point(field_get:protocol.VoteAssetContract.support)
-  return _internal_support();
+    // @@protoc_insertion_point(field_get:protocol.VoteAssetContract.support)
+    return _internal_support();
 }
 inline void VoteAssetContract::_internal_set_support(bool value) {
-  
-  support_ = value;
+
+    support_ = value;
 }
 inline void VoteAssetContract::set_support(bool value) {
-  _internal_set_support(value);
-  // @@protoc_insertion_point(field_set:protocol.VoteAssetContract.support)
+    _internal_set_support(value);
+    // @@protoc_insertion_point(field_set:protocol.VoteAssetContract.support)
 }
 
 // int32 count = 5;
 inline void VoteAssetContract::clear_count() {
-  count_ = 0;
+    count_ = 0;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 VoteAssetContract::_internal_count() const {
-  return count_;
+    return count_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 VoteAssetContract::count() const {
-  // @@protoc_insertion_point(field_get:protocol.VoteAssetContract.count)
-  return _internal_count();
+    // @@protoc_insertion_point(field_get:protocol.VoteAssetContract.count)
+    return _internal_count();
 }
 inline void VoteAssetContract::_internal_set_count(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  
-  count_ = value;
+
+    count_ = value;
 }
 inline void VoteAssetContract::set_count(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_count(value);
-  // @@protoc_insertion_point(field_set:protocol.VoteAssetContract.count)
+    _internal_set_count(value);
+    // @@protoc_insertion_point(field_set:protocol.VoteAssetContract.count)
 }
 
 // -------------------------------------------------------------------
@@ -4543,82 +4573,82 @@ inline void VoteAssetContract::set_count(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // bytes vote_address = 1;
 inline void VoteWitnessContract_Vote::clear_vote_address() {
-  vote_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    vote_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& VoteWitnessContract_Vote::vote_address() const {
-  // @@protoc_insertion_point(field_get:protocol.VoteWitnessContract.Vote.vote_address)
-  return _internal_vote_address();
+    // @@protoc_insertion_point(field_get:protocol.VoteWitnessContract.Vote.vote_address)
+    return _internal_vote_address();
 }
 inline void VoteWitnessContract_Vote::set_vote_address(const std::string& value) {
-  _internal_set_vote_address(value);
-  // @@protoc_insertion_point(field_set:protocol.VoteWitnessContract.Vote.vote_address)
+    _internal_set_vote_address(value);
+    // @@protoc_insertion_point(field_set:protocol.VoteWitnessContract.Vote.vote_address)
 }
 inline std::string* VoteWitnessContract_Vote::mutable_vote_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.VoteWitnessContract.Vote.vote_address)
-  return _internal_mutable_vote_address();
+    // @@protoc_insertion_point(field_mutable:protocol.VoteWitnessContract.Vote.vote_address)
+    return _internal_mutable_vote_address();
 }
 inline const std::string& VoteWitnessContract_Vote::_internal_vote_address() const {
-  return vote_address_.GetNoArena();
+    return vote_address_.GetNoArena();
 }
 inline void VoteWitnessContract_Vote::_internal_set_vote_address(const std::string& value) {
-  
-  vote_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    vote_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void VoteWitnessContract_Vote::set_vote_address(std::string&& value) {
-  
-  vote_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.VoteWitnessContract.Vote.vote_address)
+
+    vote_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.VoteWitnessContract.Vote.vote_address)
 }
 inline void VoteWitnessContract_Vote::set_vote_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  vote_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.VoteWitnessContract.Vote.vote_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    vote_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.VoteWitnessContract.Vote.vote_address)
 }
 inline void VoteWitnessContract_Vote::set_vote_address(const void* value, size_t size) {
-  
-  vote_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.VoteWitnessContract.Vote.vote_address)
+
+    vote_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                             ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.VoteWitnessContract.Vote.vote_address)
 }
 inline std::string* VoteWitnessContract_Vote::_internal_mutable_vote_address() {
-  
-  return vote_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return vote_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* VoteWitnessContract_Vote::release_vote_address() {
-  // @@protoc_insertion_point(field_release:protocol.VoteWitnessContract.Vote.vote_address)
-  
-  return vote_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.VoteWitnessContract.Vote.vote_address)
+
+    return vote_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void VoteWitnessContract_Vote::set_allocated_vote_address(std::string* vote_address) {
-  if (vote_address != nullptr) {
-    
-  } else {
-    
-  }
-  vote_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), vote_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.VoteWitnessContract.Vote.vote_address)
+    if (vote_address != nullptr) {
+
+    } else {
+
+    }
+    vote_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), vote_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.VoteWitnessContract.Vote.vote_address)
 }
 
 // int64 vote_count = 2;
 inline void VoteWitnessContract_Vote::clear_vote_count() {
-  vote_count_ = PROTOBUF_LONGLONG(0);
+    vote_count_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 VoteWitnessContract_Vote::_internal_vote_count() const {
-  return vote_count_;
+    return vote_count_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 VoteWitnessContract_Vote::vote_count() const {
-  // @@protoc_insertion_point(field_get:protocol.VoteWitnessContract.Vote.vote_count)
-  return _internal_vote_count();
+    // @@protoc_insertion_point(field_get:protocol.VoteWitnessContract.Vote.vote_count)
+    return _internal_vote_count();
 }
 inline void VoteWitnessContract_Vote::_internal_set_vote_count(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  vote_count_ = value;
+
+    vote_count_ = value;
 }
 inline void VoteWitnessContract_Vote::set_vote_count(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_vote_count(value);
-  // @@protoc_insertion_point(field_set:protocol.VoteWitnessContract.Vote.vote_count)
+    _internal_set_vote_count(value);
+    // @@protoc_insertion_point(field_set:protocol.VoteWitnessContract.Vote.vote_count)
 }
 
 // -------------------------------------------------------------------
@@ -4627,121 +4657,121 @@ inline void VoteWitnessContract_Vote::set_vote_count(::PROTOBUF_NAMESPACE_ID::in
 
 // bytes owner_address = 1;
 inline void VoteWitnessContract::clear_owner_address() {
-  owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& VoteWitnessContract::owner_address() const {
-  // @@protoc_insertion_point(field_get:protocol.VoteWitnessContract.owner_address)
-  return _internal_owner_address();
+    // @@protoc_insertion_point(field_get:protocol.VoteWitnessContract.owner_address)
+    return _internal_owner_address();
 }
 inline void VoteWitnessContract::set_owner_address(const std::string& value) {
-  _internal_set_owner_address(value);
-  // @@protoc_insertion_point(field_set:protocol.VoteWitnessContract.owner_address)
+    _internal_set_owner_address(value);
+    // @@protoc_insertion_point(field_set:protocol.VoteWitnessContract.owner_address)
 }
 inline std::string* VoteWitnessContract::mutable_owner_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.VoteWitnessContract.owner_address)
-  return _internal_mutable_owner_address();
+    // @@protoc_insertion_point(field_mutable:protocol.VoteWitnessContract.owner_address)
+    return _internal_mutable_owner_address();
 }
 inline const std::string& VoteWitnessContract::_internal_owner_address() const {
-  return owner_address_.GetNoArena();
+    return owner_address_.GetNoArena();
 }
 inline void VoteWitnessContract::_internal_set_owner_address(const std::string& value) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void VoteWitnessContract::set_owner_address(std::string&& value) {
-  
-  owner_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.VoteWitnessContract.owner_address)
+
+    owner_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.VoteWitnessContract.owner_address)
 }
 inline void VoteWitnessContract::set_owner_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.VoteWitnessContract.owner_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.VoteWitnessContract.owner_address)
 }
 inline void VoteWitnessContract::set_owner_address(const void* value, size_t size) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.VoteWitnessContract.owner_address)
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                              ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.VoteWitnessContract.owner_address)
 }
 inline std::string* VoteWitnessContract::_internal_mutable_owner_address() {
-  
-  return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* VoteWitnessContract::release_owner_address() {
-  // @@protoc_insertion_point(field_release:protocol.VoteWitnessContract.owner_address)
-  
-  return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.VoteWitnessContract.owner_address)
+
+    return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void VoteWitnessContract::set_allocated_owner_address(std::string* owner_address) {
-  if (owner_address != nullptr) {
-    
-  } else {
-    
-  }
-  owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.VoteWitnessContract.owner_address)
+    if (owner_address != nullptr) {
+
+    } else {
+
+    }
+    owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.VoteWitnessContract.owner_address)
 }
 
 // repeated .protocol.VoteWitnessContract.Vote votes = 2;
 inline int VoteWitnessContract::_internal_votes_size() const {
-  return votes_.size();
+    return votes_.size();
 }
 inline int VoteWitnessContract::votes_size() const {
-  return _internal_votes_size();
+    return _internal_votes_size();
 }
 inline void VoteWitnessContract::clear_votes() {
-  votes_.Clear();
+    votes_.Clear();
 }
 inline ::protocol::VoteWitnessContract_Vote* VoteWitnessContract::mutable_votes(int index) {
-  // @@protoc_insertion_point(field_mutable:protocol.VoteWitnessContract.votes)
-  return votes_.Mutable(index);
+    // @@protoc_insertion_point(field_mutable:protocol.VoteWitnessContract.votes)
+    return votes_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::VoteWitnessContract_Vote >*
 VoteWitnessContract::mutable_votes() {
-  // @@protoc_insertion_point(field_mutable_list:protocol.VoteWitnessContract.votes)
-  return &votes_;
+    // @@protoc_insertion_point(field_mutable_list:protocol.VoteWitnessContract.votes)
+    return &votes_;
 }
 inline const ::protocol::VoteWitnessContract_Vote& VoteWitnessContract::_internal_votes(int index) const {
-  return votes_.Get(index);
+    return votes_.Get(index);
 }
 inline const ::protocol::VoteWitnessContract_Vote& VoteWitnessContract::votes(int index) const {
-  // @@protoc_insertion_point(field_get:protocol.VoteWitnessContract.votes)
-  return _internal_votes(index);
+    // @@protoc_insertion_point(field_get:protocol.VoteWitnessContract.votes)
+    return _internal_votes(index);
 }
 inline ::protocol::VoteWitnessContract_Vote* VoteWitnessContract::_internal_add_votes() {
-  return votes_.Add();
+    return votes_.Add();
 }
 inline ::protocol::VoteWitnessContract_Vote* VoteWitnessContract::add_votes() {
-  // @@protoc_insertion_point(field_add:protocol.VoteWitnessContract.votes)
-  return _internal_add_votes();
+    // @@protoc_insertion_point(field_add:protocol.VoteWitnessContract.votes)
+    return _internal_add_votes();
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::VoteWitnessContract_Vote >&
 VoteWitnessContract::votes() const {
-  // @@protoc_insertion_point(field_list:protocol.VoteWitnessContract.votes)
-  return votes_;
+    // @@protoc_insertion_point(field_list:protocol.VoteWitnessContract.votes)
+    return votes_;
 }
 
 // bool support = 3;
 inline void VoteWitnessContract::clear_support() {
-  support_ = false;
+    support_ = false;
 }
 inline bool VoteWitnessContract::_internal_support() const {
-  return support_;
+    return support_;
 }
 inline bool VoteWitnessContract::support() const {
-  // @@protoc_insertion_point(field_get:protocol.VoteWitnessContract.support)
-  return _internal_support();
+    // @@protoc_insertion_point(field_get:protocol.VoteWitnessContract.support)
+    return _internal_support();
 }
 inline void VoteWitnessContract::_internal_set_support(bool value) {
-  
-  support_ = value;
+
+    support_ = value;
 }
 inline void VoteWitnessContract::set_support(bool value) {
-  _internal_set_support(value);
-  // @@protoc_insertion_point(field_set:protocol.VoteWitnessContract.support)
+    _internal_set_support(value);
+    // @@protoc_insertion_point(field_set:protocol.VoteWitnessContract.support)
 }
 
 // -------------------------------------------------------------------
@@ -4750,62 +4780,62 @@ inline void VoteWitnessContract::set_support(bool value) {
 
 // bytes owner_address = 1;
 inline void WithdrawBalanceContract::clear_owner_address() {
-  owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& WithdrawBalanceContract::owner_address() const {
-  // @@protoc_insertion_point(field_get:protocol.WithdrawBalanceContract.owner_address)
-  return _internal_owner_address();
+    // @@protoc_insertion_point(field_get:protocol.WithdrawBalanceContract.owner_address)
+    return _internal_owner_address();
 }
 inline void WithdrawBalanceContract::set_owner_address(const std::string& value) {
-  _internal_set_owner_address(value);
-  // @@protoc_insertion_point(field_set:protocol.WithdrawBalanceContract.owner_address)
+    _internal_set_owner_address(value);
+    // @@protoc_insertion_point(field_set:protocol.WithdrawBalanceContract.owner_address)
 }
 inline std::string* WithdrawBalanceContract::mutable_owner_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.WithdrawBalanceContract.owner_address)
-  return _internal_mutable_owner_address();
+    // @@protoc_insertion_point(field_mutable:protocol.WithdrawBalanceContract.owner_address)
+    return _internal_mutable_owner_address();
 }
 inline const std::string& WithdrawBalanceContract::_internal_owner_address() const {
-  return owner_address_.GetNoArena();
+    return owner_address_.GetNoArena();
 }
 inline void WithdrawBalanceContract::_internal_set_owner_address(const std::string& value) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void WithdrawBalanceContract::set_owner_address(std::string&& value) {
-  
-  owner_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.WithdrawBalanceContract.owner_address)
+
+    owner_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.WithdrawBalanceContract.owner_address)
 }
 inline void WithdrawBalanceContract::set_owner_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.WithdrawBalanceContract.owner_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.WithdrawBalanceContract.owner_address)
 }
 inline void WithdrawBalanceContract::set_owner_address(const void* value, size_t size) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.WithdrawBalanceContract.owner_address)
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                              ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.WithdrawBalanceContract.owner_address)
 }
 inline std::string* WithdrawBalanceContract::_internal_mutable_owner_address() {
-  
-  return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* WithdrawBalanceContract::release_owner_address() {
-  // @@protoc_insertion_point(field_release:protocol.WithdrawBalanceContract.owner_address)
-  
-  return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.WithdrawBalanceContract.owner_address)
+
+    return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void WithdrawBalanceContract::set_allocated_owner_address(std::string* owner_address) {
-  if (owner_address != nullptr) {
-    
-  } else {
-    
-  }
-  owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.WithdrawBalanceContract.owner_address)
+    if (owner_address != nullptr) {
+
+    } else {
+
+    }
+    owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.WithdrawBalanceContract.owner_address)
 }
 
 // -------------------------------------------------------------------
@@ -4814,246 +4844,246 @@ inline void WithdrawBalanceContract::set_allocated_owner_address(std::string* ow
 
 // bytes owner_address = 1;
 inline void TriggerSmartContract::clear_owner_address() {
-  owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    owner_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& TriggerSmartContract::owner_address() const {
-  // @@protoc_insertion_point(field_get:protocol.TriggerSmartContract.owner_address)
-  return _internal_owner_address();
+    // @@protoc_insertion_point(field_get:protocol.TriggerSmartContract.owner_address)
+    return _internal_owner_address();
 }
 inline void TriggerSmartContract::set_owner_address(const std::string& value) {
-  _internal_set_owner_address(value);
-  // @@protoc_insertion_point(field_set:protocol.TriggerSmartContract.owner_address)
+    _internal_set_owner_address(value);
+    // @@protoc_insertion_point(field_set:protocol.TriggerSmartContract.owner_address)
 }
 inline std::string* TriggerSmartContract::mutable_owner_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.TriggerSmartContract.owner_address)
-  return _internal_mutable_owner_address();
+    // @@protoc_insertion_point(field_mutable:protocol.TriggerSmartContract.owner_address)
+    return _internal_mutable_owner_address();
 }
 inline const std::string& TriggerSmartContract::_internal_owner_address() const {
-  return owner_address_.GetNoArena();
+    return owner_address_.GetNoArena();
 }
 inline void TriggerSmartContract::_internal_set_owner_address(const std::string& value) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void TriggerSmartContract::set_owner_address(std::string&& value) {
-  
-  owner_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.TriggerSmartContract.owner_address)
+
+    owner_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.TriggerSmartContract.owner_address)
 }
 inline void TriggerSmartContract::set_owner_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.TriggerSmartContract.owner_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.TriggerSmartContract.owner_address)
 }
 inline void TriggerSmartContract::set_owner_address(const void* value, size_t size) {
-  
-  owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.TriggerSmartContract.owner_address)
+
+    owner_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                              ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.TriggerSmartContract.owner_address)
 }
 inline std::string* TriggerSmartContract::_internal_mutable_owner_address() {
-  
-  return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return owner_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* TriggerSmartContract::release_owner_address() {
-  // @@protoc_insertion_point(field_release:protocol.TriggerSmartContract.owner_address)
-  
-  return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.TriggerSmartContract.owner_address)
+
+    return owner_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void TriggerSmartContract::set_allocated_owner_address(std::string* owner_address) {
-  if (owner_address != nullptr) {
-    
-  } else {
-    
-  }
-  owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.TriggerSmartContract.owner_address)
+    if (owner_address != nullptr) {
+
+    } else {
+
+    }
+    owner_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.TriggerSmartContract.owner_address)
 }
 
 // bytes contract_address = 2;
 inline void TriggerSmartContract::clear_contract_address() {
-  contract_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    contract_address_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& TriggerSmartContract::contract_address() const {
-  // @@protoc_insertion_point(field_get:protocol.TriggerSmartContract.contract_address)
-  return _internal_contract_address();
+    // @@protoc_insertion_point(field_get:protocol.TriggerSmartContract.contract_address)
+    return _internal_contract_address();
 }
 inline void TriggerSmartContract::set_contract_address(const std::string& value) {
-  _internal_set_contract_address(value);
-  // @@protoc_insertion_point(field_set:protocol.TriggerSmartContract.contract_address)
+    _internal_set_contract_address(value);
+    // @@protoc_insertion_point(field_set:protocol.TriggerSmartContract.contract_address)
 }
 inline std::string* TriggerSmartContract::mutable_contract_address() {
-  // @@protoc_insertion_point(field_mutable:protocol.TriggerSmartContract.contract_address)
-  return _internal_mutable_contract_address();
+    // @@protoc_insertion_point(field_mutable:protocol.TriggerSmartContract.contract_address)
+    return _internal_mutable_contract_address();
 }
 inline const std::string& TriggerSmartContract::_internal_contract_address() const {
-  return contract_address_.GetNoArena();
+    return contract_address_.GetNoArena();
 }
 inline void TriggerSmartContract::_internal_set_contract_address(const std::string& value) {
-  
-  contract_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    contract_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void TriggerSmartContract::set_contract_address(std::string&& value) {
-  
-  contract_address_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.TriggerSmartContract.contract_address)
+
+    contract_address_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.TriggerSmartContract.contract_address)
 }
 inline void TriggerSmartContract::set_contract_address(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  contract_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.TriggerSmartContract.contract_address)
+    GOOGLE_DCHECK(value != nullptr);
+
+    contract_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.TriggerSmartContract.contract_address)
 }
 inline void TriggerSmartContract::set_contract_address(const void* value, size_t size) {
-  
-  contract_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.TriggerSmartContract.contract_address)
+
+    contract_address_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                                 ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.TriggerSmartContract.contract_address)
 }
 inline std::string* TriggerSmartContract::_internal_mutable_contract_address() {
-  
-  return contract_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return contract_address_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* TriggerSmartContract::release_contract_address() {
-  // @@protoc_insertion_point(field_release:protocol.TriggerSmartContract.contract_address)
-  
-  return contract_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.TriggerSmartContract.contract_address)
+
+    return contract_address_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void TriggerSmartContract::set_allocated_contract_address(std::string* contract_address) {
-  if (contract_address != nullptr) {
-    
-  } else {
-    
-  }
-  contract_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), contract_address);
-  // @@protoc_insertion_point(field_set_allocated:protocol.TriggerSmartContract.contract_address)
+    if (contract_address != nullptr) {
+
+    } else {
+
+    }
+    contract_address_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), contract_address);
+    // @@protoc_insertion_point(field_set_allocated:protocol.TriggerSmartContract.contract_address)
 }
 
 // int64 call_value = 3;
 inline void TriggerSmartContract::clear_call_value() {
-  call_value_ = PROTOBUF_LONGLONG(0);
+    call_value_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 TriggerSmartContract::_internal_call_value() const {
-  return call_value_;
+    return call_value_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 TriggerSmartContract::call_value() const {
-  // @@protoc_insertion_point(field_get:protocol.TriggerSmartContract.call_value)
-  return _internal_call_value();
+    // @@protoc_insertion_point(field_get:protocol.TriggerSmartContract.call_value)
+    return _internal_call_value();
 }
 inline void TriggerSmartContract::_internal_set_call_value(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  call_value_ = value;
+
+    call_value_ = value;
 }
 inline void TriggerSmartContract::set_call_value(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_call_value(value);
-  // @@protoc_insertion_point(field_set:protocol.TriggerSmartContract.call_value)
+    _internal_set_call_value(value);
+    // @@protoc_insertion_point(field_set:protocol.TriggerSmartContract.call_value)
 }
 
 // bytes data = 4;
 inline void TriggerSmartContract::clear_data() {
-  data_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    data_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& TriggerSmartContract::data() const {
-  // @@protoc_insertion_point(field_get:protocol.TriggerSmartContract.data)
-  return _internal_data();
+    // @@protoc_insertion_point(field_get:protocol.TriggerSmartContract.data)
+    return _internal_data();
 }
 inline void TriggerSmartContract::set_data(const std::string& value) {
-  _internal_set_data(value);
-  // @@protoc_insertion_point(field_set:protocol.TriggerSmartContract.data)
+    _internal_set_data(value);
+    // @@protoc_insertion_point(field_set:protocol.TriggerSmartContract.data)
 }
 inline std::string* TriggerSmartContract::mutable_data() {
-  // @@protoc_insertion_point(field_mutable:protocol.TriggerSmartContract.data)
-  return _internal_mutable_data();
+    // @@protoc_insertion_point(field_mutable:protocol.TriggerSmartContract.data)
+    return _internal_mutable_data();
 }
 inline const std::string& TriggerSmartContract::_internal_data() const {
-  return data_.GetNoArena();
+    return data_.GetNoArena();
 }
 inline void TriggerSmartContract::_internal_set_data(const std::string& value) {
-  
-  data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+
+    data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void TriggerSmartContract::set_data(std::string&& value) {
-  
-  data_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.TriggerSmartContract.data)
+
+    data_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:protocol.TriggerSmartContract.data)
 }
 inline void TriggerSmartContract::set_data(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.TriggerSmartContract.data)
+    GOOGLE_DCHECK(value != nullptr);
+
+    data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:protocol.TriggerSmartContract.data)
 }
 inline void TriggerSmartContract::set_data(const void* value, size_t size) {
-  
-  data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.TriggerSmartContract.data)
+
+    data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                     ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:protocol.TriggerSmartContract.data)
 }
 inline std::string* TriggerSmartContract::_internal_mutable_data() {
-  
-  return data_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+
+    return data_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* TriggerSmartContract::release_data() {
-  // @@protoc_insertion_point(field_release:protocol.TriggerSmartContract.data)
-  
-  return data_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:protocol.TriggerSmartContract.data)
+
+    return data_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void TriggerSmartContract::set_allocated_data(std::string* data) {
-  if (data != nullptr) {
-    
-  } else {
-    
-  }
-  data_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), data);
-  // @@protoc_insertion_point(field_set_allocated:protocol.TriggerSmartContract.data)
+    if (data != nullptr) {
+
+    } else {
+
+    }
+    data_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), data);
+    // @@protoc_insertion_point(field_set_allocated:protocol.TriggerSmartContract.data)
 }
 
 // int64 call_token_value = 5;
 inline void TriggerSmartContract::clear_call_token_value() {
-  call_token_value_ = PROTOBUF_LONGLONG(0);
+    call_token_value_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 TriggerSmartContract::_internal_call_token_value() const {
-  return call_token_value_;
+    return call_token_value_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 TriggerSmartContract::call_token_value() const {
-  // @@protoc_insertion_point(field_get:protocol.TriggerSmartContract.call_token_value)
-  return _internal_call_token_value();
+    // @@protoc_insertion_point(field_get:protocol.TriggerSmartContract.call_token_value)
+    return _internal_call_token_value();
 }
 inline void TriggerSmartContract::_internal_set_call_token_value(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  call_token_value_ = value;
+
+    call_token_value_ = value;
 }
 inline void TriggerSmartContract::set_call_token_value(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_call_token_value(value);
-  // @@protoc_insertion_point(field_set:protocol.TriggerSmartContract.call_token_value)
+    _internal_set_call_token_value(value);
+    // @@protoc_insertion_point(field_set:protocol.TriggerSmartContract.call_token_value)
 }
 
 // int64 token_id = 6;
 inline void TriggerSmartContract::clear_token_id() {
-  token_id_ = PROTOBUF_LONGLONG(0);
+    token_id_ = PROTOBUF_LONGLONG(0);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 TriggerSmartContract::_internal_token_id() const {
-  return token_id_;
+    return token_id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 TriggerSmartContract::token_id() const {
-  // @@protoc_insertion_point(field_get:protocol.TriggerSmartContract.token_id)
-  return _internal_token_id();
+    // @@protoc_insertion_point(field_get:protocol.TriggerSmartContract.token_id)
+    return _internal_token_id();
 }
 inline void TriggerSmartContract::_internal_set_token_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  token_id_ = value;
+
+    token_id_ = value;
 }
 inline void TriggerSmartContract::set_token_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_token_id(value);
-  // @@protoc_insertion_point(field_set:protocol.TriggerSmartContract.token_id)
+    _internal_set_token_id(value);
+    // @@protoc_insertion_point(field_set:protocol.TriggerSmartContract.token_id)
 }
 
 #ifdef __GNUC__
-  #pragma GCC diagnostic pop
+#pragma GCC diagnostic pop
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
@@ -5093,12 +5123,12 @@ PROTOBUF_NAMESPACE_OPEN
 template <> struct is_proto_enum< ::protocol::Transaction_Contract_ContractType> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::protocol::Transaction_Contract_ContractType>() {
-  return ::protocol::Transaction_Contract_ContractType_descriptor();
+    return ::protocol::Transaction_Contract_ContractType_descriptor();
 }
 template <> struct is_proto_enum< ::protocol::ResourceCode> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::protocol::ResourceCode>() {
-  return ::protocol::ResourceCode_descriptor();
+    return ::protocol::ResourceCode_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

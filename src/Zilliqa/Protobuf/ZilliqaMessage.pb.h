@@ -43,15 +43,15 @@ PROTOBUF_NAMESPACE_CLOSE
 
 // Internal implementation detail -- do not use these members.
 struct TableStruct_ZilliqaMessage_2eproto {
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTableField entries[]
+    static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTableField entries[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
+    static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[5]
+    static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[5]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
-  static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
-  static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
+    static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
+    static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
+    static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_ZilliqaMessage_2eproto;
 namespace ZilliqaMessage {
@@ -83,938 +83,948 @@ namespace ZilliqaMessage {
 // ===================================================================
 
 class ByteArray :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZilliqaMessage.ByteArray) */ {
- public:
-  ByteArray();
-  virtual ~ByteArray();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:ZilliqaMessage.ByteArray) */
+public:
+    ByteArray();
+    virtual ~ByteArray();
 
-  ByteArray(const ByteArray& from);
-  ByteArray(ByteArray&& from) noexcept
-    : ByteArray() {
-    *this = ::std::move(from);
-  }
-
-  inline ByteArray& operator=(const ByteArray& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ByteArray& operator=(ByteArray&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    ByteArray(const ByteArray& from);
+    ByteArray(ByteArray&& from) noexcept
+        : ByteArray() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
+    inline ByteArray& operator=(const ByteArray& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline ByteArray& operator=(ByteArray&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const ByteArray& default_instance();
+    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+        return _internal_metadata_.unknown_fields();
+    }
+    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+        return _internal_metadata_.mutable_unknown_fields();
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const ByteArray* internal_default_instance() {
-    return reinterpret_cast<const ByteArray*>(
-               &_ByteArray_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    0;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const ByteArray& default_instance();
 
-  friend void swap(ByteArray& a, ByteArray& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ByteArray* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const ByteArray* internal_default_instance() {
+        return reinterpret_cast<const ByteArray*>(
+                   &_ByteArray_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        0;
 
-  // implements Message ----------------------------------------------
+    friend void swap(ByteArray& a, ByteArray& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(ByteArray* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline ByteArray* New() const final {
-    return CreateMaybeMessage<ByteArray>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  ByteArray* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<ByteArray>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const ByteArray& from);
-  void MergeFrom(const ByteArray& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline ByteArray* New() const final {
+        return CreateMaybeMessage<ByteArray>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    ByteArray* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<ByteArray>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const ByteArray& from);
+    void MergeFrom(const ByteArray& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(ByteArray* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ZilliqaMessage.ByteArray";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_ZilliqaMessage_2eproto);
-    return ::descriptor_table_ZilliqaMessage_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(ByteArray* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "ZilliqaMessage.ByteArray";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_ZilliqaMessage_2eproto);
+        return ::descriptor_table_ZilliqaMessage_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kDataFieldNumber = 1,
-  };
-  // required bytes data = 1;
-  bool has_data() const;
-  private:
-  bool _internal_has_data() const;
-  public:
-  void clear_data();
-  const std::string& data() const;
-  void set_data(const std::string& value);
-  void set_data(std::string&& value);
-  void set_data(const char* value);
-  void set_data(const void* value, size_t size);
-  std::string* mutable_data();
-  std::string* release_data();
-  void set_allocated_data(std::string* data);
-  private:
-  const std::string& _internal_data() const;
-  void _internal_set_data(const std::string& value);
-  std::string* _internal_mutable_data();
-  public:
+    // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:ZilliqaMessage.ByteArray)
- private:
-  class _Internal;
+    enum : int {
+        kDataFieldNumber = 1,
+    };
+    // required bytes data = 1;
+    bool has_data() const;
+private:
+    bool _internal_has_data() const;
+public:
+    void clear_data();
+    const std::string& data() const;
+    void set_data(const std::string& value);
+    void set_data(std::string&& value);
+    void set_data(const char* value);
+    void set_data(const void* value, size_t size);
+    std::string* mutable_data();
+    std::string* release_data();
+    void set_allocated_data(std::string* data);
+private:
+    const std::string& _internal_data() const;
+    void _internal_set_data(const std::string& value);
+    std::string* _internal_mutable_data();
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
-  friend struct ::TableStruct_ZilliqaMessage_2eproto;
+    // @@protoc_insertion_point(class_scope:ZilliqaMessage.ByteArray)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
+    friend struct ::TableStruct_ZilliqaMessage_2eproto;
 };
 // -------------------------------------------------------------------
 
 class ProtoTransactionCoreInfo :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZilliqaMessage.ProtoTransactionCoreInfo) */ {
- public:
-  ProtoTransactionCoreInfo();
-  virtual ~ProtoTransactionCoreInfo();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:ZilliqaMessage.ProtoTransactionCoreInfo) */
+public:
+    ProtoTransactionCoreInfo();
+    virtual ~ProtoTransactionCoreInfo();
 
-  ProtoTransactionCoreInfo(const ProtoTransactionCoreInfo& from);
-  ProtoTransactionCoreInfo(ProtoTransactionCoreInfo&& from) noexcept
-    : ProtoTransactionCoreInfo() {
-    *this = ::std::move(from);
-  }
-
-  inline ProtoTransactionCoreInfo& operator=(const ProtoTransactionCoreInfo& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ProtoTransactionCoreInfo& operator=(ProtoTransactionCoreInfo&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    ProtoTransactionCoreInfo(const ProtoTransactionCoreInfo& from);
+    ProtoTransactionCoreInfo(ProtoTransactionCoreInfo&& from) noexcept
+        : ProtoTransactionCoreInfo() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
+    inline ProtoTransactionCoreInfo& operator=(const ProtoTransactionCoreInfo& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline ProtoTransactionCoreInfo& operator=(ProtoTransactionCoreInfo&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const ProtoTransactionCoreInfo& default_instance();
+    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+        return _internal_metadata_.unknown_fields();
+    }
+    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+        return _internal_metadata_.mutable_unknown_fields();
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const ProtoTransactionCoreInfo* internal_default_instance() {
-    return reinterpret_cast<const ProtoTransactionCoreInfo*>(
-               &_ProtoTransactionCoreInfo_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const ProtoTransactionCoreInfo& default_instance();
 
-  friend void swap(ProtoTransactionCoreInfo& a, ProtoTransactionCoreInfo& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ProtoTransactionCoreInfo* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const ProtoTransactionCoreInfo* internal_default_instance() {
+        return reinterpret_cast<const ProtoTransactionCoreInfo*>(
+                   &_ProtoTransactionCoreInfo_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        1;
 
-  // implements Message ----------------------------------------------
+    friend void swap(ProtoTransactionCoreInfo& a, ProtoTransactionCoreInfo& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(ProtoTransactionCoreInfo* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline ProtoTransactionCoreInfo* New() const final {
-    return CreateMaybeMessage<ProtoTransactionCoreInfo>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  ProtoTransactionCoreInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<ProtoTransactionCoreInfo>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const ProtoTransactionCoreInfo& from);
-  void MergeFrom(const ProtoTransactionCoreInfo& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline ProtoTransactionCoreInfo* New() const final {
+        return CreateMaybeMessage<ProtoTransactionCoreInfo>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    ProtoTransactionCoreInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<ProtoTransactionCoreInfo>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const ProtoTransactionCoreInfo& from);
+    void MergeFrom(const ProtoTransactionCoreInfo& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(ProtoTransactionCoreInfo* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ZilliqaMessage.ProtoTransactionCoreInfo";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_ZilliqaMessage_2eproto);
-    return ::descriptor_table_ZilliqaMessage_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(ProtoTransactionCoreInfo* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "ZilliqaMessage.ProtoTransactionCoreInfo";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_ZilliqaMessage_2eproto);
+        return ::descriptor_table_ZilliqaMessage_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kToaddrFieldNumber = 3,
-    kCodeFieldNumber = 8,
-    kDataFieldNumber = 9,
-    kSenderpubkeyFieldNumber = 4,
-    kAmountFieldNumber = 5,
-    kGaspriceFieldNumber = 6,
-    kNonceFieldNumber = 2,
-    kGaslimitFieldNumber = 7,
-    kVersionFieldNumber = 1,
-  };
-  // optional bytes toaddr = 3;
-  bool has_toaddr() const;
-  private:
-  bool _internal_has_toaddr() const;
-  public:
-  void clear_toaddr();
-  const std::string& toaddr() const;
-  void set_toaddr(const std::string& value);
-  void set_toaddr(std::string&& value);
-  void set_toaddr(const char* value);
-  void set_toaddr(const void* value, size_t size);
-  std::string* mutable_toaddr();
-  std::string* release_toaddr();
-  void set_allocated_toaddr(std::string* toaddr);
-  private:
-  const std::string& _internal_toaddr() const;
-  void _internal_set_toaddr(const std::string& value);
-  std::string* _internal_mutable_toaddr();
-  public:
+    // accessors -------------------------------------------------------
 
-  // optional bytes code = 8;
-  bool has_code() const;
-  private:
-  bool _internal_has_code() const;
-  public:
-  void clear_code();
-  const std::string& code() const;
-  void set_code(const std::string& value);
-  void set_code(std::string&& value);
-  void set_code(const char* value);
-  void set_code(const void* value, size_t size);
-  std::string* mutable_code();
-  std::string* release_code();
-  void set_allocated_code(std::string* code);
-  private:
-  const std::string& _internal_code() const;
-  void _internal_set_code(const std::string& value);
-  std::string* _internal_mutable_code();
-  public:
+    enum : int {
+        kToaddrFieldNumber = 3,
+        kCodeFieldNumber = 8,
+        kDataFieldNumber = 9,
+        kSenderpubkeyFieldNumber = 4,
+        kAmountFieldNumber = 5,
+        kGaspriceFieldNumber = 6,
+        kNonceFieldNumber = 2,
+        kGaslimitFieldNumber = 7,
+        kVersionFieldNumber = 1,
+    };
+    // optional bytes toaddr = 3;
+    bool has_toaddr() const;
+private:
+    bool _internal_has_toaddr() const;
+public:
+    void clear_toaddr();
+    const std::string& toaddr() const;
+    void set_toaddr(const std::string& value);
+    void set_toaddr(std::string&& value);
+    void set_toaddr(const char* value);
+    void set_toaddr(const void* value, size_t size);
+    std::string* mutable_toaddr();
+    std::string* release_toaddr();
+    void set_allocated_toaddr(std::string* toaddr);
+private:
+    const std::string& _internal_toaddr() const;
+    void _internal_set_toaddr(const std::string& value);
+    std::string* _internal_mutable_toaddr();
+public:
 
-  // optional bytes data = 9;
-  bool has_data() const;
-  private:
-  bool _internal_has_data() const;
-  public:
-  void clear_data();
-  const std::string& data() const;
-  void set_data(const std::string& value);
-  void set_data(std::string&& value);
-  void set_data(const char* value);
-  void set_data(const void* value, size_t size);
-  std::string* mutable_data();
-  std::string* release_data();
-  void set_allocated_data(std::string* data);
-  private:
-  const std::string& _internal_data() const;
-  void _internal_set_data(const std::string& value);
-  std::string* _internal_mutable_data();
-  public:
+    // optional bytes code = 8;
+    bool has_code() const;
+private:
+    bool _internal_has_code() const;
+public:
+    void clear_code();
+    const std::string& code() const;
+    void set_code(const std::string& value);
+    void set_code(std::string&& value);
+    void set_code(const char* value);
+    void set_code(const void* value, size_t size);
+    std::string* mutable_code();
+    std::string* release_code();
+    void set_allocated_code(std::string* code);
+private:
+    const std::string& _internal_code() const;
+    void _internal_set_code(const std::string& value);
+    std::string* _internal_mutable_code();
+public:
 
-  // optional .ZilliqaMessage.ByteArray senderpubkey = 4;
-  bool has_senderpubkey() const;
-  private:
-  bool _internal_has_senderpubkey() const;
-  public:
-  void clear_senderpubkey();
-  const ::ZilliqaMessage::ByteArray& senderpubkey() const;
-  ::ZilliqaMessage::ByteArray* release_senderpubkey();
-  ::ZilliqaMessage::ByteArray* mutable_senderpubkey();
-  void set_allocated_senderpubkey(::ZilliqaMessage::ByteArray* senderpubkey);
-  private:
-  const ::ZilliqaMessage::ByteArray& _internal_senderpubkey() const;
-  ::ZilliqaMessage::ByteArray* _internal_mutable_senderpubkey();
-  public:
+    // optional bytes data = 9;
+    bool has_data() const;
+private:
+    bool _internal_has_data() const;
+public:
+    void clear_data();
+    const std::string& data() const;
+    void set_data(const std::string& value);
+    void set_data(std::string&& value);
+    void set_data(const char* value);
+    void set_data(const void* value, size_t size);
+    std::string* mutable_data();
+    std::string* release_data();
+    void set_allocated_data(std::string* data);
+private:
+    const std::string& _internal_data() const;
+    void _internal_set_data(const std::string& value);
+    std::string* _internal_mutable_data();
+public:
 
-  // optional .ZilliqaMessage.ByteArray amount = 5;
-  bool has_amount() const;
-  private:
-  bool _internal_has_amount() const;
-  public:
-  void clear_amount();
-  const ::ZilliqaMessage::ByteArray& amount() const;
-  ::ZilliqaMessage::ByteArray* release_amount();
-  ::ZilliqaMessage::ByteArray* mutable_amount();
-  void set_allocated_amount(::ZilliqaMessage::ByteArray* amount);
-  private:
-  const ::ZilliqaMessage::ByteArray& _internal_amount() const;
-  ::ZilliqaMessage::ByteArray* _internal_mutable_amount();
-  public:
+    // optional .ZilliqaMessage.ByteArray senderpubkey = 4;
+    bool has_senderpubkey() const;
+private:
+    bool _internal_has_senderpubkey() const;
+public:
+    void clear_senderpubkey();
+    const ::ZilliqaMessage::ByteArray& senderpubkey() const;
+    ::ZilliqaMessage::ByteArray* release_senderpubkey();
+    ::ZilliqaMessage::ByteArray* mutable_senderpubkey();
+    void set_allocated_senderpubkey(::ZilliqaMessage::ByteArray* senderpubkey);
+private:
+    const ::ZilliqaMessage::ByteArray& _internal_senderpubkey() const;
+    ::ZilliqaMessage::ByteArray* _internal_mutable_senderpubkey();
+public:
 
-  // optional .ZilliqaMessage.ByteArray gasprice = 6;
-  bool has_gasprice() const;
-  private:
-  bool _internal_has_gasprice() const;
-  public:
-  void clear_gasprice();
-  const ::ZilliqaMessage::ByteArray& gasprice() const;
-  ::ZilliqaMessage::ByteArray* release_gasprice();
-  ::ZilliqaMessage::ByteArray* mutable_gasprice();
-  void set_allocated_gasprice(::ZilliqaMessage::ByteArray* gasprice);
-  private:
-  const ::ZilliqaMessage::ByteArray& _internal_gasprice() const;
-  ::ZilliqaMessage::ByteArray* _internal_mutable_gasprice();
-  public:
+    // optional .ZilliqaMessage.ByteArray amount = 5;
+    bool has_amount() const;
+private:
+    bool _internal_has_amount() const;
+public:
+    void clear_amount();
+    const ::ZilliqaMessage::ByteArray& amount() const;
+    ::ZilliqaMessage::ByteArray* release_amount();
+    ::ZilliqaMessage::ByteArray* mutable_amount();
+    void set_allocated_amount(::ZilliqaMessage::ByteArray* amount);
+private:
+    const ::ZilliqaMessage::ByteArray& _internal_amount() const;
+    ::ZilliqaMessage::ByteArray* _internal_mutable_amount();
+public:
 
-  // optional uint64 nonce = 2;
-  bool has_nonce() const;
-  private:
-  bool _internal_has_nonce() const;
-  public:
-  void clear_nonce();
-  ::PROTOBUF_NAMESPACE_ID::uint64 nonce() const;
-  void set_nonce(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_nonce() const;
-  void _internal_set_nonce(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  public:
+    // optional .ZilliqaMessage.ByteArray gasprice = 6;
+    bool has_gasprice() const;
+private:
+    bool _internal_has_gasprice() const;
+public:
+    void clear_gasprice();
+    const ::ZilliqaMessage::ByteArray& gasprice() const;
+    ::ZilliqaMessage::ByteArray* release_gasprice();
+    ::ZilliqaMessage::ByteArray* mutable_gasprice();
+    void set_allocated_gasprice(::ZilliqaMessage::ByteArray* gasprice);
+private:
+    const ::ZilliqaMessage::ByteArray& _internal_gasprice() const;
+    ::ZilliqaMessage::ByteArray* _internal_mutable_gasprice();
+public:
 
-  // optional uint64 gaslimit = 7;
-  bool has_gaslimit() const;
-  private:
-  bool _internal_has_gaslimit() const;
-  public:
-  void clear_gaslimit();
-  ::PROTOBUF_NAMESPACE_ID::uint64 gaslimit() const;
-  void set_gaslimit(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_gaslimit() const;
-  void _internal_set_gaslimit(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  public:
+    // optional uint64 nonce = 2;
+    bool has_nonce() const;
+private:
+    bool _internal_has_nonce() const;
+public:
+    void clear_nonce();
+    ::PROTOBUF_NAMESPACE_ID::uint64 nonce() const;
+    void set_nonce(::PROTOBUF_NAMESPACE_ID::uint64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::uint64 _internal_nonce() const;
+    void _internal_set_nonce(::PROTOBUF_NAMESPACE_ID::uint64 value);
+public:
 
-  // optional uint32 version = 1;
-  bool has_version() const;
-  private:
-  bool _internal_has_version() const;
-  public:
-  void clear_version();
-  ::PROTOBUF_NAMESPACE_ID::uint32 version() const;
-  void set_version(::PROTOBUF_NAMESPACE_ID::uint32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_version() const;
-  void _internal_set_version(::PROTOBUF_NAMESPACE_ID::uint32 value);
-  public:
+    // optional uint64 gaslimit = 7;
+    bool has_gaslimit() const;
+private:
+    bool _internal_has_gaslimit() const;
+public:
+    void clear_gaslimit();
+    ::PROTOBUF_NAMESPACE_ID::uint64 gaslimit() const;
+    void set_gaslimit(::PROTOBUF_NAMESPACE_ID::uint64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::uint64 _internal_gaslimit() const;
+    void _internal_set_gaslimit(::PROTOBUF_NAMESPACE_ID::uint64 value);
+public:
 
-  // @@protoc_insertion_point(class_scope:ZilliqaMessage.ProtoTransactionCoreInfo)
- private:
-  class _Internal;
+    // optional uint32 version = 1;
+    bool has_version() const;
+private:
+    bool _internal_has_version() const;
+public:
+    void clear_version();
+    ::PROTOBUF_NAMESPACE_ID::uint32 version() const;
+    void set_version(::PROTOBUF_NAMESPACE_ID::uint32 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::uint32 _internal_version() const;
+    void _internal_set_version(::PROTOBUF_NAMESPACE_ID::uint32 value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr toaddr_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
-  ::ZilliqaMessage::ByteArray* senderpubkey_;
-  ::ZilliqaMessage::ByteArray* amount_;
-  ::ZilliqaMessage::ByteArray* gasprice_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 nonce_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 gaslimit_;
-  ::PROTOBUF_NAMESPACE_ID::uint32 version_;
-  friend struct ::TableStruct_ZilliqaMessage_2eproto;
+    // @@protoc_insertion_point(class_scope:ZilliqaMessage.ProtoTransactionCoreInfo)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr toaddr_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
+    ::ZilliqaMessage::ByteArray* senderpubkey_;
+    ::ZilliqaMessage::ByteArray* amount_;
+    ::ZilliqaMessage::ByteArray* gasprice_;
+    ::PROTOBUF_NAMESPACE_ID::uint64 nonce_;
+    ::PROTOBUF_NAMESPACE_ID::uint64 gaslimit_;
+    ::PROTOBUF_NAMESPACE_ID::uint32 version_;
+    friend struct ::TableStruct_ZilliqaMessage_2eproto;
 };
 // -------------------------------------------------------------------
 
 class ProtoTransaction :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZilliqaMessage.ProtoTransaction) */ {
- public:
-  ProtoTransaction();
-  virtual ~ProtoTransaction();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:ZilliqaMessage.ProtoTransaction) */
+public:
+    ProtoTransaction();
+    virtual ~ProtoTransaction();
 
-  ProtoTransaction(const ProtoTransaction& from);
-  ProtoTransaction(ProtoTransaction&& from) noexcept
-    : ProtoTransaction() {
-    *this = ::std::move(from);
-  }
-
-  inline ProtoTransaction& operator=(const ProtoTransaction& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ProtoTransaction& operator=(ProtoTransaction&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    ProtoTransaction(const ProtoTransaction& from);
+    ProtoTransaction(ProtoTransaction&& from) noexcept
+        : ProtoTransaction() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
+    inline ProtoTransaction& operator=(const ProtoTransaction& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline ProtoTransaction& operator=(ProtoTransaction&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const ProtoTransaction& default_instance();
+    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+        return _internal_metadata_.unknown_fields();
+    }
+    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+        return _internal_metadata_.mutable_unknown_fields();
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const ProtoTransaction* internal_default_instance() {
-    return reinterpret_cast<const ProtoTransaction*>(
-               &_ProtoTransaction_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const ProtoTransaction& default_instance();
 
-  friend void swap(ProtoTransaction& a, ProtoTransaction& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ProtoTransaction* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const ProtoTransaction* internal_default_instance() {
+        return reinterpret_cast<const ProtoTransaction*>(
+                   &_ProtoTransaction_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        2;
 
-  // implements Message ----------------------------------------------
+    friend void swap(ProtoTransaction& a, ProtoTransaction& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(ProtoTransaction* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline ProtoTransaction* New() const final {
-    return CreateMaybeMessage<ProtoTransaction>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  ProtoTransaction* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<ProtoTransaction>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const ProtoTransaction& from);
-  void MergeFrom(const ProtoTransaction& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline ProtoTransaction* New() const final {
+        return CreateMaybeMessage<ProtoTransaction>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    ProtoTransaction* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<ProtoTransaction>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const ProtoTransaction& from);
+    void MergeFrom(const ProtoTransaction& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(ProtoTransaction* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ZilliqaMessage.ProtoTransaction";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_ZilliqaMessage_2eproto);
-    return ::descriptor_table_ZilliqaMessage_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(ProtoTransaction* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "ZilliqaMessage.ProtoTransaction";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_ZilliqaMessage_2eproto);
+        return ::descriptor_table_ZilliqaMessage_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kTranidFieldNumber = 1,
-    kInfoFieldNumber = 2,
-    kSignatureFieldNumber = 3,
-  };
-  // optional bytes tranid = 1;
-  bool has_tranid() const;
-  private:
-  bool _internal_has_tranid() const;
-  public:
-  void clear_tranid();
-  const std::string& tranid() const;
-  void set_tranid(const std::string& value);
-  void set_tranid(std::string&& value);
-  void set_tranid(const char* value);
-  void set_tranid(const void* value, size_t size);
-  std::string* mutable_tranid();
-  std::string* release_tranid();
-  void set_allocated_tranid(std::string* tranid);
-  private:
-  const std::string& _internal_tranid() const;
-  void _internal_set_tranid(const std::string& value);
-  std::string* _internal_mutable_tranid();
-  public:
+    // accessors -------------------------------------------------------
 
-  // optional .ZilliqaMessage.ProtoTransactionCoreInfo info = 2;
-  bool has_info() const;
-  private:
-  bool _internal_has_info() const;
-  public:
-  void clear_info();
-  const ::ZilliqaMessage::ProtoTransactionCoreInfo& info() const;
-  ::ZilliqaMessage::ProtoTransactionCoreInfo* release_info();
-  ::ZilliqaMessage::ProtoTransactionCoreInfo* mutable_info();
-  void set_allocated_info(::ZilliqaMessage::ProtoTransactionCoreInfo* info);
-  private:
-  const ::ZilliqaMessage::ProtoTransactionCoreInfo& _internal_info() const;
-  ::ZilliqaMessage::ProtoTransactionCoreInfo* _internal_mutable_info();
-  public:
+    enum : int {
+        kTranidFieldNumber = 1,
+        kInfoFieldNumber = 2,
+        kSignatureFieldNumber = 3,
+    };
+    // optional bytes tranid = 1;
+    bool has_tranid() const;
+private:
+    bool _internal_has_tranid() const;
+public:
+    void clear_tranid();
+    const std::string& tranid() const;
+    void set_tranid(const std::string& value);
+    void set_tranid(std::string&& value);
+    void set_tranid(const char* value);
+    void set_tranid(const void* value, size_t size);
+    std::string* mutable_tranid();
+    std::string* release_tranid();
+    void set_allocated_tranid(std::string* tranid);
+private:
+    const std::string& _internal_tranid() const;
+    void _internal_set_tranid(const std::string& value);
+    std::string* _internal_mutable_tranid();
+public:
 
-  // optional .ZilliqaMessage.ByteArray signature = 3;
-  bool has_signature() const;
-  private:
-  bool _internal_has_signature() const;
-  public:
-  void clear_signature();
-  const ::ZilliqaMessage::ByteArray& signature() const;
-  ::ZilliqaMessage::ByteArray* release_signature();
-  ::ZilliqaMessage::ByteArray* mutable_signature();
-  void set_allocated_signature(::ZilliqaMessage::ByteArray* signature);
-  private:
-  const ::ZilliqaMessage::ByteArray& _internal_signature() const;
-  ::ZilliqaMessage::ByteArray* _internal_mutable_signature();
-  public:
+    // optional .ZilliqaMessage.ProtoTransactionCoreInfo info = 2;
+    bool has_info() const;
+private:
+    bool _internal_has_info() const;
+public:
+    void clear_info();
+    const ::ZilliqaMessage::ProtoTransactionCoreInfo& info() const;
+    ::ZilliqaMessage::ProtoTransactionCoreInfo* release_info();
+    ::ZilliqaMessage::ProtoTransactionCoreInfo* mutable_info();
+    void set_allocated_info(::ZilliqaMessage::ProtoTransactionCoreInfo* info);
+private:
+    const ::ZilliqaMessage::ProtoTransactionCoreInfo& _internal_info() const;
+    ::ZilliqaMessage::ProtoTransactionCoreInfo* _internal_mutable_info();
+public:
 
-  // @@protoc_insertion_point(class_scope:ZilliqaMessage.ProtoTransaction)
- private:
-  class _Internal;
+    // optional .ZilliqaMessage.ByteArray signature = 3;
+    bool has_signature() const;
+private:
+    bool _internal_has_signature() const;
+public:
+    void clear_signature();
+    const ::ZilliqaMessage::ByteArray& signature() const;
+    ::ZilliqaMessage::ByteArray* release_signature();
+    ::ZilliqaMessage::ByteArray* mutable_signature();
+    void set_allocated_signature(::ZilliqaMessage::ByteArray* signature);
+private:
+    const ::ZilliqaMessage::ByteArray& _internal_signature() const;
+    ::ZilliqaMessage::ByteArray* _internal_mutable_signature();
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tranid_;
-  ::ZilliqaMessage::ProtoTransactionCoreInfo* info_;
-  ::ZilliqaMessage::ByteArray* signature_;
-  friend struct ::TableStruct_ZilliqaMessage_2eproto;
+    // @@protoc_insertion_point(class_scope:ZilliqaMessage.ProtoTransaction)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tranid_;
+    ::ZilliqaMessage::ProtoTransactionCoreInfo* info_;
+    ::ZilliqaMessage::ByteArray* signature_;
+    friend struct ::TableStruct_ZilliqaMessage_2eproto;
 };
 // -------------------------------------------------------------------
 
 class ProtoTransactionReceipt :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZilliqaMessage.ProtoTransactionReceipt) */ {
- public:
-  ProtoTransactionReceipt();
-  virtual ~ProtoTransactionReceipt();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:ZilliqaMessage.ProtoTransactionReceipt) */
+public:
+    ProtoTransactionReceipt();
+    virtual ~ProtoTransactionReceipt();
 
-  ProtoTransactionReceipt(const ProtoTransactionReceipt& from);
-  ProtoTransactionReceipt(ProtoTransactionReceipt&& from) noexcept
-    : ProtoTransactionReceipt() {
-    *this = ::std::move(from);
-  }
-
-  inline ProtoTransactionReceipt& operator=(const ProtoTransactionReceipt& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ProtoTransactionReceipt& operator=(ProtoTransactionReceipt&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    ProtoTransactionReceipt(const ProtoTransactionReceipt& from);
+    ProtoTransactionReceipt(ProtoTransactionReceipt&& from) noexcept
+        : ProtoTransactionReceipt() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
+    inline ProtoTransactionReceipt& operator=(const ProtoTransactionReceipt& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline ProtoTransactionReceipt& operator=(ProtoTransactionReceipt&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const ProtoTransactionReceipt& default_instance();
+    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+        return _internal_metadata_.unknown_fields();
+    }
+    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+        return _internal_metadata_.mutable_unknown_fields();
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const ProtoTransactionReceipt* internal_default_instance() {
-    return reinterpret_cast<const ProtoTransactionReceipt*>(
-               &_ProtoTransactionReceipt_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    3;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const ProtoTransactionReceipt& default_instance();
 
-  friend void swap(ProtoTransactionReceipt& a, ProtoTransactionReceipt& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ProtoTransactionReceipt* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const ProtoTransactionReceipt* internal_default_instance() {
+        return reinterpret_cast<const ProtoTransactionReceipt*>(
+                   &_ProtoTransactionReceipt_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        3;
 
-  // implements Message ----------------------------------------------
+    friend void swap(ProtoTransactionReceipt& a, ProtoTransactionReceipt& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(ProtoTransactionReceipt* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline ProtoTransactionReceipt* New() const final {
-    return CreateMaybeMessage<ProtoTransactionReceipt>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  ProtoTransactionReceipt* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<ProtoTransactionReceipt>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const ProtoTransactionReceipt& from);
-  void MergeFrom(const ProtoTransactionReceipt& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline ProtoTransactionReceipt* New() const final {
+        return CreateMaybeMessage<ProtoTransactionReceipt>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    ProtoTransactionReceipt* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<ProtoTransactionReceipt>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const ProtoTransactionReceipt& from);
+    void MergeFrom(const ProtoTransactionReceipt& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(ProtoTransactionReceipt* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ZilliqaMessage.ProtoTransactionReceipt";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_ZilliqaMessage_2eproto);
-    return ::descriptor_table_ZilliqaMessage_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(ProtoTransactionReceipt* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "ZilliqaMessage.ProtoTransactionReceipt";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_ZilliqaMessage_2eproto);
+        return ::descriptor_table_ZilliqaMessage_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kReceiptFieldNumber = 1,
-    kCumgasFieldNumber = 2,
-  };
-  // optional bytes receipt = 1;
-  bool has_receipt() const;
-  private:
-  bool _internal_has_receipt() const;
-  public:
-  void clear_receipt();
-  const std::string& receipt() const;
-  void set_receipt(const std::string& value);
-  void set_receipt(std::string&& value);
-  void set_receipt(const char* value);
-  void set_receipt(const void* value, size_t size);
-  std::string* mutable_receipt();
-  std::string* release_receipt();
-  void set_allocated_receipt(std::string* receipt);
-  private:
-  const std::string& _internal_receipt() const;
-  void _internal_set_receipt(const std::string& value);
-  std::string* _internal_mutable_receipt();
-  public:
+    // accessors -------------------------------------------------------
 
-  // optional uint64 cumgas = 2;
-  bool has_cumgas() const;
-  private:
-  bool _internal_has_cumgas() const;
-  public:
-  void clear_cumgas();
-  ::PROTOBUF_NAMESPACE_ID::uint64 cumgas() const;
-  void set_cumgas(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_cumgas() const;
-  void _internal_set_cumgas(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  public:
+    enum : int {
+        kReceiptFieldNumber = 1,
+        kCumgasFieldNumber = 2,
+    };
+    // optional bytes receipt = 1;
+    bool has_receipt() const;
+private:
+    bool _internal_has_receipt() const;
+public:
+    void clear_receipt();
+    const std::string& receipt() const;
+    void set_receipt(const std::string& value);
+    void set_receipt(std::string&& value);
+    void set_receipt(const char* value);
+    void set_receipt(const void* value, size_t size);
+    std::string* mutable_receipt();
+    std::string* release_receipt();
+    void set_allocated_receipt(std::string* receipt);
+private:
+    const std::string& _internal_receipt() const;
+    void _internal_set_receipt(const std::string& value);
+    std::string* _internal_mutable_receipt();
+public:
 
-  // @@protoc_insertion_point(class_scope:ZilliqaMessage.ProtoTransactionReceipt)
- private:
-  class _Internal;
+    // optional uint64 cumgas = 2;
+    bool has_cumgas() const;
+private:
+    bool _internal_has_cumgas() const;
+public:
+    void clear_cumgas();
+    ::PROTOBUF_NAMESPACE_ID::uint64 cumgas() const;
+    void set_cumgas(::PROTOBUF_NAMESPACE_ID::uint64 value);
+private:
+    ::PROTOBUF_NAMESPACE_ID::uint64 _internal_cumgas() const;
+    void _internal_set_cumgas(::PROTOBUF_NAMESPACE_ID::uint64 value);
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr receipt_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 cumgas_;
-  friend struct ::TableStruct_ZilliqaMessage_2eproto;
+    // @@protoc_insertion_point(class_scope:ZilliqaMessage.ProtoTransactionReceipt)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr receipt_;
+    ::PROTOBUF_NAMESPACE_ID::uint64 cumgas_;
+    friend struct ::TableStruct_ZilliqaMessage_2eproto;
 };
 // -------------------------------------------------------------------
 
 class ProtoTransactionWithReceipt :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZilliqaMessage.ProtoTransactionWithReceipt) */ {
- public:
-  ProtoTransactionWithReceipt();
-  virtual ~ProtoTransactionWithReceipt();
+    public ::PROTOBUF_NAMESPACE_ID::Message { /* @@protoc_insertion_point(class_definition:ZilliqaMessage.ProtoTransactionWithReceipt) */
+public:
+    ProtoTransactionWithReceipt();
+    virtual ~ProtoTransactionWithReceipt();
 
-  ProtoTransactionWithReceipt(const ProtoTransactionWithReceipt& from);
-  ProtoTransactionWithReceipt(ProtoTransactionWithReceipt&& from) noexcept
-    : ProtoTransactionWithReceipt() {
-    *this = ::std::move(from);
-  }
-
-  inline ProtoTransactionWithReceipt& operator=(const ProtoTransactionWithReceipt& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ProtoTransactionWithReceipt& operator=(ProtoTransactionWithReceipt&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
+    ProtoTransactionWithReceipt(const ProtoTransactionWithReceipt& from);
+    ProtoTransactionWithReceipt(ProtoTransactionWithReceipt&& from) noexcept
+        : ProtoTransactionWithReceipt() {
+        *this = ::std::move(from);
     }
-    return *this;
-  }
 
-  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
+    inline ProtoTransactionWithReceipt& operator=(const ProtoTransactionWithReceipt& from) {
+        CopyFrom(from);
+        return *this;
+    }
+    inline ProtoTransactionWithReceipt& operator=(ProtoTransactionWithReceipt&& from) noexcept {
+        if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+            if (this != &from) InternalSwap(&from);
+        } else {
+            CopyFrom(from);
+        }
+        return *this;
+    }
 
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const ProtoTransactionWithReceipt& default_instance();
+    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+        return _internal_metadata_.unknown_fields();
+    }
+    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+        return _internal_metadata_.mutable_unknown_fields();
+    }
 
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const ProtoTransactionWithReceipt* internal_default_instance() {
-    return reinterpret_cast<const ProtoTransactionWithReceipt*>(
-               &_ProtoTransactionWithReceipt_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    4;
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+        return GetDescriptor();
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+        return GetMetadataStatic().descriptor;
+    }
+    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+        return GetMetadataStatic().reflection;
+    }
+    static const ProtoTransactionWithReceipt& default_instance();
 
-  friend void swap(ProtoTransactionWithReceipt& a, ProtoTransactionWithReceipt& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ProtoTransactionWithReceipt* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
+    static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+    static inline const ProtoTransactionWithReceipt* internal_default_instance() {
+        return reinterpret_cast<const ProtoTransactionWithReceipt*>(
+                   &_ProtoTransactionWithReceipt_default_instance_);
+    }
+    static constexpr int kIndexInFileMessages =
+        4;
 
-  // implements Message ----------------------------------------------
+    friend void swap(ProtoTransactionWithReceipt& a, ProtoTransactionWithReceipt& b) {
+        a.Swap(&b);
+    }
+    inline void Swap(ProtoTransactionWithReceipt* other) {
+        if (other == this) return;
+        InternalSwap(other);
+    }
 
-  inline ProtoTransactionWithReceipt* New() const final {
-    return CreateMaybeMessage<ProtoTransactionWithReceipt>(nullptr);
-  }
+    // implements Message ----------------------------------------------
 
-  ProtoTransactionWithReceipt* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<ProtoTransactionWithReceipt>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const ProtoTransactionWithReceipt& from);
-  void MergeFrom(const ProtoTransactionWithReceipt& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
+    inline ProtoTransactionWithReceipt* New() const final {
+        return CreateMaybeMessage<ProtoTransactionWithReceipt>(nullptr);
+    }
 
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+    ProtoTransactionWithReceipt* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+        return CreateMaybeMessage<ProtoTransactionWithReceipt>(arena);
+    }
+    void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+    void CopyFrom(const ProtoTransactionWithReceipt& from);
+    void MergeFrom(const ProtoTransactionWithReceipt& from);
+    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+    bool IsInitialized() const final;
 
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(ProtoTransactionWithReceipt* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ZilliqaMessage.ProtoTransactionWithReceipt";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
+    size_t ByteSizeLong() const final;
+    const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+    ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+        ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+    int GetCachedSize() const final {
+        return _cached_size_.Get();
+    }
 
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_ZilliqaMessage_2eproto);
-    return ::descriptor_table_ZilliqaMessage_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
+private:
+    inline void SharedCtor();
+    inline void SharedDtor();
+    void SetCachedSize(int size) const final;
+    void InternalSwap(ProtoTransactionWithReceipt* other);
+    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+        return "ZilliqaMessage.ProtoTransactionWithReceipt";
+    }
+private:
+    inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+        return nullptr;
+    }
+    inline void* MaybeArenaPtr() const {
+        return nullptr;
+    }
+public:
 
-  public:
+    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+private:
+    static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+        ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_ZilliqaMessage_2eproto);
+        return ::descriptor_table_ZilliqaMessage_2eproto.file_level_metadata[kIndexInFileMessages];
+    }
 
-  // nested types ----------------------------------------------------
+public:
 
-  // accessors -------------------------------------------------------
+    // nested types ----------------------------------------------------
 
-  enum : int {
-    kTransactionFieldNumber = 1,
-    kReceiptFieldNumber = 2,
-  };
-  // optional .ZilliqaMessage.ProtoTransaction transaction = 1;
-  bool has_transaction() const;
-  private:
-  bool _internal_has_transaction() const;
-  public:
-  void clear_transaction();
-  const ::ZilliqaMessage::ProtoTransaction& transaction() const;
-  ::ZilliqaMessage::ProtoTransaction* release_transaction();
-  ::ZilliqaMessage::ProtoTransaction* mutable_transaction();
-  void set_allocated_transaction(::ZilliqaMessage::ProtoTransaction* transaction);
-  private:
-  const ::ZilliqaMessage::ProtoTransaction& _internal_transaction() const;
-  ::ZilliqaMessage::ProtoTransaction* _internal_mutable_transaction();
-  public:
+    // accessors -------------------------------------------------------
 
-  // optional .ZilliqaMessage.ProtoTransactionReceipt receipt = 2;
-  bool has_receipt() const;
-  private:
-  bool _internal_has_receipt() const;
-  public:
-  void clear_receipt();
-  const ::ZilliqaMessage::ProtoTransactionReceipt& receipt() const;
-  ::ZilliqaMessage::ProtoTransactionReceipt* release_receipt();
-  ::ZilliqaMessage::ProtoTransactionReceipt* mutable_receipt();
-  void set_allocated_receipt(::ZilliqaMessage::ProtoTransactionReceipt* receipt);
-  private:
-  const ::ZilliqaMessage::ProtoTransactionReceipt& _internal_receipt() const;
-  ::ZilliqaMessage::ProtoTransactionReceipt* _internal_mutable_receipt();
-  public:
+    enum : int {
+        kTransactionFieldNumber = 1,
+        kReceiptFieldNumber = 2,
+    };
+    // optional .ZilliqaMessage.ProtoTransaction transaction = 1;
+    bool has_transaction() const;
+private:
+    bool _internal_has_transaction() const;
+public:
+    void clear_transaction();
+    const ::ZilliqaMessage::ProtoTransaction& transaction() const;
+    ::ZilliqaMessage::ProtoTransaction* release_transaction();
+    ::ZilliqaMessage::ProtoTransaction* mutable_transaction();
+    void set_allocated_transaction(::ZilliqaMessage::ProtoTransaction* transaction);
+private:
+    const ::ZilliqaMessage::ProtoTransaction& _internal_transaction() const;
+    ::ZilliqaMessage::ProtoTransaction* _internal_mutable_transaction();
+public:
 
-  // @@protoc_insertion_point(class_scope:ZilliqaMessage.ProtoTransactionWithReceipt)
- private:
-  class _Internal;
+    // optional .ZilliqaMessage.ProtoTransactionReceipt receipt = 2;
+    bool has_receipt() const;
+private:
+    bool _internal_has_receipt() const;
+public:
+    void clear_receipt();
+    const ::ZilliqaMessage::ProtoTransactionReceipt& receipt() const;
+    ::ZilliqaMessage::ProtoTransactionReceipt* release_receipt();
+    ::ZilliqaMessage::ProtoTransactionReceipt* mutable_receipt();
+    void set_allocated_receipt(::ZilliqaMessage::ProtoTransactionReceipt* receipt);
+private:
+    const ::ZilliqaMessage::ProtoTransactionReceipt& _internal_receipt() const;
+    ::ZilliqaMessage::ProtoTransactionReceipt* _internal_mutable_receipt();
+public:
 
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::ZilliqaMessage::ProtoTransaction* transaction_;
-  ::ZilliqaMessage::ProtoTransactionReceipt* receipt_;
-  friend struct ::TableStruct_ZilliqaMessage_2eproto;
+    // @@protoc_insertion_point(class_scope:ZilliqaMessage.ProtoTransactionWithReceipt)
+private:
+    class _Internal;
+
+    ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::ZilliqaMessage::ProtoTransaction* transaction_;
+    ::ZilliqaMessage::ProtoTransactionReceipt* receipt_;
+    friend struct ::TableStruct_ZilliqaMessage_2eproto;
 };
 // ===================================================================
 
@@ -1022,80 +1032,80 @@ class ProtoTransactionWithReceipt :
 // ===================================================================
 
 #ifdef __GNUC__
-  #pragma GCC diagnostic push
-  #pragma GCC diagnostic ignored "-Wstrict-aliasing"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
 // ByteArray
 
 // required bytes data = 1;
 inline bool ByteArray::_internal_has_data() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
-  return value;
+    bool value = (_has_bits_[0] & 0x00000001u) != 0;
+    return value;
 }
 inline bool ByteArray::has_data() const {
-  return _internal_has_data();
+    return _internal_has_data();
 }
 inline void ByteArray::clear_data() {
-  data_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  _has_bits_[0] &= ~0x00000001u;
+    data_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& ByteArray::data() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ByteArray.data)
-  return _internal_data();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ByteArray.data)
+    return _internal_data();
 }
 inline void ByteArray::set_data(const std::string& value) {
-  _internal_set_data(value);
-  // @@protoc_insertion_point(field_set:ZilliqaMessage.ByteArray.data)
+    _internal_set_data(value);
+    // @@protoc_insertion_point(field_set:ZilliqaMessage.ByteArray.data)
 }
 inline std::string* ByteArray::mutable_data() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ByteArray.data)
-  return _internal_mutable_data();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ByteArray.data)
+    return _internal_mutable_data();
 }
 inline const std::string& ByteArray::_internal_data() const {
-  return data_.GetNoArena();
+    return data_.GetNoArena();
 }
 inline void ByteArray::_internal_set_data(const std::string& value) {
-  _has_bits_[0] |= 0x00000001u;
-  data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+    _has_bits_[0] |= 0x00000001u;
+    data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void ByteArray::set_data(std::string&& value) {
-  _has_bits_[0] |= 0x00000001u;
-  data_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:ZilliqaMessage.ByteArray.data)
+    _has_bits_[0] |= 0x00000001u;
+    data_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:ZilliqaMessage.ByteArray.data)
 }
 inline void ByteArray::set_data(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000001u;
-  data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:ZilliqaMessage.ByteArray.data)
+    GOOGLE_DCHECK(value != nullptr);
+    _has_bits_[0] |= 0x00000001u;
+    data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:ZilliqaMessage.ByteArray.data)
 }
 inline void ByteArray::set_data(const void* value, size_t size) {
-  _has_bits_[0] |= 0x00000001u;
-  data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:ZilliqaMessage.ByteArray.data)
+    _has_bits_[0] |= 0x00000001u;
+    data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                     ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:ZilliqaMessage.ByteArray.data)
 }
 inline std::string* ByteArray::_internal_mutable_data() {
-  _has_bits_[0] |= 0x00000001u;
-  return data_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    _has_bits_[0] |= 0x00000001u;
+    return data_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* ByteArray::release_data() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ByteArray.data)
-  if (!has_data()) {
-    return nullptr;
-  }
-  _has_bits_[0] &= ~0x00000001u;
-  return data_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ByteArray.data)
+    if (!has_data()) {
+        return nullptr;
+    }
+    _has_bits_[0] &= ~0x00000001u;
+    return data_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void ByteArray::set_allocated_data(std::string* data) {
-  if (data != nullptr) {
-    _has_bits_[0] |= 0x00000001u;
-  } else {
-    _has_bits_[0] &= ~0x00000001u;
-  }
-  data_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), data);
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ByteArray.data)
+    if (data != nullptr) {
+        _has_bits_[0] |= 0x00000001u;
+    } else {
+        _has_bits_[0] &= ~0x00000001u;
+    }
+    data_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), data);
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ByteArray.data)
 }
 
 // -------------------------------------------------------------------
@@ -1104,479 +1114,479 @@ inline void ByteArray::set_allocated_data(std::string* data) {
 
 // optional uint32 version = 1;
 inline bool ProtoTransactionCoreInfo::_internal_has_version() const {
-  bool value = (_has_bits_[0] & 0x00000100u) != 0;
-  return value;
+    bool value = (_has_bits_[0] & 0x00000100u) != 0;
+    return value;
 }
 inline bool ProtoTransactionCoreInfo::has_version() const {
-  return _internal_has_version();
+    return _internal_has_version();
 }
 inline void ProtoTransactionCoreInfo::clear_version() {
-  version_ = 0u;
-  _has_bits_[0] &= ~0x00000100u;
+    version_ = 0u;
+    _has_bits_[0] &= ~0x00000100u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint32 ProtoTransactionCoreInfo::_internal_version() const {
-  return version_;
+    return version_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint32 ProtoTransactionCoreInfo::version() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.version)
-  return _internal_version();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.version)
+    return _internal_version();
 }
 inline void ProtoTransactionCoreInfo::_internal_set_version(::PROTOBUF_NAMESPACE_ID::uint32 value) {
-  _has_bits_[0] |= 0x00000100u;
-  version_ = value;
+    _has_bits_[0] |= 0x00000100u;
+    version_ = value;
 }
 inline void ProtoTransactionCoreInfo::set_version(::PROTOBUF_NAMESPACE_ID::uint32 value) {
-  _internal_set_version(value);
-  // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionCoreInfo.version)
+    _internal_set_version(value);
+    // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionCoreInfo.version)
 }
 
 // optional uint64 nonce = 2;
 inline bool ProtoTransactionCoreInfo::_internal_has_nonce() const {
-  bool value = (_has_bits_[0] & 0x00000040u) != 0;
-  return value;
+    bool value = (_has_bits_[0] & 0x00000040u) != 0;
+    return value;
 }
 inline bool ProtoTransactionCoreInfo::has_nonce() const {
-  return _internal_has_nonce();
+    return _internal_has_nonce();
 }
 inline void ProtoTransactionCoreInfo::clear_nonce() {
-  nonce_ = PROTOBUF_ULONGLONG(0);
-  _has_bits_[0] &= ~0x00000040u;
+    nonce_ = PROTOBUF_ULONGLONG(0);
+    _has_bits_[0] &= ~0x00000040u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 ProtoTransactionCoreInfo::_internal_nonce() const {
-  return nonce_;
+    return nonce_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 ProtoTransactionCoreInfo::nonce() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.nonce)
-  return _internal_nonce();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.nonce)
+    return _internal_nonce();
 }
 inline void ProtoTransactionCoreInfo::_internal_set_nonce(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _has_bits_[0] |= 0x00000040u;
-  nonce_ = value;
+    _has_bits_[0] |= 0x00000040u;
+    nonce_ = value;
 }
 inline void ProtoTransactionCoreInfo::set_nonce(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _internal_set_nonce(value);
-  // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionCoreInfo.nonce)
+    _internal_set_nonce(value);
+    // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionCoreInfo.nonce)
 }
 
 // optional bytes toaddr = 3;
 inline bool ProtoTransactionCoreInfo::_internal_has_toaddr() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
-  return value;
+    bool value = (_has_bits_[0] & 0x00000001u) != 0;
+    return value;
 }
 inline bool ProtoTransactionCoreInfo::has_toaddr() const {
-  return _internal_has_toaddr();
+    return _internal_has_toaddr();
 }
 inline void ProtoTransactionCoreInfo::clear_toaddr() {
-  toaddr_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  _has_bits_[0] &= ~0x00000001u;
+    toaddr_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& ProtoTransactionCoreInfo::toaddr() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
-  return _internal_toaddr();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
+    return _internal_toaddr();
 }
 inline void ProtoTransactionCoreInfo::set_toaddr(const std::string& value) {
-  _internal_set_toaddr(value);
-  // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
+    _internal_set_toaddr(value);
+    // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
 }
 inline std::string* ProtoTransactionCoreInfo::mutable_toaddr() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
-  return _internal_mutable_toaddr();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
+    return _internal_mutable_toaddr();
 }
 inline const std::string& ProtoTransactionCoreInfo::_internal_toaddr() const {
-  return toaddr_.GetNoArena();
+    return toaddr_.GetNoArena();
 }
 inline void ProtoTransactionCoreInfo::_internal_set_toaddr(const std::string& value) {
-  _has_bits_[0] |= 0x00000001u;
-  toaddr_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+    _has_bits_[0] |= 0x00000001u;
+    toaddr_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void ProtoTransactionCoreInfo::set_toaddr(std::string&& value) {
-  _has_bits_[0] |= 0x00000001u;
-  toaddr_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
+    _has_bits_[0] |= 0x00000001u;
+    toaddr_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
 }
 inline void ProtoTransactionCoreInfo::set_toaddr(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000001u;
-  toaddr_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
+    GOOGLE_DCHECK(value != nullptr);
+    _has_bits_[0] |= 0x00000001u;
+    toaddr_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
 }
 inline void ProtoTransactionCoreInfo::set_toaddr(const void* value, size_t size) {
-  _has_bits_[0] |= 0x00000001u;
-  toaddr_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
+    _has_bits_[0] |= 0x00000001u;
+    toaddr_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                       ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
 }
 inline std::string* ProtoTransactionCoreInfo::_internal_mutable_toaddr() {
-  _has_bits_[0] |= 0x00000001u;
-  return toaddr_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    _has_bits_[0] |= 0x00000001u;
+    return toaddr_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* ProtoTransactionCoreInfo::release_toaddr() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
-  if (!has_toaddr()) {
-    return nullptr;
-  }
-  _has_bits_[0] &= ~0x00000001u;
-  return toaddr_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
+    if (!has_toaddr()) {
+        return nullptr;
+    }
+    _has_bits_[0] &= ~0x00000001u;
+    return toaddr_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void ProtoTransactionCoreInfo::set_allocated_toaddr(std::string* toaddr) {
-  if (toaddr != nullptr) {
-    _has_bits_[0] |= 0x00000001u;
-  } else {
-    _has_bits_[0] &= ~0x00000001u;
-  }
-  toaddr_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), toaddr);
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
+    if (toaddr != nullptr) {
+        _has_bits_[0] |= 0x00000001u;
+    } else {
+        _has_bits_[0] &= ~0x00000001u;
+    }
+    toaddr_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), toaddr);
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionCoreInfo.toaddr)
 }
 
 // optional .ZilliqaMessage.ByteArray senderpubkey = 4;
 inline bool ProtoTransactionCoreInfo::_internal_has_senderpubkey() const {
-  bool value = (_has_bits_[0] & 0x00000008u) != 0;
-  PROTOBUF_ASSUME(!value || senderpubkey_ != nullptr);
-  return value;
+    bool value = (_has_bits_[0] & 0x00000008u) != 0;
+    PROTOBUF_ASSUME(!value || senderpubkey_ != nullptr);
+    return value;
 }
 inline bool ProtoTransactionCoreInfo::has_senderpubkey() const {
-  return _internal_has_senderpubkey();
+    return _internal_has_senderpubkey();
 }
 inline void ProtoTransactionCoreInfo::clear_senderpubkey() {
-  if (senderpubkey_ != nullptr) senderpubkey_->Clear();
-  _has_bits_[0] &= ~0x00000008u;
+    if (senderpubkey_ != nullptr) senderpubkey_->Clear();
+    _has_bits_[0] &= ~0x00000008u;
 }
 inline const ::ZilliqaMessage::ByteArray& ProtoTransactionCoreInfo::_internal_senderpubkey() const {
-  const ::ZilliqaMessage::ByteArray* p = senderpubkey_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ByteArray*>(
-      &::ZilliqaMessage::_ByteArray_default_instance_);
+    const ::ZilliqaMessage::ByteArray* p = senderpubkey_;
+    return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ByteArray*>(
+               &::ZilliqaMessage::_ByteArray_default_instance_);
 }
 inline const ::ZilliqaMessage::ByteArray& ProtoTransactionCoreInfo::senderpubkey() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.senderpubkey)
-  return _internal_senderpubkey();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.senderpubkey)
+    return _internal_senderpubkey();
 }
 inline ::ZilliqaMessage::ByteArray* ProtoTransactionCoreInfo::release_senderpubkey() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionCoreInfo.senderpubkey)
-  _has_bits_[0] &= ~0x00000008u;
-  ::ZilliqaMessage::ByteArray* temp = senderpubkey_;
-  senderpubkey_ = nullptr;
-  return temp;
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionCoreInfo.senderpubkey)
+    _has_bits_[0] &= ~0x00000008u;
+    ::ZilliqaMessage::ByteArray* temp = senderpubkey_;
+    senderpubkey_ = nullptr;
+    return temp;
 }
 inline ::ZilliqaMessage::ByteArray* ProtoTransactionCoreInfo::_internal_mutable_senderpubkey() {
-  _has_bits_[0] |= 0x00000008u;
-  if (senderpubkey_ == nullptr) {
-    auto* p = CreateMaybeMessage<::ZilliqaMessage::ByteArray>(GetArenaNoVirtual());
-    senderpubkey_ = p;
-  }
-  return senderpubkey_;
+    _has_bits_[0] |= 0x00000008u;
+    if (senderpubkey_ == nullptr) {
+        auto* p = CreateMaybeMessage<::ZilliqaMessage::ByteArray>(GetArenaNoVirtual());
+        senderpubkey_ = p;
+    }
+    return senderpubkey_;
 }
 inline ::ZilliqaMessage::ByteArray* ProtoTransactionCoreInfo::mutable_senderpubkey() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionCoreInfo.senderpubkey)
-  return _internal_mutable_senderpubkey();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionCoreInfo.senderpubkey)
+    return _internal_mutable_senderpubkey();
 }
 inline void ProtoTransactionCoreInfo::set_allocated_senderpubkey(::ZilliqaMessage::ByteArray* senderpubkey) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete senderpubkey_;
-  }
-  if (senderpubkey) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
-    if (message_arena != submessage_arena) {
-      senderpubkey = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, senderpubkey, submessage_arena);
+    ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+    if (message_arena == nullptr) {
+        delete senderpubkey_;
     }
-    _has_bits_[0] |= 0x00000008u;
-  } else {
-    _has_bits_[0] &= ~0x00000008u;
-  }
-  senderpubkey_ = senderpubkey;
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionCoreInfo.senderpubkey)
+    if (senderpubkey) {
+        ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+        if (message_arena != submessage_arena) {
+            senderpubkey = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+                               message_arena, senderpubkey, submessage_arena);
+        }
+        _has_bits_[0] |= 0x00000008u;
+    } else {
+        _has_bits_[0] &= ~0x00000008u;
+    }
+    senderpubkey_ = senderpubkey;
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionCoreInfo.senderpubkey)
 }
 
 // optional .ZilliqaMessage.ByteArray amount = 5;
 inline bool ProtoTransactionCoreInfo::_internal_has_amount() const {
-  bool value = (_has_bits_[0] & 0x00000010u) != 0;
-  PROTOBUF_ASSUME(!value || amount_ != nullptr);
-  return value;
+    bool value = (_has_bits_[0] & 0x00000010u) != 0;
+    PROTOBUF_ASSUME(!value || amount_ != nullptr);
+    return value;
 }
 inline bool ProtoTransactionCoreInfo::has_amount() const {
-  return _internal_has_amount();
+    return _internal_has_amount();
 }
 inline void ProtoTransactionCoreInfo::clear_amount() {
-  if (amount_ != nullptr) amount_->Clear();
-  _has_bits_[0] &= ~0x00000010u;
+    if (amount_ != nullptr) amount_->Clear();
+    _has_bits_[0] &= ~0x00000010u;
 }
 inline const ::ZilliqaMessage::ByteArray& ProtoTransactionCoreInfo::_internal_amount() const {
-  const ::ZilliqaMessage::ByteArray* p = amount_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ByteArray*>(
-      &::ZilliqaMessage::_ByteArray_default_instance_);
+    const ::ZilliqaMessage::ByteArray* p = amount_;
+    return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ByteArray*>(
+               &::ZilliqaMessage::_ByteArray_default_instance_);
 }
 inline const ::ZilliqaMessage::ByteArray& ProtoTransactionCoreInfo::amount() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.amount)
-  return _internal_amount();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.amount)
+    return _internal_amount();
 }
 inline ::ZilliqaMessage::ByteArray* ProtoTransactionCoreInfo::release_amount() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionCoreInfo.amount)
-  _has_bits_[0] &= ~0x00000010u;
-  ::ZilliqaMessage::ByteArray* temp = amount_;
-  amount_ = nullptr;
-  return temp;
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionCoreInfo.amount)
+    _has_bits_[0] &= ~0x00000010u;
+    ::ZilliqaMessage::ByteArray* temp = amount_;
+    amount_ = nullptr;
+    return temp;
 }
 inline ::ZilliqaMessage::ByteArray* ProtoTransactionCoreInfo::_internal_mutable_amount() {
-  _has_bits_[0] |= 0x00000010u;
-  if (amount_ == nullptr) {
-    auto* p = CreateMaybeMessage<::ZilliqaMessage::ByteArray>(GetArenaNoVirtual());
-    amount_ = p;
-  }
-  return amount_;
+    _has_bits_[0] |= 0x00000010u;
+    if (amount_ == nullptr) {
+        auto* p = CreateMaybeMessage<::ZilliqaMessage::ByteArray>(GetArenaNoVirtual());
+        amount_ = p;
+    }
+    return amount_;
 }
 inline ::ZilliqaMessage::ByteArray* ProtoTransactionCoreInfo::mutable_amount() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionCoreInfo.amount)
-  return _internal_mutable_amount();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionCoreInfo.amount)
+    return _internal_mutable_amount();
 }
 inline void ProtoTransactionCoreInfo::set_allocated_amount(::ZilliqaMessage::ByteArray* amount) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete amount_;
-  }
-  if (amount) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
-    if (message_arena != submessage_arena) {
-      amount = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, amount, submessage_arena);
+    ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+    if (message_arena == nullptr) {
+        delete amount_;
     }
-    _has_bits_[0] |= 0x00000010u;
-  } else {
-    _has_bits_[0] &= ~0x00000010u;
-  }
-  amount_ = amount;
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionCoreInfo.amount)
+    if (amount) {
+        ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+        if (message_arena != submessage_arena) {
+            amount = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+                         message_arena, amount, submessage_arena);
+        }
+        _has_bits_[0] |= 0x00000010u;
+    } else {
+        _has_bits_[0] &= ~0x00000010u;
+    }
+    amount_ = amount;
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionCoreInfo.amount)
 }
 
 // optional .ZilliqaMessage.ByteArray gasprice = 6;
 inline bool ProtoTransactionCoreInfo::_internal_has_gasprice() const {
-  bool value = (_has_bits_[0] & 0x00000020u) != 0;
-  PROTOBUF_ASSUME(!value || gasprice_ != nullptr);
-  return value;
+    bool value = (_has_bits_[0] & 0x00000020u) != 0;
+    PROTOBUF_ASSUME(!value || gasprice_ != nullptr);
+    return value;
 }
 inline bool ProtoTransactionCoreInfo::has_gasprice() const {
-  return _internal_has_gasprice();
+    return _internal_has_gasprice();
 }
 inline void ProtoTransactionCoreInfo::clear_gasprice() {
-  if (gasprice_ != nullptr) gasprice_->Clear();
-  _has_bits_[0] &= ~0x00000020u;
+    if (gasprice_ != nullptr) gasprice_->Clear();
+    _has_bits_[0] &= ~0x00000020u;
 }
 inline const ::ZilliqaMessage::ByteArray& ProtoTransactionCoreInfo::_internal_gasprice() const {
-  const ::ZilliqaMessage::ByteArray* p = gasprice_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ByteArray*>(
-      &::ZilliqaMessage::_ByteArray_default_instance_);
+    const ::ZilliqaMessage::ByteArray* p = gasprice_;
+    return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ByteArray*>(
+               &::ZilliqaMessage::_ByteArray_default_instance_);
 }
 inline const ::ZilliqaMessage::ByteArray& ProtoTransactionCoreInfo::gasprice() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.gasprice)
-  return _internal_gasprice();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.gasprice)
+    return _internal_gasprice();
 }
 inline ::ZilliqaMessage::ByteArray* ProtoTransactionCoreInfo::release_gasprice() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionCoreInfo.gasprice)
-  _has_bits_[0] &= ~0x00000020u;
-  ::ZilliqaMessage::ByteArray* temp = gasprice_;
-  gasprice_ = nullptr;
-  return temp;
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionCoreInfo.gasprice)
+    _has_bits_[0] &= ~0x00000020u;
+    ::ZilliqaMessage::ByteArray* temp = gasprice_;
+    gasprice_ = nullptr;
+    return temp;
 }
 inline ::ZilliqaMessage::ByteArray* ProtoTransactionCoreInfo::_internal_mutable_gasprice() {
-  _has_bits_[0] |= 0x00000020u;
-  if (gasprice_ == nullptr) {
-    auto* p = CreateMaybeMessage<::ZilliqaMessage::ByteArray>(GetArenaNoVirtual());
-    gasprice_ = p;
-  }
-  return gasprice_;
+    _has_bits_[0] |= 0x00000020u;
+    if (gasprice_ == nullptr) {
+        auto* p = CreateMaybeMessage<::ZilliqaMessage::ByteArray>(GetArenaNoVirtual());
+        gasprice_ = p;
+    }
+    return gasprice_;
 }
 inline ::ZilliqaMessage::ByteArray* ProtoTransactionCoreInfo::mutable_gasprice() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionCoreInfo.gasprice)
-  return _internal_mutable_gasprice();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionCoreInfo.gasprice)
+    return _internal_mutable_gasprice();
 }
 inline void ProtoTransactionCoreInfo::set_allocated_gasprice(::ZilliqaMessage::ByteArray* gasprice) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete gasprice_;
-  }
-  if (gasprice) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
-    if (message_arena != submessage_arena) {
-      gasprice = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, gasprice, submessage_arena);
+    ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+    if (message_arena == nullptr) {
+        delete gasprice_;
     }
-    _has_bits_[0] |= 0x00000020u;
-  } else {
-    _has_bits_[0] &= ~0x00000020u;
-  }
-  gasprice_ = gasprice;
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionCoreInfo.gasprice)
+    if (gasprice) {
+        ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+        if (message_arena != submessage_arena) {
+            gasprice = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+                           message_arena, gasprice, submessage_arena);
+        }
+        _has_bits_[0] |= 0x00000020u;
+    } else {
+        _has_bits_[0] &= ~0x00000020u;
+    }
+    gasprice_ = gasprice;
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionCoreInfo.gasprice)
 }
 
 // optional uint64 gaslimit = 7;
 inline bool ProtoTransactionCoreInfo::_internal_has_gaslimit() const {
-  bool value = (_has_bits_[0] & 0x00000080u) != 0;
-  return value;
+    bool value = (_has_bits_[0] & 0x00000080u) != 0;
+    return value;
 }
 inline bool ProtoTransactionCoreInfo::has_gaslimit() const {
-  return _internal_has_gaslimit();
+    return _internal_has_gaslimit();
 }
 inline void ProtoTransactionCoreInfo::clear_gaslimit() {
-  gaslimit_ = PROTOBUF_ULONGLONG(0);
-  _has_bits_[0] &= ~0x00000080u;
+    gaslimit_ = PROTOBUF_ULONGLONG(0);
+    _has_bits_[0] &= ~0x00000080u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 ProtoTransactionCoreInfo::_internal_gaslimit() const {
-  return gaslimit_;
+    return gaslimit_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 ProtoTransactionCoreInfo::gaslimit() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.gaslimit)
-  return _internal_gaslimit();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.gaslimit)
+    return _internal_gaslimit();
 }
 inline void ProtoTransactionCoreInfo::_internal_set_gaslimit(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _has_bits_[0] |= 0x00000080u;
-  gaslimit_ = value;
+    _has_bits_[0] |= 0x00000080u;
+    gaslimit_ = value;
 }
 inline void ProtoTransactionCoreInfo::set_gaslimit(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _internal_set_gaslimit(value);
-  // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionCoreInfo.gaslimit)
+    _internal_set_gaslimit(value);
+    // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionCoreInfo.gaslimit)
 }
 
 // optional bytes code = 8;
 inline bool ProtoTransactionCoreInfo::_internal_has_code() const {
-  bool value = (_has_bits_[0] & 0x00000002u) != 0;
-  return value;
+    bool value = (_has_bits_[0] & 0x00000002u) != 0;
+    return value;
 }
 inline bool ProtoTransactionCoreInfo::has_code() const {
-  return _internal_has_code();
+    return _internal_has_code();
 }
 inline void ProtoTransactionCoreInfo::clear_code() {
-  code_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  _has_bits_[0] &= ~0x00000002u;
+    code_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    _has_bits_[0] &= ~0x00000002u;
 }
 inline const std::string& ProtoTransactionCoreInfo::code() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.code)
-  return _internal_code();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.code)
+    return _internal_code();
 }
 inline void ProtoTransactionCoreInfo::set_code(const std::string& value) {
-  _internal_set_code(value);
-  // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionCoreInfo.code)
+    _internal_set_code(value);
+    // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionCoreInfo.code)
 }
 inline std::string* ProtoTransactionCoreInfo::mutable_code() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionCoreInfo.code)
-  return _internal_mutable_code();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionCoreInfo.code)
+    return _internal_mutable_code();
 }
 inline const std::string& ProtoTransactionCoreInfo::_internal_code() const {
-  return code_.GetNoArena();
+    return code_.GetNoArena();
 }
 inline void ProtoTransactionCoreInfo::_internal_set_code(const std::string& value) {
-  _has_bits_[0] |= 0x00000002u;
-  code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+    _has_bits_[0] |= 0x00000002u;
+    code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void ProtoTransactionCoreInfo::set_code(std::string&& value) {
-  _has_bits_[0] |= 0x00000002u;
-  code_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:ZilliqaMessage.ProtoTransactionCoreInfo.code)
+    _has_bits_[0] |= 0x00000002u;
+    code_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:ZilliqaMessage.ProtoTransactionCoreInfo.code)
 }
 inline void ProtoTransactionCoreInfo::set_code(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000002u;
-  code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:ZilliqaMessage.ProtoTransactionCoreInfo.code)
+    GOOGLE_DCHECK(value != nullptr);
+    _has_bits_[0] |= 0x00000002u;
+    code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:ZilliqaMessage.ProtoTransactionCoreInfo.code)
 }
 inline void ProtoTransactionCoreInfo::set_code(const void* value, size_t size) {
-  _has_bits_[0] |= 0x00000002u;
-  code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:ZilliqaMessage.ProtoTransactionCoreInfo.code)
+    _has_bits_[0] |= 0x00000002u;
+    code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                     ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:ZilliqaMessage.ProtoTransactionCoreInfo.code)
 }
 inline std::string* ProtoTransactionCoreInfo::_internal_mutable_code() {
-  _has_bits_[0] |= 0x00000002u;
-  return code_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    _has_bits_[0] |= 0x00000002u;
+    return code_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* ProtoTransactionCoreInfo::release_code() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionCoreInfo.code)
-  if (!has_code()) {
-    return nullptr;
-  }
-  _has_bits_[0] &= ~0x00000002u;
-  return code_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionCoreInfo.code)
+    if (!has_code()) {
+        return nullptr;
+    }
+    _has_bits_[0] &= ~0x00000002u;
+    return code_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void ProtoTransactionCoreInfo::set_allocated_code(std::string* code) {
-  if (code != nullptr) {
-    _has_bits_[0] |= 0x00000002u;
-  } else {
-    _has_bits_[0] &= ~0x00000002u;
-  }
-  code_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code);
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionCoreInfo.code)
+    if (code != nullptr) {
+        _has_bits_[0] |= 0x00000002u;
+    } else {
+        _has_bits_[0] &= ~0x00000002u;
+    }
+    code_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code);
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionCoreInfo.code)
 }
 
 // optional bytes data = 9;
 inline bool ProtoTransactionCoreInfo::_internal_has_data() const {
-  bool value = (_has_bits_[0] & 0x00000004u) != 0;
-  return value;
+    bool value = (_has_bits_[0] & 0x00000004u) != 0;
+    return value;
 }
 inline bool ProtoTransactionCoreInfo::has_data() const {
-  return _internal_has_data();
+    return _internal_has_data();
 }
 inline void ProtoTransactionCoreInfo::clear_data() {
-  data_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  _has_bits_[0] &= ~0x00000004u;
+    data_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    _has_bits_[0] &= ~0x00000004u;
 }
 inline const std::string& ProtoTransactionCoreInfo::data() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.data)
-  return _internal_data();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionCoreInfo.data)
+    return _internal_data();
 }
 inline void ProtoTransactionCoreInfo::set_data(const std::string& value) {
-  _internal_set_data(value);
-  // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionCoreInfo.data)
+    _internal_set_data(value);
+    // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionCoreInfo.data)
 }
 inline std::string* ProtoTransactionCoreInfo::mutable_data() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionCoreInfo.data)
-  return _internal_mutable_data();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionCoreInfo.data)
+    return _internal_mutable_data();
 }
 inline const std::string& ProtoTransactionCoreInfo::_internal_data() const {
-  return data_.GetNoArena();
+    return data_.GetNoArena();
 }
 inline void ProtoTransactionCoreInfo::_internal_set_data(const std::string& value) {
-  _has_bits_[0] |= 0x00000004u;
-  data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+    _has_bits_[0] |= 0x00000004u;
+    data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void ProtoTransactionCoreInfo::set_data(std::string&& value) {
-  _has_bits_[0] |= 0x00000004u;
-  data_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:ZilliqaMessage.ProtoTransactionCoreInfo.data)
+    _has_bits_[0] |= 0x00000004u;
+    data_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:ZilliqaMessage.ProtoTransactionCoreInfo.data)
 }
 inline void ProtoTransactionCoreInfo::set_data(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000004u;
-  data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:ZilliqaMessage.ProtoTransactionCoreInfo.data)
+    GOOGLE_DCHECK(value != nullptr);
+    _has_bits_[0] |= 0x00000004u;
+    data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:ZilliqaMessage.ProtoTransactionCoreInfo.data)
 }
 inline void ProtoTransactionCoreInfo::set_data(const void* value, size_t size) {
-  _has_bits_[0] |= 0x00000004u;
-  data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:ZilliqaMessage.ProtoTransactionCoreInfo.data)
+    _has_bits_[0] |= 0x00000004u;
+    data_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                     ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:ZilliqaMessage.ProtoTransactionCoreInfo.data)
 }
 inline std::string* ProtoTransactionCoreInfo::_internal_mutable_data() {
-  _has_bits_[0] |= 0x00000004u;
-  return data_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    _has_bits_[0] |= 0x00000004u;
+    return data_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* ProtoTransactionCoreInfo::release_data() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionCoreInfo.data)
-  if (!has_data()) {
-    return nullptr;
-  }
-  _has_bits_[0] &= ~0x00000004u;
-  return data_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionCoreInfo.data)
+    if (!has_data()) {
+        return nullptr;
+    }
+    _has_bits_[0] &= ~0x00000004u;
+    return data_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void ProtoTransactionCoreInfo::set_allocated_data(std::string* data) {
-  if (data != nullptr) {
-    _has_bits_[0] |= 0x00000004u;
-  } else {
-    _has_bits_[0] &= ~0x00000004u;
-  }
-  data_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), data);
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionCoreInfo.data)
+    if (data != nullptr) {
+        _has_bits_[0] |= 0x00000004u;
+    } else {
+        _has_bits_[0] &= ~0x00000004u;
+    }
+    data_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), data);
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionCoreInfo.data)
 }
 
 // -------------------------------------------------------------------
@@ -1585,193 +1595,193 @@ inline void ProtoTransactionCoreInfo::set_allocated_data(std::string* data) {
 
 // optional bytes tranid = 1;
 inline bool ProtoTransaction::_internal_has_tranid() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
-  return value;
+    bool value = (_has_bits_[0] & 0x00000001u) != 0;
+    return value;
 }
 inline bool ProtoTransaction::has_tranid() const {
-  return _internal_has_tranid();
+    return _internal_has_tranid();
 }
 inline void ProtoTransaction::clear_tranid() {
-  tranid_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  _has_bits_[0] &= ~0x00000001u;
+    tranid_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& ProtoTransaction::tranid() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransaction.tranid)
-  return _internal_tranid();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransaction.tranid)
+    return _internal_tranid();
 }
 inline void ProtoTransaction::set_tranid(const std::string& value) {
-  _internal_set_tranid(value);
-  // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransaction.tranid)
+    _internal_set_tranid(value);
+    // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransaction.tranid)
 }
 inline std::string* ProtoTransaction::mutable_tranid() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransaction.tranid)
-  return _internal_mutable_tranid();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransaction.tranid)
+    return _internal_mutable_tranid();
 }
 inline const std::string& ProtoTransaction::_internal_tranid() const {
-  return tranid_.GetNoArena();
+    return tranid_.GetNoArena();
 }
 inline void ProtoTransaction::_internal_set_tranid(const std::string& value) {
-  _has_bits_[0] |= 0x00000001u;
-  tranid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+    _has_bits_[0] |= 0x00000001u;
+    tranid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void ProtoTransaction::set_tranid(std::string&& value) {
-  _has_bits_[0] |= 0x00000001u;
-  tranid_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:ZilliqaMessage.ProtoTransaction.tranid)
+    _has_bits_[0] |= 0x00000001u;
+    tranid_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:ZilliqaMessage.ProtoTransaction.tranid)
 }
 inline void ProtoTransaction::set_tranid(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000001u;
-  tranid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:ZilliqaMessage.ProtoTransaction.tranid)
+    GOOGLE_DCHECK(value != nullptr);
+    _has_bits_[0] |= 0x00000001u;
+    tranid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:ZilliqaMessage.ProtoTransaction.tranid)
 }
 inline void ProtoTransaction::set_tranid(const void* value, size_t size) {
-  _has_bits_[0] |= 0x00000001u;
-  tranid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:ZilliqaMessage.ProtoTransaction.tranid)
+    _has_bits_[0] |= 0x00000001u;
+    tranid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                       ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:ZilliqaMessage.ProtoTransaction.tranid)
 }
 inline std::string* ProtoTransaction::_internal_mutable_tranid() {
-  _has_bits_[0] |= 0x00000001u;
-  return tranid_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    _has_bits_[0] |= 0x00000001u;
+    return tranid_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* ProtoTransaction::release_tranid() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransaction.tranid)
-  if (!has_tranid()) {
-    return nullptr;
-  }
-  _has_bits_[0] &= ~0x00000001u;
-  return tranid_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransaction.tranid)
+    if (!has_tranid()) {
+        return nullptr;
+    }
+    _has_bits_[0] &= ~0x00000001u;
+    return tranid_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void ProtoTransaction::set_allocated_tranid(std::string* tranid) {
-  if (tranid != nullptr) {
-    _has_bits_[0] |= 0x00000001u;
-  } else {
-    _has_bits_[0] &= ~0x00000001u;
-  }
-  tranid_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), tranid);
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransaction.tranid)
+    if (tranid != nullptr) {
+        _has_bits_[0] |= 0x00000001u;
+    } else {
+        _has_bits_[0] &= ~0x00000001u;
+    }
+    tranid_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), tranid);
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransaction.tranid)
 }
 
 // optional .ZilliqaMessage.ProtoTransactionCoreInfo info = 2;
 inline bool ProtoTransaction::_internal_has_info() const {
-  bool value = (_has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || info_ != nullptr);
-  return value;
+    bool value = (_has_bits_[0] & 0x00000002u) != 0;
+    PROTOBUF_ASSUME(!value || info_ != nullptr);
+    return value;
 }
 inline bool ProtoTransaction::has_info() const {
-  return _internal_has_info();
+    return _internal_has_info();
 }
 inline void ProtoTransaction::clear_info() {
-  if (info_ != nullptr) info_->Clear();
-  _has_bits_[0] &= ~0x00000002u;
+    if (info_ != nullptr) info_->Clear();
+    _has_bits_[0] &= ~0x00000002u;
 }
 inline const ::ZilliqaMessage::ProtoTransactionCoreInfo& ProtoTransaction::_internal_info() const {
-  const ::ZilliqaMessage::ProtoTransactionCoreInfo* p = info_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ProtoTransactionCoreInfo*>(
-      &::ZilliqaMessage::_ProtoTransactionCoreInfo_default_instance_);
+    const ::ZilliqaMessage::ProtoTransactionCoreInfo* p = info_;
+    return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ProtoTransactionCoreInfo*>(
+               &::ZilliqaMessage::_ProtoTransactionCoreInfo_default_instance_);
 }
 inline const ::ZilliqaMessage::ProtoTransactionCoreInfo& ProtoTransaction::info() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransaction.info)
-  return _internal_info();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransaction.info)
+    return _internal_info();
 }
 inline ::ZilliqaMessage::ProtoTransactionCoreInfo* ProtoTransaction::release_info() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransaction.info)
-  _has_bits_[0] &= ~0x00000002u;
-  ::ZilliqaMessage::ProtoTransactionCoreInfo* temp = info_;
-  info_ = nullptr;
-  return temp;
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransaction.info)
+    _has_bits_[0] &= ~0x00000002u;
+    ::ZilliqaMessage::ProtoTransactionCoreInfo* temp = info_;
+    info_ = nullptr;
+    return temp;
 }
 inline ::ZilliqaMessage::ProtoTransactionCoreInfo* ProtoTransaction::_internal_mutable_info() {
-  _has_bits_[0] |= 0x00000002u;
-  if (info_ == nullptr) {
-    auto* p = CreateMaybeMessage<::ZilliqaMessage::ProtoTransactionCoreInfo>(GetArenaNoVirtual());
-    info_ = p;
-  }
-  return info_;
+    _has_bits_[0] |= 0x00000002u;
+    if (info_ == nullptr) {
+        auto* p = CreateMaybeMessage<::ZilliqaMessage::ProtoTransactionCoreInfo>(GetArenaNoVirtual());
+        info_ = p;
+    }
+    return info_;
 }
 inline ::ZilliqaMessage::ProtoTransactionCoreInfo* ProtoTransaction::mutable_info() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransaction.info)
-  return _internal_mutable_info();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransaction.info)
+    return _internal_mutable_info();
 }
 inline void ProtoTransaction::set_allocated_info(::ZilliqaMessage::ProtoTransactionCoreInfo* info) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete info_;
-  }
-  if (info) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
-    if (message_arena != submessage_arena) {
-      info = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, info, submessage_arena);
+    ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+    if (message_arena == nullptr) {
+        delete info_;
     }
-    _has_bits_[0] |= 0x00000002u;
-  } else {
-    _has_bits_[0] &= ~0x00000002u;
-  }
-  info_ = info;
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransaction.info)
+    if (info) {
+        ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+        if (message_arena != submessage_arena) {
+            info = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+                       message_arena, info, submessage_arena);
+        }
+        _has_bits_[0] |= 0x00000002u;
+    } else {
+        _has_bits_[0] &= ~0x00000002u;
+    }
+    info_ = info;
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransaction.info)
 }
 
 // optional .ZilliqaMessage.ByteArray signature = 3;
 inline bool ProtoTransaction::_internal_has_signature() const {
-  bool value = (_has_bits_[0] & 0x00000004u) != 0;
-  PROTOBUF_ASSUME(!value || signature_ != nullptr);
-  return value;
+    bool value = (_has_bits_[0] & 0x00000004u) != 0;
+    PROTOBUF_ASSUME(!value || signature_ != nullptr);
+    return value;
 }
 inline bool ProtoTransaction::has_signature() const {
-  return _internal_has_signature();
+    return _internal_has_signature();
 }
 inline void ProtoTransaction::clear_signature() {
-  if (signature_ != nullptr) signature_->Clear();
-  _has_bits_[0] &= ~0x00000004u;
+    if (signature_ != nullptr) signature_->Clear();
+    _has_bits_[0] &= ~0x00000004u;
 }
 inline const ::ZilliqaMessage::ByteArray& ProtoTransaction::_internal_signature() const {
-  const ::ZilliqaMessage::ByteArray* p = signature_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ByteArray*>(
-      &::ZilliqaMessage::_ByteArray_default_instance_);
+    const ::ZilliqaMessage::ByteArray* p = signature_;
+    return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ByteArray*>(
+               &::ZilliqaMessage::_ByteArray_default_instance_);
 }
 inline const ::ZilliqaMessage::ByteArray& ProtoTransaction::signature() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransaction.signature)
-  return _internal_signature();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransaction.signature)
+    return _internal_signature();
 }
 inline ::ZilliqaMessage::ByteArray* ProtoTransaction::release_signature() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransaction.signature)
-  _has_bits_[0] &= ~0x00000004u;
-  ::ZilliqaMessage::ByteArray* temp = signature_;
-  signature_ = nullptr;
-  return temp;
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransaction.signature)
+    _has_bits_[0] &= ~0x00000004u;
+    ::ZilliqaMessage::ByteArray* temp = signature_;
+    signature_ = nullptr;
+    return temp;
 }
 inline ::ZilliqaMessage::ByteArray* ProtoTransaction::_internal_mutable_signature() {
-  _has_bits_[0] |= 0x00000004u;
-  if (signature_ == nullptr) {
-    auto* p = CreateMaybeMessage<::ZilliqaMessage::ByteArray>(GetArenaNoVirtual());
-    signature_ = p;
-  }
-  return signature_;
+    _has_bits_[0] |= 0x00000004u;
+    if (signature_ == nullptr) {
+        auto* p = CreateMaybeMessage<::ZilliqaMessage::ByteArray>(GetArenaNoVirtual());
+        signature_ = p;
+    }
+    return signature_;
 }
 inline ::ZilliqaMessage::ByteArray* ProtoTransaction::mutable_signature() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransaction.signature)
-  return _internal_mutable_signature();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransaction.signature)
+    return _internal_mutable_signature();
 }
 inline void ProtoTransaction::set_allocated_signature(::ZilliqaMessage::ByteArray* signature) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete signature_;
-  }
-  if (signature) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
-    if (message_arena != submessage_arena) {
-      signature = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, signature, submessage_arena);
+    ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+    if (message_arena == nullptr) {
+        delete signature_;
     }
-    _has_bits_[0] |= 0x00000004u;
-  } else {
-    _has_bits_[0] &= ~0x00000004u;
-  }
-  signature_ = signature;
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransaction.signature)
+    if (signature) {
+        ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+        if (message_arena != submessage_arena) {
+            signature = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+                            message_arena, signature, submessage_arena);
+        }
+        _has_bits_[0] |= 0x00000004u;
+    } else {
+        _has_bits_[0] &= ~0x00000004u;
+    }
+    signature_ = signature;
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransaction.signature)
 }
 
 // -------------------------------------------------------------------
@@ -1780,101 +1790,101 @@ inline void ProtoTransaction::set_allocated_signature(::ZilliqaMessage::ByteArra
 
 // optional bytes receipt = 1;
 inline bool ProtoTransactionReceipt::_internal_has_receipt() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
-  return value;
+    bool value = (_has_bits_[0] & 0x00000001u) != 0;
+    return value;
 }
 inline bool ProtoTransactionReceipt::has_receipt() const {
-  return _internal_has_receipt();
+    return _internal_has_receipt();
 }
 inline void ProtoTransactionReceipt::clear_receipt() {
-  receipt_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  _has_bits_[0] &= ~0x00000001u;
+    receipt_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& ProtoTransactionReceipt::receipt() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionReceipt.receipt)
-  return _internal_receipt();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionReceipt.receipt)
+    return _internal_receipt();
 }
 inline void ProtoTransactionReceipt::set_receipt(const std::string& value) {
-  _internal_set_receipt(value);
-  // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionReceipt.receipt)
+    _internal_set_receipt(value);
+    // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionReceipt.receipt)
 }
 inline std::string* ProtoTransactionReceipt::mutable_receipt() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionReceipt.receipt)
-  return _internal_mutable_receipt();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionReceipt.receipt)
+    return _internal_mutable_receipt();
 }
 inline const std::string& ProtoTransactionReceipt::_internal_receipt() const {
-  return receipt_.GetNoArena();
+    return receipt_.GetNoArena();
 }
 inline void ProtoTransactionReceipt::_internal_set_receipt(const std::string& value) {
-  _has_bits_[0] |= 0x00000001u;
-  receipt_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+    _has_bits_[0] |= 0x00000001u;
+    receipt_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
 inline void ProtoTransactionReceipt::set_receipt(std::string&& value) {
-  _has_bits_[0] |= 0x00000001u;
-  receipt_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:ZilliqaMessage.ProtoTransactionReceipt.receipt)
+    _has_bits_[0] |= 0x00000001u;
+    receipt_.SetNoArena(
+        &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+    // @@protoc_insertion_point(field_set_rvalue:ZilliqaMessage.ProtoTransactionReceipt.receipt)
 }
 inline void ProtoTransactionReceipt::set_receipt(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000001u;
-  receipt_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:ZilliqaMessage.ProtoTransactionReceipt.receipt)
+    GOOGLE_DCHECK(value != nullptr);
+    _has_bits_[0] |= 0x00000001u;
+    receipt_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+    // @@protoc_insertion_point(field_set_char:ZilliqaMessage.ProtoTransactionReceipt.receipt)
 }
 inline void ProtoTransactionReceipt::set_receipt(const void* value, size_t size) {
-  _has_bits_[0] |= 0x00000001u;
-  receipt_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:ZilliqaMessage.ProtoTransactionReceipt.receipt)
+    _has_bits_[0] |= 0x00000001u;
+    receipt_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+                        ::std::string(reinterpret_cast<const char*>(value), size));
+    // @@protoc_insertion_point(field_set_pointer:ZilliqaMessage.ProtoTransactionReceipt.receipt)
 }
 inline std::string* ProtoTransactionReceipt::_internal_mutable_receipt() {
-  _has_bits_[0] |= 0x00000001u;
-  return receipt_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    _has_bits_[0] |= 0x00000001u;
+    return receipt_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* ProtoTransactionReceipt::release_receipt() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionReceipt.receipt)
-  if (!has_receipt()) {
-    return nullptr;
-  }
-  _has_bits_[0] &= ~0x00000001u;
-  return receipt_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionReceipt.receipt)
+    if (!has_receipt()) {
+        return nullptr;
+    }
+    _has_bits_[0] &= ~0x00000001u;
+    return receipt_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline void ProtoTransactionReceipt::set_allocated_receipt(std::string* receipt) {
-  if (receipt != nullptr) {
-    _has_bits_[0] |= 0x00000001u;
-  } else {
-    _has_bits_[0] &= ~0x00000001u;
-  }
-  receipt_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), receipt);
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionReceipt.receipt)
+    if (receipt != nullptr) {
+        _has_bits_[0] |= 0x00000001u;
+    } else {
+        _has_bits_[0] &= ~0x00000001u;
+    }
+    receipt_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), receipt);
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionReceipt.receipt)
 }
 
 // optional uint64 cumgas = 2;
 inline bool ProtoTransactionReceipt::_internal_has_cumgas() const {
-  bool value = (_has_bits_[0] & 0x00000002u) != 0;
-  return value;
+    bool value = (_has_bits_[0] & 0x00000002u) != 0;
+    return value;
 }
 inline bool ProtoTransactionReceipt::has_cumgas() const {
-  return _internal_has_cumgas();
+    return _internal_has_cumgas();
 }
 inline void ProtoTransactionReceipt::clear_cumgas() {
-  cumgas_ = PROTOBUF_ULONGLONG(0);
-  _has_bits_[0] &= ~0x00000002u;
+    cumgas_ = PROTOBUF_ULONGLONG(0);
+    _has_bits_[0] &= ~0x00000002u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 ProtoTransactionReceipt::_internal_cumgas() const {
-  return cumgas_;
+    return cumgas_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 ProtoTransactionReceipt::cumgas() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionReceipt.cumgas)
-  return _internal_cumgas();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionReceipt.cumgas)
+    return _internal_cumgas();
 }
 inline void ProtoTransactionReceipt::_internal_set_cumgas(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _has_bits_[0] |= 0x00000002u;
-  cumgas_ = value;
+    _has_bits_[0] |= 0x00000002u;
+    cumgas_ = value;
 }
 inline void ProtoTransactionReceipt::set_cumgas(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _internal_set_cumgas(value);
-  // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionReceipt.cumgas)
+    _internal_set_cumgas(value);
+    // @@protoc_insertion_point(field_set:ZilliqaMessage.ProtoTransactionReceipt.cumgas)
 }
 
 // -------------------------------------------------------------------
@@ -1883,126 +1893,126 @@ inline void ProtoTransactionReceipt::set_cumgas(::PROTOBUF_NAMESPACE_ID::uint64 
 
 // optional .ZilliqaMessage.ProtoTransaction transaction = 1;
 inline bool ProtoTransactionWithReceipt::_internal_has_transaction() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || transaction_ != nullptr);
-  return value;
+    bool value = (_has_bits_[0] & 0x00000001u) != 0;
+    PROTOBUF_ASSUME(!value || transaction_ != nullptr);
+    return value;
 }
 inline bool ProtoTransactionWithReceipt::has_transaction() const {
-  return _internal_has_transaction();
+    return _internal_has_transaction();
 }
 inline void ProtoTransactionWithReceipt::clear_transaction() {
-  if (transaction_ != nullptr) transaction_->Clear();
-  _has_bits_[0] &= ~0x00000001u;
+    if (transaction_ != nullptr) transaction_->Clear();
+    _has_bits_[0] &= ~0x00000001u;
 }
 inline const ::ZilliqaMessage::ProtoTransaction& ProtoTransactionWithReceipt::_internal_transaction() const {
-  const ::ZilliqaMessage::ProtoTransaction* p = transaction_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ProtoTransaction*>(
-      &::ZilliqaMessage::_ProtoTransaction_default_instance_);
+    const ::ZilliqaMessage::ProtoTransaction* p = transaction_;
+    return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ProtoTransaction*>(
+               &::ZilliqaMessage::_ProtoTransaction_default_instance_);
 }
 inline const ::ZilliqaMessage::ProtoTransaction& ProtoTransactionWithReceipt::transaction() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionWithReceipt.transaction)
-  return _internal_transaction();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionWithReceipt.transaction)
+    return _internal_transaction();
 }
 inline ::ZilliqaMessage::ProtoTransaction* ProtoTransactionWithReceipt::release_transaction() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionWithReceipt.transaction)
-  _has_bits_[0] &= ~0x00000001u;
-  ::ZilliqaMessage::ProtoTransaction* temp = transaction_;
-  transaction_ = nullptr;
-  return temp;
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionWithReceipt.transaction)
+    _has_bits_[0] &= ~0x00000001u;
+    ::ZilliqaMessage::ProtoTransaction* temp = transaction_;
+    transaction_ = nullptr;
+    return temp;
 }
 inline ::ZilliqaMessage::ProtoTransaction* ProtoTransactionWithReceipt::_internal_mutable_transaction() {
-  _has_bits_[0] |= 0x00000001u;
-  if (transaction_ == nullptr) {
-    auto* p = CreateMaybeMessage<::ZilliqaMessage::ProtoTransaction>(GetArenaNoVirtual());
-    transaction_ = p;
-  }
-  return transaction_;
+    _has_bits_[0] |= 0x00000001u;
+    if (transaction_ == nullptr) {
+        auto* p = CreateMaybeMessage<::ZilliqaMessage::ProtoTransaction>(GetArenaNoVirtual());
+        transaction_ = p;
+    }
+    return transaction_;
 }
 inline ::ZilliqaMessage::ProtoTransaction* ProtoTransactionWithReceipt::mutable_transaction() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionWithReceipt.transaction)
-  return _internal_mutable_transaction();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionWithReceipt.transaction)
+    return _internal_mutable_transaction();
 }
 inline void ProtoTransactionWithReceipt::set_allocated_transaction(::ZilliqaMessage::ProtoTransaction* transaction) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete transaction_;
-  }
-  if (transaction) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
-    if (message_arena != submessage_arena) {
-      transaction = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, transaction, submessage_arena);
+    ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+    if (message_arena == nullptr) {
+        delete transaction_;
     }
-    _has_bits_[0] |= 0x00000001u;
-  } else {
-    _has_bits_[0] &= ~0x00000001u;
-  }
-  transaction_ = transaction;
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionWithReceipt.transaction)
+    if (transaction) {
+        ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+        if (message_arena != submessage_arena) {
+            transaction = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+                              message_arena, transaction, submessage_arena);
+        }
+        _has_bits_[0] |= 0x00000001u;
+    } else {
+        _has_bits_[0] &= ~0x00000001u;
+    }
+    transaction_ = transaction;
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionWithReceipt.transaction)
 }
 
 // optional .ZilliqaMessage.ProtoTransactionReceipt receipt = 2;
 inline bool ProtoTransactionWithReceipt::_internal_has_receipt() const {
-  bool value = (_has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || receipt_ != nullptr);
-  return value;
+    bool value = (_has_bits_[0] & 0x00000002u) != 0;
+    PROTOBUF_ASSUME(!value || receipt_ != nullptr);
+    return value;
 }
 inline bool ProtoTransactionWithReceipt::has_receipt() const {
-  return _internal_has_receipt();
+    return _internal_has_receipt();
 }
 inline void ProtoTransactionWithReceipt::clear_receipt() {
-  if (receipt_ != nullptr) receipt_->Clear();
-  _has_bits_[0] &= ~0x00000002u;
+    if (receipt_ != nullptr) receipt_->Clear();
+    _has_bits_[0] &= ~0x00000002u;
 }
 inline const ::ZilliqaMessage::ProtoTransactionReceipt& ProtoTransactionWithReceipt::_internal_receipt() const {
-  const ::ZilliqaMessage::ProtoTransactionReceipt* p = receipt_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ProtoTransactionReceipt*>(
-      &::ZilliqaMessage::_ProtoTransactionReceipt_default_instance_);
+    const ::ZilliqaMessage::ProtoTransactionReceipt* p = receipt_;
+    return p != nullptr ? *p : *reinterpret_cast<const ::ZilliqaMessage::ProtoTransactionReceipt*>(
+               &::ZilliqaMessage::_ProtoTransactionReceipt_default_instance_);
 }
 inline const ::ZilliqaMessage::ProtoTransactionReceipt& ProtoTransactionWithReceipt::receipt() const {
-  // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionWithReceipt.receipt)
-  return _internal_receipt();
+    // @@protoc_insertion_point(field_get:ZilliqaMessage.ProtoTransactionWithReceipt.receipt)
+    return _internal_receipt();
 }
 inline ::ZilliqaMessage::ProtoTransactionReceipt* ProtoTransactionWithReceipt::release_receipt() {
-  // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionWithReceipt.receipt)
-  _has_bits_[0] &= ~0x00000002u;
-  ::ZilliqaMessage::ProtoTransactionReceipt* temp = receipt_;
-  receipt_ = nullptr;
-  return temp;
+    // @@protoc_insertion_point(field_release:ZilliqaMessage.ProtoTransactionWithReceipt.receipt)
+    _has_bits_[0] &= ~0x00000002u;
+    ::ZilliqaMessage::ProtoTransactionReceipt* temp = receipt_;
+    receipt_ = nullptr;
+    return temp;
 }
 inline ::ZilliqaMessage::ProtoTransactionReceipt* ProtoTransactionWithReceipt::_internal_mutable_receipt() {
-  _has_bits_[0] |= 0x00000002u;
-  if (receipt_ == nullptr) {
-    auto* p = CreateMaybeMessage<::ZilliqaMessage::ProtoTransactionReceipt>(GetArenaNoVirtual());
-    receipt_ = p;
-  }
-  return receipt_;
+    _has_bits_[0] |= 0x00000002u;
+    if (receipt_ == nullptr) {
+        auto* p = CreateMaybeMessage<::ZilliqaMessage::ProtoTransactionReceipt>(GetArenaNoVirtual());
+        receipt_ = p;
+    }
+    return receipt_;
 }
 inline ::ZilliqaMessage::ProtoTransactionReceipt* ProtoTransactionWithReceipt::mutable_receipt() {
-  // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionWithReceipt.receipt)
-  return _internal_mutable_receipt();
+    // @@protoc_insertion_point(field_mutable:ZilliqaMessage.ProtoTransactionWithReceipt.receipt)
+    return _internal_mutable_receipt();
 }
 inline void ProtoTransactionWithReceipt::set_allocated_receipt(::ZilliqaMessage::ProtoTransactionReceipt* receipt) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete receipt_;
-  }
-  if (receipt) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
-    if (message_arena != submessage_arena) {
-      receipt = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, receipt, submessage_arena);
+    ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+    if (message_arena == nullptr) {
+        delete receipt_;
     }
-    _has_bits_[0] |= 0x00000002u;
-  } else {
-    _has_bits_[0] &= ~0x00000002u;
-  }
-  receipt_ = receipt;
-  // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionWithReceipt.receipt)
+    if (receipt) {
+        ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+        if (message_arena != submessage_arena) {
+            receipt = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+                          message_arena, receipt, submessage_arena);
+        }
+        _has_bits_[0] |= 0x00000002u;
+    } else {
+        _has_bits_[0] &= ~0x00000002u;
+    }
+    receipt_ = receipt;
+    // @@protoc_insertion_point(field_set_allocated:ZilliqaMessage.ProtoTransactionWithReceipt.receipt)
 }
 
 #ifdef __GNUC__
-  #pragma GCC diagnostic pop
+#pragma GCC diagnostic pop
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 

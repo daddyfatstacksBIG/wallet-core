@@ -186,7 +186,7 @@ TW::Any::Proto::SigningOutput TW::Any::Signer::sign() const noexcept {
 }
 
 void TW::Any::Signer::parse(const std::string &transaction, Message *message,
-                        TW::Any::Proto::SigningOutput &output) const noexcept {
+                            TW::Any::Proto::SigningOutput &output) const noexcept {
     util::JsonParseOptions options;
     options.case_insensitive_enum_parsing = true;
     options.ignore_unknown_fields = false;
@@ -205,7 +205,7 @@ void TW::Any::Signer::parse(const std::string &transaction, Message *message,
 }
 
 void TW::Any::Signer::toJson(const google::protobuf::Message &message, std::string *json_string) const
-    noexcept {
+noexcept {
     util::JsonPrintOptions options;
     options.preserve_proto_field_names = true;
 

@@ -73,11 +73,11 @@ bool TW::validateAddress(TWCoinType coin, const std::string &string) {
     case TWCoinTypeQtum:
     case TWCoinTypeViacoin:
         return Bitcoin::SegwitAddress::isValid(string, hrp) ||
-               Bitcoin::Address::isValid(string, {{p2pkh}, {p2sh}});
+        Bitcoin::Address::isValid(string, {{p2pkh}, {p2sh}});
 
     case TWCoinTypeBitcoinCash:
         return Bitcoin::CashAddress::isValid(string) ||
-               Bitcoin::Address::isValid(string, {{p2pkh}, {p2sh}});
+        Bitcoin::Address::isValid(string, {{p2pkh}, {p2sh}});
 
     case TWCoinTypeBravoCoin:
         return Bravo::Address::isValid(string);
@@ -280,7 +280,7 @@ std::string TW::deriveAddress(TWCoinType coin, const PublicKey &publicKey) {
 
     case TWCoinTypeNULS:
         return NULS::Address(publicKey).string();
-        
+
     case TWCoinTypeNEAR:
         return NEAR::Address(publicKey).string();
 

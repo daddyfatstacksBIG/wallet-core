@@ -30,7 +30,9 @@ protected:
     CommandExecutor _executor;
 
 public:
-    WalletConsole(istream& ins, ostream& outs) : _inst(ins), _outst(outs), _executor(outs) { init(); }
+    WalletConsole(istream& ins, ostream& outs) : _inst(ins), _outst(outs), _executor(outs) {
+        init();
+    }
     void init();
     void loop();
     static bool isExit(const string& cmd);

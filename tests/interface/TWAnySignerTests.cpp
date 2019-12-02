@@ -84,8 +84,8 @@ TEST(TWAnySigner, SignNano) {
     const string privateKeyHex = "173c40e97fe2afcd24187e74f6b603cb949a5365e72fbdd065a6b165e2189e34";
     // preparing transaction
     string transaction = R"({"link_block":")" +
-        TW::Base64::encode(parse_hex("491fca2c69a84607d374aaf1f6acd3ce70744c5be0721b5ed394653e85233507")) +
-        R"(","representative":"nano_3arg3asgtigae3xckabaaewkx3bzsh7nwz7jkmjos79ihyaxwphhm6qgjps4","balance":"96242336390000000000000000000"})";
+                         TW::Base64::encode(parse_hex("491fca2c69a84607d374aaf1f6acd3ce70744c5be0721b5ed394653e85233507")) +
+                         R"(","representative":"nano_3arg3asgtigae3xckabaaewkx3bzsh7nwz7jkmjos79ihyaxwphhm6qgjps4","balance":"96242336390000000000000000000"})";
 
     TW::Any::Proto::SigningOutput signingOutput;
     ASSERT_TRUE(performAnySign(coinType, transaction, privateKeyHex, signingOutput));
