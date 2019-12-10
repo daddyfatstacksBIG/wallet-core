@@ -20,7 +20,7 @@ GTEST_DIR="$ROOT/build/gtest/staging"
 mkdir -p "$GTEST_DIR"
 cd "$GTEST_DIR"
 if [ ! -f release-"$GTEST_VERSION".tar.gz ]; then
-    curl -fSsOL https://github.com/google/googletest/archive/release-"$GTEST_VERSION".tar.gz
+  curl -fSsOL https://github.com/google/googletest/archive/release-"$GTEST_VERSION".tar.gz
 fi
 tar xzf release-"$GTEST_VERSION".tar.gz
 
@@ -36,7 +36,7 @@ CHECK_DIR="$ROOT/build/check/staging"
 mkdir -p "$CHECK_DIR"
 cd "$CHECK_DIR"
 if [ ! -f check-"$CHECK_VERSION".tar.gz ]; then
-    curl -fSsOL https://github.com/libcheck/check/releases/download/0.12.0/check-"$CHECK_VERSION".tar.gz
+  curl -fSsOL https://github.com/libcheck/check/releases/download/0.12.0/check-"$CHECK_VERSION".tar.gz
 fi
 tar xzf check-"$CHECK_VERSION".tar.gz
 
@@ -52,7 +52,7 @@ JSON_DIR="$ROOT/build/json/staging"
 mkdir -p "$JSON_DIR"
 cd "$JSON_DIR"
 if [ ! -f include.zip ]; then
-    curl -fSsOL https://github.com/nlohmann/json/releases/download/v"$JSON_VERSION"/include.zip
+  curl -fSsOL https://github.com/nlohmann/json/releases/download/v"$JSON_VERSION"/include.zip
 fi
 unzip -d "$PREFIX" -o include.zip
 
@@ -62,7 +62,7 @@ PROTOBUF_DIR="$ROOT/build/protobuf/staging"
 mkdir -p "$PROTOBUF_DIR"
 cd "$PROTOBUF_DIR"
 if [ ! -f protobuf-java-"$PROTOBUF_VERSION".tar.gz ]; then
-    curl -fSsOL https://github.com/protocolbuffers/protobuf/releases/download/v"$PROTOBUF_VERSION/protobuf-java-$PROTOBUF_VERSION".tar.gz
+  curl -fSsOL https://github.com/protocolbuffers/protobuf/releases/download/v"$PROTOBUF_VERSION/protobuf-java-$PROTOBUF_VERSION".tar.gz
 fi
 tar xzf protobuf-java-"$PROTOBUF_VERSION".tar.gz
 
@@ -76,21 +76,21 @@ make clean
 "$PREFIX/bin/protoc" --version
 
 if [ -x "$(command -v swift)" ]; then
-    # Download Swift Protobuf sources
-    export SWIFT_PROTOBUF_VERSION=1.7.0
-    SWIFT_PROTOBUF_DIR="$ROOT/build/swift-protobuf/staging"
-    mkdir -p "$SWIFT_PROTOBUF_DIR"
-    cd "$SWIFT_PROTOBUF_DIR"
-    if [ ! -f "$SWIFT_PROTOBUF_VERSION".tar.gz ]; then
-        curl -fSsOL https://github.com/apple/swift-protobuf/archive/"$SWIFT_PROTOBUF_VERSION".tar.gz
-    fi
-    tar xzf "$SWIFT_PROTOBUF_VERSION".tar.gz
+  # Download Swift Protobuf sources
+  export SWIFT_PROTOBUF_VERSION=1.7.0
+  SWIFT_PROTOBUF_DIR="$ROOT/build/swift-protobuf/staging"
+  mkdir -p "$SWIFT_PROTOBUF_DIR"
+  cd "$SWIFT_PROTOBUF_DIR"
+  if [ ! -f "$SWIFT_PROTOBUF_VERSION".tar.gz ]; then
+    curl -fSsOL https://github.com/apple/swift-protobuf/archive/"$SWIFT_PROTOBUF_VERSION".tar.gz
+  fi
+  tar xzf "$SWIFT_PROTOBUF_VERSION".tar.gz
 
-    # Build Swift Protobuf
-    cd swift-protobuf-"$SWIFT_PROTOBUF_VERSION"
-    swift build --static-swift-stdlib -c release
-    cp -f "$SWIFT_PROTOBUF_DIR/swift-protobuf-$SWIFT_PROTOBUF_VERSION/.build/release/protoc-gen-swift" "$PREFIX/bin" | true
-    "$PREFIX"/bin/protoc-gen-swift --version
+  # Build Swift Protobuf
+  cd swift-protobuf-"$SWIFT_PROTOBUF_VERSION"
+  swift build --static-swift-stdlib -c release
+  cp -f "$SWIFT_PROTOBUF_DIR/swift-protobuf-$SWIFT_PROTOBUF_VERSION/.build/release/protoc-gen-swift" "$PREFIX/bin" | true
+  "$PREFIX"/bin/protoc-gen-swift --version
 fi
 
 # Protobuf plugins
