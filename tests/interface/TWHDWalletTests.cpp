@@ -217,7 +217,7 @@ TEST(HDWallet, DeriveFIO) {
     auto prefix = WRAPD(TWDataCreateWithBytes(bytes, 1));
     TWDataAppendData(prefix.get(), privateKeyData.get());
     auto base58 = WRAPS(TWBase58Encode(prefix.get()));
-    
+
     assertHexEqual(privateKeyData, "ea8eb60b7e5868e218f248e032769020b4fea5dcfd02f2992861eaf4fb534854");
     assertStringsEqual(base58, "5Kbb37EAqQgZ9vWUHoPiC2uXYhyGSFNbL6oiDp24Ea1ADxV1qnu");
 }
@@ -250,7 +250,7 @@ TEST(HDWallet, ExtendedKeys) {
     auto zpub = WRAPS(TWHDWalletGetExtendedPublicKey(wallet.get(), TWPurposeBIP84, TWCoinTypeBitcoin, TWHDVersionZPUB));
     assertStringsEqual(zprv, "zprvAdG4iTXWBoARxkkzNpNh8r6Qag3irQB8PzEMkAFeTRXxHpbF9z4QgEvBRmfvqWvGp42t42nvgGpNgYSJA9iefm1yYNZKEm7z6qUWCroSQnE");
     assertStringsEqual(zpub, "zpub6rFR7y4Q2AijBEqTUquhVz398htDFrtymD9xYYfG1m4wAcvPhXNfE3EfH1r1ADqtfSdVCToUG868RvUUkgDKf31mGDtKsAYz2oz2AGutZYs");
-    
+
     auto emptyPrv = WRAPS(TWHDWalletGetExtendedPrivateKey(wallet.get(), TWPurposeBIP44, TWCoinTypeEthereum, TWHDVersionNone));
     auto emptyPub = WRAPS(TWHDWalletGetExtendedPublicKey(wallet.get(), TWPurposeBIP44, TWCoinTypeEthereum, TWHDVersionNone));
     assertStringsEqual(emptyPrv, "");

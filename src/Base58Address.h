@@ -17,7 +17,7 @@ namespace TW {
 
 template <std::size_t S>
 class Base58Address {
-  public:
+public:
     /// Number of bytes in an address.
     static const size_t size = S;
 

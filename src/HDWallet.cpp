@@ -88,7 +88,7 @@ std::string HDWallet::getExtendedPrivateKey(TWPurpose purpose, TWCoinType coin, 
     if (version == TWHDVersionNone) {
         return "";
     }
-    
+
     const auto curve = TWCoinTypeCurve(coin);
     auto derivationPath = TW::DerivationPath({DerivationPathIndex(purpose, true), DerivationPathIndex(coin, true)});
     auto node = getNode(*this, curve, derivationPath);
@@ -101,7 +101,7 @@ std::string HDWallet::getExtendedPublicKey(TWPurpose purpose, TWCoinType coin, T
     if (version == TWHDVersionNone) {
         return "";
     }
-    
+
     const auto curve = TWCoinTypeCurve(coin);
     auto derivationPath = TW::DerivationPath({DerivationPathIndex(purpose, true), DerivationPathIndex(coin, true)});
     auto node = getNode(*this, curve, derivationPath);

@@ -62,55 +62,60 @@ static json feeJSON(const Proto::Fee& fee) {
 static json messageSend(const Proto::Message_Send& message) {
     return {
         {"type", TYPE_PREFIX_MSG_SEND},
-        {"value", {
-            {"amount", amountsJSON(message.amounts())},
-            {"from_address", message.from_address()},
-            {"to_address", message.to_address()}
-        }}
+        {   "value", {
+                {"amount", amountsJSON(message.amounts())},
+                {"from_address", message.from_address()},
+                {"to_address", message.to_address()}
+            }
+        }
     };
 }
 
 static json messageDelegate(const Proto::Message_Delegate& message) {
     return {
         {"type", TYPE_PREFIX_MSG_DELEGATE},
-        {"value", {
-            {"amount", amountJSON(message.amount())},
-            {"delegator_address", message.delegator_address()},
-            {"validator_address", message.validator_address()}
-        }}
+        {   "value", {
+                {"amount", amountJSON(message.amount())},
+                {"delegator_address", message.delegator_address()},
+                {"validator_address", message.validator_address()}
+            }
+        }
     };
 }
 
 static json messageUndelegate(const Proto::Message_Undelegate& message) {
     return {
         {"type", TYPE_PREFIX_MSG_UNDELEGATE},
-        {"value", {
-            {"amount", amountJSON(message.amount())},
-            {"delegator_address", message.delegator_address()},
-            {"validator_address", message.validator_address()}
-        }}
+        {   "value", {
+                {"amount", amountJSON(message.amount())},
+                {"delegator_address", message.delegator_address()},
+                {"validator_address", message.validator_address()}
+            }
+        }
     };
 }
 
 static json messageRedelegate(const Proto::Message_BeginRedelegate& message) {
     return {
         {"type", TYPE_PREFIX_MSG_REDELEGATE},
-        {"value", {
-            {"amount", amountJSON(message.amount())},
-            {"delegator_address", message.delegator_address()},
-            {"validator_src_address", message.validator_src_address()},
-            {"validator_dst_address", message.validator_dst_address()},
-        }}
+        {   "value", {
+                {"amount", amountJSON(message.amount())},
+                {"delegator_address", message.delegator_address()},
+                {"validator_src_address", message.validator_src_address()},
+                {"validator_dst_address", message.validator_dst_address()},
+            }
+        }
     };
 }
 
 static json messageWithdrawReward(const Proto::Message_WithdrawDelegationReward& message) {
     return {
         {"type", TYPE_PREFIX_MSG_WITHDRAW_REWARD},
-        {"value", {
-            {"delegator_address", message.delegator_address()},
-            {"validator_address", message.validator_address()}
-        }}
+        {   "value", {
+                {"delegator_address", message.delegator_address()},
+                {"validator_address", message.validator_address()}
+            }
+        }
     };
 }
 
@@ -142,10 +147,11 @@ static json messagesJSON(const Proto::SigningInput& input) {
 
 static json signatureJSON(const Data& signature, const Data& pubkey) {
     return {
-        {"pub_key", {
-            {"type", TYPE_PREFIX_PUBLIC_KEY},
-            {"value", Base64::encode(pubkey)}
-        }},
+        {   "pub_key", {
+                {"type", TYPE_PREFIX_PUBLIC_KEY},
+                {"value", Base64::encode(pubkey)}
+            }
+        },
         {"signature", Base64::encode(signature)}
     };
 }
@@ -170,9 +176,10 @@ json Cosmos::transactionJSON(const Proto::SigningInput& input, const Data& signa
         {"fee", feeJSON(input.fee())},
         {"memo", input.memo()},
         {"msg", messagesJSON(input)},
-        {"signatures", json::array({
-            signatureJSON(signature, Data(publicKey.bytes))
-        })}
+        {   "signatures", json::array({
+                signatureJSON(signature, Data(publicKey.bytes))
+            })
+        }
     };
     return broadcastJSON(tx);
 }

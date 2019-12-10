@@ -24,7 +24,7 @@
 namespace TW {
 
 class HDWallet {
-  public:
+public:
     static constexpr size_t seedSize = 64;
     static constexpr size_t maxMnemomincSize = 240;
     static constexpr size_t maxExtendedKeySize = 128;
@@ -38,7 +38,7 @@ class HDWallet {
     /// Mnemonic passphrase.
     std::string passphrase;
 
-  public:
+public:
     /// Determines if a mnemonic phrase is valid.
     static bool isValid(const std::string& mnemonic);
 
