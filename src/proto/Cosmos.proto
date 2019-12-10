@@ -70,7 +70,7 @@ message SigningInput {
     string chain_id = 2;
     Fee fee = 3;
     string memo = 4;
-    uint64 sequence = 5; 
+    uint64 sequence = 5;
 
     bytes private_key = 6;
 
