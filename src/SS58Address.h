@@ -11,15 +11,15 @@
 #include "PublicKey.h"
 
 #include <array>
-#include <string>
 #include <iostream>
+#include <string>
 
 const std::string SS58Prefix = "SS58PRE";
 
 namespace TW {
 
 class SS58Address {
-public:
+  public:
     /// Number of bytes in an address.
     static const size_t size = 33;
 

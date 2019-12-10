@@ -5,8 +5,8 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "Signer.h"
-#include "../PrivateKey.h"
 #include "Serialization.h"
+#include "../PrivateKey.h"
 
 #include "../Data.h"
 #include "../Hash.h"

@@ -6,8 +6,8 @@
 
 #include "HexCoding.h"
 #include "Kusama/Address.h"
-#include "PublicKey.h"
 #include "PrivateKey.h"
+#include "PublicKey.h"
 #include <gtest/gtest.h>
 #include <vector>
 
@@ -34,13 +34,16 @@ TEST(KusamaAddress, Validation) {
 
 TEST(KusamaAddress, FromPrivateKey) {
     // from subkey: tiny escape drive pupil flavor endless love walk gadget match filter luxury
-    auto privateKey = PrivateKey(parse_hex("0xa21981f3bb990c40837df44df639541ff57c5e600f9eb4ac00ed8d1f718364e5"));
+    auto privateKey =
+        PrivateKey(parse_hex("0xa21981f3bb990c40837df44df639541ff57c5e600f9eb4ac00ed8d1f718364e5"));
     auto address = Address(privateKey.getPublicKey(TWPublicKeyTypeED25519));
     ASSERT_EQ(address.string(), "CeVXtoU4py9e7F6upfM2ZarVave299TjcdaTSxhDDZrYgnM");
 }
 
 TEST(KusamaAddress, FromPublicKey) {
-    auto publicKey = PublicKey(parse_hex("0x032eb287017c5cde2940b5dd062d413f9d09f8aa44723fc80bf46b96c81ac23d"), TWPublicKeyTypeED25519);
+    auto publicKey =
+        PublicKey(parse_hex("0x032eb287017c5cde2940b5dd062d413f9d09f8aa44723fc80bf46b96c81ac23d"),
+                  TWPublicKeyTypeED25519);
     auto address = Address(publicKey);
     ASSERT_EQ(address.string(), "CeVXtoU4py9e7F6upfM2ZarVave299TjcdaTSxhDDZrYgnM");
 }

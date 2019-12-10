@@ -6,18 +6,18 @@
 
 #pragma once
 
-#include "../proto/Cosmos.pb.h"
 #include "../Data.h"
+#include "../proto/Cosmos.pb.h"
 
 namespace TW::Cosmos {
 
 /// Helper class that performs Cosmos transaction signing.
 class Signer {
-public:
+  public:
     Proto::SigningInput input;
 
     /// Initializes a transaction signer.
-    Signer(Proto::SigningInput&& input) :input(input) {}
+    Signer(Proto::SigningInput&& input) : input(input) {}
 
     /// Signs the transaction.
     ///
@@ -30,7 +30,7 @@ public:
     Proto::SigningOutput build() const;
 };
 
-} // namespace
+} // namespace TW::Cosmos
 
 /// Wrapper for C interface.
 struct TWCosmosSigner {

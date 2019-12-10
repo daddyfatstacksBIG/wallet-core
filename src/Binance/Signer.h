@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "../proto/Binance.pb.h"
 #include "Data.h"
+#include "../proto/Binance.pb.h"
 
 #include <cstdint>
 
@@ -15,7 +15,7 @@ namespace TW::Binance {
 
 /// Helper class that performs Binance transaction signing.
 class Signer {
-public:
+  public:
     Proto::SigningInput input;
 
     /// Initializes a transaction signer.
@@ -33,7 +33,7 @@ public:
     /// error.
     TW::Data sign() const;
 
-private:
+  private:
     std::string signaturePreimage() const;
     TW::Data encodeTransaction(const TW::Data& signature) const;
     TW::Data encodeOrder() const;

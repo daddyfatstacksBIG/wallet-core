@@ -6,10 +6,10 @@
 
 #include "Serialization.h"
 
-#include "../Cosmos/Address.h"
-#include "../proto/Cosmos.pb.h"
 #include "Base64.h"
 #include "PrivateKey.h"
+#include "../Cosmos/Address.h"
+#include "../proto/Cosmos.pb.h"
 
 using namespace TW;
 using namespace TW::Cosmos;
@@ -25,17 +25,11 @@ const string TYPE_PREFIX_MSG_WITHDRAW_REWARD = "cosmos-sdk/MsgWithdrawDelegation
 const string TYPE_PREFIX_PUBLIC_KEY = "tendermint/PubKeySecp256k1";
 
 static json broadcastJSON(json& jsonObj) {
-    return {
-        {"tx", jsonObj},
-        {"mode", "block"}
-    };
+    return {{"tx", jsonObj}, {"mode", "block"}};
 }
 
 static json amountJSON(const Proto::Amount& amount) {
-    return {
-        {"amount", std::to_string(amount.amount())},
-        {"denom", amount.denom()}
-    };
+    return {{"amount", std::to_string(amount.amount())}, {"denom", amount.denom()}};
 }
 
 static json amountsJSON(const ::google::protobuf::RepeatedPtrField<Proto::Amount>& amounts) {
@@ -53,70 +47,49 @@ static json feeJSON(const Proto::Fee& fee) {
         js.push_back(amountJSON(amount));
     }
 
-    return {
-        {"amount", js},
-        {"gas", std::to_string(fee.gas())}
-    };
+    return {{"amount", js}, {"gas", std::to_string(fee.gas())}};
 }
 
 static json messageSend(const Proto::Message_Send& message) {
-    return {
-        {"type", TYPE_PREFIX_MSG_SEND},
-        {   "value", {
-                {"amount", amountsJSON(message.amounts())},
-                {"from_address", message.from_address()},
-                {"to_address", message.to_address()}
-            }
-        }
-    };
+    return {{"type", TYPE_PREFIX_MSG_SEND},
+            {"value",
+             {{"amount", amountsJSON(message.amounts())},
+              {"from_address", message.from_address()},
+              {"to_address", message.to_address()}}}};
 }
 
 static json messageDelegate(const Proto::Message_Delegate& message) {
-    return {
-        {"type", TYPE_PREFIX_MSG_DELEGATE},
-        {   "value", {
-                {"amount", amountJSON(message.amount())},
-                {"delegator_address", message.delegator_address()},
-                {"validator_address", message.validator_address()}
-            }
-        }
-    };
+    return {{"type", TYPE_PREFIX_MSG_DELEGATE},
+            {"value",
+             {{"amount", amountJSON(message.amount())},
+              {"delegator_address", message.delegator_address()},
+              {"validator_address", message.validator_address()}}}};
 }
 
 static json messageUndelegate(const Proto::Message_Undelegate& message) {
-    return {
-        {"type", TYPE_PREFIX_MSG_UNDELEGATE},
-        {   "value", {
-                {"amount", amountJSON(message.amount())},
-                {"delegator_address", message.delegator_address()},
-                {"validator_address", message.validator_address()}
-            }
-        }
-    };
+    return {{"type", TYPE_PREFIX_MSG_UNDELEGATE},
+            {"value",
+             {{"amount", amountJSON(message.amount())},
+              {"delegator_address", message.delegator_address()},
+              {"validator_address", message.validator_address()}}}};
 }
 
 static json messageRedelegate(const Proto::Message_BeginRedelegate& message) {
-    return {
-        {"type", TYPE_PREFIX_MSG_REDELEGATE},
-        {   "value", {
-                {"amount", amountJSON(message.amount())},
-                {"delegator_address", message.delegator_address()},
-                {"validator_src_address", message.validator_src_address()},
-                {"validator_dst_address", message.validator_dst_address()},
-            }
-        }
-    };
+    return {{"type", TYPE_PREFIX_MSG_REDELEGATE},
+            {"value",
+             {
+                 {"amount", amountJSON(message.amount())},
+                 {"delegator_address", message.delegator_address()},
+                 {"validator_src_address", message.validator_src_address()},
+                 {"validator_dst_address", message.validator_dst_address()},
+             }}};
 }
 
 static json messageWithdrawReward(const Proto::Message_WithdrawDelegationReward& message) {
-    return {
-        {"type", TYPE_PREFIX_MSG_WITHDRAW_REWARD},
-        {   "value", {
-                {"delegator_address", message.delegator_address()},
-                {"validator_address", message.validator_address()}
-            }
-        }
-    };
+    return {{"type", TYPE_PREFIX_MSG_WITHDRAW_REWARD},
+            {"value",
+             {{"delegator_address", message.delegator_address()},
+              {"validator_address", message.validator_address()}}}};
 }
 
 static json messageRawJSON(const Proto::Message_RawJSON& message) {
@@ -146,40 +119,27 @@ static json messagesJSON(const Proto::SigningInput& input) {
 }
 
 static json signatureJSON(const Data& signature, const Data& pubkey) {
-    return {
-        {   "pub_key", {
-                {"type", TYPE_PREFIX_PUBLIC_KEY},
-                {"value", Base64::encode(pubkey)}
-            }
-        },
-        {"signature", Base64::encode(signature)}
-    };
+    return {{"pub_key", {{"type", TYPE_PREFIX_PUBLIC_KEY}, {"value", Base64::encode(pubkey)}}},
+            {"signature", Base64::encode(signature)}};
 }
 
 json Cosmos::signaturePreimage(const Proto::SigningInput& input) {
-    return {
-        {"account_number", std::to_string(input.account_number())},
-        {"chain_id", input.chain_id()},
-        {"fee", feeJSON(input.fee())},
-        {"memo", input.memo()},
-        {"msgs", messagesJSON(input)},
-        {"sequence", std::to_string(input.sequence())}
-    };
+    return {{"account_number", std::to_string(input.account_number())},
+            {"chain_id", input.chain_id()},
+            {"fee", feeJSON(input.fee())},
+            {"memo", input.memo()},
+            {"msgs", messagesJSON(input)},
+            {"sequence", std::to_string(input.sequence())}};
 }
 
 json Cosmos::transactionJSON(const Proto::SigningInput& input, const Data& signature) {
     auto privateKey = PrivateKey(input.private_key());
     auto publicKey = privateKey.getPublicKey(TWPublicKeyTypeSECP256k1);
     auto typePrefix = input.type_prefix().empty() ? TYPE_PREFIX_MSG_SEND : input.type_prefix();
-    json tx = {
-        {"type", typePrefix},
-        {"fee", feeJSON(input.fee())},
-        {"memo", input.memo()},
-        {"msg", messagesJSON(input)},
-        {   "signatures", json::array({
-                signatureJSON(signature, Data(publicKey.bytes))
-            })
-        }
-    };
+    json tx = {{"type", typePrefix},
+               {"fee", feeJSON(input.fee())},
+               {"memo", input.memo()},
+               {"msg", messagesJSON(input)},
+               {"signatures", json::array({signatureJSON(signature, Data(publicKey.bytes))})}};
     return broadcastJSON(tx);
 }

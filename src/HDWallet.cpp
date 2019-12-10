@@ -8,8 +8,8 @@
 
 #include "Base58.h"
 #include "BinaryCoding.h"
-#include "Bitcoin/SegwitAddress.h"
 #include "Bitcoin/CashAddress.h"
+#include "Bitcoin/SegwitAddress.h"
 #include "Coin.h"
 #include "Decred/Address.h"
 #include "Ripple/Address.h"
@@ -26,9 +26,10 @@ using namespace TW;
 
 namespace {
 
-uint32_t fingerprint(HDNode *node, Hash::Hasher hasher);
-std::string serialize(const HDNode *node, uint32_t fingerprint, uint32_t version, bool use_public, Hash::Hasher hasher);
-bool deserialize(const std::string& extended, TWCurve curve, Hash::Hasher hasher, HDNode *node);
+uint32_t fingerprint(HDNode* node, Hash::Hasher hasher);
+std::string serialize(const HDNode* node, uint32_t fingerprint, uint32_t version, bool use_public,
+                      Hash::Hasher hasher);
+bool deserialize(const std::string& extended, TWCurve curve, Hash::Hasher hasher, HDNode* node);
 HDNode getNode(const HDWallet& wallet, TWCurve curve, const DerivationPath& derivationPath);
 HDNode getMasterNode(const HDWallet& wallet, TWCurve curve);
 
@@ -84,26 +85,30 @@ std::string HDWallet::deriveAddress(TWCoinType coin) const {
     return TW::deriveAddress(coin, getKey(derivationPath));
 }
 
-std::string HDWallet::getExtendedPrivateKey(TWPurpose purpose, TWCoinType coin, TWHDVersion version) const {
+std::string HDWallet::getExtendedPrivateKey(TWPurpose purpose, TWCoinType coin,
+                                            TWHDVersion version) const {
     if (version == TWHDVersionNone) {
         return "";
     }
 
     const auto curve = TWCoinTypeCurve(coin);
-    auto derivationPath = TW::DerivationPath({DerivationPathIndex(purpose, true), DerivationPathIndex(coin, true)});
+    auto derivationPath =
+        TW::DerivationPath({DerivationPathIndex(purpose, true), DerivationPathIndex(coin, true)});
     auto node = getNode(*this, curve, derivationPath);
     auto fingerprintValue = fingerprint(&node, publicKeyHasher(coin));
     hdnode_private_ckd(&node, 0x80000000);
     return serialize(&node, fingerprintValue, version, false, base58Hasher(coin));
 }
 
-std::string HDWallet::getExtendedPublicKey(TWPurpose purpose, TWCoinType coin, TWHDVersion version) const {
+std::string HDWallet::getExtendedPublicKey(TWPurpose purpose, TWCoinType coin,
+                                           TWHDVersion version) const {
     if (version == TWHDVersionNone) {
         return "";
     }
 
     const auto curve = TWCoinTypeCurve(coin);
-    auto derivationPath = TW::DerivationPath({DerivationPathIndex(purpose, true), DerivationPathIndex(coin, true)});
+    auto derivationPath =
+        TW::DerivationPath({DerivationPathIndex(purpose, true), DerivationPathIndex(coin, true)});
     auto node = getNode(*this, curve, derivationPath);
     auto fingerprintValue = fingerprint(&node, publicKeyHasher(coin));
     hdnode_private_ckd(&node, 0x80000000);
@@ -111,7 +116,8 @@ std::string HDWallet::getExtendedPublicKey(TWPurpose purpose, TWCoinType coin, T
     return serialize(&node, fingerprintValue, version, true, base58Hasher(coin));
 }
 
-std::optional<PublicKey> HDWallet::getPublicKeyFromExtended(const std::string &extended, const DerivationPath& path) {
+std::optional<PublicKey> HDWallet::getPublicKeyFromExtended(const std::string& extended,
+                                                            const DerivationPath& path) {
     const auto coin = path.coin();
     const auto curve = TW::curve(coin);
     const auto hasher = TW::base58Hasher(coin);
@@ -130,7 +136,8 @@ std::optional<PublicKey> HDWallet::getPublicKeyFromExtended(const std::string &e
     case TWCurveED25519:
         return PublicKey(Data(node.public_key, node.public_key + 33), TWPublicKeyTypeED25519);
     case TWCurveED25519Blake2bNano:
-        return PublicKey(Data(node.public_key, node.public_key + 33), TWPublicKeyTypeED25519Blake2b);
+        return PublicKey(Data(node.public_key, node.public_key + 33),
+                         TWPublicKeyTypeED25519Blake2b);
     case TWCurveCurve25519:
         return PublicKey(Data(node.public_key, node.public_key + 32), TWPublicKeyTypeCURVE25519);
     case TWCurveNIST256p1:
@@ -138,7 +145,8 @@ std::optional<PublicKey> HDWallet::getPublicKeyFromExtended(const std::string &e
     }
 }
 
-std::optional<PrivateKey> HDWallet::getPrivateKeyFromExtended(const std::string &extended, const DerivationPath& path) {
+std::optional<PrivateKey> HDWallet::getPrivateKeyFromExtended(const std::string& extended,
+                                                              const DerivationPath& path) {
     const auto coin = path.coin();
     const auto curve = TW::curve(coin);
     const auto hasher = TW::base58Hasher(coin);
@@ -155,13 +163,14 @@ std::optional<PrivateKey> HDWallet::getPrivateKeyFromExtended(const std::string 
 
 namespace {
 
-uint32_t fingerprint(HDNode *node, Hash::Hasher hasher) {
+uint32_t fingerprint(HDNode* node, Hash::Hasher hasher) {
     hdnode_fill_public_key(node);
     auto digest = hasher(node->public_key, node->public_key + 33);
-    return ((uint32_t) digest[0] << 24) + (digest[1] << 16) + (digest[2] << 8) + digest[3];
+    return ((uint32_t)digest[0] << 24) + (digest[1] << 16) + (digest[2] << 8) + digest[3];
 }
 
-std::string serialize(const HDNode *node, uint32_t fingerprint, uint32_t version, bool use_public, Hash::Hasher hasher) {
+std::string serialize(const HDNode* node, uint32_t fingerprint, uint32_t version, bool use_public,
+                      Hash::Hasher hasher) {
     Data node_data;
     node_data.reserve(78);
 
@@ -180,7 +189,7 @@ std::string serialize(const HDNode *node, uint32_t fingerprint, uint32_t version
     return Base58::bitcoin.encodeCheck(node_data, hasher);
 }
 
-bool deserialize(const std::string& extended, TWCurve curve, Hash::Hasher hasher, HDNode *node) {
+bool deserialize(const std::string& extended, TWCurve curve, Hash::Hasher hasher, HDNode* node) {
     memset(node, 0, sizeof(HDNode));
     node->curve = get_curve_by_name(curveName(curve));
 

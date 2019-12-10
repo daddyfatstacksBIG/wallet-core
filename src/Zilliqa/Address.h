@@ -6,21 +6,19 @@
 
 #pragma once
 
-#include "../Bech32Address.h"
 #include "AddressChecksum.h"
+#include "../Bech32Address.h"
 
 #include <string>
 
 namespace TW::Zilliqa {
 
 /// Zilliqa address is a Bech32Address, with "zil" prefix and Sha2 hash.
-class Address: public Bech32Address {
-public:
+class Address : public Bech32Address {
+  public:
     static const std::string hrp; // HRP_ZILLIQA
 
-    static bool isValid(const std::string addr) {
-        return Bech32Address::isValid(addr, hrp);
-    }
+    static bool isValid(const std::string addr) { return Bech32Address::isValid(addr, hrp); }
 
     Address() : Bech32Address(hrp) {}
 
@@ -38,7 +36,7 @@ public:
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
 
-static std::string checkSum(const Data &keyHash) {
+static std::string checkSum(const Data& keyHash) {
     return checksumed(keyHash);
 }
 
