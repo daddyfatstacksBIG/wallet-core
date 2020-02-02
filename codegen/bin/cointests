@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 # Sript for creating/updating CoinType unit tests, based on the coins.json file
 # It is intended as a one-time or occasional generation, not every time! (that way the tests would have zero added value)
@@ -12,23 +13,21 @@ require 'json'
 # Transforms a coin name to a C++ name
 def self.format_name(n)
   formatted = n
-  #formatted = formatted.sub(/^([a-z]+)/, &:upcase)
+  # formatted = formatted.sub(/^([a-z]+)/, &:upcase)
   formatted = formatted.sub(/\s/, '')
   formatted
 end
 
 # Transforms number to hex
 def self.to_hex(i)
-  hex = i.to_i().to_s(16)
+  hex = i.to_i.to_s(16)
   hex
 end
 
 # Display name, or name if not specified
 def self.display_name(coin)
   name = coin['displayName']
-  if name == nil
-    name = coin['name']
-  end
+  name = coin['name'] if name.nil?
   name
 end
 
@@ -40,19 +39,22 @@ end
 def self.explorer_tx_url(c)
   path = c['explorer']['url'].to_s + c['explorer']['txPath'].to_s
 end
+
 def self.explorer_account_url(c)
   path = c['explorer']['url'].to_s + c['explorer']['accountPath'].to_s
 end
+
 def self.explorer_sample_tx(c)
   if c['explorer']['sampleTx'].nil?
-    "t123"
+    't123'
   else
     c['explorer']['sampleTx']
   end
 end
+
 def self.explorer_sample_account(c)
   if c['explorer']['sampleAccount'].nil?
-    "a12"
+    'a12'
   else
     c['explorer']['sampleAccount']
   end
@@ -68,7 +70,7 @@ def self.generate_coin_test_file(coin, templateFile)
   FileUtils.mkdir_p folder
   path = File.join(folder, file)
   File.write(path, result)
-  puts "Generated file " + path
+  puts 'Generated file ' + path
 end
 
 json_string = File.read('coins.json')
@@ -76,7 +78,7 @@ coins = JSON.parse(json_string).sort_by { |x| x['name'] }
 coins_md = coins.sort_by { |x| Integer(coin_type(x['derivationPath'])) }
 
 erbs = [
-  {'template' => 'TWCoinTypeTests.cpp.erb', 'folder' => 'tests/interface', 'file' => 'TWCoinTypeTests.cpp'}
+  { 'template' => 'TWCoinTypeTests.cpp.erb', 'folder' => 'tests/interface', 'file' => 'TWCoinTypeTests.cpp' }
 ]
 
 templateFile = 'TWCoinTypeTests.cpp.erb'

@@ -20,9 +20,9 @@ class CodeGenerator
   # Renders an enum template
   def render_swift_enum_template(file:, header:, template:, output_subfolder:, extension:)
     # split Enum to Enum.swift and Enum+Extension.swift (easier to support cocoapods subspec)
-    output_enum_subfolder = "#{output_subfolder + '/Enums'}"
+    output_enum_subfolder = (output_subfolder + '/Enums').to_s
     FileUtils.mkdir_p File.join(output_folder, output_enum_subfolder)
-    has_extension = entity.properties.length > 0 || entity.methods.length > 0
+    has_extension = !entity.properties.empty? || !entity.methods.empty?
     header = render(header)
     header << "\n"
 
@@ -60,7 +60,7 @@ class CodeGenerator
         unless string.nil? || string.empty?
           code << "\n" unless header.nil?
           code << string
-  
+
           path = File.expand_path(File.join(output_folder, output_subfolder, "#{file}.#{extension}"))
           File.write(path, code)
         end
