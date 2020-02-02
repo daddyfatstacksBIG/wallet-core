@@ -16,9 +16,9 @@ bash <(curl -s https://codecov.io/bash) -f coverage.info -t 1faef852-b196-4697-8
 
 # Generate HTML report
 if [[ "$1" == "html" ]]; then
-    genhtml --output-directory coverage \
-        --demangle-cpp --num-spaces 4 --sort \
-        --title "Trust Wallet Core Test Coverage" \
-        --function-coverage --branch-coverage --legend \
-        coverage.info
+  genhtml --output-directory coverage \
+    --demangle-cpp --num-spaces 4 --sort \
+    --title "Trust Wallet Core Test Coverage" \
+    --function-coverage --branch-coverage --legend \
+    coverage.info
 fi

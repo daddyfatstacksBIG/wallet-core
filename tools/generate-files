@@ -12,19 +12,17 @@ set -e
 
 # This script works in both Docker and normal build environments.
 # Protobuf and co. tools are taken from: $PREFIX if provided, or from $PWD/build/local if exists, or from /usr/bin
-if [ -z "$PREFIX" ]
-then
-    # PREFIX not set
-    ROOT="$PWD"
-    PREFIX="$ROOT/build/local"
-    if  [ ! -d "$PREFIX" ] || \
-        [ ! -d "$PREFIX"/include ] || \
-        [ ! -f "$PREFIX"/bin/protoc ] || \
-        [ ! -f "$PREFIX"/bin/protoc-gen-c-typedef ]
-    then
-        echo "$PREFIX" does not exist or not complete, fallback to /usr/local
-        PREFIX=/usr/local
-    fi
+if [ -z "$PREFIX" ]; then
+  # PREFIX not set
+  ROOT="$PWD"
+  PREFIX="$ROOT/build/local"
+  if [ ! -d "$PREFIX" ] ||
+    [ ! -d "$PREFIX"/include ] ||
+    [ ! -f "$PREFIX"/bin/protoc ] ||
+    [ ! -f "$PREFIX"/bin/protoc-gen-c-typedef ]; then
+    echo "$PREFIX" does not exist or not complete, fallback to /usr/local
+    PREFIX=/usr/local
+  fi
 fi
 echo "PREFIX: $PREFIX"
 export PATH="$PREFIX/bin":"$PATH"
@@ -51,9 +49,9 @@ codegen/bin/codegen
 
 # Generate Java, C++ and Swift Protobuf files
 if [ -x "$(command -v protoc-gen-swift)" ]; then
-    "$PROTOC" -I="$PREFIX"/include -I=src/proto --cpp_out=src/proto --java_out=jni/java --swift_out=swift/Sources/Generated/Protobuf --swift_opt=Visibility=Public src/proto/*.proto
+  "$PROTOC" -I="$PREFIX"/include -I=src/proto --cpp_out=src/proto --java_out=jni/java --swift_out=swift/Sources/Generated/Protobuf --swift_opt=Visibility=Public src/proto/*.proto
 else
-    "$PROTOC" -I="$PREFIX"/include -I=src/proto --cpp_out=src/proto --java_out=jni/java src/proto/*.proto
+  "$PROTOC" -I="$PREFIX"/include -I=src/proto --cpp_out=src/proto --java_out=jni/java src/proto/*.proto
 fi
 
 # Generate internal message protocol Protobuf files -- not every time
@@ -66,10 +64,10 @@ fi
 
 # Generate Xcode project
 if [ -x "$(command -v xcodegen)" ]; then
-    pushd swift
-    xcodegen
-    pod install
-    popd
+  pushd swift
+  xcodegen
+  pod install
+  popd
 else
-    echo -e "\nWARNING: Skipped generating Xcode project because the xcodegen tool is not installed."
+  echo -e "\nWARNING: Skipped generating Xcode project because the xcodegen tool is not installed."
 fi
