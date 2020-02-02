@@ -40,7 +40,9 @@ public:
 
     friend bool operator==(const Address& lhs, const Address& rhs);
 
-    static std::string prefix() { return "NEAR"; }
+    static std::string prefix() {
+        return "NEAR";
+    }
 
 private:
     static uint32_t createChecksum(const Data& bytes);

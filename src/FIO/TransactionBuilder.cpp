@@ -19,9 +19,9 @@ using namespace std;
 using json = nlohmann::json;
 
 
-string TransactionBuilder::createRegisterFioAddress(const Address& address, const PrivateKey& privateKey, 
-    const string& fioName, const std::string& ownerPublicKey,
-    const ChainParams& chainParams, uint64_t fee, const string& walletFioName, uint32_t expiryTime) {
+string TransactionBuilder::createRegisterFioAddress(const Address& address, const PrivateKey& privateKey,
+        const string& fioName, const std::string& ownerPublicKey,
+        const ChainParams& chainParams, uint64_t fee, const string& walletFioName, uint32_t expiryTime) {
 
     const auto apiName = "regaddress";
 
@@ -29,7 +29,7 @@ string TransactionBuilder::createRegisterFioAddress(const Address& address, cons
     RegisterFioAddressData raData(fioName, ownerPublicKey, fee, walletFioName, actor);
     Data serData;
     raData.serialize(serData);
-    
+
     Action action;
     action.account = ApiAccountAddress;
     action.name = apiName;
@@ -54,8 +54,8 @@ string TransactionBuilder::createRegisterFioAddress(const Address& address, cons
 }
 
 string TransactionBuilder::createAddPubAddress(const Address& address, const PrivateKey& privateKey, const string& fioName,
-    const vector<pair<string, string>>& pubAddresses,
-    const ChainParams& chainParams, uint64_t fee, const string& walletFioName, uint32_t expiryTime) {
+        const vector<pair<string, string>>& pubAddresses,
+        const ChainParams& chainParams, uint64_t fee, const string& walletFioName, uint32_t expiryTime) {
 
     const auto apiName = "addaddress";
 
@@ -63,7 +63,7 @@ string TransactionBuilder::createAddPubAddress(const Address& address, const Pri
     AddPubAddressData aaData(fioName, pubAddresses, fee, walletFioName, actor);
     Data serData;
     aaData.serialize(serData);
-    
+
     Action action;
     action.account = ApiAccountAddress;
     action.name = apiName;
@@ -87,7 +87,7 @@ string TransactionBuilder::createAddPubAddress(const Address& address, const Pri
     return signAdnBuildTx(chainParams.chainId, serTx, privateKey);
 }
 
-string TransactionBuilder::createTransfer(const Address& address, const PrivateKey& privateKey, 
+string TransactionBuilder::createTransfer(const Address& address, const PrivateKey& privateKey,
         const string& payeePublicKey, uint64_t amount,
         const ChainParams& chainParams, uint64_t fee, const string& walletFioName, uint32_t expiryTime) {
 
@@ -97,7 +97,7 @@ string TransactionBuilder::createTransfer(const Address& address, const PrivateK
     TransferData ttData(payeePublicKey, amount, fee, walletFioName, actor);
     Data serData;
     ttData.serialize(serData);
-    
+
     Action action;
     action.account = ApiAccountToken;
     action.name = apiName;

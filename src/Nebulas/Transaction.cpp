@@ -22,29 +22,37 @@ std::string htmlescape(const std::string& str) {
     for(size_t i=0; i<str.size(); ++i) {
         switch(str[i])
         {
-            case '&': result += "\\u0026"; break;
-            case '>': result += "\\u003e"; break;
-            case '<': result += "\\u003c"; break;
-            case 0x20:
-                if(i+1 < str.size()) {
-                    if(str[i+1]==0x28) {
-                        result += "\\u2028";
-                        ++i;
-                        break;
-                    }
-                    else if (str[i+1]==0x29) {
-                        result += "\\u2029";
-                        ++i;
-                        break;
-                    }
+        case '&':
+            result += "\\u0026";
+            break;
+        case '>':
+            result += "\\u003e";
+            break;
+        case '<':
+            result += "\\u003c";
+            break;
+        case 0x20:
+            if(i+1 < str.size()) {
+                if(str[i+1]==0x28) {
+                    result += "\\u2028";
+                    ++i;
+                    break;
                 }
-            default: result += str[i]; break;
+                else if (str[i+1]==0x29) {
+                    result += "\\u2029";
+                    ++i;
+                    break;
+                }
+            }
+        default:
+            result += str[i];
+            break;
         }
     }
     return result;
 }
 
-Proto::Data* Transaction::newPayloadData(const std::string& payload){
+Proto::Data* Transaction::newPayloadData(const std::string& payload) {
     auto data = new Proto::Data();
     data->set_type(Transaction::TxPayloadBinaryType);
 
@@ -63,7 +71,7 @@ Proto::Data* Transaction::newPayloadData(const std::string& payload){
     return data;
 }
 
-void Transaction::serializeToRaw(){
+void Transaction::serializeToRaw() {
     if(signature.empty()) {
         throw std::logic_error("The transaction is unsigned!");
     }
@@ -87,7 +95,7 @@ void Transaction::serializeToRaw(){
     tx.set_gas_price(gas_price.data(),gas_price.size());
     encode256BE(gas_limit, gasLimit, 128);
     tx.set_gas_limit(gas_limit.data(),gas_limit.size());
-    
+
     tx.set_alg((uint32_t)algorithm);
     tx.set_sign(reinterpret_cast<const char *>(signature.data()),signature.size());
 

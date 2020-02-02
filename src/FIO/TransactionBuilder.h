@@ -43,9 +43,9 @@ public:
     /// @fee Max fee to spend, can be obtained using get_fee API.
     /// @walletFioName The FIO name of the originating wallet (project-wide constant)
     /// @expiryTime Expiry for this message, can be 0, then it is taken from current time with default expiry
-    static std::string createRegisterFioAddress(const Address& address, const PrivateKey& privateKey, 
-        const std::string& fioName, const std::string& ownerPublicKey,
-        const ChainParams& chainParams, uint64_t fee, const std::string& walletFioName, uint32_t expiryTime);
+    static std::string createRegisterFioAddress(const Address& address, const PrivateKey& privateKey,
+            const std::string& fioName, const std::string& ownerPublicKey,
+            const ChainParams& chainParams, uint64_t fee, const std::string& walletFioName, uint32_t expiryTime);
 
     /// Create a signed AddAddress transaction, returned as json string (double quote delimited), suitable for add_pub_address RPC call
     /// @address The owners' FIO address
@@ -58,8 +58,8 @@ public:
     /// @expiryTime Expiry for this message, can be 0, then it is taken from current time with default expiry
     /// Note: fee is usually 0 for add_pub_address.
     static std::string createAddPubAddress(const Address& address, const PrivateKey& privateKey, const std::string& fioName,
-        const std::vector<std::pair<std::string, std::string>>& pubAddresses,
-        const ChainParams& chainParams, uint64_t fee, const std::string& walletFioName, uint32_t expiryTime);
+                                           const std::vector<std::pair<std::string, std::string>>& pubAddresses,
+                                           const ChainParams& chainParams, uint64_t fee, const std::string& walletFioName, uint32_t expiryTime);
 
     /// Create a signed TransferTokens transaction, returned as json string (double quote delimited), suitable for transfer_tokens_pub_key RPC call
     /// @address The owners' FIO address
@@ -70,9 +70,9 @@ public:
     /// @fee Max fee to spend, can be obtained using get_fee API.
     /// @walletFioName The FIO name of the originating wallet (project-wide constant)
     /// @expiryTime Expiry for this message, can be 0, then it is taken from current time with default expiry
-    static std::string createTransfer(const Address& address, const PrivateKey& privateKey, 
-        const std::string& payeePublicKey, uint64_t amount,
-        const ChainParams& chainParams, uint64_t fee, const std::string& walletFioName, uint32_t expiryTime);
+    static std::string createTransfer(const Address& address, const PrivateKey& privateKey,
+                                      const std::string& payeePublicKey, uint64_t amount,
+                                      const ChainParams& chainParams, uint64_t fee, const std::string& walletFioName, uint32_t expiryTime);
 
     /// Used internally.  Creates signatures and json with transaction.
     static std::string signAdnBuildTx(const Data& chainId, const Data& packedTx, const PrivateKey& privateKey);

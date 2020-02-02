@@ -117,7 +117,7 @@ struct TWAccount *_Nullable TWStoredKeyAccountForCoin(struct TWStoredKey *_Nonnu
         if (account == nullptr) {
             return nullptr;
         }
-       return new TWAccount{ *account };
+        return new TWAccount{ *account };
     } catch (...) {
         return nullptr;
     }

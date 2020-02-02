@@ -48,15 +48,15 @@ uint32_t Address::createChecksum(const Data& bytes, Type type) {
         break;
 
     case Type::ModernK1:
-        ripemd160_Update(&ctx, 
-                        (const uint8_t *) Modern::K1::prefix.c_str(), 
-                        static_cast<uint32_t>(Modern::K1::prefix.size()));
+        ripemd160_Update(&ctx,
+                         (const uint8_t *) Modern::K1::prefix.c_str(),
+                         static_cast<uint32_t>(Modern::K1::prefix.size()));
         break;
 
     case Type::ModernR1:
-        ripemd160_Update(&ctx, 
-                        (const uint8_t *) Modern::R1::prefix.c_str(), 
-                        static_cast<uint32_t>(Modern::R1::prefix.size()));
+        ripemd160_Update(&ctx,
+                         (const uint8_t *) Modern::R1::prefix.c_str(),
+                         static_cast<uint32_t>(Modern::R1::prefix.size()));
         break;
     }
 
@@ -67,7 +67,7 @@ uint32_t Address::createChecksum(const Data& bytes, Type type) {
 }
 
 /// Extracts and verifies the key data from a base58 string.
-/// If the second arg is provided, the keyData and isTestNet 
+/// If the second arg is provided, the keyData and isTestNet
 /// properties of that object are set from the extracted data.
 bool Address::extractKeyData(const std::string& string, Address *address) {
     // verify if the string has one of the valid prefixes

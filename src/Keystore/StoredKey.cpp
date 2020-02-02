@@ -78,7 +78,7 @@ const Account* StoredKey::account(TWCoinType coin, const HDWallet* wallet) {
 
     const auto derivationPath = TW::derivationPath(coin);
     const auto address = wallet->deriveAddress(coin);
-    
+
     const auto version = TW::xpubVersion(coin);
     const auto extendedPublicKey = wallet->getExtendedPublicKey(derivationPath.purpose(), coin, version);
 
@@ -98,8 +98,8 @@ const Account* StoredKey::account(TWCoinType coin) const {
 void StoredKey::removeAccount(TWCoinType coin) {
     accounts.erase(std::remove_if(accounts.begin(), accounts.end(), [coin](Account& account) -> bool {
         return account.coin() == coin;
-        }
-    ), accounts.end());
+    }
+                                 ), accounts.end());
 }
 
 
@@ -128,7 +128,7 @@ void StoredKey::fixAddresses(const std::string& password) {
             account.address = TW::deriveAddress(derivationPath.coin(), key);
         }
     }
-        break;
+    break;
     case StoredKeyType::privateKey: {
         auto key = PrivateKey(payload.decrypt(password));
         for (auto& account : accounts) {
@@ -138,7 +138,7 @@ void StoredKey::fixAddresses(const std::string& password) {
             account.address = TW::deriveAddress(account.coin(), key);
         }
     }
-        break;
+    break;
     }
 }
 
@@ -168,7 +168,7 @@ static const auto mnemonic = "mnemonic";
 
 StoredKey::StoredKey(const nlohmann::json& json) {
     if (json.count(CodingKeys::type) != 0 &&
-        json[CodingKeys::type].get<std::string>() == TypeString::mnemonic) {
+            json[CodingKeys::type].get<std::string>() == TypeString::mnemonic) {
         type = StoredKeyType::mnemonicPhrase;
     } else {
         type = StoredKeyType::privateKey;
@@ -192,7 +192,7 @@ StoredKey::StoredKey(const nlohmann::json& json) {
     }
 
     if (json.count(CodingKeys::activeAccounts) != 0 &&
-        json[CodingKeys::activeAccounts].is_array()) {
+            json[CodingKeys::activeAccounts].is_array()) {
         for (auto& accountJSON : json[CodingKeys::activeAccounts]) {
             accounts.emplace_back(accountJSON);
         }

@@ -40,7 +40,7 @@ Account::Account(const nlohmann::json& json) {
     }
 
     if (json.count(CodingKeys::extendedPublicKey) > 0 &&
-        json[CodingKeys::extendedPublicKey].is_string()) {
+            json[CodingKeys::extendedPublicKey].is_string()) {
         extendedPublicKey = json[CodingKeys::extendedPublicKey].get<std::string>();
     }
 }

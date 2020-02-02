@@ -30,7 +30,7 @@ TW_Cardano_Proto_SigningOutput TWCardanoSignerSign(TW_Cardano_Proto_SigningInput
     Proto::TransactionPlan plan;
     Proto::SigningOutput output;
     if (!input.ParseFromArray(TWDataBytes(inputData), static_cast<int>(TWDataSize(inputData))) ||
-        !plan.ParseFromArray(TWDataBytes(planData), static_cast<int>(TWDataSize(planData)))) {
+            !plan.ParseFromArray(TWDataBytes(planData), static_cast<int>(TWDataSize(planData)))) {
         // failed to parse input/plan, return empty output with error
         output.set_error("Error: could not parse input/plan");
     } else {

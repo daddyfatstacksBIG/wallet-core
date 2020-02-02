@@ -15,7 +15,7 @@ namespace TW::NULS {
 
 /// Helper class that performs NULS transaction signing.
 class Signer {
-  public:
+public:
 
     static const uint16_t TRANSACTION_FIX_SIZE = 11; //type size 2, time size 4, txData size 1, hash size 4
     static const uint16_t TRANSACTION_SIG_MAX_SIZE = 110;

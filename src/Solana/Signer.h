@@ -16,7 +16,7 @@ namespace TW::Solana {
 
 /// Helper class that performs Solana transaction signing.
 class Signer {
-  public:
+public:
     /// Signs the given transaction.
     static void sign(const std::vector<PrivateKey>& privateKeys, Transaction& transaction);
     static void signUpdateBlockhash(const std::vector<PrivateKey>& privateKeys,

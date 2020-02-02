@@ -17,7 +17,7 @@ static inline uint8_t value(uint8_t c) {
 
     // Invalid digit
     return 0;
- }
+}
 
 TWData *TWDataCreateWithHexString(const TWString *hex) {
     size_t stringIndex = 0;

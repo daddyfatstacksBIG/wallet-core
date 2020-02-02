@@ -34,7 +34,7 @@ ChainParams getChainParams(const FIO::Proto::SigningInput& input) {
 TW_FIO_Proto_SigningOutput TWFIOSignerSign(TW_FIO_Proto_SigningInput input) {
     FIO::Proto::SigningOutput out;
     try
-    {    
+    {
         FIO::Proto::SigningInput in;
         if (!in.ParseFromArray(TWDataBytes(input), static_cast<int>(TWDataSize(input)))) {
             out.set_error("Error: could not parse input");
@@ -42,13 +42,13 @@ TW_FIO_Proto_SigningOutput TWFIOSignerSign(TW_FIO_Proto_SigningInput input) {
             PrivateKey privateKey(in.private_key());
             PublicKey publicKey = privateKey.getPublicKey(TWPublicKeyTypeSECP256k1);
             Address owner(publicKey);
-            
+
             string json;
             if (in.action().has_register_fio_address_message()) {
                 const auto action = in.action().register_fio_address_message();
-                json = TransactionBuilder::createRegisterFioAddress(owner, privateKey, 
-                    in.action().register_fio_address_message().fio_address(), owner.string(),
-                    getChainParams(in), action.fee(), action.tpid(), in.expiry());
+                json = TransactionBuilder::createRegisterFioAddress(owner, privateKey,
+                        in.action().register_fio_address_message().fio_address(), owner.string(),
+                        getChainParams(in), action.fee(), action.tpid(), in.expiry());
             } else if (in.action().has_add_pub_address_message()) {
                 const auto action = in.action().add_pub_address_message();
                 // process addresses
@@ -57,13 +57,13 @@ TW_FIO_Proto_SigningOutput TWFIOSignerSign(TW_FIO_Proto_SigningInput input) {
                     addresses.push_back(std::make_pair(action.public_addresses(i).token_code(), action.public_addresses(i).address()));
                 }
                 json = TransactionBuilder::createAddPubAddress(owner, privateKey,
-                    action.fio_address(), addresses, 
-                    getChainParams(in), action.fee(), action.tpid(), in.expiry());
+                        action.fio_address(), addresses,
+                        getChainParams(in), action.fee(), action.tpid(), in.expiry());
             } else if (in.action().has_transfer_message()) {
                 const auto action = in.action().transfer_message();
                 json = TransactionBuilder::createTransfer(owner, privateKey,
-                    action.payee_public_key(), action.amount(),
-                    getChainParams(in), action.fee(), action.tpid(), in.expiry());
+                        action.payee_public_key(), action.amount(),
+                        getChainParams(in), action.fee(), action.tpid(), in.expiry());
             }
 
             out.set_json(json);

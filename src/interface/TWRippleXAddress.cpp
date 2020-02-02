@@ -16,7 +16,7 @@ using namespace TW;
 using namespace TW::Ripple;
 
 bool TWRippleXAddressEqual(struct TWRippleXAddress *_Nonnull lhs, struct TWRippleXAddress *_Nonnull rhs) {
-   return lhs->impl == rhs->impl;
+    return lhs->impl == rhs->impl;
 }
 
 bool TWRippleXAddressIsValidString(TWString *_Nonnull string) {

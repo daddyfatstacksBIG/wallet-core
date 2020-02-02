@@ -25,9 +25,13 @@ struct RLP {
         return encode(Data(string.begin(), string.end()));
     }
 
-    static Data encode(uint8_t number) noexcept { return encode(uint256_t(number)); }
+    static Data encode(uint8_t number) noexcept {
+        return encode(uint256_t(number));
+    }
 
-    static Data encode(uint16_t number) noexcept { return encode(uint256_t(number)); }
+    static Data encode(uint16_t number) noexcept {
+        return encode(uint256_t(number));
+    }
 
     static Data encode(int32_t number) noexcept {
         if (number < 0) {
@@ -36,7 +40,9 @@ struct RLP {
         return encode(static_cast<uint32_t>(number));
     }
 
-    static Data encode(uint32_t number) noexcept { return encode(uint256_t(number)); }
+    static Data encode(uint32_t number) noexcept {
+        return encode(uint256_t(number));
+    }
 
     static Data encode(int64_t number) noexcept {
         if (number < 0) {
@@ -45,7 +51,9 @@ struct RLP {
         return encode(static_cast<uint64_t>(number));
     }
 
-    static Data encode(uint64_t number) noexcept { return encode(uint256_t(number)); }
+    static Data encode(uint64_t number) noexcept {
+        return encode(uint256_t(number));
+    }
 
     static Data encode(const uint256_t& number) noexcept;
 

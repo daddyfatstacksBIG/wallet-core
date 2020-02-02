@@ -20,7 +20,7 @@ using namespace TW;
 using namespace TW::Ethereum;
 
 bool TWEthereumAddressEqual(struct TWEthereumAddress *_Nonnull lhs, struct TWEthereumAddress *_Nonnull rhs) {
-   return lhs->impl == rhs->impl;
+    return lhs->impl == rhs->impl;
 }
 
 bool TWEthereumAddressIsValidString(TWString *_Nonnull string) {

@@ -17,7 +17,7 @@ namespace TW::Decred {
 /// OutPoint defines a Decred data type that is used to track previous
 /// transaction outputs.
 class OutPoint {
-  public:
+public:
     /// The hash of the referenced transaction.
     std::array<byte, 32> hash;
 
@@ -59,7 +59,9 @@ class OutPoint {
         return (cmp == 0 && a.index == b.index);
     }
 
-    friend bool operator!=(const OutPoint& a, const OutPoint& b) { return !(a == b); }
+    friend bool operator!=(const OutPoint& a, const OutPoint& b) {
+        return !(a == b);
+    }
 };
 
 } // namespace TW::Decred

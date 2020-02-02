@@ -57,7 +57,10 @@ private:
     Encode(const TW::Data& rawData) : data(rawData) {}
     /// Append types + value, on variable number of bytes (1..8). Return object to support chain syntax.
     Encode appendValue(byte majorType, uint64_t value);
-    inline Encode append(const TW::Data& data) { TW::append(this->data, data); return *this; }
+    inline Encode append(const TW::Data& data) {
+        TW::append(this->data, data);
+        return *this;
+    }
     void appendIndefinite(byte majorType);
 
 private:
@@ -84,7 +87,9 @@ public: // decoding
     /// Get the value of a string/bytes as Data
     TW::Data getBytes() const;
     /// Get all elements of array
-    std::vector<Decode> getArrayElements() const { return getCompoundElements(1, MT_array); }
+    std::vector<Decode> getArrayElements() const {
+        return getCompoundElements(1, MT_array);
+    }
     /// Get all elements of map
     std::vector<std::pair<Decode, Decode>> getMapElements() const;
     /// Get the tag number
@@ -93,7 +98,9 @@ public: // decoding
     Decode getTagElement() const;
     /// Dump to a JSON-like string (debugging)
     std::string dumpToString() const;
-    uint32_t length() const { return subLen; }
+    uint32_t length() const {
+        return subLen;
+    }
     /// Return encoded form (useful e.g for parsed out sub-parts)
     Data encoded() const;
 
@@ -107,7 +114,7 @@ public: // decoding
         MT_tag = 6,
         MT_special = 7,
     };
-    
+
 private:
     /// Struct used to keep reference to original data
     struct OrigDataRef {
@@ -119,7 +126,9 @@ private:
     Decode skipClone(uint32_t offset) const;
     /// Get the Nth byte
     inline TW::byte byte(uint32_t idx) const {
-        if (subStart + idx >= data->origData.size()) { throw std::invalid_argument("CBOR data too short"); }
+        if (subStart + idx >= data->origData.size()) {
+            throw std::invalid_argument("CBOR data too short");
+        }
         return data->origData[subStart + idx];
     }
     struct TypeDesc {

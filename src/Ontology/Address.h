@@ -15,10 +15,10 @@ namespace TW::Ontology {
 
 class Address {
 
-  private:
+private:
     Data toScriptHash(const Data& data);
 
-  public:
+public:
     static const size_t size = 20;
     static const uint8_t version = 0x17;
 

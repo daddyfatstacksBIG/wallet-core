@@ -34,14 +34,14 @@ public:
 
             for (auto utxo : input.utxo()) {
                 if (utxo.amount() >
-                    unspentSelector.calculator.calculateSingleInput(input.byte_fee())) {
+                        unspentSelector.calculator.calculateSingleInput(input.byte_fee())) {
                     input_size++;
                     newAmount += utxo.amount();
                 }
             }
 
             plan.amount = newAmount - unspentSelector.calculator.calculate(input_size, output_size,
-                                                                           input.byte_fee());
+                          input.byte_fee());
             plan.amount = std::max(Amount(0), plan.amount);
         }
 

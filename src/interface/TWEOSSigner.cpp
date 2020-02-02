@@ -35,8 +35,8 @@ TW_Proto_Result TWEOSSignerSign(TW_EOS_Proto_SigningInput input) {
         auto assetData = in.asset();
 
         if (assetData.decimals() > TW::Bravo::Asset::maxDecimals) {
-            return createErrorResult("Max decimal places supported in an asset: " 
-                                        + std::to_string(TW::Bravo::Asset::maxDecimals));
+            return createErrorResult("Max decimal places supported in an asset: "
+                                     + std::to_string(TW::Bravo::Asset::maxDecimals));
         }
 
         TW::Bravo::Asset asset{assetData.amount(), static_cast<uint8_t>(assetData.decimals()), assetData.symbol()};
@@ -45,7 +45,7 @@ TW_Proto_Result TWEOSSignerSign(TW_EOS_Proto_SigningInput input) {
         TransferAction action {in.currency(), in.sender(), in.recipient(), asset, in.memo()};
 
         // create a Transaction and add the transfer action
-        Transaction tx{ TW::Data(in.reference_block_id().begin(), in.reference_block_id().end()), 
+        Transaction tx{ TW::Data(in.reference_block_id().begin(), in.reference_block_id().end()),
                         in.reference_block_time() };
         tx.actions.push_back(action);
 
@@ -63,7 +63,8 @@ TW_Proto_Result TWEOSSignerSign(TW_EOS_Proto_SigningInput input) {
         case Proto::KeyType::MODERNR1:
             type = Type::ModernR1;
             break;
-        default: break;
+        default:
+            break;
         }
 
         // sign the transaction with a Signer

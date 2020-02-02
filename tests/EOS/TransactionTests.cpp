@@ -25,7 +25,7 @@ static std::string k1Sigs[5] {
     "SIG_K1_K93MjjE39CSH7kwJBgoRsSF2VaH6a8psQKU29nSg4xxxrVhz2iQuubyyB5t2ACZFFYSkNHSdYia5efhnW6Z9SPtbQTquMY"
 };
 
-static std::string r1Sigs[5] { 
+static std::string r1Sigs[5] {
     "SIG_R1_Kbywy4Mjun4Ymrh23Xk5yRtKJxcDWaDjQjLKERAny6Vs6oT1DYoEdoAj9AJK9iukHdEd9HBYnf3GmLtA55JFY5VaNszJMa",
     "SIG_R1_KAhJJg4QGYBWY7hG6BKGAbW57fg6g8xTh3LG3Sss3bGv4BwiwHmRV1jsgh6hrnVRUoCaKMbJQzzWy9HXy6PnDmfJ6fbZMJ",
     "SIG_R1_KxAwVKfpLr2MeK4aSAp5LSi2Vohsp94Uhk5UvZZDUJqd7ccBkhc2kYY1L6z5rjRNNo7BeP1Qr6H2xPFqo54YQ6DjczAqLW",

@@ -15,7 +15,7 @@
 namespace TW::Tezos {
 
 class Address : public TW::Base58Address<23> {
-  public:
+public:
     /// Determines whether a string makes a valid  address.
     static bool isValid(const std::string& string);
 

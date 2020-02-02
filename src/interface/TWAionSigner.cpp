@@ -22,13 +22,13 @@ TW_Aion_Proto_SigningOutput TWAionSignerSign(TW_Aion_Proto_SigningInput data) {
 
     auto key = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));
     auto transaction = Transaction(
-        /* nonce: */ static_cast<uint128_t>(load(input.nonce())),
-        /* gasPrice: */ static_cast<uint128_t>(load(input.gas_price())),
-        /* gasLimit: */ static_cast<uint128_t>(load(input.gas_limit())),
-        /* to: */ Address(input.to_address()),
-        /* amount: */ static_cast<uint128_t>(load(input.amount())),
-        /* payload: */ Data(input.payload().begin(), input.payload().end())
-    );
+                           /* nonce: */ static_cast<uint128_t>(load(input.nonce())),
+                           /* gasPrice: */ static_cast<uint128_t>(load(input.gas_price())),
+                           /* gasLimit: */ static_cast<uint128_t>(load(input.gas_limit())),
+                           /* to: */ Address(input.to_address()),
+                           /* amount: */ static_cast<uint128_t>(load(input.amount())),
+                           /* payload: */ Data(input.payload().begin(), input.payload().end())
+                       );
     Signer::sign(key, transaction);
 
     auto protoOutput = Proto::SigningOutput();

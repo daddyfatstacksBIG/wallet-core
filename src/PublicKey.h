@@ -17,7 +17,7 @@
 namespace TW {
 
 class PublicKey {
-  public:
+public:
     /// The number of bytes in a secp256k1 and nist256p1 public key.
     static const size_t secp256k1Size = 33;
 

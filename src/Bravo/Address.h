@@ -34,7 +34,7 @@ public:
 
     static const std::vector<std::string> prefixes;
 
-private:    
+private:
     // Class constants
     static const size_t Size = 33;
 

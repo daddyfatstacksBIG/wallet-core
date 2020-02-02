@@ -14,7 +14,7 @@
 namespace TW::Stellar {
 /// Helper class that performs Ripple transaction signing.
 class Signer {
-  public:
+public:
     const Proto::SigningInput& input;
 
     Signer(const Proto::SigningInput& input) : input(input) {}
@@ -24,7 +24,7 @@ class Signer {
 
     Data encode(const Proto::SigningInput& input) const;
 
-  private:
+private:
     void encodeAddress(const Address& address, Data& data) const;
 
     void pad(Data& data) const;

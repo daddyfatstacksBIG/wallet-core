@@ -16,7 +16,7 @@
 namespace TW::Harmony {
 
 class Transaction {
-  public:
+public:
     uint256_t nonce;
     uint256_t gasPrice;
     uint256_t gasLimit;

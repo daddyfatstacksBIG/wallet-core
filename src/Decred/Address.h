@@ -15,7 +15,7 @@
 namespace TW::Decred {
 
 class Address {
-  public:
+public:
     /// Public key hash with prefixes.
     std::array<byte, 22> bytes;
 

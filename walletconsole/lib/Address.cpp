@@ -23,13 +23,15 @@ using namespace std;
 
 bool Address::addrPub(const string& coinid, const string& pubkey_in, string& res) {
     Coin coin;
-    if (!_coins.findCoin(coinid, coin)) { return false; }
+    if (!_coins.findCoin(coinid, coin)) {
+        return false;
+    }
     Data pubDat;
     try {
         pubDat = parse_hex(pubkey_in);
     } catch (exception& ex) {
         _out << "Error: could not parse public key data" << endl;
-        return false; 
+        return false;
     }
     TWCoinType ctype = (TWCoinType)coin.c;
     PublicKey pubKey = PublicKey(pubDat, (TWPublicKeyType)coin.pubKeyType);
@@ -39,13 +41,15 @@ bool Address::addrPub(const string& coinid, const string& pubkey_in, string& res
 
 bool Address::addrPri(const string& coinid, const string& prikey_in, string& res) {
     Coin coin;
-    if (!_coins.findCoin(coinid, coin)) { return false; }
+    if (!_coins.findCoin(coinid, coin)) {
+        return false;
+    }
     Data priDat;
     try {
         priDat = parse_hex(prikey_in);
     } catch (exception& ex) {
         _out << "Error: could not parse private key data" << endl;
-        return false; 
+        return false;
     }
     TWCoinType ctype = (TWCoinType)coin.c;
     PrivateKey priKey = PrivateKey(priDat);
@@ -55,7 +59,9 @@ bool Address::addrPri(const string& coinid, const string& prikey_in, string& res
 
 bool Address::addr(const string& coinid, const string& addrStr, string& res) {
     Coin coin;
-    if (!_coins.findCoin(coinid, coin)) { return false; }
+    if (!_coins.findCoin(coinid, coin)) {
+        return false;
+    }
     TWCoinType ctype = (TWCoinType)coin.c;
     if (!TW::validateAddress(ctype, addrStr)) {
         _out << "Address is not a valid " << coin.name << " address! " << addrStr << endl;
@@ -67,7 +73,9 @@ bool Address::addr(const string& coinid, const string& addrStr, string& res) {
 
 bool Address::addrDefault(const string& coinid, string& res) {
     Coin coin;
-    if (!_coins.findCoin(coinid, coin)) { return false; }
+    if (!_coins.findCoin(coinid, coin)) {
+        return false;
+    }
     TWCoinType ctype = (TWCoinType)coin.c;
     string mnemo = _keys.getMnemo();
     if (mnemo.length() == 0) {
@@ -94,7 +102,9 @@ bool Address::addrDP(const string& coinid, const string& derivPath, string& res)
     PrivateKey priKey = wallet.getKey(dp);
 
     Coin coin;
-    if (!_coins.findCoin(coinid, coin)) { return false; }
+    if (!_coins.findCoin(coinid, coin)) {
+        return false;
+    }
     TWCoinType ctype = (TWCoinType)coin.c;
 
     // derive address

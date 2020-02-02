@@ -28,12 +28,12 @@ Proto::SigningOutput Signer::sign(const Proto::SigningInput &input) noexcept {
         auto to = Address(message.to_address());
 
         auto transaction = Transaction(from, to, message.fee(), message.amount(), message.first_round(),
-                                   message.last_round(), note, TRANSACTION_PAY, genesisId, genesisHash);
+                                       message.last_round(), note, TRANSACTION_PAY, genesisId, genesisHash);
         auto signature = sign(key, transaction);
         auto serialized = transaction.serialize(signature);
         protoOutput.set_encoded(serialized.data(), serialized.size());
     }
-    
+
     return protoOutput;
 }
 

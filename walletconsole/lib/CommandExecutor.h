@@ -37,7 +37,7 @@ public:
     void executeLine(const string& line);
 
 protected:
-    /// Put result in res.  Return true if meaningful result is returned. 
+    /// Put result in res.  Return true if meaningful result is returned.
     bool executeOne(const string& cmd, const vector<string>& params, string& res);
     void execute(const string& cmd, const vector<string>& params);
     static vector<string> tokenize(const string& line);

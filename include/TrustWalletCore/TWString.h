@@ -16,7 +16,7 @@ typedef const void TWData;
 ///
 /// The implementantion of these methods should be language-specific to minimize translation overhead. For instance it
 /// should be a `jstring` for Java and an `NSString` for Swift.
-/// Create allocates memory, the delete call should be called at the end to release memory. 
+/// Create allocates memory, the delete call should be called at the end to release memory.
 typedef const void TWString;
 
 /// Creates a string from a null-terminated UTF8 byte array. It must be deleted at the end.

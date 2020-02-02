@@ -15,14 +15,14 @@
 namespace TW {
 
 class Base58 {
-  public:
+public:
     /// Base58 coder with Bitcoin character map.
     static Base58 bitcoin;
 
     /// Base58 coder with Ripple character map.
     static Base58 ripple;
 
-  public:
+public:
     /// Ordered list of valid characters.
     const std::array<char, 58> digits;
 

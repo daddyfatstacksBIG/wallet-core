@@ -16,7 +16,7 @@
 namespace TW::Nebulas {
 
 class Address :public Base58Address<26> {
-  public:
+public:
     /// Number of bytes in an address.
     static const uint8_t AddressPrefix = 25;
     static const uint8_t NormalType = 87;

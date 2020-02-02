@@ -17,7 +17,7 @@ inline auto makeInput(std::string priKey, std::string addressFrom, std::string a
                       uint256_t amount, uint32_t chainId, uint32_t assetId, std::string nonce, std::string remark,
                       uint256_t balance) {
     Proto::SigningInput input;
-    Data key = parse_hex(priKey); 
+    Data key = parse_hex(priKey);
     std::string keyStr;
     keyStr.insert(keyStr.begin(), key.begin(), key.end());
     input.set_private_key(keyStr);
@@ -53,13 +53,13 @@ TEST(NULSSigner, Sign) {
     std::string signedTransaction = hex(signature);
 
     ASSERT_EQ(
-            signedTransaction,
-            "0200f885885d00008c0117010001f7ec6473df12e751d64cf20a8baa7edd50810f8101000100201d9a"
-            "0000000000000000000000000000000000000000000000000000000000080000000000000000000117"
-            "010001f05e7878971f3374515eabb6f16d75219d887312010001008096980000000000000000000000"
-            "0000000000000000000000000000000000000000000000000000692103958b790c331954ed367d37ba"
-            "c901de5c2f06ac8368b37d7bd6cd5ae143c1d7e3463044022028019c0099e2233c7adb84bb03a9a566"
-            "6ece4a5b65a026a090fa460f3679654702204df0fcb8762b5944b3aba033fa1a287ccb098150035dd8"
-            "b66f52dc58d3d0843a"
-            );
+        signedTransaction,
+        "0200f885885d00008c0117010001f7ec6473df12e751d64cf20a8baa7edd50810f8101000100201d9a"
+        "0000000000000000000000000000000000000000000000000000000000080000000000000000000117"
+        "010001f05e7878971f3374515eabb6f16d75219d887312010001008096980000000000000000000000"
+        "0000000000000000000000000000000000000000000000000000692103958b790c331954ed367d37ba"
+        "c901de5c2f06ac8368b37d7bd6cd5ae143c1d7e3463044022028019c0099e2233c7adb84bb03a9a566"
+        "6ece4a5b65a026a090fa460f3679654702204df0fcb8762b5944b3aba033fa1a287ccb098150035dd8"
+        "b66f52dc58d3d0843a"
+    );
 }

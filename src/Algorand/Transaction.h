@@ -13,7 +13,7 @@
 namespace TW::Algorand {
 
 class Transaction {
-  public:
+public:
     Address from;
     Address to;
     uint64_t fee;
@@ -28,13 +28,13 @@ class Transaction {
 
     Transaction(Address &from, Address &to, uint64_t fee, uint64_t amount, uint64_t firstRound,
                 uint64_t lastRound, Data &note, std::string type, std::string &genesisIdg, Data &genesisHash)
-        : from(from) , to(to)
+        : from(from), to(to)
         , fee(fee), amount(amount)
         , firstRound(firstRound), lastRound(lastRound)
         , note(note), type(type)
         , genesisId(genesisIdg), genesisHash(genesisHash) {}
 
-  public:
+public:
     Data serialize() const;
     Data serialize(Data &signature) const;
 };

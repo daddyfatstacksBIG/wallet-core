@@ -36,12 +36,12 @@ TEST(PolkadotCodec, EncodeCompact) {
 
     ASSERT_EQ(hex(encodeCompact(72057594037927935)), "0fffffffffffffff");
     ASSERT_EQ(hex(encodeCompact(72057594037927936)), "130000000000000001");
-    
+
     ASSERT_EQ(hex(encodeCompact(18446744073709551615u)), "13ffffffffffffffff");
 }
 
 TEST(PolkadotCodec, EncodeBool) {
-    ASSERT_EQ(hex(encodeBool(true)), "01");    
+    ASSERT_EQ(hex(encodeBool(true)), "01");
     ASSERT_EQ(hex(encodeBool(false)), "00");
 }
 
@@ -60,8 +60,8 @@ TEST(PolkadotCodec, EncodeAddress) {
 }
 
 TEST(PolkadotCodec, EncodeVectorAddresses) {
-    auto addresses = std::vector<SS58Address>{
-        Kusama::Address("FoQJpPyadYccjavVdTWxpxU7rUEaYhfLCPwXgkfD6Zat9QP"), 
+    auto addresses = std::vector<SS58Address> {
+        Kusama::Address("FoQJpPyadYccjavVdTWxpxU7rUEaYhfLCPwXgkfD6Zat9QP"),
         Kusama::Address("CtwdfrhECFs3FpvCGoiE4hwRC4UsSiM8WL899HjRdQbfYZY")
     };
     auto encoded = encodeAddresses(addresses);

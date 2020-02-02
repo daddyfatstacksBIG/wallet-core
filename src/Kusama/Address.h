@@ -16,9 +16,11 @@
 namespace TW::Kusama {
 
 class Address: public SS58Address {
-  public:
+public:
     /// Determines whether a string makes a valid address.
-    static bool isValid(const std::string& string) { return SS58Address::isValid(string, TWSS58AddressTypeKusama); }
+    static bool isValid(const std::string& string) {
+        return SS58Address::isValid(string, TWSS58AddressTypeKusama);
+    }
 
     /// Initializes a Kusama address with a string representation.
     Address(const std::string& string): SS58Address(string, TWSS58AddressTypeKusama) {}

@@ -19,7 +19,7 @@ const std::string SS58Prefix = "SS58PRE";
 namespace TW {
 
 class SS58Address {
-  public:
+public:
     /// Number of bytes in an address.
     static const size_t size = 33;
 
@@ -79,7 +79,7 @@ class SS58Address {
     /// Returns a string representation of the address.
     std::string string() const {
         auto result = Data(bytes.begin(), bytes.end());
-        auto checksum = computeChecksum(bytes);    
+        auto checksum = computeChecksum(bytes);
         append(result, checksum);
         return Base58::bitcoin.encode(result);
     }

@@ -66,17 +66,17 @@ TEST(AlgorandSigner, Sign) {
     std::string genesisId = "mainnet-v1.0";
     auto genesisHash = Base64::decode("wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8=");
     auto transaction = Transaction(
-        /* from */ from,
-        /* to */ to,
-        /* fee */ 488931,
-        /* amount */ 847,
-        /* first round */ 51,
-        /* last round */ 61,
-        /* note */ note,
-        /* type */ "pay",
-        /* genesis id*/ genesisId,
-        /* genesis hash*/ genesisHash
-    );
+                           /* from */ from,
+                           /* to */ to,
+                           /* fee */ 488931,
+                           /* amount */ 847,
+                           /* first round */ 51,
+                           /* last round */ 61,
+                           /* note */ note,
+                           /* type */ "pay",
+                           /* genesis id*/ genesisId,
+                           /* genesis hash*/ genesisHash
+                       );
 
     auto serialized = transaction.serialize();
     auto signature = Signer::sign(key, transaction);

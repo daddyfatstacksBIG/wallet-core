@@ -15,7 +15,7 @@ namespace TW::Ripple {
 
 /// Helper class that performs Ripple transaction signing.
 class Signer {
-  public:
+public:
     /// Signs the given transaction.
     void sign(const PrivateKey& privateKey, Transaction& transaction) const noexcept;
 };

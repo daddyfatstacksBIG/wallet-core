@@ -37,7 +37,9 @@ public:
 
     friend bool operator==(const Address& lhs, const Address& rhs);
 
-    inline std::string prefix() const { return pubPrefixForType(type); }
+    inline std::string prefix() const {
+        return pubPrefixForType(type);
+    }
 
 protected:
     // Class constants
@@ -55,7 +57,7 @@ protected:
 
 inline bool operator==(const Address& lhs, const Address& rhs) {
     return lhs.keyData == rhs.keyData
-             && lhs.type == rhs.type;
+           && lhs.type == rhs.type;
 }
 
 } // namespace TW::EOS

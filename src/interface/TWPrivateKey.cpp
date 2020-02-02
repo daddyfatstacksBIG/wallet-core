@@ -37,11 +37,11 @@ struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(TWData *_Nonnull data)
     if (!PrivateKey::isValid(bytes)) {
         return nullptr;
     }
-   return new TWPrivateKey{ PrivateKey(std::move(bytes)) };
+    return new TWPrivateKey{ PrivateKey(std::move(bytes)) };
 }
 
 struct TWPrivateKey *_Nullable TWPrivateKeyCreateCopy(struct TWPrivateKey *_Nonnull key) {
-   return new TWPrivateKey{ PrivateKey(key->impl.bytes) };
+    return new TWPrivateKey{ PrivateKey(key->impl.bytes) };
 }
 
 void TWPrivateKeyDelete(struct TWPrivateKey *_Nonnull pk) {
@@ -68,9 +68,9 @@ struct TWPublicKey *_Nonnull TWPrivateKeyGetPublicKeyNist256p1(struct TWPrivateK
 struct TWPublicKey *_Nonnull TWPrivateKeyGetPublicKeySecp256k1(struct TWPrivateKey *_Nonnull pk, bool compressed) {
     if (compressed)  {
         return new TWPublicKey{ pk->impl.getPublicKey(TWPublicKeyTypeSECP256k1) };
-     } else {
+    } else {
         return new TWPublicKey{ pk->impl.getPublicKey(TWPublicKeyTypeSECP256k1Extended) };
-     }
+    }
 }
 
 struct TWPublicKey *_Nonnull TWPrivateKeyGetPublicKeyEd25519(struct TWPrivateKey *_Nonnull pk) {

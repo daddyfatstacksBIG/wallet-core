@@ -16,7 +16,7 @@
 namespace TW::Waves {
 
 class Address : public Base58Address<26> {
-  public:
+public:
     /// Number of bytes in an address.
     static const size_t size = 26;
 

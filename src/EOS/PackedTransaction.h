@@ -15,7 +15,7 @@ enum class CompressionType {
 };
 
 NLOHMANN_JSON_SERIALIZE_ENUM( CompressionType, {
-{CompressionType::None, "none"},
+    {CompressionType::None, "none"},
 })
 
 class PackedTransaction {

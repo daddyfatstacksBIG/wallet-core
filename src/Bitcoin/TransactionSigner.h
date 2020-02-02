@@ -28,22 +28,22 @@ namespace TW::Bitcoin {
 /// Helper class that performs Bitcoin transaction signing.
 template <typename Transaction, typename TransactionBuilder>
 class TransactionSigner {
-  private:
+private:
     /// Private key and redeem script provider for signing.
     Proto::SigningInput input;
 
-  public:
+public:
     /// Transaction plan.
     TransactionPlan plan;
 
     /// Transaction being signed.
     Transaction transaction;
 
-  private:
+private:
     /// List of signed inputs.
     std::vector<TransactionInput> signedInputs;
 
-  public:
+public:
     /// Initializes a transaction signer with signing input.
     TransactionSigner(Bitcoin::Proto::SigningInput&& input)
         : input(input), plan(TransactionBuilder::plan(input)) {
@@ -64,7 +64,7 @@ class TransactionSigner {
     /// \returns the signed transaction or an error.
     Result<Transaction> sign();
 
-  private:
+private:
     Result<void> sign(Script script, size_t index, const Proto::UnspentTransaction& utxo);
     Result<std::vector<Data>> signStep(Script script, size_t index,
                                        const Proto::UnspentTransaction& utxo, uint32_t version);

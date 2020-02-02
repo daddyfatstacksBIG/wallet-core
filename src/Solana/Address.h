@@ -18,9 +18,11 @@ namespace TW::Solana {
 const std::string STAKE_ADDRESS = "Stake11111111111111111111111111111111111111";
 
 class Address : public Base58Address<32> {
-  public:
+public:
     /// Determines whether a collection of bytes makes a valid Solana address.
-    static bool isValid(const Data& data) { return data.size() == size; }
+    static bool isValid(const Data& data) {
+        return data.size() == size;
+    }
 
     /// Determines whether a string makes a valid address.
     static bool isValid(const std::string& string);
@@ -41,5 +43,5 @@ class Address : public Base58Address<32> {
 } // namespace TW::Solana
 
 TW::Solana::Address addressFromValidatorSeed(TW::Solana::Address& fromAddress,
-                                             TW::Solana::Address& validatorAddress,
-                                             TW::Solana::Address& programId);
+        TW::Solana::Address& validatorAddress,
+        TW::Solana::Address& programId);

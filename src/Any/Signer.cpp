@@ -183,10 +183,10 @@ TW::Any::Proto::SigningOutput TW::Any::Signer::sign() const noexcept {
         Stellar::Proto::SigningInput message;
         parse(transaction, &message, output);
         if (output.success()) {
-                message.set_private_key(privateKey.bytes.data(), privateKey.bytes.size());
-                auto signer = Stellar::Signer(message);
-                auto signerOutput = signer.sign();
-                output.set_output(signerOutput);
+            message.set_private_key(privateKey.bytes.data(), privateKey.bytes.size());
+            auto signer = Stellar::Signer(message);
+            auto signerOutput = signer.sign();
+            output.set_output(signerOutput);
         }
         break;
     }
@@ -194,10 +194,10 @@ TW::Any::Proto::SigningOutput TW::Any::Signer::sign() const noexcept {
         Solana::Proto::SigningInput message;
         parse(transaction, &message, output);
         if (output.success()) {
-                message.set_private_key(privateKey.bytes.data(), privateKey.bytes.size());
-                auto signerOutput = Solana::Signer::signProtobuf(message);
-                auto encoded = signerOutput.encoded();
-                output.set_output(hex(encoded.begin(), encoded.end()));
+            message.set_private_key(privateKey.bytes.data(), privateKey.bytes.size());
+            auto signerOutput = Solana::Signer::signProtobuf(message);
+            auto encoded = signerOutput.encoded();
+            output.set_output(hex(encoded.begin(), encoded.end()));
         }
         break;
     }
@@ -209,7 +209,7 @@ TW::Any::Proto::SigningOutput TW::Any::Signer::sign() const noexcept {
         if (output.success()) {
             message.add_private_key(privateKey.bytes.data(), privateKey.bytes.size());
             auto signer =
-                    Bitcoin::TransactionSigner<Bitcoin::Transaction, Bitcoin::TransactionBuilder>(std::move(message));
+                Bitcoin::TransactionSigner<Bitcoin::Transaction, Bitcoin::TransactionBuilder>(std::move(message));
             auto signerOutput = signer.sign();
             auto signedTx = signerOutput.payload();
             Data serialized;
@@ -229,7 +229,7 @@ TW::Any::Proto::SigningOutput TW::Any::Signer::sign() const noexcept {
 }
 
 void TW::Any::Signer::parse(const std::string &transaction, Message *message,
-                        TW::Any::Proto::SigningOutput &output) const noexcept {
+                            TW::Any::Proto::SigningOutput &output) const noexcept {
     util::JsonParseOptions options;
     options.case_insensitive_enum_parsing = true;
     options.ignore_unknown_fields = false;
@@ -248,7 +248,7 @@ void TW::Any::Signer::parse(const std::string &transaction, Message *message,
 }
 
 void TW::Any::Signer::toJson(const google::protobuf::Message &message, std::string *json_string) const
-    noexcept {
+noexcept {
     util::JsonPrintOptions options;
     options.preserve_proto_field_names = true;
 

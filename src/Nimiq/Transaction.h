@@ -11,7 +11,7 @@
 namespace TW::Nimiq {
 
 class Transaction {
-  public:
+public:
     // Sender public key
     std::array<uint8_t, 32> sender_pub_key;
     // Recipient address
@@ -29,7 +29,7 @@ class Transaction {
                 uint64_t fee, uint32_t vsh)
         : sender_pub_key(sender), destination(dest), amount(amount), fee(fee), vsh(vsh) {}
 
-  public:
+public:
     std::vector<uint8_t> serialize() const;
     std::vector<uint8_t> getPreImage() const;
 };

@@ -15,7 +15,7 @@
 namespace TW::Polkadot {
 
 class Extrinsic {
-  public:
+public:
     Data blockHash;
     Data genesisHash;
     uint64_t nonce;
@@ -51,7 +51,7 @@ class Extrinsic {
     // Encode final data with signer public key and signature.
     Data encodeSignature(const PublicKey& signer, const Data& signature) const;
 
-  protected:
+protected:
     Data encodeEraNonceTip() const;
 };
 

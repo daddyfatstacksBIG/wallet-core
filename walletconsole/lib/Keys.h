@@ -22,14 +22,16 @@ private:
     ostream& _out;
     const Coins& _coins;
     string _currentMnemonic;
-    
+
 public:
     Keys(ostream& out, const Coins& coins);
     bool newKey(const string& coinid, string& res);
     /// Public key from private key, ED25519
     bool pubPri(const string& coinid, const string& p, string& res);
     bool priPub(const string& p, string& res);
-    string getMnemo() const { return _currentMnemonic; }
+    string getMnemo() const {
+        return _currentMnemonic;
+    }
     /// Set given mnemonic; list of separate words
     void setMnemonic(const vector<string>& param);
     /// Generate and store new mnemonic

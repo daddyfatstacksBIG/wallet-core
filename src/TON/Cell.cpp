@@ -68,7 +68,9 @@ void Slice::appendBytes(const Data& data_in) {
 }
 
 void Slice::appendBits(const Data& data_in, size_t sizeBits) {
-    if (sizeBits == 0) { return; }
+    if (sizeBits == 0) {
+        return;
+    }
     // compute number of bytes needed
     size_t size1 = sizeBits / 8 + (((sizeBits & 7) == 0) ? 0 : 1);
     if (data_in.size() != size1) {
@@ -249,13 +251,19 @@ Cell::SerializationInfo Cell::getSerializationInfo(SerializationMode mode) const
     }
     int intRefs = (int)cellCount();
     int refSize = 1;
-    while (cellCount() >= (1 << (refSize * 8))) { ++refSize; }
+    while (cellCount() >= (1 << (refSize * 8))) {
+        ++refSize;
+    }
     size_t hashes = 0;
     size_t dataBytesAdj = rawDataSize + (size_t)intRefs * refSize + hashes;
     size_t maxOffset = (mode & SerializationMode::WithCacheBits) ? dataBytesAdj * 2 : dataBytesAdj;
     int offsetSize = 0;
-    while (maxOffset >= (1ULL << (offsetSize * 8))) { ++offsetSize; }
-    if (refSize > 4 || offsetSize > 8) { return info; }
+    while (maxOffset >= (1ULL << (offsetSize * 8))) {
+        ++offsetSize;
+    }
+    if (refSize > 4 || offsetSize > 8) {
+        return info;
+    }
 
     info.refByteSize = refSize;
     info.offsetByteSize = 1;
@@ -268,7 +276,7 @@ Cell::SerializationInfo Cell::getSerializationInfo(SerializationMode mode) const
     unsigned long indexOffset = rootsOffset + rootCount * info.refByteSize;
     unsigned long dataOffset = indexOffset;
     //if (info.has_index) {
-        //info.data_offset += (long long)cell_count * info.offset_byte_size;
+    //info.data_offset += (long long)cell_count * info.offset_byte_size;
     //}
     // Magic num idx 68ff65f3  idxCrc32c acc3a728  generic b5ee9c72
     info.magic = parse_hex("b5ee9c72");
@@ -278,7 +286,9 @@ Cell::SerializationInfo Cell::getSerializationInfo(SerializationMode mode) const
 }
 
 size_t Cell::serializedOwnSize(bool withHashes) const {
-    if (withHashes) { throw std::invalid_argument("Cell::serializedOwnSize: WithHashes not supported"); }
+    if (withHashes) {
+        throw std::invalid_argument("Cell::serializedOwnSize: WithHashes not supported");
+    }
     return _slice.size() + 2; // bits/8 rounded up + 2
 }
 
@@ -286,7 +296,7 @@ size_t Cell::serializedSize(SerializationMode mode) const {
     auto info = getSerializationInfo(mode);
     size_t ss = 0;
     ss += 4; // magic
-    ss += 5; // byte1, offsetByteSize, cellCount, rootCount, 
+    ss += 5; // byte1, offsetByteSize, cellCount, rootCount,
     ss += info.offsetByteSize; // dataSize
     ss += info.rootCount; // roots
 
@@ -305,7 +315,9 @@ size_t Cell::serializedSize(SerializationMode mode) const {
 }
 
 void Cell::serializeOwn(TW::Data& data_inout, bool withHashes) {
-    if (withHashes) { throw std::invalid_argument("Cell::serializedOwnSize: WithHashes not supported"); }
+    if (withHashes) {
+        throw std::invalid_argument("Cell::serializedOwnSize: WithHashes not supported");
+    }
     //auto info = getSerializationInfo(mode);
     // slice
     data_inout.push_back((byte)cellCount());
@@ -326,7 +338,9 @@ void Cell::serialize(TW::Data& data_inout, SerializationMode mode) {
 
     byte byte1 = 0;
     //if (info.hasIndex) { byte |= 1 << 7; }
-    if (info.hasCrc32c) { byte1 |= 1 << 6; }
+    if (info.hasCrc32c) {
+        byte1 |= 1 << 6;
+    }
     //if (info.has_cache_bits) { byte |= 1 << 5; }
     // 3, 4 - flags
     if (info.refByteSize < 1 || info.refByteSize > 7) {

@@ -16,10 +16,10 @@
 using namespace TW::Bitcoin;
 
 std::vector<uint8_t> Transaction::getPreImage(const Script& scriptCode, size_t index,
-                                              enum TWBitcoinSigHashType hashType, uint64_t amount) const {
+        enum TWBitcoinSigHashType hashType, uint64_t amount) const {
     assert(index < inputs.size());
 
-    auto data = std::vector<uint8_t>{};
+    auto data = std::vector<uint8_t> {};
 
     // Version
     encode32LE(version, data);
@@ -34,7 +34,7 @@ std::vector<uint8_t> Transaction::getPreImage(const Script& scriptCode, size_t i
 
     // Input nSequence (none/all, depending on flags)
     if ((hashType & TWBitcoinSigHashTypeAnyoneCanPay) == 0 &&
-        !TWBitcoinSigHashTypeIsSingle(hashType) && !TWBitcoinSigHashTypeIsNone(hashType)) {
+            !TWBitcoinSigHashTypeIsSingle(hashType) && !TWBitcoinSigHashTypeIsNone(hashType)) {
         auto hashSequence = getSequenceHash();
         std::copy(std::begin(hashSequence), std::end(hashSequence), std::back_inserter(data));
     } else {
@@ -55,7 +55,7 @@ std::vector<uint8_t> Transaction::getPreImage(const Script& scriptCode, size_t i
         auto hashOutputs = getOutputsHash();
         copy(begin(hashOutputs), end(hashOutputs), back_inserter(data));
     } else if (TWBitcoinSigHashTypeIsSingle(hashType) && index < outputs.size()) {
-        auto outputData = std::vector<uint8_t>{};
+        auto outputData = std::vector<uint8_t> {};
         outputs[index].encode(outputData);
         auto hashOutputs = TW::Hash::hash(hasher, outputData);
         copy(begin(hashOutputs), end(hashOutputs), back_inserter(data));
@@ -73,7 +73,7 @@ std::vector<uint8_t> Transaction::getPreImage(const Script& scriptCode, size_t i
 }
 
 std::vector<uint8_t> Transaction::getPrevoutHash() const {
-    auto data = std::vector<uint8_t>{};
+    auto data = std::vector<uint8_t> {};
     for (auto& input : inputs) {
         auto& outpoint = reinterpret_cast<const TW::Bitcoin::OutPoint&>(input.previousOutput);
         outpoint.encode(data);
@@ -83,7 +83,7 @@ std::vector<uint8_t> Transaction::getPrevoutHash() const {
 }
 
 std::vector<uint8_t> Transaction::getSequenceHash() const {
-    auto data = std::vector<uint8_t>{};
+    auto data = std::vector<uint8_t> {};
     for (auto& input : inputs) {
         encode32LE(input.sequence, data);
     }
@@ -92,7 +92,7 @@ std::vector<uint8_t> Transaction::getSequenceHash() const {
 }
 
 std::vector<uint8_t> Transaction::getOutputsHash() const {
-    auto data = std::vector<uint8_t>{};
+    auto data = std::vector<uint8_t> {};
     for (auto& output : outputs) {
         output.encode(data);
     }
@@ -129,8 +129,8 @@ void Transaction::encode(bool witness, std::vector<uint8_t>& data) const {
 }
 
 std::vector<uint8_t> Transaction::getSignatureHash(const Script& scriptCode, size_t index,
-                                                   enum TWBitcoinSigHashType hashType, uint64_t amount,
-                                                   TWBitcoinSignatureVersion version) const {
+        enum TWBitcoinSigHashType hashType, uint64_t amount,
+        TWBitcoinSignatureVersion version) const {
     switch (version) {
     case BASE:
         return getSignatureHashBase(scriptCode, index, hashType);
@@ -141,8 +141,8 @@ std::vector<uint8_t> Transaction::getSignatureHash(const Script& scriptCode, siz
 
 /// Generates the signature hash for Witness version 0 scripts.
 std::vector<uint8_t> Transaction::getSignatureHashWitnessV0(const Script& scriptCode, size_t index,
-                                                            enum TWBitcoinSigHashType hashType,
-                                                            uint64_t amount) const {
+        enum TWBitcoinSigHashType hashType,
+        uint64_t amount) const {
     auto preimage = getPreImage(scriptCode, index, hashType, amount);
     auto hash = TW::Hash::hash(hasher, preimage);
     return hash;
@@ -150,10 +150,10 @@ std::vector<uint8_t> Transaction::getSignatureHashWitnessV0(const Script& script
 
 /// Generates the signature hash for for scripts other than witness scripts.
 std::vector<uint8_t> Transaction::getSignatureHashBase(const Script& scriptCode, size_t index,
-                                                       enum TWBitcoinSigHashType hashType) const {
+        enum TWBitcoinSigHashType hashType) const {
     assert(index < inputs.size());
 
-    auto data = std::vector<uint8_t>{};
+    auto data = std::vector<uint8_t> {};
 
     encode32LE(version, data);
 
@@ -222,7 +222,7 @@ Proto::Transaction Transaction::proto() const {
     for (const auto& input : inputs) {
         auto protoInput = protoTx.add_inputs();
         protoInput->mutable_previousoutput()->set_hash(input.previousOutput.hash.data(),
-                                                       input.previousOutput.hash.size());
+                input.previousOutput.hash.size());
         protoInput->mutable_previousoutput()->set_index(input.previousOutput.index);
         protoInput->set_sequence(input.sequence);
         protoInput->set_script(input.script.bytes.data(), input.script.bytes.size());

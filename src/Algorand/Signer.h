@@ -15,7 +15,7 @@ namespace TW::Algorand {
 
 /// Helper class that performs Algorand transaction signing.
 class Signer {
-  public:
+public:
     Signer() = delete;
 
     /// Signs a Proto::SigningInput transaction

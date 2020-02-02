@@ -19,10 +19,10 @@
 namespace TW::Ontology {
 
 class Asset {
-  protected:
+protected:
     const uint8_t txType = 0xD1;
 
-  public:
+public:
     virtual Data contractAddress() = 0;
 
     virtual Transaction decimals(uint32_t nonce) = 0;

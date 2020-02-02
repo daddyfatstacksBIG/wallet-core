@@ -71,19 +71,19 @@ TWData *_Nullable TWX509DecodeED25519PublicKey(TWData *_Nonnull data) {
     //
     size_t idx = 0;
     if (dataBytes[idx++] != 0x30 ||
-        dataBytes[idx++] != (totlen - 2) ||
-        dataBytes[idx++] != 0x30 ||
-        dataBytes[idx++] != idlen ||
-        dataBytes[idx++] != 0x06 ||
-        dataBytes[idx++] != 3 ||
-        dataBytes[idx++] != (1 * 40) + 3 ||
-        dataBytes[idx++] != 101) {
+            dataBytes[idx++] != (totlen - 2) ||
+            dataBytes[idx++] != 0x30 ||
+            dataBytes[idx++] != idlen ||
+            dataBytes[idx++] != 0x06 ||
+            dataBytes[idx++] != 3 ||
+            dataBytes[idx++] != (1 * 40) + 3 ||
+            dataBytes[idx++] != 101) {
         return nullptr;
     }
     idx++; // OID, checked above
     if (dataBytes[idx++] != 0x03 ||
-        dataBytes[idx++] != 33 ||
-        dataBytes[idx++] != 0) {
+            dataBytes[idx++] != 33 ||
+            dataBytes[idx++] != 0) {
         return nullptr;
     }
     TWData* rv = TWDataCreateWithBytes(dataBytes + idx, PublicKey::ed25519Size);

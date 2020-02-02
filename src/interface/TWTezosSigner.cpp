@@ -22,7 +22,7 @@ TW_Tezos_Proto_SigningOutput TWTezosSignerSign(TW_Tezos_Proto_SigningInput data)
 
     auto operationList = TW::Tezos::OperationList(input.operation_list().branch());
     for (TW::Tezos::Proto::Operation operation : input.operation_list().operations()) {
-      operationList.addOperation(operation);
+        operationList.addOperation(operation);
     }
 
     auto signer = Signer();

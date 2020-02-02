@@ -294,14 +294,14 @@ Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
 
     // Get default timestamp and expiration
     const uint64_t now = duration_cast< milliseconds >(
-            system_clock::now().time_since_epoch()
-    ).count();
+                             system_clock::now().time_since_epoch()
+                         ).count();
     const uint64_t timestamp = input.transaction().timestamp() == 0
-            ? now
-            : input.transaction().timestamp();
+                               ? now
+                               : input.transaction().timestamp();
     const uint64_t expiration = input.transaction().expiration() == 0
-            ? timestamp + 10 * 60 * 60 * 1000 // 10 hours
-            : input.transaction().expiration();
+                                ? timestamp + 10 * 60 * 60 * 1000 // 10 hours
+                                : input.transaction().expiration();
 
     internal.mutable_raw_data()->set_timestamp(timestamp);
     internal.mutable_raw_data()->set_expiration(expiration);

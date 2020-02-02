@@ -41,7 +41,9 @@ void WalletConsole::loop() {
         string line;
         getline(_inst, line);
         Util::trimLeft(line);
-        if (line.length() == 0) { continue; }
+        if (line.length() == 0) {
+            continue;
+        }
         if (isExit(line)) {
             break;
         }
@@ -54,7 +56,9 @@ void WalletConsole::loop() {
 bool WalletConsole::isExit(const string& line) {
     if (line.length() < 4) return false;
     string first4 = line.substr(0, 4);
-    if (first4 == "quit" || first4 == "exit") { return true; }
+    if (first4 == "quit" || first4 == "exit") {
+        return true;
+    }
     return false;
 }
 

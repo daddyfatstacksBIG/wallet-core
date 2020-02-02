@@ -15,7 +15,7 @@ namespace TW::Zilliqa {
 
 /// Helper class that performs Zilliqa transaction signing.
 class Signer {
-  public:
+public:
     Signer() = delete;
 
     /// Signs the given signing input

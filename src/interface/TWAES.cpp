@@ -49,7 +49,7 @@ TWData *_Nullable TWAESCBCDecrypt(TWData *_Nonnull key, TWData *_Nonnull data, T
 }
 
 TWData *_Nullable TWAESCTREncrypt(TWData *_Nonnull key, TWData *_Nonnull data, TWData *_Nonnull iv) {
-	aes_encrypt_ctx ctx;
+    aes_encrypt_ctx ctx;
     if (aes_encrypt_key(TWDataBytes(key), static_cast<int>(TWDataSize(key)), &ctx) == EXIT_FAILURE) {
         return nullptr;
     }

@@ -19,7 +19,10 @@ using namespace TW::WalletConsole;
 
 static stringstream outputss;
 static CommandExecutor cmd(outputss);
-static int staticInit() { cmd.init(); return 0; }
+static int staticInit() {
+    cmd.init();
+    return 0;
+}
 static int dummyStatic = staticInit();
 
 int countLines(const string& text) {
@@ -272,7 +275,7 @@ TEST(WalletConsole, fileWriteRead) {
     catch(...)
     {
     }
-    
+
     auto pos3 = outputss.str().length();
     cmd.executeLine("fileR __NO_SUCH_FILE__");
     string res3 = outputss.str().substr(pos3);

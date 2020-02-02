@@ -220,7 +220,7 @@ Data ParamsBuilder::fromMultiPubkey(uint8_t m, const std::vector<Data>& pubKeys)
 }
 
 Data ParamsBuilder::buildNativeInvokeCode(const Data& contractAddress, uint8_t version,
-                                          const std::string& method, const boost::any& params) {
+        const std::string& method, const boost::any& params) {
     ParamsBuilder builder;
     ParamsBuilder::buildNeoVmParam(builder, params);
     builder.push(Data(method.begin(), method.end()));

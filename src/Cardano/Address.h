@@ -15,7 +15,7 @@ namespace TW::Cardano {
 
 /*
  * ADA Cardano
- * 
+ *
  * Address scheme V2 is supported, V1 not (but they are accepted as valid).
  * Derivation is BIP39, default derivation path is "m/44'/1815'/0'/0/0", with last element being the account number.
  * Curve is ED25519 with special variations, custom logic in HDWallet and TrezorCrypto lib.
@@ -29,16 +29,16 @@ namespace TW::Cardano {
  * - address payload is CBOR encoding of [root, attributes, type=0]
  * - address data is CBOR encoding of [tag 24 (payload), CRC32(payload)]
  * - address is Base58 encode of address data.
- * 
+ *
  * Address compatibility:
- * AdaLite uses V1 with 12-word mnemonic phrases, V2 with 15-word phrases, and standard BIP39 derivation, with gap lookup.  
+ * AdaLite uses V1 with 12-word mnemonic phrases, V2 with 15-word phrases, and standard BIP39 derivation, with gap lookup.
  * So AdaLite mnemonic wallets can be imported into TW, but default-12-word TW wallets cannot be imported to AdaLite, as it uses V1 for it.
  * Daedalus (official full node wallet) uses V1, non-standard derivation scheme, and non-sequential random account indexes.  Not compatible.
  */
 
 /// A Cardano address.  Type is 0 (public key).
 class Address {
-  public:
+public:
     /// root key
     Data root;
 
@@ -49,7 +49,7 @@ class Address {
     TW::byte type;
 
     static const TW::byte PayloadTag = 24;
-    
+
     /// Determines whether a string makes a valid address.
     static bool isValid(const std::string& string);
 

@@ -13,7 +13,7 @@
 namespace TW::Nebulas {
 
 class Transaction {
-  public:
+public:
     static const char* TxPayloadBinaryType;
     static const char* TxPayloadDeployType;
     static const char* TxPayloadCallType;
@@ -44,9 +44,9 @@ class Transaction {
         , to(std::move(to))
         , amount(std::move(amount))
         , timestamp(std::move(timestamp))
-        , payload(payload){}
+        , payload(payload) {}
 
-  public:
+public:
     static Proto::Data* newPayloadData(const std::string& payload);
 
     ///serialize the signed transaction.

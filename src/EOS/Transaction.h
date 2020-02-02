@@ -49,7 +49,9 @@ public:
     void serialize(Data& os) const noexcept;
     nlohmann::json serialize() const;
 
-    inline bool isValid() { return maxNetUsageWords < UINT32_MAX / 8UL; }
+    inline bool isValid() {
+        return maxNetUsageWords < UINT32_MAX / 8UL;
+    }
 
     uint16_t refBlockNumber = 0;
     uint32_t refBlockPrefix = 0;

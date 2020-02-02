@@ -73,6 +73,6 @@ class Generator : public  compiler::CodeGenerator {
 };
 
 int main(int argc, char* argv[]) {
-  Generator generator;
-  return compiler::PluginMain(argc, argv, &generator);
+    Generator generator;
+    return compiler::PluginMain(argc, argv, &generator);
 }

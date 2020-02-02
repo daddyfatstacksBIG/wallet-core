@@ -15,7 +15,7 @@
 namespace TW::Ethereum {
 
 class Address {
-  public:
+public:
     /// Number of bytes in an address.
     static const size_t size = 20;
 
@@ -24,7 +24,9 @@ class Address {
     std::array<uint8_t, size> bytes;
 
     /// Determines whether a collection of bytes makes a valid  address.
-    static bool isValid(const Data& data) { return data.size() == size; }
+    static bool isValid(const Data& data) {
+        return data.size() == size;
+    }
 
     /// Determines whether a string makes a valid  address.
     static bool isValid(const std::string& string);

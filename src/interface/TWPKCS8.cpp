@@ -79,25 +79,25 @@ TWData *_Nullable TWPKCS8DecodeED25519PrivateKey(TWData *_Nonnull data) {
     //
     int idx = 0;
     if (dataBytes[idx++] != 0x30 ||
-        dataBytes[idx++] != (totlen - 2) ||
-        dataBytes[idx++] != 0x02 ||
-        dataBytes[idx++] != 1 ||
-        dataBytes[idx++] != 0 ||
-        dataBytes[idx++] != 0x30 ||
-        dataBytes[idx++] != idlen ||
-        dataBytes[idx++] != 0x06 ||
-        dataBytes[idx++] != 3 ||
-        dataBytes[idx++] != (1 * 40) + 3 ||
-        dataBytes[idx++] != 101) {
+            dataBytes[idx++] != (totlen - 2) ||
+            dataBytes[idx++] != 0x02 ||
+            dataBytes[idx++] != 1 ||
+            dataBytes[idx++] != 0 ||
+            dataBytes[idx++] != 0x30 ||
+            dataBytes[idx++] != idlen ||
+            dataBytes[idx++] != 0x06 ||
+            dataBytes[idx++] != 3 ||
+            dataBytes[idx++] != (1 * 40) + 3 ||
+            dataBytes[idx++] != 101) {
         return nullptr;
     }
     idx++; // OID, checked above
     if (dataBytes[idx++] != 0x04 ||
-        dataBytes[idx++] != 34) {
+            dataBytes[idx++] != 34) {
         return nullptr;
     }
     if (dataBytes[idx++] != 0x04 ||
-        dataBytes[idx++] != 32) {
+            dataBytes[idx++] != 32) {
         return nullptr;
     }
     TWData* rv = TWDataCreateWithBytes(dataBytes + idx, PrivateKey::size);

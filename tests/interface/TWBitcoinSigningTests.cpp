@@ -46,14 +46,14 @@ TEST(BitcoinSigning, EncodeP2WPKH) {
     auto unsignedData = std::vector<uint8_t>();
     unsignedTx.encode(false, unsignedData);
     ASSERT_EQ(hex(unsignedData.begin(), unsignedData.end()), ""
-        "01000000"
-        "02"
-            "fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f0000000000eeffffff"
-            "ef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a0100000000ffffffff"
-        "02"
-            "202cb206000000001976a9148280b37df378db99f66f85c95a783a76ac7a6d5988ac"
-            "9093510d000000001976a9143bde42dbee7e4dbe6a21b2d50ce2f0167faa815988ac"
-        "11000000");
+              "01000000"
+              "02"
+              "fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f0000000000eeffffff"
+              "ef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a0100000000ffffffff"
+              "02"
+              "202cb206000000001976a9148280b37df378db99f66f85c95a783a76ac7a6d5988ac"
+              "9093510d000000001976a9143bde42dbee7e4dbe6a21b2d50ce2f0167faa815988ac"
+              "11000000");
 }
 
 TEST(BitcoinSigning, SignP2WPKH) {
@@ -126,15 +126,15 @@ TEST(BitcoinSigning, SignP2WPKH) {
     Data serialized;
     signedTx.encode(true, serialized);
     ASSERT_EQ(hex(serialized),
-        "01000000"
-        "0001"
-        "01"
-            "fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f" "00000000" "49483045022100b6006eb0fe2da8cbbd204f702b1ffdb1e29c49f3de51c4983d420bf9f9125635022032a195b153ccb2c4978333b4aad72aaa7e6a0b334a14621d5d817a42489cb0d301" "ffffffff"
-        "02"
-            "b0bf031400000000" "1976a914769bdff96a02f9135a1d19b749db6a78fe07dc9088ac"
-            "aefd3c1100000000" "1976a9149e089b6889e032d46e3b915a3392edfd616fb1c488ac"
-        "0000000000"
-    );
+              "01000000"
+              "0001"
+              "01"
+              "fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f" "00000000" "49483045022100b6006eb0fe2da8cbbd204f702b1ffdb1e29c49f3de51c4983d420bf9f9125635022032a195b153ccb2c4978333b4aad72aaa7e6a0b334a14621d5d817a42489cb0d301" "ffffffff"
+              "02"
+              "b0bf031400000000" "1976a914769bdff96a02f9135a1d19b749db6a78fe07dc9088ac"
+              "aefd3c1100000000" "1976a9149e089b6889e032d46e3b915a3392edfd616fb1c488ac"
+              "0000000000"
+             );
 }
 
 TEST(BitcoinSigning, EncodeP2WSH) {
@@ -149,12 +149,12 @@ TEST(BitcoinSigning, EncodeP2WSH) {
     auto unsignedData = std::vector<uint8_t>();
     unsignedTx.encode(false, unsignedData);
     ASSERT_EQ(hex(unsignedData.begin(), unsignedData.end()), ""
-        "01000000"
-        "01"
-            "00010000000000000000000000000000000000000000000000000000000000000000000000ffffffff"
-        "01"
-            "e8030000000000001976a9144c9c3dfac4207d5d8cb89df5722cb3d712385e3f88ac"
-        "00000000");
+              "01000000"
+              "01"
+              "00010000000000000000000000000000000000000000000000000000000000000000000000ffffffff"
+              "01"
+              "e8030000000000001976a9144c9c3dfac4207d5d8cb89df5722cb3d712385e3f88ac"
+              "00000000");
 }
 
 TEST(BitcoinSigning, SignP2WSH) {
@@ -198,16 +198,16 @@ TEST(BitcoinSigning, SignP2WSH) {
     Data serialized;
     signedTx.encode(true, serialized);
     ASSERT_EQ(hex(serialized), "01000000"
-        "0001"
-        "01"
-            "0001000000000000000000000000000000000000000000000000000000000000" "00000000" "00" "ffffffff"
-        "01"
-            "e803000000000000" "1976a914769bdff96a02f9135a1d19b749db6a78fe07dc9088ac"
-        "02"
-            "4730440220252e92b8757f1e5577c54ce5deb8072914c1f03333128777dee96ebceeb6a99b02202b7298789316779d0aa7595abeedc03054405c42ab9859e67d9253d2c9a0cdfa01232103596d3451025c"
-            "19dbbdeb932d6bf8bfb4ad499b95b6f88db8899efac102e5fc71ac"
-        "00000000"
-    );
+              "0001"
+              "01"
+              "0001000000000000000000000000000000000000000000000000000000000000" "00000000" "00" "ffffffff"
+              "01"
+              "e803000000000000" "1976a914769bdff96a02f9135a1d19b749db6a78fe07dc9088ac"
+              "02"
+              "4730440220252e92b8757f1e5577c54ce5deb8072914c1f03333128777dee96ebceeb6a99b02202b7298789316779d0aa7595abeedc03054405c42ab9859e67d9253d2c9a0cdfa01232103596d3451025c"
+              "19dbbdeb932d6bf8bfb4ad499b95b6f88db8899efac102e5fc71ac"
+              "00000000"
+             );
 }
 
 TEST(BitcoinSigning, EncodeP2SH_P2WPKH) {
@@ -225,13 +225,13 @@ TEST(BitcoinSigning, EncodeP2SH_P2WPKH) {
     auto unsignedData = std::vector<uint8_t>();
     unsignedTx.encode(false, unsignedData);
     ASSERT_EQ(hex(unsignedData.begin(), unsignedData.end()), ""
-        "01000000"
-        "01"
-            "db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a54770100000000feffffff"
-        "02"
-            "b8b4eb0b000000001976a914a457b684d7f0d539a46a45bbc043f35b59d0d96388ac"
-            "0008af2f000000001976a914fd270b1ee6abcaea97fea7ad0402e8bd8ad6d77c88ac"
-        "92040000");
+              "01000000"
+              "01"
+              "db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a54770100000000feffffff"
+              "02"
+              "b8b4eb0b000000001976a914a457b684d7f0d539a46a45bbc043f35b59d0d96388ac"
+              "0008af2f000000001976a914fd270b1ee6abcaea97fea7ad0402e8bd8ad6d77c88ac"
+              "92040000");
 }
 
 TEST(BitcoinSigning, SignP2SH_P2WPKH) {
@@ -294,13 +294,13 @@ TEST(BitcoinSigning, EncodeP2SH_P2WSH) {
     auto unsignedData = std::vector<uint8_t>();
     unsignedTx.encode(false, unsignedData);
     ASSERT_EQ(hex(unsignedData.begin(), unsignedData.end()), ""
-        "01000000"
-        "01"
-            "36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e0100000000ffffffff"
-        "02"
-            "00e9a435000000001976a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac"
-            "c0832f05000000001976a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac"
-        "00000000");
+              "01000000"
+              "01"
+              "36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e0100000000ffffffff"
+              "02"
+              "00e9a435000000001976a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac"
+              "c0832f05000000001976a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac"
+              "00000000");
 }
 
 TEST(BitcoinSigning, SignP2SH_P2WSH) {
@@ -338,15 +338,15 @@ TEST(BitcoinSigning, SignP2SH_P2WSH) {
     (*input.mutable_scripts())[hex(scriptHash.begin(), scriptHash.end())] = scriptString;
 
     auto witnessScript = Script(parse_hex(""
-        "56"
-            "210307b8ae49ac90a048e9b53357a2354b3334e9c8bee813ecb98e99a7e07e8c3ba3"
-            "2103b28f0c28bfab54554ae8c658ac5c3e0ce6e79ad336331f78c428dd43eea8449b"
-            "21034b8113d703413d57761b8b9781957b8c0ac1dfe69f492580ca4195f50376ba4a"
-            "21033400f6afecb833092a9a21cfdf1ed1376e58c5d1f47de74683123987e967a8f4"
-            "2103a6d48b1131e94ba04d9737d61acdaa1322008af9602b3b14862c07a1789aac16"
-            "2102d8b661b0b3302ee2f162b09e07a55ad5dfbe673a9f01d9f0c19617681024306b"
-        "56ae"
-    ));
+                                          "56"
+                                          "210307b8ae49ac90a048e9b53357a2354b3334e9c8bee813ecb98e99a7e07e8c3ba3"
+                                          "2103b28f0c28bfab54554ae8c658ac5c3e0ce6e79ad336331f78c428dd43eea8449b"
+                                          "21034b8113d703413d57761b8b9781957b8c0ac1dfe69f492580ca4195f50376ba4a"
+                                          "21033400f6afecb833092a9a21cfdf1ed1376e58c5d1f47de74683123987e967a8f4"
+                                          "2103a6d48b1131e94ba04d9737d61acdaa1322008af9602b3b14862c07a1789aac16"
+                                          "2102d8b661b0b3302ee2f162b09e07a55ad5dfbe673a9f01d9f0c19617681024306b"
+                                          "56ae"
+                                         ));
     auto witnessScriptHash = Hash::ripemd(Hash::sha256(witnessScript.bytes));
     auto witnessScriptString = std::string(witnessScript.bytes.begin(), witnessScript.bytes.end());
     (*input.mutable_scripts())[hex(witnessScriptHash.begin(), witnessScriptHash.end())] = witnessScriptString;
@@ -368,30 +368,30 @@ TEST(BitcoinSigning, SignP2SH_P2WSH) {
     auto signedTx = result.payload();
 
     auto expected = ""
-            "01000000"
-            "0001"
-            "01"
-                "36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e0100000023220020a16b5755f7f6f96dbd65f5f0d6ab9418b89af4b1f14a1bb8a09062c35f0dcb54ffffffff"
-            "02"
-                "00e9a43500000000" "1976a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac"
-                "c0832f0500000000" "1976a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac"
-            "08"
-                "00"
-                "47304402201992f5426ae0bab04cf206d7640b7e00410297bfe5487637f6c2427ee8496be002204ad4e64dc2d269f593cc4820db1fc1e8dc34774f602945115ce485940e05c64200"
-                "47304402201e412363fa554b994528fd44149f3985b18bb901289ef6b71105b27c7d0e336c0220595e4a1e67154337757562ed5869127533e3e5084c3c2e128518f5f0b85b721800"
-                "473044022003b0a20ccf545b3f12c5ade10db8717e97b44da2e800387adfd82c95caf529d902206aee3a2395530d52f476d0ddd9d20ba062820ae6f4e1be4921c3630395743ad900"
-                "483045022100ed7a0eeaf72b84351bceac474b0c0510f67065b1b334f77e6843ed102f968afe022004d97d0cfc4bf5651e46487d6f87bd4af6aef894459f9778f2293b0b2c5b7bc700"
-                "483045022100934a0c364820588154aed2d519cbcc61969d837b91960f4abbf0e374f03aa39d022036b5c58b754bd44cb5c7d34806c89d9778ea1a1c900618a841e9fbfbe805ff9b00"
-                "473044022044e3b59b06931d46f857c82fa1d53d89b116a40a581527eac35c5eb5b7f0785302207d0f8b5d063ffc6749fb4e133db7916162b540c70dee40ec0b21e142d8843b3a00"
-            "cf56"
-                "210307b8ae49ac90a048e9b53357a2354b3334e9c8bee813ecb98e99a7e07e8c3ba3"
-                "2103b28f0c28bfab54554ae8c658ac5c3e0ce6e79ad336331f78c428dd43eea8449b"
-                "21034b8113d703413d57761b8b9781957b8c0ac1dfe69f492580ca4195f50376ba4a"
-                "21033400f6afecb833092a9a21cfdf1ed1376e58c5d1f47de74683123987e967a8f4"
-                "2103a6d48b1131e94ba04d9737d61acdaa1322008af9602b3b14862c07a1789aac16"
-                "2102d8b661b0b3302ee2f162b09e07a55ad5dfbe673a9f01d9f0c19617681024306b"
-            "56ae"
-            "00000000";
+                    "01000000"
+                    "0001"
+                    "01"
+                    "36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e0100000023220020a16b5755f7f6f96dbd65f5f0d6ab9418b89af4b1f14a1bb8a09062c35f0dcb54ffffffff"
+                    "02"
+                    "00e9a43500000000" "1976a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac"
+                    "c0832f0500000000" "1976a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac"
+                    "08"
+                    "00"
+                    "47304402201992f5426ae0bab04cf206d7640b7e00410297bfe5487637f6c2427ee8496be002204ad4e64dc2d269f593cc4820db1fc1e8dc34774f602945115ce485940e05c64200"
+                    "47304402201e412363fa554b994528fd44149f3985b18bb901289ef6b71105b27c7d0e336c0220595e4a1e67154337757562ed5869127533e3e5084c3c2e128518f5f0b85b721800"
+                    "473044022003b0a20ccf545b3f12c5ade10db8717e97b44da2e800387adfd82c95caf529d902206aee3a2395530d52f476d0ddd9d20ba062820ae6f4e1be4921c3630395743ad900"
+                    "483045022100ed7a0eeaf72b84351bceac474b0c0510f67065b1b334f77e6843ed102f968afe022004d97d0cfc4bf5651e46487d6f87bd4af6aef894459f9778f2293b0b2c5b7bc700"
+                    "483045022100934a0c364820588154aed2d519cbcc61969d837b91960f4abbf0e374f03aa39d022036b5c58b754bd44cb5c7d34806c89d9778ea1a1c900618a841e9fbfbe805ff9b00"
+                    "473044022044e3b59b06931d46f857c82fa1d53d89b116a40a581527eac35c5eb5b7f0785302207d0f8b5d063ffc6749fb4e133db7916162b540c70dee40ec0b21e142d8843b3a00"
+                    "cf56"
+                    "210307b8ae49ac90a048e9b53357a2354b3334e9c8bee813ecb98e99a7e07e8c3ba3"
+                    "2103b28f0c28bfab54554ae8c658ac5c3e0ce6e79ad336331f78c428dd43eea8449b"
+                    "21034b8113d703413d57761b8b9781957b8c0ac1dfe69f492580ca4195f50376ba4a"
+                    "21033400f6afecb833092a9a21cfdf1ed1376e58c5d1f47de74683123987e967a8f4"
+                    "2103a6d48b1131e94ba04d9737d61acdaa1322008af9602b3b14862c07a1789aac16"
+                    "2102d8b661b0b3302ee2f162b09e07a55ad5dfbe673a9f01d9f0c19617681024306b"
+                    "56ae"
+                    "00000000";
 
     auto serialized = std::vector<uint8_t>();
     signedTx.encode(true, serialized);

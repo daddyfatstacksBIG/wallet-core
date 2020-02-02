@@ -15,13 +15,27 @@
 using namespace TW;
 using namespace TW::Zcash;
 
-const auto sigHashPersonalization = Data({'Z','c','a','s','h','S','i','g','H','a','s','h'});
-const auto prevoutsHashPersonalization = Data({'Z','c','a','s','h','P','r','e','v','o','u','t','H','a','s','h'});
-const auto sequenceHashPersonalization = Data({'Z','c','a','s','h','S','e','q','u','e','n','c','H','a','s','h'});
-const auto outputsHashPersonalization = Data({'Z','c','a','s','h','O','u','t','p','u','t','s','H','a','s','h'});
-const auto joinsplitsHashPersonalization = Data({'Z','c','a','s','h','J','S','p','l','i','t','s','H','a','s','h'});
-const auto shieldedSpendHashPersonalization = Data({'Z','c','a','s','h','S','S','p','e','n','d','s','H','a','s','h'});
-const auto shieldedOutputsHashPersonalization = Data({'Z','c','a','s','h','S','O','u','t','p','u','t','H','a','s','h'});
+const auto sigHashPersonalization = Data( {
+    'Z','c','a','s','h','S','i','g','H','a','s','h'
+});
+const auto prevoutsHashPersonalization = Data( {
+    'Z','c','a','s','h','P','r','e','v','o','u','t','H','a','s','h'
+});
+const auto sequenceHashPersonalization = Data( {
+    'Z','c','a','s','h','S','e','q','u','e','n','c','H','a','s','h'
+});
+const auto outputsHashPersonalization = Data( {
+    'Z','c','a','s','h','O','u','t','p','u','t','s','H','a','s','h'
+});
+const auto joinsplitsHashPersonalization = Data( {
+    'Z','c','a','s','h','J','S','p','l','i','t','s','H','a','s','h'
+});
+const auto shieldedSpendHashPersonalization = Data( {
+    'Z','c','a','s','h','S','S','p','e','n','d','s','H','a','s','h'
+});
+const auto shieldedOutputsHashPersonalization = Data( {
+    'Z','c','a','s','h','S','O','u','t','p','u','t','H','a','s','h'
+});
 
 /// See https://github.com/zcash/zips/blob/master/zip-0205.rst#sapling-deployment BRANCH_ID section
 const std::array<byte, 4> Zcash::SaplingBranchID = {0xbb, 0x09, 0xb8, 0x76};
@@ -50,7 +64,7 @@ Data Transaction::getPreImage(const Bitcoin::Script& scriptCode, size_t index, e
 
     // Input nSequence (none/all, depending on flags)
     if ((hashType & TWBitcoinSigHashTypeAnyoneCanPay) == 0 &&
-        !TWBitcoinSigHashTypeIsSingle(hashType) && !TWBitcoinSigHashTypeIsNone(hashType)) {
+            !TWBitcoinSigHashTypeIsSingle(hashType) && !TWBitcoinSigHashTypeIsNone(hashType)) {
         auto hashSequence = getSequenceHash();
         std::copy(std::begin(hashSequence), std::end(hashSequence), std::back_inserter(data));
     } else {
@@ -199,7 +213,7 @@ Bitcoin::Proto::Transaction Transaction::proto() const {
     for (const auto& input : inputs) {
         auto protoInput = protoTx.add_inputs();
         protoInput->mutable_previousoutput()->set_hash(input.previousOutput.hash.data(),
-                                                       input.previousOutput.hash.size());
+                input.previousOutput.hash.size());
         protoInput->mutable_previousoutput()->set_index(input.previousOutput.index);
         protoInput->set_sequence(input.sequence);
         protoInput->set_script(input.script.bytes.data(), input.script.bytes.size());

@@ -134,7 +134,7 @@ TEST(TWSolanaAddress, HDWallet) {
     auto passphrase = "";
 
     auto wallet = WRAP(
-        TWHDWallet, TWHDWalletCreateWithMnemonic(STRING(mnemonic).get(), STRING(passphrase).get()));
+                      TWHDWallet, TWHDWalletCreateWithMnemonic(STRING(mnemonic).get(), STRING(passphrase).get()));
 
     auto privateKey = TWHDWalletGetKey(wallet.get(), TWCoinTypeDerivationPath(TWCoinTypeSolana));
     auto publicKey = TWPrivateKeyGetPublicKeyEd25519(privateKey);

@@ -21,7 +21,7 @@ TEST(TWWavesSigner, Sign) {
     auto input = Waves::Proto::SigningInput();
     const auto privateKey =
         PrivateKey(Base58::bitcoin.decode("83mqJpmgB5Mko1567sVAdqZxVKsT6jccXt3eFSi4G1zE"));
-    
+
     const auto publicKeyCurve25519 = privateKey.getPublicKey(TWPublicKeyTypeCURVE25519);
     input.set_timestamp(int64_t(1559146613));
     input.set_private_key(privateKey.bytes.data(), privateKey.bytes.size());
@@ -44,9 +44,9 @@ TEST(TWWavesSigner, Sign) {
               "43bdf35fd80d985edf4b4de1fb1c5c427e84d0879f8f");
 
     auto transaction = Waves::Transaction(
-         input,
-        /* pub_key */ publicKeyCurve25519.bytes);
+                           input,
+                           /* pub_key */ publicKeyCurve25519.bytes);
 
     ASSERT_TRUE(publicKeyCurve25519.verify(
-        Data(output.signature().begin(), output.signature().end()), transaction.serializeToSign()));
+                    Data(output.signature().begin(), output.signature().end()), transaction.serializeToSign()));
 }

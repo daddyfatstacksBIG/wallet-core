@@ -33,7 +33,7 @@ Proto::SigningOutput Signer::sign(const Proto::SigningInput &input) noexcept {
     auto from = Address(pubkey);
 
     // ...
-    
+
     return protoOutput;
 }
 
@@ -66,7 +66,7 @@ TW::Data Signer::buildInitMessage(const PrivateKey& privkey) {
 
     // sign
     auto signature = sign(privkey, msgHash);
-    
+
     auto extMsg = buildInitMessage(chainId, pubkey, signature, msgData);
     return extMsg;
 }
@@ -76,7 +76,7 @@ Data Signer::buildInitMessage(
 ) {
     Cell stateInit = Contract::createStateInit(pubkey);
     assert(stateInit.cellCount() == 2);
-    
+
     auto stateInitHash = stateInit.hash();
 
     // build cell for message

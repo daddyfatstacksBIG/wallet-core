@@ -47,9 +47,9 @@ TEST(Litecoin, BuildForAddressM) {
 
 TEST(Litecoin, ExtendedKeys) {
     auto wallet = WRAP(TWHDWallet, TWHDWalletCreateWithMnemonic(
-        STRING("ripple scissors kick mammal hire column oak again sun offer wealth tomorrow wagon turn fatal").get(),
-        STRING("TREZOR").get()
-    ));
+                           STRING("ripple scissors kick mammal hire column oak again sun offer wealth tomorrow wagon turn fatal").get(),
+                           STRING("TREZOR").get()
+                       ));
 
     // .bip44
     auto lptv = WRAPS(TWHDWalletGetExtendedPrivateKey(wallet.get(), TWPurposeBIP44, TWCoinTypeLitecoin, TWHDVersionLTPV));

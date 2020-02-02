@@ -47,7 +47,7 @@ json valueJSON(const protocol::TransferAssetContract& contract) {
 
 json valueJSON(const protocol::VoteAssetContract& contract) {
     json valueJSON;
-    
+
     vector<string> vote_address;
     for (const string& addr : contract.vote_address()) {
         vote_address.push_back(hex(addr));
@@ -57,7 +57,7 @@ json valueJSON(const protocol::VoteAssetContract& contract) {
     valueJSON["vote_address"] = vote_address;
     valueJSON["support"] = contract.support();
     valueJSON["count"] = contract.count();
-    
+
     return valueJSON;
 }
 
@@ -141,63 +141,63 @@ json parameterJSON(const google::protobuf::Any &parameter, const protocol::Trans
     paramJSON["type_url"] = typeUrl(type);
 
     switch (type) {
-        case protocol::Transaction::Contract::TransferContract: {
-            protocol::TransferContract contract;
-            parameter.UnpackTo(&contract);
-            paramJSON["value"] = valueJSON(contract);
-            break;
-        }
-        case protocol::Transaction::Contract::TransferAssetContract: {
-            protocol::TransferAssetContract contract;
-            parameter.UnpackTo(&contract);
-            paramJSON["value"] = valueJSON(contract);
-            break;
-        }
-        case protocol::Transaction::Contract::VoteAssetContract: {
-            protocol::VoteAssetContract contract;
-            parameter.UnpackTo(&contract);
-            paramJSON["value"] = valueJSON(contract);
-            break;
-        }
-        case protocol::Transaction::Contract::VoteWitnessContract: {
-            protocol::VoteWitnessContract contract;
-            parameter.UnpackTo(&contract);
-            paramJSON["value"] = valueJSON(contract);
-            break;
-        }
-        case protocol::Transaction::Contract::FreezeBalanceContract: {
-            protocol::FreezeBalanceContract contract;
-            parameter.UnpackTo(&contract);
-            paramJSON["value"] = valueJSON(contract);
-            break;
-        }
-        case protocol::Transaction::Contract::UnfreezeBalanceContract: {
-            protocol::UnfreezeBalanceContract contract;
-            parameter.UnpackTo(&contract);
-            paramJSON["value"] = valueJSON(contract);
-            break;
-        }
-        case protocol::Transaction::Contract::WithdrawBalanceContract: {
-            protocol::WithdrawBalanceContract contract;
-            parameter.UnpackTo(&contract);
-            paramJSON["value"] = valueJSON(contract);
-            break;
-        }
-        case protocol::Transaction::Contract::UnfreezeAssetContract: {
-            protocol::UnfreezeAssetContract contract;
-            parameter.UnpackTo(&contract);
-            paramJSON["value"] = valueJSON(contract);
-            break;
-        }
-        case protocol::Transaction::Contract::TriggerSmartContract: {
-            protocol::TriggerSmartContract contract;
-            parameter.UnpackTo(&contract);
-            paramJSON["value"] = valueJSON(contract);
-            break;
-        }
-        case protocol::Transaction::Contract::AccountCreateContract:
-        default:
-            break;
+    case protocol::Transaction::Contract::TransferContract: {
+        protocol::TransferContract contract;
+        parameter.UnpackTo(&contract);
+        paramJSON["value"] = valueJSON(contract);
+        break;
+    }
+    case protocol::Transaction::Contract::TransferAssetContract: {
+        protocol::TransferAssetContract contract;
+        parameter.UnpackTo(&contract);
+        paramJSON["value"] = valueJSON(contract);
+        break;
+    }
+    case protocol::Transaction::Contract::VoteAssetContract: {
+        protocol::VoteAssetContract contract;
+        parameter.UnpackTo(&contract);
+        paramJSON["value"] = valueJSON(contract);
+        break;
+    }
+    case protocol::Transaction::Contract::VoteWitnessContract: {
+        protocol::VoteWitnessContract contract;
+        parameter.UnpackTo(&contract);
+        paramJSON["value"] = valueJSON(contract);
+        break;
+    }
+    case protocol::Transaction::Contract::FreezeBalanceContract: {
+        protocol::FreezeBalanceContract contract;
+        parameter.UnpackTo(&contract);
+        paramJSON["value"] = valueJSON(contract);
+        break;
+    }
+    case protocol::Transaction::Contract::UnfreezeBalanceContract: {
+        protocol::UnfreezeBalanceContract contract;
+        parameter.UnpackTo(&contract);
+        paramJSON["value"] = valueJSON(contract);
+        break;
+    }
+    case protocol::Transaction::Contract::WithdrawBalanceContract: {
+        protocol::WithdrawBalanceContract contract;
+        parameter.UnpackTo(&contract);
+        paramJSON["value"] = valueJSON(contract);
+        break;
+    }
+    case protocol::Transaction::Contract::UnfreezeAssetContract: {
+        protocol::UnfreezeAssetContract contract;
+        parameter.UnpackTo(&contract);
+        paramJSON["value"] = valueJSON(contract);
+        break;
+    }
+    case protocol::Transaction::Contract::TriggerSmartContract: {
+        protocol::TriggerSmartContract contract;
+        parameter.UnpackTo(&contract);
+        paramJSON["value"] = valueJSON(contract);
+        break;
+    }
+    case protocol::Transaction::Contract::AccountCreateContract:
+    default:
+        break;
     }
 
     return paramJSON;

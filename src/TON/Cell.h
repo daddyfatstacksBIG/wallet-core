@@ -31,9 +31,15 @@ public:
     void appendBytes(const Data& data_in);
     /// Append bytes, possible incomplete bytes at the end.  SizeBits should be equal to data.size() * 8, or less by at most 7.
     void appendBits(const TW::Data& data_in, size_t sizeBits);
-    Data data() const { return _data; }
-    inline size_t size() const { return _data.size(); }
-    size_t sizeBits() const { return _sizeBits; }
+    Data data() const {
+        return _data;
+    }
+    inline size_t size() const {
+        return _data.size();
+    }
+    size_t sizeBits() const {
+        return _sizeBits;
+    }
     std::string asBytesStr() const;
     void serialize(TW::Data& data_inout);
     Data hash() const;
@@ -88,9 +94,15 @@ public:
     /// Convenience method for setting slice directly from bits.  May throw.
     void setSliceBitsStr(std::string const& sliceStr, size_t sizeBits);
     void addCell(std::shared_ptr<Cell> const& cell);
-    size_t cellCount() const { return _cells.size(); }
-    Slice const& getSlice() const { return _slice; }
-    const std::vector<std::shared_ptr<Cell>>& getCells() const { return _cells; }
+    size_t cellCount() const {
+        return _cells.size();
+    }
+    Slice const& getSlice() const {
+        return _slice;
+    }
+    const std::vector<std::shared_ptr<Cell>>& getCells() const {
+        return _cells;
+    }
     std::string toString() const;
     Data hash() const;
     /// Serialized size of this cell only, without children

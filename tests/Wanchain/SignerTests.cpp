@@ -24,13 +24,13 @@ public:
 TEST(Signer, Sign) {
     auto address = parse_hex("0x3535353535353535353535353535353535353535");
     auto transaction = Ethereum::Transaction(
-        /* nonce: */ 9,
-        /* gasPrice: */ 20000000000,
-        /* gasLimit: */ 21000,
-        /* to: */ address,
-        /* amount: */ 1000000000000000000,
-        /* payload: */ {}
-    );
+                           /* nonce: */ 9,
+                           /* gasPrice: */ 20000000000,
+                           /* gasLimit: */ 21000,
+                           /* to: */ address,
+                           /* amount: */ 1000000000000000000,
+                           /* payload: */ {}
+                       );
 
     auto key = PrivateKey(parse_hex("0x4646464646464646464646464646464646464646464646464646464646464646"));
     auto signer = SignerExposed(1);

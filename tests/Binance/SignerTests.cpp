@@ -71,25 +71,25 @@ TEST(BinanceSigner, Build) {
     auto result = signer.build();
 
     ASSERT_EQ(hex(result.begin(), result.end()), "db01"
-        "f0625dee"
-        "0a65"
-            "ce6dc043"
-            "0a14""b6561dcc104130059a7c08f48c64610c1f6f9064"
-            "122b""423635363144434331303431333030353941374330384634384336343631304331463646393036342d3131"
-            "1a0b""4254432d3543345f424e42"
-            "2002"
-            "2801"
-            "3080c2d72f"
-            "3880989abc04"
-            "4001"
-        "126e"
-            "0a26"
-            "eb5ae987"
-            "21029729a52e4e3c2b4a4e52aa74033eedaf8ba1df5ab6d1f518fd69e67bbd309b0e"
-            "1240""2a78b6d9a108eb9440221802b626e24d80179395ac984f016db012ef1a0c16d71b4d7053e05366ae3ea2681fc8052398fda20551c965d74c5970bbc66b94b48e"
-            "1801"
-            "200a"
-    );
+              "f0625dee"
+              "0a65"
+              "ce6dc043"
+              "0a14""b6561dcc104130059a7c08f48c64610c1f6f9064"
+              "122b""423635363144434331303431333030353941374330384634384336343631304331463646393036342d3131"
+              "1a0b""4254432d3543345f424e42"
+              "2002"
+              "2801"
+              "3080c2d72f"
+              "3880989abc04"
+              "4001"
+              "126e"
+              "0a26"
+              "eb5ae987"
+              "21029729a52e4e3c2b4a4e52aa74033eedaf8ba1df5ab6d1f518fd69e67bbd309b0e"
+              "1240""2a78b6d9a108eb9440221802b626e24d80179395ac984f016db012ef1a0c16d71b4d7053e05366ae3ea2681fc8052398fda20551c965d74c5970bbc66b94b48e"
+              "1801"
+              "200a"
+             );
 }
 
 TEST(BinanceSigner, BuildSend) {
@@ -130,21 +130,21 @@ TEST(BinanceSigner, BuildSend) {
     auto result = signer.build();
 
     ASSERT_EQ(hex(result.begin(), result.end()), "cc01"
-        "f0625dee"
-        "0a4e"
-            "2a2c87fa"
-            "0a23""0a1440c2979694bbc961023d1d27be6fc4d21a9febe6120b0a03424e4210c098a8dd03"
-            "1223""0a1488b37d5e05f3699e2a1406468e5d87cb9dcceb95120b0a03424e4210c098a8dd03"
-        "126e"
-            "0a26"
-            "eb5ae987"
-            "21026a35920088d98c3888ca68c53dfc93f4564602606cbb87f0fe5ee533db38e502"
-            "1240""c65a13440f18a155bd971ee40b9e0dd58586f5bf344e12ec4c76c439aebca8c7789bab7bfbfb4ce89aadc4a02df225b6b6efc861c13bbeb5f7a3eea2d7ffc80f"
-            "1813"
-            "2017"
-        "1a04""74657374"
-        "2001"
-    );
+              "f0625dee"
+              "0a4e"
+              "2a2c87fa"
+              "0a23""0a1440c2979694bbc961023d1d27be6fc4d21a9febe6120b0a03424e4210c098a8dd03"
+              "1223""0a1488b37d5e05f3699e2a1406468e5d87cb9dcceb95120b0a03424e4210c098a8dd03"
+              "126e"
+              "0a26"
+              "eb5ae987"
+              "21026a35920088d98c3888ca68c53dfc93f4564602606cbb87f0fe5ee533db38e502"
+              "1240""c65a13440f18a155bd971ee40b9e0dd58586f5bf344e12ec4c76c439aebca8c7789bab7bfbfb4ce89aadc4a02df225b6b6efc861c13bbeb5f7a3eea2d7ffc80f"
+              "1813"
+              "2017"
+              "1a04""74657374"
+              "2001"
+             );
 }
 
 TEST(BinanceSigner, BuildSend2) {
@@ -186,19 +186,19 @@ TEST(BinanceSigner, BuildSend2) {
 
     const auto data = Signer(std::move(signingInput)).build();
     ASSERT_EQ(hex(data.begin(), data.end()),
-        "c601"
-        "f0625dee"
-        "0a52"
-            "2a2c87fa"
-            "0a25""0a141d0e3086e8e4e0a53c38a90d55bd58b34d57d2fa120d0a03424e42108080e983b1de16"
-            "1225""0a146b571fc0a9961a7ddf45e49a88a4d83941fcabbe120d0a03424e42108080e983b1de16"
-        "126c"
-            "0a26"
-            "eb5ae987"
-            "21027e69d96640300433654e016d218a8d7ffed751023d8efe81e55dedbd6754c971"
-            "1240""8b23eecfa8237a27676725173e58154e6c204bb291b31c3b7b507c8f04e2773909ba70e01b54f4bd0bc76669f5712a5a66b9508acdf3aa5e4fde75fbe57622a1"
-            "2001"
-    );
+              "c601"
+              "f0625dee"
+              "0a52"
+              "2a2c87fa"
+              "0a25""0a141d0e3086e8e4e0a53c38a90d55bd58b34d57d2fa120d0a03424e42108080e983b1de16"
+              "1225""0a146b571fc0a9961a7ddf45e49a88a4d83941fcabbe120d0a03424e42108080e983b1de16"
+              "126c"
+              "0a26"
+              "eb5ae987"
+              "21027e69d96640300433654e016d218a8d7ffed751023d8efe81e55dedbd6754c971"
+              "1240""8b23eecfa8237a27676725173e58154e6c204bb291b31c3b7b507c8f04e2773909ba70e01b54f4bd0bc76669f5712a5a66b9508acdf3aa5e4fde75fbe57622a1"
+              "2001"
+             );
 }
 
 TEST(BinanceSigner, BuildHTLT) {
@@ -221,7 +221,7 @@ TEST(BinanceSigner, BuildHTLT) {
     token.set_amount(100000000);
 
     auto randomNumberHash =
-            parse_hex("e8eae926261ab77d018202434791a335249b470246a7b02e28c3b2fb6ffad8f3");
+        parse_hex("e8eae926261ab77d018202434791a335249b470246a7b02e28c3b2fb6ffad8f3");
 
     auto &htltOrder = *signingInput.mutable_htlt_order();
     htltOrder.set_from(fromAddr.data(), fromAddr.size());
@@ -288,7 +288,7 @@ TEST(BinanceSigner, BuildClaimHTLT) {
     signingInput.set_private_key(fromPrivateKey.bytes.data(), fromPrivateKey.bytes.size());
 
     auto randomNumber =
-            parse_hex("bda6933c7757d0ca428aa01fb9d0935a231f87bf2deeb9b409cea3f2d580a2cc");
+        parse_hex("bda6933c7757d0ca428aa01fb9d0935a231f87bf2deeb9b409cea3f2d580a2cc");
     auto swapID = parse_hex("dd8fd4719741844d35eb35ddbeca9531d5493a8e4667689c55e73c77503dd9e5");
 
     auto &claimHTLTOrder = *signingInput.mutable_claimhtlt_order();
@@ -298,12 +298,12 @@ TEST(BinanceSigner, BuildClaimHTLT) {
 
     const auto data = Binance::Signer(std::move(signingInput)).build();
     ASSERT_EQ(
-            hex(data.begin(), data.end()),
-            "d401f0625dee0a5ec16653000a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e11220dd8fd4719741844d35"
-            "eb35ddbeca9531d5493a8e4667689c55e73c77503dd9e51a20bda6933c7757d0ca428aa01fb9d0935a231f87bf"
-            "2deeb9b409cea3f2d580a2cc126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561a"
-            "ac993dbe0f6b6a8fc71240fa30ba50111aa31d8329dacb6d044c1c7d54f1cb782bc9aa2a50c3fabce02a4579d7"
-            "5b76ca69a9fab11b676d9da66b5af7aa4c9ad3d18e24fffeb16433be39fb180f2001");
+        hex(data.begin(), data.end()),
+        "d401f0625dee0a5ec16653000a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e11220dd8fd4719741844d35"
+        "eb35ddbeca9531d5493a8e4667689c55e73c77503dd9e51a20bda6933c7757d0ca428aa01fb9d0935a231f87bf"
+        "2deeb9b409cea3f2d580a2cc126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561a"
+        "ac993dbe0f6b6a8fc71240fa30ba50111aa31d8329dacb6d044c1c7d54f1cb782bc9aa2a50c3fabce02a4579d7"
+        "5b76ca69a9fab11b676d9da66b5af7aa4c9ad3d18e24fffeb16433be39fb180f2001");
 }
 
 TEST(BinanceSigner, BuildRefundHTLT) {
@@ -352,24 +352,24 @@ TEST(BinanceSigner, BuildIssueOrder) {
 
     const auto data = Binance::Signer(std::move(signingInput)).build();
     ASSERT_EQ(hex(data.begin(), data.end()),
-        "b601f0625dee0a40"
-        "17efab80"
-        "0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120f"
-        "4e657742696e616e6365546f6b656e"
-        "1a0b"
-        "4e4e422d3333385f424e42"
-        "208094ebdc032801126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240b2612500b80f5ee8fab1574e9b1763fd898a7048910d02e00dea6337d3c848c95aa2213db595179db076dfdb10f6e2d9b2aa76c9cd3ee11396ac224991e3e0cd180f2001"
-    );
+              "b601f0625dee0a40"
+              "17efab80"
+              "0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120f"
+              "4e657742696e616e6365546f6b656e"
+              "1a0b"
+              "4e4e422d3333385f424e42"
+              "208094ebdc032801126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240b2612500b80f5ee8fab1574e9b1763fd898a7048910d02e00dea6337d3c848c95aa2213db595179db076dfdb10f6e2d9b2aa76c9cd3ee11396ac224991e3e0cd180f2001"
+             );
 
     /*
         Matching binance chain sdk code:
-		// decode
-		var parsedTx tx.StdTx
-		rawMsg1, err := hex.DecodeString("b601f0625dee0a4017efab800a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120f4e657742696e616e6365546f6b656e1a0b4e4e422d3333385f424e42208094ebdc032801126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240b2612500b80f5ee8fab1574e9b1763fd898a7048910d02e00dea6337d3c848c95aa2213db595179db076dfdb10f6e2d9b2aa76c9cd3ee11396ac224991e3e0cd180f2001")
-		assert.NoError(t, err)
-		err = tx.Cdc.UnmarshalBinaryLengthPrefixed(rawMsg1, &parsedTx)
-		assert.NoError(t, err)
-		fmt.Printf("%v\n", parsedTx)
+    	// decode
+    	var parsedTx tx.StdTx
+    	rawMsg1, err := hex.DecodeString("b601f0625dee0a4017efab800a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120f4e657742696e616e6365546f6b656e1a0b4e4e422d3333385f424e42208094ebdc032801126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240b2612500b80f5ee8fab1574e9b1763fd898a7048910d02e00dea6337d3c848c95aa2213db595179db076dfdb10f6e2d9b2aa76c9cd3ee11396ac224991e3e0cd180f2001")
+    	assert.NoError(t, err)
+    	err = tx.Cdc.UnmarshalBinaryLengthPrefixed(rawMsg1, &parsedTx)
+    	assert.NoError(t, err)
+    	fmt.Printf("%v\n", parsedTx)
     */
 }
 
@@ -391,22 +391,22 @@ TEST(BinanceSigner, BuildMintOrder) {
 
     const auto data = Binance::Signer(std::move(signingInput)).build();
     ASSERT_EQ(hex(data.begin(), data.end()),
-        "a101f0625dee0a2b"
-        "467e0829"
-        "0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b"
-        "4e4e422d3333385f424e42"
-        "18c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240b2612500b80f5ee8fab1574e9b1763fd898a7048910d02e00dea6337d3c848c95aa2213db595179db076dfdb10f6e2d9b2aa76c9cd3ee11396ac224991e3e0cd180f2001"
-    );
+              "a101f0625dee0a2b"
+              "467e0829"
+              "0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b"
+              "4e4e422d3333385f424e42"
+              "18c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240b2612500b80f5ee8fab1574e9b1763fd898a7048910d02e00dea6337d3c848c95aa2213db595179db076dfdb10f6e2d9b2aa76c9cd3ee11396ac224991e3e0cd180f2001"
+             );
 
     /*
         Matching binance chain sdk code:
-		// decode
-		var parsedTx tx.StdTx
-		rawMsg1, err := hex.DecodeString("a101f0625dee0a2b467e08290a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b4e4e422d3333385f424e4218c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240b2612500b80f5ee8fab1574e9b1763fd898a7048910d02e00dea6337d3c848c95aa2213db595179db076dfdb10f6e2d9b2aa76c9cd3ee11396ac224991e3e0cd180f2001")
-		assert.NoError(t, err)
-		err = tx.Cdc.UnmarshalBinaryLengthPrefixed(rawMsg1, &parsedTx)
-		assert.NoError(t, err)
-		fmt.Printf("%v\n", parsedTx)
+    	// decode
+    	var parsedTx tx.StdTx
+    	rawMsg1, err := hex.DecodeString("a101f0625dee0a2b467e08290a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b4e4e422d3333385f424e4218c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240b2612500b80f5ee8fab1574e9b1763fd898a7048910d02e00dea6337d3c848c95aa2213db595179db076dfdb10f6e2d9b2aa76c9cd3ee11396ac224991e3e0cd180f2001")
+    	assert.NoError(t, err)
+    	err = tx.Cdc.UnmarshalBinaryLengthPrefixed(rawMsg1, &parsedTx)
+    	assert.NoError(t, err)
+    	fmt.Printf("%v\n", parsedTx)
     */
 }
 
@@ -428,42 +428,42 @@ TEST(BinanceSigner, BuildBurnOrder) {
 
     const auto data = Binance::Signer(std::move(signingInput)).build();
     ASSERT_EQ(hex(data.begin(), data.end()),
-        "a101f0625dee0a2b"
-        "7ed2d2a0"
-        "0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b"
-        "4e4e422d3333385f424e42"
-        "18c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240b2612500b80f5ee8fab1574e9b1763fd898a7048910d02e00dea6337d3c848c95aa2213db595179db076dfdb10f6e2d9b2aa76c9cd3ee11396ac224991e3e0cd180f2001"
-    );
+              "a101f0625dee0a2b"
+              "7ed2d2a0"
+              "0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b"
+              "4e4e422d3333385f424e42"
+              "18c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240b2612500b80f5ee8fab1574e9b1763fd898a7048910d02e00dea6337d3c848c95aa2213db595179db076dfdb10f6e2d9b2aa76c9cd3ee11396ac224991e3e0cd180f2001"
+             );
 
     /*
         Matching binance chain sdk code:
 
         // encode
-		priv := "eeba3f6f2db26ced519a3d4c43afff101db957a21d54d25dc7fd235c404d7a5d"
-		keyManager, err := NewPrivateKeyManager(priv)
-		assert.NoError(t, err)
-		fromAddr, err := ctypes.AccAddressFromBech32("bnb1prrujx8kkukrcrppklggadhuvegfnx8phwey70")
-		assert.NoError(t, err)
+    	priv := "eeba3f6f2db26ced519a3d4c43afff101db957a21d54d25dc7fd235c404d7a5d"
+    	keyManager, err := NewPrivateKeyManager(priv)
+    	assert.NoError(t, err)
+    	fromAddr, err := ctypes.AccAddressFromBech32("bnb1prrujx8kkukrcrppklggadhuvegfnx8phwey70")
+    	assert.NoError(t, err)
 
-		burnMsg := msg.NewTokenBurnMsg(fromAddr, "NNB-338_BNB", 1000000)
-		signMsg := tx.StdSignMsg{
-			ChainID:       "test-chain",
-			AccountNumber: 15,
-			Sequence:      1,
-			Memo:          "",
-			Msgs:          []msg.Msg{burnMsg},
-			Source:        0,
-		}
-		rawSignResult, err := keyManager.Sign(signMsg)
-		fmt.Printf("%x\n", rawSignResult)
+    	burnMsg := msg.NewTokenBurnMsg(fromAddr, "NNB-338_BNB", 1000000)
+    	signMsg := tx.StdSignMsg{
+    		ChainID:       "test-chain",
+    		AccountNumber: 15,
+    		Sequence:      1,
+    		Memo:          "",
+    		Msgs:          []msg.Msg{burnMsg},
+    		Source:        0,
+    	}
+    	rawSignResult, err := keyManager.Sign(signMsg)
+    	fmt.Printf("%x\n", rawSignResult)
 
-		// decode back
-		var parsedTx tx.StdTx
-		rawMsg1, err := hex.DecodeString("a101f0625dee0a2b7ed2d2a00a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b4e4e422d3333385f424e4218c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240b2612500b80f5ee8fab1574e9b1763fd898a7048910d02e00dea6337d3c848c95aa2213db595179db076dfdb10f6e2d9b2aa76c9cd3ee11396ac224991e3e0cd180f2001")
-		assert.NoError(t, err)
-		err = tx.Cdc.UnmarshalBinaryLengthPrefixed(rawMsg1, &parsedTx)
-		assert.NoError(t, err)
-		fmt.Printf("%v\n", parsedTx)
+    	// decode back
+    	var parsedTx tx.StdTx
+    	rawMsg1, err := hex.DecodeString("a101f0625dee0a2b7ed2d2a00a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b4e4e422d3333385f424e4218c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240b2612500b80f5ee8fab1574e9b1763fd898a7048910d02e00dea6337d3c848c95aa2213db595179db076dfdb10f6e2d9b2aa76c9cd3ee11396ac224991e3e0cd180f2001")
+    	assert.NoError(t, err)
+    	err = tx.Cdc.UnmarshalBinaryLengthPrefixed(rawMsg1, &parsedTx)
+    	assert.NoError(t, err)
+    	fmt.Printf("%v\n", parsedTx)
     */
 }
 
@@ -485,22 +485,22 @@ TEST(BinanceSigner, BuildFreezeOrder) {
 
     const auto data = Binance::Signer(std::move(signingInput)).build();
     ASSERT_EQ(hex(data.begin(), data.end()),
-        "a101f0625dee0a2b"
-        "e774b32d"
-        "0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b"
-        "4e4e422d3333385f424e42"
-        "18c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240e3022069d897bf5bf4846d354fcd2c0e85807053be643c8b8c8596306003f7340d43a162722673eb848258b0435b1f49993d0e75d4ae43d03453a3ae57fe6991180f2001"
-    );
+              "a101f0625dee0a2b"
+              "e774b32d"
+              "0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b"
+              "4e4e422d3333385f424e42"
+              "18c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240e3022069d897bf5bf4846d354fcd2c0e85807053be643c8b8c8596306003f7340d43a162722673eb848258b0435b1f49993d0e75d4ae43d03453a3ae57fe6991180f2001"
+             );
 
     /*
         Matching binance chain sdk code:
-		// decode
-		var parsedTx tx.StdTx
-		rawMsg1, err := hex.DecodeString("a101f0625dee0a2be774b32d0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b4e4e422d3333385f424e4218c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240e3022069d897bf5bf4846d354fcd2c0e85807053be643c8b8c8596306003f7340d43a162722673eb848258b0435b1f49993d0e75d4ae43d03453a3ae57fe6991180f2001")
-		assert.NoError(t, err)
-		err = tx.Cdc.UnmarshalBinaryLengthPrefixed(rawMsg1, &parsedTx)
-		assert.NoError(t, err)
-		fmt.Printf("%v\n", parsedTx)
+    	// decode
+    	var parsedTx tx.StdTx
+    	rawMsg1, err := hex.DecodeString("a101f0625dee0a2be774b32d0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b4e4e422d3333385f424e4218c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240e3022069d897bf5bf4846d354fcd2c0e85807053be643c8b8c8596306003f7340d43a162722673eb848258b0435b1f49993d0e75d4ae43d03453a3ae57fe6991180f2001")
+    	assert.NoError(t, err)
+    	err = tx.Cdc.UnmarshalBinaryLengthPrefixed(rawMsg1, &parsedTx)
+    	assert.NoError(t, err)
+    	fmt.Printf("%v\n", parsedTx)
     */
 }
 
@@ -522,22 +522,22 @@ TEST(BinanceSigner, BuildUnfreezeOrder) {
 
     const auto data = Binance::Signer(std::move(signingInput)).build();
     ASSERT_EQ(hex(data.begin(), data.end()),
-        "a101f0625dee0a2b"
-        "6515ff0d"
-        "0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b"
-        "4e4e422d3333385f424e42"
-        "18c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240e3022069d897bf5bf4846d354fcd2c0e85807053be643c8b8c8596306003f7340d43a162722673eb848258b0435b1f49993d0e75d4ae43d03453a3ae57fe6991180f2001"
-    );
+              "a101f0625dee0a2b"
+              "6515ff0d"
+              "0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b"
+              "4e4e422d3333385f424e42"
+              "18c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240e3022069d897bf5bf4846d354fcd2c0e85807053be643c8b8c8596306003f7340d43a162722673eb848258b0435b1f49993d0e75d4ae43d03453a3ae57fe6991180f2001"
+             );
 
     /*
         Matching binance chain sdk code:
-		// decode
-		var parsedTx tx.StdTx
-		rawMsg1, err := hex.DecodeString("a101f0625dee0a2b6515ff0d0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b4e4e422d3333385f424e4218c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240e3022069d897bf5bf4846d354fcd2c0e85807053be643c8b8c8596306003f7340d43a162722673eb848258b0435b1f49993d0e75d4ae43d03453a3ae57fe6991180f2001")
-		assert.NoError(t, err)
-		err = tx.Cdc.UnmarshalBinaryLengthPrefixed(rawMsg1, &parsedTx)
-		assert.NoError(t, err)
-		fmt.Printf("%v\n", parsedTx)
+    	// decode
+    	var parsedTx tx.StdTx
+    	rawMsg1, err := hex.DecodeString("a101f0625dee0a2b6515ff0d0a1408c7c918f6b72c3c0c21b7d08eb6fc66509998e1120b4e4e422d3333385f424e4218c0843d126e0a26eb5ae9872103a9a55c040c8eb8120f3d1b32193250841c08af44ea561aac993dbe0f6b6a8fc71240e3022069d897bf5bf4846d354fcd2c0e85807053be643c8b8c8596306003f7340d43a162722673eb848258b0435b1f49993d0e75d4ae43d03453a3ae57fe6991180f2001")
+    	assert.NoError(t, err)
+    	err = tx.Cdc.UnmarshalBinaryLengthPrefixed(rawMsg1, &parsedTx)
+    	assert.NoError(t, err)
+    	fmt.Printf("%v\n", parsedTx)
     */
 }
 

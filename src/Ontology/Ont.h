@@ -12,14 +12,17 @@
 namespace TW::Ontology {
 
 class Ont : public Asset {
-  private:
+private:
     static const uint8_t version = 0x00;
 
     const Data ontContract = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                              0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01};
+                              0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01
+                             };
 
-  public:
-    Data contractAddress() override { return ontContract; }
+public:
+    Data contractAddress() override {
+        return ontContract;
+    }
 
     Transaction decimals(uint32_t nonce) override;
 

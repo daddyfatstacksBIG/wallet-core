@@ -84,7 +84,9 @@ void Signer::checkPlan(const Proto::TransactionPlan& plan) {
         throw logic_error("Zero fee is invalid");
     }
     uint64_t sum_utxo = 0;
-    for (int i = 0; i < plan.utxo_size(); ++i) { sum_utxo += plan.utxo(i).amount(); }
+    for (int i = 0; i < plan.utxo_size(); ++i) {
+        sum_utxo += plan.utxo(i).amount();
+    }
     if (plan.amount() + plan.fee() + plan.change() != sum_utxo) {
         // amount mismatch
         throw logic_error("Amount mismatch");
@@ -181,10 +183,10 @@ Data Signer::prepareUnsignedTx(const Proto::SigningInput& input, const Proto::Tr
             Encode::uint(plan.utxo(i).out_point().index()),
         }).encoded();
         inputsArray.addIndefArrayElem(
-            Encode::array({
-                Encode::uint(0), // type
-                Encode::tag(Address::PayloadTag, Encode::bytes(outPointData))
-            })
+        Encode::array({
+            Encode::uint(0), // type
+            Encode::tag(Address::PayloadTag, Encode::bytes(outPointData))
+        })
         );
     }
     inputsArray.closeIndefArray();
@@ -193,18 +195,18 @@ Data Signer::prepareUnsignedTx(const Proto::SigningInput& input, const Proto::Tr
     auto outputsArray = Encode::indefArray();
     Address toAddr = Address(input.to_address());
     outputsArray.addIndefArrayElem(
-        Encode::array({
-            Encode::fromRaw(toAddr.getCborData()),
-            Encode::uint(plan.amount()),
-        })
+    Encode::array({
+        Encode::fromRaw(toAddr.getCborData()),
+        Encode::uint(plan.amount()),
+    })
     );
     if (plan.change() != 0) {
         Address changeAddr = Address(input.change_address());
         outputsArray.addIndefArrayElem(
-            Encode::array({
-                Encode::fromRaw(changeAddr.getCborData()),
-                Encode::uint(plan.change()),
-            })
+        Encode::array({
+            Encode::fromRaw(changeAddr.getCborData()),
+            Encode::uint(plan.change()),
+        })
         );
     }
     outputsArray.closeIndefArray();
@@ -249,12 +251,12 @@ Proto::SigningOutput Signer::prepareSignedTx(const Proto::SigningInput& input, c
             Encode::bytes(signature),
         }).encoded();
         signatures.push_back(
-            Encode::array({
-                Encode::uint(0), // type
-                Encode::tag(Address::PayloadTag,
-                    Encode::bytes(signatureCbor)
-                ),
-            })
+        Encode::array({
+            Encode::uint(0), // type
+            Encode::tag(Address::PayloadTag,
+                        Encode::bytes(signatureCbor)
+                       ),
+        })
         );
     }
 

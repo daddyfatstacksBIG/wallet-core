@@ -21,8 +21,8 @@ bool SegwitAddress::isValid(const std::string& string) {
 
     Data conv;
     if (!Bech32::convertBits<5, 8, false>(conv, Data(dec.second.begin() + 1, dec.second.end())) ||
-        conv.size() < 2 || conv.size() > 40 || dec.second[0] > 16 ||
-        (dec.second[0] == 0 && conv.size() != 20 && conv.size() != 32)) {
+            conv.size() < 2 || conv.size() > 40 || dec.second[0] > 16 ||
+            (dec.second[0] == 0 && conv.size() != 20 && conv.size() != 32)) {
         return false;
     }
 
@@ -40,8 +40,8 @@ bool SegwitAddress::isValid(const std::string& string, const std::string& hrp) {
 
     Data conv;
     if (!Bech32::convertBits<5, 8, false>(conv, Data(dec.second.begin() + 1, dec.second.end())) ||
-        conv.size() < 2 || conv.size() > 40 || dec.second[0] > 16 ||
-        (dec.second[0] == 0 && conv.size() != 20 && conv.size() != 32)) {
+            conv.size() < 2 || conv.size() > 40 || dec.second[0] > 16 ||
+            (dec.second[0] == 0 && conv.size() != 20 && conv.size() != 32)) {
         return false;
     }
 
@@ -66,8 +66,8 @@ std::pair<SegwitAddress, bool> SegwitAddress::decode(const std::string& addr) {
 
     Data conv;
     if (!Bech32::convertBits<5, 8, false>(conv, Data(dec.second.begin() + 1, dec.second.end())) ||
-        conv.size() < 2 || conv.size() > 40 || dec.second[0] > 16 ||
-        (dec.second[0] == 0 && conv.size() != 20 && conv.size() != 32)) {
+            conv.size() < 2 || conv.size() > 40 || dec.second[0] > 16 ||
+            (dec.second[0] == 0 && conv.size() != 20 && conv.size() != 32)) {
         return std::make_pair(SegwitAddress(), false);
     }
 
@@ -86,11 +86,11 @@ std::string SegwitAddress::string() const {
 }
 
 std::pair<SegwitAddress, bool> SegwitAddress::fromRaw(const std::string& hrp,
-                                                      const std::vector<uint8_t>& data) {
+        const std::vector<uint8_t>& data) {
     Data conv;
     if (!Bech32::convertBits<5, 8, false>(conv, Data(data.begin() + 1, data.end())) ||
-        conv.size() < 2 || conv.size() > 40 || data[0] > 16 ||
-        (data[0] == 0 && conv.size() != 20 && conv.size() != 32)) {
+            conv.size() < 2 || conv.size() > 40 || data[0] > 16 ||
+            (data[0] == 0 && conv.size() != 20 && conv.size() != 32)) {
         return std::make_pair(SegwitAddress(), false);
     }
 

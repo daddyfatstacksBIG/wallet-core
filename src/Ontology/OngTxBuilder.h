@@ -16,7 +16,7 @@ namespace TW::Ontology {
 
 class OngTxBuilder {
 
-  public:
+public:
     static Data decimals(const Ontology::Proto::SigningInput &input);
 
     static Data balanceOf(const Ontology::Proto::SigningInput& input);

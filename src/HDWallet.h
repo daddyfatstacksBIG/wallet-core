@@ -24,12 +24,12 @@
 namespace TW {
 
 class HDWallet {
-  public:
+public:
     static constexpr size_t seedSize = 64;
     static constexpr size_t maxMnemomincSize = 240;
     static constexpr size_t maxExtendedKeySize = 128;
 
-  public:
+public:
     /// Wallet seed.
     std::array<byte, seedSize> seed;
 
@@ -42,7 +42,7 @@ class HDWallet {
     /// Entropy bytes (11 bits from each word)
     TW::Data entropy;
 
-  public:
+public:
     /// Determines if a mnemonic phrase is valid.
     static bool isValid(const std::string& mnemonic);
 
@@ -88,13 +88,13 @@ class HDWallet {
     /// Computes the private key from an exteded private key representation.
     static std::optional<PrivateKey> getPrivateKeyFromExtended(const std::string &extended, const DerivationPath& path);
 
-  public:
+public:
     // Private key type (later could be moved out of HDWallet)
     enum PrivateKeyType {
-      PrivateKeyTypeDefault32 = 0, // 32-byte private key
-      PrivateKeyTypeExtended96 = 1, // 3*32-byte extended private key
+        PrivateKeyTypeDefault32 = 0, // 32-byte private key
+        PrivateKeyTypeExtended96 = 1, // 3*32-byte extended private key
     };
-    
+
     // obtain privateKeyType used by the coin/curve
     static PrivateKeyType getPrivateKeyType(TWCurve curve);
 };

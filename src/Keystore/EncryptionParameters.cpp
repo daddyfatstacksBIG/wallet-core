@@ -58,15 +58,15 @@ Data EncryptionParameters::decrypt(const std::string& password) const {
         auto scryptParams = boost::get<ScryptParameters>(kdfParams);
         derivedKey.resize(scryptParams.defaultDesiredKeyLength);
         scrypt(reinterpret_cast<const byte*>(password.data()), password.size(), scryptParams.salt.data(),
-            scryptParams.salt.size(), scryptParams.n, scryptParams.r, scryptParams.p, derivedKey.data(),
-            scryptParams.defaultDesiredKeyLength);
+               scryptParams.salt.size(), scryptParams.n, scryptParams.r, scryptParams.p, derivedKey.data(),
+               scryptParams.defaultDesiredKeyLength);
         mac = computeMAC(derivedKey.end() - 16, derivedKey.end(), encrypted);
     } else if (kdfParams.which() == 1) {
         auto pbkdf2Params = boost::get<PBKDF2Parameters>(kdfParams);
         derivedKey.resize(pbkdf2Params.defaultDesiredKeyLength);
         pbkdf2_hmac_sha256(reinterpret_cast<const byte*>(password.data()), password.size(), pbkdf2Params.salt.data(),
-            pbkdf2Params.salt.size(), pbkdf2Params.iterations, derivedKey.data(),
-            pbkdf2Params.defaultDesiredKeyLength);
+                           pbkdf2Params.salt.size(), pbkdf2Params.iterations, derivedKey.data(),
+                           pbkdf2Params.defaultDesiredKeyLength);
         mac = computeMAC(derivedKey.end() - 16, derivedKey.end(), encrypted);
     } else {
         throw DecryptionError::unsupportedKDF;

@@ -36,9 +36,9 @@ inline void encode32LE(uint32_t val, std::vector<uint8_t>& data) {
 inline uint32_t decode32LE(const uint8_t* _Nonnull src) {
     // clang-format off
     return static_cast<uint32_t>(src[0])
-        | (static_cast<uint32_t>(src[1]) << 8)
-        | (static_cast<uint32_t>(src[2]) << 16)
-        | (static_cast<uint32_t>(src[3]) << 24);
+           | (static_cast<uint32_t>(src[1]) << 8)
+           | (static_cast<uint32_t>(src[2]) << 16)
+           | (static_cast<uint32_t>(src[3]) << 24);
     // clang-format on
 }
 
@@ -58,13 +58,13 @@ inline void encode64LE(uint64_t val, std::vector<uint8_t>& data) {
 inline uint64_t decode64LE(const uint8_t* _Nonnull src) {
     // clang-format off
     return static_cast<uint64_t>(src[0])
-        | (static_cast<uint64_t>(src[1]) << 8)
-        | (static_cast<uint64_t>(src[2]) << 16)
-        | (static_cast<uint64_t>(src[3]) << 24)
-        | (static_cast<uint64_t>(src[4]) << 32)
-        | (static_cast<uint64_t>(src[5]) << 40)
-        | (static_cast<uint64_t>(src[6]) << 48)
-        | (static_cast<uint64_t>(src[7]) << 56);
+           | (static_cast<uint64_t>(src[1]) << 8)
+           | (static_cast<uint64_t>(src[2]) << 16)
+           | (static_cast<uint64_t>(src[3]) << 24)
+           | (static_cast<uint64_t>(src[4]) << 32)
+           | (static_cast<uint64_t>(src[5]) << 40)
+           | (static_cast<uint64_t>(src[6]) << 48)
+           | (static_cast<uint64_t>(src[7]) << 56);
     // clang-format on
 }
 
@@ -144,9 +144,9 @@ inline void encode32BE(uint32_t val, std::vector<uint8_t>& data) {
 inline uint32_t decode32BE(const uint8_t* _Nonnull src) {
     // clang-format off
     return static_cast<uint32_t>(src[3])
-        | (static_cast<uint32_t>(src[2]) << 8)
-        | (static_cast<uint32_t>(src[1]) << 16)
-        | (static_cast<uint32_t>(src[0]) << 24);
+           | (static_cast<uint32_t>(src[2]) << 8)
+           | (static_cast<uint32_t>(src[1]) << 16)
+           | (static_cast<uint32_t>(src[0]) << 24);
     // clang-format on
 }
 
@@ -166,13 +166,13 @@ inline void encode64BE(uint64_t val, std::vector<uint8_t>& data) {
 inline uint64_t decode64BE(const uint8_t* _Nonnull src) {
     // clang-format off
     return static_cast<uint64_t>(src[7])
-        | (static_cast<uint64_t>(src[6]) << 8)
-        | (static_cast<uint64_t>(src[5]) << 16)
-        | (static_cast<uint64_t>(src[4]) << 24)
-        | (static_cast<uint64_t>(src[3]) << 32)
-        | (static_cast<uint64_t>(src[2]) << 40)
-        | (static_cast<uint64_t>(src[1]) << 48)
-        | (static_cast<uint64_t>(src[0]) << 56);
+           | (static_cast<uint64_t>(src[6]) << 8)
+           | (static_cast<uint64_t>(src[5]) << 16)
+           | (static_cast<uint64_t>(src[4]) << 24)
+           | (static_cast<uint64_t>(src[3]) << 32)
+           | (static_cast<uint64_t>(src[2]) << 40)
+           | (static_cast<uint64_t>(src[1]) << 48)
+           | (static_cast<uint64_t>(src[0]) << 56);
     // clang-format on
 }
 

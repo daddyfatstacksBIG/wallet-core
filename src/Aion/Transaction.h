@@ -14,7 +14,7 @@
 namespace TW::Aion {
 
 class Transaction {
-  public:
+public:
     using uint128_t = boost::multiprecision::uint128_t;
 
     uint128_t nonce;
@@ -36,7 +36,7 @@ class Transaction {
         , amount(std::move(amount))
         , payload(std::move(payload)) {}
 
-  public:
+public:
     /// Encodes the transaction.
     Data encode() const noexcept;
 };

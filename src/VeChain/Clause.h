@@ -14,7 +14,7 @@
 namespace TW::VeChain {
 
 class Clause {
-  public:
+public:
     Ethereum::Address to;
     uint256_t value;
     Data data;

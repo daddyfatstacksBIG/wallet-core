@@ -73,7 +73,7 @@ static const struct valid_address_data valid_address[] = {
     {
         "BC1SW50QA3JX3S",
         4, {
-           0x90, 0x02, 0x75, 0x1e
+            0x90, 0x02, 0x75, 0x1e
         }
     },
     {

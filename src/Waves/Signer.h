@@ -19,7 +19,7 @@ namespace TW::Waves {
 
 /// Helper class that performs Waves transaction signing.
 class Signer {
-  public:
+public:
     Signer() = delete;
 
     /// Signs the given transaction.

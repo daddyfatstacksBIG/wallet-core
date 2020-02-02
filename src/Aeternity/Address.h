@@ -10,7 +10,7 @@
 namespace TW::Aeternity {
 
 class Address {
-  public:
+public:
     static const size_t size = 32;
     Data bytes;
 
@@ -26,7 +26,7 @@ class Address {
     /// Returns a string representation of the Aeternity address.
     std::string string() const;
 
-  private:
+private:
 
     static bool checkType(const std::string &type);
     static bool checkPayload(const std::string &payload);

@@ -23,7 +23,9 @@ protected:
 public:
     SavedValue() {}
     SavedValue(const string& v) : _val(v) {}
-    string get() const { return _val; }
+    string get() const {
+        return _val;
+    }
 };
 
 // Keep last result and buffer variables

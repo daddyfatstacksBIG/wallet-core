@@ -16,9 +16,11 @@
 namespace TW::Polkadot {
 
 class Address: public SS58Address {
-  public:
+public:
     /// Determines whether a string makes a valid address.
-    static bool isValid(const std::string& string) { return SS58Address::isValid(string, TWSS58AddressTypePolkadot); }
+    static bool isValid(const std::string& string) {
+        return SS58Address::isValid(string, TWSS58AddressTypePolkadot);
+    }
 
     /// Initializes a Polkadot address with a string representation.
     Address(const std::string& string): SS58Address(string, TWSS58AddressTypePolkadot) {}

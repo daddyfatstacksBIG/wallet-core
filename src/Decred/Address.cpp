@@ -27,7 +27,7 @@ bool Address::isValid(const std::string& string) noexcept {
         return false;
     }
 
-    return (data[1] == TW::p2pkhPrefix(TWCoinTypeDecred) || 
+    return (data[1] == TW::p2pkhPrefix(TWCoinTypeDecred) ||
             data[1] == TW::p2shPrefix(TWCoinTypeDecred));
 }
 

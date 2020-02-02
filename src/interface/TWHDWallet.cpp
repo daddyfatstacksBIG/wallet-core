@@ -36,7 +36,7 @@ TWData *_Nonnull TWHDWalletSeed(struct TWHDWallet *_Nonnull wallet) {
     return TWDataCreateWithBytes(wallet->impl.seed.data(), HDWallet::seedSize);
 }
 
-TWString *_Nonnull TWHDWalletMnemonic(struct TWHDWallet *_Nonnull wallet){
+TWString *_Nonnull TWHDWalletMnemonic(struct TWHDWallet *_Nonnull wallet) {
     return TWStringCreateWithUTF8Bytes(wallet->impl.mnemonic.c_str());
 }
 

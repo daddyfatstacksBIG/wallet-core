@@ -141,10 +141,10 @@ TEST(CardanoAddress, FromPrivateKey) {
     {
         // mnemonic Test, addr0
         auto privateKey = PrivateKey(
-            parse_hex("b0884d248cb301edd1b34cf626ba6d880bb3ae8fd91b4696446999dc4f0b5744"),
-            parse_hex("309941d56938e943980d11643c535e046653ca6f498c014b88f2ad9fd6e71eff"),
-            parse_hex("bf36a8fa9f5e11eb7a852c41e185e3969d518e66e6893c81d3fc7227009952d4")
-        );
+                              parse_hex("b0884d248cb301edd1b34cf626ba6d880bb3ae8fd91b4696446999dc4f0b5744"),
+                              parse_hex("309941d56938e943980d11643c535e046653ca6f498c014b88f2ad9fd6e71eff"),
+                              parse_hex("bf36a8fa9f5e11eb7a852c41e185e3969d518e66e6893c81d3fc7227009952d4")
+                          );
         auto publicKey = privateKey.getPublicKey(TWPublicKeyTypeED25519Extended);
         ASSERT_EQ(hex(publicKey.bytes), "57fd54be7b38bb8952782c2f59aa276928a4dcbb66c8c62ce44f9d623ecd5a03bf36a8fa9f5e11eb7a852c41e185e3969d518e66e6893c81d3fc7227009952d4");
         auto address = Address(publicKey);
@@ -153,10 +153,10 @@ TEST(CardanoAddress, FromPrivateKey) {
     {
         // mnemonic Play1, addr0
         auto privateKey = PrivateKey(
-            parse_hex("a089c9423100960440ccd5b7adbd202d1ab1993a7bb30fc88b287d94016df247"),
-            parse_hex("da86a87f08fb15de1431a6c0ccd5ebf51c3bee81f7eaf714801bbbe4d903154a"),
-            parse_hex("e513fa1290da1d22e83a41f17eed72d4489483b561fff36b9555ffdb91c430e2")
-        );
+                              parse_hex("a089c9423100960440ccd5b7adbd202d1ab1993a7bb30fc88b287d94016df247"),
+                              parse_hex("da86a87f08fb15de1431a6c0ccd5ebf51c3bee81f7eaf714801bbbe4d903154a"),
+                              parse_hex("e513fa1290da1d22e83a41f17eed72d4489483b561fff36b9555ffdb91c430e2")
+                          );
         auto publicKey = privateKey.getPublicKey(TWPublicKeyTypeED25519Extended);
         ASSERT_EQ(hex(publicKey.bytes), "7cee0f30b9d536a786547dd77b35679b6830e945ffde768eb4f2a061b9dba016e513fa1290da1d22e83a41f17eed72d4489483b561fff36b9555ffdb91c430e2");
         auto address = Address(publicKey);
@@ -165,10 +165,10 @@ TEST(CardanoAddress, FromPrivateKey) {
     {
         // from cardano-crypto.js test
         auto privateKey = PrivateKey(
-            parse_hex("d809b1b4b4c74734037f76aace501730a3fe2fca30b5102df99ad3f7c0103e48"),
-            parse_hex("d54cde47e9041b31f3e6873d700d83f7a937bea746dadfa2c5b0a6a92502356c"),
-            parse_hex("69272d81c376382b8a87c21370a7ae9618df8da708d1a9490939ec54ebe43000")
-        );
+                              parse_hex("d809b1b4b4c74734037f76aace501730a3fe2fca30b5102df99ad3f7c0103e48"),
+                              parse_hex("d54cde47e9041b31f3e6873d700d83f7a937bea746dadfa2c5b0a6a92502356c"),
+                              parse_hex("69272d81c376382b8a87c21370a7ae9618df8da708d1a9490939ec54ebe43000")
+                          );
         auto publicKey = privateKey.getPublicKey(TWPublicKeyTypeED25519Extended);
         ASSERT_EQ(hex(publicKey.bytes), "e6f04522f875c1563682ca876ddb04c2e2e3ae718e3ff9f11c03dd9f9dccf69869272d81c376382b8a87c21370a7ae9618df8da708d1a9490939ec54ebe43000");
         auto address = Address(publicKey);
@@ -179,17 +179,17 @@ TEST(CardanoAddress, FromPrivateKey) {
 TEST(CardanoAddress, PrivateKeyExtended) {
     // check extended key lengths, private key 3x32 bytes, public key 64 bytes
     auto privateKeyExt = PrivateKey(
-        parse_hex("b0884d248cb301edd1b34cf626ba6d880bb3ae8fd91b4696446999dc4f0b5744"),
-        parse_hex("309941d56938e943980d11643c535e046653ca6f498c014b88f2ad9fd6e71eff"),
-        parse_hex("bf36a8fa9f5e11eb7a852c41e185e3969d518e66e6893c81d3fc7227009952d4")
-    );
+                             parse_hex("b0884d248cb301edd1b34cf626ba6d880bb3ae8fd91b4696446999dc4f0b5744"),
+                             parse_hex("309941d56938e943980d11643c535e046653ca6f498c014b88f2ad9fd6e71eff"),
+                             parse_hex("bf36a8fa9f5e11eb7a852c41e185e3969d518e66e6893c81d3fc7227009952d4")
+                         );
     auto publicKeyExt = privateKeyExt.getPublicKey(TWPublicKeyTypeED25519Extended);
     ASSERT_EQ(64, publicKeyExt.bytes.size());
 
     // Non-extended: both are 32 bytes.
     auto privateKeyNonext = PrivateKey(
-        parse_hex("b0884d248cb301edd1b34cf626ba6d880bb3ae8fd91b4696446999dc4f0b5744")
-    );
+                                parse_hex("b0884d248cb301edd1b34cf626ba6d880bb3ae8fd91b4696446999dc4f0b5744")
+                            );
     auto publicKeyNonext = privateKeyNonext.getPublicKey(TWPublicKeyTypeED25519);
     ASSERT_EQ(32, publicKeyNonext.bytes.size());
 }

@@ -15,7 +15,7 @@
 
 namespace TW::Wanchain {
 class Address : public Ethereum::Address {
-  public:
+public:
     using Ethereum::Address::Address;
 
     /// Returns a string representation of the address.

@@ -22,12 +22,12 @@ TW_Nimiq_Proto_SigningOutput TWNimiqSignerSign(TW_Nimiq_Proto_SigningInput data)
     std::array<uint8_t, 32> pubkeyBytes;
     std::copy(pubkey.bytes.begin(), pubkey.bytes.end(), pubkeyBytes.data());
     auto transaction = Transaction(
-        /* sender_pub_key */pubkeyBytes,
-        /* destination */Address(input.destination()),
-        /* amount */input.value(),
-        /* fee */input.fee(),
-        /* vsh */input.validity_start_height()
-    );
+                           /* sender_pub_key */pubkeyBytes,
+                           /* destination */Address(input.destination()),
+                           /* amount */input.value(),
+                           /* fee */input.fee(),
+                           /* vsh */input.validity_start_height()
+                       );
 
     auto signer = Signer();
     signer.sign(key, transaction);

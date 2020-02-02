@@ -14,7 +14,7 @@ namespace TW::Aeternity {
 
 class Transaction {
 
-  public:
+public:
     std::string sender_id;
 
     std::string recipient_id;
@@ -45,7 +45,7 @@ class Transaction {
         , fee(std::move(fee))
         , payload(payload)
         , ttl(ttl)
-        , nonce(nonce){};
+        , nonce(nonce) {};
 
     Data encode();
 

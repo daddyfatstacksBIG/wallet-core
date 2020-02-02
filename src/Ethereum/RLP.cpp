@@ -78,49 +78,49 @@ Data RLP::putint(uint64_t i) noexcept {
         return {static_cast<uint8_t>(i)};
     if (i < (1l << 16))
         return {
-            static_cast<uint8_t>(i >> 8),
-            static_cast<uint8_t>(i),
-        };
+        static_cast<uint8_t>(i >> 8),
+        static_cast<uint8_t>(i),
+    };
     if (i < (1l << 24))
         return {
-            static_cast<uint8_t>(i >> 16),
-            static_cast<uint8_t>(i >> 8),
-            static_cast<uint8_t>(i),
-        };
+        static_cast<uint8_t>(i >> 16),
+        static_cast<uint8_t>(i >> 8),
+        static_cast<uint8_t>(i),
+    };
     if (i < (1l << 32))
         return {
-            static_cast<uint8_t>(i >> 24),
-            static_cast<uint8_t>(i >> 16),
-            static_cast<uint8_t>(i >> 8),
-            static_cast<uint8_t>(i),
-        };
+        static_cast<uint8_t>(i >> 24),
+        static_cast<uint8_t>(i >> 16),
+        static_cast<uint8_t>(i >> 8),
+        static_cast<uint8_t>(i),
+    };
     if (i < (1l << 40))
         return {
-            static_cast<uint8_t>(i >> 32),
-            static_cast<uint8_t>(i >> 24),
-            static_cast<uint8_t>(i >> 16),
-            static_cast<uint8_t>(i >> 8),
-            static_cast<uint8_t>(i),
-        };
+        static_cast<uint8_t>(i >> 32),
+        static_cast<uint8_t>(i >> 24),
+        static_cast<uint8_t>(i >> 16),
+        static_cast<uint8_t>(i >> 8),
+        static_cast<uint8_t>(i),
+    };
     if (i < (1l << 48))
         return {
-            static_cast<uint8_t>(i >> 40),
-            static_cast<uint8_t>(i >> 32),
-            static_cast<uint8_t>(i >> 24),
-            static_cast<uint8_t>(i >> 16),
-            static_cast<uint8_t>(i >> 8),
-            static_cast<uint8_t>(i),
-        };
+        static_cast<uint8_t>(i >> 40),
+        static_cast<uint8_t>(i >> 32),
+        static_cast<uint8_t>(i >> 24),
+        static_cast<uint8_t>(i >> 16),
+        static_cast<uint8_t>(i >> 8),
+        static_cast<uint8_t>(i),
+    };
     if (i < (1l << 56))
         return {
-            static_cast<uint8_t>(i >> 48),
-            static_cast<uint8_t>(i >> 40),
-            static_cast<uint8_t>(i >> 32),
-            static_cast<uint8_t>(i >> 24),
-            static_cast<uint8_t>(i >> 16),
-            static_cast<uint8_t>(i >> 8),
-            static_cast<uint8_t>(i),
-        };
+        static_cast<uint8_t>(i >> 48),
+        static_cast<uint8_t>(i >> 40),
+        static_cast<uint8_t>(i >> 32),
+        static_cast<uint8_t>(i >> 24),
+        static_cast<uint8_t>(i >> 16),
+        static_cast<uint8_t>(i >> 8),
+        static_cast<uint8_t>(i),
+    };
 
     return {
         static_cast<uint8_t>(i >> 56),

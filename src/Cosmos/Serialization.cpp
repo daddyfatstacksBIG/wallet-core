@@ -30,7 +30,8 @@ static string broadcastMode(Proto::BroadcastMode mode) {
         return "block";
     case Proto::BroadcastMode::ASYNC:
         return "async";
-    default: return "sync";
+    default:
+        return "sync";
     }
 }
 
@@ -74,11 +75,12 @@ static json messageSend(const Proto::Message_Send& message) {
 
     return {
         {"type", typePrefix},
-        {"value", {
-            {"amount", amountsJSON(message.amounts())},
-            {"from_address", message.from_address()},
-            {"to_address", message.to_address()}
-        }}
+        {   "value", {
+                {"amount", amountsJSON(message.amounts())},
+                {"from_address", message.from_address()},
+                {"to_address", message.to_address()}
+            }
+        }
     };
 }
 
@@ -87,11 +89,12 @@ static json messageDelegate(const Proto::Message_Delegate& message) {
 
     return {
         {"type", typePrefix},
-        {"value", {
-            {"amount", amountJSON(message.amount())},
-            {"delegator_address", message.delegator_address()},
-            {"validator_address", message.validator_address()}
-        }}
+        {   "value", {
+                {"amount", amountJSON(message.amount())},
+                {"delegator_address", message.delegator_address()},
+                {"validator_address", message.validator_address()}
+            }
+        }
     };
 }
 
@@ -100,11 +103,12 @@ static json messageUndelegate(const Proto::Message_Undelegate& message) {
 
     return {
         {"type", typePrefix},
-        {"value", {
-            {"amount", amountJSON(message.amount())},
-            {"delegator_address", message.delegator_address()},
-            {"validator_address", message.validator_address()}
-        }}
+        {   "value", {
+                {"amount", amountJSON(message.amount())},
+                {"delegator_address", message.delegator_address()},
+                {"validator_address", message.validator_address()}
+            }
+        }
     };
 }
 
@@ -113,12 +117,13 @@ static json messageRedelegate(const Proto::Message_BeginRedelegate& message) {
 
     return {
         {"type", typePrefix},
-        {"value", {
-            {"amount", amountJSON(message.amount())},
-            {"delegator_address", message.delegator_address()},
-            {"validator_src_address", message.validator_src_address()},
-            {"validator_dst_address", message.validator_dst_address()},
-        }}
+        {   "value", {
+                {"amount", amountJSON(message.amount())},
+                {"delegator_address", message.delegator_address()},
+                {"validator_src_address", message.validator_src_address()},
+                {"validator_dst_address", message.validator_dst_address()},
+            }
+        }
     };
 }
 
@@ -127,10 +132,11 @@ static json messageWithdrawReward(const Proto::Message_WithdrawDelegationReward&
 
     return {
         {"type", typePrefix},
-        {"value", {
-            {"delegator_address", message.delegator_address()},
-            {"validator_address", message.validator_address()}
-        }}
+        {   "value", {
+                {"delegator_address", message.delegator_address()},
+                {"validator_address", message.validator_address()}
+            }
+        }
     };
 }
 
@@ -162,10 +168,11 @@ static json messagesJSON(const Proto::SigningInput& input) {
 
 static json signatureJSON(const Data& signature, const Data& pubkey) {
     return {
-        {"pub_key", {
-            {"type", TYPE_PREFIX_PUBLIC_KEY},
-            {"value", Base64::encode(pubkey)}
-        }},
+        {   "pub_key", {
+                {"type", TYPE_PREFIX_PUBLIC_KEY},
+                {"value", Base64::encode(pubkey)}
+            }
+        },
         {"signature", Base64::encode(signature)}
     };
 }
@@ -188,9 +195,10 @@ json Cosmos::transactionJSON(const Proto::SigningInput& input, const Data& signa
         {"fee", feeJSON(input.fee())},
         {"memo", input.memo()},
         {"msg", messagesJSON(input)},
-        {"signatures", json::array({
-            signatureJSON(signature, Data(publicKey.bytes))
-        })}
+        {   "signatures", json::array({
+                signatureJSON(signature, Data(publicKey.bytes))
+            })
+        }
     };
     return broadcastJSON(tx, input.mode());
 }

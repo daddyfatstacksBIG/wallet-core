@@ -26,7 +26,7 @@ Proto::SigningOutput Signer::build() const {
     signedAction.set_senderpubkey(pk.data(), pk.size());
     auto sig = key.sign(hash(), TWCurveSECP256k1);
     signedAction.set_signature(sig.data(), sig.size());
-    
+
     auto output = IoTeX::Proto::SigningOutput();
     auto serialized = signedAction.SerializeAsString();
     output.set_encoded(serialized);

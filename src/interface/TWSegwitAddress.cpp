@@ -16,7 +16,7 @@ using namespace TW;
 using namespace TW::Bitcoin;
 
 bool TWSegwitAddressEqual(struct TWSegwitAddress *_Nonnull lhs, struct TWSegwitAddress *_Nonnull rhs) {
-   return lhs->impl == rhs->impl;
+    return lhs->impl == rhs->impl;
 }
 
 bool TWSegwitAddressIsValidString(TWString *_Nonnull string) {

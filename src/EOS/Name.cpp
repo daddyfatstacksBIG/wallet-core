@@ -53,7 +53,9 @@ std::string Name::string() const noexcept {
         tmp >>= 5;
     }
 
-    boost::algorithm::trim_right_if( str, []( char c ){ return c == '.'; } );
+    boost::algorithm::trim_right_if( str, []( char c ) {
+        return c == '.';
+    } );
     return str;
 }
 

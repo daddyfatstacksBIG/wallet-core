@@ -233,7 +233,7 @@ TEST(TONCell, CellStateInit1)
         Data ser;
         c.serialize(ser, Cell::SerializationMode::WithCRC32C);
         EXPECT_EQ("b5ee9c72410103010073000201340102008cff0020dda4f260810200d71820d70b1fed44d0d7091fd709ffd15112baf2a122f901541044f910f2a2f80001d7091f3120d74a97d70907d402fb00ded1a4c8cb1fcbffc9ed54004800000000f61cf0bc8e891ad7636e0cd35229d579323aa2da827eb85d8071407464dc2fa3984101af",
-            hex(ser));
+                  hex(ser));
     }
 }
 
@@ -254,6 +254,6 @@ TEST(TONCell, CellStateInit2)
         Data ser;
         c.serialize(ser, Cell::SerializationMode::WithCRC32C);
         EXPECT_EQ("b5ee9c7241010301007e00020134010200a2ff0020dd2082014c97ba9730ed44d0d70b1fe0a4f260810200d71820d70b1fed44d0d31fd3ffd15112baf2a122f901541044f910f2a2f80001d31f3120d74a96d307d402fb00ded1a4c8cb1fcbffc9ed5400480000000037f14c50f6435b11b9326e1218524f7f072d0a5ea8221cca71682e7d6ed6421381c553bd",
-            hex(ser));
+                  hex(ser));
     }
 }

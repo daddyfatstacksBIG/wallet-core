@@ -53,9 +53,9 @@ TEST(Monacoin, BuildForBech32Address) {
 
 TEST(Monacoin, ExtendedKeys) {
     auto wallet = WRAP(TWHDWallet, TWHDWalletCreateWithMnemonic(
-        STRING("ripple scissors kick mammal hire column oak again sun offer wealth tomorrow wagon turn fatal").get(),
-        STRING("TREZOR").get()
-    ));
+                           STRING("ripple scissors kick mammal hire column oak again sun offer wealth tomorrow wagon turn fatal").get(),
+                           STRING("TREZOR").get()
+                       ));
 
     // .bip44
     auto xprv = WRAPS(TWHDWalletGetExtendedPrivateKey(wallet.get(), TWPurposeBIP44, TWCoinTypeMonacoin, TWHDVersionXPRV));

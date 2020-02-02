@@ -16,7 +16,7 @@
 namespace TW::Theta {
 
 class TxInput {
-  public:
+public:
     Ethereum::Address address;
     Coins coins;
     uint64_t sequence;
@@ -29,7 +29,7 @@ class TxInput {
 };
 
 class TxOutput {
-  public:
+public:
     Ethereum::Address address;
     Coins coins;
 
@@ -38,7 +38,7 @@ class TxOutput {
 };
 
 class Transaction {
-  public:
+public:
     Coins fee;
     std::vector<TxInput> inputs;
     std::vector<TxOutput> outputs;

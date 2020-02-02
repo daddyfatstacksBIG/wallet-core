@@ -69,7 +69,9 @@ void Coins::scanCoinRange(int from, int to) {
     for (int i = from; i < to; ++i) {
         TWCoinType c = (TWCoinType)i;
         auto symbolTw = WRAPS(TWCoinTypeConfigurationGetSymbol(c));
-        if (TWStringSize(symbolTw.get()) == 0) { continue; }
+        if (TWStringSize(symbolTw.get()) == 0) {
+            continue;
+        }
         string id = TWStringUTF8Bytes(WRAPS(TWCoinTypeConfigurationGetID(c)).get());
         Util::toLower(id);
         string symbol = TWStringUTF8Bytes(symbolTw.get());

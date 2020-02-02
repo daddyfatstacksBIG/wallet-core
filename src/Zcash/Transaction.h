@@ -45,7 +45,9 @@ struct Transaction {
         , branchId(branchId) {}
 
     /// Whether the transaction is empty.
-    bool empty() const { return inputs.empty() && outputs.empty(); }
+    bool empty() const {
+        return inputs.empty() && outputs.empty();
+    }
 
     /// Generates the signature pre-image.
     Data getPreImage(const Bitcoin::Script& scriptCode, size_t index,

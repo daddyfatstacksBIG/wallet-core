@@ -108,7 +108,7 @@ TWData *_Nullable TWBitcoinScriptMatchPayToWitnessScriptHash(const struct TWBitc
 }
 
 TWData *TWBitcoinScriptEncode(const struct TWBitcoinScript *script) {
-    auto result = std::vector<uint8_t>{};
+    auto result = std::vector<uint8_t> {};
     script->impl.encode(result);
     return TWDataCreateWithBytes(result.data(), result.size());
 }

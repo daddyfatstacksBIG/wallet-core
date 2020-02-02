@@ -18,12 +18,12 @@
 namespace TW::Ontology {
 
 class Signer {
-  private:
+private:
     Data publicKey;
     TW::PrivateKey privateKey;
     std::string address;
 
-  public:
+public:
     explicit Signer(TW::PrivateKey priKey);
 
     PrivateKey getPrivateKey() const;

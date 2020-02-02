@@ -15,7 +15,7 @@
 namespace TW::Aion {
 
 class Address {
-  public:
+public:
     /// Number of bytes in Aion address.
     static const size_t size = 32;
 

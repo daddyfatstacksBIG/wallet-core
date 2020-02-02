@@ -16,7 +16,7 @@ namespace TW::Ripple {
 enum class TagFlag: byte { none = 0x00, classic = 0x01};
 
 class XAddress {
-  public:
+public:
     /// Number of bytes in a X-address.
     static const size_t size = 31;
 

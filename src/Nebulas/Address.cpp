@@ -51,9 +51,9 @@ Address::Address(const PublicKey &publicKey) {
         throw std::invalid_argument("Nebulas::Address needs an extended SECP256k1 public key.");
     }
     const auto data = publicKey.hash(
-        {Address::AddressPrefix, Address::NormalType},
-        static_cast<Data (*)(const byte *, const byte *)>(Hash::sha3_256ripemd), false);
-        
+    {Address::AddressPrefix, Address::NormalType},
+    static_cast<Data (*)(const byte *, const byte *)>(Hash::sha3_256ripemd), false);
+
     std::copy(data.begin(), data.end(), bytes.begin());
     auto checksum = Hash::sha3_256(data);
     std::copy(checksum.begin(), checksum.begin() + 4, bytes.begin() + 22);

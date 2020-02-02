@@ -50,9 +50,9 @@ TEST(Groestlcoin, BuildForNativeSegwitAddress) {
 
 TEST(Groestlcoin, ExtendedKeys) {
     auto wallet = WRAP(TWHDWallet, TWHDWalletCreateWithMnemonic(
-        STRING("all all all all all all all all all all all all").get(),
-        STRING("").get()
-    ));
+                           STRING("all all all all all all all all all all all all").get(),
+                           STRING("").get()
+                       ));
 
     // .bip44
     auto xprv = WRAPS(TWHDWalletGetExtendedPrivateKey(wallet.get(), TWPurposeBIP44, TWCoinTypeGroestlcoin, TWHDVersionXPRV));

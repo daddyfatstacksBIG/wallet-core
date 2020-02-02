@@ -28,7 +28,7 @@ Data Signer::sign(const PrivateKey& privKey, const Data& data) {
 std::string Signer::signatureToBsase58(const Data& sig) {
     Data sigWithSuffix(sig);
     append(sigWithSuffix, TW::data(SignatureSuffix));
-    // take hash, ripemd, first 4 bytes 
+    // take hash, ripemd, first 4 bytes
     Data hash = Hash::ripemd(sigWithSuffix);
     Data sigWithChecksum(sig);
     append(sigWithChecksum, TW::data(hash.data(), 4));
@@ -43,9 +43,9 @@ bool Signer::verify(const PublicKey& pubKey, const Data& data, const Data& signa
 // canonical check for FIO, both R and S lenght is 32
 int Signer::isCanonical(uint8_t by, uint8_t sig[64]) {
     return !(sig[0] & 0x80)
-        && !(sig[0] == 0 && !(sig[1] & 0x80))
-        && !(sig[32] & 0x80)
-        && !(sig[32] == 0 && !(sig[33] & 0x80));
+           && !(sig[0] == 0 && !(sig[1] & 0x80))
+           && !(sig[32] & 0x80)
+           && !(sig[32] == 0 && !(sig[33] & 0x80));
 }
 
 string Actor::actor(const Address& addr)
@@ -63,14 +63,18 @@ uint64_t Actor::shortenKey(const array<byte, Address::size>& addrKey)
     int len = 0;
     while (len <= 12) {
         assert(i < 33); // Means the key has > 20 bytes with trailing zeroes...
-        
+
         auto trimmed_char = uint64_t(addrKey[i] & (len == 12 ? 0x0f : 0x1f));
-        if (trimmed_char == 0) { i++; continue; }  // Skip a zero and move to next
+        if (trimmed_char == 0) {
+            i++;    // Skip a zero and move to next
+            continue;
+        }
 
         auto shuffle = len == 12 ? 0 : 5 * (12 - len) - 1;
         res |= trimmed_char << shuffle;
 
-        len++; i++;
+        len++;
+        i++;
     }
     return res;
 }

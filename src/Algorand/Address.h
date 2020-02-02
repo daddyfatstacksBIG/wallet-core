@@ -14,7 +14,7 @@
 namespace TW::Algorand {
 
 class Address {
-  public:
+public:
     /// Base32 encoded address string length.
     static const size_t encodedSize = 58;
 

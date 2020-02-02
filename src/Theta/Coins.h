@@ -11,7 +11,7 @@
 namespace TW::Theta {
 
 class Coins {
-  public:
+public:
     uint256_t thetaWei;
     uint256_t tfuelWei;
 

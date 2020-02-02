@@ -23,7 +23,7 @@ bool Address::isValid(const std::string& string) {
         return false;
     }
     if (!std::equal(addressPrefix.begin(), addressPrefix.end(), string.begin()) &&
-        !std::equal(contractPrefix.begin(), contractPrefix.end(), string.begin())) {
+            !std::equal(contractPrefix.begin(), contractPrefix.end(), string.begin())) {
         return false;
     }
     return true;

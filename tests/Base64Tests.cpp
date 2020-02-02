@@ -49,7 +49,7 @@ TEST(Base64, decode) {
 
 TEST(Base64, UrlFormat) {
     const std::string const1 = "11003faa8556289975ec991ac9994dfb613abec4ea000d5094e6379080f594e559b330b8";
-    
+
     // Encoded string has both special characters
     auto encoded = encode(parse_hex(const1));
     EXPECT_EQ("EQA/qoVWKJl17JkayZlN+2E6vsTqAA1QlOY3kID1lOVZszC4", encoded);

@@ -94,7 +94,7 @@ TEST(TWIoTeXStaking, SignStake) {
     // data = "this is a test" here, it could be null (user leaves data empty when signing the tx)
     auto stake = WRAPD(TWIoTeXStakingStake(candidate.get(), 1001, true, data.get()));
     staking->set_data(TWDataBytes(stake.get()), TWDataSize(stake.get()));
-    
+
     auto signer = IoTeX::Signer(std::move(input));
     // raw action's hash
     ASSERT_EQ(hex(signer.hash()), "cc3c8f7a0129455d70457c4be42a8b31d8e1df59594c99041b6b6d091b295b32");
@@ -124,7 +124,7 @@ TEST(TWIoTeXStaking, SignUnstake) {
     auto data = WRAPD(TWDataCreateWithSize(0));
     auto unstake = WRAPD(TWIoTeXStakingUnstake(1001, data.get()));
     staking->set_data(TWDataBytes(unstake.get()), TWDataSize(unstake.get()));
-    
+
     auto signer = IoTeX::Signer(std::move(input));
     // raw action's hash
     ASSERT_EQ(hex(signer.hash()), "784f3d71246dfe897c1cb02da94e8ef1ac2381ac7f25ecfee80eaa78237db95b");
@@ -151,7 +151,7 @@ TEST(TWIoTeXStaking, SignWithdraw) {
     auto data = WRAPD(TWDataCreateWithSize(0));
     auto withdraw = WRAPD(TWIoTeXStakingWithdraw(1001, data.get()));
     staking->set_data(TWDataBytes(withdraw.get()), TWDataSize(withdraw.get()));
-    
+
     auto signer = IoTeX::Signer(std::move(input));
     // raw action's hash
     ASSERT_EQ(hex(signer.hash()), "ff55882624b2a1d6ae2d9fdec5f8a0f13b2f23c8b28c8ba91773b63f49b97fcc");
@@ -178,7 +178,7 @@ TEST(TWIoTeXStaking, SignAddStake) {
     auto data = WRAPD(TWDataCreateWithSize(0));
     auto addStake = WRAPD(TWIoTeXStakingAddStake(1001, data.get()));
     staking->set_data(TWDataBytes(addStake.get()), TWDataSize(addStake.get()));
-    
+
     auto signer = IoTeX::Signer(std::move(input));
     // raw action's hash
     ASSERT_EQ(hex(signer.hash()), "7581e7f779429aa502879581fdc29f87917acfe638069255b6f033c45d7f24fe");
@@ -207,7 +207,7 @@ TEST(TWIoTeXStaking, SignMoveStake) {
     auto data = WRAPD(TWDataCreateWithSize(0));
     auto moveStake = WRAPD(TWIoTeXStakingMoveStake(1001, candidate.get(), data.get()));
     staking->set_data(TWDataBytes(moveStake.get()), TWDataSize(moveStake.get()));
-    
+
     auto signer = IoTeX::Signer(std::move(input));
     // raw action's hash
     ASSERT_EQ(hex(signer.hash()), "818637b9708ec9e075c7a17f23757cb6895eae6dd3331f7e44129efae6ca9a21");

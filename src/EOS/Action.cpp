@@ -42,9 +42,9 @@ json Action::serialize() const noexcept {
 }
 
 TransferAction::TransferAction( const std::string& currency,
-                                const std::string& from, 
-                                const std::string& to, 
-                                const Bravo::Asset& asset, 
+                                const std::string& from,
+                                const std::string& to,
+                                const Bravo::Asset& asset,
                                 const std::string& memo) {
     account = Name(currency);
     name = Name("transfer");

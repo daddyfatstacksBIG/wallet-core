@@ -14,7 +14,7 @@
 namespace TW {
 
 class PrivateKey {
-  public:
+public:
     /// The number of bytes in a private key.
     static const size_t size = 32;
     /// The number of bytes in an extended private key.

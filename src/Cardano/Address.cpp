@@ -54,7 +54,9 @@ bool Address::isValid(const std::string& string) {
         Data root;
         Data attrs;
         byte type = 0;
-        if (!parseAndCheck(string, root, attrs, type)) { return false; }
+        if (!parseAndCheck(string, root, attrs, type)) {
+            return false;
+        }
         // valid
         return true;
     } catch (exception& ex) {
@@ -90,8 +92,8 @@ Data Address::getCborData() const {
         Cbor::Encode::uint(type),
     });
     auto payloadData = cbor1.encoded();
-    
-    // crc checksum 
+
+    // crc checksum
     auto crc = TW::Crc::crc32(payloadData);
     // second pack: tag, base, crc
     auto cbor2 = Cbor::Encode::array({
@@ -107,7 +109,9 @@ string Address::string() const {
 }
 
 Data Address::keyHash(const TW::Data& xpub) {
-    if (xpub.size() != 64) { throw invalid_argument("invalid xbub length"); }
+    if (xpub.size() != 64) {
+        throw invalid_argument("invalid xbub length");
+    }
     // hash of follwoing Cbor-array: [0, [0, xbub], {} ]
     // 3rd entry map is empty map for V2, contains derivation path for V1
     Data cborData = Cbor::Encode::array({

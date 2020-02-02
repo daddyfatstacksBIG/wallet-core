@@ -83,7 +83,7 @@ Data forgeOperation(const Operation& operation) {
     if (operation.kind() == Operation_OperationKind_REVEAL) {
         auto publicKey = PublicKey(data(operation.reveal_operation_data().public_key()), TWPublicKeyTypeED25519);
         auto forgedPublicKey = forgePublicKey(publicKey);
-        
+
         forged.push_back(Operation_OperationKind_REVEAL);
         append(forged, forgedSource);
         append(forged, forgedFee);

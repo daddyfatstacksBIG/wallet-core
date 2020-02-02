@@ -51,7 +51,7 @@ TEST(NimiqAddress, String) {
 
 TEST(NimiqAddress, FromPublicKey) {
     const auto publicKey = Signer::publicKeyFromBytes(
-        parse_hex("70c7492aaa9c9ac7a05bc0d9c5db2dae9372029654f71f0c7f95deed5099b702"));
+                               parse_hex("70c7492aaa9c9ac7a05bc0d9c5db2dae9372029654f71f0c7f95deed5099b702"));
     const auto address = Address(publicKey);
     ASSERT_EQ(address.string(), "NQ27 GBAY EVHP HK5X 6JHV JGFJ 5M3H BF4Y G7GD");
 }

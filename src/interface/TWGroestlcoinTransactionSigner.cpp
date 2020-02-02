@@ -58,7 +58,9 @@ TW_Proto_Result TWGroestlcoinTransactionSignerSign(struct TWGroestlcoinTransacti
     *protoOutput.mutable_transaction() = tx.proto();
 
     TW::Data encoded;
-    auto hasWitness = std::any_of(tx.inputs.begin(), tx.inputs.end(), [](auto& input) { return !input.scriptWitness.empty(); });
+    auto hasWitness = std::any_of(tx.inputs.begin(), tx.inputs.end(), [](auto& input) {
+        return !input.scriptWitness.empty();
+    });
     tx.encode(hasWitness, encoded);
     protoOutput.set_encoded(encoded.data(), encoded.size());
 

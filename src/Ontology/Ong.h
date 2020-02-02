@@ -12,14 +12,17 @@
 namespace TW::Ontology {
 
 class Ong : public Asset {
-  private:
+private:
     static const uint8_t version = 0x00;
 
     const Data ongContract = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                              0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02};
+                              0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02
+                             };
 
-  public:
-    Data contractAddress() override { return ongContract; }
+public:
+    Data contractAddress() override {
+        return ongContract;
+    }
 
     Transaction decimals(uint32_t nonce) override;
 

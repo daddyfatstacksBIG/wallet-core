@@ -12,7 +12,7 @@
 TW_EXTERN_C_BEGIN
 
 TW_EXPORT_STRUCT
-struct TWCoinTypeConfiguration { 
+struct TWCoinTypeConfiguration {
     uint8_t unused; // C doesn't allow zero-sized struct
 };
 

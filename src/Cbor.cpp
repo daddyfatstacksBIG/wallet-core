@@ -99,7 +99,9 @@ Encode Encode::closeIndefArray() {
 Encode Encode::fromRaw(const TW::Data& rawData) {
     // check validity, may throw
     Decode check(rawData);
-    if (!check.isValid()) { throw invalid_argument("Invalid CBOR data"); }
+    if (!check.isValid()) {
+        throw invalid_argument("Invalid CBOR data");
+    }
     return Encode(rawData);
 }
 
@@ -140,14 +142,14 @@ void Encode::appendIndefinite(byte majorType) {
 
 
 Decode::Decode(const Data& input)
-: data(std::make_shared<OrigDataRef>(input)) {
+    : data(std::make_shared<OrigDataRef>(input)) {
     // shared_ptr to original input data created
     subStart = 0;
     subLen = (uint32_t)input.size();
 }
 
 Decode::Decode(const std::shared_ptr<OrigDataRef>& nData, uint32_t nSubStart, uint32_t nSubLen)
-: data(nData) {
+    : data(nData) {
     // shared_ptr to original input data added
     subStart = nSubStart;
     subLen = nSubLen;
@@ -213,25 +215,25 @@ Decode::TypeDesc Decode::getTypeDesc() const {
 uint32_t Decode::getTotalLen() const {
     TypeDesc typeDesc = getTypeDesc();
     switch (typeDesc.majorType) {
-        case MT_uint:
-        case MT_negint:
-        case MT_special:
-            // simple types
-            return typeDesc.byteCount;
-        case MT_bytes:
-        case MT_string:
-            return (uint32_t)typeDesc.byteCount + (uint32_t)typeDesc.value;
-        case MT_array:
-            return getCompoundLength(1);
-        case MT_map:
-            return getCompoundLength(2);
-        case MT_tag:
-            {
-                uint32_t dataLen = skipClone(typeDesc.byteCount).getTotalLen();
-                return typeDesc.byteCount + dataLen;
-            }
-        default:
-            throw std::invalid_argument("CBOR length type not supported");
+    case MT_uint:
+    case MT_negint:
+    case MT_special:
+        // simple types
+        return typeDesc.byteCount;
+    case MT_bytes:
+    case MT_string:
+        return (uint32_t)typeDesc.byteCount + (uint32_t)typeDesc.value;
+    case MT_array:
+        return getCompoundLength(1);
+    case MT_map:
+        return getCompoundLength(2);
+    case MT_tag:
+    {
+        uint32_t dataLen = skipClone(typeDesc.byteCount).getTotalLen();
+        return typeDesc.byteCount + dataLen;
+    }
+    default:
+        throw std::invalid_argument("CBOR length type not supported");
     }
 }
 
@@ -245,7 +247,7 @@ uint64_t Decode::getValue() const {
 
 std::string Decode::getString() const {
     Data strData = getBytes();
-    return std::string((const char*)strData.data(), strData.size()); 
+    return std::string((const char*)strData.data(), strData.size());
 }
 
 Data Decode::getBytes() const {
@@ -258,12 +260,14 @@ Data Decode::getBytes() const {
         throw std::invalid_argument("CBOR bytes/string data too short");
     }
     assert(subStart + typeDesc.byteCount + len <= data->origData.size());
-    return TW::data(data->origData.data() + (subStart + typeDesc.byteCount), len); 
+    return TW::data(data->origData.data() + (subStart + typeDesc.byteCount), len);
 }
 
 bool Decode::isBreak() const {
     TypeDesc typeDesc = getTypeDesc();
-    if (typeDesc.majorType == MT_special && typeDesc.isIndefiniteValue) { return true; }
+    if (typeDesc.majorType == MT_special && typeDesc.isIndefiniteValue) {
+        return true;
+    }
     return false;
 }
 
@@ -343,41 +347,47 @@ bool Decode::isValid() const {
     try {
         TypeDesc typeDesc = getTypeDesc();
         switch (typeDesc.majorType) {
-            case MT_uint:
-            case MT_negint:
-            case MT_special:
-                return (typeDesc.byteCount <= subLen);
+        case MT_uint:
+        case MT_negint:
+        case MT_special:
+            return (typeDesc.byteCount <= subLen);
 
-            case MT_bytes:
-            case MT_string:
-                {
-                    auto len = (uint32_t)(typeDesc.byteCount + typeDesc.value);
-                    return (len <= subLen);
-                }
+        case MT_bytes:
+        case MT_string:
+        {
+            auto len = (uint32_t)(typeDesc.byteCount + typeDesc.value);
+            return (len <= subLen);
+        }
 
-            case MT_array:
-            case MT_map:
-                {
-                    uint32_t countMultiplier = (typeDesc.majorType == MT_map) ? 2 : 1;
-                    uint32_t len = getCompoundLength(countMultiplier);
-                    if (len > subLen) { return false; }
-                    auto count = typeDesc.isIndefiniteValue ? 0 : countMultiplier * typeDesc.value;
-                    uint32_t idx = typeDesc.byteCount;
-                    for (int i = 0; i < count || typeDesc.isIndefiniteValue; ++i)
-                    {
-                        Decode nextElem = skipClone(idx);
-                        if (typeDesc.isIndefiniteValue && nextElem.isBreak()) { break; }
-                        if (!nextElem.isValid()) { return false; }
-                        idx += nextElem.getTotalLen();
-                    }
-                    return true;
-                }
-
-            case MT_tag:
-                return skipClone(typeDesc.byteCount).isValid();
-
-            default:
+        case MT_array:
+        case MT_map:
+        {
+            uint32_t countMultiplier = (typeDesc.majorType == MT_map) ? 2 : 1;
+            uint32_t len = getCompoundLength(countMultiplier);
+            if (len > subLen) {
                 return false;
+            }
+            auto count = typeDesc.isIndefiniteValue ? 0 : countMultiplier * typeDesc.value;
+            uint32_t idx = typeDesc.byteCount;
+            for (int i = 0; i < count || typeDesc.isIndefiniteValue; ++i)
+            {
+                Decode nextElem = skipClone(idx);
+                if (typeDesc.isIndefiniteValue && nextElem.isBreak()) {
+                    break;
+                }
+                if (!nextElem.isValid()) {
+                    return false;
+                }
+                idx += nextElem.getTotalLen();
+            }
+            return true;
+        }
+
+        case MT_tag:
+            return skipClone(typeDesc.byteCount).isValid();
+
+        default:
+            return false;
         }
     } catch (exception& ex) {
         return false;
@@ -388,68 +398,68 @@ string Decode::dumpToStringInternal() const {
     stringstream s;
     TypeDesc typeDesc = getTypeDesc();
     switch (typeDesc.majorType) {
-        case MT_uint:
-            s << typeDesc.value;
-            break;
+    case MT_uint:
+        s << typeDesc.value;
+        break;
 
-        case MT_negint:
-            s << (int64_t)-1 - (int64_t)typeDesc.value;
-            break;
+    case MT_negint:
+        s << (int64_t)-1 - (int64_t)typeDesc.value;
+        break;
 
-        case MT_bytes:
-            s << "h\"" << TW::hex(getString()) << "\"";
-            break;
+    case MT_bytes:
+        s << "h\"" << TW::hex(getString()) << "\"";
+        break;
 
-        case MT_string:
-            s << "\"" << getString() << "\"";
-            break;
+    case MT_string:
+        s << "\"" << getString() << "\"";
+        break;
 
-        case MT_array:
-            {
-                if (typeDesc.isIndefiniteValue) {
-                    s << "[_ ";
-                } else {
-                    s << "[";
-                }
-                vector<Decode> elems = getArrayElements();
-                for (int i = 0; i < elems.size(); ++i) {
-                    if (i > 0) s << ", ";
-                    s << elems[i].dumpToStringInternal();
-                }
-                s << "]";
-            }
-            break;
+    case MT_array:
+    {
+        if (typeDesc.isIndefiniteValue) {
+            s << "[_ ";
+        } else {
+            s << "[";
+        }
+        vector<Decode> elems = getArrayElements();
+        for (int i = 0; i < elems.size(); ++i) {
+            if (i > 0) s << ", ";
+            s << elems[i].dumpToStringInternal();
+        }
+        s << "]";
+    }
+    break;
 
-        case MT_map:
-            {
-                if (typeDesc.isIndefiniteValue) {
-                    s << "{_ ";
-                } else {
-                    s << "{";
-                }
-                auto elems = getMapElements();
-                for (int i = 0; i < elems.size(); ++i) {
-                    if (i > 0) s << ", ";
-                    s << elems[i].first.dumpToStringInternal() << ": " << elems[i].second.dumpToStringInternal();
-                }
-                s << "}";
-            }
-            break;
+    case MT_map:
+    {
+        if (typeDesc.isIndefiniteValue) {
+            s << "{_ ";
+        } else {
+            s << "{";
+        }
+        auto elems = getMapElements();
+        for (int i = 0; i < elems.size(); ++i) {
+            if (i > 0) s << ", ";
+            s << elems[i].first.dumpToStringInternal() << ": " << elems[i].second.dumpToStringInternal();
+        }
+        s << "}";
+    }
+    break;
 
-        case MT_tag:
-            s << "tag " << typeDesc.value << " " << getTagElement().dumpToStringInternal();
-            break;
+    case MT_tag:
+        s << "tag " << typeDesc.value << " " << getTagElement().dumpToStringInternal();
+        break;
 
-        case MT_special: // float or simple
-            if (typeDesc.isIndefiniteValue) {
-                // skip break command
-            } else {
-                s << "spec " << typeDesc.value;
-            }
-            break;
+    case MT_special: // float or simple
+        if (typeDesc.isIndefiniteValue) {
+            // skip break command
+        } else {
+            s << "spec " << typeDesc.value;
+        }
+        break;
 
-        default:
-            throw std::invalid_argument("CBOR dump: type not supported");
+    default:
+        throw std::invalid_argument("CBOR dump: type not supported");
     }
     return s.str();
 }

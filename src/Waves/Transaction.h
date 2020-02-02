@@ -20,14 +20,14 @@ class Transaction {
     /// We only support Transfer V2 transaction.
     /// See
     /// https://docs.wavesplatform.com/en/blockchain/waves-protocol/data-structures.html#section-8555a9aaf83a8d01f18a2c38d19484fe
-  public:
+public:
     static const std::string WAVES;
     const Proto::SigningInput& input;
     const Data pub_key;
-    
+
     Transaction(const Proto::SigningInput& input, const Data pub_key) : input(input), pub_key(std::move(pub_key)) {};
 
-  public:
+public:
     Data serializeToSign() const;
     nlohmann::json buildJson(Data signature) const;
 };

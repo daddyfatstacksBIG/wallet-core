@@ -24,29 +24,29 @@ public:
 TEST(Signer, Hash) {
     auto address = parse_hex("0x3535353535353535353535353535353535353535");
     auto transaction = Transaction(
-        /* nonce: */ 9,
-        /* gasPrice: */ 20000000000,
-        /* gasLimit: */ 21000,
-        /* to: */ address,
-        /* amount: */ 1000000000000000000,
-        /* payload: */ {}
-    );
+                           /* nonce: */ 9,
+                           /* gasPrice: */ 20000000000,
+                           /* gasLimit: */ 21000,
+                           /* to: */ address,
+                           /* amount: */ 1000000000000000000,
+                           /* payload: */ {}
+                       );
     auto signer = SignerExposed(1);
     auto hash = signer.hash(transaction);
-    
+
     ASSERT_EQ(hex(hash), "daf5a779ae972f972197303d7b574746c7ef83eadac0f2791ad23db92e4c8e53");
 }
 
 TEST(Signer, Sign) {
     auto address = parse_hex("0x3535353535353535353535353535353535353535");
     auto transaction = Transaction(
-        /* nonce: */ 9,
-        /* gasPrice: */ 20000000000,
-        /* gasLimit: */ 21000,
-        /* to: */ address,
-        /* amount: */ 1000000000000000000,
-        /* payload: */ {}
-    );
+                           /* nonce: */ 9,
+                           /* gasPrice: */ 20000000000,
+                           /* gasLimit: */ 21000,
+                           /* to: */ address,
+                           /* amount: */ 1000000000000000000,
+                           /* payload: */ {}
+                       );
 
     auto key = PrivateKey(parse_hex("0x4646464646464646464646464646464646464646464646464646464646464646"));
     auto signer = SignerExposed(1);

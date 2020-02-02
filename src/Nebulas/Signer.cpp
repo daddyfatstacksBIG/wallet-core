@@ -13,15 +13,15 @@ using namespace TW::Nebulas;
 
 Proto::SigningOutput Signer::sign(Proto::SigningInput &input) const noexcept {
     Transaction tx(Address(input.from_address()),
-        load(input.nonce()),
-        load(input.gas_price()),
-        load(input.gas_limit()),
-        Address(input.to_address()),
-        load(input.amount()),
-        load(input.timestamp()),
-        input.payload()
-    );
-    
+                   load(input.nonce()),
+                   load(input.gas_price()),
+                   load(input.gas_limit()),
+                   Address(input.to_address()),
+                   load(input.amount()),
+                   load(input.timestamp()),
+                   input.payload()
+                  );
+
     auto privateKey = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));
     sign(privateKey, tx);
 

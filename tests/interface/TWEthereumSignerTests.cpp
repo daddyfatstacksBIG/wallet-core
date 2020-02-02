@@ -65,7 +65,7 @@ TEST(TWEthereumSigner, Sign) {
     auto inputData = TWDataCreateWithBytes((const byte *)inputString.data(), inputString.size());
 
     auto outputData = TWEthereumSignerSign(inputData);
-    
+
     auto output = Proto::SigningOutput();
     output.ParseFromArray(TWDataBytes(outputData), TWDataSize(outputData));
 

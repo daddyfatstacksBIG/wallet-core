@@ -52,11 +52,11 @@ static void writeTransfer(Data& data, const Proto::Transfer& transfer) {
 static void writeAction(Data& data, const Proto::Action& action) {
     writeU8(data, action.payload_case() - Proto::Action::kCreateAccount);
     switch (action.payload_case()) {
-        case Proto::Action::kTransfer:
-            writeTransfer(data, action.transfer());
-            return;
-        default:
-            return;
+    case Proto::Action::kTransfer:
+        writeTransfer(data, action.transfer());
+        return;
+    default:
+        return;
     }
 }
 
