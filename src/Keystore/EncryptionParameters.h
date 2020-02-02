@@ -46,7 +46,8 @@ struct EncryptionParameters {
     EncryptionParameters() = default;
 
     /// Initializes `EncryptionParameters` with standard values.
-    EncryptionParameters(Data encrypted, AESParameters cipherParams, boost::variant<ScryptParameters, PBKDF2Parameters> kdfParams, Data mac)
+    EncryptionParameters(Data encrypted, AESParameters cipherParams,
+                         boost::variant<ScryptParameters, PBKDF2Parameters> kdfParams, Data mac)
         : encrypted(std::move(encrypted))
         , cipherParams(std::move(cipherParams))
         , kdfParams(std::move(kdfParams))

@@ -7,8 +7,8 @@
 #pragma once
 
 #include "TWBase.h"
-#include "TWData.h"
 #include "TWBinanceProto.h"
+#include "TWData.h"
 
 TW_EXTERN_C_BEGIN
 

@@ -4,9 +4,9 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
+#include "Address.h"
 #include "../Base58.h"
 #include "../BinaryCoding.h"
-#include "Address.h"
 
 #include <TrezorCrypto/ripemd160.h>
 

@@ -29,22 +29,24 @@ enum TWHDVersion TWCoinTypeXprvVersion(enum TWCoinType coin) {
     return TW::xprvVersion(coin);
 }
 
-bool TWCoinTypeValidate(enum TWCoinType coin, TWString *_Nonnull address) {
+bool TWCoinTypeValidate(enum TWCoinType coin, TWString* _Nonnull address) {
     return TW::validateAddress(coin, *reinterpret_cast<const std::string*>(address));
 }
 
-TWString *_Nonnull TWCoinTypeDerivationPath(enum TWCoinType coin) {
+TWString* _Nonnull TWCoinTypeDerivationPath(enum TWCoinType coin) {
     const auto path = TW::derivationPath(coin);
     const auto string = path.string();
     return TWStringCreateWithUTF8Bytes(string.c_str());
 }
 
-TWString *_Nonnull TWCoinTypeDeriveAddress(enum TWCoinType coin, struct TWPrivateKey *_Nonnull privateKey) {
+TWString* _Nonnull TWCoinTypeDeriveAddress(enum TWCoinType coin,
+                                           struct TWPrivateKey* _Nonnull privateKey) {
     const auto string = TW::deriveAddress(coin, privateKey->impl);
     return TWStringCreateWithUTF8Bytes(string.c_str());
 }
 
-TWString *_Nonnull TWCoinTypeDeriveAddressFromPublicKey(enum TWCoinType coin, struct TWPublicKey *_Nonnull publicKey) {
+TWString* _Nonnull TWCoinTypeDeriveAddressFromPublicKey(enum TWCoinType coin,
+                                                        struct TWPublicKey* _Nonnull publicKey) {
     const auto string = TW::deriveAddress(coin, publicKey->impl);
     return TWStringCreateWithUTF8Bytes(string.c_str());
 }

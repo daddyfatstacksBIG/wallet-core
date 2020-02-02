@@ -8,8 +8,8 @@
 
 #include "TWBase.h"
 
-#include "TWEOSProto.h"
 #include "TWCommonProto.h"
+#include "TWEOSProto.h"
 
 TW_EXTERN_C_BEGIN
 

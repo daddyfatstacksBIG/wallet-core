@@ -19,14 +19,14 @@ static inline uint8_t value(uint8_t c) {
     return 0;
 }
 
-TWData *TWDataCreateWithHexString(const TWString *hex) {
+TWData* TWDataCreateWithHexString(const TWString* hex) {
     size_t stringIndex = 0;
     if (TWStringSize(hex) >= 2 && TWStringGet(hex, 0) == '0' && TWStringGet(hex, 1) == 'x') {
         stringIndex += 2;
     }
 
     const size_t count = (TWStringSize(hex) - stringIndex + 1) / 2;
-    TWData *data = TWDataCreateWithSize(count);
+    TWData* data = TWDataCreateWithSize(count);
 
     size_t dataIndex = 0;
     while (stringIndex < TWStringSize(hex)) {

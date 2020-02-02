@@ -81,7 +81,8 @@ Data forgeOperation(const Operation& operation) {
     auto forgedStorageLimit = forgeZarith(operation.storage_limit());
 
     if (operation.kind() == Operation_OperationKind_REVEAL) {
-        auto publicKey = PublicKey(data(operation.reveal_operation_data().public_key()), TWPublicKeyTypeED25519);
+        auto publicKey =
+            PublicKey(data(operation.reveal_operation_data().public_key()), TWPublicKeyTypeED25519);
         auto forgedPublicKey = forgePublicKey(publicKey);
 
         forged.push_back(Operation_OperationKind_REVEAL);
@@ -116,7 +117,8 @@ Data forgeOperation(const Operation& operation) {
 
     if (operation.kind() == Operation_OperationKind_TRANSACTION) {
         auto forgedAmount = forgeZarith(operation.transaction_operation_data().amount());
-        auto forgedDestination = Address(operation.transaction_operation_data().destination()).forge();
+        auto forgedDestination =
+            Address(operation.transaction_operation_data().destination()).forge();
 
         forged.push_back(Operation_OperationKind_TRANSACTION);
         append(forged, forgedSource);

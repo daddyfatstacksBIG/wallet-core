@@ -19,11 +19,10 @@ struct TWPKCS8 {
 
 /// Encodes a ed25519 private key into PKCS#8 format.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nullable TWPKCS8EncodeED25519PrivateKey(TWData *_Nonnull PrivateKey);
+TWData* _Nullable TWPKCS8EncodeED25519PrivateKey(TWData* _Nonnull PrivateKey);
 
 /// Decodes a PKCS#8 ed25519 private key.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nullable TWPKCS8DecodeED25519PrivateKey(TWData *_Nonnull data);
-
+TWData* _Nullable TWPKCS8DecodeED25519PrivateKey(TWData* _Nonnull data);
 
 TW_EXTERN_C_END

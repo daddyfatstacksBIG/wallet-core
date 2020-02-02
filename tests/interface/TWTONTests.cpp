@@ -5,16 +5,16 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include <TrustWalletCore/TWAnyAddress.h>
-#include <TrustWalletCore/TWString.h>
-#include <TrustWalletCore/TWPublicKey.h>
 #include <TrustWalletCore/TWHDWallet.h>
+#include <TrustWalletCore/TWPublicKey.h>
+#include <TrustWalletCore/TWString.h>
 
 #include "TWTestUtilities.h"
 
 #include <gtest/gtest.h>
 
 TEST(TWTONAddress, CreateWithString) {
-    const char *expect = "EQCBVndbeTJeXWLnQtm5bDC2UVpc0vH2TF2ksZPAPwcODdZT";
+    const char* expect = "EQCBVndbeTJeXWLnQtm5bDC2UVpc0vH2TF2ksZPAPwcODdZT";
     auto addrStr = STRING(expect);
 
     // first call isValid
@@ -25,11 +25,13 @@ TEST(TWTONAddress, CreateWithString) {
     auto address = TWAnyAddressCreateWithString(addrStr.get(), TWCoinTypeTON);
     // convert back to string
     auto str2 = WRAPS(TWAnyAddressDescription(address));
-    EXPECT_EQ(std::string(TWStringUTF8Bytes(addrStr.get())), std::string(TWStringUTF8Bytes(str2.get())));
+    EXPECT_EQ(std::string(TWStringUTF8Bytes(addrStr.get())),
+              std::string(TWStringUTF8Bytes(str2.get())));
 
     {
         // create a second one, also invoke compare
-        auto address2 = TWAnyAddressCreateWithString(TWStringCreateWithUTF8Bytes(expect), TWCoinTypeTON);
+        auto address2 =
+            TWAnyAddressCreateWithString(TWStringCreateWithUTF8Bytes(expect), TWCoinTypeTON);
         ASSERT_TRUE(TWAnyAddressEqual(address, address2));
 
         TWAnyAddressDelete(address2);
@@ -40,23 +42,29 @@ TEST(TWTONAddress, CreateWithString) {
 
 TEST(TWTONAddress, CreateWithPublicKey) {
     auto pkData = DATA("F61CF0BC8E891AD7636E0CD35229D579323AA2DA827EB85D8071407464DC2FA3");
-    auto publicKey = WRAP(TWPublicKey, TWPublicKeyCreateWithData(pkData.get(), TWPublicKeyTypeED25519));
-    auto address = WRAP(TWAnyAddress, TWAnyAddressCreateWithPublicKey(publicKey.get(), TWCoinTypeTON));
+    auto publicKey =
+        WRAP(TWPublicKey, TWPublicKeyCreateWithData(pkData.get(), TWPublicKeyTypeED25519));
+    auto address =
+        WRAP(TWAnyAddress, TWAnyAddressCreateWithPublicKey(publicKey.get(), TWCoinTypeTON));
     auto addressStr = TWAnyAddressDescription(address.get());
 
-    EXPECT_EQ(std::string("EQAkAJCrZkWb9uYePf1D97nB8efUvYHTsqSscyPMGpcHUx3Y"), TWStringUTF8Bytes(addressStr));
+    EXPECT_EQ(std::string("EQAkAJCrZkWb9uYePf1D97nB8efUvYHTsqSscyPMGpcHUx3Y"),
+              TWStringUTF8Bytes(addressStr));
 }
 
 TEST(TWTONAddress, HDWallet) {
-    auto mnemonic = "shoot island position soft burden budget tooth cruel issue economy destroy above";
+    auto mnemonic =
+        "shoot island position soft burden budget tooth cruel issue economy destroy above";
     auto passphrase = "";
 
-    auto wallet = WRAP(TWHDWallet, TWHDWalletCreateWithMnemonic(STRING(mnemonic).get(), STRING(passphrase).get()));
+    auto wallet = WRAP(
+        TWHDWallet, TWHDWalletCreateWithMnemonic(STRING(mnemonic).get(), STRING(passphrase).get()));
 
     auto privateKey = TWHDWalletGetKey(wallet.get(), TWCoinTypeDerivationPath(TWCoinTypeTON));
     auto publicKey = TWPrivateKeyGetPublicKeyEd25519(privateKey);
     auto address = WRAP(TWAnyAddress, TWAnyAddressCreateWithPublicKey(publicKey, TWCoinTypeTON));
     auto addressStr = WRAPS(TWAnyAddressDescription(address.get()));
 
-    ASSERT_EQ(std::string("EQAmXWk7P7avw96EViZULpA85Lz6Si3MeWG-vFXmbEjpL-fo"), TWStringUTF8Bytes(addressStr.get()));
+    ASSERT_EQ(std::string("EQAmXWk7P7avw96EViZULpA85Lz6Si3MeWG-vFXmbEjpL-fo"),
+              TWStringUTF8Bytes(addressStr.get()));
 }

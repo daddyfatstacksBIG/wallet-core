@@ -12,7 +12,6 @@
 #include <TrustWalletCore/TWCoinTypeConfiguration.h>
 #include <gtest/gtest.h>
 
-
 TEST(TWICONCoinType, TWCoinType) {
     auto symbol = WRAPS(TWCoinTypeConfigurationGetSymbol(TWCoinTypeICON));
     auto txId = TWStringCreateWithUTF8Bytes("t123");

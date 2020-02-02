@@ -17,7 +17,7 @@ namespace TW {
 
 template <std::size_t S>
 class Base58Address {
-public:
+  public:
     /// Number of bytes in an address.
     static const size_t size = S;
 
@@ -78,16 +78,15 @@ public:
     /// Initializes an address with a public key and a prefix.
     Base58Address(const PublicKey& publicKey, const Data& prefix) {
         if (publicKey.type != TWPublicKeyTypeSECP256k1) {
-            throw std::invalid_argument("Bitcoin::Address needs a compressed SECP256k1 public key.");
+            throw std::invalid_argument(
+                "Bitcoin::Address needs a compressed SECP256k1 public key.");
         }
         const auto data = publicKey.hash(prefix, Hash::sha256ripemd);
         std::copy(data.begin(), data.end(), bytes.begin());
     }
 
     /// Returns a string representation of the address.
-    std::string string() const {
-        return Base58::bitcoin.encodeCheck(bytes);
-    }
+    std::string string() const { return Base58::bitcoin.encodeCheck(bytes); }
 };
 
 template <std::size_t S>

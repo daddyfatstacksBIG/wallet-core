@@ -13,17 +13,16 @@
 #include "../PrivateKey.h"
 #include "../PublicKey.h"
 
-#include <cmath>
-#include <cassert>
-#include <map>
 #include <algorithm>
+#include <cassert>
+#include <cmath>
+#include <map>
 #include <stdlib.h> // rand
 
 using namespace TW;
 using namespace TW::Cardano;
 using namespace TW::Cbor;
 using namespace std;
-
 
 Proto::TransactionPlan Signer::planTransaction(const Proto::SigningInput& input) noexcept {
     try {
@@ -37,7 +36,8 @@ Proto::TransactionPlan Signer::planTransaction(const Proto::SigningInput& input)
     }
 }
 
-Proto::SigningOutput Signer::sign(const Proto::SigningInput& input, const Proto::TransactionPlan& plan) noexcept {
+Proto::SigningOutput Signer::sign(const Proto::SigningInput& input,
+                                  const Proto::TransactionPlan& plan) noexcept {
     try {
         // check plan
         checkPlan(plan);
@@ -95,7 +95,8 @@ void Signer::checkPlan(const Proto::TransactionPlan& plan) {
     assert(plan.utxo_size() > 0);
 }
 
-Proto::TransactionPlan Signer::planTransactionWithFee(const Proto::SigningInput& input, uint64_t fee) {
+Proto::TransactionPlan Signer::planTransactionWithFee(const Proto::SigningInput& input,
+                                                      uint64_t fee) {
     Proto::TransactionPlan plan;
 
     // compute amounts
@@ -131,7 +132,8 @@ Proto::TransactionPlan Signer::planTransactionWithFee(const Proto::SigningInput&
     int n = input.utxo_size();
     assert(n > 0); // no-utxo error case is caught below, insufficient balance
     // seed based on input parameters, for reproducibility
-    uint32_t seed = (uint32_t)((uint32_t)n + (uint32_t)input.amount() + (uint32_t)Crc::crc32(TW::data(input.utxo(0).out_point().txid())));
+    uint32_t seed = (uint32_t)((uint32_t)n + (uint32_t)input.amount() +
+                               (uint32_t)Crc::crc32(TW::data(input.utxo(0).out_point().txid())));
     vector<int> shuffle = getShuffleMap(n, seed);
     uint64_t sumSelected = 0;
     for (int i = 0; i < n; ++i) {
@@ -173,54 +175,50 @@ vector<int> Signer::getShuffleMap(int n, int seed) {
     return shuffle;
 }
 
-Data Signer::prepareUnsignedTx(const Proto::SigningInput& input, const Proto::TransactionPlan& plan) {
+Data Signer::prepareUnsignedTx(const Proto::SigningInput& input,
+                               const Proto::TransactionPlan& plan) {
     assert(plan.fee() != 0);
     // inputs from plan.utxo
     auto inputsArray = Encode::indefArray();
     for (int i = 0; i < plan.utxo_size(); ++i) {
-        Data outPointData = Encode::array({
-            Encode::bytes(TW::data(plan.utxo(i).out_point().txid())),
-            Encode::uint(plan.utxo(i).out_point().index()),
-        }).encoded();
+        Data outPointData =
+            Encode::array({
+                              Encode::bytes(TW::data(plan.utxo(i).out_point().txid())),
+                              Encode::uint(plan.utxo(i).out_point().index()),
+                          })
+                .encoded();
         inputsArray.addIndefArrayElem(
-        Encode::array({
-            Encode::uint(0), // type
-            Encode::tag(Address::PayloadTag, Encode::bytes(outPointData))
-        })
-        );
+            Encode::array({Encode::uint(0), // type
+                           Encode::tag(Address::PayloadTag, Encode::bytes(outPointData))}));
     }
     inputsArray.closeIndefArray();
 
     // outputs array
     auto outputsArray = Encode::indefArray();
     Address toAddr = Address(input.to_address());
-    outputsArray.addIndefArrayElem(
-    Encode::array({
+    outputsArray.addIndefArrayElem(Encode::array({
         Encode::fromRaw(toAddr.getCborData()),
         Encode::uint(plan.amount()),
-    })
-    );
+    }));
     if (plan.change() != 0) {
         Address changeAddr = Address(input.change_address());
-        outputsArray.addIndefArrayElem(
-        Encode::array({
+        outputsArray.addIndefArrayElem(Encode::array({
             Encode::fromRaw(changeAddr.getCborData()),
             Encode::uint(plan.change()),
-        })
-        );
+        }));
     }
     outputsArray.closeIndefArray();
 
-    Data enc = Encode::array({
-        inputsArray,
-        outputsArray,
-        // attributes
-        Encode::map({})
-    }).encoded();
+    Data enc = Encode::array({inputsArray, outputsArray,
+                              // attributes
+                              Encode::map({})})
+                   .encoded();
     return enc;
 }
 
-Proto::SigningOutput Signer::prepareSignedTx(const Proto::SigningInput& input, const Proto::TransactionPlan& plan, const Data& unisgnedEncodedCborData) {
+Proto::SigningOutput Signer::prepareSignedTx(const Proto::SigningInput& input,
+                                             const Proto::TransactionPlan& plan,
+                                             const Data& unisgnedEncodedCborData) {
     Data txId = Hash::blake2b(unisgnedEncodedCborData, 32);
 
     // pre-process private keys, put them in map by address
@@ -247,23 +245,21 @@ Proto::SigningOutput Signer::prepareSignedTx(const Proto::SigningInput& input, c
         TW::append(txToSign, Encode::bytes(txId).encoded());
         Data signature = fromPri.sign(txToSign, TWCurveED25519Extended);
         Data signatureCbor = Encode::array({
-            Encode::bytes(fromPub.bytes),
-            Encode::bytes(signature),
-        }).encoded();
-        signatures.push_back(
-        Encode::array({
+                                               Encode::bytes(fromPub.bytes),
+                                               Encode::bytes(signature),
+                                           })
+                                 .encoded();
+        signatures.push_back(Encode::array({
             Encode::uint(0), // type
-            Encode::tag(Address::PayloadTag,
-                        Encode::bytes(signatureCbor)
-                       ),
-        })
-        );
+            Encode::tag(Address::PayloadTag, Encode::bytes(signatureCbor)),
+        }));
     }
 
     Data encoded = Encode::array({
-        Encode::fromRaw(unisgnedEncodedCborData),
-        Encode::array(signatures),
-    }).encoded();
+                                     Encode::fromRaw(unisgnedEncodedCborData),
+                                     Encode::array(signatures),
+                                 })
+                       .encoded();
 
     Proto::SigningOutput output;
     output.set_encoded(encoded.data(), encoded.size());

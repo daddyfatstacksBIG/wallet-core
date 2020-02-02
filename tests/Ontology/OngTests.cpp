@@ -37,9 +37,9 @@ TEST(OntologyOng, balanceOf) {
 
 TEST(OntologyOng, transfer) {
     auto signer1 = Signer(
-                       PrivateKey(parse_hex("4646464646464646464646464646464646464646464646464646464646464646")));
+        PrivateKey(parse_hex("4646464646464646464646464646464646464646464646464646464646464646")));
     auto signer2 = Signer(
-                       PrivateKey(parse_hex("4646464646464646464646464646464646464646464646464646464646464652")));
+        PrivateKey(parse_hex("4646464646464646464646464646464646464646464646464646464646464652")));
     auto toAddress = Address("Af1n2cZHhMZumNqKgw9sfCNoTWu9de4NDn");
     uint32_t nonce = 0;
     uint64_t amount = 1, gasPrice = 500, gasLimit = 20000;
@@ -59,9 +59,9 @@ TEST(OntologyOng, transfer) {
 
 TEST(OntologyOng, withdraw) {
     auto signer1 = Signer(
-                       PrivateKey(parse_hex("4646464646464646464646464646464646464646464646464646464646464646")));
+        PrivateKey(parse_hex("4646464646464646464646464646464646464646464646464646464646464646")));
     auto signer2 = Signer(
-                       PrivateKey(parse_hex("4646464646464646464646464646464646464646464646464646464646464652")));
+        PrivateKey(parse_hex("4646464646464646464646464646464646464646464646464646464646464652")));
     uint32_t nonce = 0;
     uint64_t amount = 1, gasPrice = 500, gasLimit = 20000;
     auto tx =

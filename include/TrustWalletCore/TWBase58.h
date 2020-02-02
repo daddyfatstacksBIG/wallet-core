@@ -19,18 +19,18 @@ struct TWBase58 {
 
 /// Encodes data as a Base58 string, including the checksum.
 TW_EXPORT_STATIC_METHOD
-TWString *_Nonnull TWBase58Encode(TWData *_Nonnull data);
+TWString* _Nonnull TWBase58Encode(TWData* _Nonnull data);
 
 /// Encodes data as a Base58 string, not including the checksum.
 TW_EXPORT_STATIC_METHOD
-TWString *_Nonnull TWBase58EncodeNoCheck(TWData *_Nonnull data);
+TWString* _Nonnull TWBase58EncodeNoCheck(TWData* _Nonnull data);
 
 /// Decodes a Base58 string checking the checksum.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nullable TWBase58Decode(TWString *_Nonnull string);
+TWData* _Nullable TWBase58Decode(TWString* _Nonnull string);
 
 /// Decodes a Base58 string with no checksum.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nullable TWBase58DecodeNoCheck(TWString *_Nonnull string);
+TWData* _Nullable TWBase58DecodeNoCheck(TWString* _Nonnull string);
 
 TW_EXTERN_C_END

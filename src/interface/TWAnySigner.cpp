@@ -11,26 +11,25 @@
 using namespace TW;
 using namespace TW::Any;
 
-TW_Any_Proto_SigningOutput TWAnySignerSign(TW_Any_Proto_SigningInput data)
-{
+TW_Any_Proto_SigningOutput TWAnySignerSign(TW_Any_Proto_SigningInput data) {
     Proto::SigningInput input;
     input.ParseFromArray(TWDataBytes(data), static_cast<int>(TWDataSize(data)));
 
-    auto signer = new TWAnySigner{ Signer(input) };
+    auto signer = new TWAnySigner{Signer(input)};
     Proto::SigningOutput output = signer->impl.sign();
 
     auto serialized = output.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }
 
-bool TWAnySignerIsSignEnabled(enum TWCoinType coinType)
-{
+bool TWAnySignerIsSignEnabled(enum TWCoinType coinType) {
     Proto::SigningInput input;
     input.set_coin_type(coinType);
     input.set_private_key("0000000000000000000000000000000000000000000000000000000000000001");
     input.set_transaction("<invalid json>");
 
-    auto signer = new TWAnySigner{ Signer(input) };
+    auto signer = new TWAnySigner{Signer(input)};
     Proto::SigningOutput output = signer->impl.sign();
 
     // If the coin is not supported, the error code is SignerErrorCodeNotSupported.

@@ -50,7 +50,8 @@ void ParamByteArrayFix::encode(Data& data) const {
     append(data, Data(padding));
 }
 
-bool ParamByteArrayFix::decodeBytesFix(const Data& encoded, size_t n, Data& decoded, size_t& offset_inout) {
+bool ParamByteArrayFix::decodeBytesFix(const Data& encoded, size_t n, Data& decoded,
+                                       size_t& offset_inout) {
     size_t origOffset = offset_inout;
     if (encoded.size() < offset_inout + n) {
         // not enough data
@@ -59,7 +60,8 @@ bool ParamByteArrayFix::decodeBytesFix(const Data& encoded, size_t n, Data& deco
     if (decoded.size() < n) {
         append(decoded, Data(n - decoded.size()));
     }
-    std::copy(encoded.begin() + offset_inout, encoded.begin() + (offset_inout + n), decoded.begin());
+    std::copy(encoded.begin() + offset_inout, encoded.begin() + (offset_inout + n),
+              decoded.begin());
     offset_inout += n;
     // padding
     offset_inout = origOffset + Util::paddedTo32(offset_inout - origOffset);

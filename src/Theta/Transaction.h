@@ -16,7 +16,7 @@
 namespace TW::Theta {
 
 class TxInput {
-public:
+  public:
     Ethereum::Address address;
     Coins coins;
     uint64_t sequence;
@@ -25,11 +25,14 @@ public:
     TxInput(Ethereum::Address address, Coins coins, uint64_t sequence)
         : address(std::move(address)), coins(std::move(coins)), sequence(sequence) {}
     TxInput(Ethereum::Address address, Coins coins, uint64_t sequence, Data signature)
-        : address(std::move(address)), coins(std::move(coins)), sequence(sequence), signature(std::move(signature)) {}
+        : address(std::move(address))
+        , coins(std::move(coins))
+        , sequence(sequence)
+        , signature(std::move(signature)) {}
 };
 
 class TxOutput {
-public:
+  public:
     Ethereum::Address address;
     Coins coins;
 
@@ -38,7 +41,7 @@ public:
 };
 
 class Transaction {
-public:
+  public:
     Coins fee;
     std::vector<TxInput> inputs;
     std::vector<TxOutput> outputs;
@@ -47,9 +50,8 @@ public:
     Transaction(Coins fee, std::vector<TxInput> inputs, std::vector<TxOutput> outputs)
         : fee(std::move(fee)), inputs(std::move(inputs)), outputs(std::move(outputs)) {}
 
-    Transaction(Ethereum::Address from, Ethereum::Address to,
-                uint256_t thetaAmount, uint256_t tfuelAmount, uint64_t sequence,
-                uint256_t feeAmount = 1000000000000);
+    Transaction(Ethereum::Address from, Ethereum::Address to, uint256_t thetaAmount,
+                uint256_t tfuelAmount, uint64_t sequence, uint256_t feeAmount = 1000000000000);
 
     /// Encodes the transaction
     Data encode() const noexcept;

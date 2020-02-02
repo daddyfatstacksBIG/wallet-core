@@ -17,7 +17,8 @@ using json = nlohmann::json;
 
 const std::string Transaction::WAVES = "WAVES";
 
-Data serializeTransfer(int64_t amount, std::string asset, int64_t fee, std::string fee_asset, Address to, Data attachment, int64_t timestamp, Data pub_key) {
+Data serializeTransfer(int64_t amount, std::string asset, int64_t fee, std::string fee_asset,
+                       Address to, Data attachment, int64_t timestamp, Data pub_key) {
     auto data = Data();
     if (asset.empty()) {
         asset = Transaction::WAVES;
@@ -79,7 +80,9 @@ Data serializeCancelLease(Data leaseId, int64_t fee, int64_t timestamp, Data pub
     return data;
 }
 
-json jsonTransfer(Data signature, int64_t amount, const std::string &asset, int64_t fee, const std::string &fee_asset, Address to, Data attachment, int64_t timestamp, Data pub_key) {
+json jsonTransfer(Data signature, int64_t amount, const std::string& asset, int64_t fee,
+                  const std::string& fee_asset, Address to, Data attachment, int64_t timestamp,
+                  Data pub_key) {
     json jsonTx;
 
     jsonTx["type"] = TransactionType::transfer;
@@ -101,7 +104,8 @@ json jsonTransfer(Data signature, int64_t amount, const std::string &asset, int6
     return jsonTx;
 }
 
-json jsonLease(Data signature, int64_t amount, int64_t fee, Address to, int64_t timestamp, Data pub_key) {
+json jsonLease(Data signature, int64_t amount, int64_t fee, Address to, int64_t timestamp,
+               Data pub_key) {
     json jsonTx;
 
     jsonTx["type"] = TransactionType::lease;
@@ -137,18 +141,17 @@ Data Transaction::serializeToSign() const {
     }
     if (input.has_transfer_message()) {
         auto message = input.transfer_message();
-        auto attachment =
-            Data(message.attachment().begin(), message.attachment().end());
+        auto attachment = Data(message.attachment().begin(), message.attachment().end());
         if (attachment.size() > 140) {
             throw std::invalid_argument("Maximum attachment size is 140 bytes");
         }
-        return serializeTransfer(message.amount(), message.asset(),
-                                 message.fee(), message.fee_asset(),
-                                 Address(message.to()), attachment,
+        return serializeTransfer(message.amount(), message.asset(), message.fee(),
+                                 message.fee_asset(), Address(message.to()), attachment,
                                  input.timestamp(), pub_key);
     } else if (input.has_lease_message()) {
         auto message = input.lease_message();
-        return serializeLease(message.amount(), message.fee(), Address(message.to()), input.timestamp(), pub_key);
+        return serializeLease(message.amount(), message.fee(), Address(message.to()),
+                              input.timestamp(), pub_key);
     } else if (input.has_cancel_lease_message()) {
         auto message = input.cancel_lease_message();
         auto leaseId = Base58::bitcoin.decode(message.lease_id());
@@ -158,45 +161,21 @@ Data Transaction::serializeToSign() const {
     return Data();
 }
 
-
-
-
-
 json Transaction::buildJson(Data signature) const {
     if (input.has_transfer_message()) {
         auto message = input.transfer_message();
         auto attachment = Data(message.attachment().begin(), message.attachment().end());
-        return jsonTransfer(
-                   signature,
-                   message.amount(),
-                   message.asset(),
-                   message.fee(),
-                   message.fee_asset(),
-                   Address(message.to()),
-                   attachment,
-                   input.timestamp(),
-                   pub_key);
+        return jsonTransfer(signature, message.amount(), message.asset(), message.fee(),
+                            message.fee_asset(), Address(message.to()), attachment,
+                            input.timestamp(), pub_key);
     } else if (input.has_lease_message()) {
         auto message = input.lease_message();
-        return jsonLease(
-                   signature,
-                   message.amount(),
-                   message.fee(),
-                   Address(message.to()),
-                   input.timestamp(),
-                   pub_key);
+        return jsonLease(signature, message.amount(), message.fee(), Address(message.to()),
+                         input.timestamp(), pub_key);
     } else if (input.has_cancel_lease_message()) {
         auto message = input.cancel_lease_message();
         auto leaseId = Base58::bitcoin.decode(message.lease_id());
-        return jsonCancelLease(
-                   signature,
-                   leaseId,
-                   message.fee(),
-                   input.timestamp(),
-                   pub_key);
+        return jsonCancelLease(signature, leaseId, message.fee(), input.timestamp(), pub_key);
     }
     return nullptr;
 }
-
-
-

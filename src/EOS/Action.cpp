@@ -5,8 +5,8 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "Action.h"
-#include "../HexCoding.h"
 #include "../Bravo/Serialization.h"
+#include "../HexCoding.h"
 
 using namespace TW;
 using namespace TW::EOS;
@@ -41,11 +41,9 @@ json Action::serialize() const noexcept {
     return obj;
 }
 
-TransferAction::TransferAction( const std::string& currency,
-                                const std::string& from,
-                                const std::string& to,
-                                const Bravo::Asset& asset,
-                                const std::string& memo) {
+TransferAction::TransferAction(const std::string& currency, const std::string& from,
+                               const std::string& to, const Bravo::Asset& asset,
+                               const std::string& memo) {
     account = Name(currency);
     name = Name("transfer");
     authorization.push_back(PermissionLevel(Name(from), Name("active")));
@@ -53,7 +51,8 @@ TransferAction::TransferAction( const std::string& currency,
     setData(from, to, asset, memo);
 }
 
-void TransferAction::setData(const std::string& from, const std::string& to, const Bravo::Asset& asset, const std::string& memo) {
+void TransferAction::setData(const std::string& from, const std::string& to,
+                             const Bravo::Asset& asset, const std::string& memo) {
     if (asset.amount <= 0) {
         throw std::invalid_argument("Amount in a transfer action must be greater than zero.");
     }

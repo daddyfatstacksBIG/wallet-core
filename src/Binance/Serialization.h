@@ -15,6 +15,7 @@ nlohmann::json signatureJSON(const Binance::Proto::SigningInput& input);
 nlohmann::json orderJSON(const Binance::Proto::SigningInput& input);
 nlohmann::json inputsJSON(const Binance::Proto::SendOrder& order);
 nlohmann::json outputsJSON(const Binance::Proto::SendOrder& order);
-nlohmann::json tokensJSON(const ::google::protobuf::RepeatedPtrField<Binance::Proto::SendOrder_Token>& tokens);
+nlohmann::json
+tokensJSON(const ::google::protobuf::RepeatedPtrField<Binance::Proto::SendOrder_Token>& tokens);
 
 } // namespace TW::Binance

@@ -4,9 +4,9 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include "Wanchain/Address.h"
 #include "HexCoding.h"
 #include "PrivateKey.h"
+#include "Wanchain/Address.h"
 
 #include <gtest/gtest.h>
 

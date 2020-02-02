@@ -10,8 +10,8 @@
 #include "../Data.h"
 #include "../Hash.h"
 #include "../PrivateKey.h"
-#include "../uint256.h"
 #include "../proto/Nebulas.pb.h"
+#include "../uint256.h"
 
 #include <boost/multiprecision/cpp_int.hpp>
 #include <cstdint>
@@ -22,7 +22,7 @@ namespace TW::Nebulas {
 
 /// Helper class that performs Nebulas transaction signing.
 class Signer {
-public:
+  public:
     uint256_t chainID;
 
     /// Initializes a signer with a chain identifier.
@@ -34,7 +34,7 @@ public:
     /// Signs the given transaction.
     void sign(const PrivateKey& privateKey, Transaction& transaction) const noexcept;
 
-protected:
+  protected:
     /// Computes the transaction hash.
     Data hash(const Transaction& transaction) const noexcept;
 };

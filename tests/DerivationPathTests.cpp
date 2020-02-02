@@ -12,22 +12,22 @@ namespace TW {
 
 TEST(DerivationPath, InitWithIndices) {
     const auto path = DerivationPath(TWPurposeBIP44, TWCoinTypeEthereum, 0, 0, 0);
-    ASSERT_EQ(path.indices[0], DerivationPathIndex(44, /* hardened: */true));
-    ASSERT_EQ(path.indices[1], DerivationPathIndex(60, /* hardened: */true));
-    ASSERT_EQ(path.indices[2], DerivationPathIndex(0, /* hardened: */true));
-    ASSERT_EQ(path.indices[3], DerivationPathIndex(0, /* hardened: */false));
-    ASSERT_EQ(path.indices[4], DerivationPathIndex(0, /* hardened: */false));
+    ASSERT_EQ(path.indices[0], DerivationPathIndex(44, /* hardened: */ true));
+    ASSERT_EQ(path.indices[1], DerivationPathIndex(60, /* hardened: */ true));
+    ASSERT_EQ(path.indices[2], DerivationPathIndex(0, /* hardened: */ true));
+    ASSERT_EQ(path.indices[3], DerivationPathIndex(0, /* hardened: */ false));
+    ASSERT_EQ(path.indices[4], DerivationPathIndex(0, /* hardened: */ false));
 }
 
 TEST(DerivationPath, InitWithString) {
     ASSERT_NO_THROW(DerivationPath("m/44'/60'/0'/0/0"));
     const auto path = DerivationPath("m/44'/60'/0'/0/0");
 
-    ASSERT_EQ(path.indices[0], DerivationPathIndex(44, /* hardened: */true));
-    ASSERT_EQ(path.indices[1], DerivationPathIndex(60, /* hardened: */true));
-    ASSERT_EQ(path.indices[2], DerivationPathIndex(0, /* hardened: */true));
-    ASSERT_EQ(path.indices[3], DerivationPathIndex(0, /* hardened: */false));
-    ASSERT_EQ(path.indices[4], DerivationPathIndex(0, /* hardened: */false));
+    ASSERT_EQ(path.indices[0], DerivationPathIndex(44, /* hardened: */ true));
+    ASSERT_EQ(path.indices[1], DerivationPathIndex(60, /* hardened: */ true));
+    ASSERT_EQ(path.indices[2], DerivationPathIndex(0, /* hardened: */ true));
+    ASSERT_EQ(path.indices[3], DerivationPathIndex(0, /* hardened: */ false));
+    ASSERT_EQ(path.indices[4], DerivationPathIndex(0, /* hardened: */ false));
 
     ASSERT_EQ(path.purpose(), 44);
     ASSERT_EQ(path.coin(), 60);
@@ -52,4 +52,4 @@ TEST(DerivationPath, Equal) {
     ASSERT_EQ(path1, path2);
 }
 
-} // namespace
+} // namespace TW

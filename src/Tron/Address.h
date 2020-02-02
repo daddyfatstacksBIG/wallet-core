@@ -16,7 +16,7 @@
 namespace TW::Tron {
 
 class Address : public TW::Base58Address<21> {
-public:
+  public:
     /// Address prefix.
     static const byte prefix = 0x41;
 

@@ -13,16 +13,13 @@
 namespace TW::Ethereum::ABI {
 
 /// 160-bit Address parameter, "address".  Padded to the right, treated like ParamUInt160
-class ParamAddress: public ParamUIntN
-{
-public:
+class ParamAddress : public ParamUIntN {
+  public:
     static const size_t bytes = 20;
     static const size_t bits = bytes * 8;
-    ParamAddress(): ParamUIntN(bits) {}
-    ParamAddress(const Data& val): ParamUIntN(bits, TW::load(val)) {}
-    virtual std::string getType() const {
-        return "address";
-    };
+    ParamAddress() : ParamUIntN(bits) {}
+    ParamAddress(const Data& val) : ParamUIntN(bits, TW::load(val)) {}
+    virtual std::string getType() const { return "address"; };
     // get the value as (20-byte) byte array (as opposed to uint256_t)
     Data getData() const {
         Data data = TW::store(getVal());

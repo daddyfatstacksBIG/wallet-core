@@ -10,7 +10,8 @@
 
 #include <gtest/gtest.h>
 
-auto pkcs8EncodedED25519PrivateKey = "302e020100300506032b657004220420d4ee72dbf913584ad5b6d8f1f769f8ad3afe7c28cbf1d4fbe097a88f44755842";
+auto pkcs8EncodedED25519PrivateKey = "302e020100300506032b657004220420d4ee72dbf913584ad5b6d8f1f769f"
+                                     "8ad3afe7c28cbf1d4fbe097a88f44755842";
 auto ed25519PrivateKey = "d4ee72dbf913584ad5b6d8f1f769f8ad3afe7c28cbf1d4fbe097a88f44755842";
 
 TEST(TWPKCS8, DecodeED25519PrivateKey) {

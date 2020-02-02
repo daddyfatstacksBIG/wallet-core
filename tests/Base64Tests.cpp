@@ -27,8 +27,10 @@ TEST(Base64, encode) {
     encoded = encode(data(""));
     EXPECT_EQ("", encoded);
     encoded = encode(data("Lorem ipsum dolor sit amet, consectetur adipiscing elit"));
-    EXPECT_EQ("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdA==", encoded);
-    encoded = encode(parse_hex("11ff8156775b79325e5d62e742d9b96c30b6515a5cd2f1f64c5da4b193c03f070e0d291b"));
+    EXPECT_EQ("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdA==",
+              encoded);
+    encoded = encode(
+        parse_hex("11ff8156775b79325e5d62e742d9b96c30b6515a5cd2f1f64c5da4b193c03f070e0d291b"));
     EXPECT_EQ("Ef+BVndbeTJeXWLnQtm5bDC2UVpc0vH2TF2ksZPAPwcODSkb", encoded);
 }
 
@@ -44,11 +46,13 @@ TEST(Base64, decode) {
     decoded = decode("");
     EXPECT_EQ("", hex(decoded));
     decoded = decode("Ef+BVndbeTJeXWLnQtm5bDC2UVpc0vH2TF2ksZPAPwcODSkb");
-    EXPECT_EQ("11ff8156775b79325e5d62e742d9b96c30b6515a5cd2f1f64c5da4b193c03f070e0d291b", hex(decoded));
+    EXPECT_EQ("11ff8156775b79325e5d62e742d9b96c30b6515a5cd2f1f64c5da4b193c03f070e0d291b",
+              hex(decoded));
 }
 
 TEST(Base64, UrlFormat) {
-    const std::string const1 = "11003faa8556289975ec991ac9994dfb613abec4ea000d5094e6379080f594e559b330b8";
+    const std::string const1 =
+        "11003faa8556289975ec991ac9994dfb613abec4ea000d5094e6379080f594e559b330b8";
 
     // Encoded string has both special characters
     auto encoded = encode(parse_hex(const1));

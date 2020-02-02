@@ -23,14 +23,13 @@ TEST(FIOAddress, Validation) {
 }
 
 TEST(FIOAddress, FromString) {
-    ASSERT_EQ(
-        Address("FIO5kJKNHwctcfUM5XZyiWSqSTM5HTzznJP9F3ZdbhaQAHEVq575o").string(),
-        "FIO5kJKNHwctcfUM5XZyiWSqSTM5HTzznJP9F3ZdbhaQAHEVq575o"
-    );
+    ASSERT_EQ(Address("FIO5kJKNHwctcfUM5XZyiWSqSTM5HTzznJP9F3ZdbhaQAHEVq575o").string(),
+              "FIO5kJKNHwctcfUM5XZyiWSqSTM5HTzznJP9F3ZdbhaQAHEVq575o");
 }
 
 TEST(FIOAddress, FromPrivateKey) {
-    auto key = PrivateKey(parse_hex("ea8eb60b7e5868e218f248e032769020b4fea5dcfd02f2992861eaf4fb534854"));
+    auto key =
+        PrivateKey(parse_hex("ea8eb60b7e5868e218f248e032769020b4fea5dcfd02f2992861eaf4fb534854"));
     auto publicKey = key.getPublicKey(TWPublicKeyTypeSECP256k1);
     auto address = Address(publicKey);
 

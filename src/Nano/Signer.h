@@ -14,7 +14,7 @@
 namespace TW::Nano {
 /// Helper class that performs Ripple transaction signing.
 class Signer {
-public:
+  public:
     const PrivateKey privateKey;
     const PublicKey publicKey;
     const Proto::SigningInput& input;

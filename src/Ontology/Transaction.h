@@ -16,7 +16,7 @@ namespace TW::Ontology {
 
 class Transaction {
 
-private:
+  private:
     uint8_t version;
 
     uint8_t txType;
@@ -35,7 +35,7 @@ private:
 
     static const std::string ZERO_PAYER;
 
-public:
+  public:
     static const size_t sigVecLimit = 16;
 
     std::vector<SigData> sigVec;

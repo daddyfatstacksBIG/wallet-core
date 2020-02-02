@@ -4,8 +4,8 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include "NEAR/Address.h"
 #include "Base58.h"
+#include "NEAR/Address.h"
 #include "PrivateKey.h"
 #include <TrustWalletCore/TWPublicKeyType.h>
 
@@ -23,14 +23,13 @@ TEST(NEARAddress, Validation) {
 }
 
 TEST(NEARAddress, FromString) {
-    ASSERT_EQ(
-        Address("NEAR2758Nk7CMUcxTwXdjVdSxNEidiZQWMZN3USJzj76q5ia3v2v2v").string(),
-        "NEAR2758Nk7CMUcxTwXdjVdSxNEidiZQWMZN3USJzj76q5ia3v2v2v"
-    );
+    ASSERT_EQ(Address("NEAR2758Nk7CMUcxTwXdjVdSxNEidiZQWMZN3USJzj76q5ia3v2v2v").string(),
+              "NEAR2758Nk7CMUcxTwXdjVdSxNEidiZQWMZN3USJzj76q5ia3v2v2v");
 }
 
 TEST(NEARAddress, FromPrivateKey) {
-    auto fullKey = Base58::bitcoin.decode("3hoMW1HvnRLSFCLZnvPzWeoGwtdHzke34B2cTHM8rhcbG3TbuLKtShTv3DvyejnXKXKBiV7YPkLeqUHN1ghnqpFv");
+    auto fullKey = Base58::bitcoin.decode(
+        "3hoMW1HvnRLSFCLZnvPzWeoGwtdHzke34B2cTHM8rhcbG3TbuLKtShTv3DvyejnXKXKBiV7YPkLeqUHN1ghnqpFv");
     auto key = PrivateKey(Data(fullKey.begin(), fullKey.begin() + 32));
     auto publicKey = key.getPublicKey(TWPublicKeyTypeED25519);
     auto address = Address(publicKey);

@@ -14,18 +14,19 @@ enum class CompressionType {
     None = 0,
 };
 
-NLOHMANN_JSON_SERIALIZE_ENUM( CompressionType, {
-    {CompressionType::None, "none"},
-})
+NLOHMANN_JSON_SERIALIZE_ENUM(CompressionType, {
+                                                  {CompressionType::None, "none"},
+                                              })
 
 class PackedTransaction {
-public:
+  public:
     std::vector<Signature> signatures;
     CompressionType compression;
     Data packedCFD;
     Data packedTrx;
 
-    PackedTransaction(const Transaction& transaction, CompressionType type = CompressionType::None) noexcept;
+    PackedTransaction(const Transaction& transaction,
+                      CompressionType type = CompressionType::None) noexcept;
 
     void serialize(Data& os) const noexcept;
     nlohmann::json serialize() const noexcept;

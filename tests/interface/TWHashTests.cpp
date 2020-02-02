@@ -20,7 +20,8 @@ TEST(HashTests, Blake2b) {
     auto hashed = Hash::blake2b(content, 64);
     auto result = hex(hashed);
 
-    ASSERT_EQ(result, string("6ff843ba685842aa82031d3f53c48b66326df7639a63d128974c5c14f31a0f33343a8c65551134ed1ae0f2b0dd2bb495dc81039e3eeb0aa1bb0388bbeac29183"));
+    ASSERT_EQ(result, string("6ff843ba685842aa82031d3f53c48b66326df7639a63d128974c5c14f31a0f33343a8"
+                             "c65551134ed1ae0f2b0dd2bb495dc81039e3eeb0aa1bb0388bbeac29183"));
 }
 
 TEST(HashTests, Blake2bPersonal) {
@@ -36,12 +37,15 @@ TEST(HashTests, Blake2bPersonal) {
 TEST(HashTests, Sha512_256) {
 
     auto tests = {
-        make_tuple(string(""), string("c672b8d1ef56ed28ab87c3622c5114069bdd3ad7b8f9737498d0c01ecef0967a")),
-        make_tuple(string("The quick brown fox jumps over the lazy dog"), string("dd9d67b371519c339ed8dbd25af90e976a1eeefd4ad3d889005e532fc5bef04d")),
-        make_tuple(string("The quick brown fox jumps over the lazy dog."), string("1546741840f8a492b959d9b8b2344b9b0eb51b004bba35c0aebaac86d45264c3")),
+        make_tuple(string(""),
+                   string("c672b8d1ef56ed28ab87c3622c5114069bdd3ad7b8f9737498d0c01ecef0967a")),
+        make_tuple(string("The quick brown fox jumps over the lazy dog"),
+                   string("dd9d67b371519c339ed8dbd25af90e976a1eeefd4ad3d889005e532fc5bef04d")),
+        make_tuple(string("The quick brown fox jumps over the lazy dog."),
+                   string("1546741840f8a492b959d9b8b2344b9b0eb51b004bba35c0aebaac86d45264c3")),
     };
 
-    for (auto &test : tests) {
+    for (auto& test : tests) {
         auto hashed = Hash::sha512_256(get<0>(test));
         ASSERT_EQ(hex(hashed), get<1>(test));
     }
@@ -49,19 +53,25 @@ TEST(HashTests, Sha512_256) {
 
 TEST(TWHashTests, Sha512_256) {
     auto message = std::string("hello");
-    auto messageData = WRAPD(TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(message.data()), message.size()));
+    auto messageData = WRAPD(
+        TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(message.data()), message.size()));
     auto hashed = WRAPD(TWHashSHA512_256(messageData.get()));
-    auto expectedString = WRAPS(TWStringCreateWithUTF8Bytes("e30d87cfa2a75db545eac4d61baf970366a8357c7f72fa95b52d0accb698f13a"));
+    auto expectedString = WRAPS(TWStringCreateWithUTF8Bytes(
+        "e30d87cfa2a75db545eac4d61baf970366a8357c7f72fa95b52d0accb698f13a"));
     auto expected = WRAPD(TWDataCreateWithHexString(expectedString.get()));
 
     ASSERT_TRUE(TWDataEqual(hashed.get(), expected.get()));
 }
 
 TEST(TWHashTests, XXHash64) {
-    auto message = std::string("123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF");
-    auto message2 = std::string("123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF");
-    auto messageData = WRAPD(TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(message.data()), message.size()));
-    auto messageData2 = WRAPD(TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(message2.data()), message2.size()));
+    auto message = std::string("123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF1234567"
+                               "89ABCDEF123456789ABCDEF");
+    auto message2 = std::string("123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456"
+                                "789ABCDEF123456789ABCDEF123456789ABCDEF");
+    auto messageData = WRAPD(
+        TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(message.data()), message.size()));
+    auto messageData2 = WRAPD(
+        TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(message2.data()), message2.size()));
     auto hashed = WRAPD(TWHashXXHash64(messageData.get(), 0));
     auto hashed2 = WRAPD(TWHashXXHash64(messageData2.get(), 1));
 
@@ -72,8 +82,10 @@ TEST(TWHashTests, XXHash64) {
 TEST(TWHashTests, TwoXXHash64Concat) {
     auto message = std::string("Balances");
     auto message2 = std::string("FreeBalance");
-    auto messageData = WRAPD(TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(message.data()), message.size()));
-    auto messageData2 = WRAPD(TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(message2.data()), message2.size()));
+    auto messageData = WRAPD(
+        TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(message.data()), message.size()));
+    auto messageData2 = WRAPD(
+        TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(message2.data()), message2.size()));
     auto hashed = WRAPD(TWHashTwoXXHash64Concat(messageData.get()));
     auto hashed2 = WRAPD(TWHashTwoXXHash64Concat(messageData2.get()));
 

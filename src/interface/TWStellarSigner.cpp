@@ -5,12 +5,12 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "../PrivateKey.h"
-#include "../proto/Stellar.pb.h"
 #include "../Stellar/Address.h"
 #include "../Stellar/Signer.h"
+#include "../proto/Stellar.pb.h"
 
-#include <TrustWalletCore/TWStellarSigner.h>
 #include <TrustWalletCore/TWPrivateKey.h>
+#include <TrustWalletCore/TWStellarSigner.h>
 
 using namespace TW;
 using namespace TW::Stellar;
@@ -26,5 +26,6 @@ TW_Stellar_Proto_SigningOutput TWStellarSignerSign(TW_Stellar_Proto_SigningInput
     protoOutput.set_signature(output);
 
     auto serialized = protoOutput.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

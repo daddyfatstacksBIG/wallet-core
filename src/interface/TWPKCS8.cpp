@@ -10,7 +10,7 @@
 
 using namespace TW;
 
-TWData *_Nullable TWPKCS8EncodeED25519PrivateKey(TWData *_Nonnull privateKey) {
+TWData* _Nullable TWPKCS8EncodeED25519PrivateKey(TWData* _Nonnull privateKey) {
     uint8_t* privateKeyBytes = TWDataBytes(privateKey);
     size_t privateKeySize = TWDataSize(privateKey);
 
@@ -23,7 +23,7 @@ TWData *_Nullable TWPKCS8EncodeED25519PrivateKey(TWData *_Nonnull privateKey) {
     size_t idx = 0;
     // sequence
     TWDataSet(rv, idx++, 0x30);
-    TWDataSet(rv, idx++, (byte) (totlen - 2));
+    TWDataSet(rv, idx++, (byte)(totlen - 2));
     // version
     TWDataSet(rv, idx++, 0x02);
     TWDataSet(rv, idx++, 1);
@@ -39,20 +39,20 @@ TWData *_Nullable TWPKCS8EncodeED25519PrivateKey(TWData *_Nonnull privateKey) {
     TWDataSet(rv, idx++, 3);
     TWDataSet(rv, idx++, (1 * 40) + 3);
     TWDataSet(rv, idx++, 101);
-    TWDataSet(rv, idx++, (uint8_t) 112);
+    TWDataSet(rv, idx++, (uint8_t)112);
     // params - absent
     // PrivateKey
-    TWDataSet(rv, idx++, 0x04);  // octet string
-    TWDataSet(rv, idx++, (uint8_t) (2 + privateKeySize));
+    TWDataSet(rv, idx++, 0x04); // octet string
+    TWDataSet(rv, idx++, (uint8_t)(2 + privateKeySize));
     // CurvePrivateKey
-    TWDataSet(rv, idx++, 0x04);  // octet string
-    TWDataSet(rv, idx++, (uint8_t) privateKeySize);
+    TWDataSet(rv, idx++, 0x04); // octet string
+    TWDataSet(rv, idx++, (uint8_t)privateKeySize);
     // the key
     TWDataReplaceBytes(rv, idx, privateKeySize, privateKeyBytes);
     return rv;
 }
 
-TWData *_Nullable TWPKCS8DecodeED25519PrivateKey(TWData *_Nonnull data) {
+TWData* _Nullable TWPKCS8DecodeED25519PrivateKey(TWData* _Nonnull data) {
     uint8_t* dataBytes = TWDataBytes(data);
     size_t dataSize = TWDataSize(data);
 
@@ -78,26 +78,17 @@ TWData *_Nullable TWPKCS8DecodeED25519PrivateKey(TWData *_Nonnull data) {
     // Decoding
     //
     int idx = 0;
-    if (dataBytes[idx++] != 0x30 ||
-            dataBytes[idx++] != (totlen - 2) ||
-            dataBytes[idx++] != 0x02 ||
-            dataBytes[idx++] != 1 ||
-            dataBytes[idx++] != 0 ||
-            dataBytes[idx++] != 0x30 ||
-            dataBytes[idx++] != idlen ||
-            dataBytes[idx++] != 0x06 ||
-            dataBytes[idx++] != 3 ||
-            dataBytes[idx++] != (1 * 40) + 3 ||
-            dataBytes[idx++] != 101) {
+    if (dataBytes[idx++] != 0x30 || dataBytes[idx++] != (totlen - 2) || dataBytes[idx++] != 0x02 ||
+        dataBytes[idx++] != 1 || dataBytes[idx++] != 0 || dataBytes[idx++] != 0x30 ||
+        dataBytes[idx++] != idlen || dataBytes[idx++] != 0x06 || dataBytes[idx++] != 3 ||
+        dataBytes[idx++] != (1 * 40) + 3 || dataBytes[idx++] != 101) {
         return nullptr;
     }
     idx++; // OID, checked above
-    if (dataBytes[idx++] != 0x04 ||
-            dataBytes[idx++] != 34) {
+    if (dataBytes[idx++] != 0x04 || dataBytes[idx++] != 34) {
         return nullptr;
     }
-    if (dataBytes[idx++] != 0x04 ||
-            dataBytes[idx++] != 32) {
+    if (dataBytes[idx++] != 0x04 || dataBytes[idx++] != 32) {
         return nullptr;
     }
     TWData* rv = TWDataCreateWithBytes(dataBytes + idx, PrivateKey::size);

@@ -22,10 +22,12 @@ TW_Aeternity_Proto_SigningOutput TWAeternitySignerSign(TW_Aeternity_Proto_Signin
     std::string recipient_id = input.to_address();
     std::string payload = input.payload();
 
-    auto tx = Transaction(sender_id, recipient_id, load(input.amount()), load(input.fee()), payload, input.ttl(), input.nonce());
+    auto tx = Transaction(sender_id, recipient_id, load(input.amount()), load(input.fee()), payload,
+                          input.ttl(), input.nonce());
 
     auto output = Signer::sign(privateKey, tx);
 
     auto serialized = output.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

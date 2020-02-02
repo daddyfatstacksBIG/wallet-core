@@ -7,8 +7,8 @@
 #pragma once
 
 #include "Transaction.h"
-#include "../Bitcoin/TransactionPlan.h"
 #include "../Bitcoin/TransactionBuilder.h"
+#include "../Bitcoin/TransactionPlan.h"
 #include "../Bitcoin/UnspentSelector.h"
 #include "../proto/Bitcoin.pb.h"
 #include "../proto/Decred.pb.h"

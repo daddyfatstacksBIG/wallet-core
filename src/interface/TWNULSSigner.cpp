@@ -21,8 +21,9 @@ TW_NULS_Proto_SigningOutput TWNULSSignerSign(TW_NULS_Proto_SigningInput data) {
         const auto signer = Signer(input);
         const auto data = signer.sign();
         output.set_encoded(data.data(), data.size());
+    } catch (...) {
     }
-    catch(...) {}
     auto serialized = output.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

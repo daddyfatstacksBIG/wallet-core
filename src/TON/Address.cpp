@@ -14,8 +14,8 @@
 
 #include <iostream>
 #include <memory>
-#include <string>
 #include <sstream>
+#include <string>
 
 using namespace TW;
 using namespace TW::TON;
@@ -35,8 +35,8 @@ Address::Address(const std::string& address) {
 }
 
 Address::Address(const PublicKey& publicKey, WorkchainId_t workchain) {
-    // Steps: a StateInit account state cell is created (containing code and data), its hash is taken,
-    // and new address is derived from the hash
+    // Steps: a StateInit account state cell is created (containing code and data), its hash is
+    // taken, and new address is derived from the hash
 
     if (publicKey.type != TWPublicKeyTypeED25519) {
         throw std::invalid_argument("Invalid public key type");
@@ -165,7 +165,8 @@ bool Address::parseUserAddress(const std::string& addressStr_in, Address& addr_i
     std::copy(bytes.begin() + 2, bytes.begin() + 2 + AddressLength, addr_inout.addrBytes.begin());
 
     // check CRC
-    uint16_t crcGiven = static_cast<uint16_t>(bytes[2 + AddressLength] << 8) + bytes[2 + AddressLength + 1];
+    uint16_t crcGiven =
+        static_cast<uint16_t>(bytes[2 + AddressLength] << 8) + bytes[2 + AddressLength + 1];
     uint16_t crcComputed = Crc::crc16(bytes.data(), 2 + AddressLength);
     if (crcGiven != crcComputed) {
         // CRC mismatch

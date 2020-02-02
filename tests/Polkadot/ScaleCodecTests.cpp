@@ -4,16 +4,14 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-
 #include "HexCoding.h"
-#include "Polkadot/ScaleCodec.h"
 #include "Kusama/Address.h"
+#include "Polkadot/ScaleCodec.h"
 
 #include <gtest/gtest.h>
 
 using namespace TW;
 using namespace TW::Polkadot;
-
 
 TEST(PolkadotCodec, EncodeCompact) {
     ASSERT_EQ(hex(encodeCompact(0)), "00");
@@ -46,10 +44,18 @@ TEST(PolkadotCodec, EncodeBool) {
 }
 
 TEST(PolkadotCodec, EncodeLengthPrefix) {
-    auto encoded = parse_hex("84ff88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee0034a113577b56545c45e18969471eebe11ed434f3b2f06e2e3dc8dc137ba804caf60757787ebdeb298327e2f29d68c5520965405ef5582db0445c06e1c11a8a0e0000000400ff8eaf04151687736326c9fea17e25fc5287613693c912909cb226aa4794f26a48e5c0");
+    auto encoded =
+        parse_hex("84ff88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee0034a113577b"
+                  "56545c45e18969471eebe11ed434f3b2f06e2e3dc8dc137ba804caf60757787ebdeb298327e2f29d"
+                  "68c5520965405ef5582db0445c06e1c11a8a0e0000000400ff8eaf04151687736326c9fea17e25fc"
+                  "5287613693c912909cb226aa4794f26a48e5c0");
     encodeLengthPrefix(encoded);
 
-    ASSERT_EQ(hex(encoded), "2d0284ff88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee0034a113577b56545c45e18969471eebe11ed434f3b2f06e2e3dc8dc137ba804caf60757787ebdeb298327e2f29d68c5520965405ef5582db0445c06e1c11a8a0e0000000400ff8eaf04151687736326c9fea17e25fc5287613693c912909cb226aa4794f26a48e5c0");
+    ASSERT_EQ(hex(encoded),
+              "2d0284ff88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee0034a113577b"
+              "56545c45e18969471eebe11ed434f3b2f06e2e3dc8dc137ba804caf60757787ebdeb298327e2f29d68c5"
+              "520965405ef5582db0445c06e1c11a8a0e0000000400ff8eaf04151687736326c9fea17e25fc52876136"
+              "93c912909cb226aa4794f26a48e5c0");
 }
 
 TEST(PolkadotCodec, EncodeAddress) {
@@ -60,12 +66,12 @@ TEST(PolkadotCodec, EncodeAddress) {
 }
 
 TEST(PolkadotCodec, EncodeVectorAddresses) {
-    auto addresses = std::vector<SS58Address> {
+    auto addresses = std::vector<SS58Address>{
         Kusama::Address("FoQJpPyadYccjavVdTWxpxU7rUEaYhfLCPwXgkfD6Zat9QP"),
-        Kusama::Address("CtwdfrhECFs3FpvCGoiE4hwRC4UsSiM8WL899HjRdQbfYZY")
-    };
+        Kusama::Address("CtwdfrhECFs3FpvCGoiE4hwRC4UsSiM8WL899HjRdQbfYZY")};
     auto encoded = encodeAddresses(addresses);
-    ASSERT_EQ(hex(encoded), "08ff8eaf04151687736326c9fea17e25fc5287613693c912909cb226aa4794f26a48ff0e33fdfb980e4499e5c3576e742a563b6a4fc0f6f598b1917fd7a6fe393ffc72");
+    ASSERT_EQ(hex(encoded), "08ff8eaf04151687736326c9fea17e25fc5287613693c912909cb226aa4794f26a48ff"
+                            "0e33fdfb980e4499e5c3576e742a563b6a4fc0f6f598b1917fd7a6fe393ffc72");
 }
 
 TEST(PolkadotCodec, EncodeEra) {

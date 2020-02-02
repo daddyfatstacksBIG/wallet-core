@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "TWBase.h"
 #include "TWAnyProto.h"
+#include "TWBase.h"
 #include "TWCoinType.h"
 
 TW_EXTERN_C_BEGIN

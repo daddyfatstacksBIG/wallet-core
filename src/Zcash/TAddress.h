@@ -16,14 +16,15 @@
 namespace TW::Zcash {
 
 class TAddress : public TW::Base58Address<22> {
-public:
+  public:
     static const byte staticPrefix = 0x1c;
     static const byte p2pkh = 0xB8; // p2pkhPrefix(TWCoinType::TWCoinTypeZcash);
-    static const byte p2sh = 0xBD; // p2shPrefix(TWCoinType::TWCoinTypeZcash);
+    static const byte p2sh = 0xBD;  // p2shPrefix(TWCoinType::TWCoinTypeZcash);
 
     /// Determines whether a string makes a valid ZCash address.
     static bool isValid(const std::string& string) {
-        return TW::Base58Address<size>::isValid(string, {{staticPrefix, p2pkh}, {staticPrefix, p2sh}});
+        return TW::Base58Address<size>::isValid(string,
+                                                {{staticPrefix, p2pkh}, {staticPrefix, p2sh}});
     }
 
     /// Determines whether a string makes a valid ZCash address, with possible prefixes.
@@ -38,11 +39,10 @@ public:
     explicit TAddress(const Data& data) : TW::Base58Address<size>(data) {}
 
     /// Initializes a  address with a public key and a prefix (2nd byte).
-    TAddress(const PublicKey& publicKey, uint8_t prefix = p2pkh) : TW::Base58Address<size>(publicKey, {
-        staticPrefix, prefix
-    }) {}
+    TAddress(const PublicKey& publicKey, uint8_t prefix = p2pkh)
+        : TW::Base58Address<size>(publicKey, {staticPrefix, prefix}) {}
 
-private:
+  private:
     TAddress() = default;
 };
 

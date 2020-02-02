@@ -15,7 +15,7 @@
 namespace TW::VeChain {
 
 class Transaction {
-public:
+  public:
     /// Last byte of the genesis block ID which is used to identify a blockchain
     /// to prevent the cross-chain replay attack.
     std::uint8_t chainTag;
@@ -54,7 +54,7 @@ public:
 
     Transaction() = default;
 
-public:
+  public:
     /// Encodes the transaction.
     Data encode() const noexcept;
 };

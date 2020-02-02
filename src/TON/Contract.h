@@ -16,7 +16,7 @@ using namespace TW;
 
 /// Smart contract support, limited
 class Contract {
-public:
+  public:
     /// Return the (compiled) smart contract of a wallet account
     static Data walletContractDefault();
 

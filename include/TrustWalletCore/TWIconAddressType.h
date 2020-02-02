@@ -12,7 +12,7 @@ TW_EXTERN_C_BEGIN
 /// Icon address types
 TW_EXPORT_ENUM()
 enum TWIconAddressType {
-    TWIconAddressTypeAddress  /* "hx" */,
+    TWIconAddressTypeAddress /* "hx" */,
     TWIconAddressTypeContract /* "cx" */,
 };
 

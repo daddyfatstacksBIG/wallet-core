@@ -7,8 +7,8 @@
 #pragma once
 
 #include "../Data.h"
-#include "../PublicKey.h"
 #include "../PrivateKey.h"
+#include "../PublicKey.h"
 
 #include <string>
 

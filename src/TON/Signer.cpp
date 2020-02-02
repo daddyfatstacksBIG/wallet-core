@@ -6,17 +6,17 @@
 
 #include "Signer.h"
 #include "Address.h"
-#include "Contract.h"
 #include "Cell.h"
+#include "Contract.h"
 
+#include "../Hash.h"
+#include "../HexCoding.h"
 #include "../PrivateKey.h"
 #include "../PublicKey.h"
-#include "../HexCoding.h"
-#include "../Hash.h"
 
-#include <memory>
-#include <iostream>
 #include <cassert>
+#include <iostream>
+#include <memory>
 
 namespace TW::TON {
 
@@ -46,7 +46,7 @@ Data Signer::sign(const PrivateKey &privateKey, Transaction &transaction) noexce
 
 Data Signer::sign(const PrivateKey& privateKey, const Data& message) noexcept {
     auto signature = privateKey.sign(message, TWCurveED25519);
-    //cerr << "sign " << signature.size() << " " << hex(signature) << endl;
+    // cerr << "sign " << signature.size() << " " << hex(signature) << endl;
     return signature;
 }
 
@@ -58,7 +58,7 @@ TW::Data Signer::buildInitMessage(const PrivateKey& privkey) {
     byte chainId = (byte)address.workchainId;
 
     // create msg
-    Data msgData = parse_hex("00000000"); //data(string("TRUST"));
+    Data msgData = parse_hex("00000000"); // data(string("TRUST"));
 
     Cell msgc;
     msgc.setSliceBytes(msgData);
@@ -71,9 +71,8 @@ TW::Data Signer::buildInitMessage(const PrivateKey& privkey) {
     return extMsg;
 }
 
-Data Signer::buildInitMessage(
-    byte chainId, const PublicKey& pubkey, const Data& signature, const Data& msg
-) {
+Data Signer::buildInitMessage(byte chainId, const PublicKey& pubkey, const Data& signature,
+                              const Data& msg) {
     Cell stateInit = Contract::createStateInit(pubkey);
     assert(stateInit.cellCount() == 2);
 
@@ -89,7 +88,7 @@ Data Signer::buildInitMessage(
     s.appendBits(parse_hex("08c0"), 12);
     s.appendBytes(signature);
     s.appendBytes(msg);
-    //cerr << s.size() << " " << s.asBytesStr() << endl;
+    // cerr << s.size() << " " << s.asBytesStr() << endl;
 
     Cell c;
     c.setSlice(s);

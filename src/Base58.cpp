@@ -107,7 +107,7 @@ Data Base58::decode(const char* begin, const char* end) const {
 
         std::size_t i = 0;
         for (auto b256it = b256.rbegin(); (carry != 0 || i < length) && (b256it != b256.rend());
-                ++b256it, ++i) {
+             ++b256it, ++i) {
             carry += 58 * (*b256it);
             *b256it = static_cast<uint8_t>(carry % 256);
             carry /= 256;
@@ -165,7 +165,7 @@ std::string Base58::encode(const byte* begin, const byte* end) const {
         int i = 0;
         // Apply "b58 = b58 * 256 + ch".
         for (auto b58it = b58.rbegin(); (carry != 0 || i < length) && (b58it != b58.rend());
-                b58it++, i++) {
+             b58it++, i++) {
             carry += 256 * (*b58it);
             *b58it = carry % 58;
             carry /= 58;

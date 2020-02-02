@@ -61,7 +61,7 @@ TEST(ParamsBuilder, pushInt) {
 TEST(ParamsBuilder, balanceInvokeCode) {
     auto balanceParam = Address("ANDfjwrUroaVtvBguDtrWKRMyxFwvVwnZD").data;
     auto invokeCode = ParamsBuilder::buildNativeInvokeCode(Ont().contractAddress(), 0x00,
-                      "balanceOf", balanceParam);
+                                                           "balanceOf", balanceParam);
     auto hexInvokeCode =
         "1446b1a18af6b7c9f8a4602f9f73eeb3030f0c29b70962616c616e63654f661400000000000000000000000000"
         "000000000000010068164f6e746f6c6f67792e4e61746976652e496e766f6b65";

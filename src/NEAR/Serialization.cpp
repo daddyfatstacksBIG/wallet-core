@@ -13,7 +13,6 @@ using namespace TW;
 using namespace TW::NEAR;
 using namespace TW::NEAR::Proto;
 
-
 static void writeU8(Data& data, uint8_t number) {
     data.push_back(number);
 }
@@ -30,7 +29,8 @@ static void writeU128(Data& data, const std::string& numberData) {
     data.insert(std::end(data), std::begin(numberData), std::end(numberData));
 }
 
-template <class T> static void writeRawBuffer(Data &data, const T& buf) {
+template <class T>
+static void writeRawBuffer(Data& data, const T& buf) {
     data.insert(std::end(data), std::begin(buf), std::end(buf));
 }
 

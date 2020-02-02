@@ -16,9 +16,10 @@ TW_Proto_Result TWIoTeXSignerSign(TW_IoTeX_Proto_SigningInput data) {
     Proto::SigningInput input;
     input.ParseFromArray(TWDataBytes(data), static_cast<int>(TWDataSize(data)));
 
-    auto signer = new TWIoTeXSigner{ Signer(std::move(input)) };
+    auto signer = new TWIoTeXSigner{Signer(std::move(input))};
     Proto::SigningOutput output = signer->impl.build();
 
     auto serialized = output.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

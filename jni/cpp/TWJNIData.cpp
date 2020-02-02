@@ -9,14 +9,14 @@
 
 #include "TWJNIData.h"
 
-jbyteArray TWDataJByteArray(TWData *_Nonnull data, JNIEnv *env) {
+jbyteArray TWDataJByteArray(TWData* _Nonnull data, JNIEnv* env) {
     jbyteArray array = env->NewByteArray(TWDataSize(data));
-    env->SetByteArrayRegion(array, 0, TWDataSize(data), (jbyte *) TWDataBytes(data));
+    env->SetByteArrayRegion(array, 0, TWDataSize(data), (jbyte*)TWDataBytes(data));
     return array;
 }
 
-TWData *_Nonnull TWDataCreateWithJByteArray(JNIEnv *env, jbyteArray _Nonnull array) {
+TWData* _Nonnull TWDataCreateWithJByteArray(JNIEnv* env, jbyteArray _Nonnull array) {
     jsize size = env->GetArrayLength(array);
-    jbyte *bytes = env->GetByteArrayElements(array, nullptr);
-    return TWDataCreateWithBytes((uint8_t *) bytes, size);
+    jbyte* bytes = env->GetByteArrayElements(array, nullptr);
+    return TWDataCreateWithBytes((uint8_t*)bytes, size);
 }

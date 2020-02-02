@@ -28,14 +28,14 @@ namespace K1 {
 static const std::string prefix = "K1";
 static const std::string fullPubPrefix = pubBasePrefix + "_" + Modern::K1::prefix + "_";
 static const std::string fullSigPrefix = sigBasePrefix + "_" + Modern::K1::prefix + "_";
-};
+}; // namespace K1
 
 namespace R1 {
 static const std::string prefix = "R1";
 static const std::string fullPubPrefix = pubBasePrefix + "_" + Modern::R1::prefix + "_";
 static const std::string fullSigPrefix = sigBasePrefix + "_" + Modern::R1::prefix + "_";
-};
-};
+}; // namespace R1
+}; // namespace Modern
 
 inline std::string pubPrefixForType(Type t) {
     switch (t) {

@@ -16,7 +16,8 @@ namespace TW::Base32 {
 
 /// Decode Base32 string, return bytes as Data
 /// alphabet: Optional alphabet, if missing, default ALPHABET_RFC4648
-inline bool decode(const std::string& encoded_in, Data& decoded_out, const char* alphabet_in = nullptr) {
+inline bool decode(const std::string& encoded_in, Data& decoded_out,
+                   const char* alphabet_in = nullptr) {
     size_t inLen = encoded_in.size();
     // obtain output length first
     size_t outLen = base32_decoded_length(inLen);

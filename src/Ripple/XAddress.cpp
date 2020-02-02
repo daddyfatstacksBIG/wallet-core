@@ -7,8 +7,8 @@
 #include "XAddress.h"
 
 #include "../Base58.h"
-#include  "../BinaryCoding.h"
-#include  "../Data.h"
+#include "../BinaryCoding.h"
+#include "../Data.h"
 #include <TrezorCrypto/ecdsa.h>
 
 using namespace TW;
@@ -21,7 +21,7 @@ bool XAddress::isValid(const std::string& string) {
     if (decoded.size() != XAddress::size) {
         return false;
     }
-    if(!std::equal(decoded.begin(), decoded.begin() + 2, prefixMainnet.begin())) {
+    if (!std::equal(decoded.begin(), decoded.begin() + 2, prefixMainnet.begin())) {
         return false;
     }
     if (!(decoded[22] == byte(TagFlag::none) || decoded[22] == byte(TagFlag::classic))) {
@@ -35,7 +35,8 @@ XAddress::XAddress(const std::string& string) {
         throw std::invalid_argument("Invalid address string");
     }
     const auto decoded = Base58::ripple.decodeCheck(string);
-    std::copy(decoded.begin() + prefixMainnet.size(), decoded.begin() + prefixMainnet.size() + XAddress::keyHashSize, bytes.begin());
+    std::copy(decoded.begin() + prefixMainnet.size(),
+              decoded.begin() + prefixMainnet.size() + XAddress::keyHashSize, bytes.begin());
     if (decoded[22] == byte(TagFlag::classic)) {
         tag = decode32LE(Data(decoded.end() - 8, decoded.end() - 4).data());
     } else if (decoded[22] == byte(TagFlag::none)) {
@@ -45,13 +46,14 @@ XAddress::XAddress(const std::string& string) {
     }
 }
 
-XAddress::XAddress(const PublicKey& publicKey, const uint32_t destination): tag(destination) {
+XAddress::XAddress(const PublicKey& publicKey, const uint32_t destination) : tag(destination) {
     ecdsa_get_pubkeyhash(publicKey.bytes.data(), HASHER_SHA2_RIPEMD, bytes.data());
 }
 
 std::string XAddress::string() const {
     /// see https://github.com/ripple/ripple-address-codec/blob/master/src/index.ts
-    /// base58check(2 bytes prefix + 20 bytes keyhash + 1 byte flag + 4 bytes + 32bit tag + 4 bytes reserved)
+    /// base58check(2 bytes prefix + 20 bytes keyhash + 1 byte flag + 4 bytes + 32bit tag + 4 bytes
+    /// reserved)
     Data result;
     append(result, prefixMainnet);
     append(result, Data{bytes.begin(), bytes.end()});

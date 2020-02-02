@@ -6,24 +6,24 @@
 
 #pragma once
 
-#include "Buffer.h"
-#include "Keys.h"
-#include "Coins.h"
 #include "Address.h"
+#include "Buffer.h"
+#include "Coins.h"
+#include "Keys.h"
 
 #include "Data.h"
 
-#include <string>
-#include <vector>
 #include <cassert>
 #include <iostream>
+#include <string>
+#include <vector>
 
 namespace TW::WalletConsole {
 
 using namespace std;
 
 class CommandExecutor {
-protected:
+  protected:
     ostream& _out;
     Coins _coins;
     Buffer _buffer;
@@ -31,12 +31,12 @@ protected:
     Address _address;
     string _activeCoin;
 
-public:
+  public:
     CommandExecutor(ostream& out);
     void init();
     void executeLine(const string& line);
 
-protected:
+  protected:
     /// Put result in res.  Return true if meaningful result is returned.
     bool executeOne(const string& cmd, const vector<string>& params, string& res);
     void execute(const string& cmd, const vector<string>& params);

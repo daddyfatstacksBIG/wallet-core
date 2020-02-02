@@ -6,15 +6,15 @@
 
 #include "Keys.h"
 
-#include "WalletConsole.h"
 #include "Data.h"
-#include "PrivateKey.h"
-#include "HexCoding.h"
 #include "HDWallet.h"
+#include "HexCoding.h"
+#include "PrivateKey.h"
+#include "WalletConsole.h"
 
+#include <cassert>
 #include <iostream>
 #include <vector>
-#include <cassert>
 
 namespace TW::WalletConsole {
 
@@ -63,7 +63,8 @@ bool Keys::pubPri(const string& coinid, const string& p, string& res) {
         auto priv = PrivateKey(privDat);
         auto pub = priv.getPublicKey((TWPublicKeyType)coin.pubKeyType);
         res = hex(pub.bytes);
-        _out << "Public key created, type " << (int)coin.pubKeyType << ", length " << pub.bytes.size() << endl;
+        _out << "Public key created, type " << (int)coin.pubKeyType << ", length "
+             << pub.bytes.size() << endl;
         return true;
     } catch (exception& ex) {
         _out << "Error: " << ex.what() << endl;
@@ -84,7 +85,8 @@ void Keys::setMnemonic(const vector<string>& param) {
     // concatenate
     string mnem = "";
     for (int i = 1; i < param.size(); ++i) {
-        if (i > 1) mnem += " ";
+        if (i > 1)
+            mnem += " ";
         mnem += param[i];
     }
 

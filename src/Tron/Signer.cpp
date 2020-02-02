@@ -8,14 +8,14 @@
 
 #include "Protobuf/TronInternal.pb.h"
 
+#include "Serialization.h"
 #include "../Base58.h"
 #include "../BinaryCoding.h"
 #include "../Hash.h"
 #include "../HexCoding.h"
-#include "Serialization.h"
 
-#include <chrono>
 #include <cassert>
+#include <chrono>
 
 using namespace TW;
 using namespace TW::Tron;
@@ -75,7 +75,8 @@ protocol::FreezeBalanceContract to_internal(const Proto::FreezeBalanceContract& 
     return internal;
 }
 
-protocol::UnfreezeBalanceContract to_internal(const Proto::UnfreezeBalanceContract& unfreezeContract) {
+protocol::UnfreezeBalanceContract
+to_internal(const Proto::UnfreezeBalanceContract& unfreezeContract) {
     auto internal = protocol::UnfreezeBalanceContract();
     auto resource = protocol::ResourceCode();
     const auto ownerAddress = Base58::bitcoin.decodeCheck(unfreezeContract.owner_address());
@@ -106,7 +107,7 @@ protocol::VoteAssetContract to_internal(const Proto::VoteAssetContract& voteCont
     internal.set_owner_address(ownerAddress.data(), ownerAddress.size());
     internal.set_support(voteContract.support());
     internal.set_count(voteContract.count());
-    for(int i = 0; i < voteContract.vote_address_size(); i++) {
+    for (int i = 0; i < voteContract.vote_address_size(); i++) {
         auto voteAddress = Base58::bitcoin.decodeCheck(voteContract.vote_address(i));
         internal.add_vote_address(voteAddress.data(), voteAddress.size());
     }
@@ -120,7 +121,7 @@ protocol::VoteWitnessContract to_internal(const Proto::VoteWitnessContract& vote
 
     internal.set_owner_address(ownerAddress.data(), ownerAddress.size());
     internal.set_support(voteContract.support());
-    for(int i = 0; i < voteContract.votes_size(); i++) {
+    for (int i = 0; i < voteContract.votes_size(); i++) {
         auto voteAddress = Base58::bitcoin.decodeCheck(voteContract.votes(i).vote_address());
         auto vote = internal.add_votes();
 
@@ -131,7 +132,8 @@ protocol::VoteWitnessContract to_internal(const Proto::VoteWitnessContract& vote
     return internal;
 }
 
-protocol::WithdrawBalanceContract to_internal(const Proto::WithdrawBalanceContract& withdrawContract) {
+protocol::WithdrawBalanceContract
+to_internal(const Proto::WithdrawBalanceContract& withdrawContract) {
     auto internal = protocol::WithdrawBalanceContract();
     const auto ownerAddress = Base58::bitcoin.decodeCheck(withdrawContract.owner_address());
 
@@ -140,10 +142,12 @@ protocol::WithdrawBalanceContract to_internal(const Proto::WithdrawBalanceContra
     return internal;
 }
 
-protocol::TriggerSmartContract to_internal(const Proto::TriggerSmartContract& triggerSmartContract) {
+protocol::TriggerSmartContract
+to_internal(const Proto::TriggerSmartContract& triggerSmartContract) {
     auto internal = protocol::TriggerSmartContract();
     const auto ownerAddress = Base58::bitcoin.decodeCheck(triggerSmartContract.owner_address());
-    const auto contractAddress = Base58::bitcoin.decodeCheck(triggerSmartContract.contract_address());
+    const auto contractAddress =
+        Base58::bitcoin.decodeCheck(triggerSmartContract.contract_address());
 
     internal.set_owner_address(ownerAddress.data(), ownerAddress.size());
     internal.set_contract_address(contractAddress.data(), contractAddress.size());
@@ -155,7 +159,8 @@ protocol::TriggerSmartContract to_internal(const Proto::TriggerSmartContract& tr
     return internal;
 }
 
-protocol::TriggerSmartContract to_internal(const Proto::TransferTRC20Contract& transferTrc20Contract) {
+protocol::TriggerSmartContract
+to_internal(const Proto::TransferTRC20Contract& transferTrc20Contract) {
     auto toAddress = Base58::bitcoin.decodeCheck(transferTrc20Contract.to_address());
     Data amount;
     encode64BE(transferTrc20Contract.amount(), amount);
@@ -293,15 +298,13 @@ Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
     }
 
     // Get default timestamp and expiration
-    const uint64_t now = duration_cast< milliseconds >(
-                             system_clock::now().time_since_epoch()
-                         ).count();
-    const uint64_t timestamp = input.transaction().timestamp() == 0
-                               ? now
-                               : input.transaction().timestamp();
+    const uint64_t now =
+        duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+    const uint64_t timestamp =
+        input.transaction().timestamp() == 0 ? now : input.transaction().timestamp();
     const uint64_t expiration = input.transaction().expiration() == 0
-                                ? timestamp + 10 * 60 * 60 * 1000 // 10 hours
-                                : input.transaction().expiration();
+                                    ? timestamp + 10 * 60 * 60 * 1000 // 10 hours
+                                    : input.transaction().expiration();
 
     internal.mutable_raw_data()->set_timestamp(timestamp);
     internal.mutable_raw_data()->set_expiration(expiration);

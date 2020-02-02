@@ -19,11 +19,10 @@ struct TWX509 {
 
 /// Encodes ed25519 public key into X.509 certificate.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nullable TWX509EncodeED25519PublicKey(TWData *_Nonnull publicKey);
+TWData* _Nullable TWX509EncodeED25519PublicKey(TWData* _Nonnull publicKey);
 
 /// Decodes a X.509 certificate into ed25519 public key.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nullable TWX509DecodeED25519PublicKey(TWData *_Nonnull data);
-
+TWData* _Nullable TWX509DecodeED25519PublicKey(TWData* _Nonnull data);
 
 TW_EXTERN_C_END

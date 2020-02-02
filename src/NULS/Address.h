@@ -13,7 +13,7 @@
 namespace TW::NULS {
 
 class Address : public Base58Address<24> {
-public:
+  public:
     /// NULS Main Net Chain ID = 1
     static const std::array<byte, 2> mainnetId;
 

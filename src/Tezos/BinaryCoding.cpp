@@ -7,8 +7,8 @@
 #include "../Base58.h"
 #include "../Data.h"
 #include "../HexCoding.h"
-#include "../PublicKey.h"
 #include "../PrivateKey.h"
+#include "../PublicKey.h"
 
 #include <TrezorCrypto/ecdsa.h>
 #include <string>

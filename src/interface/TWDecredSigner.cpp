@@ -19,38 +19,41 @@
 using namespace TW;
 using namespace TW::Decred;
 
-struct TWDecredSigner *_Nonnull TWDecredSignerCreate(TW_Bitcoin_Proto_SigningInput data) {
+struct TWDecredSigner* _Nonnull TWDecredSignerCreate(TW_Bitcoin_Proto_SigningInput data) {
     Bitcoin::Proto::SigningInput input;
     input.ParseFromArray(TWDataBytes(data), static_cast<int>(TWDataSize(data)));
-    return new TWDecredSigner{ Signer(std::move(input)) };
+    return new TWDecredSigner{Signer(std::move(input))};
 }
 
-struct TWDecredSigner *_Nonnull TWDecredSignerCreateWithPlan(TW_Bitcoin_Proto_SigningInput data, TW_Bitcoin_Proto_TransactionPlan planData) {
+struct TWDecredSigner* _Nonnull TWDecredSignerCreateWithPlan(
+    TW_Bitcoin_Proto_SigningInput data, TW_Bitcoin_Proto_TransactionPlan planData) {
     Bitcoin::Proto::SigningInput input;
     input.ParseFromArray(TWDataBytes(data), static_cast<int>(TWDataSize(data)));
     Bitcoin::Proto::TransactionPlan plan;
     plan.ParseFromArray(TWDataBytes(planData), static_cast<int>(TWDataSize(planData)));
-    return new TWDecredSigner{ Signer(std::move(input), std::move(plan)) };
+    return new TWDecredSigner{Signer(std::move(input), std::move(plan))};
 }
 
-void TWDecredSignerDelete(struct TWDecredSigner *_Nonnull signer) {
+void TWDecredSignerDelete(struct TWDecredSigner* _Nonnull signer) {
     delete signer;
 }
 
-TW_Bitcoin_Proto_TransactionPlan TWDecredSignerPlan(struct TWDecredSigner *_Nonnull signer) {
+TW_Bitcoin_Proto_TransactionPlan TWDecredSignerPlan(struct TWDecredSigner* _Nonnull signer) {
     auto result = signer->impl.plan.proto();
     auto serialized = result.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }
 
-TW_Proto_Result TWDecredSignerSign(struct TWDecredSigner *_Nonnull signer) {
+TW_Proto_Result TWDecredSignerSign(struct TWDecredSigner* _Nonnull signer) {
     auto result = signer->impl.sign();
     auto protoResult = TW::Proto::Result();
     if (!result) {
         protoResult.set_success(false);
         protoResult.set_error(result.error());
         auto serialized = protoResult.SerializeAsString();
-        return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+        return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                     serialized.size());
     }
 
     const auto& tx = result.payload();
@@ -68,5 +71,6 @@ TW_Proto_Result TWDecredSignerSign(struct TWDecredSigner *_Nonnull signer) {
     protoResult.add_objects()->PackFrom(protoOutput);
 
     auto serialized = protoResult.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

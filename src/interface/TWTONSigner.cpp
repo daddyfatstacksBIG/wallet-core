@@ -21,6 +21,7 @@ TW_TON_Proto_SigningOutput TWTONSignerSign(TW_TON_Proto_SigningInput data) {
     //auto protoOutput = Signer::sign(input);
     //
     //auto serialized = protoOutput.SerializeAsString();
-    //return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    //return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()),
+serialized.size());
 }
 */

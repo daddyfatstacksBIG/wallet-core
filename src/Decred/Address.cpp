@@ -7,8 +7,8 @@
 #include "Address.h"
 
 #include "../Base58.h"
-#include "../Hash.h"
 #include "../Coin.h"
+#include "../Hash.h"
 
 #include <stdexcept>
 

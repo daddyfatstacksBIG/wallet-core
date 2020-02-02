@@ -11,9 +11,6 @@
 
 TW_EXTERN_C_BEGIN
 
-enum TWBitcoinSignatureVersion {
-    BASE,
-    WITNESS_V0
-};
+enum TWBitcoinSignatureVersion { BASE, WITNESS_V0 };
 
 TW_EXTERN_C_END

@@ -8,14 +8,16 @@
 using namespace google::protobuf;
 
 /// Generates C typdefs for Protobuf types.
-class Generator : public  compiler::CodeGenerator {
+class Generator : public compiler::CodeGenerator {
     std::string GetOutputFilename(const std::string& proto_file) const {
         int index = proto_file.find_last_of(".");
         return "TW" + proto_file.substr(0, index) + "Proto.h";
     }
 
-    bool Generate(const FileDescriptor* file, const std::string& parameter, compiler::GeneratorContext* generator_context, string* error) const {
-        std::unique_ptr<io::ZeroCopyOutputStream> output(generator_context->Open(GetOutputFilename(file->name())));
+    bool Generate(const FileDescriptor* file, const std::string& parameter,
+                  compiler::GeneratorContext* generator_context, string* error) const {
+        std::unique_ptr<io::ZeroCopyOutputStream> output(
+            generator_context->Open(GetOutputFilename(file->name())));
         io::Printer printer(output.get(), '$');
 
         printer.Print(
@@ -30,8 +32,7 @@ class Generator : public  compiler::CodeGenerator {
             "#pragma once\n"
             "\n"
             "#include \"TWData.h\"\n"
-            "\n"
-        );
+            "\n");
         for (int i = 0; i < file->message_type_count(); i += 1) {
             auto message = file->message_type(i);
             auto parts = Generator::getParts(message->full_name());

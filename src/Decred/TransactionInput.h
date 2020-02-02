@@ -17,7 +17,7 @@ namespace TW::Decred {
 
 /// Decred transaction input.
 class TransactionInput {
-public:
+  public:
     /// Reference to the previous transaction's output.
     OutPoint previousOutput;
 

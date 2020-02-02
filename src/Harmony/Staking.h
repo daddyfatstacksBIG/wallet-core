@@ -22,7 +22,7 @@ namespace TW::Harmony {
 
 template <typename Directive>
 class Staking {
-public:
+  public:
     uint8_t directive;
     Directive stakeMsg;
     uint256_t nonce;
@@ -55,7 +55,7 @@ enum Directive : uint8_t {
 };
 
 class Description {
-public:
+  public:
     string name;
     string identity;
     string website;
@@ -74,7 +74,7 @@ public:
 const uint256_t MAX_PRECISION = 18;
 
 class Decimal {
-public:
+  public:
     uint256_t value;
 
     Decimal(uint256_t value, uint256_t precision) {
@@ -88,7 +88,7 @@ public:
 };
 
 class CommissionRate {
-public:
+  public:
     Decimal rate;
     Decimal maxRate;
     Decimal maxChangeRate;
@@ -98,7 +98,7 @@ public:
 };
 
 class CreateValidator {
-public:
+  public:
     Address validatorAddress;
     Description description;
     CommissionRate commissionRates;
@@ -121,16 +121,16 @@ public:
 };
 
 class EditValidator {
-public:
+  public:
     Address validatorAddress;
     Description description;
-    Decimal *commissionRate;
+    Decimal* commissionRate;
     uint256_t minSelfDelegation;
     uint256_t maxTotalDelegation;
     vector<uint8_t> slotKeyToRemove;
     vector<uint8_t> slotKeyToAdd;
 
-    EditValidator(Address validatorAddress, Description description, Decimal *commissionRate,
+    EditValidator(Address validatorAddress, Description description, Decimal* commissionRate,
                   uint256_t minSelfDelegation, uint256_t maxTotalDelegation,
                   vector<uint8_t> slotKeyToRemove, vector<uint8_t> slotKeyToAdd)
         : validatorAddress(move(validatorAddress))
@@ -143,7 +143,7 @@ public:
 };
 
 class Delegate {
-public:
+  public:
     Address delegatorAddress;
     Address validatorAddress;
     uint256_t amount;
@@ -155,7 +155,7 @@ public:
 };
 
 class Undelegate {
-public:
+  public:
     Address delegatorAddress;
     Address validatorAddress;
     uint256_t amount;
@@ -167,7 +167,7 @@ public:
 };
 
 class CollectRewards {
-public:
+  public:
     Address delegatorAddress;
 
     CollectRewards(Address delegatorAddress) : delegatorAddress(move(delegatorAddress)) {}

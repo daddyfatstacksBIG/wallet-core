@@ -17,7 +17,8 @@ struct TWIoTeXStaking;
 
 /// Function to generate Stake message
 TW_EXPORT_STATIC_METHOD
-TWData* _Nonnull TWIoTeXStakingStake(TWData* _Nonnull candidate, uint64_t duration, bool nonDecay, TWData* _Nonnull data);
+TWData* _Nonnull TWIoTeXStakingStake(TWData* _Nonnull candidate, uint64_t duration, bool nonDecay,
+                                     TWData* _Nonnull data);
 
 /// Function to generate Unstake message
 TW_EXPORT_STATIC_METHOD
@@ -33,6 +34,7 @@ TWData* _Nonnull TWIoTeXStakingAddStake(uint64_t pyggIndex, TWData* _Nonnull dat
 
 /// Function to generate MoveStake message
 TW_EXPORT_STATIC_METHOD
-TWData* _Nonnull TWIoTeXStakingMoveStake(uint64_t pyggIndex, TWData* _Nonnull candidate, TWData* _Nonnull data);
+TWData* _Nonnull TWIoTeXStakingMoveStake(uint64_t pyggIndex, TWData* _Nonnull candidate,
+                                         TWData* _Nonnull data);
 
 TW_EXTERN_C_END

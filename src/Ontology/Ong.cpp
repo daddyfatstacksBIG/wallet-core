@@ -22,7 +22,7 @@ Transaction Ong::decimals(uint32_t nonce) {
     return tx;
 }
 
-Transaction Ong::balanceOf(const Address &address, uint32_t nonce) {
+Transaction Ong::balanceOf(const Address& address, uint32_t nonce) {
     auto builder = ParamsBuilder();
     auto invokeCode =
         ParamsBuilder::buildNativeInvokeCode(contractAddress(), version, "balanceOf", address.data);
@@ -31,8 +31,8 @@ Transaction Ong::balanceOf(const Address &address, uint32_t nonce) {
     return tx;
 }
 
-Transaction Ong::transfer(const Signer &from, const Address &to, uint64_t amount,
-                          const Signer &payer, uint64_t gasPrice, uint64_t gasLimit,
+Transaction Ong::transfer(const Signer& from, const Address& to, uint64_t amount,
+                          const Signer& payer, uint64_t gasPrice, uint64_t gasLimit,
                           uint32_t nonce) {
     std::list<boost::any> transferParam{from.getAddress().data, to.data, amount};
     std::vector<boost::any> args{transferParam};
@@ -45,8 +45,8 @@ Transaction Ong::transfer(const Signer &from, const Address &to, uint64_t amount
     return tx;
 }
 
-Transaction Ong::withdraw(const Signer &claimer, const Address &receiver, uint64_t amount,
-                          const Signer &payer, uint64_t gasPrice, uint64_t gasLimit,
+Transaction Ong::withdraw(const Signer& claimer, const Address& receiver, uint64_t amount,
+                          const Signer& payer, uint64_t gasPrice, uint64_t gasLimit,
                           uint32_t nonce) {
     auto ontContract = Address("AFmseVrdL9f9oyCzZefL9tG6UbvhUMqNMV");
     std::list<boost::any> args{claimer.getAddress().data, ontContract.data, receiver.data, amount};

@@ -15,7 +15,7 @@ TW_EXPORT_CLASS
 struct TWTONSigner;
 
 /// Signs a transaction.
-//TW_EXPORT_STATIC_METHOD
-//TW_TON_Proto_SigningOutput TWTONSignerSign(TW_TON_Proto_SigningInput input);
+// TW_EXPORT_STATIC_METHOD
+// TW_TON_Proto_SigningOutput TWTONSignerSign(TW_TON_Proto_SigningInput input);
 
 TW_EXTERN_C_END

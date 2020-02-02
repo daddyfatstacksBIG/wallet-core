@@ -29,6 +29,6 @@ TW_Ontology_Proto_SigningOutput TWOntologySignerSign(TW_Ontology_Proto_SigningIn
     }
 
     auto serialized = output.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()),
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
                                  serialized.size());
 }

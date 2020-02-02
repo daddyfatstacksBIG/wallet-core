@@ -6,15 +6,15 @@
 
 #pragma once
 
-#include <string>
 #include <iostream>
+#include <string>
 
 namespace TW::WalletConsole {
 
 using namespace std;
 
 class Util {
-public:
+  public:
     static bool hex(const string& p, string& res);
     static bool base64Encode(const string& p, string& res);
     static bool base64Decode(const string& p, string& res);

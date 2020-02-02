@@ -20,9 +20,7 @@ Data decode(const string& val) {
     using namespace boost::archive::iterators;
     using It = transform_width<binary_from_base64<string::const_iterator>, 8, 6>;
     return boost::algorithm::trim_right_copy_if(Data(It(begin(val)), It(end(val))),
-    [](char c) {
-        return c == '\0';
-    });
+                                                [](char c) { return c == '\0'; });
 }
 
 string encode(const Data& val) {
@@ -39,11 +37,10 @@ void convertFromBase64Url(string& b) {
     size_t n = b.length();
     char* start = b.data();
     char* end = start + n;
-    for(auto p = start; p < end; ++p) {
+    for (auto p = start; p < end; ++p) {
         if (*p == '-') {
             *p = '+';
-        }
-        else if (*p == '_') {
+        } else if (*p == '_') {
             *p = '/';
         }
     }
@@ -56,11 +53,10 @@ void convertToBase64Url(string& b) {
     size_t n = b.length();
     char* start = b.data();
     char* end = start + n;
-    for(auto p = start; p < end; ++p) {
+    for (auto p = start; p < end; ++p) {
         if (*p == '+') {
             *p = '-';
-        }
-        else if (*p == '/') {
+        } else if (*p == '/') {
             *p = '_';
         }
     }

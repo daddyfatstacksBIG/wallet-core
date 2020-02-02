@@ -9,8 +9,8 @@
 #include "TWTestUtilities.h"
 #include "proto/Solana.pb.h"
 
-#include <TrustWalletCore/TWHDWallet.h>
 #include <TrustWalletCore/TWAnyAddress.h>
+#include <TrustWalletCore/TWHDWallet.h>
 #include <TrustWalletCore/TWSolanaProto.h>
 #include <TrustWalletCore/TWSolanaSigner.h>
 
@@ -134,7 +134,7 @@ TEST(TWSolanaAddress, HDWallet) {
     auto passphrase = "";
 
     auto wallet = WRAP(
-                      TWHDWallet, TWHDWalletCreateWithMnemonic(STRING(mnemonic).get(), STRING(passphrase).get()));
+        TWHDWallet, TWHDWalletCreateWithMnemonic(STRING(mnemonic).get(), STRING(passphrase).get()));
 
     auto privateKey = TWHDWalletGetKey(wallet.get(), TWCoinTypeDerivationPath(TWCoinTypeSolana));
     auto publicKey = TWPrivateKeyGetPublicKeyEd25519(privateKey);

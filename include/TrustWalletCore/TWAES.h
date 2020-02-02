@@ -22,7 +22,7 @@ struct TWAES {
 /// \param data data to encrypt.
 /// \param iv initialization vector.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nullable TWAESCBCEncrypt(TWData *_Nonnull key, TWData *_Nonnull data, TWData *_Nonnull iv);
+TWData* _Nullable TWAESCBCEncrypt(TWData* _Nonnull key, TWData* _Nonnull data, TWData* _Nonnull iv);
 
 /// Decrypts a block of data using AES in Cipher Block Chaining (CBC) mode.
 ///
@@ -30,7 +30,7 @@ TWData *_Nullable TWAESCBCEncrypt(TWData *_Nonnull key, TWData *_Nonnull data, T
 /// \param data data to decrypt.
 /// \param iv initialization vector.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nullable TWAESCBCDecrypt(TWData *_Nonnull key, TWData *_Nonnull data, TWData *_Nonnull iv);
+TWData* _Nullable TWAESCBCDecrypt(TWData* _Nonnull key, TWData* _Nonnull data, TWData* _Nonnull iv);
 
 /// Encrypts a block of data using AES in Counter (CTR) mode.
 ///
@@ -38,7 +38,7 @@ TWData *_Nullable TWAESCBCDecrypt(TWData *_Nonnull key, TWData *_Nonnull data, T
 /// \param data data to encrypt.
 /// \param iv initialization vector.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nullable TWAESCTREncrypt(TWData *_Nonnull key, TWData *_Nonnull data, TWData *_Nonnull iv);
+TWData* _Nullable TWAESCTREncrypt(TWData* _Nonnull key, TWData* _Nonnull data, TWData* _Nonnull iv);
 
 /// Decrypts a block of data using AES in Counter (CTR) mode.
 ///
@@ -46,6 +46,6 @@ TWData *_Nullable TWAESCTREncrypt(TWData *_Nonnull key, TWData *_Nonnull data, T
 /// \param data data to decrypt.
 /// \param iv initialization vector.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nullable TWAESCTRDecrypt(TWData *_Nonnull key, TWData *_Nonnull data, TWData *_Nonnull iv);
+TWData* _Nullable TWAESCTRDecrypt(TWData* _Nonnull key, TWData* _Nonnull data, TWData* _Nonnull iv);
 
 TW_EXTERN_C_END

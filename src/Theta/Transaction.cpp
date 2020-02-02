@@ -51,9 +51,9 @@ Data encode(const std::vector<TxOutput>& outputs) noexcept {
     return RLP::encodeList(encoded);
 }
 
-Transaction::Transaction(Ethereum::Address from, Ethereum::Address to,
-                         uint256_t thetaAmount, uint256_t tfuelAmount,
-                         uint64_t sequence, uint256_t feeAmount /* = 1000000000000*/) {
+Transaction::Transaction(Ethereum::Address from, Ethereum::Address to, uint256_t thetaAmount,
+                         uint256_t tfuelAmount, uint64_t sequence,
+                         uint256_t feeAmount /* = 1000000000000*/) {
     auto fee = Coins(0, feeAmount);
     auto coinsInput = Coins(thetaAmount, tfuelAmount + feeAmount);
     auto coinsOutput = Coins(thetaAmount, tfuelAmount);

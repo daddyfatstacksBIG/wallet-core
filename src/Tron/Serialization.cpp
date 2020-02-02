@@ -6,9 +6,9 @@
 
 #include "Serialization.h"
 #include "../HexCoding.h"
+#include <algorithm>
 #include <sstream>
 #include <vector>
-#include <algorithm>
 
 using namespace TW;
 using namespace TW::Tron;
@@ -136,7 +136,8 @@ json valueJSON(const protocol::TriggerSmartContract& contract) {
     return valueJSON;
 }
 
-json parameterJSON(const google::protobuf::Any &parameter, const protocol::Transaction::Contract::ContractType type) {
+json parameterJSON(const google::protobuf::Any& parameter,
+                   const protocol::Transaction::Contract::ContractType type) {
     json paramJSON;
     paramJSON["type_url"] = typeUrl(type);
 
@@ -203,14 +204,14 @@ json parameterJSON(const google::protobuf::Any &parameter, const protocol::Trans
     return paramJSON;
 }
 
-json contractJSON(const protocol::Transaction::Contract &contract) {
+json contractJSON(const protocol::Transaction::Contract& contract) {
     json contractJSON;
     contractJSON["type"] = typeName(contract.type());
     contractJSON["parameter"] = parameterJSON(contract.parameter(), contract.type());
     return contractJSON;
 }
 
-json raw_dataJSON(const protocol::Transaction::raw &raw) {
+json raw_dataJSON(const protocol::Transaction::raw& raw) {
     json raw_dataJSON;
 
     raw_dataJSON["ref_block_bytes"] = hex(raw.ref_block_bytes());
@@ -223,16 +224,17 @@ json raw_dataJSON(const protocol::Transaction::raw &raw) {
     }
     raw_dataJSON["timestamp"] = raw.timestamp();
     raw_dataJSON["expiration"] = raw.expiration();
-    raw_dataJSON["contract"] = json::array({ contractJSON(raw.contract(0)) });
+    raw_dataJSON["contract"] = json::array({contractJSON(raw.contract(0))});
 
     return raw_dataJSON;
 }
 
-json TW::Tron::transactionJSON(const protocol::Transaction& transaction, const TW::Data& txID, const TW::Data& signature) {
+json TW::Tron::transactionJSON(const protocol::Transaction& transaction, const TW::Data& txID,
+                               const TW::Data& signature) {
     json transactionJSON;
     transactionJSON["raw_data"] = raw_dataJSON(transaction.raw_data());
     transactionJSON["txID"] = hex(txID);
-    transactionJSON["signature"] = json::array({ hex(signature) });
+    transactionJSON["signature"] = json::array({hex(signature)});
 
     return transactionJSON;
 }

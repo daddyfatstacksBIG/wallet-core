@@ -10,7 +10,8 @@
 using namespace TW;
 using namespace TW::Wanchain;
 
-Ethereum::Proto::SigningOutput Signer::sign(const Ethereum::Proto::SigningInput &input) const noexcept {
+Ethereum::Proto::SigningOutput Signer::sign(const Ethereum::Proto::SigningInput& input) const
+    noexcept {
     auto key = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));
     auto transaction = Ethereum::Signer::build(input);
 

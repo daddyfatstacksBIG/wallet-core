@@ -28,7 +28,6 @@ static inline Data prependZero(Data& data) {
     return Data(data);
 }
 
-
 Data Signer::getPreImage(const Proto::SigningInput& input, Address& address) noexcept {
     auto internal = ZilliqaMessage::ProtoTransactionCoreInfo();
     const auto key = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));

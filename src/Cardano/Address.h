@@ -17,28 +17,32 @@ namespace TW::Cardano {
  * ADA Cardano
  *
  * Address scheme V2 is supported, V1 not (but they are accepted as valid).
- * Derivation is BIP39, default derivation path is "m/44'/1815'/0'/0/0", with last element being the account number.
- * Curve is ED25519 with special variations, custom logic in HDWallet and TrezorCrypto lib.
- * Private key is ED25519: 32-byte PK is extended with 32-byte extra extension, and 32-byte chain code.
- * Private key is derived from mnemonic raw entropy (not seed, as in other cases); 96-byte secret is generated (pk, extrension, and chain code).
- * Public key is 64-byte: the 32-byte ED25519 public key plus the 32-byte chain code of the PK.
- * Address derivation: Only V2, type 0 (=public key) addresses are generated.
+ * Derivation is BIP39, default derivation path is "m/44'/1815'/0'/0/0", with last element being the
+ * account number. Curve is ED25519 with special variations, custom logic in HDWallet and
+ * TrezorCrypto lib. Private key is ED25519: 32-byte PK is extended with 32-byte extra extension,
+ * and 32-byte chain code. Private key is derived from mnemonic raw entropy (not seed, as in other
+ * cases); 96-byte secret is generated (pk, extrension, and chain code). Public key is 64-byte: the
+ * 32-byte ED25519 public key plus the 32-byte chain code of the PK. Address derivation: Only V2,
+ * type 0 (=public key) addresses are generated.
  * - CBOR binary scheme is used inside addresses.
- * - root hash: The following CBOR data is hashed: [0, [0, pubkey64], {}], first SHA3_256, then Blake2B.
+ * - root hash: The following CBOR data is hashed: [0, [0, pubkey64], {}], first SHA3_256, then
+ * Blake2B.
  * - attributes: CBOR encoding of an empty map ({}, empty in V2)
  * - address payload is CBOR encoding of [root, attributes, type=0]
  * - address data is CBOR encoding of [tag 24 (payload), CRC32(payload)]
  * - address is Base58 encode of address data.
  *
  * Address compatibility:
- * AdaLite uses V1 with 12-word mnemonic phrases, V2 with 15-word phrases, and standard BIP39 derivation, with gap lookup.
- * So AdaLite mnemonic wallets can be imported into TW, but default-12-word TW wallets cannot be imported to AdaLite, as it uses V1 for it.
- * Daedalus (official full node wallet) uses V1, non-standard derivation scheme, and non-sequential random account indexes.  Not compatible.
+ * AdaLite uses V1 with 12-word mnemonic phrases, V2 with 15-word phrases, and standard BIP39
+ * derivation, with gap lookup. So AdaLite mnemonic wallets can be imported into TW, but
+ * default-12-word TW wallets cannot be imported to AdaLite, as it uses V1 for it. Daedalus
+ * (official full node wallet) uses V1, non-standard derivation scheme, and non-sequential random
+ * account indexes.  Not compatible.
  */
 
 /// A Cardano address.  Type is 0 (public key).
 class Address {
-public:
+  public:
     /// root key
     Data root;
 
@@ -68,8 +72,10 @@ public:
     /// Get the CBOR address data (before Base58 encoding)
     TW::Data getCborData() const;
 
-    /// Check validity and parse elements of a string address.  Throws on error. Used internally by isValid and ctor.
-    static bool parseAndCheck(const std::string& addr, TW::Data& root_out, TW::Data& attrs_out, TW::byte& type_out);
+    /// Check validity and parse elements of a string address.  Throws on error. Used internally by
+    /// isValid and ctor.
+    static bool parseAndCheck(const std::string& addr, TW::Data& root_out, TW::Data& attrs_out,
+                              TW::byte& type_out);
 };
 
 inline bool operator==(const Address& lhs, const Address& rhs) {

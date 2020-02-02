@@ -12,7 +12,6 @@
 using namespace TW;
 using namespace TW::NULS;
 
-
 TEST(NULSAddress, StaticInvalid) {
     ASSERT_FALSE(Address::isValid("abc"));
     ASSERT_FALSE(Address::isValid("aaeb60f3e94c9b9a09f33669435e7ef1beaed"));
@@ -47,14 +46,16 @@ TEST(NULSAddress, FromPrivateKey) {
 
 TEST(NULSAddress, FromCompressedPublicKey) {
     const auto publicKey =
-        PublicKey(parse_hex("0244d50ff36c3136b4bf81f0c74b066695bc2af43e28d7f0ca1d48fcfd084bea66"), TWPublicKeyTypeSECP256k1);
+        PublicKey(parse_hex("0244d50ff36c3136b4bf81f0c74b066695bc2af43e28d7f0ca1d48fcfd084bea66"),
+                  TWPublicKeyTypeSECP256k1);
     const auto address = Address(publicKey);
 
     ASSERT_EQ(address.string(), "NULSd6HgUiMKPNi221bPfqvvho8QpuYBvn1x3");
 }
 
 TEST(NULSAddress, FromPrivateKey33) {
-    const auto privateKey = PrivateKey(parse_hex("d77580833f0b3c35b7114c23d6b66790d726c308baf237ec8c369152f2c08d27"));
+    const auto privateKey =
+        PrivateKey(parse_hex("d77580833f0b3c35b7114c23d6b66790d726c308baf237ec8c369152f2c08d27"));
     const auto publicKey = PublicKey(privateKey.getPublicKey(TWPublicKeyTypeSECP256k1));
     const auto address = Address(publicKey);
 

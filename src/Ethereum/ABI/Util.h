@@ -26,8 +26,7 @@ inline size_t padNeeded32(size_t len) {
 }
 
 // uint256_t -> int256_t conversion, non trivial
-inline int256_t int256FromUint256(uint256_t x)
-{
+inline int256_t int256FromUint256(uint256_t x) {
     static const uint256_t maxNeg = uint256_t(1) << 255;
     if (x > maxNeg) {
         return -((int256_t)~x) - 1;

@@ -27,7 +27,7 @@ std::optional<ScryptValidationError> ScryptParameters::validate() const {
         return ScryptValidationError::invalidCostFactor;
     }
     if ((r > std::numeric_limits<uint32_t>::max() / 128 / p) ||
-            (n > std::numeric_limits<uint32_t>::max() / 128 / r)) {
+        (n > std::numeric_limits<uint32_t>::max() / 128 / r)) {
         return ScryptValidationError::overflow;
     }
     return {};

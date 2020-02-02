@@ -18,15 +18,11 @@ const std::string kPrefixXrb{"xrb_"};
 bool Address::isValid(const std::string& address) {
     bool valid = false;
 
-    valid = nano_validate_address(
-                kPrefixNano.c_str(), kPrefixNano.length(),
-                address.c_str(), address.length(),
-                NULL);
+    valid = nano_validate_address(kPrefixNano.c_str(), kPrefixNano.length(), address.c_str(),
+                                  address.length(), NULL);
     if (!valid) {
-        valid = nano_validate_address(
-                    kPrefixXrb.c_str(), kPrefixXrb.length(),
-                    address.c_str(), address.length(),
-                    NULL);
+        valid = nano_validate_address(kPrefixXrb.c_str(), kPrefixXrb.length(), address.c_str(),
+                                      address.length(), NULL);
     }
 
     return valid;
@@ -35,16 +31,12 @@ bool Address::isValid(const std::string& address) {
 Address::Address(const std::string& address) {
     bool valid = false;
 
-    valid = nano_validate_address(
-                kPrefixNano.c_str(), kPrefixNano.length(),
-                address.c_str(), address.length(),
-                bytes.data());
+    valid = nano_validate_address(kPrefixNano.c_str(), kPrefixNano.length(), address.c_str(),
+                                  address.length(), bytes.data());
 
     if (!valid) {
-        valid = nano_validate_address(
-                    kPrefixXrb.c_str(), kPrefixXrb.length(),
-                    address.c_str(), address.length(),
-                    bytes.data());
+        valid = nano_validate_address(kPrefixXrb.c_str(), kPrefixXrb.length(), address.c_str(),
+                                      address.length(), bytes.data());
     }
 
     // Ensure address is valid
@@ -65,10 +57,8 @@ Address::Address(const PublicKey& publicKey) {
 std::string Address::string() const {
     std::array<char, 5 + 60 + 1> out = {0};
 
-    size_t count = nano_get_address(
-                       bytes.data(),
-                       kPrefixNano.c_str(), kPrefixNano.length(),
-                       out.data(), out.size());
+    size_t count = nano_get_address(bytes.data(), kPrefixNano.c_str(), kPrefixNano.length(),
+                                    out.data(), out.size());
     out[count] = 0;
     return std::string(out.data());
 }

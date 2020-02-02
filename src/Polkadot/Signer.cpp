@@ -14,7 +14,7 @@ using namespace TW::Polkadot;
 
 static constexpr size_t hashTreshold = 256;
 
-Proto::SigningOutput Signer::sign(const Proto::SigningInput &input) noexcept {
+Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
     auto privateKey = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));
     auto publicKey = privateKey.getPublicKey(TWPublicKeyTypeED25519);
     auto extrinsic = Extrinsic(input);

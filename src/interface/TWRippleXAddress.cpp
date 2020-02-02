@@ -15,38 +15,40 @@
 using namespace TW;
 using namespace TW::Ripple;
 
-bool TWRippleXAddressEqual(struct TWRippleXAddress *_Nonnull lhs, struct TWRippleXAddress *_Nonnull rhs) {
+bool TWRippleXAddressEqual(struct TWRippleXAddress* _Nonnull lhs,
+                           struct TWRippleXAddress* _Nonnull rhs) {
     return lhs->impl == rhs->impl;
 }
 
-bool TWRippleXAddressIsValidString(TWString *_Nonnull string) {
+bool TWRippleXAddressIsValidString(TWString* _Nonnull string) {
     auto s = reinterpret_cast<const std::string*>(string);
     return XAddress::isValid(*s);
 }
 
-struct TWRippleXAddress *_Nullable TWRippleXAddressCreateWithString(TWString *_Nonnull string) {
+struct TWRippleXAddress* _Nullable TWRippleXAddressCreateWithString(TWString* _Nonnull string) {
     auto s = reinterpret_cast<const std::string*>(string);
     try {
         const auto address = XAddress(*s);
-        return new TWRippleXAddress{ std::move(address) };
+        return new TWRippleXAddress{std::move(address)};
     } catch (...) {
         return nullptr;
     }
 }
 
-struct TWRippleXAddress *_Nonnull TWRippleXAddressCreateWithPublicKey(struct TWPublicKey *_Nonnull publicKey, const uint32_t tag) {
-    return new TWRippleXAddress{ XAddress(publicKey->impl, tag) };
+struct TWRippleXAddress* _Nonnull TWRippleXAddressCreateWithPublicKey(
+    struct TWPublicKey* _Nonnull publicKey, const uint32_t tag) {
+    return new TWRippleXAddress{XAddress(publicKey->impl, tag)};
 }
 
-void TWRippleXAddressDelete(struct TWRippleXAddress *_Nonnull address) {
+void TWRippleXAddressDelete(struct TWRippleXAddress* _Nonnull address) {
     delete address;
 }
 
-TWString *_Nonnull TWRippleXAddressDescription(struct TWRippleXAddress *_Nonnull address) {
+TWString* _Nonnull TWRippleXAddressDescription(struct TWRippleXAddress* _Nonnull address) {
     const auto string = address->impl.string();
     return TWStringCreateWithUTF8Bytes(string.c_str());
 }
 
-uint32_t TWRippleXAddressTag(struct TWRippleXAddress *_Nonnull address) {
+uint32_t TWRippleXAddressTag(struct TWRippleXAddress* _Nonnull address) {
     return address->impl.tag;
 }

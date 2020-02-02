@@ -8,15 +8,16 @@
 
 #include <string>
 
-#include "../PublicKey.h"
 #include "../Data.h"
+#include "../PublicKey.h"
 
 namespace TW::Bravo {
 
 class Address {
-public:
+  public:
     /// Determines whether a string makes a valid Bravo address.
-    static bool isValid(const std::string& string, const std::vector<std::string>& validPrefixes = prefixes);
+    static bool isValid(const std::string& string,
+                        const std::vector<std::string>& validPrefixes = prefixes);
 
     /// Initializes a Bravo address from a string representation.
     Address(const std::string& string, const std::vector<std::string>& validPrefixes = prefixes);
@@ -34,19 +35,20 @@ public:
 
     static const std::vector<std::string> prefixes;
 
-private:
+  private:
     // Class constants
     static const size_t Size = 33;
 
     Data bytes;
     std::string prefix;
 
-    static bool extractKeyData(const std::string& string, const std::vector<std::string>& validPrefixes, Address *address = nullptr);
+    static bool extractKeyData(const std::string& string,
+                               const std::vector<std::string>& validPrefixes,
+                               Address* address = nullptr);
 };
 
-
 inline bool operator==(const Address& lhs, const Address& rhs) {
-    return  lhs.bytes == rhs.bytes && lhs.prefix == rhs.prefix;
+    return lhs.bytes == rhs.bytes && lhs.prefix == rhs.prefix;
 }
 
-} // namespace
+} // namespace TW::Bravo

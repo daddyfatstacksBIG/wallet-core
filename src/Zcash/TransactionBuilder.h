@@ -10,8 +10,8 @@
 #include "../Bitcoin/TransactionBuilder.h"
 #include "../Bitcoin/TransactionPlan.h"
 #include "../Bitcoin/UnspentSelector.h"
+#include "../HexCoding.h"
 #include "../proto/Bitcoin.pb.h"
-#include  "../HexCoding.h"
 #include <TrustWalletCore/TWCoinType.h>
 
 #include <algorithm>

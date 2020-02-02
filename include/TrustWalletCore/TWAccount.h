@@ -7,8 +7,8 @@
 #pragma once
 
 #include "TWBase.h"
-#include "TWString.h"
 #include "TWCoinType.h"
+#include "TWString.h"
 
 TW_EXTERN_C_BEGIN
 
@@ -17,21 +17,23 @@ TW_EXPORT_CLASS
 struct TWAccount;
 
 TW_EXPORT_STATIC_METHOD
-struct TWAccount *_Nonnull TWAccountCreate(TWString *_Nonnull address, TWString *_Nonnull derivationPath, TWString *_Nonnull extendedPublicKey);
+struct TWAccount* _Nonnull TWAccountCreate(TWString* _Nonnull address,
+                                           TWString* _Nonnull derivationPath,
+                                           TWString* _Nonnull extendedPublicKey);
 
 TW_EXPORT_METHOD
-void TWAccountDelete(struct TWAccount *_Nonnull account);
+void TWAccountDelete(struct TWAccount* _Nonnull account);
 
 TW_EXPORT_PROPERTY
-TWString *_Nonnull TWAccountAddress(struct TWAccount *_Nonnull account);
+TWString* _Nonnull TWAccountAddress(struct TWAccount* _Nonnull account);
 
 TW_EXPORT_PROPERTY
-TWString *_Nonnull TWAccountDerivationPath(struct TWAccount *_Nonnull account);
+TWString* _Nonnull TWAccountDerivationPath(struct TWAccount* _Nonnull account);
 
 TW_EXPORT_PROPERTY
-TWString *_Nonnull TWAccountExtendedPublicKey(struct TWAccount *_Nonnull account);
+TWString* _Nonnull TWAccountExtendedPublicKey(struct TWAccount* _Nonnull account);
 
 TW_EXPORT_PROPERTY
-enum TWCoinType TWAccountCoin(struct TWAccount *_Nonnull account);
+enum TWCoinType TWAccountCoin(struct TWAccount* _Nonnull account);
 
 TW_EXTERN_C_END

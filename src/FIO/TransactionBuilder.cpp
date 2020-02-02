@@ -18,10 +18,10 @@ using namespace TW;
 using namespace std;
 using json = nlohmann::json;
 
-
-string TransactionBuilder::createRegisterFioAddress(const Address& address, const PrivateKey& privateKey,
-        const string& fioName, const std::string& ownerPublicKey,
-        const ChainParams& chainParams, uint64_t fee, const string& walletFioName, uint32_t expiryTime) {
+string TransactionBuilder::createRegisterFioAddress(
+    const Address& address, const PrivateKey& privateKey, const string& fioName,
+    const std::string& ownerPublicKey, const ChainParams& chainParams, uint64_t fee,
+    const string& walletFioName, uint32_t expiryTime) {
 
     const auto apiName = "regaddress";
 
@@ -53,9 +53,11 @@ string TransactionBuilder::createRegisterFioAddress(const Address& address, cons
     return signAdnBuildTx(chainParams.chainId, serTx, privateKey);
 }
 
-string TransactionBuilder::createAddPubAddress(const Address& address, const PrivateKey& privateKey, const string& fioName,
-        const vector<pair<string, string>>& pubAddresses,
-        const ChainParams& chainParams, uint64_t fee, const string& walletFioName, uint32_t expiryTime) {
+string TransactionBuilder::createAddPubAddress(const Address& address, const PrivateKey& privateKey,
+                                               const string& fioName,
+                                               const vector<pair<string, string>>& pubAddresses,
+                                               const ChainParams& chainParams, uint64_t fee,
+                                               const string& walletFioName, uint32_t expiryTime) {
 
     const auto apiName = "addaddress";
 
@@ -88,8 +90,9 @@ string TransactionBuilder::createAddPubAddress(const Address& address, const Pri
 }
 
 string TransactionBuilder::createTransfer(const Address& address, const PrivateKey& privateKey,
-        const string& payeePublicKey, uint64_t amount,
-        const ChainParams& chainParams, uint64_t fee, const string& walletFioName, uint32_t expiryTime) {
+                                          const string& payeePublicKey, uint64_t amount,
+                                          const ChainParams& chainParams, uint64_t fee,
+                                          const string& walletFioName, uint32_t expiryTime) {
 
     const auto apiName = "trnsfiopubky";
 
@@ -121,7 +124,8 @@ string TransactionBuilder::createTransfer(const Address& address, const PrivateK
     return signAdnBuildTx(chainParams.chainId, serTx, privateKey);
 }
 
-string TransactionBuilder::signAdnBuildTx(const Data& chainId, const Data& packedTx, const PrivateKey& privateKey) {
+string TransactionBuilder::signAdnBuildTx(const Data& chainId, const Data& packedTx,
+                                          const PrivateKey& privateKey) {
     // create signature
     Data sigBuf(chainId);
     append(sigBuf, packedTx);
@@ -129,12 +133,10 @@ string TransactionBuilder::signAdnBuildTx(const Data& chainId, const Data& packe
     string signature = Signer::signatureToBsase58(Signer::sign(privateKey, sigBuf));
 
     // Build json
-    json tx = {
-        {"signatures", json::array({signature})},
-        {"compression", "none"},
-        {"packed_context_free_data", ""},
-        {"packed_trx", hex(packedTx)}
-    };
+    json tx = {{"signatures", json::array({signature})},
+               {"compression", "none"},
+               {"packed_context_free_data", ""},
+               {"packed_trx", hex(packedTx)}};
     return tx.dump();
 }
 

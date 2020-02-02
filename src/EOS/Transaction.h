@@ -6,19 +6,19 @@
 
 #pragma once
 
-#include "../Data.h"
 #include "Action.h"
 #include "Prefixes.h"
+#include "../Data.h"
 
 #include <nlohmann/json.hpp>
 
-#include <set>
 #include <array>
+#include <set>
 
 namespace TW::EOS {
 
 class Signature {
-public:
+  public:
     Data data;
     Type type;
 
@@ -26,32 +26,30 @@ public:
     static const size_t ChecksumSize = 4;
 
     Signature(Data sig, Type type);
-    virtual ~Signature() { }
+    virtual ~Signature() {}
     void serialize(Data& os) const noexcept;
     std::string string() const noexcept;
 };
 
 class Extension {
-public:
+  public:
     uint16_t type;
     Data buffer;
 
-    Extension(uint16_t type, Data buffer) : type(type), buffer(buffer) { }
-    virtual ~Extension() { }
+    Extension(uint16_t type, Data buffer) : type(type), buffer(buffer) {}
+    virtual ~Extension() {}
     void serialize(Data& os) const noexcept;
     nlohmann::json serialize() const noexcept;
 };
 
 class Transaction {
-public:
+  public:
     Transaction(const Data& referenceBlockId, int32_t referenceBlockTime);
 
     void serialize(Data& os) const noexcept;
     nlohmann::json serialize() const;
 
-    inline bool isValid() {
-        return maxNetUsageWords < UINT32_MAX / 8UL;
-    }
+    inline bool isValid() { return maxNetUsageWords < UINT32_MAX / 8UL; }
 
     uint16_t refBlockNumber = 0;
     uint32_t refBlockPrefix = 0;

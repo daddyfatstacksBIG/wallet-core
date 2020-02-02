@@ -6,26 +6,27 @@
 
 #pragma once
 
-#include "Keys.h"
 #include "Coins.h"
-#include "HexCoding.h"
 #include "Data.h"
+#include "HexCoding.h"
+#include "Keys.h"
 
-#include <string>
 #include <iostream>
+#include <string>
 
 namespace TW::WalletConsole {
 
 using namespace std;
 
 class Address {
-private:
+  private:
     ostream& _out;
     const Coins& _coins;
     const Keys& _keys;
 
-public:
-    Address(ostream& out, const Coins& coins, const Keys& keys) : _out(out), _coins(coins), _keys(keys) {}
+  public:
+    Address(ostream& out, const Coins& coins, const Keys& keys)
+        : _out(out), _coins(coins), _keys(keys) {}
     bool addrPub(const string& coinid, const string& pubKey, string& res);
     bool addrPri(const string& coinid, const string& priKey, string& res);
     bool addr(const string& coinid, const string& addrStr, string& res);

@@ -5,36 +5,28 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "CommandExecutor.h"
-#include "WalletConsole.h"
-#include "Keys.h"
-#include "Coins.h"
-#include "Util.h"
 #include "Address.h"
+#include "Coins.h"
+#include "Keys.h"
 #include "TonCoin.h"
+#include "Util.h"
+#include "WalletConsole.h"
 
 #include "Base64.h"
-#include "HexCoding.h"
 #include "Data.h"
+#include "HexCoding.h"
 
+#include <cassert>
 #include <iostream>
 #include <vector>
-#include <cassert>
 
 namespace TW::WalletConsole {
 
 using namespace std;
 using namespace TW;
 
-
 CommandExecutor::CommandExecutor(ostream& out)
-    :
-    _out(out),
-    _coins(out),
-    _buffer(out),
-    _keys(out, _coins),
-    _address(out, _coins, _keys)
-{
-}
+    : _out(out), _coins(out), _buffer(out), _keys(out, _coins), _address(out, _coins, _keys) {}
 
 void CommandExecutor::init() {
     _coins.init();
@@ -52,24 +44,39 @@ void CommandExecutor::help() const {
     _out << "  buffer                  Take buffer values" << endl;
     _out << "Coins:" << endl;
     _out << "  coins                   List known coins" << endl;
-    _out << "  coin <coin>             Set active coin, selected by its ID or symbol or name" << endl;
+    _out << "  coin <coin>             Set active coin, selected by its ID or symbol or name"
+         << endl;
     _out << "Keys:" << endl;
     _out << "  newKey                  Create new pseudo-random 32-byte key (secret!)" << endl;
-    _out << "  pubPri <priKey>         Derive public key from a secret private key (type is coin-dependent)" << endl;
+    _out << "  pubPri <priKey>         Derive public key from a secret private key (type is "
+            "coin-dependent)"
+         << endl;
     _out << "  priPub <pubKey>         Derive private key from public key :)" << endl;
     _out << "  setMnemonic <word1> ... Set current mnemonic, several words (secret!)" << endl;
-    _out << "  newMnemonic <strength>  Create and store a new mnemonic, of strength (128 -- 256) (secret!)" << endl;
+    _out << "  newMnemonic <strength>  Create and store a new mnemonic, of strength (128 -- 256) "
+            "(secret!)"
+         << endl;
     _out << "  dumpSeed                Dump the seed of the current mnemonic (secret!)" << endl;
     _out << "  dumpMnemonic            Dump the current mnemonic (secret!)" << endl;
-    _out << "  dumpDP                  Dump the default derivation path of the current coin (ex.: m/84'/0'/0'/0/0)" << endl;
-    _out << "  priDP [<derivPath>]     Derive a new private key for the coin, from the current mnemonic and given derivation path." << endl;
-    _out << "                          If derivation path is missing, the default one is used (see dumpDP)." << endl;
+    _out << "  dumpDP                  Dump the default derivation path of the current coin (ex.: "
+            "m/84'/0'/0'/0/0)"
+         << endl;
+    _out << "  priDP [<derivPath>]     Derive a new private key for the coin, from the current "
+            "mnemonic and given derivation path."
+         << endl;
+    _out << "                          If derivation path is missing, the default one is used (see "
+            "dumpDP)."
+         << endl;
     _out << "Addresses:" << endl;
     _out << "  addrPub <pubKey>        Create <coin> address from public key" << endl;
     _out << "  addrPri <priKey>        Create <coin> address from private key" << endl;
     _out << "  addr <addr>             Check string <coin> address" << endl;
-    _out << "  addrDefault             Derive default address, for current coin, fom current mnemonic; see dumpDP" << endl;
-    _out << "  addrDP <derivPath>      Derive a new address with the given derivation path (using current coin and mnemonic)" << endl;
+    _out << "  addrDefault             Derive default address, for current coin, fom current "
+            "mnemonic; see dumpDP"
+         << endl;
+    _out << "  addrDP <derivPath>      Derive a new address with the given derivation path (using "
+            "current coin and mnemonic)"
+         << endl;
     _out << "Coin-specific methods:" << endl;
     _out << "  tonInitMsg <priKey>     Build TON account initialization message." << endl;
     _out << "Transformations:" << endl;
@@ -83,9 +90,14 @@ void CommandExecutor::help() const {
     _out << "Examples:" << endl;
     _out << "> coin bitcoin <Enter> newKey <Enter> addrPri # <Enter> fileW btcaddr.txt #" << endl;
     _out << "> newKey <Enter> pubPri # <Enter> addrPub #" << endl;
-    _out << "> coin algo <Enter> addr LCSUSBOLNVT6BND6DWWGM4DLVUYJN3PGBT4T7LTCMDMKS7TR7FZAOHOVPE" << endl;
-    _out << "> coin btc <Enter> dumpDP <Enter> priDP <Enter> priDP m/84'/0'/0'/0/1 <Enter> pubPri # <Enter> addrPub # <Enter> addr #" << endl;
-    _out << "> coin nano <Enter> dumpDP <Enter> setMnemonic word1 word2 ... word12 <Enter> addrDefault <Enter> addrDP m/44'/165'/0' <Enter> addrDP m/44'/165'/1'" << endl;
+    _out << "> coin algo <Enter> addr LCSUSBOLNVT6BND6DWWGM4DLVUYJN3PGBT4T7LTCMDMKS7TR7FZAOHOVPE"
+         << endl;
+    _out << "> coin btc <Enter> dumpDP <Enter> priDP <Enter> priDP m/84'/0'/0'/0/1 <Enter> pubPri "
+            "# <Enter> addrPub # <Enter> addr #"
+         << endl;
+    _out << "> coin nano <Enter> dumpDP <Enter> setMnemonic word1 word2 ... word12 <Enter> "
+            "addrDefault <Enter> addrDP m/44'/165'/0' <Enter> addrDP m/44'/165'/1'"
+         << endl;
     _out << "> hex Hello <Enter> base64Encode # <Enter> base64Decode # <Enter> buffer" << endl;
 
     _out << endl;
@@ -170,7 +182,8 @@ bool CommandExecutor::executeOne(const string& cmd, const vector<string>& params
     }
     if (cmd == "pridp") {
         string dp;
-        if (params.size() >= 2) dp = params[1];
+        if (params.size() >= 2)
+            dp = params[1];
         return _keys.priDP(_activeCoin, dp, res);
     }
 
@@ -268,8 +281,8 @@ void CommandExecutor::execute(const string& cmd, const vector<string>& params) {
 }
 
 bool CommandExecutor::prepareInputs(const vector<string>& p_in, vector<string>& p_out) {
-    p_out = vector<string> {};
-    for (auto p: p_in) {
+    p_out = vector<string>{};
+    for (auto p : p_in) {
         string p2;
         if (!_buffer.prepareInput(p, p2)) {
             return false;
@@ -294,7 +307,7 @@ bool CommandExecutor::checkMinParams(const vector<string>& params, int n) const 
         return true;
     }
     _out << "At least " << n << " parameters are needed! See 'help'" << endl;
-    //help();
+    // help();
     return false;
 }
 
@@ -308,7 +321,8 @@ bool CommandExecutor::setCoin(const string& coin, bool force) {
         return true;
     }
     _activeCoin = c.id;
-    _out << "Set active coin to: " << c.id << "    Use 'coin' to change.  (name: '" << c.name << "'  symbol: " << c.symbol << "  numericalid: " << c.c << ")" << endl;
+    _out << "Set active coin to: " << c.id << "    Use 'coin' to change.  (name: '" << c.name
+         << "'  symbol: " << c.symbol << "  numericalid: " << c.c << ")" << endl;
     return true;
 }
 

@@ -23,7 +23,8 @@ static const std::string valid_checksum[] = {
 
 static const std::string invalid_checksum[] = {
     " 1nwldj5",
-    "\x7f""1axkwrx",
+    "\x7f"
+    "1axkwrx",
     "an84characterslonghumanreadablepartthatcontainsthenumber1andtheexcludedcharactersbio1569pvx",
     "pzry9x0s0muk",
     "1pzry9x0s0muk",
@@ -45,54 +46,30 @@ struct invalid_address_data {
 };
 
 static const struct valid_address_data valid_address[] = {
-    {
-        "BC1QW508D6QEJXTDG4Y5R3ZARVARY0C5XW7KV8F3T4",
-        22, {
-            0x00, 0x14, 0x75, 0x1e, 0x76, 0xe8, 0x19, 0x91, 0x96, 0xd4, 0x54,
-            0x94, 0x1c, 0x45, 0xd1, 0xb3, 0xa3, 0x23, 0xf1, 0x43, 0x3b, 0xd6
-        }
-    },
-    {
-        "tb1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3q0sl5k7",
-        34, {
-            0x00, 0x20, 0x18, 0x63, 0x14, 0x3c, 0x14, 0xc5, 0x16, 0x68, 0x04,
-            0xbd, 0x19, 0x20, 0x33, 0x56, 0xda, 0x13, 0x6c, 0x98, 0x56, 0x78,
-            0xcd, 0x4d, 0x27, 0xa1, 0xb8, 0xc6, 0x32, 0x96, 0x04, 0x90, 0x32,
-            0x62
-        }
-    },
-    {
-        "bc1pw508d6qejxtdg4y5r3zarvary0c5xw7kw508d6qejxtdg4y5r3zarvary0c5xw7k7grplx",
-        42, {
-            0x81, 0x28, 0x75, 0x1e, 0x76, 0xe8, 0x19, 0x91, 0x96, 0xd4, 0x54,
-            0x94, 0x1c, 0x45, 0xd1, 0xb3, 0xa3, 0x23, 0xf1, 0x43, 0x3b, 0xd6,
-            0x75, 0x1e, 0x76, 0xe8, 0x19, 0x91, 0x96, 0xd4, 0x54, 0x94, 0x1c,
-            0x45, 0xd1, 0xb3, 0xa3, 0x23, 0xf1, 0x43, 0x3b, 0xd6
-        }
-    },
-    {
-        "BC1SW50QA3JX3S",
-        4, {
-            0x90, 0x02, 0x75, 0x1e
-        }
-    },
-    {
-        "bc1zw508d6qejxtdg4y5r3zarvaryvg6kdaj",
-        18, {
-            0x82, 0x10, 0x75, 0x1e, 0x76, 0xe8, 0x19, 0x91, 0x96, 0xd4, 0x54,
-            0x94, 0x1c, 0x45, 0xd1, 0xb3, 0xa3, 0x23
-        }
-    },
-    {
-        "tb1qqqqqp399et2xygdj5xreqhjjvcmzhxw4aywxecjdzew6hylgvsesrxh6hy",
-        34, {
-            0x00, 0x20, 0x00, 0x00, 0x00, 0xc4, 0xa5, 0xca, 0xd4, 0x62, 0x21,
-            0xb2, 0xa1, 0x87, 0x90, 0x5e, 0x52, 0x66, 0x36, 0x2b, 0x99, 0xd5,
-            0xe9, 0x1c, 0x6c, 0xe2, 0x4d, 0x16, 0x5d, 0xab, 0x93, 0xe8, 0x64,
-            0x33
-        }
-    }
-};
+    {"BC1QW508D6QEJXTDG4Y5R3ZARVARY0C5XW7KV8F3T4",
+     22,
+     {0x00, 0x14, 0x75, 0x1e, 0x76, 0xe8, 0x19, 0x91, 0x96, 0xd4, 0x54,
+      0x94, 0x1c, 0x45, 0xd1, 0xb3, 0xa3, 0x23, 0xf1, 0x43, 0x3b, 0xd6}},
+    {"tb1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3q0sl5k7",
+     34,
+     {0x00, 0x20, 0x18, 0x63, 0x14, 0x3c, 0x14, 0xc5, 0x16, 0x68, 0x04, 0xbd,
+      0x19, 0x20, 0x33, 0x56, 0xda, 0x13, 0x6c, 0x98, 0x56, 0x78, 0xcd, 0x4d,
+      0x27, 0xa1, 0xb8, 0xc6, 0x32, 0x96, 0x04, 0x90, 0x32, 0x62}},
+    {"bc1pw508d6qejxtdg4y5r3zarvary0c5xw7kw508d6qejxtdg4y5r3zarvary0c5xw7k7grplx",
+     42,
+     {0x81, 0x28, 0x75, 0x1e, 0x76, 0xe8, 0x19, 0x91, 0x96, 0xd4, 0x54, 0x94, 0x1c, 0x45,
+      0xd1, 0xb3, 0xa3, 0x23, 0xf1, 0x43, 0x3b, 0xd6, 0x75, 0x1e, 0x76, 0xe8, 0x19, 0x91,
+      0x96, 0xd4, 0x54, 0x94, 0x1c, 0x45, 0xd1, 0xb3, 0xa3, 0x23, 0xf1, 0x43, 0x3b, 0xd6}},
+    {"BC1SW50QA3JX3S", 4, {0x90, 0x02, 0x75, 0x1e}},
+    {"bc1zw508d6qejxtdg4y5r3zarvaryvg6kdaj",
+     18,
+     {0x82, 0x10, 0x75, 0x1e, 0x76, 0xe8, 0x19, 0x91, 0x96, 0xd4, 0x54, 0x94, 0x1c, 0x45, 0xd1,
+      0xb3, 0xa3, 0x23}},
+    {"tb1qqqqqp399et2xygdj5xreqhjjvcmzhxw4aywxecjdzew6hylgvsesrxh6hy",
+     34,
+     {0x00, 0x20, 0x00, 0x00, 0x00, 0xc4, 0xa5, 0xca, 0xd4, 0x62, 0x21, 0xb2,
+      0xa1, 0x87, 0x90, 0x5e, 0x52, 0x66, 0x36, 0x2b, 0x99, 0xd5, 0xe9, 0x1c,
+      0x6c, 0xe2, 0x4d, 0x16, 0x5d, 0xab, 0x93, 0xe8, 0x64, 0x33}}};
 
 static const std::string invalid_address[] = {
     "bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t5",
@@ -107,11 +84,7 @@ static const std::string invalid_address[] = {
 };
 
 static const invalid_address_data invalid_address_enc[] = {
-    {"BC", 0, 20},
-    {"bc", 0, 21},
-    {"bc", 17, 32},
-    {"bc", 1, 1},
-    {"bc", 16, 41},
+    {"BC", 0, 20}, {"bc", 0, 21}, {"bc", 17, 32}, {"bc", 1, 1}, {"bc", 16, 41},
 };
 
 static std::vector<uint8_t> segwit_scriptpubkey(int witver, const std::vector<uint8_t>& witprog) {
@@ -124,13 +97,17 @@ static std::vector<uint8_t> segwit_scriptpubkey(int witver, const std::vector<ui
 
 bool case_insensitive_equal(const std::string& s1, const std::string& s2) {
     size_t i = 0;
-    if (s1.size() != s2.size()) return false;
+    if (s1.size() != s2.size())
+        return false;
     while (i < s1.size() && i < s2.size()) {
         char c1 = s1[i];
         char c2 = s2[i];
-        if (c1 >= 'A' && c1 <= 'Z') c1 = (c1 - 'A') + 'a';
-        if (c2 >= 'A' && c2 <= 'Z') c2 = (c2 - 'A') + 'a';
-        if (c1 != c2) return false;
+        if (c1 >= 'A' && c1 <= 'Z')
+            c1 = (c1 - 'A') + 'a';
+        if (c2 >= 'A' && c2 <= 'Z')
+            c2 = (c2 - 'A') + 'a';
+        if (c1 != c2)
+            return false;
         ++i;
     }
     return true;
@@ -161,8 +138,10 @@ TEST(SegwitAddress, ValidAddress) {
         auto dec = SegwitAddress::decode(valid_address[i].address);
         ASSERT_TRUE(dec.second);
 
-        std::vector<uint8_t> spk = segwit_scriptpubkey(dec.first.witnessVersion, dec.first.witnessProgram);
-        ASSERT_TRUE(spk.size() == valid_address[i].scriptPubKeyLen && std::memcmp(&spk[0], valid_address[i].scriptPubKey, spk.size()) == 0);
+        std::vector<uint8_t> spk =
+            segwit_scriptpubkey(dec.first.witnessVersion, dec.first.witnessProgram);
+        ASSERT_TRUE(spk.size() == valid_address[i].scriptPubKeyLen &&
+                    std::memcmp(&spk[0], valid_address[i].scriptPubKey, spk.size()) == 0);
 
         std::string recode = dec.first.string();
         ASSERT_FALSE(recode.empty());
@@ -174,13 +153,15 @@ TEST(SegwitAddress, ValidAddress) {
 TEST(SegwitAddress, InvalidAddress) {
     for (auto i = 0; i < sizeof(invalid_address) / sizeof(invalid_address[0]); ++i) {
         auto dec = SegwitAddress::decode(invalid_address[i]);
-        EXPECT_FALSE(dec.second) <<  "Invalid address reported as valid: " << invalid_address[i];
+        EXPECT_FALSE(dec.second) << "Invalid address reported as valid: " << invalid_address[i];
     }
 }
 
 TEST(SegwitAddress, InvalidAddressEncoding) {
     for (auto i = 0; i < sizeof(invalid_address_enc) / sizeof(invalid_address_enc[0]); ++i) {
-        auto address = SegwitAddress(invalid_address_enc[i].hrp, invalid_address_enc[i].version, std::vector<uint8_t>(invalid_address_enc[i].program_length, 0));
+        auto address =
+            SegwitAddress(invalid_address_enc[i].hrp, invalid_address_enc[i].version,
+                          std::vector<uint8_t>(invalid_address_enc[i].program_length, 0));
         std::string code = address.string();
         EXPECT_TRUE(code.empty());
     }

@@ -26,9 +26,9 @@ static inline char high_char(uint8_t v) {
     return 0;
 }
 
-TWString *TWStringCreateWithHexData(TWData *_Nonnull data) {
+TWString* TWStringCreateWithHexData(TWData* _Nonnull data) {
     const size_t count = TWDataSize(data) * 2;
-    char *bytes = (char *)malloc(count + 1);
+    char* bytes = (char*)malloc(count + 1);
     bytes[count] = 0;
 
     for (size_t i = 0; i < TWDataSize(data); i += 1) {
@@ -36,7 +36,7 @@ TWString *TWStringCreateWithHexData(TWData *_Nonnull data) {
         bytes[2 * i + 1] = low_char(TWDataGet(data, i));
     }
 
-    const TWString *string = TWStringCreateWithUTF8Bytes(bytes);
+    const TWString* string = TWStringCreateWithUTF8Bytes(bytes);
     free(bytes);
     return string;
 }

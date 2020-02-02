@@ -16,7 +16,7 @@ namespace TW::Ethereum {
 using boost::multiprecision::uint256_t;
 
 class SignerExposed : public Signer {
-public:
+  public:
     SignerExposed(boost::multiprecision::uint256_t chainID) : Signer(chainID) {}
     using Signer::hash;
 };
@@ -24,13 +24,12 @@ public:
 TEST(Signer, Hash) {
     auto address = parse_hex("0x3535353535353535353535353535353535353535");
     auto transaction = Transaction(
-                           /* nonce: */ 9,
-                           /* gasPrice: */ 20000000000,
-                           /* gasLimit: */ 21000,
-                           /* to: */ address,
-                           /* amount: */ 1000000000000000000,
-                           /* payload: */ {}
-                       );
+        /* nonce: */ 9,
+        /* gasPrice: */ 20000000000,
+        /* gasLimit: */ 21000,
+        /* to: */ address,
+        /* amount: */ 1000000000000000000,
+        /* payload: */ {});
     auto signer = SignerExposed(1);
     auto hash = signer.hash(transaction);
 
@@ -40,21 +39,25 @@ TEST(Signer, Hash) {
 TEST(Signer, Sign) {
     auto address = parse_hex("0x3535353535353535353535353535353535353535");
     auto transaction = Transaction(
-                           /* nonce: */ 9,
-                           /* gasPrice: */ 20000000000,
-                           /* gasLimit: */ 21000,
-                           /* to: */ address,
-                           /* amount: */ 1000000000000000000,
-                           /* payload: */ {}
-                       );
+        /* nonce: */ 9,
+        /* gasPrice: */ 20000000000,
+        /* gasLimit: */ 21000,
+        /* to: */ address,
+        /* amount: */ 1000000000000000000,
+        /* payload: */ {});
 
-    auto key = PrivateKey(parse_hex("0x4646464646464646464646464646464646464646464646464646464646464646"));
+    auto key =
+        PrivateKey(parse_hex("0x4646464646464646464646464646464646464646464646464646464646464646"));
     auto signer = SignerExposed(1);
     signer.sign(key, transaction);
 
     ASSERT_EQ(transaction.v, 37);
-    ASSERT_EQ(transaction.r, uint256_t("18515461264373351373200002665853028612451056578545711640558177340181847433846"));
-    ASSERT_EQ(transaction.s, uint256_t("46948507304638947509940763649030358759909902576025900602547168820602576006531"));
+    ASSERT_EQ(
+        transaction.r,
+        uint256_t("18515461264373351373200002665853028612451056578545711640558177340181847433846"));
+    ASSERT_EQ(
+        transaction.s,
+        uint256_t("46948507304638947509940763649030358759909902576025900602547168820602576006531"));
 }
 
 } // namespace TW::Ethereum

@@ -20,39 +20,43 @@ TW_EXPORT_CLASS
 struct TWPublicKey;
 
 TW_EXPORT_STATIC_METHOD
-struct TWPublicKey *_Nullable TWPublicKeyCreateWithData(TWData *_Nonnull data, enum TWPublicKeyType type);
+struct TWPublicKey* _Nullable TWPublicKeyCreateWithData(TWData* _Nonnull data,
+                                                        enum TWPublicKeyType type);
 
 TW_EXPORT_METHOD
-void TWPublicKeyDelete(struct TWPublicKey *_Nonnull pk);
+void TWPublicKeyDelete(struct TWPublicKey* _Nonnull pk);
 
 TW_EXPORT_STATIC_METHOD
-bool TWPublicKeyIsValid(TWData *_Nonnull data, enum TWPublicKeyType type);
+bool TWPublicKeyIsValid(TWData* _Nonnull data, enum TWPublicKeyType type);
 
 TW_EXPORT_PROPERTY
-bool TWPublicKeyIsCompressed(struct TWPublicKey *_Nonnull pk);
+bool TWPublicKeyIsCompressed(struct TWPublicKey* _Nonnull pk);
 
 TW_EXPORT_PROPERTY
-struct TWPublicKey *_Nonnull TWPublicKeyCompressed(struct TWPublicKey *_Nonnull from);
+struct TWPublicKey* _Nonnull TWPublicKeyCompressed(struct TWPublicKey* _Nonnull from);
 
 TW_EXPORT_PROPERTY
-struct TWPublicKey *_Nonnull TWPublicKeyUncompressed(struct TWPublicKey *_Nonnull from);
+struct TWPublicKey* _Nonnull TWPublicKeyUncompressed(struct TWPublicKey* _Nonnull from);
 
 TW_EXPORT_PROPERTY
-TWData *_Nonnull TWPublicKeyData(struct TWPublicKey *_Nonnull pk);
+TWData* _Nonnull TWPublicKeyData(struct TWPublicKey* _Nonnull pk);
 
 TW_EXPORT_METHOD
-bool TWPublicKeyVerify(struct TWPublicKey *_Nonnull pk, TWData *_Nonnull signature, TWData *_Nonnull message);
+bool TWPublicKeyVerify(struct TWPublicKey* _Nonnull pk, TWData* _Nonnull signature,
+                       TWData* _Nonnull message);
 
 TW_EXPORT_METHOD
-bool TWPublicKeyVerifySchnorr(struct TWPublicKey *_Nonnull pk, TWData *_Nonnull signature, TWData *_Nonnull message);
+bool TWPublicKeyVerifySchnorr(struct TWPublicKey* _Nonnull pk, TWData* _Nonnull signature,
+                              TWData* _Nonnull message);
 
 TW_EXPORT_PROPERTY
-enum TWPublicKeyType TWPublicKeyKeyType(struct TWPublicKey *_Nonnull publicKey);
+enum TWPublicKeyType TWPublicKeyKeyType(struct TWPublicKey* _Nonnull publicKey);
 
 TW_EXPORT_PROPERTY
-TWString *_Nonnull TWPublicKeyDescription(struct TWPublicKey *_Nonnull publicKey);
+TWString* _Nonnull TWPublicKeyDescription(struct TWPublicKey* _Nonnull publicKey);
 
 TW_EXPORT_STATIC_METHOD
-struct TWPublicKey *_Nullable TWPublicKeyRecover(TWData *_Nonnull signature, TWData *_Nonnull message);
+struct TWPublicKey* _Nullable TWPublicKeyRecover(TWData* _Nonnull signature,
+                                                 TWData* _Nonnull message);
 
 TW_EXTERN_C_END

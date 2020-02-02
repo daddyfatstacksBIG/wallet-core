@@ -8,5 +8,5 @@
 
 #include <TrustWalletCore/TWString.h>
 
-const TWString *_Nonnull TWStringCreateWithNSString(NSString *_Nonnull other);
-NSString *_Nonnull TWStringNSString(TWString *_Nonnull string);
+const TWString* _Nonnull TWStringCreateWithNSString(NSString* _Nonnull other);
+NSString* _Nonnull TWStringNSString(TWString* _Nonnull string);

@@ -85,7 +85,8 @@ Data Hash::blake2b(const byte* begin, const byte* end, size_t size) {
 
 Data Hash::blake2b(const byte* begin, const byte* end, size_t size, const Data& personal) {
     Data result(size);
-    ::blake2b_Personal(begin, static_cast<uint32_t>(end - begin), personal.data(), personal.size(), result.data(), size);
+    ::blake2b_Personal(begin, static_cast<uint32_t>(end - begin), personal.data(), personal.size(),
+                       result.data(), size);
     return result;
 }
 

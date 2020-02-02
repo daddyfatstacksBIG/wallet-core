@@ -12,7 +12,8 @@
 using namespace TW;
 using namespace TW::Cardano;
 
-TW_Cardano_Proto_TransactionPlan TWCardanoSignerPlanTransaction(TW_Cardano_Proto_SigningInput inputData) {
+TW_Cardano_Proto_TransactionPlan
+TWCardanoSignerPlanTransaction(TW_Cardano_Proto_SigningInput inputData) {
     Proto::SigningInput input;
     Proto::TransactionPlan plan;
     if (!input.ParseFromArray(TWDataBytes(inputData), static_cast<int>(TWDataSize(inputData)))) {
@@ -22,20 +23,23 @@ TW_Cardano_Proto_TransactionPlan TWCardanoSignerPlanTransaction(TW_Cardano_Proto
         plan = Signer::planTransaction(std::move(input));
     }
     auto serialized = plan.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }
 
-TW_Cardano_Proto_SigningOutput TWCardanoSignerSign(TW_Cardano_Proto_SigningInput inputData, TW_Cardano_Proto_TransactionPlan planData) {
+TW_Cardano_Proto_SigningOutput TWCardanoSignerSign(TW_Cardano_Proto_SigningInput inputData,
+                                                   TW_Cardano_Proto_TransactionPlan planData) {
     Proto::SigningInput input;
     Proto::TransactionPlan plan;
     Proto::SigningOutput output;
     if (!input.ParseFromArray(TWDataBytes(inputData), static_cast<int>(TWDataSize(inputData))) ||
-            !plan.ParseFromArray(TWDataBytes(planData), static_cast<int>(TWDataSize(planData)))) {
+        !plan.ParseFromArray(TWDataBytes(planData), static_cast<int>(TWDataSize(planData)))) {
         // failed to parse input/plan, return empty output with error
         output.set_error("Error: could not parse input/plan");
     } else {
         output = Signer::sign(std::move(input), std::move(plan));
     }
     auto serialized = output.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

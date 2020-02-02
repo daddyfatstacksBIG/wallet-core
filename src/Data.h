@@ -6,10 +6,10 @@
 
 #pragma once
 
-#include <cstdint>
-#include <vector>
-#include <string>
 #include <array>
+#include <cstdint>
+#include <string>
+#include <vector>
 
 namespace TW {
 
@@ -39,7 +39,8 @@ inline void append(Data& data, const byte suffix) {
 /// Determines if a byte array has a specific prefix.
 template <typename T>
 inline bool has_prefix(const Data& data, T& prefix) {
-    return std::equal(prefix.begin(), prefix.end(), data.begin(), data.begin() + std::min(data.size(), prefix.size()));
+    return std::equal(prefix.begin(), prefix.end(), data.begin(),
+                      data.begin() + std::min(data.size(), prefix.size()));
 }
 
 } // namespace TW

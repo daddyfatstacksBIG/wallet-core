@@ -14,7 +14,7 @@
 namespace TW {
 
 class PrivateKey {
-public:
+  public:
     /// The number of bytes in a private key.
     static const size_t size = 32;
     /// The number of bytes in an extended private key.
@@ -33,7 +33,8 @@ public:
     /// Determines if a collection of bytes and curve make a valid private key.
     static bool isValid(const Data& data, TWCurve curve);
 
-    /// Initializes a private key with an array of bytes.  Size must be exact (normally 32, or 96 for extended)
+    /// Initializes a private key with an array of bytes.  Size must be exact (normally 32, or 96
+    /// for extended)
     explicit PrivateKey(const Data& data);
 
     /// Initializes a private key from a string of bytes (convenience method).
@@ -58,7 +59,8 @@ public:
 
     /// Signs a digest using the given ECDSA curve and prepends the recovery id (a la graphene)
     /// Only a sig that passes canonicalChecker is returned
-    Data sign(const Data& digest, TWCurve curve, int(*canonicalChecker)(uint8_t by, uint8_t sig[64])) const;
+    Data sign(const Data& digest, TWCurve curve,
+              int (*canonicalChecker)(uint8_t by, uint8_t sig[64])) const;
 
     /// Signs a digest using the given ECDSA curve. The result is encoded with
     /// DER.

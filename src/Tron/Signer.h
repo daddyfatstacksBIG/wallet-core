@@ -14,7 +14,7 @@ namespace TW::Tron {
 
 /// Helper class that performs Tron transaction signing.
 class Signer {
-public:
+  public:
     Signer() = delete;
 
     /// Signs the given transaction.

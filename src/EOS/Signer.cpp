@@ -8,15 +8,16 @@
 #include "../HexCoding.h"
 
 #include <TrezorCrypto/ecdsa.h>
-#include <TrezorCrypto/secp256k1.h>
 #include <TrezorCrypto/nist256p1.h>
+#include <TrezorCrypto/secp256k1.h>
 
 using namespace TW;
 using namespace TW::EOS;
 
 void Signer::sign(const PrivateKey& privateKey, Type type, Transaction& transaction) const {
     if (!transaction.isValid()) {
-        throw std::invalid_argument("Invalid transaction!");;
+        throw std::invalid_argument("Invalid transaction!");
+        ;
     }
 
     // values for Legacy and ModernK1
@@ -38,7 +39,7 @@ TW::Data Signer::hash(const Transaction& transaction) const noexcept {
     Data hashInput(chainID);
     transaction.serialize(hashInput);
 
-    Data cfdHash(Hash::sha256Size);             // default value for empty cfd
+    Data cfdHash(Hash::sha256Size); // default value for empty cfd
     if (transaction.contextFreeData.size()) {
         cfdHash = Hash::sha256(transaction.contextFreeData);
     }
@@ -49,8 +50,6 @@ TW::Data Signer::hash(const Transaction& transaction) const noexcept {
 
 // canonical check for EOS
 int Signer::is_canonical(uint8_t by, uint8_t sig[64]) {
-    return !(sig[0] & 0x80)
-           && !(sig[0] == 0 && !(sig[1] & 0x80))
-           && !(sig[32] & 0x80)
-           && !(sig[32] == 0 && !(sig[33] & 0x80));
+    return !(sig[0] & 0x80) && !(sig[0] == 0 && !(sig[1] & 0x80)) && !(sig[32] & 0x80) &&
+           !(sig[32] == 0 && !(sig[33] & 0x80));
 }

@@ -6,6 +6,8 @@
 
 #include "Signer.h"
 #include "Binance/Signer.h"
+#include "Bitcoin/Transaction.h"
+#include "Bitcoin/TransactionSigner.h"
 #include "Cosmos/Signer.h"
 #include "Data.h"
 #include "Ethereum/Signer.h"
@@ -15,15 +17,13 @@
 #include "Nano/Signer.h"
 #include "Nebulas/Signer.h"
 #include "PrivateKey.h"
+#include "Solana/Signer.h"
+#include "Stellar/Signer.h"
 #include "Tezos/Signer.h"
 #include "Tron/Signer.h"
 #include "VeChain/Signer.h"
 #include "Wanchain/Signer.h"
 #include "Waves/Signer.h"
-#include "Stellar/Signer.h"
-#include "Bitcoin/Transaction.h"
-#include "Bitcoin/TransactionSigner.h"
-#include "Solana/Signer.h"
 
 #include <google/protobuf/util/json_util.h>
 #include <string>
@@ -209,7 +209,8 @@ TW::Any::Proto::SigningOutput TW::Any::Signer::sign() const noexcept {
         if (output.success()) {
             message.add_private_key(privateKey.bytes.data(), privateKey.bytes.size());
             auto signer =
-                Bitcoin::TransactionSigner<Bitcoin::Transaction, Bitcoin::TransactionBuilder>(std::move(message));
+                Bitcoin::TransactionSigner<Bitcoin::Transaction, Bitcoin::TransactionBuilder>(
+                    std::move(message));
             auto signerOutput = signer.sign();
             auto signedTx = signerOutput.payload();
             Data serialized;
@@ -228,8 +229,8 @@ TW::Any::Proto::SigningOutput TW::Any::Signer::sign() const noexcept {
     return output;
 }
 
-void TW::Any::Signer::parse(const std::string &transaction, Message *message,
-                            TW::Any::Proto::SigningOutput &output) const noexcept {
+void TW::Any::Signer::parse(const std::string& transaction, Message* message,
+                            TW::Any::Proto::SigningOutput& output) const noexcept {
     util::JsonParseOptions options;
     options.case_insensitive_enum_parsing = true;
     options.ignore_unknown_fields = false;
@@ -247,8 +248,8 @@ void TW::Any::Signer::parse(const std::string &transaction, Message *message,
     output.set_allocated_error(error);
 }
 
-void TW::Any::Signer::toJson(const google::protobuf::Message &message, std::string *json_string) const
-noexcept {
+void TW::Any::Signer::toJson(const google::protobuf::Message& message,
+                             std::string* json_string) const noexcept {
     util::JsonPrintOptions options;
     options.preserve_proto_field_names = true;
 

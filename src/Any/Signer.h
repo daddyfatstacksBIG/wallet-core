@@ -16,21 +16,22 @@ enum SignerErrorCode {
 namespace TW::Any {
 /// Helper class to perform json signing
 class Signer {
-public:
+  public:
     explicit Signer(const Proto::SigningInput& input) : input(input) {}
 
     Proto::SigningOutput sign() const noexcept;
-private:
+
+  private:
     const Proto::SigningInput& input;
 
-    void parse(const std::string &transaction, google::protobuf::Message *message, Proto::SigningOutput &output) const noexcept;
-    void toJson(const google::protobuf::Message &message, std::string *json_string) const noexcept;
+    void parse(const std::string& transaction, google::protobuf::Message* message,
+               Proto::SigningOutput& output) const noexcept;
+    void toJson(const google::protobuf::Message& message, std::string* json_string) const noexcept;
 };
 
-}
+} // namespace TW::Any
 
 /// Wrapper for C interface.
 struct TWAnySigner {
     TW::Any::Signer impl;
 };
-

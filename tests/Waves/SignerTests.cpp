@@ -26,17 +26,17 @@ TEST(WavesSigner, SignTransaction) {
     input.set_timestamp(int64_t(1526641218066));
     input.set_private_key(privateKey.bytes.data(), privateKey.bytes.size());
 
-    auto &message = *input.mutable_transfer_message();
+    auto& message = *input.mutable_transfer_message();
     message.set_amount(int64_t(100000000));
     message.set_asset(Transaction::WAVES);
     message.set_fee(int64_t(100000000));
     message.set_fee_asset(Transaction::WAVES);
     message.set_to(address.string());
     message.set_attachment("falafel");
-    auto tx1 = Transaction(
-                   input,
-                   /* pub_key */
-                   parse_hex("559a50cb45a9a8e8d4f83295c354725990164d10bb505275d1a3086c08fb935d"));
+    auto tx1 =
+        Transaction(input,
+                    /* pub_key */
+                    parse_hex("559a50cb45a9a8e8d4f83295c354725990164d10bb505275d1a3086c08fb935d"));
 
     auto signature = Signer::sign(privateKey, tx1);
 
@@ -45,7 +45,7 @@ TEST(WavesSigner, SignTransaction) {
               "52120000000005f5e1000000000005f5e10001570acc4110b78a6d38b34d879b5bba38806202ecf1732f"
               "8542000766616c6166656c");
     EXPECT_EQ(hex(signature), "af7989256f496e103ce95096b3f52196dd9132e044905fe486da3b829b5e403bcba9"
-              "5ab7e650a4a33948c2d05cfca2dce4d4df747e26402974490fb4c49fbe8f");
+                              "5ab7e650a4a33948c2d05cfca2dce4d4df747e26402974490fb4c49fbe8f");
 
     ASSERT_TRUE(publicKeyCurve25519.verify(signature, tx1.serializeToSign()));
 }

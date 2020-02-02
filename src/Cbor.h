@@ -8,8 +8,8 @@
 
 #include "Data.h"
 
-#include <string>
 #include <memory>
+#include <string>
 
 namespace TW::Cbor {
 
@@ -21,7 +21,7 @@ namespace TW::Cbor {
 /// CBOR Encoder, and container for data being encoded.
 /// See CborTests.cpp for usage.
 class Encode {
-public:
+  public:
     /// Return encoded bytes
     TW::Data encoded() const;
 
@@ -52,10 +52,11 @@ public:
     /// Create from raw content, must be valid CBOR data, may throw
     static Encode fromRaw(const TW::Data& rawData);
 
-private:
+  private:
     Encode() {}
     Encode(const TW::Data& rawData) : data(rawData) {}
-    /// Append types + value, on variable number of bytes (1..8). Return object to support chain syntax.
+    /// Append types + value, on variable number of bytes (1..8). Return object to support chain
+    /// syntax.
     Encode appendValue(byte majorType, uint64_t value);
     inline Encode append(const TW::Data& data) {
         TW::append(this->data, data);
@@ -63,7 +64,7 @@ private:
     }
     void appendIndefinite(byte majorType);
 
-private:
+  private:
     /// Encoded data is stored here, always well-formed, but my be partial.
     TW::Data data;
     /// number of currently open indefinite buildingds (0, 1, or more for nested)
@@ -73,11 +74,11 @@ private:
 /// CBOR Decoder and container for data for decoding.  Contains reference to read-only CBOR data.
 /// See CborTests.cpp for usage.
 class Decode {
-public:
+  public:
     /// Constructor, create from CBOR byte stream
     Decode(const Data& input);
 
-public: // decoding
+  public: // decoding
     /// Check if contains a valid CBOR byte stream.
     bool isValid() const;
     /// Get the value of a simple type
@@ -87,9 +88,7 @@ public: // decoding
     /// Get the value of a string/bytes as Data
     TW::Data getBytes() const;
     /// Get all elements of array
-    std::vector<Decode> getArrayElements() const {
-        return getCompoundElements(1, MT_array);
-    }
+    std::vector<Decode> getArrayElements() const { return getCompoundElements(1, MT_array); }
     /// Get all elements of map
     std::vector<std::pair<Decode, Decode>> getMapElements() const;
     /// Get the tag number
@@ -98,9 +97,7 @@ public: // decoding
     Decode getTagElement() const;
     /// Dump to a JSON-like string (debugging)
     std::string dumpToString() const;
-    uint32_t length() const {
-        return subLen;
-    }
+    uint32_t length() const { return subLen; }
     /// Return encoded form (useful e.g for parsed out sub-parts)
     Data encoded() const;
 
@@ -115,7 +112,7 @@ public: // decoding
         MT_special = 7,
     };
 
-private:
+  private:
     /// Struct used to keep reference to original data
     struct OrigDataRef {
         Data origData;
@@ -145,10 +142,11 @@ private:
     bool isBreak() const;
     std::string dumpToStringInternal() const;
 
-private:
+  private:
     /// Reference to raw data, to the whole orginal, smart ptr
     std::shared_ptr<OrigDataRef> data;
-    // Additional substring start and len, to make skip ahead possible without touching the base data pointer
+    // Additional substring start and len, to make skip ahead possible without touching the base
+    // data pointer
     uint32_t subStart;
     uint32_t subLen;
 };

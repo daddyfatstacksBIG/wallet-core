@@ -20,6 +20,6 @@ TW_Harmony_Proto_SigningOutput TWHarmonySignerSign(TW_Harmony_Proto_SigningInput
     auto protoOutput = signer.sign(input);
 
     auto serialized = protoOutput.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()),
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
                                  serialized.size());
 }

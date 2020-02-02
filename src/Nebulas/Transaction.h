@@ -7,13 +7,13 @@
 #pragma once
 
 #include "Address.h"
-#include "../uint256.h"
 #include "../proto/Nebulas.pb.h"
+#include "../uint256.h"
 
 namespace TW::Nebulas {
 
 class Transaction {
-public:
+  public:
     static const char* TxPayloadBinaryType;
     static const char* TxPayloadDeployType;
     static const char* TxPayloadCallType;
@@ -36,7 +36,8 @@ public:
     // serialize data
     Data raw;
 
-    Transaction(Address from, uint256_t nonce, uint256_t gasPrice, uint256_t gasLimit, Address to, uint256_t amount, uint256_t timestamp, const std::string& payload)
+    Transaction(Address from, uint256_t nonce, uint256_t gasPrice, uint256_t gasLimit, Address to,
+                uint256_t amount, uint256_t timestamp, const std::string& payload)
         : from(std::move(from))
         , nonce(std::move(nonce))
         , gasPrice(std::move(gasPrice))
@@ -46,10 +47,10 @@ public:
         , timestamp(std::move(timestamp))
         , payload(payload) {}
 
-public:
+  public:
     static Proto::Data* newPayloadData(const std::string& payload);
 
-    ///serialize the signed transaction.
+    /// serialize the signed transaction.
     void serializeToRaw();
 };
 

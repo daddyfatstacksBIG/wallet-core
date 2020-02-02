@@ -13,9 +13,8 @@
 namespace TW::Ethereum::ABI {
 
 /// Abstract base class for parameters.
-class ParamBase
-{
-public:
+class ParamBase {
+  public:
     virtual ~ParamBase() = default;
     virtual std::string getType() const = 0;
     virtual size_t getSize() const = 0;
@@ -25,9 +24,8 @@ public:
 };
 
 /// Collection parameters base class
-class ParamCollection: public ParamBase
-{
-public:
+class ParamCollection : public ParamBase {
+  public:
     virtual size_t getCount() const = 0;
 };
 

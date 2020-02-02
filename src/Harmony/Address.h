@@ -11,16 +11,14 @@
 namespace TW::Harmony {
 
 /// Harmony address is a Bech32Address, with "one" prefix and Sha3 Keccak hash.
-class Address: public Bech32Address {
-public:
+class Address : public Bech32Address {
+  public:
     /// Number of bytes in an address.
     static constexpr size_t size = 20;
 
     static const std::string hrp; // HRP_HARMONY
 
-    static bool isValid(const std::string addr) {
-        return Bech32Address::isValid(addr, hrp);
-    }
+    static bool isValid(const std::string addr) { return Bech32Address::isValid(addr, hrp); }
 
     Address() : Bech32Address(hrp) {}
 
@@ -44,4 +42,3 @@ public:
 };
 
 } // namespace TW::Harmony
-

@@ -6,30 +6,30 @@
 
 #pragma once
 
-#include "Buffer.h"
-#include "Keys.h"
-#include "Coins.h"
 #include "Address.h"
+#include "Buffer.h"
+#include "Coins.h"
 #include "CommandExecutor.h"
+#include "Keys.h"
 
 #include "Data.h"
 
-#include <string>
-#include <vector>
 #include <cassert>
 #include <iostream>
+#include <string>
+#include <vector>
 
 namespace TW::WalletConsole {
 
 using namespace std;
 
 class WalletConsole {
-protected:
+  protected:
     istream& _inst;
     ostream& _outst;
     CommandExecutor _executor;
 
-public:
+  public:
     WalletConsole(istream& ins, ostream& outs) : _inst(ins), _outst(outs), _executor(outs) {
         init();
     }

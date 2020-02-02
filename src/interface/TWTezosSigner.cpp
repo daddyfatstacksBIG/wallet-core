@@ -33,5 +33,6 @@ TW_Tezos_Proto_SigningOutput TWTezosSignerSign(TW_Tezos_Proto_SigningInput data)
     protoOutput.set_signed_bytes(signedBytes.data(), signedBytes.size());
     auto serialized = protoOutput.SerializeAsString();
 
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

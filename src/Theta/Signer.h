@@ -16,7 +16,7 @@ namespace TW::Theta {
 
 /// Helper class that performs Theta transaction signing
 class Signer {
-public:
+  public:
     std::string chainID;
 
     Signer() = default;
@@ -27,7 +27,7 @@ public:
     /// Signs the given transaction
     Data sign(const PrivateKey& privateKey, const Transaction& transaction) noexcept;
 
-private:
+  private:
     Data encode(const Transaction& transaction) noexcept;
 };
 

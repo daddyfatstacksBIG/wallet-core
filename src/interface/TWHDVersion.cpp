@@ -36,7 +36,8 @@ bool TWHDVersionIsPublic(enum TWHDVersion version) {
 }
 
 bool TWHDVersionIsPrivate(enum TWHDVersion version) {
-    if (version == TWHDVersionNone) return false;
+    if (version == TWHDVersionNone)
+        return false;
     return !TWHDVersionIsPublic(version);
 }
 

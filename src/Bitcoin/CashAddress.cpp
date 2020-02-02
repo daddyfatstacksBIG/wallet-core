@@ -36,7 +36,8 @@ bool CashAddress::isValid(const std::string& string) {
     std::array<char, maxHRPSize + 1> hrp = {0};
     std::array<uint8_t, maxDataSize> data;
     size_t dataLen;
-    if (cash_decode(hrp.data(), data.data(), &dataLen, withPrefix.c_str()) == 0 || dataLen != CashAddress::size) {
+    if (cash_decode(hrp.data(), data.data(), &dataLen, withPrefix.c_str()) == 0 ||
+        dataLen != CashAddress::size) {
         return false;
     }
     if (std::strncmp(hrp.data(), cashHRP.c_str(), std::min(cashHRP.size(), maxHRPSize)) != 0) {
@@ -55,7 +56,9 @@ CashAddress::CashAddress(const std::string& string) {
     std::array<uint8_t, maxDataSize> data;
     size_t dataLen;
     auto success = cash_decode(hrp.data(), data.data(), &dataLen, withPrefix.c_str()) != 0;
-    if (!success || std::strncmp(hrp.data(), cashHRP.c_str(), std::min(cashHRP.size(), maxHRPSize)) != 0 || dataLen != CashAddress::size) {
+    if (!success ||
+        std::strncmp(hrp.data(), cashHRP.c_str(), std::min(cashHRP.size(), maxHRPSize)) != 0 ||
+        dataLen != CashAddress::size) {
         throw std::invalid_argument("Invalid address string");
     }
     std::copy(data.begin(), data.begin() + dataLen, bytes.begin());

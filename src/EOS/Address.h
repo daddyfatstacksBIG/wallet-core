@@ -6,22 +6,21 @@
 
 #pragma once
 
+#include "Prefixes.h"
 #include "../Data.h"
 #include "../PublicKey.h"
-#include "Prefixes.h"
 
 #include <string>
 
 namespace TW::EOS {
 
 class Address {
-public:
-
+  public:
     /// Determines whether a string makes a valid EOS address.
     static bool isValid(const std::string& string);
 
     /// Determines whether the given byte array is a valid keyBuffer
-    static bool isValid(const  Data& bytes, Type type = Type::Legacy);
+    static bool isValid(const Data& bytes, Type type = Type::Legacy);
 
     /// Initializes a EOS address from a string representation.
     Address(const std::string& string);
@@ -37,11 +36,9 @@ public:
 
     friend bool operator==(const Address& lhs, const Address& rhs);
 
-    inline std::string prefix() const {
-        return pubPrefixForType(type);
-    }
+    inline std::string prefix() const { return pubPrefixForType(type); }
 
-protected:
+  protected:
     // Class constants
     static const size_t PublicKeyDataSize = 33;
     static const size_t ChecksumSize = 4;
@@ -51,13 +48,11 @@ protected:
     Type type;
 
     static uint32_t createChecksum(const Data& bytes, Type type);
-    static bool extractKeyData(const std::string& string, Address *address = nullptr);
+    static bool extractKeyData(const std::string& string, Address* address = nullptr);
 };
 
-
 inline bool operator==(const Address& lhs, const Address& rhs) {
-    return lhs.keyData == rhs.keyData
-           && lhs.type == rhs.type;
+    return lhs.keyData == rhs.keyData && lhs.type == rhs.type;
 }
 
 } // namespace TW::EOS

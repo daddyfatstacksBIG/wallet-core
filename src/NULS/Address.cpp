@@ -21,7 +21,7 @@ bool Address::isValid(const std::string& string) {
     if (string.empty()) {
         return false;
     }
-    if (string.length() <=  prefix.length()) {
+    if (string.length() <= prefix.length()) {
         return false;
     }
 
@@ -78,5 +78,3 @@ uint8_t Address::checksum(std::array<byte, size>& byteArray) const {
     }
     return checkSum;
 }
-
-

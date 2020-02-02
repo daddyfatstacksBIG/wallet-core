@@ -18,38 +18,45 @@
 
 using namespace TW::Bitcoin;
 
-struct TWBitcoinTransactionSigner *_Nonnull TWBitcoinTransactionSignerCreate(TW_Bitcoin_Proto_SigningInput data) {
+struct TWBitcoinTransactionSigner* _Nonnull TWBitcoinTransactionSignerCreate(
+    TW_Bitcoin_Proto_SigningInput data) {
     Proto::SigningInput input;
     input.ParseFromArray(TWDataBytes(data), static_cast<int>(TWDataSize(data)));
-    return new TWBitcoinTransactionSigner{ TransactionSigner<Transaction, TransactionBuilder>(std::move(input)) };
+    return new TWBitcoinTransactionSigner{
+        TransactionSigner<Transaction, TransactionBuilder>(std::move(input))};
 }
 
-struct TWBitcoinTransactionSigner *_Nonnull TWBitcoinTransactionSignerCreateWithPlan(TW_Bitcoin_Proto_SigningInput data, TW_Bitcoin_Proto_TransactionPlan planData) {
+struct TWBitcoinTransactionSigner* _Nonnull TWBitcoinTransactionSignerCreateWithPlan(
+    TW_Bitcoin_Proto_SigningInput data, TW_Bitcoin_Proto_TransactionPlan planData) {
     Proto::SigningInput input;
     input.ParseFromArray(TWDataBytes(data), static_cast<int>(TWDataSize(data)));
     Proto::TransactionPlan plan;
     plan.ParseFromArray(TWDataBytes(planData), static_cast<int>(TWDataSize(planData)));
-    return new TWBitcoinTransactionSigner{ TransactionSigner<Transaction, TransactionBuilder>(std::move(input), std::move(plan)) };
+    return new TWBitcoinTransactionSigner{
+        TransactionSigner<Transaction, TransactionBuilder>(std::move(input), std::move(plan))};
 }
 
-void TWBitcoinTransactionSignerDelete(struct TWBitcoinTransactionSigner *_Nonnull signer) {
+void TWBitcoinTransactionSignerDelete(struct TWBitcoinTransactionSigner* _Nonnull signer) {
     delete signer;
 }
 
-TW_Bitcoin_Proto_TransactionPlan TWBitcoinTransactionSignerPlan(struct TWBitcoinTransactionSigner *_Nonnull signer) {
+TW_Bitcoin_Proto_TransactionPlan
+TWBitcoinTransactionSignerPlan(struct TWBitcoinTransactionSigner* _Nonnull signer) {
     auto result = signer->impl.plan.proto();
     auto serialized = result.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }
 
-TW_Proto_Result TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_Nonnull signer) {
+TW_Proto_Result TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner* _Nonnull signer) {
     auto result = signer->impl.sign();
     auto protoResult = TW::Proto::Result();
     if (!result) {
         protoResult.set_success(false);
         protoResult.set_error(result.error());
         auto serialized = protoResult.SerializeAsString();
-        return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+        return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                     serialized.size());
     }
 
     const auto& tx = result.payload();
@@ -57,9 +64,8 @@ TW_Proto_Result TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner
     *protoOutput.mutable_transaction() = tx.proto();
 
     TW::Data encoded;
-    auto hasWitness = std::any_of(tx.inputs.begin(), tx.inputs.end(), [](auto& input) {
-        return !input.scriptWitness.empty();
-    });
+    auto hasWitness = std::any_of(tx.inputs.begin(), tx.inputs.end(),
+                                  [](auto& input) { return !input.scriptWitness.empty(); });
     tx.encode(hasWitness, encoded);
     protoOutput.set_encoded(encoded.data(), encoded.size());
 
@@ -76,5 +82,6 @@ TW_Proto_Result TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner
     protoResult.add_objects()->PackFrom(protoOutput);
 
     auto serialized = protoResult.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

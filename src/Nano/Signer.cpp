@@ -21,10 +21,8 @@ using json = nlohmann::json;
 namespace TW::Nano {
 
 const std::array<byte, 32> kBlockHashPreamble{
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06,
 };
 
 std::array<byte, 16> store(const uint128_t& value) {
@@ -80,9 +78,8 @@ std::array<byte, 32> linkFromInput(const Proto::SigningInput& input, bool emptyP
 
 std::array<byte, 32> hashBlockData(const PublicKey& publicKey, const Proto::SigningInput& input) {
     std::array<byte, 32> parentHash = previousFromInput(input);
-    bool emptyParentHash = std::all_of(parentHash.begin(), parentHash.end(), [](auto b) {
-        return b == 0;
-    });
+    bool emptyParentHash =
+        std::all_of(parentHash.begin(), parentHash.end(), [](auto b) { return b == 0; });
 
     std::array<byte, 32> repPublicKey = {0};
     auto repAddress = Address(input.representative());
@@ -101,9 +98,7 @@ std::array<byte, 32> hashBlockData(const PublicKey& publicKey, const Proto::Sign
     }
 
     std::array<byte, 32> link = linkFromInput(input, emptyParentHash);
-    bool emptyLink = std::all_of(link.begin(), link.end(), [](auto b) {
-        return b == 0;
-    });
+    bool emptyLink = std::all_of(link.begin(), link.end(), [](auto b) { return b == 0; });
     if (emptyParentHash && emptyLink) {
         throw std::invalid_argument("Missing link block hash");
     }
@@ -124,14 +119,12 @@ std::array<byte, 32> hashBlockData(const PublicKey& publicKey, const Proto::Sign
 }
 
 Signer::Signer(const Proto::SigningInput& input)
-    : privateKey(Data(input.private_key().begin(), input.private_key().end())),
-      publicKey(privateKey.getPublicKey(TWPublicKeyTypeED25519Blake2b)),
-      input(input),
-      previous{previousFromInput(input)},
-      link{linkFromInput(input)},
-      blockHash(hashBlockData(publicKey, input))
-{
-}
+    : privateKey(Data(input.private_key().begin(), input.private_key().end()))
+    , publicKey(privateKey.getPublicKey(TWPublicKeyTypeED25519Blake2b))
+    , input(input)
+    , previous{previousFromInput(input)}
+    , link{linkFromInput(input)}
+    , blockHash(hashBlockData(publicKey, input)) {}
 
 std::array<byte, 64> Signer::sign() const noexcept {
     auto digest = Data(blockHash.begin(), blockHash.end());
@@ -156,7 +149,9 @@ Proto::SigningOutput Signer::build() const {
         {"representative", Address(input.representative()).string()},
         {"balance", input.balance()},
         {"link", hex(link)},
-        {"link_as_account", Address(PublicKey(Data(link.begin(), link.end()), TWPublicKeyTypeED25519Blake2b)).string()},
+        {"link_as_account",
+         Address(PublicKey(Data(link.begin(), link.end()), TWPublicKeyTypeED25519Blake2b))
+             .string()},
         {"signature", hex(signature)},
     };
 

@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "../proto/Cosmos.pb.h"
 #include "Data.h"
+#include "../proto/Cosmos.pb.h"
 #include <nlohmann/json.hpp>
 
 using string = std::string;
@@ -25,4 +25,4 @@ namespace TW::Cosmos {
 json signaturePreimage(const Proto::SigningInput& input);
 json transactionJSON(const Proto::SigningInput& input, const Data& signature);
 
-} // namespace
+} // namespace TW::Cosmos

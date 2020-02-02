@@ -18,49 +18,51 @@
 
 using namespace TW;
 
-bool TWZcashTAddressEqual(struct TWZcashTAddress *_Nonnull lhs, struct TWZcashTAddress *_Nonnull rhs) {
+bool TWZcashTAddressEqual(struct TWZcashTAddress* _Nonnull lhs,
+                          struct TWZcashTAddress* _Nonnull rhs) {
     return lhs->impl == rhs->impl;
 }
 
-bool TWZcashTAddressIsValid(TWData *_Nonnull data) {
+bool TWZcashTAddressIsValid(TWData* _Nonnull data) {
     return TWDataSize(data) == TWZcashTAddressSize;
 }
 
-bool TWZcashTAddressIsValidString(TWString *_Nonnull string) {
+bool TWZcashTAddressIsValidString(TWString* _Nonnull string) {
     auto& s = *reinterpret_cast<const std::string*>(string);
     return Zcash::TAddress::isValid(s);
 }
 
-struct TWZcashTAddress *_Nullable TWZcashTAddressCreateWithString(TWString *_Nonnull string) {
+struct TWZcashTAddress* _Nullable TWZcashTAddressCreateWithString(TWString* _Nonnull string) {
     auto& s = *reinterpret_cast<const std::string*>(string);
     try {
-        return new TWZcashTAddress{ Zcash::TAddress(s) };
+        return new TWZcashTAddress{Zcash::TAddress(s)};
     } catch (...) {
         return nullptr;
     }
 }
 
-struct TWZcashTAddress *_Nullable TWZcashTAddressCreateWithData(TWData *_Nonnull data) {
+struct TWZcashTAddress* _Nullable TWZcashTAddressCreateWithData(TWData* _Nonnull data) {
     auto& d = *reinterpret_cast<const TW::Data*>(data);
     try {
-        return new TWZcashTAddress{ Zcash::TAddress(d) };
+        return new TWZcashTAddress{Zcash::TAddress(d)};
     } catch (...) {
         return nullptr;
     }
 }
 
-struct TWZcashTAddress *_Nullable TWZcashTAddressCreateWithPublicKey(struct TWPublicKey *_Nonnull publicKey, uint8_t prefix) {
+struct TWZcashTAddress* _Nullable TWZcashTAddressCreateWithPublicKey(
+    struct TWPublicKey* _Nonnull publicKey, uint8_t prefix) {
     try {
-        return new TWZcashTAddress{ Zcash::TAddress(publicKey->impl, prefix) };
+        return new TWZcashTAddress{Zcash::TAddress(publicKey->impl, prefix)};
     } catch (...) {
         return nullptr;
     }
 }
 
-void TWZcashTAddressDelete(struct TWZcashTAddress *_Nonnull address) {
+void TWZcashTAddressDelete(struct TWZcashTAddress* _Nonnull address) {
     delete address;
 }
 
-TWString *_Nonnull TWZcashTAddressDescription(struct TWZcashTAddress *_Nonnull address) {
+TWString* _Nonnull TWZcashTAddressDescription(struct TWZcashTAddress* _Nonnull address) {
     return TWStringCreateWithUTF8Bytes(address->impl.string().c_str());
 }

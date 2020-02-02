@@ -10,8 +10,8 @@
 #include <TrezorCrypto/bignum.h>
 #include <TrezorCrypto/bip32.h>
 #include <TrezorCrypto/bip39.h>
-#include <TrezorCrypto/blake2b.h>
 #include <TrezorCrypto/blake256.h>
+#include <TrezorCrypto/blake2b.h>
 #include <TrezorCrypto/cash_addr.h>
 #include <TrezorCrypto/curves.h>
 #include <TrezorCrypto/ed25519.h>

@@ -15,7 +15,7 @@
 namespace TW::Bitcoin {
 
 class UnspentSelector {
-public:
+  public:
     /// Maximum allowable transaction dust.
     static const int64_t dustThreshold;
 
@@ -25,14 +25,14 @@ public:
     /// insufficient funds.
     template <typename T>
     std::vector<Proto::UnspentTransaction> select(const T& utxos, int64_t targetValue,
-            int64_t byteFee, int64_t numOutputs = 2);
+                                                  int64_t byteFee, int64_t numOutputs = 2);
 
     UnspentCalculator calculator;
 
     UnspentSelector() : calculator(UnspentCalculator()) {}
     explicit UnspentSelector(UnspentCalculator calculator) : calculator(std::move(calculator)) {}
 
-public:
+  public:
     template <typename T>
     static inline int64_t sum(const T& utxos) {
         int64_t sum = 0;
@@ -41,7 +41,7 @@ public:
         return sum;
     }
 
-private:
+  private:
     std::vector<Proto::UnspentTransaction>
     filterDustInput(std::vector<Proto::UnspentTransaction> selectedUtxos, int64_t byteFee);
 };

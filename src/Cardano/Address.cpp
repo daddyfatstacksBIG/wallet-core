@@ -5,12 +5,12 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "Address.h"
-#include "../Cbor.h"
-#include "../Data.h"
 #include "../Base58.h"
+#include "../Cbor.h"
 #include "../Crc.h"
-#include "../HexCoding.h"
+#include "../Data.h"
 #include "../Hash.h"
+#include "../HexCoding.h"
 
 #include <array>
 
@@ -18,7 +18,8 @@ using namespace TW;
 using namespace TW::Cardano;
 using namespace std;
 
-bool Address::parseAndCheck(const std::string& addr, Data& root_out, Data& attrs_out, byte& type_out) {
+bool Address::parseAndCheck(const std::string& addr, Data& root_out, Data& attrs_out,
+                            byte& type_out) {
     // Decode Bas58, decode payload + crc, decode root, attr
     Data base58decoded = Base58::bitcoin.decode(addr);
     if (base58decoded.size() == 0) {
@@ -114,14 +115,13 @@ Data Address::keyHash(const TW::Data& xpub) {
     }
     // hash of follwoing Cbor-array: [0, [0, xbub], {} ]
     // 3rd entry map is empty map for V2, contains derivation path for V1
-    Data cborData = Cbor::Encode::array({
-        Cbor::Encode::uint(0),
-        Cbor::Encode::array({
-            Cbor::Encode::uint(0),
-            Cbor::Encode::bytes(xpub)
-        }),
-        Cbor::Encode::map({}),
-    }).encoded();
+    Data cborData = Cbor::Encode::array(
+                        {
+                            Cbor::Encode::uint(0),
+                            Cbor::Encode::array({Cbor::Encode::uint(0), Cbor::Encode::bytes(xpub)}),
+                            Cbor::Encode::map({}),
+                        })
+                        .encoded();
     // SHA3 hash, then blake
     Data firstHash = Hash::sha3_256(cborData.data(), cborData.data() + cborData.size());
     Data blake = Hash::blake2b(firstHash.data(), firstHash.data() + firstHash.size(), 28);

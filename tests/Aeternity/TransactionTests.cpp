@@ -28,7 +28,9 @@ TEST(AeternityTransaction, EncodeRlp) {
     auto encodedTx = tx.encode();
     auto encodedTxHex = hex(encodedTx);
 
-    ASSERT_EQ(encodedTxHex, "f85f0c01a101cea7ade470c9f99d9d4e400880a86f1d49bb444b62f11a9ebb64bbcfeb73fef3a1011f13a3b08bf001400662a68b69d875f7803cec4c08647f6ed5d84c7897bd50a30a8612309ce5400083014345318b48656c6c6f20576f726c64");
+    ASSERT_EQ(encodedTxHex, "f85f0c01a101cea7ade470c9f99d9d4e400880a86f1d49bb444b62f11a9ebb64bbcfeb"
+                            "73fef3a1011f13a3b08bf001400662a68b69d875f7803cec4c08647f6ed5d84c7897bd"
+                            "50a30a8612309ce5400083014345318b48656c6c6f20576f726c64");
 }
 
 TEST(AeternityTransaction, EncodeRlpWithZeroAmount) {
@@ -44,7 +46,9 @@ TEST(AeternityTransaction, EncodeRlpWithZeroAmount) {
     auto encodedTx = tx.encode();
     auto encodedTxHex = hex(encodedTx);
 
-    ASSERT_EQ(encodedTxHex, "f85f0c01a101cea7ade470c9f99d9d4e400880a86f1d49bb444b62f11a9ebb64bbcfeb73fef3a1011f13a3b08bf001400662a68b69d875f7803cec4c08647f6ed5d84c7897bd50a3008612309ce5400083014345318b48656c6c6f20576f726c64");
+    ASSERT_EQ(encodedTxHex, "f85f0c01a101cea7ade470c9f99d9d4e400880a86f1d49bb444b62f11a9ebb64bbcfeb"
+                            "73fef3a1011f13a3b08bf001400662a68b69d875f7803cec4c08647f6ed5d84c7897bd"
+                            "50a3008612309ce5400083014345318b48656c6c6f20576f726c64");
 }
 
 TEST(AeternityTransaction, EncodeRlpWithZeroTtl) {
@@ -60,6 +64,7 @@ TEST(AeternityTransaction, EncodeRlpWithZeroTtl) {
     auto encodedTx = tx.encode();
     auto encodedTxHex = hex(encodedTx);
 
-    ASSERT_EQ(encodedTxHex, "f85c0c01a101cea7ade470c9f99d9d4e400880a86f1d49bb444b62f11a9ebb64bbcfeb73fef3a1011f13a3b08bf001400662a68b69d875f7803cec4c08647f6ed5d84c7897bd50a30a8612309ce5400000318b48656c6c6f20576f726c64");
+    ASSERT_EQ(encodedTxHex, "f85c0c01a101cea7ade470c9f99d9d4e400880a86f1d49bb444b62f11a9ebb64bbcfeb"
+                            "73fef3a1011f13a3b08bf001400662a68b69d875f7803cec4c08647f6ed5d84c7897bd"
+                            "50a30a8612309ce5400000318b48656c6c6f20576f726c64");
 }
-

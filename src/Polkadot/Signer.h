@@ -14,7 +14,7 @@ namespace TW::Polkadot {
 
 /// Helper class that performs Polkadot transaction signing.
 class Signer {
-public:
+  public:
     /// Hide default constructor
     Signer() = delete;
 

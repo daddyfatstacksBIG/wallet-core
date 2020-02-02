@@ -17,5 +17,6 @@ TW_Zilliqa_Proto_SigningOutput TWZilliqaSignerSign(TW_Zilliqa_Proto_SigningInput
     input.ParseFromArray(TWDataBytes(data), static_cast<int>(TWDataSize(data)));
     auto output = Signer::sign(input);
     auto serialized = output.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

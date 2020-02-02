@@ -6,8 +6,8 @@
 
 #include "HexCoding.h"
 #include "Polkadot/Address.h"
-#include "PublicKey.h"
 #include "PrivateKey.h"
+#include "PublicKey.h"
 #include <gtest/gtest.h>
 #include <vector>
 
@@ -34,13 +34,16 @@ TEST(PolkadotAddress, Validation) {
 
 TEST(PolkadotAddress, FromPrivateKey) {
     // subkey phrase `chief menu kingdom stereo hope hazard into island bag trick egg route`
-    auto privateKey = PrivateKey(parse_hex("0x612d82bc053d1b4729057688ecb1ebf62745d817ddd9b595bc822f5f2ba0e41a"));
+    auto privateKey =
+        PrivateKey(parse_hex("0x612d82bc053d1b4729057688ecb1ebf62745d817ddd9b595bc822f5f2ba0e41a"));
     auto address = Address(privateKey.getPublicKey(TWPublicKeyTypeED25519));
     ASSERT_EQ(address.string(), "15KRsCq9LLNmCxNFhGk55s5bEyazKefunDxUH24GFZwsTxyu");
 }
 
 TEST(PolkadotAddress, FromPublicKey) {
-    auto publicKey = PublicKey(parse_hex("0xbeff0e5d6f6e6e6d573d3044f3e2bfb353400375dc281da3337468d4aa527908"), TWPublicKeyTypeED25519);
+    auto publicKey =
+        PublicKey(parse_hex("0xbeff0e5d6f6e6e6d573d3044f3e2bfb353400375dc281da3337468d4aa527908"),
+                  TWPublicKeyTypeED25519);
     auto address = Address(publicKey);
     ASSERT_EQ(address.string(), "15KRsCq9LLNmCxNFhGk55s5bEyazKefunDxUH24GFZwsTxyu");
 }

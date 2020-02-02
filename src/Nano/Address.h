@@ -14,7 +14,7 @@
 namespace TW::Nano {
 
 class Address {
-public:
+  public:
     /// Address data consisting of a prefix byte followed by the public key
     /// bytes.
     std::array<byte, 32> bytes;

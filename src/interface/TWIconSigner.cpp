@@ -21,5 +21,6 @@ TW_Icon_Proto_SigningOutput TWIconSignerSign(TW_Icon_Proto_SigningInput data) {
     const auto output = signer.sign();
 
     auto serialized = output.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

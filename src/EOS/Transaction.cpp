@@ -4,10 +4,10 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
+#include "Transaction.h"
 #include "../Base58.h"
 #include "../Hash.h"
 #include "../HexCoding.h"
-#include "Transaction.h"
 
 #include <TrezorCrypto/ripemd160.h>
 
@@ -54,7 +54,7 @@ std::string Signature::string() const noexcept {
     // drop the subPrefix and append the checksum to the bufer
     buffer.resize(DataSize);
 
-    for(size_t i = 0; i < ChecksumSize; i++) {
+    for (size_t i = 0; i < ChecksumSize; i++) {
         buffer.push_back(hash[i]);
     }
 

@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "../PublicKey.h"
 #include "../Base58Address.h"
+#include "../PublicKey.h"
 
 #include <array>
 #include <cstdint>
@@ -15,8 +15,8 @@
 
 namespace TW::Nebulas {
 
-class Address :public Base58Address<26> {
-public:
+class Address : public Base58Address<26> {
+  public:
     /// Number of bytes in an address.
     static const uint8_t AddressPrefix = 25;
     static const uint8_t NormalType = 87;

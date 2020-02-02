@@ -19,10 +19,8 @@ std::tuple<uint8_t, bool> value(uint8_t c);
 /// Converts a range of bytes to a hexadecimal string representation.
 template <typename Iter>
 inline std::string hex(const Iter begin, const Iter end) {
-    static constexpr std::array<char, 16> hexmap = {
-        '0', '1', '2', '3', '4', '5', '6', '7',
-        '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
-    };
+    static constexpr std::array<char, 16> hexmap = {'0', '1', '2', '3', '4', '5', '6', '7',
+                                                    '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     std::string result;
     result.reserve((end - begin) * 2);

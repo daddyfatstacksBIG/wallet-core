@@ -22,12 +22,12 @@ TW_Theta_Proto_SigningOutput TWThetaSignerSign(TW_Theta_Proto_SigningInput data)
     auto from = Ethereum::Address(pkFrom.getPublicKey(TWPublicKeyTypeSECP256k1Extended));
 
     auto transaction = Transaction(
-                           /* from: */ from,
-                           /* to: */ Ethereum::Address(input.to_address()),
-                           /* thetaAmount: */ load(input.theta_amount()),
-                           /* tfuelAmount: */ load(input.tfuel_amount()),
-                           /* sequence: */ input.sequence(),
-                           /* feeAmount: */ load(input.fee()));
+        /* from: */ from,
+        /* to: */ Ethereum::Address(input.to_address()),
+        /* thetaAmount: */ load(input.theta_amount()),
+        /* tfuelAmount: */ load(input.tfuel_amount()),
+        /* sequence: */ input.sequence(),
+        /* feeAmount: */ load(input.fee()));
 
     auto signer = Signer(input.chain_id());
     auto signature = signer.sign(pkFrom, transaction);

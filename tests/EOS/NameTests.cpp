@@ -16,8 +16,8 @@ using namespace TW::EOS;
 TEST(EOSName, Invalid) {
     ASSERT_THROW(Name(std::string(14, 'a')), std::invalid_argument);
 
-    std::string invalidNames[] = {"Alice",  "alice16", "12345satoshis"};
-    for(auto name: invalidNames) {
+    std::string invalidNames[] = {"Alice", "alice16", "12345satoshis"};
+    for (auto name : invalidNames) {
         ASSERT_FALSE(Name(name).string() == name);
     }
 }

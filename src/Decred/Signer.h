@@ -26,22 +26,22 @@ namespace TW::Decred {
 
 /// Helper class that performs Decred transaction signing.
 class Signer {
-private:
+  private:
     /// Private key and redeem script provider for signing.
     Bitcoin::Proto::SigningInput input;
 
-public:
+  public:
     /// Transaction plan.
     Bitcoin::TransactionPlan plan;
 
     /// Transaction being signed.
     Transaction transaction;
 
-private:
+  private:
     /// List of signed inputs.
     std::vector<TransactionInput> signedInputs;
 
-public:
+  public:
     /// Initializes a transaction signer.
     Signer() = default;
 
@@ -68,7 +68,7 @@ public:
     /// \returns the signed transaction script.
     Result<Bitcoin::Script> sign(Bitcoin::Script script, size_t index);
 
-private:
+  private:
     Result<std::vector<Data>> signStep(Bitcoin::Script script, size_t index);
     Data createSignature(const Transaction& transaction, const Bitcoin::Script& script,
                          const Data& key, size_t index);

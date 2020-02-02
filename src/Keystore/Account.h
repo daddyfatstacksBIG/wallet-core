@@ -15,7 +15,7 @@ namespace TW::Keystore {
 
 /// Account for a particular coin within a wallet.
 class Account {
-public:
+  public:
     /// Account public address
     std::string address;
 
@@ -26,9 +26,7 @@ public:
     std::string extendedPublicKey;
 
     /// Coin this account is for.
-    TWCoinType coin() const {
-        return derivationPath.coin();
-    }
+    TWCoinType coin() const { return derivationPath.coin(); }
 
     Account() = default;
     Account(std::string address, DerivationPath derivationPath, std::string extendedPublicKey = "")

@@ -9,7 +9,6 @@
 #include "../VeChain/Signer.h"
 #include "../proto/VeChain.pb.h"
 
-
 using namespace TW;
 using namespace TW::VeChain;
 
@@ -20,5 +19,6 @@ TW_VeChain_Proto_SigningOutput TWVeChainSignerSign(TW_VeChain_Proto_SigningInput
     auto protoOutput = Signer::sign(input);
 
     auto serialized = protoOutput.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

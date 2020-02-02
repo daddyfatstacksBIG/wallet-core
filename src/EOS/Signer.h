@@ -6,11 +6,11 @@
 
 #pragma once
 
+#include "Prefixes.h"
+#include "Transaction.h"
 #include "../Data.h"
 #include "../Hash.h"
 #include "../PrivateKey.h"
-#include "Prefixes.h"
-#include "Transaction.h"
 
 #include <stdexcept>
 
@@ -18,7 +18,7 @@ namespace TW::EOS {
 
 /// Helper class that performs EOS transaction signing.
 class Signer {
-public:
+  public:
     const Data chainID;
 
     /// Initializes a signer with a chain identifier.

@@ -37,23 +37,23 @@ TEST(IoTeXAddress, FromString) {
 }
 
 TEST(IoTeXAddress, FromPrivateKey) {
-    const auto privateKey = PrivateKey(parse_hex("0806c458b262edd333a191e92f561aff338211ee3e18ab315a074a2d82aa343f"));
+    const auto privateKey =
+        PrivateKey(parse_hex("0806c458b262edd333a191e92f561aff338211ee3e18ab315a074a2d82aa343f"));
     const auto publicKey = PublicKey(privateKey.getPublicKey(TWPublicKeyTypeSECP256k1Extended));
     const auto address = Address(publicKey);
     ASSERT_EQ(address.string(), "io187wzp08vnhjjpkydnr97qlh8kh0dpkkytfam8j");
 
-    EXPECT_THROW({
-        try
+    EXPECT_THROW(
         {
-            const auto publicKey = PublicKey(privateKey.getPublicKey(TWPublicKeyTypeSECP256k1));
-            const auto address = Address(publicKey);
-        }
-        catch( const std::invalid_argument& e )
-        {
-            EXPECT_STREQ("address may only be an extended SECP256k1 public key", e.what());
-            throw;
-        }
-    }, std::invalid_argument);
+            try {
+                const auto publicKey = PublicKey(privateKey.getPublicKey(TWPublicKeyTypeSECP256k1));
+                const auto address = Address(publicKey);
+            } catch (const std::invalid_argument& e) {
+                EXPECT_STREQ("address may only be an extended SECP256k1 public key", e.what());
+                throw;
+            }
+        },
+        std::invalid_argument);
 }
 
 TEST(IoTeXAddress, FromKeyHash) {
@@ -61,18 +61,17 @@ TEST(IoTeXAddress, FromKeyHash) {
     const auto address = Address(keyHash);
     ASSERT_EQ(address.string(), "io187wzp08vnhjjpkydnr97qlh8kh0dpkkytfam8j");
 
-    EXPECT_THROW({
-        try
+    EXPECT_THROW(
         {
-            const auto keyHash = parse_hex("3f9c20bcec9de520d88d98cbe07ee7b5ded0da");
-            const auto address = Address(keyHash);
-        }
-        catch( const std::invalid_argument& e )
-        {
-            EXPECT_STREQ("invalid address data", e.what());
-            throw;
-        }
-    }, std::invalid_argument);
+            try {
+                const auto keyHash = parse_hex("3f9c20bcec9de520d88d98cbe07ee7b5ded0da");
+                const auto address = Address(keyHash);
+            } catch (const std::invalid_argument& e) {
+                EXPECT_STREQ("invalid address data", e.what());
+                throw;
+            }
+        },
+        std::invalid_argument);
 }
 
 } // namespace TW::IoTeX

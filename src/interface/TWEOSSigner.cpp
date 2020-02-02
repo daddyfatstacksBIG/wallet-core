@@ -6,10 +6,10 @@
 
 #include <TrustWalletCore/TWEOSSigner.h>
 
-#include "../EOS/Signer.h"
 #include "../EOS/PackedTransaction.h"
-#include "../proto/EOS.pb.h"
+#include "../EOS/Signer.h"
 #include "../proto/Common.pb.h"
+#include "../proto/EOS.pb.h"
 
 using namespace TW::EOS;
 
@@ -19,7 +19,8 @@ static TW_Proto_Result createErrorResult(const std::string& description) {
     result.set_success(false);
     result.set_error(description);
     auto serialized = result.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }
 
 TW_Proto_Result TWEOSSignerSign(TW_EOS_Proto_SigningInput input) {
@@ -35,18 +36,19 @@ TW_Proto_Result TWEOSSignerSign(TW_EOS_Proto_SigningInput input) {
         auto assetData = in.asset();
 
         if (assetData.decimals() > TW::Bravo::Asset::maxDecimals) {
-            return createErrorResult("Max decimal places supported in an asset: "
-                                     + std::to_string(TW::Bravo::Asset::maxDecimals));
+            return createErrorResult("Max decimal places supported in an asset: " +
+                                     std::to_string(TW::Bravo::Asset::maxDecimals));
         }
 
-        TW::Bravo::Asset asset{assetData.amount(), static_cast<uint8_t>(assetData.decimals()), assetData.symbol()};
+        TW::Bravo::Asset asset{assetData.amount(), static_cast<uint8_t>(assetData.decimals()),
+                               assetData.symbol()};
 
         // create a transfer action
-        TransferAction action {in.currency(), in.sender(), in.recipient(), asset, in.memo()};
+        TransferAction action{in.currency(), in.sender(), in.recipient(), asset, in.memo()};
 
         // create a Transaction and add the transfer action
-        Transaction tx{ TW::Data(in.reference_block_id().begin(), in.reference_block_id().end()),
-                        in.reference_block_time() };
+        Transaction tx{TW::Data(in.reference_block_id().begin(), in.reference_block_id().end()),
+                       in.reference_block_time()};
         tx.actions.push_back(action);
 
         // get key type
@@ -73,7 +75,7 @@ TW_Proto_Result TWEOSSignerSign(TW_EOS_Proto_SigningInput input) {
         Signer(chainId).sign(key, type, tx);
 
         // Pack the transaction and add the json encoding to Signing Output
-        PackedTransaction ptx {tx, CompressionType::None};
+        PackedTransaction ptx{tx, CompressionType::None};
 
         Proto::SigningOutput out;
         out.set_json_encoded(ptx.serialize().dump());
@@ -82,7 +84,8 @@ TW_Proto_Result TWEOSSignerSign(TW_EOS_Proto_SigningInput input) {
         result.set_success(true);
         result.add_objects()->PackFrom(out);
         auto serialized = result.SerializeAsString();
-        return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+        return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                     serialized.size());
     } catch (const std::exception& e) {
         return createErrorResult(e.what());
     } catch (const std::logic_error& e) {

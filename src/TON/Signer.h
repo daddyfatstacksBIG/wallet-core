@@ -8,8 +8,8 @@
 
 #include "Address.h"
 #include "../Data.h"
-#include "../PublicKey.h"
 #include "../PrivateKey.h"
+#include "../PublicKey.h"
 
 #include <string>
 
@@ -17,26 +17,25 @@ namespace TW::TON {
 
 /// Helper class that performs TON transaction signing.
 class Signer {
-public:
+  public:
     /// Hide default constructor
     Signer() = delete;
 
     /// Signs a Proto::SigningInput transaction
-    //static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
+    // static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
 
     /// Signs the given transaction.
-    //static Data sign(const PrivateKey& privateKey, Transaction& transaction) noexcept;
+    // static Data sign(const PrivateKey& privateKey, Transaction& transaction) noexcept;
 
     /// sign a message
     static TW::Data sign(const PrivateKey& privateKey, const Data& message) noexcept;
     /// Build the external message for account initialization
     static TW::Data buildInitMessage(const PrivateKey& privkey);
 
-protected:
+  protected:
     /// Build the external message for account initialization
-    static TW::Data buildInitMessage(
-        byte chainId, const PublicKey& pubkey, const TW::Data& signature, const TW::Data& msg
-    );
+    static TW::Data buildInitMessage(byte chainId, const PublicKey& pubkey,
+                                     const TW::Data& signature, const TW::Data& msg);
 };
 
 } // namespace TW::TON

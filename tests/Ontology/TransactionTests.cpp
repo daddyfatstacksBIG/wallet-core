@@ -41,7 +41,8 @@ TEST(OntologyTransaction, validity) {
         "f66a7cc8516a7cc86c51c1087472616e736665721400000000000000000000000000000000000000010068164f"
         "6e746f6c6f67792e4e61746976652e496e766f6b650000";
     EXPECT_EQ(hexTx, hex(tx.serialize()));
-    auto signer1 = Signer(PrivateKey(parse_hex("4646464646464646464646464646464646464646464646464646464646464646")));
+    auto signer1 = Signer(
+        PrivateKey(parse_hex("4646464646464646464646464646464646464646464646464646464646464646")));
     signer1.sign(tx);
     hexTx =
         "00d1e3388d5c5802000000000000e09304000000000057e9d1a61f9aafa798b6c7fbeae35639681d7df67100c6"
@@ -52,7 +53,8 @@ TEST(OntologyTransaction, validity) {
         "21031bec1250aa8f78275f99a6663688f31085848d0ed92f1203e447125f927b7486ac";
     EXPECT_EQ(520, hex(tx.serialize()).length());
     EXPECT_EQ(hexTx.substr(0, 20), hex(tx.serialize()).substr(0, 20));
-    auto signer2 = Signer(PrivateKey(parse_hex("4646464646464646464646464646464646464646464646464646464646464652")));
+    auto signer2 = Signer(
+        PrivateKey(parse_hex("4646464646464646464646464646464646464646464646464646464646464652")));
     signer2.addSign(tx);
     auto result = tx.serialize();
     auto verifyPosition1 =

@@ -10,23 +10,23 @@
 static JavaVM* cachedJVM;
 
 extern "C" {
-    uint32_t random32();
-    void random_buffer(uint8_t *buf, size_t len);
+uint32_t random32();
+void random_buffer(uint8_t* buf, size_t len);
 }
 
-JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved) {
+JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* jvm, void* reserved) {
     cachedJVM = jvm;
     return JNI_VERSION_1_2;
 }
 
 uint32_t random32() {
     uint32_t result;
-    random_buffer((uint8_t*) &result, sizeof(uint32_t));
+    random_buffer((uint8_t*)&result, sizeof(uint32_t));
     return result;
 }
 
-void random_buffer(uint8_t *buf, size_t len) {
-    JNIEnv *env;
+void random_buffer(uint8_t* buf, size_t len) {
+    JNIEnv* env;
     cachedJVM->AttachCurrentThread(&env, NULL);
 
     // SecureRandom random = new SecureRandom();
@@ -34,10 +34,10 @@ void random_buffer(uint8_t *buf, size_t len) {
     jmethodID constructor = env->GetMethodID(secureRandomClass, "<init>", "()V");
     jobject random = env->NewObject(secureRandomClass, constructor);
 
-    //byte array[] = new byte[len];
+    // byte array[] = new byte[len];
     jbyteArray array = env->NewByteArray(len);
 
-    //random.nextBytes(bytes);
+    // random.nextBytes(bytes);
     jmethodID nextBytes = env->GetMethodID(secureRandomClass, "nextBytes", "([B)V");
     env->CallVoidMethod(random, nextBytes, array);
 

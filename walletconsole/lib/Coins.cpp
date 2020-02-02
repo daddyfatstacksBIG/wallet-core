@@ -7,17 +7,17 @@
 
 #include "Coins.h"
 
-#include "WalletConsole.h"
 #include "Util.h"
+#include "WalletConsole.h"
 
+#include "Coin.h"
+#include "Data.h"
 #include <TrustWalletCore/TWCoinTypeConfiguration.h>
 #include <TrustWalletCore/TWPublicKeyType.h>
-#include "Data.h"
-#include "Coin.h"
 
+#include <cassert>
 #include <iostream>
 #include <vector>
-#include <cassert>
 
 #define WRAPS(x) std::shared_ptr<TWString>(x, TWStringDelete)
 
@@ -26,7 +26,7 @@ namespace TW::WalletConsole {
 using namespace std;
 
 void Coins::coins() const {
-    for (auto c: _coinsById) {
+    for (auto c : _coinsById) {
         _out << c.second.symbol << " \t " << c.second.id << " \t '" << c.second.name << "'" << endl;
     }
     _out << _coinsById.size() << " coins listed." << endl;

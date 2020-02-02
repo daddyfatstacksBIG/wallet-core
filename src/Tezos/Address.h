@@ -15,7 +15,7 @@
 namespace TW::Tezos {
 
 class Address : public TW::Base58Address<23> {
-public:
+  public:
     /// Determines whether a string makes a valid  address.
     static bool isValid(const std::string& string);
 
@@ -29,7 +29,8 @@ public:
     explicit Address(const PublicKey& publicKey);
 
     /// Derives an originated address from the given inputs.
-    static std::string deriveOriginatedAddress(const std::string& operationHash, int operationIndex);
+    static std::string deriveOriginatedAddress(const std::string& operationHash,
+                                               int operationIndex);
 
     /// Forge an address to hex bytes.
     Data forge() const;

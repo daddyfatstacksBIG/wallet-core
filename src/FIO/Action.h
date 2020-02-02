@@ -7,8 +7,8 @@
 #pragma once
 
 #include "EOS/Name.h" // Name is reused
-#include "../Data.h"
 #include "../BinaryCoding.h"
+#include "../Data.h"
 
 #include <string>
 #include <vector>
@@ -17,7 +17,7 @@ namespace TW::FIO {
 
 /// Represents an authorization record (actor/permission pair)
 class Authorization {
-public:
+  public:
     std::string actor;
     std::string permission;
     void serialize(Data& out) const {
@@ -28,7 +28,7 @@ public:
 
 /// Represents an array of authorizations
 class AuthorizationArray {
-public:
+  public:
     std::vector<Authorization> authArray;
     void serialize(Data& out) const {
         encodeVarInt(authArray.size(), out);
@@ -38,9 +38,10 @@ public:
     }
 };
 
-/// Represents a tokentype:address pair, such as {"BTC", "bc1qvy4074rggkdr2pzw5vpnn62eg0smzlxwp70d7v"}
+/// Represents a tokentype:address pair, such as {"BTC",
+/// "bc1qvy4074rggkdr2pzw5vpnn62eg0smzlxwp70d7v"}
 class PublicAddress {
-public:
+  public:
     std::string tokenCode;
     std::string address;
     void serialize(Data& out) const {
@@ -51,7 +52,7 @@ public:
 
 /// An array of public addresses
 class PublicAddresses {
-public:
+  public:
     std::vector<PublicAddress> addressList;
     PublicAddresses(const std::vector<std::pair<std::string, std::string>>& addresses) {
         for (const auto& item : addresses) {
@@ -68,7 +69,7 @@ public:
 
 /// Represents an Action.  Some common fields, and an action-specific data field, stored serialized.
 class Action {
-public:
+  public:
     std::string account;
     std::string name;
     AuthorizationArray auth;
@@ -80,23 +81,23 @@ public:
 
 /// AddPubAddress action data part.
 class AddPubAddressData {
-public:
+  public:
     std::string fioAddress;
     PublicAddresses addresses;
     uint64_t fee;
     std::string tpid;
     std::string actor;
 
-    AddPubAddressData(const std::string& fioAddress, std::vector<std::pair<std::string, std::string>> addresses,
-                      uint64_t fee, const std::string& tpid, const std::string& actor) :
-        fioAddress(fioAddress), addresses(addresses),
-        fee(fee), tpid(tpid), actor(actor) {}
+    AddPubAddressData(const std::string& fioAddress,
+                      std::vector<std::pair<std::string, std::string>> addresses, uint64_t fee,
+                      const std::string& tpid, const std::string& actor)
+        : fioAddress(fioAddress), addresses(addresses), fee(fee), tpid(tpid), actor(actor) {}
     void serialize(Data& out) const;
 };
 
 /// RegisterFioAddress action data part.
 class RegisterFioAddressData {
-public:
+  public:
     std::string fioAddress;
     std::string ownerPublicKey;
     uint64_t fee;
@@ -104,23 +105,27 @@ public:
     std::string actor;
 
     RegisterFioAddressData(const std::string& fioAddress, const std::string& ownerPublicKey,
-                           uint64_t fee, const std::string& tpid, const std::string& actor) :
-        fioAddress(fioAddress), ownerPublicKey(ownerPublicKey),
-        fee(fee), tpid(tpid), actor(actor) {}
+                           uint64_t fee, const std::string& tpid, const std::string& actor)
+        : fioAddress(fioAddress)
+        , ownerPublicKey(ownerPublicKey)
+        , fee(fee)
+        , tpid(tpid)
+        , actor(actor) {}
     void serialize(Data& out) const;
 };
 
 /// TransferTokens action data part.
 class TransferData {
-public:
+  public:
     std::string payeePublicKey;
     uint64_t amount;
     uint64_t fee;
     std::string tpid;
     std::string actor;
 
-    TransferData(const std::string& payeePublicKey, uint64_t amount, uint64_t fee, const std::string& tpid, const std::string& actor) :
-        payeePublicKey(payeePublicKey), amount(amount), fee(fee), tpid(tpid), actor(actor) {}
+    TransferData(const std::string& payeePublicKey, uint64_t amount, uint64_t fee,
+                 const std::string& tpid, const std::string& actor)
+        : payeePublicKey(payeePublicKey), amount(amount), fee(fee), tpid(tpid), actor(actor) {}
     void serialize(Data& out) const;
 };
 

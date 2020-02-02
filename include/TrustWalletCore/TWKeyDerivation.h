@@ -26,7 +26,8 @@ struct TWKeyDerivation {
 /// \param p CPU cost (parallelisation)
 /// \param keyLength desired key length.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nullable TWKeyDerivationScrypt(TWString *_Nonnull password, TWData *_Nonnull salt, uint64_t n, uint32_t r, uint32_t p, size_t keyLength);
+TWData* _Nullable TWKeyDerivationScrypt(TWString* _Nonnull password, TWData* _Nonnull salt,
+                                        uint64_t n, uint32_t r, uint32_t p, size_t keyLength);
 
 /// PBKDF2 key derivation function, 256-bit variation.
 ///
@@ -35,7 +36,8 @@ TWData *_Nullable TWKeyDerivationScrypt(TWString *_Nonnull password, TWData *_No
 /// \param iterations CPU cost.
 /// \param keyLength desired key length.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nonnull TWKeyDerivationPBKDF2_256(TWString *_Nonnull password, TWData *_Nonnull salt, uint32_t iterations, size_t keyLength);
+TWData* _Nonnull TWKeyDerivationPBKDF2_256(TWString* _Nonnull password, TWData* _Nonnull salt,
+                                           uint32_t iterations, size_t keyLength);
 
 /// PBKDF2 key derivation function, 512-bit variation.
 ///
@@ -44,6 +46,7 @@ TWData *_Nonnull TWKeyDerivationPBKDF2_256(TWString *_Nonnull password, TWData *
 /// \param iterations CPU cost.
 /// \param keyLength desired key length.
 TW_EXPORT_STATIC_METHOD
-TWData *_Nonnull TWKeyDerivationPBKDF2_512(TWString *_Nonnull password, TWData *_Nonnull salt, uint32_t iterations, size_t keyLength);
+TWData* _Nonnull TWKeyDerivationPBKDF2_512(TWString* _Nonnull password, TWData* _Nonnull salt,
+                                           uint32_t iterations, size_t keyLength);
 
 TW_EXTERN_C_END

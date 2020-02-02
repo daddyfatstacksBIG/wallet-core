@@ -6,21 +6,21 @@
 
 #pragma once
 
+#include "Bytes.h"
 #include "ParamBase.h"
 #include "Parameters.h"
-#include "Bytes.h"
 
-#include "../../uint256.h"
 #include "../../Hash.h"
+#include "../../uint256.h"
 
 #include <string>
 
 namespace TW::Ethereum::ABI {
 
-/// Non-generic version of Function, templated version is impossible to pass around to and back over C interface
-/// (void* looses the temaplate parameters).
+/// Non-generic version of Function, templated version is impossible to pass around to and back over
+/// C interface (void* looses the temaplate parameters).
 class Function {
-public:
+  public:
     std::string name;
     ParamSet _inParams;
     ParamSet _outParams;
@@ -30,13 +30,9 @@ public:
         : name(std::move(name)), _inParams(ParamSet(inParams)) {}
     virtual ~Function() {}
     /// Add an input parameter. Returns the index of the parameter.
-    int addInParam(std::shared_ptr<ParamBase> param) {
-        return _inParams.addParam(param);
-    }
+    int addInParam(std::shared_ptr<ParamBase> param) { return _inParams.addParam(param); }
     /// Add an output parameter. Returns the index of the parameter.
-    int addOutParam(std::shared_ptr<ParamBase> param) {
-        return _outParams.addParam(param);
-    }
+    int addOutParam(std::shared_ptr<ParamBase> param) { return _outParams.addParam(param); }
     /// Add an input or output parameter. Returns the index of the parameter.
     int addParam(std::shared_ptr<ParamBase> param, bool isOutput = false) {
         return isOutput ? _outParams.addParam(param) : _inParams.addParam(param);
@@ -51,12 +47,11 @@ public:
     }
     /// Get an input or output parameter.
     bool getParam(int paramIndex, std::shared_ptr<ParamBase>& param_out, bool isOutput = false) {
-        return isOutput ? _outParams.getParam(paramIndex, param_out) : _inParams.getParam(paramIndex, param_out);
+        return isOutput ? _outParams.getParam(paramIndex, param_out)
+                        : _inParams.getParam(paramIndex, param_out);
     }
     /// Return the function type signature, of the form "baz(int32,uint256)"
-    std::string getType() const {
-        return name + _inParams.getType();
-    }
+    std::string getType() const { return name + _inParams.getType(); }
 
     /// Return the 4-byte function signature
     Data getSignature() const;

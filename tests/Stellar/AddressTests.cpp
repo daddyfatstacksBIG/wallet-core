@@ -4,10 +4,10 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include "Stellar/Address.h"
 #include "Bitcoin/Address.h"
 #include "HexCoding.h"
 #include "PrivateKey.h"
+#include "Stellar/Address.h"
 
 #include <gtest/gtest.h>
 
@@ -16,7 +16,9 @@ using namespace TW;
 using namespace TW::Stellar;
 
 TEST(StellarAddress, FromPublicKey) {
-    const auto publicKey = PublicKey(parse_hex("0103E20EC6B4A39A629815AE02C0A1393B9225E3B890CAE45B59F42FA29BE9668D"), TWPublicKeyTypeED25519);
+    const auto publicKey =
+        PublicKey(parse_hex("0103E20EC6B4A39A629815AE02C0A1393B9225E3B890CAE45B59F42FA29BE9668D"),
+                  TWPublicKeyTypeED25519);
     const auto address = Address(publicKey);
     auto str = hex(address.bytes);
     ASSERT_EQ(string("GAB6EDWGWSRZUYUYCWXAFQFBHE5ZEJPDXCIMVZC3LH2C7IU35FTI2NOQ"), address.string());

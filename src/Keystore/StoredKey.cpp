@@ -80,7 +80,8 @@ const Account* StoredKey::account(TWCoinType coin, const HDWallet* wallet) {
     const auto address = wallet->deriveAddress(coin);
 
     const auto version = TW::xpubVersion(coin);
-    const auto extendedPublicKey = wallet->getExtendedPublicKey(derivationPath.purpose(), coin, version);
+    const auto extendedPublicKey =
+        wallet->getExtendedPublicKey(derivationPath.purpose(), coin, version);
 
     accounts.emplace_back(address, derivationPath, extendedPublicKey);
     return &accounts.back();
@@ -96,12 +97,11 @@ const Account* StoredKey::account(TWCoinType coin) const {
 }
 
 void StoredKey::removeAccount(TWCoinType coin) {
-    accounts.erase(std::remove_if(accounts.begin(), accounts.end(), [coin](Account& account) -> bool {
-        return account.coin() == coin;
-    }
-                                 ), accounts.end());
+    accounts.erase(
+        std::remove_if(accounts.begin(), accounts.end(),
+                       [coin](Account& account) -> bool { return account.coin() == coin; }),
+        accounts.end());
 }
-
 
 const PrivateKey StoredKey::privateKey(TWCoinType coin, const std::string& password) {
     switch (type) {
@@ -127,8 +127,7 @@ void StoredKey::fixAddresses(const std::string& password) {
             const auto key = wallet.getKey(derivationPath);
             account.address = TW::deriveAddress(derivationPath.coin(), key);
         }
-    }
-    break;
+    } break;
     case StoredKeyType::privateKey: {
         auto key = PrivateKey(payload.decrypt(password));
         for (auto& account : accounts) {
@@ -137,8 +136,7 @@ void StoredKey::fixAddresses(const std::string& password) {
             }
             account.address = TW::deriveAddress(account.coin(), key);
         }
-    }
-    break;
+    } break;
     }
 }
 
@@ -168,7 +166,7 @@ static const auto mnemonic = "mnemonic";
 
 StoredKey::StoredKey(const nlohmann::json& json) {
     if (json.count(CodingKeys::type) != 0 &&
-            json[CodingKeys::type].get<std::string>() == TypeString::mnemonic) {
+        json[CodingKeys::type].get<std::string>() == TypeString::mnemonic) {
         type = StoredKeyType::mnemonicPhrase;
     } else {
         type = StoredKeyType::privateKey;
@@ -192,13 +190,14 @@ StoredKey::StoredKey(const nlohmann::json& json) {
     }
 
     if (json.count(CodingKeys::activeAccounts) != 0 &&
-            json[CodingKeys::activeAccounts].is_array()) {
+        json[CodingKeys::activeAccounts].is_array()) {
         for (auto& accountJSON : json[CodingKeys::activeAccounts]) {
             accounts.emplace_back(accountJSON);
         }
     }
 
-    if (accounts.empty() && json.count(CodingKeys::address) != 0 && json[CodingKeys::address].is_string()) {
+    if (accounts.empty() && json.count(CodingKeys::address) != 0 &&
+        json[CodingKeys::address].is_string()) {
         TWCoinType coin = TWCoinTypeEthereum;
         if (json.count(CodingKeys::coin) != 0) {
             coin = json[CodingKeys::coin].get<TWCoinType>();

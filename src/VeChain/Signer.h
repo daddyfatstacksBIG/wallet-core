@@ -21,7 +21,7 @@ namespace TW::VeChain {
 
 /// Helper class that performs VeChain transaction signing.
 class Signer {
-public:
+  public:
     Signer() = delete;
 
     /// Signs a Proto::SigningInput transaction

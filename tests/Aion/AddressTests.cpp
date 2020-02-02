@@ -13,9 +13,12 @@ using namespace TW;
 using namespace TW::Aion;
 
 TEST(AionAddress, FromPublicKey) {
-    auto publicKey = PublicKey(parse_hex("01a775daa30b33fda3091768f0561c8042ee23cb48a6a3e5d7e8248b13d04a48a7"), TWPublicKeyTypeED25519);
+    auto publicKey =
+        PublicKey(parse_hex("01a775daa30b33fda3091768f0561c8042ee23cb48a6a3e5d7e8248b13d04a48a7"),
+                  TWPublicKeyTypeED25519);
     auto address = Address(publicKey);
-    ASSERT_EQ(address.string(), "0xa0d2312facea71b740679c926d040c9056a65a4bfa2ddd18ec160064f82909e7");
+    ASSERT_EQ(address.string(),
+              "0xa0d2312facea71b740679c926d040c9056a65a4bfa2ddd18ec160064f82909e7");
 }
 
 TEST(AionAddress, FromString) {
@@ -26,7 +29,8 @@ TEST(AionAddress, FromString) {
 
 TEST(AionAddress, isValid) {
     std::string validAddress = "0xa0d2312facea71b740679c926d040c9056a65a4bfa2ddd18ec160064f82909e7";
-    std::string invalidAddress = "0xzzd2312facea71b740679c926d040c9056a65a4bfa2ddd18ec160064f82909e7";
+    std::string invalidAddress =
+        "0xzzd2312facea71b740679c926d040c9056a65a4bfa2ddd18ec160064f82909e7";
 
     ASSERT_TRUE(Address::isValid(validAddress));
     ASSERT_FALSE(Address::isValid(invalidAddress));

@@ -33,25 +33,19 @@ TEST(NimiqAddress, IsValid) {
 
 TEST(NimiqAddress, String) {
     // Address to string
-    ASSERT_EQ(
-        Address(parse_hex("5b3e9e5f32b89abafc3708765dc8f00216cefbb1")).string(),
-        "NQ61 BCY9 UPRJ P2DB MY1P 11T5 TJ7G 08BC VXVH"
-    );
+    ASSERT_EQ(Address(parse_hex("5b3e9e5f32b89abafc3708765dc8f00216cefbb1")).string(),
+              "NQ61 BCY9 UPRJ P2DB MY1P 11T5 TJ7G 08BC VXVH");
     // Without spaces
-    ASSERT_EQ(
-        Address("NQ862H8FYGU5RM77QSN9LYLHC56ACYYR0MLA").string(),
-        "NQ86 2H8F YGU5 RM77 QSN9 LYLH C56A CYYR 0MLA"
-    );
+    ASSERT_EQ(Address("NQ862H8FYGU5RM77QSN9LYLHC56ACYYR0MLA").string(),
+              "NQ86 2H8F YGU5 RM77 QSN9 LYLH C56A CYYR 0MLA");
     // With spaces
-    ASSERT_EQ(
-        Address("NQ86 2H8F YGU5 RM77 QSN9 LYLH C56A CYYR 0MLA").string(),
-        "NQ86 2H8F YGU5 RM77 QSN9 LYLH C56A CYYR 0MLA"
-    );
+    ASSERT_EQ(Address("NQ86 2H8F YGU5 RM77 QSN9 LYLH C56A CYYR 0MLA").string(),
+              "NQ86 2H8F YGU5 RM77 QSN9 LYLH C56A CYYR 0MLA");
 }
 
 TEST(NimiqAddress, FromPublicKey) {
     const auto publicKey = Signer::publicKeyFromBytes(
-                               parse_hex("70c7492aaa9c9ac7a05bc0d9c5db2dae9372029654f71f0c7f95deed5099b702"));
+        parse_hex("70c7492aaa9c9ac7a05bc0d9c5db2dae9372029654f71f0c7f95deed5099b702"));
     const auto address = Address(publicKey);
     ASSERT_EQ(address.string(), "NQ27 GBAY EVHP HK5X 6JHV JGFJ 5M3H BF4Y G7GD");
 }

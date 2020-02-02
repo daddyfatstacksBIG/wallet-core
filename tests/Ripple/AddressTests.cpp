@@ -4,10 +4,10 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include "Ripple/Address.h"
-#include "Ripple/XAddress.h"
 #include "HexCoding.h"
 #include "PrivateKey.h"
+#include "Ripple/Address.h"
+#include "Ripple/XAddress.h"
 
 #include <gtest/gtest.h>
 
@@ -16,7 +16,9 @@ using namespace TW;
 using namespace TW::Ripple;
 
 TEST(RippleAddress, FromPublicKey) {
-    const auto publicKey = PublicKey(parse_hex("0303E20EC6B4A39A629815AE02C0A1393B9225E3B890CAE45B59F42FA29BE9668D"), TWPublicKeyTypeSECP256k1);
+    const auto publicKey =
+        PublicKey(parse_hex("0303E20EC6B4A39A629815AE02C0A1393B9225E3B890CAE45B59F42FA29BE9668D"),
+                  TWPublicKeyTypeSECP256k1);
     const auto address = Address(publicKey);
     ASSERT_EQ(string("rnBFvgZphmN39GWzUJeUitaP22Fr9be75H"), address.string());
 }
@@ -29,7 +31,9 @@ TEST(RippleAddress, FromString) {
 }
 
 TEST(RippleXAddress, FromPublicKey) {
-    const auto publicKey = PublicKey(parse_hex("0303E20EC6B4A39A629815AE02C0A1393B9225E3B890CAE45B59F42FA29BE9668D"), TWPublicKeyTypeSECP256k1);
+    const auto publicKey =
+        PublicKey(parse_hex("0303E20EC6B4A39A629815AE02C0A1393B9225E3B890CAE45B59F42FA29BE9668D"),
+                  TWPublicKeyTypeSECP256k1);
     const auto address = XAddress(publicKey, 12345);
     ASSERT_EQ(string("X76UnYEMbQfEs3mUqgtjp4zFy9exgThRj7XVZ6UxsdrBptF"), address.string());
 }

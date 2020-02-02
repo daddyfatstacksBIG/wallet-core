@@ -17,14 +17,15 @@ namespace TW::FIO {
 
 /// FIO Signer.  See also TransactionBuilder.
 class Signer {
-public:
+  public:
     static constexpr auto SignatureSuffix = "K1";
     static constexpr auto SignaturePrefix = "SIG_K1_";
 
     /// Sign the hash of the provided data
     static Data sign(const PrivateKey& privKey, const Data& data);
 
-    /// Used internally, encode signature to base58 with prefix. Ex.: "SIG_K1_K54CA1jmhgWrSdvrNrkokPyvqh7dwsSoQHNU9xgD3Ezf6cJySzhKeUubVRqmpYdnjoP1DM6SorroVAgrCu3qqvJ9coAQ6u"
+    /// Used internally, encode signature to base58 with prefix. Ex.:
+    /// "SIG_K1_K54CA1jmhgWrSdvrNrkokPyvqh7dwsSoQHNU9xgD3Ezf6cJySzhKeUubVRqmpYdnjoP1DM6SorroVAgrCu3qqvJ9coAQ6u"
     static std::string signatureToBsase58(const Data& sig);
 
     /// Verify a signature, used in testing
@@ -35,7 +36,7 @@ public:
 
 /// Helper class for Actor name generation from address
 class Actor {
-public:
+  public:
     /// Generate the actor name of the address
     static std::string actor(const Address& addr);
 

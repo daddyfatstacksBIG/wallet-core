@@ -21,29 +21,31 @@ struct TWRippleXAddress;
 
 /// Compares two addresses for equality.
 TW_EXPORT_STATIC_METHOD
-bool TWRippleXAddressEqual(struct TWRippleXAddress *_Nonnull lhs, struct TWRippleXAddress *_Nonnull rhs);
+bool TWRippleXAddressEqual(struct TWRippleXAddress* _Nonnull lhs,
+                           struct TWRippleXAddress* _Nonnull rhs);
 
 /// Determines if the string is a valid Ripple address.
 TW_EXPORT_STATIC_METHOD
-bool TWRippleXAddressIsValidString(TWString *_Nonnull string);
+bool TWRippleXAddressIsValidString(TWString* _Nonnull string);
 
 /// Creates an address from a string representaion.
 TW_EXPORT_STATIC_METHOD
-struct TWRippleXAddress *_Nullable TWRippleXAddressCreateWithString(TWString *_Nonnull string);
+struct TWRippleXAddress* _Nullable TWRippleXAddressCreateWithString(TWString* _Nonnull string);
 
 /// Creates an address from a public key and destination tag.
 TW_EXPORT_STATIC_METHOD
-struct TWRippleXAddress *_Nonnull TWRippleXAddressCreateWithPublicKey(struct TWPublicKey *_Nonnull publicKey, uint32_t tag);
+struct TWRippleXAddress* _Nonnull TWRippleXAddressCreateWithPublicKey(
+    struct TWPublicKey* _Nonnull publicKey, uint32_t tag);
 
 TW_EXPORT_METHOD
-void TWRippleXAddressDelete(struct TWRippleXAddress *_Nonnull address);
+void TWRippleXAddressDelete(struct TWRippleXAddress* _Nonnull address);
 
 /// Returns the address string representation.
 TW_EXPORT_PROPERTY
-TWString *_Nonnull TWRippleXAddressDescription(struct TWRippleXAddress *_Nonnull address);
+TWString* _Nonnull TWRippleXAddressDescription(struct TWRippleXAddress* _Nonnull address);
 
 /// Returns the destination tag.
 TW_EXPORT_PROPERTY
-uint32_t TWRippleXAddressTag(struct TWRippleXAddress *_Nonnull address);
+uint32_t TWRippleXAddressTag(struct TWRippleXAddress* _Nonnull address);
 
 TW_EXTERN_C_END

@@ -15,7 +15,7 @@
 namespace TW::Groestlcoin {
 
 class Address {
-public:
+  public:
     /// Number of bytes in an address.
     static const size_t size = 21;
 

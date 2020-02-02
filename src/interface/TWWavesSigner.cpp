@@ -24,9 +24,9 @@ TW_Waves_Proto_SigningOutput TWWavesSignerSign(TW_Waves_Proto_SigningInput data)
     Data signature = Signer::sign(privateKey, transaction);
 
     Proto::SigningOutput protoOutput = Proto::SigningOutput();
-    protoOutput.set_signature(reinterpret_cast<const char *>(signature.data()), signature.size());
+    protoOutput.set_signature(reinterpret_cast<const char*>(signature.data()), signature.size());
     protoOutput.set_json(transaction.buildJson(signature).dump());
     std::string serialized = protoOutput.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()),
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
                                  serialized.size());
 }

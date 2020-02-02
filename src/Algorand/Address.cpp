@@ -5,9 +5,9 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "Address.h"
-#include "../HexCoding.h"
-#include "../Hash.h"
 #include "../Base32.h"
+#include "../Hash.h"
+#include "../HexCoding.h"
 
 #include <array>
 

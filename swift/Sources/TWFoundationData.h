@@ -8,5 +8,5 @@
 
 #include <TrustWalletCore/TWData.h>
 
-TWData *_Nonnull TWDataCreateWithNSData(NSData *_Nonnull data);
-NSData *_Nonnull TWDataNSData(TWData *_Nonnull data);
+TWData* _Nonnull TWDataCreateWithNSData(NSData* _Nonnull data);
+NSData* _Nonnull TWDataNSData(TWData* _Nonnull data);

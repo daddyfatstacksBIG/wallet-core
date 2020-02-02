@@ -14,7 +14,7 @@ using namespace TW::Algorand;
 const Data TRANSACTION_TAG = {84, 88};
 const std::string TRANSACTION_PAY = "pay";
 
-Proto::SigningOutput Signer::sign(const Proto::SigningInput &input) noexcept {
+Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
     auto protoOutput = Proto::SigningOutput();
     auto key = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));
     auto pubkey = key.getPublicKey(TWPublicKeyTypeED25519);
@@ -27,8 +27,9 @@ Proto::SigningOutput Signer::sign(const Proto::SigningInput &input) noexcept {
         auto message = input.transaction_pay();
         auto to = Address(message.to_address());
 
-        auto transaction = Transaction(from, to, message.fee(), message.amount(), message.first_round(),
-                                       message.last_round(), note, TRANSACTION_PAY, genesisId, genesisHash);
+        auto transaction =
+            Transaction(from, to, message.fee(), message.amount(), message.first_round(),
+                        message.last_round(), note, TRANSACTION_PAY, genesisId, genesisHash);
         auto signature = sign(key, transaction);
         auto serialized = transaction.serialize(signature);
         protoOutput.set_encoded(serialized.data(), serialized.size());
@@ -37,7 +38,7 @@ Proto::SigningOutput Signer::sign(const Proto::SigningInput &input) noexcept {
     return protoOutput;
 }
 
-Data Signer::sign(const PrivateKey &privateKey, Transaction &transaction) noexcept {
+Data Signer::sign(const PrivateKey& privateKey, Transaction& transaction) noexcept {
     Data data;
     append(data, TRANSACTION_TAG);
     append(data, transaction.serialize());

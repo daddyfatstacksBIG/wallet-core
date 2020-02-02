@@ -6,9 +6,9 @@
 
 #pragma once
 
+#include "TWAionProto.h"
 #include "TWBase.h"
 #include "TWData.h"
-#include "TWAionProto.h"
 
 TW_EXTERN_C_BEGIN
 

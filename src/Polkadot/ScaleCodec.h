@@ -10,11 +10,10 @@
 #include "../Data.h"
 #include "../PublicKey.h"
 #include "../SS58Address.h"
-#include <boost/multiprecision/cpp_int.hpp>
-#include <cmath>
 #include <algorithm>
 #include <bitset>
-
+#include <boost/multiprecision/cpp_int.hpp>
+#include <cmath>
 
 /// Reference https://github.com/soramitsu/kagome/blob/master/core/scale/scale_encoder_stream.cpp
 using CompactInteger = boost::multiprecision::cpp_int;
@@ -121,8 +120,10 @@ inline Data encodeAddresses(const std::vector<SS58Address>& addresses) {
 
 inline Data encodeEra(const uint64_t block, const uint64_t period) {
     // MortalEra(phase, period)
-    // See decodeMortalObject at https://github.com/polkadot-js/api/blob/master/packages/types/src/primitive/Extrinsic/ExtrinsicEra.ts#L74
-    // See toU8a at https://github.com/polkadot-js/api/blob/master/packages/types/src/primitive/Extrinsic/ExtrinsicEra.ts#L141
+    // See decodeMortalObject at
+    // https://github.com/polkadot-js/api/blob/master/packages/types/src/primitive/Extrinsic/ExtrinsicEra.ts#L74
+    // See toU8a at
+    // https://github.com/polkadot-js/api/blob/master/packages/types/src/primitive/Extrinsic/ExtrinsicEra.ts#L141
     uint64_t calPeriod = uint64_t(pow(2, ceil(log2(double(period)))));
     calPeriod = std::min(std::max(calPeriod, uint64_t(4)), uint64_t(1) << 16);
     uint64_t phase = block % calPeriod;
@@ -138,7 +139,8 @@ inline Data encodeEra(const uint64_t block, const uint64_t period) {
             break;
         }
     }
-    auto encoded = std::min(15, std::max(1, trailingZeros - 1)) + (((quantizedPhase / quantizeFactor) << 4));
+    auto encoded =
+        std::min(15, std::max(1, trailingZeros - 1)) + (((quantizedPhase / quantizeFactor) << 4));
     return Data{byte(encoded & 0xff), byte(encoded >> 8)};
 }
 

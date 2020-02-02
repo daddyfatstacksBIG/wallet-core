@@ -17,7 +17,7 @@
 namespace TW {
 
 class PublicKey {
-public:
+  public:
     /// The number of bytes in a secp256k1 and nist256p1 public key.
     static const size_t secp256k1Size = 33;
 
@@ -68,7 +68,8 @@ public:
     ///
     /// The public key hash is computed by applying the hasher to the public key
     /// bytes and then prepending the prefix.
-    Data hash(const Data& prefix, Hash::Hasher hasher = Hash::sha256ripemd, bool skipTypeByte = false) const;
+    Data hash(const Data& prefix, Hash::Hasher hasher = Hash::sha256ripemd,
+              bool skipTypeByte = false) const;
 };
 
 inline bool operator==(const PublicKey& lhs, const PublicKey& rhs) {

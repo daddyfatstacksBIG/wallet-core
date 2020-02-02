@@ -13,8 +13,10 @@
 
 using namespace TW;
 
-TWData* _Nonnull TWIoTeXStakingStake(TWData* _Nonnull candidate, uint64_t stakeDuration, bool nonDecay, TWData* _Nonnull data) {
-    TWEthereumAbiFunction* func = TWEthereumAbiEncoderBuildFunction(TWStringCreateWithUTF8Bytes("createPygg"));
+TWData* _Nonnull TWIoTeXStakingStake(TWData* _Nonnull candidate, uint64_t stakeDuration,
+                                     bool nonDecay, TWData* _Nonnull data) {
+    TWEthereumAbiFunction* func =
+        TWEthereumAbiEncoderBuildFunction(TWStringCreateWithUTF8Bytes("createPygg"));
     assert(func != nullptr);
 
     TWEthereumAbiFunctionAddParamBytesFix(func, 12, candidate, false);
@@ -30,7 +32,8 @@ TWData* _Nonnull TWIoTeXStakingStake(TWData* _Nonnull candidate, uint64_t stakeD
 
 /// Function to generate Unstake message
 TWData* _Nonnull TWIoTeXStakingUnstake(uint64_t pyggIndex, TWData* _Nonnull data) {
-    TWEthereumAbiFunction* func = TWEthereumAbiEncoderBuildFunction(TWStringCreateWithUTF8Bytes("unstake"));
+    TWEthereumAbiFunction* func =
+        TWEthereumAbiEncoderBuildFunction(TWStringCreateWithUTF8Bytes("unstake"));
     assert(func != nullptr);
 
     auto v = store(uint256_t(pyggIndex));
@@ -44,7 +47,8 @@ TWData* _Nonnull TWIoTeXStakingUnstake(uint64_t pyggIndex, TWData* _Nonnull data
 
 /// Function to generate Withdraw message
 TWData* _Nonnull TWIoTeXStakingWithdraw(uint64_t pyggIndex, TWData* _Nonnull data) {
-    TWEthereumAbiFunction* func = TWEthereumAbiEncoderBuildFunction(TWStringCreateWithUTF8Bytes("withdraw"));
+    TWEthereumAbiFunction* func =
+        TWEthereumAbiEncoderBuildFunction(TWStringCreateWithUTF8Bytes("withdraw"));
     assert(func != nullptr);
 
     auto v = store(uint256_t(pyggIndex));
@@ -58,7 +62,8 @@ TWData* _Nonnull TWIoTeXStakingWithdraw(uint64_t pyggIndex, TWData* _Nonnull dat
 
 /// Function to generate AddStake message
 TWData* _Nonnull TWIoTeXStakingAddStake(uint64_t pyggIndex, TWData* _Nonnull data) {
-    TWEthereumAbiFunction* func = TWEthereumAbiEncoderBuildFunction(TWStringCreateWithUTF8Bytes("storeToPygg"));
+    TWEthereumAbiFunction* func =
+        TWEthereumAbiEncoderBuildFunction(TWStringCreateWithUTF8Bytes("storeToPygg"));
     assert(func != nullptr);
 
     auto v = store(uint256_t(pyggIndex));
@@ -71,8 +76,10 @@ TWData* _Nonnull TWIoTeXStakingAddStake(uint64_t pyggIndex, TWData* _Nonnull dat
 }
 
 /// Function to generate MoveStake message
-TWData* _Nonnull TWIoTeXStakingMoveStake(uint64_t pyggIndex, TWData* _Nonnull candidate, TWData* _Nonnull data) {
-    TWEthereumAbiFunction* func = TWEthereumAbiEncoderBuildFunction(TWStringCreateWithUTF8Bytes("revote"));
+TWData* _Nonnull TWIoTeXStakingMoveStake(uint64_t pyggIndex, TWData* _Nonnull candidate,
+                                         TWData* _Nonnull data) {
+    TWEthereumAbiFunction* func =
+        TWEthereumAbiEncoderBuildFunction(TWStringCreateWithUTF8Bytes("revote"));
     assert(func != nullptr);
 
     auto v = store(uint256_t(pyggIndex));

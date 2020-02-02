@@ -6,16 +6,16 @@
 
 #include "Address.h"
 
-#include "WalletConsole.h"
 #include "Coin.h"
 #include "Data.h"
-#include "PrivateKey.h"
-#include "HexCoding.h"
 #include "HDWallet.h"
+#include "HexCoding.h"
+#include "PrivateKey.h"
+#include "WalletConsole.h"
 
+#include <cassert>
 #include <iostream>
 #include <vector>
-#include <cassert>
 
 namespace TW::WalletConsole {
 

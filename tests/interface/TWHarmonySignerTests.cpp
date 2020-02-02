@@ -56,7 +56,7 @@ TEST(TWHarmonySigner, Sign) {
     transactionMessage->set_amount(value.data(), value.size());
 
     auto inputData = input.SerializeAsString();
-    auto inputTWData = TWDataCreateWithBytes((const byte *)inputData.data(), inputData.size());
+    auto inputTWData = TWDataCreateWithBytes((const byte*)inputData.data(), inputData.size());
     auto outputTWData = TWHarmonySignerSign(inputTWData);
 
     auto output = Proto::SigningOutput();

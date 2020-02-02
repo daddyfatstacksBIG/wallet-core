@@ -16,21 +16,19 @@ using WorkchainId_t = int32_t;
 
 /// Workchain ID, currently supported: masterchain: -1, basic workchain: 0
 class Workchain {
-public:
+  public:
     static constexpr WorkchainId_t MasterChainId = -1;
     static constexpr WorkchainId_t BasicChainId = 0;
     static constexpr WorkchainId_t InvalidChainId = 0x80000000;
 
     // The default workchain ID
-    static WorkchainId_t defaultChain() {
-        return BasicChainId;
-    }
+    static WorkchainId_t defaultChain() { return BasicChainId; }
     static bool isValid(WorkchainId_t workchainId_in);
 };
 
 /// TON smart contract address, also account address
 class Address {
-public:
+  public:
     WorkchainId_t workchainId;
 
     static const uint8_t AddressLength = 32;
@@ -44,11 +42,14 @@ public:
     /// Initializes a TON address with a string representation, either raw or user friendly
     explicit Address(const std::string& address);
 
-    /// Initializes a TON address with a public key.  WorkchainId is optional, Basic chain by default.
-    explicit Address(const PublicKey& publicKey, WorkchainId_t workchain = Workchain::defaultChain());
+    /// Initializes a TON address with a public key.  WorkchainId is optional, Basic chain by
+    /// default.
+    explicit Address(const PublicKey& publicKey,
+                     WorkchainId_t workchain = Workchain::defaultChain());
 
     /// Determines whether a string makes a valid address, in any format
-    static bool isValid(const std::string& address, WorkchainId_t workchain = Workchain::defaultChain());
+    static bool isValid(const std::string& address,
+                        WorkchainId_t workchain = Workchain::defaultChain());
 
     /// Returns a string representation of the address (user friendly format)
     std::string string() const;
@@ -56,7 +57,7 @@ public:
     /// Returns a string representation of the address, raw format
     std::string stringRaw() const;
 
-private:
+  private:
     /// Empty constructor
     Address() = default;
 

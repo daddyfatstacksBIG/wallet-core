@@ -19,5 +19,6 @@ TW_Tron_Proto_SigningOutput TWTronSignerSign(TW_Tron_Proto_SigningInput data) {
 
     const auto output = Signer::sign(input);
     auto serialized = output.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

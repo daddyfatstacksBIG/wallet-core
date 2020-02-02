@@ -20,10 +20,9 @@ TW_Nano_Proto_SigningOutput TWNanoSignerSign(TW_Nano_Proto_SigningInput data) {
     try {
         const auto signer = Signer(input);
         output = signer.build();
-    }
-    catch (...) {
+    } catch (...) {
     }
     auto serialized = output.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()),
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
                                  serialized.size());
 }

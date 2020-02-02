@@ -14,18 +14,16 @@ using namespace TW;
 using namespace TW::Cbor;
 using namespace std;
 
-
 TEST(Cbor, EncSample1) {
-    EXPECT_EQ(
-        "8205a26178186461793831",
-    hex(Encode::array({
-        Encode::uint(5),
-        Encode::map({
-            make_pair(Encode::string("x"), Encode::uint(100)),
-            make_pair(Encode::string("y"), Encode::negInt(50)),
-        }),
-    }).encoded())
-    );
+    EXPECT_EQ("8205a26178186461793831",
+              hex(Encode::array({
+                                    Encode::uint(5),
+                                    Encode::map({
+                                        make_pair(Encode::string("x"), Encode::uint(100)),
+                                        make_pair(Encode::string("y"), Encode::negInt(50)),
+                                    }),
+                                })
+                      .encoded()));
 }
 
 TEST(Cbor, EncUInt) {
@@ -82,16 +80,19 @@ TEST(Cbor, EncNegInt) {
     EXPECT_EQ("3bfffffffffffffffe", hex(Encode::negInt(0xffffffffffffffff).encoded()));
 }
 
-
 TEST(Cbor, EncString) {
     EXPECT_EQ("60", hex(Encode::string("").encoded()));
     EXPECT_EQ("6141", hex(Encode::string("A").encoded()));
     EXPECT_EQ("656162636465", hex(Encode::string("abcde").encoded()));
     Data long258(258);
     EXPECT_EQ(
-        "590102000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-        hex(Encode::bytes(long258).encoded())
-    );
+        "590102000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        "000000000000000000000000000000000000000000000000000000000000000000000000",
+        hex(Encode::bytes(long258).encoded()));
 }
 
 TEST(Cbor, EncTag) {
@@ -229,10 +230,11 @@ TEST(Cbor, ArrayEmpty) {
 
 TEST(Cbor, Array3) {
     Data cbor = Encode::array({
-        Encode::uint(1),
-        Encode::uint(2),
-        Encode::uint(3),
-    }).encoded();
+                                  Encode::uint(1),
+                                  Encode::uint(2),
+                                  Encode::uint(3),
+                              })
+                    .encoded();
 
     EXPECT_EQ("83010203", hex(cbor));
     EXPECT_TRUE(Decode(cbor).isValid());
@@ -247,21 +249,21 @@ TEST(Cbor, Array3) {
 
 TEST(Cbor, ArrayNested) {
     Data cbor = Encode::array({
-        Encode::uint(1),
-        Encode::array({
-            Encode::uint(2),
-            Encode::uint(3),
-        }),
-        Encode::array({
-            Encode::uint(4),
-            Encode::uint(5),
-        }),
-    }).encoded();
+                                  Encode::uint(1),
+                                  Encode::array({
+                                      Encode::uint(2),
+                                      Encode::uint(3),
+                                  }),
+                                  Encode::array({
+                                      Encode::uint(4),
+                                      Encode::uint(5),
+                                  }),
+                              })
+                    .encoded();
 
     EXPECT_EQ("8301820203820405", hex(cbor));
     EXPECT_TRUE(Decode(cbor).isValid());
-    EXPECT_EQ("[1, [2, 3], [4, 5]]",
-              Decode(cbor).dumpToString());
+    EXPECT_EQ("[1, [2, 3], [4, 5]]", Decode(cbor).dumpToString());
 
     Decode decode(cbor);
     EXPECT_EQ(3, decode.getArrayElements().size());
@@ -283,7 +285,8 @@ TEST(Cbor, Array25) {
 
     EXPECT_EQ("98190102030405060708090a0b0c0d0e0f101112131415161718181819", hex(cbor));
     EXPECT_TRUE(Decode(cbor).isValid());
-    EXPECT_EQ("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]",
+    EXPECT_EQ("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, "
+              "24, 25]",
               Decode(cbor).dumpToString());
 
     Decode decode(cbor);
@@ -306,9 +309,10 @@ TEST(Cbor, MapEmpty) {
 
 TEST(Cbor, Map2Num) {
     Data cbor = Encode::map({
-        make_pair(Encode::uint(1), Encode::uint(2)),
-        make_pair(Encode::uint(3), Encode::uint(4)),
-    }).encoded();
+                                make_pair(Encode::uint(1), Encode::uint(2)),
+                                make_pair(Encode::uint(3), Encode::uint(4)),
+                            })
+                    .encoded();
 
     EXPECT_EQ("a201020304", hex(cbor));
     EXPECT_TRUE(Decode(cbor).isValid());
@@ -322,17 +326,17 @@ TEST(Cbor, Map2Num) {
 
 TEST(Cbor, Map2WithArr) {
     Data cbor = Encode::map({
-        make_pair(Encode::string("a"), Encode::uint(1)),
-        make_pair(Encode::string("b"), Encode::array({
-            Encode::uint(2),
-            Encode::uint(3),
-        })),
-    }).encoded();
+                                make_pair(Encode::string("a"), Encode::uint(1)),
+                                make_pair(Encode::string("b"), Encode::array({
+                                                                   Encode::uint(2),
+                                                                   Encode::uint(3),
+                                                               })),
+                            })
+                    .encoded();
 
     EXPECT_EQ("a26161016162820203", hex(cbor));
     EXPECT_TRUE(Decode(cbor).isValid());
-    EXPECT_EQ("{\"a\": 1, \"b\": [2, 3]}",
-              Decode(cbor).dumpToString());
+    EXPECT_EQ("{\"a\": 1, \"b\": [2, 3]}", Decode(cbor).dumpToString());
 
     Decode decode(cbor);
     EXPECT_EQ(2, decode.getMapElements().size());
@@ -346,15 +350,16 @@ TEST(Cbor, Map2WithArr) {
 
 TEST(Cbor, MapNested) {
     Data cbor = Encode::map({
-        make_pair(Encode::string("a"), Encode::map({
-            make_pair(Encode::string("b"), Encode::string("c")),
-        })),
-    }).encoded();
+                                make_pair(Encode::string("a"),
+                                          Encode::map({
+                                              make_pair(Encode::string("b"), Encode::string("c")),
+                                          })),
+                            })
+                    .encoded();
 
     EXPECT_EQ("a16161a161626163", hex(cbor));
     EXPECT_TRUE(Decode(cbor).isValid());
-    EXPECT_EQ("{\"a\": {\"b\": \"c\"}}",
-              Decode(cbor).dumpToString());
+    EXPECT_EQ("{\"a\": {\"b\": \"c\"}}", Decode(cbor).dumpToString());
 
     Decode decode(cbor);
     EXPECT_EQ(1, decode.getMapElements().size());
@@ -366,15 +371,14 @@ TEST(Cbor, MapNested) {
 
 TEST(Cbor, ArrayIndef) {
     Data cbor = Encode::indefArray()
-                .addIndefArrayElem(Encode::uint(1))
-                .addIndefArrayElem(Encode::uint(2))
-                .closeIndefArray()
-                .encoded();
+                    .addIndefArrayElem(Encode::uint(1))
+                    .addIndefArrayElem(Encode::uint(2))
+                    .closeIndefArray()
+                    .encoded();
 
     EXPECT_EQ("9f0102ff", hex(cbor));
     EXPECT_TRUE(Decode(cbor).isValid());
-    EXPECT_EQ("[_ 1, 2]",
-              Decode(cbor).dumpToString());
+    EXPECT_EQ("[_ 1, 2]", Decode(cbor).dumpToString());
 
     Decode decode(cbor);
     EXPECT_EQ(2, decode.getArrayElements().size());
@@ -403,10 +407,10 @@ TEST(Cbor, ArrayInfefErrorCloseNostart) {
 TEST(Cbor, ArrayInfefErrorResultNoclose) {
     try {
         Data cbor = Encode::indefArray()
-                    .addIndefArrayElem(Encode::uint(1))
-                    .addIndefArrayElem(Encode::uint(2))
-                    // close is missing, break command not written
-                    .encoded();
+                        .addIndefArrayElem(Encode::uint(1))
+                        .addIndefArrayElem(Encode::uint(2))
+                        // close is missing, break command not written
+                        .encoded();
     } catch (exception& ex) {
         return;
     }

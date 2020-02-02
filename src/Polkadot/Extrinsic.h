@@ -7,15 +7,15 @@
 #pragma once
 
 #include "Address.h"
+#include "ScaleCodec.h"
 #include "../Data.h"
 #include "../proto/Polkadot.pb.h"
 #include "../uint256.h"
-#include  "ScaleCodec.h"
 
 namespace TW::Polkadot {
 
 class Extrinsic {
-public:
+  public:
     Data blockHash;
     Data genesisHash;
     uint64_t nonce;
@@ -51,7 +51,7 @@ public:
     // Encode final data with signer public key and signature.
     Data encodeSignature(const PublicKey& signer, const Data& signature) const;
 
-protected:
+  protected:
     Data encodeEraNonceTip() const;
 };
 

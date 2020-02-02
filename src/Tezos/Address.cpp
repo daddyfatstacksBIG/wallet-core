@@ -31,8 +31,8 @@ bool Address::isValid(const std::string& string) {
 
     // verify prefix
     if (std::equal(tz1Prefix.begin(), tz1Prefix.end(), decoded.begin()) ||
-            std::equal(tz2Prefix.begin(), tz2Prefix.end(), decoded.begin()) ||
-            std::equal(tz3Prefix.begin(), tz3Prefix.end(), decoded.begin())) {
+        std::equal(tz2Prefix.begin(), tz2Prefix.end(), decoded.begin()) ||
+        std::equal(tz3Prefix.begin(), tz3Prefix.end(), decoded.begin())) {
         return true;
     }
 

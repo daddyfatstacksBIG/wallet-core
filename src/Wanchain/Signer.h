@@ -22,24 +22,24 @@ namespace TW::Wanchain {
 
 /// Helper class that performs Wanchain transaction signing.
 class Signer {
-public:
+  public:
     boost::multiprecision::uint256_t chainID;
 
     /// Initializes a signer with a chain identifier.
     Signer(boost::multiprecision::uint256_t chainID) : chainID(std::move(chainID)) {}
 
     /// Signs a Proto::SigningInput transaction
-    Ethereum::Proto::SigningOutput sign(const Ethereum::Proto::SigningInput &input) const noexcept;
+    Ethereum::Proto::SigningOutput sign(const Ethereum::Proto::SigningInput& input) const noexcept;
 
     /// Signs the given transaction.
-    void sign(const PrivateKey &privateKey, Ethereum::Transaction &transaction) const noexcept;
+    void sign(const PrivateKey& privateKey, Ethereum::Transaction& transaction) const noexcept;
 
     /// Encodes a transaction.
-    Data encode(const Ethereum::Transaction &transaction) const noexcept;
+    Data encode(const Ethereum::Transaction& transaction) const noexcept;
 
-protected:
+  protected:
     /// Computes the transaction hash.
-    Data hash(const Ethereum::Transaction &transaction) const noexcept;
+    Data hash(const Ethereum::Transaction& transaction) const noexcept;
 };
 
 } // namespace TW::Wanchain

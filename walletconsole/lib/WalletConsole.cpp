@@ -5,26 +5,25 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "WalletConsole.h"
+#include "Address.h"
+#include "Coins.h"
 #include "CommandExecutor.h"
 #include "Keys.h"
-#include "Coins.h"
-#include "Util.h"
-#include "Address.h"
 #include "TonCoin.h"
+#include "Util.h"
 
 #include "Base64.h"
-#include "HexCoding.h"
 #include "Data.h"
+#include "HexCoding.h"
 
+#include <cassert>
 #include <iostream>
 #include <vector>
-#include <cassert>
 
 namespace TW::WalletConsole {
 
 using namespace std;
 using namespace TW;
-
 
 void WalletConsole::init() {
     _outst << endl;
@@ -54,7 +53,8 @@ void WalletConsole::loop() {
 }
 
 bool WalletConsole::isExit(const string& line) {
-    if (line.length() < 4) return false;
+    if (line.length() < 4)
+        return false;
     string first4 = line.substr(0, 4);
     if (first4 == "quit" || first4 == "exit") {
         return true;

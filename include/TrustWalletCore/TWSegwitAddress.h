@@ -21,33 +21,35 @@ struct TWSegwitAddress;
 
 /// Compares two addresses for equality.
 TW_EXPORT_STATIC_METHOD
-bool TWSegwitAddressEqual(struct TWSegwitAddress *_Nonnull lhs, struct TWSegwitAddress *_Nonnull rhs);
+bool TWSegwitAddressEqual(struct TWSegwitAddress* _Nonnull lhs,
+                          struct TWSegwitAddress* _Nonnull rhs);
 
 /// Determines if the string is a valid Bech32 address.
 TW_EXPORT_STATIC_METHOD
-bool TWSegwitAddressIsValidString(TWString *_Nonnull string);
+bool TWSegwitAddressIsValidString(TWString* _Nonnull string);
 
 /// Creates an address from a string representaion.
 TW_EXPORT_STATIC_METHOD
-struct TWSegwitAddress *_Nullable TWSegwitAddressCreateWithString(TWString *_Nonnull string);
+struct TWSegwitAddress* _Nullable TWSegwitAddressCreateWithString(TWString* _Nonnull string);
 
 /// Creates an address from a public key.
 TW_EXPORT_STATIC_METHOD
-struct TWSegwitAddress *_Nonnull TWSegwitAddressCreateWithPublicKey(enum TWHRP hrp, struct TWPublicKey *_Nonnull publicKey);
+struct TWSegwitAddress* _Nonnull TWSegwitAddressCreateWithPublicKey(
+    enum TWHRP hrp, struct TWPublicKey* _Nonnull publicKey);
 
 TW_EXPORT_METHOD
-void TWSegwitAddressDelete(struct TWSegwitAddress *_Nonnull address);
+void TWSegwitAddressDelete(struct TWSegwitAddress* _Nonnull address);
 
 /// Returns the address string representation.
 TW_EXPORT_PROPERTY
-TWString *_Nonnull TWSegwitAddressDescription(struct TWSegwitAddress *_Nonnull address);
+TWString* _Nonnull TWSegwitAddressDescription(struct TWSegwitAddress* _Nonnull address);
 
 /// Returns the human-readable part.
 TW_EXPORT_PROPERTY
-enum TWHRP TWSegwitAddressHRP(struct TWSegwitAddress *_Nonnull address);
+enum TWHRP TWSegwitAddressHRP(struct TWSegwitAddress* _Nonnull address);
 
 /// Returns the witness program
 TW_EXPORT_PROPERTY
-TWData *_Nonnull TWSegwitAddressWitnessProgram(struct TWSegwitAddress *_Nonnull address);
+TWData* _Nonnull TWSegwitAddressWitnessProgram(struct TWSegwitAddress* _Nonnull address);
 
 TW_EXTERN_C_END

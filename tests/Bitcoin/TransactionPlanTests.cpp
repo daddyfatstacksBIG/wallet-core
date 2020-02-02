@@ -6,9 +6,9 @@
 
 #include "Bitcoin/OutPoint.h"
 #include "Bitcoin/Script.h"
-#include "Bitcoin/UnspentSelector.h"
-#include "Bitcoin/TransactionPlan.h"
 #include "Bitcoin/TransactionBuilder.h"
+#include "Bitcoin/TransactionPlan.h"
+#include "Bitcoin/UnspentSelector.h"
 #include "proto/Bitcoin.pb.h"
 #include <TrustWalletCore/TWCoinType.h>
 
@@ -35,13 +35,15 @@ inline auto buildUTXO(const OutPoint& outPoint, Amount amount) {
     return utxo;
 }
 
-inline auto buildSigningInput(Amount amount, int byteFee, const std::vector<Proto::UnspentTransaction>& utxos, bool useMaxAmount, enum TWCoinType coin) {
+inline auto buildSigningInput(Amount amount, int byteFee,
+                              const std::vector<Proto::UnspentTransaction>& utxos,
+                              bool useMaxAmount, enum TWCoinType coin) {
     Proto::SigningInput input;
     input.set_amount(amount);
     input.set_byte_fee(byteFee);
     input.set_use_max_amount(useMaxAmount);
     input.set_coin_type(coin);
-    *input.mutable_utxo() = { utxos.begin(), utxos.end() };
+    *input.mutable_utxo() = {utxos.begin(), utxos.end()};
     return input;
 }
 

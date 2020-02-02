@@ -15,12 +15,10 @@ namespace TW::Zilliqa {
 
 /// Zilliqa address is a Bech32Address, with "zil" prefix and Sha2 hash.
 class Address : public Bech32Address {
-public:
+  public:
     static const std::string hrp; // HRP_ZILLIQA
 
-    static bool isValid(const std::string addr) {
-        return Bech32Address::isValid(addr, hrp);
-    }
+    static bool isValid(const std::string addr) { return Bech32Address::isValid(addr, hrp); }
 
     Address() : Bech32Address(hrp) {}
 
@@ -30,9 +28,7 @@ public:
     /// Initializes an address with a public key.
     Address(const PublicKey& publicKey) : Bech32Address(hrp, HASHER_SHA2, publicKey) {}
 
-    std::string checksumed() const {
-        return checksum(getKeyHash());
-    }
+    std::string checksumed() const { return checksum(getKeyHash()); }
 
     static bool decode(const std::string& addr, Address& obj_out) {
         return Bech32Address::decode(addr, obj_out, hrp);

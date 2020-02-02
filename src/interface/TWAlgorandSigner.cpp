@@ -9,7 +9,6 @@
 #include "../Algorand/Signer.h"
 #include "../proto/Algorand.pb.h"
 
-
 using namespace TW;
 using namespace TW::Algorand;
 
@@ -20,5 +19,6 @@ TW_Algorand_Proto_SigningOutput TWAlgorandSignerSign(TW_Algorand_Proto_SigningIn
     auto protoOutput = Signer::sign(input);
 
     auto serialized = protoOutput.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

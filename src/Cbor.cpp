@@ -7,13 +7,12 @@
 #include "Cbor.h"
 #include "HexCoding.h"
 
-#include <sstream>
 #include <cassert>
+#include <sstream>
 
 namespace TW::Cbor {
 
 using namespace std;
-
 
 TW::Data Encode::encoded() const {
     if (openIndefCount > 0) {
@@ -140,9 +139,7 @@ void Encode::appendIndefinite(byte majorType) {
     TW::append(data, (byte)((majorType << 5) | (minorType & 0x1F)));
 }
 
-
-Decode::Decode(const Data& input)
-    : data(std::make_shared<OrigDataRef>(input)) {
+Decode::Decode(const Data& input) : data(std::make_shared<OrigDataRef>(input)) {
     // shared_ptr to original input data created
     subStart = 0;
     subLen = (uint32_t)input.size();
@@ -184,21 +181,16 @@ Decode::TypeDesc Decode::getTypeDesc() const {
     }
     if (minorType == 26) {
         typeDesc.byteCount = 1 + 4;
-        typeDesc.value = (uint32_t)(((uint32_t)byte(1) << 24) + ((uint32_t)byte(2) << 16) + ((uint32_t)byte(3) << 8) + (uint32_t)byte(4));
+        typeDesc.value = (uint32_t)(((uint32_t)byte(1) << 24) + ((uint32_t)byte(2) << 16) +
+                                    ((uint32_t)byte(3) << 8) + (uint32_t)byte(4));
         return typeDesc;
     }
     if (minorType == 27) {
         typeDesc.byteCount = 1 + 8;
-        typeDesc.value =
-            (uint64_t)(
-                ((uint64_t)byte(1) << 56) +
-                ((uint64_t)byte(2) << 48) +
-                ((uint64_t)byte(3) << 40) +
-                ((uint64_t)byte(4) << 32) +
-                ((uint64_t)byte(5) << 24) +
-                ((uint64_t)byte(6) << 16) +
-                ((uint64_t)byte(7) << 8) +
-                ((uint64_t)byte(8)));
+        typeDesc.value = (uint64_t)(((uint64_t)byte(1) << 56) + ((uint64_t)byte(2) << 48) +
+                                    ((uint64_t)byte(3) << 40) + ((uint64_t)byte(4) << 32) +
+                                    ((uint64_t)byte(5) << 24) + ((uint64_t)byte(6) << 16) +
+                                    ((uint64_t)byte(7) << 8) + ((uint64_t)byte(8)));
         return typeDesc;
     }
     if (minorType >= 28 && minorType <= 30) {
@@ -227,8 +219,7 @@ uint32_t Decode::getTotalLen() const {
         return getCompoundLength(1);
     case MT_map:
         return getCompoundLength(2);
-    case MT_tag:
-    {
+    case MT_tag: {
         uint32_t dataLen = skipClone(typeDesc.byteCount).getTotalLen();
         return typeDesc.byteCount + dataLen;
     }
@@ -353,15 +344,13 @@ bool Decode::isValid() const {
             return (typeDesc.byteCount <= subLen);
 
         case MT_bytes:
-        case MT_string:
-        {
+        case MT_string: {
             auto len = (uint32_t)(typeDesc.byteCount + typeDesc.value);
             return (len <= subLen);
         }
 
         case MT_array:
-        case MT_map:
-        {
+        case MT_map: {
             uint32_t countMultiplier = (typeDesc.majorType == MT_map) ? 2 : 1;
             uint32_t len = getCompoundLength(countMultiplier);
             if (len > subLen) {
@@ -369,8 +358,7 @@ bool Decode::isValid() const {
             }
             auto count = typeDesc.isIndefiniteValue ? 0 : countMultiplier * typeDesc.value;
             uint32_t idx = typeDesc.byteCount;
-            for (int i = 0; i < count || typeDesc.isIndefiniteValue; ++i)
-            {
+            for (int i = 0; i < count || typeDesc.isIndefiniteValue; ++i) {
                 Decode nextElem = skipClone(idx);
                 if (typeDesc.isIndefiniteValue && nextElem.isBreak()) {
                     break;
@@ -414,8 +402,7 @@ string Decode::dumpToStringInternal() const {
         s << "\"" << getString() << "\"";
         break;
 
-    case MT_array:
-    {
+    case MT_array: {
         if (typeDesc.isIndefiniteValue) {
             s << "[_ ";
         } else {
@@ -423,15 +410,14 @@ string Decode::dumpToStringInternal() const {
         }
         vector<Decode> elems = getArrayElements();
         for (int i = 0; i < elems.size(); ++i) {
-            if (i > 0) s << ", ";
+            if (i > 0)
+                s << ", ";
             s << elems[i].dumpToStringInternal();
         }
         s << "]";
-    }
-    break;
+    } break;
 
-    case MT_map:
-    {
+    case MT_map: {
         if (typeDesc.isIndefiniteValue) {
             s << "{_ ";
         } else {
@@ -439,12 +425,13 @@ string Decode::dumpToStringInternal() const {
         }
         auto elems = getMapElements();
         for (int i = 0; i < elems.size(); ++i) {
-            if (i > 0) s << ", ";
-            s << elems[i].first.dumpToStringInternal() << ": " << elems[i].second.dumpToStringInternal();
+            if (i > 0)
+                s << ", ";
+            s << elems[i].first.dumpToStringInternal() << ": "
+              << elems[i].second.dumpToStringInternal();
         }
         s << "}";
-    }
-    break;
+    } break;
 
     case MT_tag:
         s << "tag " << typeDesc.value << " " << getTagElement().dumpToStringInternal();
@@ -470,8 +457,7 @@ string Decode::dumpToString() const {
     return s.str();
 }
 
-Data Decode::encoded() const
-{
+Data Decode::encoded() const {
     assert(subStart + subLen <= data->origData.size());
     return TW::data(data->origData.data() + subStart, subLen);
 }

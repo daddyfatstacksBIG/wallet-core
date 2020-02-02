@@ -12,7 +12,6 @@
 #include <TrustWalletCore/TWCoinTypeConfiguration.h>
 #include <gtest/gtest.h>
 
-
 TEST(TWKinCoinType, TWCoinType) {
     auto symbol = WRAPS(TWCoinTypeConfigurationGetSymbol(TWCoinTypeKin));
     auto txId = TWStringCreateWithUTF8Bytes("t123");
@@ -27,8 +26,11 @@ TEST(TWKinCoinType, TWCoinType) {
     ASSERT_EQ(0x0, TWCoinTypeP2shPrefix(TWCoinTypeKin));
     ASSERT_EQ(0x0, TWCoinTypeStaticPrefix(TWCoinTypeKin));
     assertStringsEqual(symbol, "KIN");
-    assertStringsEqual(txUrl, "https://www.kin.org/blockchainInfoPage/?&dataType=public&header=Transaction&id=t123");
-    assertStringsEqual(accUrl, "https://www.kin.org/blockchainAccount/?&dataType=public&header=accountID&id=a12");
+    assertStringsEqual(
+        txUrl,
+        "https://www.kin.org/blockchainInfoPage/?&dataType=public&header=Transaction&id=t123");
+    assertStringsEqual(
+        accUrl, "https://www.kin.org/blockchainAccount/?&dataType=public&header=accountID&id=a12");
     assertStringsEqual(id, "kin");
     assertStringsEqual(name, "Kin");
 }

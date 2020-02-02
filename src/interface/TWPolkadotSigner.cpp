@@ -19,5 +19,6 @@ TW_Polkadot_Proto_SigningOutput TWPolkadotSignerSign(TW_Polkadot_Proto_SigningIn
     auto protoOutput = Signer::sign(input);
 
     auto serialized = protoOutput.SerializeAsString();
-    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t*>(serialized.data()),
+                                 serialized.size());
 }

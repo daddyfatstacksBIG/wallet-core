@@ -30,9 +30,7 @@ std::string to_hex(int64_t i) {
 
 std::string to_hex(const std::string& n) {
     auto s = hex(n);
-    auto start = std::find_if(s.begin(), s.end(), [](auto c) {
-        return c != '0';
-    });
+    auto start = std::find_if(s.begin(), s.end(), [](auto c) { return c != '0'; });
     if (start == s.end()) {
         return "0x0";
     }

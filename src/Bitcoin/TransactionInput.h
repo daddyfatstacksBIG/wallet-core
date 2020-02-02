@@ -16,7 +16,7 @@ namespace TW::Bitcoin {
 
 /// Bitcoin transaction input.
 class TransactionInput {
-public:
+  public:
     /// Reference to the previous transaction's output.
     OutPoint previousOutput;
 
@@ -35,7 +35,9 @@ public:
     /// Initializes a transaction input with a previous output, a script and a
     /// sequence number.
     TransactionInput(OutPoint previousOutput, Script script, uint32_t sequence)
-        : previousOutput(std::move(previousOutput)), sequence(sequence), script(std::move(script)) {}
+        : previousOutput(std::move(previousOutput))
+        , sequence(sequence)
+        , script(std::move(script)) {}
 
     /// Encodes the transaction into the provided buffer.
     void encode(Data& data) const;
