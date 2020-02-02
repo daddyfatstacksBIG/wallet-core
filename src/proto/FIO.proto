@@ -18,10 +18,10 @@ message Action {
 
         // FIO address of the owner. Ex.: "FIO6m1fMdTpRkRBnedvYshXCxLFiC5suRU8KDfx8xxtXp2hntxpnf"
         string owner_fio_public_key = 2;
-        
+
         // Max fee to spend, can be obtained using get_fee API.
         uint64 fee = 3;
-        
+
         // The FIO name of the originating wallet (project-wide constant)
         string tpid = 4;
 
@@ -35,10 +35,10 @@ message Action {
 
         // List of public addresses to be registered, ex. {{"BTC", "bc1qv...7v"},{"BNB", "bnb1ts3...9s"}}
         repeated PublicAddress public_addresses = 2;
-        
+
         // Max fee to spend, can be obtained using get_fee API.
         uint64 fee = 3;
-        
+
         // The FIO name of the originating wallet (project-wide constant)
         string tpid = 4;
 
@@ -49,13 +49,13 @@ message Action {
     message Transfer {
         // FIO address of the payee. Ex.: "FIO6m1fMdTpRkRBnedvYshXCxLFiC5suRU8KDfx8xxtXp2hntxpnf"
         string payee_public_key = 1;
-        
+
         // Amount of FIO coins to be transferred.
         uint64 amount = 2;
 
         // Max fee to spend, can be obtained using get_fee API.
         uint64 fee = 3;
-        
+
         // The FIO name of the originating wallet (project-wide constant)
         string tpid = 4;
 
@@ -73,7 +73,7 @@ message Action {
 message ChainParams {
     // Constant chainId (32 bytes), obtained from get_info API
     bytes chain_id = 1;
-    
+
     // The last block number, obtained from get_info API
     uint64 head_block_number = 2;
 
@@ -88,10 +88,10 @@ message SigningInput {
 
     // Current parameters of the FIO blockchain
     ChainParams chain_params = 2;
-    
+
     // The private key matching the address, needed for signing
     bytes private_key = 3;
-    
+
     // Context-specific action data
     Action action = 4;
 }

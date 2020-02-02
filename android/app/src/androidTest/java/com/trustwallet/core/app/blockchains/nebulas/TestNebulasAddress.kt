@@ -15,7 +15,7 @@ class TestNebulasAddress {
     fun testAddressFromString() {
         var addrStr = "n1V5bB2tbaM3FUiL4eRwpBLgEredS5C2wLY"
         var addrStr2 = "n1zUNqeBPvsyrw5zxp9mKcDdLTjuaEL7s39"
-        
+
         val address = AnyAddress(addrStr, CoinType.NEBULAS)
         assertEquals(address.description(), addrStr)
 
