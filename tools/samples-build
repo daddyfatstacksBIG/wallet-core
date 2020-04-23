@@ -4,23 +4,23 @@
 
 set -e
 
-if [ -z $1 ] 
+if [ -z "$1" ] 
 then 
     echo "No platform argument given, use all|linux|ios|android"
-    set $1 'linux'
+    set "$1" 'linux'
 fi
 
 if [ ! "$1" = "linux" ] && [ ! "$1" = "ios" ] && [ ! "$1" = "android" ] && [ ! "$1" = "all" ]
 then
     echo "Wrong platform argument given, use all|linux|ios|android"
-    set $1 'linux'
+    set "$1" 'linux'
 fi
 
-echo "Platform argument: "$1
+echo "Platform argument: ""$1"
 
 build_cpp() {
     pushd samples/cpp
-    echo "Building CPP sample app:"`pwd`
+    echo "Building CPP sample app:""$(pwd)"
     cmake . -DWALLET_CORE=../../
     make
     echo "Building CPP sample app: done"
@@ -29,7 +29,7 @@ build_cpp() {
 
 build_ios() {
     pushd samples/osx/cocoapods
-    echo "Building OSX sample app:"`pwd`
+    echo "Building OSX sample app:""$(pwd)"
     pod repo update
     pod install
     echo "Building OSX sample app: done"
@@ -38,7 +38,7 @@ build_ios() {
 
 build_android() {
     pushd samples/android
-    echo "Building Android sample app:"`pwd`
+    echo "Building Android sample app:""$(pwd)"
     ./gradlew assembleDebug
     echo "Building Android sample app: done"
     popd
@@ -46,7 +46,7 @@ build_android() {
 
 build_go() {
     pushd samples/go
-    echo "Building GO sample app:"`pwd`
+    echo "Building GO sample app:""$(pwd)"
     go build -o main
     echo "Building GO sample app: done"
     popd

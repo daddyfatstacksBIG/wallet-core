@@ -17,7 +17,7 @@ function buildDevices() {
                                         -DPLATFORM=OS64 \
                                         -DDEPLOYMENT_TARGET=11.0 \
                                         -DCMAKE_BUILD_TYPE=Release
-    make -C "$BUILD_FOLDER_DEVICE" $TARGETS
+    make -C "$BUILD_FOLDER_DEVICE" "$TARGETS"
 }
 
 function buildSimulators() {
@@ -27,7 +27,7 @@ function buildSimulators() {
                                            -DPLATFORM=SIMULATOR64 \
                                            -DDEPLOYMENT_TARGET=11.0 \
                                            -DCMAKE_BUILD_TYPE=Release
-    make -C "$BUILD_FOLDER_SIMULATOR" $TARGETS
+    make -C "$BUILD_FOLDER_SIMULATOR" "$TARGETS"
 }
 
 function buildCatalyst() {
@@ -46,7 +46,7 @@ function buildCatalyst() {
     sed -i '' "s/-mmacosx-version-min=10.15//g" "$BUILD_FOLDER_CATALYST"/trezor-crypto/CMakeFiles/TrezorCrypto.dir/flags.make
     sed -i '' "s/-mmacosx-version-min=10.15//g" "$BUILD_FOLDER_CATALYST"/CMakeFiles/protobuf.dir/flags.make
     sed -i '' "s/-mmacosx-version-min=10.15//g" "$BUILD_FOLDER_CATALYST"/CMakeFiles/TrustWalletCore.dir/flags.make
-    make -C "$BUILD_FOLDER_CATALYST" $TARGETS
+    make -C "$BUILD_FOLDER_CATALYST" "$TARGETS"
 }
 
 function fattenBinary() {

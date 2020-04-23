@@ -14,16 +14,16 @@ function init() {
     xcodegen && pod install
     popd
 
-    rm -rf $BUILD_FOLDER/*.xcarchive
-    rm -rf $BUILD_FOLDER/$FRAMEWORK.xcframework
-    rm -rf $BUILD_FOLDER/$FRAMEWORK.xcframework.zip
+    rm -rf "$BUILD_FOLDER"/*.xcarchive
+    rm -rf "$BUILD_FOLDER/$FRAMEWORK".xcframework
+    rm -rf "$BUILD_FOLDER/$FRAMEWORK".xcframework.zip
 }
 
 function build() {
-    xcodebuild archive -workspace swift/$FRAMEWORK.xcworkspace \
-                -scheme $FRAMEWORK \
+    xcodebuild archive -workspace swift/"$FRAMEWORK".xcworkspace \
+                -scheme "$FRAMEWORK" \
                 -destination "$1" \
-                -archivePath $BUILD_FOLDER/"$2".xcarchive \
+                -archivePath "$BUILD_FOLDER/$2".xcarchive \
                 SKIP_INSTALL=NO clean
 }
 
@@ -48,20 +48,20 @@ function buildMac() {
     pushd swift
     xcodegen && pod install
     popd
-    xcodebuild archive -workspace swift/$FRAMEWORK.xcworkspace \
-                -scheme $FRAMEWORK \
-                -archivePath $BUILD_FOLDER/mac-x64.xcarchive \
+    xcodebuild archive -workspace swift/"$FRAMEWORK".xcworkspace \
+                -scheme "$FRAMEWORK" \
+                -archivePath "$BUILD_FOLDER"/mac-x64.xcarchive \
                 SKIP_INSTALL=NO clean
     git checkout swift/project.yml swift/Podfile
 }
 
 function buildXCFramework() {
     echo -e "\nCreateing xcframework..."
-    xcodebuild -create-xcframework -output $BUILD_FOLDER/$FRAMEWORK.xcframework \
-               -framework $BUILD_FOLDER/mac-catalyst.xcarchive/Products/Library/Frameworks/$FRAMEWORK.framework \
-               -framework $BUILD_FOLDER/mac-x64.xcarchive/Products/Library/Frameworks/$FRAMEWORK.framework \
-               -framework $BUILD_FOLDER/ios-dev.xcarchive/Products/Library/Frameworks/$FRAMEWORK.framework \
-               -framework $BUILD_FOLDER/ios-sim.xcarchive/Products/Library/Frameworks/$FRAMEWORK.framework
+    xcodebuild -create-xcframework -output "$BUILD_FOLDER/$FRAMEWORK".xcframework \
+               -framework "$BUILD_FOLDER/mac-catalyst.xcarchive/Products/Library/Frameworks/$FRAMEWORK".framework \
+               -framework "$BUILD_FOLDER/mac-x64.xcarchive/Products/Library/Frameworks/$FRAMEWORK".framework \
+               -framework "$BUILD_FOLDER/ios-dev.xcarchive/Products/Library/Frameworks/$FRAMEWORK".framework \
+               -framework "$BUILD_FOLDER/ios-sim.xcarchive/Products/Library/Frameworks/$FRAMEWORK".framework
 }
 
 function main() {

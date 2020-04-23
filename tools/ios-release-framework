@@ -34,7 +34,7 @@ function releaseXCFramework() {
 
     # Upload to S3
     echo Upload "$ZIP_FILENAME" to S3
-    aws s3 cp "$BUILD_FOLDER/$ZIP_FILENAME" s3://$S3_BUCKET/ --acl public-read
+    aws s3 cp "$BUILD_FOLDER/$ZIP_FILENAME" s3://"$S3_BUCKET"/ --acl public-read
 
     cat << EOF > "$PODSPEC_FILE"
 Pod::Spec.new do |s|
@@ -76,7 +76,7 @@ function releaseTypes() {
 
     # Upload to S3
     echo Upload "$ZIP_FILENAME" to S3
-    aws s3 cp "$BUILD_FOLDER/$ZIP_FILENAME" s3://$S3_BUCKET/ --acl public-read
+    aws s3 cp "$BUILD_FOLDER/$ZIP_FILENAME" s3://"$S3_BUCKET"/ --acl public-read
 
     cat << EOF > "$PODSPEC_FILE"
 Pod::Spec.new do |s|
