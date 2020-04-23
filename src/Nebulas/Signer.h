@@ -16,11 +16,11 @@ namespace TW::Nebulas {
 
 /// Helper class that performs Nebulas transaction signing.
 class Signer {
-public:
+  public:
     /// Signs a Proto::SigningInput transaction
     static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
 
-public:
+  public:
     uint256_t chainID;
 
     /// Initializes a signer with a chain identifier.
@@ -29,7 +29,7 @@ public:
     /// Signs the given transaction.
     void sign(const PrivateKey& privateKey, Transaction& transaction) const noexcept;
 
-protected:
+  protected:
     /// Computes the transaction hash.
     Data hash(const Transaction& transaction) const noexcept;
 };

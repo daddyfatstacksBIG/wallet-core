@@ -12,11 +12,13 @@
 using namespace TW::NEO;
 using namespace std;
 
-bool Entry::validateAddress(TWCoinType coin, const string& address, TW::byte p2pkh, TW::byte p2sh, const char* hrp) const {
+bool Entry::validateAddress(TWCoinType coin, const string& address, TW::byte p2pkh, TW::byte p2sh,
+                            const char* hrp) const {
     return Address::isValid(address);
 }
 
-string Entry::deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte p2pkh, const char* hrp) const {
+string Entry::deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte p2pkh,
+                            const char* hrp) const {
     return Address(publicKey).string();
 }
 

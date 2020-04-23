@@ -7,8 +7,8 @@
 #include "Signer.h"
 #include "Bitcoin/TransactionBuilder.h"
 #include "Bitcoin/TransactionSigner.h"
-#include "Hash.h"
 #include "Data.h"
+#include "Hash.h"
 #include "HexCoding.h"
 #include "Transaction.h"
 
@@ -34,9 +34,8 @@ SigningOutput Signer::sign(const SigningInput& input) noexcept {
     *output.mutable_transaction() = tx.proto();
 
     Data encoded;
-    auto hasWitness = std::any_of(tx.inputs.begin(), tx.inputs.end(), [](auto& input) {
-        return !input.scriptWitness.empty();
-    });
+    auto hasWitness = std::any_of(tx.inputs.begin(), tx.inputs.end(),
+                                  [](auto& input) { return !input.scriptWitness.empty(); });
     tx.encode(hasWitness, encoded);
     output.set_encoded(encoded.data(), encoded.size());
 

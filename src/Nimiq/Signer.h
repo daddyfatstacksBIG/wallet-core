@@ -16,10 +16,11 @@ namespace TW::Nimiq {
 
 /// Helper class that performs Nimiq transaction signing.
 class Signer {
-public:
+  public:
     /// Signs a Proto::SigningInput transaction
     static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
-public:
+
+  public:
     /// Signs the given transaction.
     void sign(const PrivateKey& privateKey, Transaction& transaction) const noexcept;
 

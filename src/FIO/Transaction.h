@@ -17,7 +17,7 @@ class ChainParams; // forward
 
 /// A Transaction.  Some common fields, and one or more actions.
 class Transaction {
-public:
+  public:
     int32_t expiration = 0;
     uint16_t refBlockNumber = 0;
     uint32_t refBlockPrefix = 0;

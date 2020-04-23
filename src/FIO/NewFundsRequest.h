@@ -14,7 +14,7 @@ namespace TW::FIO {
 
 /// Data class, data encoded in a new funds request
 class NewFundsContent {
-public:
+  public:
     /// Public addressed of the payee, on the mentioned blockchain.
     std::string payeePublicAddress;
     /// Amount requested (string)

@@ -12,11 +12,13 @@
 using namespace TW::Binance;
 using namespace std;
 
-bool Entry::validateAddress(TWCoinType coin, const string& address, TW::byte, TW::byte, const char*) const {
+bool Entry::validateAddress(TWCoinType coin, const string& address, TW::byte, TW::byte,
+                            const char*) const {
     return Address::isValid(address);
 }
 
-string Entry::deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte, const char*) const {
+string Entry::deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte,
+                            const char*) const {
     return Address(publicKey).string();
 }
 

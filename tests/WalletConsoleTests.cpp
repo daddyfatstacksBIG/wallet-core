@@ -5,12 +5,12 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "../walletconsole/lib/CommandExecutor.h"
-#include "../walletconsole/lib/WalletConsole.h"
 #include "../walletconsole/lib/Util.h"
+#include "../walletconsole/lib/WalletConsole.h"
 
-#include <sstream>
 #include <cstdio>
 #include <gtest/gtest.h>
+#include <sstream>
 
 using namespace TW;
 using namespace TW::WalletConsole;
@@ -25,13 +25,15 @@ static int staticInit() {
     return 0;
 }
 static int dummyStatic = staticInit();
-static const string mnemonic1 = "edge defense waste choose enrich upon flee junk siren film clown finish luggage leader kid quick brick print evidence swap drill paddle truly occur";
+static const string mnemonic1 =
+    "edge defense waste choose enrich upon flee junk siren film clown finish luggage leader kid "
+    "quick brick print evidence swap drill paddle truly occur";
 
 int countLines(const string& text) {
     int lines = 0;
-    for(int i = 0; i < text.length(); ++i)
-    {
-        if (text[i] == '\n') ++lines;
+    for (int i = 0; i < text.length(); ++i) {
+        if (text[i] == '\n')
+            ++lines;
     }
     return lines;
 }
@@ -134,7 +136,8 @@ TEST(WalletConsole, pubPri1) {
     auto pos1 = outputss.str().length();
     cmd.executeLine("pubPri 7d40d6a74e98543f545852989d54712834f9c86eddee89303a2083219749e38c");
     string res1 = outputss.str().substr(pos1);
-    EXPECT_TRUE(res1.find("035431222ba2639ea442969c280a6965374bdd092ff9daf119460806abb093c93c") != string::npos);
+    EXPECT_TRUE(res1.find("035431222ba2639ea442969c280a6965374bdd092ff9daf119460806abb093c93c") !=
+                string::npos);
 }
 
 TEST(WalletConsole, pubPriInvalid) {
@@ -222,13 +225,15 @@ TEST(WalletConsole, setMnemonic) {
     auto pos1 = outputss.str().length();
     cmd.executeLine("setMnemonic " + mnemonic1);
     string res1 = outputss.str().substr(pos1);
-    //cerr << res1 << endl;
+    // cerr << res1 << endl;
     EXPECT_TRUE(res1.find("Mnemonic set (24 words)") != string::npos);
     auto pos2 = outputss.str().length();
     cmd.executeLine("dumpSeed");
     string res2 = outputss.str().substr(pos2);
     EXPECT_TRUE(res2.length() > 135);
-    EXPECT_TRUE(res2.find("7e74b1a8195ae1e8d06f29c9a306f678e5a8cf908075bc52eb3b716f9e50ce8860065c2c18b8a960bb363855d3a340074cba5db505d4f78dd1d94c4e19f20b7a") != string::npos);
+    EXPECT_TRUE(res2.find("7e74b1a8195ae1e8d06f29c9a306f678e5a8cf908075bc52eb3b716f9e50ce8860065c2c"
+                          "18b8a960bb363855d3a340074cba5db505d4f78dd1d94c4e19f20b7a") !=
+                string::npos);
     auto pos3 = outputss.str().length();
     cmd.executeLine("dumpMnemonic");
     string res3 = outputss.str().substr(pos3);
@@ -244,7 +249,9 @@ TEST(WalletConsole, setMnemonicInvalid) {
     EXPECT_TRUE(res1.find("rror: at least 12 words are needed for the mnemonic") != string::npos);
     // invalid
     auto pos2 = outputss.str().length();
-    cmd.executeLine("setMnemonic edge defense waste choose enrich upon flee junk siren film clown finish luggage leader kid quick brick print evidence swap drill paddle truly pituarygland");
+    cmd.executeLine(
+        "setMnemonic edge defense waste choose enrich upon flee junk siren film clown finish "
+        "luggage leader kid quick brick print evidence swap drill paddle truly pituarygland");
     string res2 = outputss.str().substr(pos2);
     EXPECT_TRUE(res2.find("ot a valid mnemonic") != string::npos);
 }
@@ -297,14 +304,17 @@ TEST(WalletConsole, derive) {
         auto pos1 = outputss.str().length();
         cmd.executeLine("priDP m/84'/0'/0'/0/1");
         string res1 = outputss.str().substr(pos1);
-        EXPECT_TRUE(res1.find("5133262c125d7019da000e6639be23c1726083980862cfb7199f849109875d5b") != string::npos);
+        EXPECT_TRUE(res1.find("5133262c125d7019da000e6639be23c1726083980862cfb7199f849109875d5b") !=
+                    string::npos);
         EXPECT_TRUE(res1.find("m/84'/0'/0'/0/1") != string::npos);
     }
     {
         auto pos1 = outputss.str().length();
         cmd.executeLine("pubPri #");
         string res1 = outputss.str().substr(pos1);
-        EXPECT_TRUE(res1.find("02a3e079928c5a4c9ec4a5cea9a499e6bfbb7772b03ea8c1ea7921d0aced43b209") != string::npos);
+        EXPECT_TRUE(
+            res1.find("02a3e079928c5a4c9ec4a5cea9a499e6bfbb7772b03ea8c1ea7921d0aced43b209") !=
+            string::npos);
     }
     {
         auto pos1 = outputss.str().length();
@@ -316,7 +326,7 @@ TEST(WalletConsole, derive) {
         auto pos1 = outputss.str().length();
         cmd.executeLine("addr #");
         string res1 = outputss.str().substr(pos1);
-        //cerr << res1 << endl;
+        // cerr << res1 << endl;
         EXPECT_TRUE(res1.find("bc1qejkm69ert6jqrp2u4n0m6g9ds4ravas2dw3af0") != string::npos);
         EXPECT_TRUE(res1.find("not") == string::npos);
         EXPECT_TRUE(res1.find("NOT") == string::npos);
@@ -344,7 +354,9 @@ TEST(WalletConsole, addrDefault) {
         auto pos1 = outputss.str().length();
         cmd.executeLine("addrDefault");
         string res1 = outputss.str().substr(pos1);
-        EXPECT_TRUE(res1.find("nano_3yyipbgtnd7183k61nkh5mxnt9wpsfhto95mksdqj6s7p45mwj9osai7asad") != string::npos);
+        EXPECT_TRUE(
+            res1.find("nano_3yyipbgtnd7183k61nkh5mxnt9wpsfhto95mksdqj6s7p45mwj9osai7asad") !=
+            string::npos);
     }
 }
 
@@ -419,7 +431,6 @@ TEST(WalletConsole, fileWriteRead) {
     string res1 = outputss.str().substr(pos1);
     EXPECT_TRUE(res1.find("Written to ") != string::npos);
 
-
     auto pos2 = outputss.str().length();
     cmd.executeLine("fileR " + fileName);
     string res2 = outputss.str().substr(pos2);
@@ -433,12 +444,9 @@ TEST(WalletConsole, fileWriteRead) {
     EXPECT_TRUE(res3.find("already exists, not overwriting") != string::npos);
 
     // clean up created file
-    try
-    {
+    try {
         std::remove(fileName.c_str());
-    }
-    catch(...)
-    {
+    } catch (...) {
     }
 
     auto pos4 = outputss.str().length();
@@ -447,7 +455,8 @@ TEST(WalletConsole, fileWriteRead) {
     EXPECT_TRUE(res4.find("not") != string::npos);
 }
 
-// used to fail due to incorrect public key type, see https://github.com/trustwallet/wallet-core/issues/767
+// used to fail due to incorrect public key type, see
+// https://github.com/trustwallet/wallet-core/issues/767
 TEST(WalletConsole, harmonyAddressDerivation) {
     cmd.executeLine("coin harmony");
     cmd.executeLine("newKey");

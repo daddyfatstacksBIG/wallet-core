@@ -6,17 +6,19 @@
 
 #include "Entry.h"
 
-#include "TAddress.h"
 #include "Signer.h"
+#include "TAddress.h"
 
 using namespace TW::Zcash;
 using namespace std;
 
-bool Entry::validateAddress(TWCoinType coin, const string& address, TW::byte p2pkh, TW::byte p2sh, const char* hrp) const {
+bool Entry::validateAddress(TWCoinType coin, const string& address, TW::byte p2pkh, TW::byte p2sh,
+                            const char* hrp) const {
     return TAddress::isValid(address);
 }
 
-string Entry::deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte p2pkh, const char* hrp) const {
+string Entry::deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte p2pkh,
+                            const char* hrp) const {
     return TAddress(publicKey, p2pkh).string();
 }
 

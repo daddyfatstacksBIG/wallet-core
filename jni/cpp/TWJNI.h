@@ -14,10 +14,10 @@
 #include <TrustWalletCore/TWPrivateKey.h>
 #include <TrustWalletCore/TWPublicKey.h>
 
+#include <TrustWalletCore/TWAnySigner.h>
 #include <TrustWalletCore/TWBitcoinScript.h>
 #include <TrustWalletCore/TWSegwitAddress.h>
-#include <TrustWalletCore/TWAnySigner.h>
 
-#include <jni.h>
 #include "TWJNIData.h"
 #include "TWJNIString.h"
+#include <jni.h>

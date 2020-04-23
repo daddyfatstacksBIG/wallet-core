@@ -9,8 +9,8 @@
 #include "../../Data.h"
 #include "../../uint256.h"
 
-#include <string>
 #include <cassert>
+#include <string>
 
 using namespace TW;
 using namespace TW::Ethereum::ABI;
@@ -55,8 +55,7 @@ bool ParamIntN::decode(const Data& encoded, size_t& offset_inout) {
     return res;
 }
 
-void ParamIntN::init()
-{
+void ParamIntN::init() {
     assert(bits >= 8 && bits <= 256 && (bits % 8) == 0);
     _mask = (uint256_t(1) << bits) - 1;
 }

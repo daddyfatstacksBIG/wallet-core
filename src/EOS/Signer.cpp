@@ -29,8 +29,9 @@ Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
                                      input.memo());
 
         // create a Transaction and add the transfer action
-        auto tx = Transaction(Data(input.reference_block_id().begin(), input.reference_block_id().end()),
-                              input.reference_block_time());
+        auto tx =
+            Transaction(Data(input.reference_block_id().begin(), input.reference_block_id().end()),
+                        input.reference_block_time());
         tx.actions.push_back(action);
 
         // get key type
@@ -102,8 +103,6 @@ TW::Data Signer::hash(const Transaction& transaction) const noexcept {
 
 // canonical check for EOS
 int Signer::isCanonical(uint8_t by, uint8_t sig[64]) {
-    return !(sig[0] & 0x80)
-           && !(sig[0] == 0 && !(sig[1] & 0x80))
-           && !(sig[32] & 0x80)
-           && !(sig[32] == 0 && !(sig[33] & 0x80));
+    return !(sig[0] & 0x80) && !(sig[0] == 0 && !(sig[1] & 0x80)) && !(sig[32] & 0x80) &&
+           !(sig[32] == 0 && !(sig[33] & 0x80));
 }

@@ -15,7 +15,7 @@ namespace TW::FIO {
 /// Payload message encryption/decryption.
 /// See also https://github.com/fioprotocol/fiojs/blob/master/src/encryption-check.ts
 class Encryption {
-public:
+  public:
     /**
      * Provides AES-256-CBC encryption and message authentication.
      * The CBC cipher is used for good platform native compatability.
@@ -24,7 +24,8 @@ public:
      * @arg secret - Shared secret (64-bytes).
      * @arg message - Plaintext message (arbitrary length).
      * @arg iv - An unpredictable strong random value (16 bytes) is required
-     *        and supplied by default. Unit tests may provide a static value to achieve predictable results.
+     *        and supplied by default. Unit tests may provide a static value to achieve predictable
+     * results.
      * @throws {Error} invalid IV size
      */
     static Data checkEncrypt(const Data& secret, const Data& message, Data& iv);
@@ -41,11 +42,14 @@ public:
     /// Derive 64-byte shared secret from the private key and public key.
     static Data getSharedSecret(const PrivateKey& privateKey1, const PublicKey& publicKey2);
 
-    /// Encrypt a message.  Own private key, recipient public key, and optional initial vector (may be empty) is needed.
-    static Data encrypt(const PrivateKey& privateKey1, const PublicKey& publicKey2, const Data& message, const Data& iv);
+    /// Encrypt a message.  Own private key, recipient public key, and optional initial vector (may
+    /// be empty) is needed.
+    static Data encrypt(const PrivateKey& privateKey1, const PublicKey& publicKey2,
+                        const Data& message, const Data& iv);
 
     /// Decrypt a message.  Own private key and sender's public key is needed.
-    static Data decrypt(const PrivateKey& privateKey1, const PublicKey& publicKey2, const Data& encrypted);
+    static Data decrypt(const PrivateKey& privateKey1, const PublicKey& publicKey2,
+                        const Data& encrypted);
 
     /// Encode an encrypted message.  Base64 encoding is used.
     static std::string encode(const Data& encrypted);

@@ -16,8 +16,8 @@ TW_EXPORT_CLASS
 struct TWEthereumAbiValueEncoder;
 
 /// Returned data must be deleted (hint: use WRAPD() macro).
-/// Encode a type according to EIP712, into 32 bytes.  Values are padded by 0 on the left, unless specified otherwise.
-/// See: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md
+/// Encode a type according to EIP712, into 32 bytes.  Values are padded by 0 on the left, unless
+/// specified otherwise. See: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md
 
 TW_EXPORT_STATIC_METHOD
 TWData* _Nonnull TWEthereumAbiValueEncoderEncodeBool(bool value);

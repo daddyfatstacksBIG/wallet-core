@@ -2,12 +2,12 @@
 
 #include <nlohmann/json.hpp>
 
-#include "../Data.h"
 #include "../BinaryCoding.h"
+#include "../Data.h"
 
-#include <vector>
 #include <set>
 #include <string>
+#include <vector>
 
 namespace TW::EOS {
 inline void encodeVarInt64(uint64_t x, Data& os) {
@@ -43,7 +43,7 @@ inline void encodeString(const std::string& s, Data& os) {
     os.insert(os.end(), s.data(), s.data() + size);
 }
 
-template<typename Collection>
+template <typename Collection>
 inline void encodeCollection(const Collection& collection, Data& os) {
     encodeVarInt64(std::size(collection), os);
     for (const auto& item : collection) {
@@ -51,7 +51,7 @@ inline void encodeCollection(const Collection& collection, Data& os) {
     }
 }
 
-template<typename Collection>
+template <typename Collection>
 inline void encodePointerCollection(const Collection& collection, Data& os) {
     encodeVarInt64(std::size(collection), os);
     for (const auto& item : collection) {
@@ -61,7 +61,7 @@ inline void encodePointerCollection(const Collection& collection, Data& os) {
 
 using json = nlohmann::json;
 
-template<typename Collection>
+template <typename Collection>
 inline json encodeCollection(const Collection& collection) {
     json array = json::array();
     for (const auto& item : collection) {
@@ -71,7 +71,7 @@ inline json encodeCollection(const Collection& collection) {
     return array;
 }
 
-template<typename Collection>
+template <typename Collection>
 inline json encodePointerCollection(const Collection& collection) {
     json array = json::array();
     for (const auto& item : collection) {
@@ -80,4 +80,4 @@ inline json encodePointerCollection(const Collection& collection) {
 
     return array;
 }
-} // namespace
+} // namespace TW::EOS

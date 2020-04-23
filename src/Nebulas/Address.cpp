@@ -11,7 +11,7 @@
 
 using namespace TW::Nebulas;
 
-bool Address::isValid(const std::string &string) {
+bool Address::isValid(const std::string& string) {
     auto data = Base58::bitcoin.decode(string);
     if (data.size() != (size_t)Address::size) {
         return false;
@@ -30,7 +30,7 @@ bool Address::isValid(const std::string &string) {
     return ::memcmp(dataSha3.data(), checksum.data(), 4) == 0;
 }
 
-Address::Address(const std::string &string) {
+Address::Address(const std::string& string) {
     if (!isValid(string)) {
         throw std::invalid_argument("Invalid address string");
     }
@@ -39,20 +39,20 @@ Address::Address(const std::string &string) {
     std::copy(data.begin(), data.end(), bytes.begin());
 }
 
-Address::Address(const Data &data) {
+Address::Address(const Data& data) {
     if (!Base58Address::isValid(data)) {
         throw std::invalid_argument("Invalid address data");
     }
     std::copy(data.begin(), data.end(), bytes.begin());
 }
 
-Address::Address(const PublicKey &publicKey) {
+Address::Address(const PublicKey& publicKey) {
     if (publicKey.type != TWPublicKeyTypeSECP256k1Extended) {
         throw std::invalid_argument("Nebulas::Address needs an extended SECP256k1 public key.");
     }
-    const auto data = publicKey.hash(
-    {Address::AddressPrefix, Address::NormalType},
-    static_cast<Hash::HasherSimpleType>(Hash::sha3_256ripemd), false);
+    const auto data =
+        publicKey.hash({Address::AddressPrefix, Address::NormalType},
+                       static_cast<Hash::HasherSimpleType>(Hash::sha3_256ripemd), false);
 
     std::copy(data.begin(), data.end(), bytes.begin());
     auto checksum = Hash::sha3_256(data);

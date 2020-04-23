@@ -11,7 +11,7 @@ namespace TW {
 Data subData(const Data& data, size_t index, size_t length) {
     size_t subLength = length;
     if (index + subLength > data.size()) {
-        subLength = data.size() - index;    // guard against over-length
+        subLength = data.size() - index; // guard against over-length
     }
     return TW::data(data.data() + index, subLength);
 }

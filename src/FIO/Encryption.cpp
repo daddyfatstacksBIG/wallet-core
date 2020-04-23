@@ -13,8 +13,8 @@
 #include "../PrivateKey.h"
 #include "../PublicKey.h"
 
-#include <TrezorCrypto/rand.h>
 #include <TrezorCrypto/ecdsa.h>
+#include <TrezorCrypto/rand.h>
 #include <TrezorCrypto/secp256k1.h>
 
 #include <cassert>
@@ -28,7 +28,7 @@ const uint8_t IvSize = 16;
 Data Encryption::checkEncrypt(const Data& secret, const Data& message, Data& iv) {
     const Data K = Hash::sha512(secret);
     assert(K.size() == 64);
-    const Data Ke = subData(K, 0, 32); // Encryption key
+    const Data Ke = subData(K, 0, 32);  // Encryption key
     const Data Km = subData(K, 32, 32); // MAC key
     if (iv.size() == 0) {
         // fill iv with strong random value
@@ -61,7 +61,7 @@ Data Encryption::checkEncrypt(const Data& secret, const Data& message, Data& iv)
 Data Encryption::checkDecrypt(const Data& secret, const Data& message) {
     const Data K = Hash::sha512(secret);
     assert(K.size() == 64);
-    const Data Ke = subData(K, 0, 32); // Encryption key
+    const Data Ke = subData(K, 0, 32);  // Encryption key
     const Data Km = subData(K, 32, 32); // MAC key
 
     if (message.size() < IvSize + 16 + 32) {
@@ -72,7 +72,8 @@ Data Encryption::checkDecrypt(const Data& secret, const Data& message) {
     const Data C = subData(message, IvSize, message.size() - IvSize - 32);
     const Data M = subData(message, message.size() - 32, 32);
 
-    // Side-channel attack protection: First verify the HMAC, then and only then proceed to the decryption step
+    // Side-channel attack protection: First verify the HMAC, then and only then proceed to the
+    // decryption step
     Data hmacInput(0);
     TW::append(hmacInput, iv);
     TW::append(hmacInput, C);
@@ -105,13 +106,15 @@ Data Encryption::getSharedSecret(const PrivateKey& privateKey1, const PublicKey&
     return Hash::sha512(S);
 }
 
-Data Encryption::encrypt(const PrivateKey& privateKey1, const PublicKey& publicKey2, const Data& message, const Data& iv) {
+Data Encryption::encrypt(const PrivateKey& privateKey1, const PublicKey& publicKey2,
+                         const Data& message, const Data& iv) {
     const Data sharedSecret = getSharedSecret(privateKey1, publicKey2);
     Data ivCopy(iv); // writeably copy
     return checkEncrypt(sharedSecret, message, ivCopy);
 }
 
-Data Encryption::decrypt(const PrivateKey& privateKey1, const PublicKey& publicKey2, const Data& encrypted) {
+Data Encryption::decrypt(const PrivateKey& privateKey1, const PublicKey& publicKey2,
+                         const Data& encrypted) {
     const Data sharedSecret = getSharedSecret(privateKey1, publicKey2);
     return checkDecrypt(sharedSecret, encrypted);
 }

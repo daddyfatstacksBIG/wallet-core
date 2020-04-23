@@ -25,7 +25,7 @@ enum class StoredKeyType { privateKey, mnemonicPhrase };
 
 /// Represents a key stored as an encrypted file.
 class StoredKey {
-public:
+  public:
     /// Type of key stored.
     StoredKeyType type;
 
@@ -43,23 +43,32 @@ public:
 
     /// Create a new StoredKey, with the given name, mnemonic and password.
     /// @throws std::invalid_argument if mnemonic is invalid
-    static StoredKey createWithMnemonic(const std::string& name, const Data& password, const std::string& mnemonic);
+    static StoredKey createWithMnemonic(const std::string& name, const Data& password,
+                                        const std::string& mnemonic);
 
     /// Create a new StoredKey, with the given name, mnemonic and password.
     /// @throws std::invalid_argument if mnemonic is invalid
     static StoredKey createWithMnemonicRandom(const std::string& name, const Data& password);
 
-    /// Create a new StoredKey, with the given name, mnemonic and password, and also add the default address for the given coin..
+    /// Create a new StoredKey, with the given name, mnemonic and password, and also add the default
+    /// address for the given coin..
     /// @throws std::invalid_argument if mnemonic is invalid
-    static StoredKey createWithMnemonicAddDefaultAddress(const std::string& name, const Data& password, const std::string& mnemonic, TWCoinType coin);
+    static StoredKey createWithMnemonicAddDefaultAddress(const std::string& name,
+                                                         const Data& password,
+                                                         const std::string& mnemonic,
+                                                         TWCoinType coin);
 
     /// Create a new StoredKey, with the given name and private key.
     /// @throws std::invalid_argument if privateKeyData is not a vald private key
-    static StoredKey createWithPrivateKey(const std::string& name, const Data& password, const Data& privateKeyData);
+    static StoredKey createWithPrivateKey(const std::string& name, const Data& password,
+                                          const Data& privateKeyData);
 
-    /// Create a new StoredKey, with the given name and private key, and also add the default address for the given coin..
+    /// Create a new StoredKey, with the given name and private key, and also add the default
+    /// address for the given coin..
     /// @throws std::invalid_argument if privateKeyData is not a vald private key
-    static StoredKey createWithPrivateKeyAddDefaultAddress(const std::string& name, const Data& password, TWCoinType coin, const Data& privateKeyData);
+    static StoredKey createWithPrivateKeyAddDefaultAddress(const std::string& name,
+                                                           const Data& password, TWCoinType coin,
+                                                           const Data& privateKeyData);
 
     /// Create a StoredKey from a JSON object.
     static StoredKey createWithJson(const nlohmann::json& json);
@@ -77,7 +86,8 @@ public:
     const Account* account(TWCoinType coin) const;
 
     /// Add an account
-    void addAccount(const std::string& address, const DerivationPath& derivationPath, const std::string& extetndedPublicKey);
+    void addAccount(const std::string& address, const DerivationPath& derivationPath,
+                    const std::string& extetndedPublicKey);
 
     /// Remove the account for a specific coin
     void removeAccount(TWCoinType coin);
@@ -112,7 +122,7 @@ public:
     /// the encryption password to re-derive addresses from private keys.
     void fixAddresses(const Data& password);
 
-private:
+  private:
     /// Default constructor, private
     StoredKey() : type(StoredKeyType::mnemonicPhrase) {}
 

@@ -8,12 +8,12 @@
 
 #include "TWFoundationString.h"
 
-TWString *_Nonnull TWStringCreateWithNSString(NSString *string) {
+TWString* _Nonnull TWStringCreateWithNSString(NSString* string) {
     return TWStringCreateWithUTF8Bytes([string cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-NSString *_Nonnull TWStringNSString(TWString *_Nonnull string) {
-    NSString *str = [[NSString alloc] initWithUTF8String:TWStringUTF8Bytes(string)];
+NSString* _Nonnull TWStringNSString(TWString* _Nonnull string) {
+    NSString* str = [[NSString alloc] initWithUTF8String:TWStringUTF8Bytes(string)];
     TWStringDelete(string);
     return str;
 }

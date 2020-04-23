@@ -12,4 +12,4 @@ enum KeyType {
     KeyTypeModernK1 = 1,
     KeyTypeModernR1 = 2,
 };
-} // TW::EOS namespace
+} // namespace TW::EOS

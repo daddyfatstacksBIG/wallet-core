@@ -5,16 +5,16 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "Hash.h"
-#include "XXHash64.h"
 #include "BinaryCoding.h"
+#include "XXHash64.h"
 
 #include <TrezorCrypto/blake256.h>
 #include <TrezorCrypto/blake2b.h>
 #include <TrezorCrypto/groestl.h>
+#include <TrezorCrypto/hmac.h>
 #include <TrezorCrypto/ripemd160.h>
 #include <TrezorCrypto/sha2.h>
 #include <TrezorCrypto/sha3.h>
-#include <TrezorCrypto/hmac.h>
 
 #include <string>
 
@@ -88,7 +88,8 @@ Data Hash::blake2b(const byte* data, size_t dataSize, size_t hashSize) {
 
 Data Hash::blake2b(const byte* data, size_t dataSize, size_t hashSize, const Data& personal) {
     Data result(hashSize);
-    ::blake2b_Personal(data, static_cast<uint32_t>(dataSize), personal.data(), personal.size(), result.data(), hashSize);
+    ::blake2b_Personal(data, static_cast<uint32_t>(dataSize), personal.data(), personal.size(),
+                       result.data(), hashSize);
     return result;
 }
 
@@ -101,21 +102,18 @@ Data Hash::groestl512(const byte* data, size_t size) {
     return result;
 }
 
-uint64_t Hash::xxhash(const byte* data, size_t size, uint64_t seed)
-{
+uint64_t Hash::xxhash(const byte* data, size_t size, uint64_t seed) {
     return XXHash64::hash(data, size, seed);
 }
 
-Data Hash::xxhash64(const byte* data, size_t size, uint64_t seed)
-{
+Data Hash::xxhash64(const byte* data, size_t size, uint64_t seed) {
     const auto hash = XXHash64::hash(data, size, seed);
     Data result;
     encode64LE(hash, result);
     return result;
 }
 
-Data Hash::xxhash64concat(const byte* data, size_t size)
-{
+Data Hash::xxhash64concat(const byte* data, size_t size) {
     auto key1 = xxhash64(data, size, 0);
     const auto key2 = xxhash64(data, size, 1);
     TW::append(key1, key2);
@@ -124,6 +122,7 @@ Data Hash::xxhash64concat(const byte* data, size_t size)
 
 Data Hash::hmac256(const Data& key, const Data& message) {
     Data hmac(SHA256_DIGEST_LENGTH);
-    hmac_sha256(key.data(), static_cast<uint32_t>(key.size()), message.data(), static_cast<uint32_t>(message.size()), hmac.data());
+    hmac_sha256(key.data(), static_cast<uint32_t>(key.size()), message.data(),
+                static_cast<uint32_t>(message.size()), hmac.data());
     return hmac;
 }

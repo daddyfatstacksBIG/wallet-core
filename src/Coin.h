@@ -7,8 +7,8 @@
 #pragma once
 
 #include "Data.h"
-#include "Hash.h"
 #include "DerivationPath.h"
+#include "Hash.h"
 #include "PrivateKey.h"
 #include "PublicKey.h"
 
@@ -18,8 +18,8 @@
 #include <TrustWalletCore/TWHDVersion.h>
 #include <TrustWalletCore/TWPurpose.h>
 
-#include <string>
 #include <set>
+#include <string>
 
 namespace TW {
 

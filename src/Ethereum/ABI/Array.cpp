@@ -17,13 +17,13 @@ int ParamArray::addParam(const std::shared_ptr<ParamBase>& param) {
         return -1;
     }
     if (_params.getCount() >= 1 && param->getType() != getFirstType()) {
-        return -2;    // do not add different types
+        return -2; // do not add different types
     }
     return _params.addParam(param);
 }
 
 void ParamArray::addParams(const std::vector<std::shared_ptr<ParamBase>>& params) {
-    for (auto p: params) {
+    for (auto p : params) {
         addParam(p);
     }
 }
@@ -83,8 +83,9 @@ bool ParamArray::decode(const Data& encoded, size_t& offset_inout) {
     // read values
     auto n = _params.getCount();
     if (n != len) {
-        // Element number mismatch: the proto has to have exact same number of values as in the encoded form
-        // Note: this could be handles in a smarter way, and create more elements as needed
+        // Element number mismatch: the proto has to have exact same number of values as in the
+        // encoded form Note: this could be handles in a smarter way, and create more elements as
+        // needed
         return false;
     }
     for (auto i = 0; i < n; ++i) {

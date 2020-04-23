@@ -12,7 +12,8 @@
 using namespace TW::Wanchain;
 using namespace std;
 
-bool Entry::validateAddress(TWCoinType coin, const string& address, TW::byte, TW::byte, const char*) const {
+bool Entry::validateAddress(TWCoinType coin, const string& address, TW::byte, TW::byte,
+                            const char*) const {
     return Address::isValid(address);
 }
 
@@ -21,7 +22,8 @@ std::string Entry::normalizeAddress(TWCoinType coin, const std::string& address)
     return Address(address).string();
 }
 
-string Entry::deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte, const char*) const {
+string Entry::deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte,
+                            const char*) const {
     return Address(publicKey).string();
 }
 

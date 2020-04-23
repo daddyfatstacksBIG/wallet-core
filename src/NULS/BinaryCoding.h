@@ -6,11 +6,11 @@
 
 #pragma once
 
-#include "../uint256.h"
-#include "../BinaryCoding.h"
-#include "../proto/NULS.pb.h"
-#include "../HexCoding.h"
 #include "Address.h"
+#include "../BinaryCoding.h"
+#include "../HexCoding.h"
+#include "../proto/NULS.pb.h"
+#include "../uint256.h"
 
 using namespace TW;
 using namespace TW::NULS;
@@ -21,7 +21,7 @@ static inline void serializerRemark(std::string& remark, Data& data) {
 }
 
 static inline void serializerInput(const Proto::TransactionCoinFrom& input, Data& data) {
-    encodeVarInt(1, data);  //there is one coinFrom
+    encodeVarInt(1, data); // there is one coinFrom
     const auto& fromAddress = input.from_address();
     if (!NULS::Address::isValid(fromAddress)) {
         throw std::invalid_argument("Invalid address");
@@ -39,7 +39,7 @@ static inline void serializerInput(const Proto::TransactionCoinFrom& input, Data
 }
 
 static inline void serializerOutput(const Proto::TransactionCoinTo& output, Data& data) {
-    encodeVarInt(1, data); //there is one coinTo
+    encodeVarInt(1, data); // there is one coinTo
 
     const auto& toAddress = output.to_address();
     if (!NULS::Address::isValid(toAddress)) {
@@ -70,5 +70,3 @@ static inline Data makeTransactionSignature(PrivateKey& privateKey, Data& txHash
     std::copy(signature.begin(), signature.end(), std::back_inserter(transactionSignature));
     return transactionSignature;
 }
-
-

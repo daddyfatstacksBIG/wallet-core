@@ -25,11 +25,17 @@ struct TWStoredKey* _Nullable TWStoredKeyLoad(TWString* _Nonnull path);
 
 /// Imports a private key.
 TW_EXPORT_STATIC_METHOD
-struct TWStoredKey* _Nullable TWStoredKeyImportPrivateKey(TWData* _Nonnull privateKey, TWString* _Nonnull name, TWData* _Nonnull password, enum TWCoinType coin);
+struct TWStoredKey* _Nullable TWStoredKeyImportPrivateKey(TWData* _Nonnull privateKey,
+                                                          TWString* _Nonnull name,
+                                                          TWData* _Nonnull password,
+                                                          enum TWCoinType coin);
 
 /// Imports an HD wallet.
 TW_EXPORT_STATIC_METHOD
-struct TWStoredKey* _Nullable TWStoredKeyImportHDWallet(TWString* _Nonnull mnemonic, TWString* _Nonnull name, TWData* _Nonnull password, enum TWCoinType coin);
+struct TWStoredKey* _Nullable TWStoredKeyImportHDWallet(TWString* _Nonnull mnemonic,
+                                                        TWString* _Nonnull name,
+                                                        TWData* _Nonnull password,
+                                                        enum TWCoinType coin);
 
 /// Imports a key from JSON.
 TW_EXPORT_STATIC_METHOD
@@ -64,7 +70,9 @@ struct TWAccount* _Nullable TWStoredKeyAccount(struct TWStoredKey* _Nonnull key,
 
 /// Returns the account for a specific coin, creating it if necessary.
 TW_EXPORT_METHOD
-struct TWAccount* _Nullable TWStoredKeyAccountForCoin(struct TWStoredKey* _Nonnull key, enum TWCoinType coin, struct TWHDWallet* _Nullable wallet);
+struct TWAccount* _Nullable TWStoredKeyAccountForCoin(struct TWStoredKey* _Nonnull key,
+                                                      enum TWCoinType coin,
+                                                      struct TWHDWallet* _Nullable wallet);
 
 /// Remove the account for a specific coin
 TW_EXPORT_METHOD
@@ -72,7 +80,9 @@ void TWStoredKeyRemoveAccountForCoin(struct TWStoredKey* _Nonnull key, enum TWCo
 
 /// Adds a new account.
 TW_EXPORT_METHOD
-void TWStoredKeyAddAccount(struct TWStoredKey* _Nonnull key, TWString* _Nonnull address, TWString* _Nonnull derivationPath, TWString* _Nonnull extetndedPublicKey);
+void TWStoredKeyAddAccount(struct TWStoredKey* _Nonnull key, TWString* _Nonnull address,
+                           TWString* _Nonnull derivationPath,
+                           TWString* _Nonnull extetndedPublicKey);
 
 /// Saves the key to a file.
 TW_EXPORT_METHOD
@@ -80,19 +90,24 @@ bool TWStoredKeyStore(struct TWStoredKey* _Nonnull key, TWString* _Nonnull path)
 
 /// Decrypts the private key.
 TW_EXPORT_METHOD
-TWData* _Nullable TWStoredKeyDecryptPrivateKey(struct TWStoredKey* _Nonnull key, TWData* _Nonnull password);
+TWData* _Nullable TWStoredKeyDecryptPrivateKey(struct TWStoredKey* _Nonnull key,
+                                               TWData* _Nonnull password);
 
 /// Decrypts the mnemonic phrase.
 TW_EXPORT_METHOD
-TWString* _Nullable TWStoredKeyDecryptMnemonic(struct TWStoredKey* _Nonnull key, TWData* _Nonnull password);
+TWString* _Nullable TWStoredKeyDecryptMnemonic(struct TWStoredKey* _Nonnull key,
+                                               TWData* _Nonnull password);
 
 /// Returns the private key for a specific coin.
 TW_EXPORT_METHOD
-struct TWPrivateKey* _Nullable TWStoredKeyPrivateKey(struct TWStoredKey* _Nonnull key, enum TWCoinType coin, TWData* _Nonnull password);
+struct TWPrivateKey* _Nullable TWStoredKeyPrivateKey(struct TWStoredKey* _Nonnull key,
+                                                     enum TWCoinType coin,
+                                                     TWData* _Nonnull password);
 
 /// Dercrypts and returns the HD Wallet for mnemonic phrase keys.
 TW_EXPORT_METHOD
-struct TWHDWallet* _Nullable TWStoredKeyWallet(struct TWStoredKey* _Nonnull key, TWData* _Nonnull password);
+struct TWHDWallet* _Nullable TWStoredKeyWallet(struct TWStoredKey* _Nonnull key,
+                                               TWData* _Nonnull password);
 
 /// Exports the key as JSON
 TW_EXPORT_METHOD

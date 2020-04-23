@@ -11,8 +11,9 @@
 namespace TW::Encrypt {
 
 enum PaddingMode {
-    PadWithZeros = 0, // padding value is zero
-    PadWithPaddingSize // padding value is the number of padding bytes; for even size add an extra block (PKCS#7)
+    PadWithZeros = 0,  // padding value is zero
+    PadWithPaddingSize // padding value is the number of padding bytes; for even size add an extra
+                       // block (PKCS#7)
 };
 
 /// Determind needed padding size (used internally)
@@ -24,8 +25,10 @@ size_t paddingSize(size_t origSize, size_t blockSize, PaddingMode paddingMode);
 /// \param data data to encrypt.
 /// \param iv initialization vector.
 /// \param paddingMode If PadWithZeroes (default), data is padded with 0's to even block size.
-///                    If PadWithPaddingSize, pad value is padding size, and even size input is padded with an extra block.
-Data AESCBCEncrypt(const Data& key, const Data& data, Data& iv, PaddingMode paddingMode = PadWithZeros);
+///                    If PadWithPaddingSize, pad value is padding size, and even size input is
+///                    padded with an extra block.
+Data AESCBCEncrypt(const Data& key, const Data& data, Data& iv,
+                   PaddingMode paddingMode = PadWithZeros);
 
 /// Decrypts a block of data using AES in Cipher Block Chaining (CBC) mode.
 ///
@@ -34,7 +37,8 @@ Data AESCBCEncrypt(const Data& key, const Data& data, Data& iv, PaddingMode padd
 /// \param iv initialization vector.
 /// \param paddingMode If PadWithZeroes (default), padding is not removed.
 ///                    If PadWithPaddingSize, padding is removed.
-Data AESCBCDecrypt(const Data& key, const Data& data, Data& iv, PaddingMode paddingMode = PadWithZeros);
+Data AESCBCDecrypt(const Data& key, const Data& data, Data& iv,
+                   PaddingMode paddingMode = PadWithZeros);
 
 /// Encrypts a block of data using AES in Counter (CTR) mode.
 ///

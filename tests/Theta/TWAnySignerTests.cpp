@@ -5,8 +5,8 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "HexCoding.h"
-#include "uint256.h"
 #include "proto/Theta.pb.h"
+#include "uint256.h"
 #include <TrustWalletCore/TWAnySigner.h>
 
 #include "../interface/TWTestUtilities.h"
@@ -33,5 +33,9 @@ TEST(TWAnySignerTheta, Sign) {
     Proto::SigningOutput output;
     ANY_SIGN(input, TWCoinTypeTheta);
 
-    ASSERT_EQ(hex(output.encoded()), "02f887c78085e8d4a51000f863f861942e833968e5bb786ae419c4d13189fb081cc43babc70a85e8d4a5101401b8415190868498d587d074d57298f41853d0109d997f15ddf617f471eb8cbb7fff267cb8fe9134ccdef053ec7cabd18070325c9c436efe1abbacd14eb7561d3fc10501d9d8949f1233798e905e173560071255140b4a8abd3ec6c20a14");
+    ASSERT_EQ(hex(output.encoded()),
+              "02f887c78085e8d4a51000f863f861942e833968e5bb786ae419c4d13189fb081cc43babc70a85e8d4a5"
+              "101401b8415190868498d587d074d57298f41853d0109d997f15ddf617f471eb8cbb7fff267cb8fe9134"
+              "ccdef053ec7cabd18070325c9c436efe1abbacd14eb7561d3fc10501d9d8949f1233798e905e17356007"
+              "1255140b4a8abd3ec6c20a14");
 }

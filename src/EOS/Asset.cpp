@@ -28,7 +28,8 @@ Asset::Asset(int64_t amount, uint8_t decimals, const std::string& symbol) {
     for (int i = 0; i < symbol.size(); i++) {
         uint64_t c = symbol[i];
         if (c < 'A' || c > 'Z') {
-            throw std::invalid_argument("Invalid symbol " + symbol + ".\n Symbol can only have upper case alphabets!");
+            throw std::invalid_argument("Invalid symbol " + symbol +
+                                        ".\n Symbol can only have upper case alphabets!");
         }
 
         this->symbol |= c << (8 * (i + 1));
@@ -110,10 +111,8 @@ std::string Asset::string() const {
 
     auto decimals = getDecimals();
 
-    int charsWritten = snprintf(buffer, maxBufferSize, "%.*f %s",
-                                decimals,
-                                static_cast<double>(amount) / precision,
-                                getSymbol().c_str());
+    int charsWritten = snprintf(buffer, maxBufferSize, "%.*f %s", decimals,
+                                static_cast<double>(amount) / precision, getSymbol().c_str());
 
     if (charsWritten < 0 || charsWritten > maxBufferSize) {
         throw std::runtime_error("Failed to create string representation of asset!");

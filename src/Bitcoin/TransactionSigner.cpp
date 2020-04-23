@@ -11,10 +11,10 @@
 #include "UnspentSelector.h"
 
 #include "../BinaryCoding.h"
+#include "../Groestlcoin/Transaction.h"
 #include "../Hash.h"
 #include "../HexCoding.h"
 #include "../Zcash/Transaction.h"
-#include "../Groestlcoin/Transaction.h"
 
 using namespace TW;
 using namespace TW::Bitcoin;
@@ -48,8 +48,8 @@ Result<Transaction> TransactionSigner<Transaction, TransactionBuilder>::sign() {
 }
 
 template <typename Transaction, typename TransactionBuilder>
-Result<void> TransactionSigner<Transaction, TransactionBuilder>::sign(Script script, size_t index,
-        const Bitcoin::Proto::UnspentTransaction& utxo) {
+Result<void> TransactionSigner<Transaction, TransactionBuilder>::sign(
+    Script script, size_t index, const Bitcoin::Proto::UnspentTransaction& utxo) {
     Script redeemScript;
     std::vector<Data> results;
     std::vector<Data> witnessStack;
@@ -60,8 +60,7 @@ Result<void> TransactionSigner<Transaction, TransactionBuilder>::sign(Script scr
         } else {
             return BASE;
         }
-    }
-    ();
+    }();
     auto result = signStep(script, index, utxo, signatureVersion);
     if (result) {
         results = result.payload();
@@ -119,7 +118,7 @@ Result<void> TransactionSigner<Transaction, TransactionBuilder>::sign(Script scr
 
 template <typename Transaction, typename TransactionBuilder>
 Result<std::vector<Data>> TransactionSigner<Transaction, TransactionBuilder>::signStep(
-Script script, size_t index, const Bitcoin::Proto::UnspentTransaction& utxo, uint32_t version) {
+    Script script, size_t index, const Bitcoin::Proto::UnspentTransaction& utxo, uint32_t version) {
     Transaction transactionToSign(transaction);
     transactionToSign.inputs = signedInputs;
     transactionToSign.outputs = transaction.outputs;
@@ -149,7 +148,7 @@ Script script, size_t index, const Bitcoin::Proto::UnspentTransaction& utxo, uin
         // Error: Invalid sutput script
         return Result<std::vector<Data>>::failure("Invalid output script.");
     } else if (script.matchMultisig(keys, required)) {
-        auto results = std::vector<Data> {{}}; // workaround CHECKMULTISIG bug
+        auto results = std::vector<Data>{{}}; // workaround CHECKMULTISIG bug
         for (auto& pubKey : keys) {
             if (results.size() >= required + 1) {
                 break;
@@ -206,12 +205,12 @@ Script script, size_t index, const Bitcoin::Proto::UnspentTransaction& utxo, uin
 }
 
 template <typename Transaction, typename TransactionBuilder>
-Data TransactionSigner<Transaction, TransactionBuilder>::createSignature(const Transaction& transaction,
-        const Script& script, const Data& key,
-        size_t index, Amount amount,
-        uint32_t version) {
-    auto sighash = transaction.getSignatureHash(script, index, static_cast<TWBitcoinSigHashType>(input.hash_type()), amount,
-                   static_cast<SignatureVersion>(version));
+Data TransactionSigner<Transaction, TransactionBuilder>::createSignature(
+    const Transaction& transaction, const Script& script, const Data& key, size_t index,
+    Amount amount, uint32_t version) {
+    auto sighash = transaction.getSignatureHash(
+        script, index, static_cast<TWBitcoinSigHashType>(input.hash_type()), amount,
+        static_cast<SignatureVersion>(version));
     auto pk = PrivateKey(key);
     auto sig = pk.signAsDER(Data(begin(sighash), end(sighash)), TWCurveSECP256k1);
     if (sig.empty()) {
@@ -247,7 +246,8 @@ Data TransactionSigner<Transaction, TransactionBuilder>::pushAll(const std::vect
 }
 
 template <typename Transaction, typename TransactionBuilder>
-Data TransactionSigner<Transaction, TransactionBuilder>::keyForPublicKeyHash(const Data& hash) const {
+Data TransactionSigner<Transaction, TransactionBuilder>::keyForPublicKeyHash(
+    const Data& hash) const {
     for (auto& key : input.private_key()) {
         auto publicKey = PrivateKey(key).getPublicKey(TWPublicKeyTypeSECP256k1);
         auto keyHash = TW::Hash::ripemd(TW::Hash::sha256(publicKey.bytes));
@@ -259,7 +259,8 @@ Data TransactionSigner<Transaction, TransactionBuilder>::keyForPublicKeyHash(con
 }
 
 template <typename Transaction, typename TransactionBuilder>
-Data TransactionSigner<Transaction, TransactionBuilder>::scriptForScriptHash(const Data& hash) const {
+Data TransactionSigner<Transaction, TransactionBuilder>::scriptForScriptHash(
+    const Data& hash) const {
     auto hashString = hex(hash.begin(), hash.end());
     auto it = input.scripts().find(hashString);
     if (it == input.scripts().end()) {
@@ -272,4 +273,5 @@ Data TransactionSigner<Transaction, TransactionBuilder>::scriptForScriptHash(con
 // Explicitly instantiate a Signers for compatible transactions.
 template class TW::Bitcoin::TransactionSigner<Bitcoin::Transaction, Bitcoin::TransactionBuilder>;
 template class TW::Bitcoin::TransactionSigner<Zcash::Transaction, Zcash::TransactionBuilder>;
-template class TW::Bitcoin::TransactionSigner<Groestlcoin::Transaction, Bitcoin::TransactionBuilder>;
+template class TW::Bitcoin::TransactionSigner<Groestlcoin::Transaction,
+                                              Bitcoin::TransactionBuilder>;

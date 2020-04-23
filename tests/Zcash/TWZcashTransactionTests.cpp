@@ -9,13 +9,13 @@
 
 #include "Bitcoin/OutPoint.h"
 #include "Bitcoin/Script.h"
-#include "Zcash/TransactionBuilder.h"
 #include "Bitcoin/TransactionSigner.h"
+#include "Coin.h"
+#include "Data.h"
 #include "HexCoding.h"
 #include "PublicKey.h"
-#include "Data.h"
-#include "Coin.h"
 #include "Zcash/Transaction.h"
+#include "Zcash/TransactionBuilder.h"
 
 #include <TrustWalletCore/TWBitcoinScript.h>
 
@@ -30,8 +30,15 @@ TEST(TWZcashTransaction, Encode) {
     transaction.expiryHeight = 0x0004b048;
     transaction.branchId = Zcash::SaplingBranchID;
 
-    auto outpoint0 = Bitcoin::OutPoint(parse_hex("a8c685478265f4c14dada651969c45a65e1aeb8cd6791f2f5bb6a1d9952104d9"), 1);
-    transaction.inputs.emplace_back(outpoint0, Bitcoin::Script(parse_hex("483045022100a61e5d557568c2ddc1d9b03a7173c6ce7c996c4daecab007ac8f34bee01e6b9702204d38fdc0bcf2728a69fde78462a10fb45a9baa27873e6a5fc45fb5c76764202a01210365ffea3efa3908918a8b8627724af852fc9b86d7375b103ab0543cf418bcaa7f")), 0xfffffffe);
+    auto outpoint0 = Bitcoin::OutPoint(
+        parse_hex("a8c685478265f4c14dada651969c45a65e1aeb8cd6791f2f5bb6a1d9952104d9"), 1);
+    transaction.inputs.emplace_back(
+        outpoint0,
+        Bitcoin::Script(
+            parse_hex("483045022100a61e5d557568c2ddc1d9b03a7173c6ce7c996c4daecab007ac8f34bee01e6b97"
+                      "02204d38fdc0bcf2728a69fde78462a10fb45a9baa27873e6a5fc45fb5c76764202a01210365"
+                      "ffea3efa3908918a8b8627724af852fc9b86d7375b103ab0543cf418bcaa7f")),
+        0xfffffffe);
 
     auto script0 = Bitcoin::Script(parse_hex("76a9148132712c3ff19f3a151234616777420a6d7ef22688ac"));
     transaction.outputs.emplace_back(0x02625a00, script0);
@@ -42,43 +49,57 @@ TEST(TWZcashTransaction, Encode) {
     auto unsignedData = Data{};
     transaction.encode(unsignedData);
 
-    ASSERT_EQ(hex(unsignedData.begin(), unsignedData.end()),
-              /* header */          "04000080"
-              /* versionGroupId */  "85202f89"
-              /* vin */             "01""a8c685478265f4c14dada651969c45a65e1aeb8cd6791f2f5bb6a1d9952104d9""01000000""6b483045022100a61e5d557568c2ddc1d9b03a7173c6ce7c996c4daecab007ac8f34bee01e6b9702204d38fdc0bcf2728a69fde78462a10fb45a9baa27873e6a5fc45fb5c76764202a01210365ffea3efa3908918a8b8627724af852fc9b86d7375b103ab0543cf418bcaa7f""feffffff"
-              /* vout */            "02""005a620200000000""1976a9148132712c3ff19f3a151234616777420a6d7ef22688ac"
-              "8b95980000000000""1976a9145453e4698f02a38abdaa521cd1ff2dee6fac187188ac"
-              /* lockTime */        "29b00400"
-              /* expiryHeight */    "48b00400"
-              /* valueBalance */    "0000000000000000"
-              /* vShieldedSpend */  "00"
-              /* vShieldedOutput */ "00"
-              /* vJoinSplit */      "00"
-             );
+    ASSERT_EQ(
+        hex(unsignedData.begin(), unsignedData.end()),
+        /* header */ "04000080"
+                     /* versionGroupId */ "85202f89"
+                     /* vin */ "01"
+                     "a8c685478265f4c14dada651969c45a65e1aeb8cd6791f2f5bb6a1d9952104d9"
+                     "01000000"
+                     "6b483045022100a61e5d557568c2ddc1d9b03a7173c6ce7c996c4daecab007ac8f34bee01e6b9"
+                     "702204d38fdc0bcf2728a69fde78462a10fb45a9baa27873e6a5fc45fb5c76764202a01210365"
+                     "ffea3efa3908918a8b8627724af852fc9b86d7375b103ab0543cf418bcaa7f"
+                     "feffffff"
+                     /* vout */ "02"
+                     "005a620200000000"
+                     "1976a9148132712c3ff19f3a151234616777420a6d7ef22688ac"
+                     "8b95980000000000"
+                     "1976a9145453e4698f02a38abdaa521cd1ff2dee6fac187188ac"
+                     /* lockTime */ "29b00400"
+                     /* expiryHeight */ "48b00400"
+                     /* valueBalance */ "0000000000000000"
+                     /* vShieldedSpend */ "00"
+                     /* vShieldedOutput */ "00"
+                     /* vJoinSplit */ "00");
 
-    auto scriptCode = Bitcoin::Script(parse_hex("76a914507173527b4c3318a2aecd793bf1cfed705950cf88ac"));
+    auto scriptCode =
+        Bitcoin::Script(parse_hex("76a914507173527b4c3318a2aecd793bf1cfed705950cf88ac"));
     auto preImage = transaction.getPreImage(scriptCode, 0, TWBitcoinSigHashTypeAll, 0x02faf080);
-    ASSERT_EQ(hex(preImage.begin(), preImage.end()),
-              /* header */              "04000080"
-              /* versionGroupId */      "85202f89"
-              /* hashPrevouts */        "fae31b8dec7b0b77e2c8d6b6eb0e7e4e55abc6574c26dd44464d9408a8e33f11"
-              /* hashSequence */        "6c80d37f12d89b6f17ff198723e7db1247c4811d1a695d74d930f99e98418790"
-              /* hashOutputs */         "d2b04118469b7810a0d1cc59568320aad25a84f407ecac40b4f605a4e6868454"
-              /* hashJoinSplits */      "0000000000000000000000000000000000000000000000000000000000000000"
-              /* hashShieldedSpends */  "0000000000000000000000000000000000000000000000000000000000000000"
-              /* hashShieldedOutputs */ "0000000000000000000000000000000000000000000000000000000000000000"
-              /* lockTime */            "29b00400"
-              /* expiryHeight */        "48b00400"
-              /* valueBalance */        "0000000000000000"
-              /* hashType */            "01000000"
-              /* prevout */             "a8c685478265f4c14dada651969c45a65e1aeb8cd6791f2f5bb6a1d9952104d9""01000000"
-              /* scriptCode */          "1976a914507173527b4c3318a2aecd793bf1cfed705950cf88ac"
-              /* amount */              "80f0fa0200000000"
-              /* sequence */            "feffffff"
-             );
+    ASSERT_EQ(
+        hex(preImage.begin(), preImage.end()),
+        /* header */
+        "04000080"
+        /* versionGroupId */ "85202f89"
+        /* hashPrevouts */ "fae31b8dec7b0b77e2c8d6b6eb0e7e4e55abc6574c26dd44464d9408a8e33f11"
+        /* hashSequence */ "6c80d37f12d89b6f17ff198723e7db1247c4811d1a695d74d930f99e98418790"
+        /* hashOutputs */ "d2b04118469b7810a0d1cc59568320aad25a84f407ecac40b4f605a4e6868454"
+        /* hashJoinSplits */ "0000000000000000000000000000000000000000000000000000000000000000"
+        /* hashShieldedSpends */ "0000000000000000000000000000000000000000000000000000000000000000"
+        /* hashShieldedOutputs */ "0000000000000000000000000000000000000000000000000000000000000000"
+        /* lockTime */ "29b00400"
+        /* expiryHeight */ "48b00400"
+        /* valueBalance */ "0000000000000000"
+        /* hashType */ "01000000"
+        /* prevout */ "a8c685478265f4c14dada651969c45a65e1aeb8cd6791f2f5bb6a1d9952104d9"
+        "01000000"
+        /* scriptCode */ "1976a914507173527b4c3318a2aecd793bf1cfed705950cf88ac"
+        /* amount */ "80f0fa0200000000"
+        /* sequence */ "feffffff");
 
-    auto sighash = transaction.getSignatureHash(scriptCode, 0, TWBitcoinSigHashTypeAll, 0x02faf080, Bitcoin::BASE);
-    ASSERT_EQ(hex(sighash.begin(), sighash.end()), "f3148f80dfab5e573d5edfe7a850f5fd39234f80b5429d3a57edcc11e34c585b");
+    auto sighash = transaction.getSignatureHash(scriptCode, 0, TWBitcoinSigHashTypeAll, 0x02faf080,
+                                                Bitcoin::BASE);
+    ASSERT_EQ(hex(sighash.begin(), sighash.end()),
+              "f3148f80dfab5e573d5edfe7a850f5fd39234f80b5429d3a57edcc11e34c585b");
 }
 
 TEST(TWZcashTransaction, SaplingSigning) {
@@ -111,11 +132,13 @@ TEST(TWZcashTransaction, SaplingSigning) {
     plan.change = 0;
     plan.branchId = Data(Zcash::SaplingBranchID.begin(), Zcash::SaplingBranchID.end());
 
-    auto &protoPlan = *input.mutable_plan();
+    auto& protoPlan = *input.mutable_plan();
     protoPlan = plan.proto();
 
     // Sign
-    auto result = Bitcoin::TransactionSigner<Zcash::Transaction, Zcash::TransactionBuilder>(std::move(input)).sign();
+    auto result =
+        Bitcoin::TransactionSigner<Zcash::Transaction, Zcash::TransactionBuilder>(std::move(input))
+            .sign();
     ASSERT_TRUE(result) << result.error();
     auto signedTx = result.payload();
 
@@ -127,16 +150,21 @@ TEST(TWZcashTransaction, SaplingSigning) {
               "04000080"
               "85202f89"
               "01"
-              "53685b8809efc50dd7d5cb0906b307a1b8aa5157baa5fc1bd6fe2d0344dd193a""00000000""6b483045022100ca0be9f37a4975432a52bb65b25e483f6f93d577955290bb7fb0060a93bfc92002203e0627dff004d3c72a957dc9f8e4e0e696e69d125e4d8e275d119001924d3b48012103b243171fae5516d1dc15f9178cfcc5fdc67b0a883055c117b01ba8af29b953f6""ffffffff"
+              "53685b8809efc50dd7d5cb0906b307a1b8aa5157baa5fc1bd6fe2d0344dd193a"
+              "00000000"
+              "6b483045022100ca0be9f37a4975432a52bb65b25e483f6f93d577955290bb7fb0060a93bfc92002203e"
+              "0627dff004d3c72a957dc9f8e4e0e696e69d125e4d8e275d119001924d3b48012103b243171fae5516d1"
+              "dc15f9178cfcc5fdc67b0a883055c117b01ba8af29b953f6"
+              "ffffffff"
               "01"
-              "4072070000000000""1976a91449964a736f3713d64283fd0018626ba50091c7e988ac"
+              "4072070000000000"
+              "1976a91449964a736f3713d64283fd0018626ba50091c7e988ac"
               "00000000"
               "00000000"
               "0000000000000000"
               "00"
               "00"
-              "00"
-             );
+              "00");
 }
 
 TEST(TWZcashTransaction, BlossomSigning) {
@@ -163,7 +191,8 @@ TEST(TWZcashTransaction, BlossomSigning) {
     utxo0->set_amount(27615);
 
     // real key 1p "m/44'/133'/0'/0/14"
-    auto utxoKey0 = PrivateKey(parse_hex("0x4646464646464646464646464646464646464646464646464646464646464646"));
+    auto utxoKey0 =
+        PrivateKey(parse_hex("0x4646464646464646464646464646464646464646464646464646464646464646"));
     auto utxoAddr0 = TW::deriveAddress(TWCoinTypeZcash, utxoKey0);
     auto script0 = Bitcoin::Script::buildForAddress(utxoAddr0, TWCoinTypeZcash);
     utxo0->set_script(script0.bytes.data(), script0.bytes.size());
@@ -174,15 +203,23 @@ TEST(TWZcashTransaction, BlossomSigning) {
     plan.fee = fee;
     plan.change = 0;
 
-    auto &protoPlan = *input.mutable_plan();
+    auto& protoPlan = *input.mutable_plan();
     protoPlan = plan.proto();
 
     // Sign
-    auto result = Bitcoin::TransactionSigner<Zcash::Transaction, Zcash::TransactionBuilder>(std::move(input)).sign();
+    auto result =
+        Bitcoin::TransactionSigner<Zcash::Transaction, Zcash::TransactionBuilder>(std::move(input))
+            .sign();
     ASSERT_TRUE(result) << result.error();
     auto signedTx = result.payload();
 
     Data serialized;
     signedTx.encode(serialized);
-    ASSERT_EQ(hex(serialized), "0400008085202f8901de8c02c79c01018bd91dbc6b293eba03945be25762994409209a06d95c828123000000006b483045022100e6e5071811c08d0c2e81cb8682ee36a8c6b645f5c08747acd3e828de2a4d8a9602200b13b36a838c7e8af81f2d6e7e694ede28833a480cfbaaa68a47187655298a7f0121024bc2a31265153f07e70e0bab08724e6b85e217f8cd628ceb62974247bb493382ffffffff01cf440000000000001976a914c3bacb129d85288a3deb5890ca9b711f7f71392688ac00000000000000000000000000000000000000");
+    ASSERT_EQ(
+        hex(serialized),
+        "0400008085202f8901de8c02c79c01018bd91dbc6b293eba03945be25762994409209a06d95c82812300000000"
+        "6b483045022100e6e5071811c08d0c2e81cb8682ee36a8c6b645f5c08747acd3e828de2a4d8a9602200b13b36a"
+        "838c7e8af81f2d6e7e694ede28833a480cfbaaa68a47187655298a7f0121024bc2a31265153f07e70e0bab0872"
+        "4e6b85e217f8cd628ceb62974247bb493382ffffffff01cf440000000000001976a914c3bacb129d85288a3deb"
+        "5890ca9b711f7f71392688ac00000000000000000000000000000000000000");
 }

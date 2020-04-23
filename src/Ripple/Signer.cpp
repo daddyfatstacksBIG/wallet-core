@@ -16,15 +16,14 @@ static const int64_t fullyCanonical = 0x80000000;
 Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
     auto key = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));
     auto transaction = Transaction(
-                           /* amount */input.amount(),
-                           /* fee */input.fee(),
-                           /* flags */input.flags(),
-                           /* sequence */input.sequence(),
-                           /* last_ledger_sequence */input.last_ledger_sequence(),
-                           /* account */Address(input.account()),
-                           /* destination */input.destination(),
-                           /* destination_tag*/input.destination_tag()
-                       );
+        /* amount */ input.amount(),
+        /* fee */ input.fee(),
+        /* flags */ input.flags(),
+        /* sequence */ input.sequence(),
+        /* last_ledger_sequence */ input.last_ledger_sequence(),
+        /* account */ Address(input.account()),
+        /* destination */ input.destination(),
+        /* destination_tag*/ input.destination_tag());
 
     auto signer = Signer();
     signer.sign(key, transaction);

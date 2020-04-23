@@ -18,7 +18,7 @@ namespace TW::Ethereum::ABI {
 /// Values are padded by 0 on the left -- unless otherwise mentioned.
 /// See: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md
 class ValueEncoder {
-public:
+  public:
     static const int encodedIntSize = 32;
 
     static void encodeBool(bool value, Data& inout);
@@ -40,13 +40,9 @@ public:
     static uint256_t uint256FromInt256(int256_t x);
 
     /// Compute size when padded to 32-byte boundary; round up to multiple of 32.
-    static inline size_t paddedTo32(size_t len) {
-        return ((len + 31) / 32) * 32;
-    }
+    static inline size_t paddedTo32(size_t len) { return ((len + 31) / 32) * 32; }
 
     /// Compute padding needed to next 32-byte boundary.
-    static inline size_t padNeeded32(size_t len) {
-        return ((len + 31) / 32) * 32 - len;
-    }
+    static inline size_t padNeeded32(size_t len) { return ((len + 31) / 32) * 32 - len; }
 };
 } // namespace TW::Ethereum::ABI

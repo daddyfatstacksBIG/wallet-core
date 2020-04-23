@@ -37,7 +37,8 @@ TEST(FIOAddress, ValidateData) {
 TEST(FIOAddress, FromString) {
     Address addr("FIO5kJKNHwctcfUM5XZyiWSqSTM5HTzznJP9F3ZdbhaQAHEVq575o");
     ASSERT_EQ(addr.string(), "FIO5kJKNHwctcfUM5XZyiWSqSTM5HTzznJP9F3ZdbhaQAHEVq575o");
-    ASSERT_EQ(hex(addr.bytes), "0271195c66ec2799e436757a70cd8431d4b17733a097b18a5f7f1b6b085978ff0f343fc54e");
+    ASSERT_EQ(hex(addr.bytes),
+              "0271195c66ec2799e436757a70cd8431d4b17733a097b18a5f7f1b6b085978ff0f343fc54e");
 }
 
 TEST(FIOAddress, FromStringInvalid) {
@@ -50,9 +51,11 @@ TEST(FIOAddress, FromStringInvalid) {
 }
 
 TEST(FIOAddress, FromPublicKey) {
-    auto key = PrivateKey(parse_hex("ea8eb60b7e5868e218f248e032769020b4fea5dcfd02f2992861eaf4fb534854"));
+    auto key =
+        PrivateKey(parse_hex("ea8eb60b7e5868e218f248e032769020b4fea5dcfd02f2992861eaf4fb534854"));
     auto publicKey = key.getPublicKey(TWPublicKeyTypeSECP256k1);
-    EXPECT_EQ(hex(publicKey.bytes), "0271195c66ec2799e436757a70cd8431d4b17733a097b18a5f7f1b6b085978ff0f");
+    EXPECT_EQ(hex(publicKey.bytes),
+              "0271195c66ec2799e436757a70cd8431d4b17733a097b18a5f7f1b6b085978ff0f");
     auto address = Address(publicKey);
 
     ASSERT_EQ(address.string(), "FIO5kJKNHwctcfUM5XZyiWSqSTM5HTzznJP9F3ZdbhaQAHEVq575o");

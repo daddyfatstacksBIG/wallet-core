@@ -10,7 +10,8 @@
 
 using namespace TW;
 
-TWData *_Nullable TWAESCBCEncrypt(TWData *_Nonnull key, TWData *_Nonnull data, TWData *_Nonnull iv) {
+TWData* _Nullable TWAESCBCEncrypt(TWData* _Nonnull key, TWData* _Nonnull data,
+                                  TWData* _Nonnull iv) {
     try {
         Data encrypted = Encrypt::AESCBCEncrypt(*((Data*)key), *((Data*)data), *((Data*)iv));
         return TWDataCreateWithData(&encrypted);
@@ -19,7 +20,8 @@ TWData *_Nullable TWAESCBCEncrypt(TWData *_Nonnull key, TWData *_Nonnull data, T
     }
 }
 
-TWData *_Nullable TWAESCBCDecrypt(TWData *_Nonnull key, TWData *_Nonnull data, TWData *_Nonnull iv) {
+TWData* _Nullable TWAESCBCDecrypt(TWData* _Nonnull key, TWData* _Nonnull data,
+                                  TWData* _Nonnull iv) {
     try {
         Data decrypted = Encrypt::AESCBCDecrypt(*((Data*)key), *((Data*)data), *((Data*)iv));
         return TWDataCreateWithData(&decrypted);
@@ -28,7 +30,8 @@ TWData *_Nullable TWAESCBCDecrypt(TWData *_Nonnull key, TWData *_Nonnull data, T
     }
 }
 
-TWData *_Nullable TWAESCTREncrypt(TWData *_Nonnull key, TWData *_Nonnull data, TWData *_Nonnull iv) {
+TWData* _Nullable TWAESCTREncrypt(TWData* _Nonnull key, TWData* _Nonnull data,
+                                  TWData* _Nonnull iv) {
     try {
         Data encrypted = Encrypt::AESCTREncrypt(*((Data*)key), *((Data*)data), *((Data*)iv));
         return TWDataCreateWithData(&encrypted);
@@ -37,7 +40,8 @@ TWData *_Nullable TWAESCTREncrypt(TWData *_Nonnull key, TWData *_Nonnull data, T
     }
 }
 
-TWData *_Nullable TWAESCTRDecrypt(TWData *_Nonnull key, TWData *_Nonnull data, TWData *_Nonnull iv) {
+TWData* _Nullable TWAESCTRDecrypt(TWData* _Nonnull key, TWData* _Nonnull data,
+                                  TWData* _Nonnull iv) {
     try {
         Data decrypted = Encrypt::AESCTRDecrypt(*((Data*)key), *((Data*)data), *((Data*)iv));
         return TWDataCreateWithData(&decrypted);

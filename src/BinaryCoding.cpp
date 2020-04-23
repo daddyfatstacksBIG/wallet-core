@@ -159,7 +159,7 @@ void encodeString(const string& str, vector<uint8_t>& data) {
 }
 
 /// Decodes an ASCII string prefixed by its length (varInt)
-tuple<bool, string>  decodeString(const Data& in, size_t& indexInOut) {
+tuple<bool, string> decodeString(const Data& in, size_t& indexInOut) {
     const auto lenTup = decodeVarInt(in, indexInOut);
     if (!get<0>(lenTup)) {
         return make_tuple(false, "");

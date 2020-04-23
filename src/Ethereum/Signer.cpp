@@ -43,8 +43,8 @@ std::string Signer::signJSON(const std::string& json, const Data& key) {
     return hex(output.encoded());
 }
 
-std::tuple<uint256_t, uint256_t, uint256_t> Signer::values(const uint256_t &chainID,
-        const Data &signature) noexcept {
+std::tuple<uint256_t, uint256_t, uint256_t> Signer::values(const uint256_t& chainID,
+                                                           const Data& signature) noexcept {
     boost::multiprecision::uint256_t r, s, v;
     import_bits(r, signature.begin(), signature.begin() + 32);
     import_bits(s, signature.begin() + 32, signature.begin() + 64);
@@ -62,12 +62,12 @@ std::tuple<uint256_t, uint256_t, uint256_t> Signer::values(const uint256_t &chai
 }
 
 std::tuple<uint256_t, uint256_t, uint256_t>
-Signer::sign(const uint256_t &chainID, const PrivateKey &privateKey, const Data &hash) noexcept {
+Signer::sign(const uint256_t& chainID, const PrivateKey& privateKey, const Data& hash) noexcept {
     auto signature = privateKey.sign(hash, TWCurveSECP256k1);
     return values(chainID, signature);
 }
 
-Transaction Signer::build(const Proto::SigningInput &input) {
+Transaction Signer::build(const Proto::SigningInput& input) {
     Data toAddress;
     if (!input.to_address().empty()) {
         toAddress.resize(20);
@@ -75,16 +75,16 @@ Transaction Signer::build(const Proto::SigningInput &input) {
         std::copy(address.bytes.begin(), address.bytes.end(), toAddress.data());
     }
     auto transaction = Transaction(
-                           /* nonce: */ load(input.nonce()),
-                           /* gasPrice: */ load(input.gas_price()),
-                           /* gasLimit: */ load(input.gas_limit()),
-                           /* to: */ toAddress,
-                           /* amount: */ load(input.amount()),
-                           /* payload: */ Data(input.payload().begin(), input.payload().end()));
+        /* nonce: */ load(input.nonce()),
+        /* gasPrice: */ load(input.gas_price()),
+        /* gasLimit: */ load(input.gas_limit()),
+        /* to: */ toAddress,
+        /* amount: */ load(input.amount()),
+        /* payload: */ Data(input.payload().begin(), input.payload().end()));
     return transaction;
 }
 
-void Signer::sign(const PrivateKey &privateKey, Transaction &transaction) const noexcept {
+void Signer::sign(const PrivateKey& privateKey, Transaction& transaction) const noexcept {
     auto hash = this->hash(transaction);
     auto tuple = Signer::sign(chainID, privateKey, hash);
 
@@ -93,7 +93,7 @@ void Signer::sign(const PrivateKey &privateKey, Transaction &transaction) const 
     transaction.v = std::get<2>(tuple);
 }
 
-Data Signer::hash(const Transaction &transaction) const noexcept {
+Data Signer::hash(const Transaction& transaction) const noexcept {
     auto encoded = Data();
     append(encoded, RLP::encode(transaction.nonce));
     append(encoded, RLP::encode(transaction.gasPrice));

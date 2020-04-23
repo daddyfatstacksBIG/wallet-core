@@ -19,7 +19,7 @@ Proto::TransactionPlan Signer::plan(const Proto::SigningInput& input) noexcept {
     return signer.plan.proto();
 }
 
-Proto::SigningOutput Signer::sign(const Proto::SigningInput &input) noexcept {
+Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
     Proto::SigningOutput output;
     auto signer = TransactionSigner<Transaction, TransactionBuilder>(std::move(input));
     auto result = signer.sign();
@@ -32,9 +32,8 @@ Proto::SigningOutput Signer::sign(const Proto::SigningInput &input) noexcept {
     *output.mutable_transaction() = tx.proto();
 
     Data encoded;
-    auto hasWitness = std::any_of(tx.inputs.begin(), tx.inputs.end(), [](auto& input) {
-        return !input.scriptWitness.empty();
-    });
+    auto hasWitness = std::any_of(tx.inputs.begin(), tx.inputs.end(),
+                                  [](auto& input) { return !input.scriptWitness.empty(); });
     tx.encode(hasWitness, encoded);
     output.set_encoded(encoded.data(), encoded.size());
 

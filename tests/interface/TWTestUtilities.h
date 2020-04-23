@@ -8,8 +8,8 @@
 
 #include <TrustWalletCore/TWData.h>
 #include <TrustWalletCore/TWString.h>
-#include <gtest/gtest.h>
 #include <google/protobuf/util/json_util.h>
+#include <gtest/gtest.h>
 
 #include <vector>
 
@@ -35,23 +35,25 @@ inline std::vector<uint8_t>* dataFromTWData(TWData* data) {
 /// Return a writeable temp dir which can be used to create files during testing
 std::string getTestTempDir(void);
 
-#define ANY_SIGN(input, coin) \
-        {\
-            auto inputData = input.SerializeAsString();\
-            auto inputTWData = WRAPD(TWDataCreateWithBytes((const uint8_t *)inputData.data(), inputData.size()));\
-            auto outputTWData = WRAPD(TWAnySignerSign(inputTWData.get(), coin));\
-            output.ParseFromArray(TWDataBytes(outputTWData.get()), TWDataSize(outputTWData.get()));\
-        }
-#define ANY_PLAN(input, output, coin) \
-        {\
-            auto inputData = input.SerializeAsString();\
-            auto inputTWData = WRAPD(TWDataCreateWithBytes((const uint8_t *)inputData.data(), inputData.size()));\
-            auto outputTWData = WRAPD(TWAnySignerPlan(inputTWData.get(), coin));\
-            output.ParseFromArray(TWDataBytes(outputTWData.get()), TWDataSize(outputTWData.get()));\
-        }
-#define DUMP_PROTO(input) \
-        { \
-            std::string json; \
-            google::protobuf::util::MessageToJsonString(input, &json); \
-            std::cout<<"dump proto: "<<json<<std::endl; \
-        }
+#define ANY_SIGN(input, coin)                                                                      \
+    {                                                                                              \
+        auto inputData = input.SerializeAsString();                                                \
+        auto inputTWData =                                                                         \
+            WRAPD(TWDataCreateWithBytes((const uint8_t*)inputData.data(), inputData.size()));      \
+        auto outputTWData = WRAPD(TWAnySignerSign(inputTWData.get(), coin));                       \
+        output.ParseFromArray(TWDataBytes(outputTWData.get()), TWDataSize(outputTWData.get()));    \
+    }
+#define ANY_PLAN(input, output, coin)                                                              \
+    {                                                                                              \
+        auto inputData = input.SerializeAsString();                                                \
+        auto inputTWData =                                                                         \
+            WRAPD(TWDataCreateWithBytes((const uint8_t*)inputData.data(), inputData.size()));      \
+        auto outputTWData = WRAPD(TWAnySignerPlan(inputTWData.get(), coin));                       \
+        output.ParseFromArray(TWDataBytes(outputTWData.get()), TWDataSize(outputTWData.get()));    \
+    }
+#define DUMP_PROTO(input)                                                                          \
+    {                                                                                              \
+        std::string json;                                                                          \
+        google::protobuf::util::MessageToJsonString(input, &json);                                 \
+        std::cout << "dump proto: " << json << std::endl;                                          \
+    }

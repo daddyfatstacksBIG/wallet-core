@@ -6,28 +6,35 @@
 
 #include "../interface/TWTestUtilities.h"
 
-#include <TrustWalletCore/TWHash.h>
-#include <TrustWalletCore/TWHDWallet.h>
-#include <TrustWalletCore/TWPrivateKey.h>
 #include <TrustWalletCore/TWBitcoinScript.h>
+#include <TrustWalletCore/TWHDWallet.h>
+#include <TrustWalletCore/TWHash.h>
+#include <TrustWalletCore/TWPrivateKey.h>
 
 #include <gtest/gtest.h>
 
 TEST(Decred, ExtendedKeys) {
-    auto wallet = WRAP(TWHDWallet, TWHDWalletCreateWithMnemonic(
-                           STRING("ripple scissors kick mammal hire column oak again sun offer wealth tomorrow wagon turn fatal").get(),
-                           STRING("TREZOR").get()
-                       ));
+    auto wallet =
+        WRAP(TWHDWallet,
+             TWHDWalletCreateWithMnemonic(STRING("ripple scissors kick mammal hire column oak "
+                                                 "again sun offer wealth tomorrow wagon turn fatal")
+                                              .get(),
+                                          STRING("TREZOR").get()));
 
-    auto dpub = WRAPS(TWHDWalletGetExtendedPublicKey(wallet.get(), TWPurposeBIP44, TWCoinTypeDecred, TWHDVersionDPUB));
-    auto dprv = WRAPS(TWHDWalletGetExtendedPrivateKey(wallet.get(), TWPurposeBIP44, TWCoinTypeDecred, TWHDVersionDPRV));
+    auto dpub = WRAPS(TWHDWalletGetExtendedPublicKey(wallet.get(), TWPurposeBIP44, TWCoinTypeDecred,
+                                                     TWHDVersionDPUB));
+    auto dprv = WRAPS(TWHDWalletGetExtendedPrivateKey(wallet.get(), TWPurposeBIP44,
+                                                      TWCoinTypeDecred, TWHDVersionDPRV));
 
-    assertStringsEqual(dpub, "dpubZFUmm9oh5zmQkR2Tr2AXS4tCkTWg4B27SpCPFkapZrrAqgU1EwgEFgrmi6EnLGXhak86yDHhXPxFAnGU58W5S4e8NCKG1ASUVaxwRqqNdfP");
-    assertStringsEqual(dprv, "dprv3oggQ2FQ1chcr18hbW7Aur5x8SxQdES3FGa4WqeTZnFY88SNMzLdB7LkZLroF4bGAqWS8sDm3w4DKyYV7sDKfC6JMSVHnVJdpDLgHioq1vq");
+    assertStringsEqual(dpub, "dpubZFUmm9oh5zmQkR2Tr2AXS4tCkTWg4B27SpCPFkapZrrAqgU1EwgEFgrmi6EnLGXha"
+                             "k86yDHhXPxFAnGU58W5S4e8NCKG1ASUVaxwRqqNdfP");
+    assertStringsEqual(dprv, "dprv3oggQ2FQ1chcr18hbW7Aur5x8SxQdES3FGa4WqeTZnFY88SNMzLdB7LkZLroF4bGA"
+                             "qWS8sDm3w4DKyYV7sDKfC6JMSVHnVJdpDLgHioq1vq");
 }
 
 TEST(Decred, DerivePubkeyFromDpub) {
-    auto dpub = STRING("dpubZFUmm9oh5zmQkR2Tr2AXS4tCkTWg4B27SpCPFkapZrrAqgU1EwgEFgrmi6EnLGXhak86yDHhXPxFAnGU58W5S4e8NCKG1ASUVaxwRqqNdfP");
+    auto dpub = STRING("dpubZFUmm9oh5zmQkR2Tr2AXS4tCkTWg4B27SpCPFkapZrrAqgU1EwgEFgrmi6EnLGXhak86yDH"
+                       "hXPxFAnGU58W5S4e8NCKG1ASUVaxwRqqNdfP");
     auto pubKey0 = TWHDWalletGetPublicKeyFromExtended(dpub.get(), STRING("m/44'/42'/0'/0/0").get());
     auto address0 = WRAPS(TWCoinTypeDeriveAddressFromPublicKey(TWCoinTypeDecred, pubKey0));
 
@@ -35,11 +42,15 @@ TEST(Decred, DerivePubkeyFromDpub) {
 }
 
 TEST(Decred, Lockscripts) {
-    auto script = WRAP(TWBitcoinScript, TWBitcoinScriptBuildForAddress(STRING("Dcur2mcGjmENx4DhNqDctW5wJCVyT3Qeqkx").get(), TWCoinTypeDecred));
+    auto script = WRAP(TWBitcoinScript,
+                       TWBitcoinScriptBuildForAddress(
+                           STRING("Dcur2mcGjmENx4DhNqDctW5wJCVyT3Qeqkx").get(), TWCoinTypeDecred));
     auto scriptData = WRAPD(TWBitcoinScriptData(script.get()));
     assertHexEqual(scriptData, "a914f5916158e3e2c4551c1796708db8367207ed13bb87");
 
-    auto script2 = WRAP(TWBitcoinScript, TWBitcoinScriptBuildForAddress(STRING("DsfD7KYsJtRraYXPZM61ui7779oYJCakYvH").get(), TWCoinTypeDecred));
+    auto script2 = WRAP(TWBitcoinScript,
+                        TWBitcoinScriptBuildForAddress(
+                            STRING("DsfD7KYsJtRraYXPZM61ui7779oYJCakYvH").get(), TWCoinTypeDecred));
     auto scriptData2 = WRAPD(TWBitcoinScriptData(script2.get()));
     assertHexEqual(scriptData2, "76a9149c417596dea6570f8e546674555b5ce5087ce2c288ac");
 }

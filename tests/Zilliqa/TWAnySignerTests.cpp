@@ -5,8 +5,8 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "HexCoding.h"
-#include "uint256.h"
 #include "proto/Zilliqa.pb.h"
+#include "uint256.h"
 #include "../interface/TWTestUtilities.h"
 #include <TrustWalletCore/TWAnySigner.h>
 #include <gtest/gtest.h>
@@ -31,5 +31,7 @@ TEST(TWAnySignerZilliqa, Sign) {
     Proto::SigningOutput output;
     ANY_SIGN(input, TWCoinTypeZilliqa);
 
-    ASSERT_EQ(hex(output.signature()), "001fa4df08c11a4a79e96e69399ee48eeecc78231a78b0355a8ca783c77c139436e37934fecc2252ed8dac00e235e22d18410461fb896685c4270642738ed268");
+    ASSERT_EQ(hex(output.signature()),
+              "001fa4df08c11a4a79e96e69399ee48eeecc78231a78b0355a8ca783c77c139436e37934fecc2252ed8d"
+              "ac00e235e22d18410461fb896685c4270642738ed268");
 }

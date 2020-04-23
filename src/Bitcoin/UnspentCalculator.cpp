@@ -21,9 +21,7 @@ UnspentCalculator UnspentCalculator::getCalculator(TWCoinType coinType) {
             const auto txsize = ((166 * inputs) + (38 * outputs) + 12);
             return int64_t(txsize) * byteFee;
         };
-        auto calcInput = [](int64_t byteFee) -> int64_t {
-            return int64_t(166) * byteFee;
-        };
+        auto calcInput = [](int64_t byteFee) -> int64_t { return int64_t(166) * byteFee; };
         return UnspentCalculator(calc, calcInput);
     }
     default:

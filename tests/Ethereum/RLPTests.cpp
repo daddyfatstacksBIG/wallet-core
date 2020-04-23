@@ -39,18 +39,14 @@ TEST(RLP, uint256_t) {
     EXPECT_EQ(hex(RLP::encode(uint256_t(0xffffff))), "83ffffff");
     EXPECT_EQ(hex(RLP::encode(uint256_t(0xffffffffULL))), "84ffffffff");
     EXPECT_EQ(hex(RLP::encode(uint256_t(0xffffffffffffffULL))), "87ffffffffffffff");
-    EXPECT_EQ(
-        hex(RLP::encode(uint256_t("0x102030405060708090a0b0c0d0e0f2"))),
-        "8f102030405060708090a0b0c0d0e0f2"
-    );
+    EXPECT_EQ(hex(RLP::encode(uint256_t("0x102030405060708090a0b0c0d0e0f2"))),
+              "8f102030405060708090a0b0c0d0e0f2");
     EXPECT_EQ(
         hex(RLP::encode(uint256_t("0x0100020003000400050006000700080009000a000b000c000d000e01"))),
-        "9c0100020003000400050006000700080009000a000b000c000d000e01"
-    );
-    EXPECT_EQ(
-        hex(RLP::encode(uint256_t("0x0100000000000000000000000000000000000000000000000000000000000000"))),
-        "a00100000000000000000000000000000000000000000000000000000000000000"
-    );
+        "9c0100020003000400050006000700080009000a000b000c000d000e01");
+    EXPECT_EQ(hex(RLP::encode(
+                  uint256_t("0x0100000000000000000000000000000000000000000000000000000000000000"))),
+              "a00100000000000000000000000000000000000000000000000000000000000000");
 }
 
 TEST(RLP, PutInt) {
@@ -69,8 +65,8 @@ TEST(RLP, PutInt) {
 
 TEST(RLP, Lists) {
     EXPECT_EQ(hex(RLP::encodeList(std::vector<int>())), "c0");
-    EXPECT_EQ(hex(RLP::encodeList(std::vector<int> {1, 2, 3})), "c3010203");
-    EXPECT_EQ(hex(RLP::encodeList(std::vector<std::string> {"cat", "dog"})), "c88363617483646f67");
+    EXPECT_EQ(hex(RLP::encodeList(std::vector<int>{1, 2, 3})), "c3010203");
+    EXPECT_EQ(hex(RLP::encodeList(std::vector<std::string>{"cat", "dog"})), "c88363617483646f67");
     const auto encoded = RLP::encodeList(std::vector<int>(1024));
     const auto prefix = std::string("f90400");
     ASSERT_TRUE(std::equal(prefix.begin(), prefix.end(), hex(encoded).begin()));
@@ -78,5 +74,5 @@ TEST(RLP, Lists) {
 
 TEST(RLP, Invalid) {
     ASSERT_TRUE(RLP::encode(-1).empty());
-    ASSERT_TRUE(RLP::encodeList(std::vector<int> {0, -1}).empty());
+    ASSERT_TRUE(RLP::encodeList(std::vector<int>{0, -1}).empty());
 }

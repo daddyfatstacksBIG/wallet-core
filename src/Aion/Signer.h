@@ -20,7 +20,7 @@ namespace TW::Aion {
 
 /// Helper class that performs Aion transaction signing.
 class Signer {
-public:
+  public:
     Signer() = delete;
 
     /// Signs a Proto::SigningInput transaction

@@ -10,11 +10,10 @@
 #include "HexCoding.h"
 #include "proto/Bitcoin.pb.h"
 #include "proto/Decred.pb.h"
+#include <TrustWalletCore/TWAnySigner.h>
 #include <TrustWalletCore/TWBitcoinScript.h>
 #include <TrustWalletCore/TWBitcoinSigHashType.h>
-#include <TrustWalletCore/TWAnySigner.h>
 #include <gtest/gtest.h>
-
 
 namespace TW::Decred {
 
@@ -66,7 +65,13 @@ TEST(TWAnySignerDecred, Signing) {
     ANY_SIGN(input, TWCoinTypeDecred);
 
     ASSERT_TRUE(output.error().empty());
-    ASSERT_EQ(hex(output.encoded()), "0100000001fdbfe9dd703f306794a467f175be5bd9748a7925033ea1cf9889d7cf4dd1155000000000000000000002809698000000000000001976a914989b1aecabf1c24e213cc0f2d8a22ffee25dd4e188ac40b6c6010000000000001976a9142a194fc92e27fef9cc2b057bc9060c580cbb484888ac000000000000000001000000000000000000000000ffffffff6a47304402206ee887c9239e5fff0048674bdfff2a8cfbeec6cd4a3ccebcc12fac44b24cc5ac0220718f7c760818fde18bc5ba8457d43d5a145cc4cf13d2a5557cba9107e9f4558d0121026cc34b92cefb3a4537b3edb0b6044c04af27c01583c577823ecc69a9a21119b6");
+    ASSERT_EQ(hex(output.encoded()),
+              "0100000001fdbfe9dd703f306794a467f175be5bd9748a7925033ea1cf9889d7cf4dd115500000000000"
+              "0000000002809698000000000000001976a914989b1aecabf1c24e213cc0f2d8a22ffee25dd4e188ac40"
+              "b6c6010000000000001976a9142a194fc92e27fef9cc2b057bc9060c580cbb484888ac00000000000000"
+              "0001000000000000000000000000ffffffff6a47304402206ee887c9239e5fff0048674bdfff2a8cfbee"
+              "c6cd4a3ccebcc12fac44b24cc5ac0220718f7c760818fde18bc5ba8457d43d5a145cc4cf13d2a5557cba"
+              "9107e9f4558d0121026cc34b92cefb3a4537b3edb0b6044c04af27c01583c577823ecc69a9a21119b6");
 }
 
 TEST(TWAnySignerDecred, Plan) {
@@ -103,11 +108,17 @@ TEST(TWAnySignerDecred, PlanAndSign) {
     ANY_SIGN(input, TWCoinTypeDecred);
 
     ASSERT_TRUE(output.error().empty());
-    ASSERT_EQ(hex(output.encoded()), "0100000001fdbfe9dd703f306794a467f175be5bd9748a7925033ea1cf9889d7cf4dd1155000000000000000000002809698000000000000001976a914989b1aecabf1c24e213cc0f2d8a22ffee25dd4e188ace23bc8010000000000001976a9142a194fc92e27fef9cc2b057bc9060c580cbb484888ac000000000000000001000000000000000000000000ffffffff6a47304402203e6ee9e16d6bc36bb4242f7a4cac333a1c2a150ea16143412b88b721f6ae16bf02201019affdf815a5c22e4b0fb7e4685c4707094922d6a41354f9055d3bb0f26e630121026cc34b92cefb3a4537b3edb0b6044c04af27c01583c577823ecc69a9a21119b6");
+    ASSERT_EQ(hex(output.encoded()),
+              "0100000001fdbfe9dd703f306794a467f175be5bd9748a7925033ea1cf9889d7cf4dd115500000000000"
+              "0000000002809698000000000000001976a914989b1aecabf1c24e213cc0f2d8a22ffee25dd4e188ace2"
+              "3bc8010000000000001976a9142a194fc92e27fef9cc2b057bc9060c580cbb484888ac00000000000000"
+              "0001000000000000000000000000ffffffff6a47304402203e6ee9e16d6bc36bb4242f7a4cac333a1c2a"
+              "150ea16143412b88b721f6ae16bf02201019affdf815a5c22e4b0fb7e4685c4707094922d6a41354f905"
+              "5d3bb0f26e630121026cc34b92cefb3a4537b3edb0b6044c04af27c01583c577823ecc69a9a21119b6");
 }
 
 TEST(TWAnySignerDecred, SupportsJSON) {
     ASSERT_FALSE(TWAnySignerSupportsJSON(TWCoinTypeDecred));
 }
 
-} // namespace
+} // namespace TW::Decred

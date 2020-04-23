@@ -15,7 +15,7 @@ namespace TW::Ripple {
 
 /// Helper class that performs Ripple transaction signing.
 class Signer {
-public:
+  public:
     /// Signs a Proto::SigningInput transaction
     static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
 

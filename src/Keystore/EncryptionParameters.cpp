@@ -31,9 +31,9 @@ static Data computeMAC(Iter begin, Iter end, Data key) {
 EncryptionParameters::EncryptionParameters(const Data& password, Data data) : mac() {
     auto scryptParams = boost::get<ScryptParameters>(kdfParams);
     auto derivedKey = Data(scryptParams.desiredKeyLength);
-    scrypt(reinterpret_cast<const byte*>(password.data()), password.size(), scryptParams.salt.data(),
-           scryptParams.salt.size(), scryptParams.n, scryptParams.r, scryptParams.p, derivedKey.data(),
-           scryptParams.desiredKeyLength);
+    scrypt(reinterpret_cast<const byte*>(password.data()), password.size(),
+           scryptParams.salt.data(), scryptParams.salt.size(), scryptParams.n, scryptParams.r,
+           scryptParams.p, derivedKey.data(), scryptParams.desiredKeyLength);
 
     aes_encrypt_ctx ctx;
     auto result = aes_encrypt_key(derivedKey.data(), 16, &ctx);
@@ -57,8 +57,8 @@ Data EncryptionParameters::decrypt(const Data& password) const {
     if (kdfParams.which() == 0) {
         auto scryptParams = boost::get<ScryptParameters>(kdfParams);
         derivedKey.resize(scryptParams.defaultDesiredKeyLength);
-        scrypt(password.data(), password.size(), scryptParams.salt.data(),
-               scryptParams.salt.size(), scryptParams.n, scryptParams.r, scryptParams.p, derivedKey.data(),
+        scrypt(password.data(), password.size(), scryptParams.salt.data(), scryptParams.salt.size(),
+               scryptParams.n, scryptParams.r, scryptParams.p, derivedKey.data(),
                scryptParams.defaultDesiredKeyLength);
         mac = computeMAC(derivedKey.end() - 16, derivedKey.end(), encrypted);
     } else if (kdfParams.which() == 1) {
@@ -142,7 +142,6 @@ nlohmann::json EncryptionParameters::json() const {
         auto pbkdf2Params = boost::get<PBKDF2Parameters>(kdfParams);
         j[CodingKeys::kdf] = "pbkdf2";
         j[CodingKeys::kdfParams] = pbkdf2Params.json();
-
     }
 
     return j;

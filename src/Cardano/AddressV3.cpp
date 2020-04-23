@@ -6,13 +6,13 @@
 
 #include "AddressV3.h"
 #include "AddressV2.h"
-#include <TrustWalletCore/TWCoinType.h>
-#include "../Data.h"
-#include "../Bech32.h"
 #include "../Base32.h"
+#include "../Bech32.h"
 #include "../Crc.h"
-#include "../HexCoding.h"
+#include "../Data.h"
 #include "../Hash.h"
+#include "../HexCoding.h"
+#include <TrustWalletCore/TWCoinType.h>
 
 #include <array>
 
@@ -20,7 +20,8 @@ using namespace TW;
 using namespace TW::Cardano;
 using namespace std;
 
-bool AddressV3::parseAndCheckV3(const std::string& addr, Discrimination& discrimination, Kind& kind, Data& key1, Data& key2) {
+bool AddressV3::parseAndCheckV3(const std::string& addr, Discrimination& discrimination, Kind& kind,
+                                Data& key1, Data& key2) {
     try {
         auto bech = Bech32::decode(addr);
         if (bech.second.size() == 0) {
@@ -42,7 +43,7 @@ bool AddressV3::parseAndCheckV3(const std::string& addr, Discrimination& discrim
             return false;
         }
         if ((kind == Kind_Group && conv.size() != 65) ||
-                (kind != Kind_Group && conv.size() != 33)) {
+            (kind != Kind_Group && conv.size() != 33)) {
             return false;
         }
 
@@ -94,7 +95,8 @@ AddressV3 AddressV3::createSingle(Discrimination discrimination_in, const Data& 
     return addr;
 }
 
-AddressV3 AddressV3::createGroup(Discrimination discrimination_in, const Data& spendingKey, const Data& groupKey) {
+AddressV3 AddressV3::createGroup(Discrimination discrimination_in, const Data& spendingKey,
+                                 const Data& groupKey) {
     if (spendingKey.size() != 32) {
         throw std::invalid_argument("Wrong spending key size");
     }
@@ -171,13 +173,13 @@ AddressV3::AddressV3(const Data& data) : legacyAddressV2(nullptr) {
     std::copy(data.begin() + index, data.begin() + index + len2, groupKey.begin());
 }
 
-AddressV3::AddressV3(const AddressV3& other) :
-    discrimination(other.discrimination),
-    kind(other.kind),
-    key1(other.key1),
-    groupKey(other.groupKey),
-    legacyAddressV2(other.legacyAddressV2 == nullptr ? nullptr : new AddressV2(*other.legacyAddressV2))
-{}
+AddressV3::AddressV3(const AddressV3& other)
+    : discrimination(other.discrimination)
+    , kind(other.kind)
+    , key1(other.key1)
+    , groupKey(other.groupKey)
+    , legacyAddressV2(other.legacyAddressV2 == nullptr ? nullptr
+                                                       : new AddressV2(*other.legacyAddressV2)) {}
 
 string AddressV3::string() const {
     std::string hrp;
@@ -200,7 +202,8 @@ string AddressV3::string(const std::string& hrp) const {
     }
 
     byte first = (byte)kind;
-    if (discrimination == Discrim_Test) first = first | 0b10000000;
+    if (discrimination == Discrim_Test)
+        first = first | 0b10000000;
     Data keys;
     TW::append(keys, first);
     TW::append(keys, key1);
@@ -221,7 +224,8 @@ string AddressV3::stringBase32() const {
     }
 
     byte first = (byte)kind;
-    if (discrimination == Discrim_Test) first = first | 0b10000000;
+    if (discrimination == Discrim_Test)
+        first = first | 0b10000000;
     Data keys;
     TW::append(keys, first);
     TW::append(keys, key1);

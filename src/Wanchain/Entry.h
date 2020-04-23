@@ -11,15 +11,16 @@
 namespace TW::Wanchain {
 
 /// Entry point for implementation of Wanchain coin.
-/// Note: do not put the implementation here (no matter how simple), to avoid having coin-specific includes in this file
-class Entry: public CoinEntry {
-public:
-    virtual std::vector<TWCoinType> coinTypes() const {
-        return {TWCoinTypeWanchain};
-    }
-    virtual bool validateAddress(TWCoinType coin, const std::string& address, TW::byte p2pkh, TW::byte p2sh, const char* hrp) const;
+/// Note: do not put the implementation here (no matter how simple), to avoid having coin-specific
+/// includes in this file
+class Entry : public CoinEntry {
+  public:
+    virtual std::vector<TWCoinType> coinTypes() const { return {TWCoinTypeWanchain}; }
+    virtual bool validateAddress(TWCoinType coin, const std::string& address, TW::byte p2pkh,
+                                 TW::byte p2sh, const char* hrp) const;
     virtual std::string normalizeAddress(TWCoinType coin, const std::string& address) const;
-    virtual std::string deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte p2pkh, const char* hrp) const;
+    virtual std::string deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte p2pkh,
+                                      const char* hrp) const;
     virtual void sign(TWCoinType coin, const Data& dataIn, Data& dataOut) const;
 };
 

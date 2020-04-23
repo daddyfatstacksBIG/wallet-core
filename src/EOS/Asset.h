@@ -16,7 +16,7 @@ namespace TW::EOS {
 
 // An asset class that can be used by Bravo, EOS, steem, et. al.
 class Asset {
-public:
+  public:
     int64_t amount;
     uint64_t symbol = 0;
 
@@ -30,17 +30,16 @@ public:
     static Asset fromString(std::string assetString);
 
     std::string getSymbol() const noexcept;
-    inline uint8_t getDecimals() const noexcept {
-        return symbol & 0xFF;
-    }
+    inline uint8_t getDecimals() const noexcept { return symbol & 0xFF; }
     inline uint64_t getPrecision() const noexcept {
         int i = getDecimals();
         uint64_t p = 1;
-        while(i--) p *= 10;
+        while (i--)
+            p *= 10;
         return p;
     }
 
     void serialize(Data& os) const noexcept;
     std::string string() const;
 };
-} // TW::EOS namespace
+} // namespace TW::EOS

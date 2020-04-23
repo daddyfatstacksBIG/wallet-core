@@ -4,22 +4,22 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
+#include <TrezorCrypto/cash_addr.h>
 #include <TrustWalletCore/TWAnyAddress.h>
 #include <TrustWalletCore/TWPublicKey.h>
-#include <TrezorCrypto/cash_addr.h>
 
 #include "../Bitcoin/Address.h"
 #include "../Bitcoin/CashAddress.h"
 #include "../Bitcoin/SegwitAddress.h"
+#include "../Cardano/AddressV3.h"
 #include "../Cosmos/Address.h"
 #include "../Decred/Address.h"
 #include "../Kusama/Address.h"
+#include "../NEO/Address.h"
+#include "../Nano/Address.h"
 #include "../Polkadot/Address.h"
 #include "../Zcash/TAddress.h"
 #include "../Zilliqa/Address.h"
-#include "../Cardano/AddressV3.h"
-#include "../NEO/Address.h"
-#include "../Nano/Address.h"
 
 #include "../Coin.h"
 #include "../HexCoding.h"
@@ -41,7 +41,7 @@ bool TWAnyAddressIsValid(TWString* _Nonnull string, enum TWCoinType coin) {
 }
 
 struct TWAnyAddress* _Nullable TWAnyAddressCreateWithString(TWString* _Nonnull string,
-        enum TWCoinType coin) {
+                                                            enum TWCoinType coin) {
     auto& address = *reinterpret_cast<const std::string*>(string);
     auto normalized = TW::normalizeAddress(coin, address);
     if (normalized.empty()) {

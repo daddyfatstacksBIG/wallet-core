@@ -26,10 +26,12 @@ TEST(RavencoinTransaction, SignTransaction) {
         https://iancoleman.io/bip39/
         Mnemonic - shoot island position soft burden budget tooth cruel issue economy destroy above
         m/44'/175'/0'/0/0 Address - RHoCwPc2FCQqwToYnSiAb3SrCET4zEHsbS
-        m/44'/175'/0'/0/0 Private key in Base58 encoding - L1At2vQpaHCmbiu333N3kD4nbDzJgvb8hxNp5S8bQApocFYuW1rx
-        m/44'/175'/0'/0/0 Private key in bytes - 75e4c520c92b3836e77dfe2715da469b71f7df86fc11ef328870735a700551fa
-        utxo - https://blockbook.ravencoin.org/tx/0c7e82b44eec71d634c013e2db3cb4fa26f87fbc90eb8734da93807d23605544
-        tx - https://blockbook.ravencoin.org/tx/3717b528eb4925461d9de5a596d2eefe175985740b4fda153255e10135f236a6
+        m/44'/175'/0'/0/0 Private key in Base58 encoding -
+       L1At2vQpaHCmbiu333N3kD4nbDzJgvb8hxNp5S8bQApocFYuW1rx m/44'/175'/0'/0/0 Private key in bytes -
+       75e4c520c92b3836e77dfe2715da469b71f7df86fc11ef328870735a700551fa utxo -
+       https://blockbook.ravencoin.org/tx/0c7e82b44eec71d634c013e2db3cb4fa26f87fbc90eb8734da93807d23605544
+        tx -
+       https://blockbook.ravencoin.org/tx/3717b528eb4925461d9de5a596d2eefe175985740b4fda153255e10135f236a6
     */
 
     const int64_t utxo_amount = 100000000;
@@ -61,7 +63,7 @@ TEST(RavencoinTransaction, SignTransaction) {
     plan.fee = fee;
     plan.change = utxo_amount - amount - fee;
 
-    auto &protoPlan = *input.mutable_plan();
+    auto& protoPlan = *input.mutable_plan();
     protoPlan = plan.proto();
 
     // Sign
@@ -74,24 +76,33 @@ TEST(RavencoinTransaction, SignTransaction) {
 
     Data serialized;
     signedTx.encode(false, serialized);
-    ASSERT_EQ(
-        hex(serialized),
-        "0100000001445560237d8093da3487eb90bc7ff826fab43cdbe213c034d671ec4eb4827e0c000000006b483045022100d790bdaa3c44eb5e3a422365ca5fc009c4512625222e3378f2f16e7e6ef1732a0220688c1bb995b7ff2f12729e101d7c24b6314430317e7717911fdc35c0d84f2f0d012102138724e702d25b0fdce73372ccea9734f9349442d5a9681a5f4d831036cd9429ffffffff0280f0fa02000000001976a9149451f4546e09fc2e49ef9b5303924712ec2b038e88ac006cdc02000000001976a9145d6e33f3a108bbcc586cbbe90994d5baf5a9cce488ac00000000"
-    );
+    ASSERT_EQ(hex(serialized),
+              "0100000001445560237d8093da3487eb90bc7ff826fab43cdbe213c034d671ec4eb4827e0c000000006b"
+              "483045022100d790bdaa3c44eb5e3a422365ca5fc009c4512625222e3378f2f16e7e6ef1732a0220688c"
+              "1bb995b7ff2f12729e101d7c24b6314430317e7717911fdc35c0d84f2f0d012102138724e702d25b0fdc"
+              "e73372ccea9734f9349442d5a9681a5f4d831036cd9429ffffffff0280f0fa02000000001976a9149451"
+              "f4546e09fc2e49ef9b5303924712ec2b038e88ac006cdc02000000001976a9145d6e33f3a108bbcc586c"
+              "bbe90994d5baf5a9cce488ac00000000");
 }
 
 TEST(RavencoinTransaction, LockScripts) {
     // P2PKH
     // https://blockbook.ravencoin.org/tx/3717b528eb4925461d9de5a596d2eefe175985740b4fda153255e10135f236a6
 
-    auto script = WRAP(TWBitcoinScript, TWBitcoinScriptBuildForAddress(STRING("RNoSGCX8SPFscj8epDaJjqEpuZa2B5in88").get(), TWCoinTypeRavencoin));
+    auto script =
+        WRAP(TWBitcoinScript,
+             TWBitcoinScriptBuildForAddress(STRING("RNoSGCX8SPFscj8epDaJjqEpuZa2B5in88").get(),
+                                            TWCoinTypeRavencoin));
     auto scriptData = WRAPD(TWBitcoinScriptData(script.get()));
     assertHexEqual(scriptData, "76a9149451f4546e09fc2e49ef9b5303924712ec2b038e88ac");
 
     // P2SH
     // https://ravencoin.network/api/tx/f600d07814677d1f60545c8f7f71260238595c4928d6fb87caa0f9dd732e9bb5
 
-    auto script2 = WRAP(TWBitcoinScript, TWBitcoinScriptBuildForAddress(STRING("rPWwn5h4QFZNaz1XmY39rc73sdYGGDdmq1").get(), TWCoinTypeRavencoin));
+    auto script2 =
+        WRAP(TWBitcoinScript,
+             TWBitcoinScriptBuildForAddress(STRING("rPWwn5h4QFZNaz1XmY39rc73sdYGGDdmq1").get(),
+                                            TWCoinTypeRavencoin));
     auto scriptData2 = WRAPD(TWBitcoinScriptData(script2.get()));
     assertHexEqual(scriptData2, "a914bd92088bb7e82d611a9b94fbb74a0908152b784f87");
 }

@@ -38,10 +38,10 @@ const Data cidPrefix = {
 
 Cbor::Encode Transaction::message() const {
     return Cbor::Encode::array(
-    {   Cbor::Encode::bytes(to.bytes), Cbor::Encode::bytes(from.bytes), Cbor::Encode::uint(nonce),
-        Cbor::Encode::bytes(encodeVaruint(value)), Cbor::Encode::bytes(encodeVaruint(gasPrice)),
-        Cbor::Encode::bytes(encodeVaruint(gasLimit)), Cbor::Encode::uint(0),
-        Cbor::Encode::bytes(Data())});
+        {Cbor::Encode::bytes(to.bytes), Cbor::Encode::bytes(from.bytes), Cbor::Encode::uint(nonce),
+         Cbor::Encode::bytes(encodeVaruint(value)), Cbor::Encode::bytes(encodeVaruint(gasPrice)),
+         Cbor::Encode::bytes(encodeVaruint(gasLimit)), Cbor::Encode::uint(0),
+         Cbor::Encode::bytes(Data())});
 }
 
 Data Transaction::cid() const {

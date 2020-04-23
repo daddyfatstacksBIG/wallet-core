@@ -7,10 +7,10 @@
 #include "Signer.h"
 #include "Address.h"
 
+#include "TransactionBuilder.h"
 #include "../Base58.h"
 #include "../Hash.h"
 #include "../HexCoding.h"
-#include "TransactionBuilder.h"
 
 #include <TrezorCrypto/ecdsa.h>
 #include <TrezorCrypto/secp256k1.h>
@@ -26,7 +26,7 @@ Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
     try {
         const string json = TransactionBuilder::sign(input);
         output.set_json(json);
-    } catch(const std::exception& e) {
+    } catch (const std::exception& e) {
         output.set_error("Internal error");
     }
     return output;
@@ -55,22 +55,18 @@ bool Signer::verify(const PublicKey& pubKey, const Data& data, const Data& signa
 
 // canonical check for FIO, both R and S lenght is 32
 int Signer::isCanonical(uint8_t by, uint8_t sig[64]) {
-    return !(sig[0] & 0x80)
-           && !(sig[0] == 0 && !(sig[1] & 0x80))
-           && !(sig[32] & 0x80)
-           && !(sig[32] == 0 && !(sig[33] & 0x80));
+    return !(sig[0] & 0x80) && !(sig[0] == 0 && !(sig[1] & 0x80)) && !(sig[32] & 0x80) &&
+           !(sig[32] == 0 && !(sig[33] & 0x80));
 }
 
-string Actor::actor(const Address& addr)
-{
+string Actor::actor(const Address& addr) {
     uint64_t shortenedKey = shortenKey(addr.bytes);
     string name13 = name(shortenedKey);
     // trim to 12 chracters
     return name13.substr(0, 12);
 }
 
-uint64_t Actor::shortenKey(const array<byte, Address::size>& addrKey)
-{
+uint64_t Actor::shortenKey(const array<byte, Address::size>& addrKey) {
     uint64_t res = 0;
     int i = 1; // Ignore key head
     int len = 0;
@@ -79,7 +75,7 @@ uint64_t Actor::shortenKey(const array<byte, Address::size>& addrKey)
 
         auto trimmed_char = uint64_t(addrKey[i] & (len == 12 ? 0x0f : 0x1f));
         if (trimmed_char == 0) {
-            i++;    // Skip a zero and move to next
+            i++; // Skip a zero and move to next
             continue;
         }
 
@@ -95,10 +91,10 @@ uint64_t Actor::shortenKey(const array<byte, Address::size>& addrKey)
 string Actor::name(uint64_t shortKey) {
     static const char* charmap = ".12345abcdefghijklmnopqrstuvwxyz";
 
-    string str(13,'.'); //We are forcing the string to be 13 characters
+    string str(13, '.'); // We are forcing the string to be 13 characters
 
     uint64_t tmp = shortKey;
-    for(uint32_t i = 0; i <= 12; i++ ) {
+    for (uint32_t i = 0; i <= 12; i++) {
         char c = charmap[tmp & (i == 0 ? 0x0f : 0x1f)];
         str[12 - i] = c;
         tmp >>= (i == 0 ? 4 : 5);

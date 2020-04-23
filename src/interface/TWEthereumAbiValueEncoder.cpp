@@ -6,14 +6,13 @@
 
 #include <TrustWalletCore/TWEthereumAbiValueEncoder.h>
 
-#include <Ethereum/ABI/ValueEncoder.h>
 #include <Data.h>
+#include <Ethereum/ABI/ValueEncoder.h>
 
 #include <iostream>
 
 using namespace TW::Ethereum;
 using namespace TW;
-
 
 TWData* _Nonnull TWEthereumAbiValueEncoderEncodeBool(bool value) {
     Data data;

@@ -70,9 +70,9 @@ UnspentSelector::select(const T& utxos, int64_t targetValue, int64_t byteFee, in
     // amount
     auto sortedUtxos = utxos;
     std::sort(sortedUtxos.begin(), sortedUtxos.end(),
-    [](const Proto::UnspentTransaction& lhs, const Proto::UnspentTransaction& rhs) {
-        return lhs.amount() < rhs.amount();
-    });
+              [](const Proto::UnspentTransaction& lhs, const Proto::UnspentTransaction& rhs) {
+                  return lhs.amount() < rhs.amount();
+              });
 
     // difference from 2x targetValue
     auto distFrom2x = [doubleTargetValue](int64_t val) -> int64_t {
@@ -92,16 +92,16 @@ UnspentSelector::select(const T& utxos, int64_t targetValue, int64_t byteFee, in
         auto slices = slice(sortedUtxos, static_cast<size_t>(numInputs));
         slices.erase(std::remove_if(slices.begin(), slices.end(),
                                     [targetWithFeeAndDust](
-        const std::vector<Proto::UnspentTransaction>& slice) {
-            return sum(slice) < targetWithFeeAndDust;
-        }),
-        slices.end());
+                                        const std::vector<Proto::UnspentTransaction>& slice) {
+                                        return sum(slice) < targetWithFeeAndDust;
+                                    }),
+                     slices.end());
         if (!slices.empty()) {
             std::sort(slices.begin(), slices.end(),
                       [distFrom2x](const std::vector<Proto::UnspentTransaction>& lhs,
-            const std::vector<Proto::UnspentTransaction>& rhs) {
-                return distFrom2x(sum(lhs)) < distFrom2x(sum(rhs));
-            });
+                                   const std::vector<Proto::UnspentTransaction>& rhs) {
+                          return distFrom2x(sum(lhs)) < distFrom2x(sum(rhs));
+                      });
             return filterDustInput(slices.front(), byteFee);
         }
     }
@@ -114,10 +114,10 @@ UnspentSelector::select(const T& utxos, int64_t targetValue, int64_t byteFee, in
         auto slices = slice(sortedUtxos, static_cast<size_t>(numInputs));
         slices.erase(
             std::remove_if(slices.begin(), slices.end(),
-        [targetWithFee](const std::vector<Proto::UnspentTransaction>& slice) {
-            return sum(slice) < targetWithFee;
-        }),
-        slices.end());
+                           [targetWithFee](const std::vector<Proto::UnspentTransaction>& slice) {
+                               return sum(slice) < targetWithFee;
+                           }),
+            slices.end());
         if (!slices.empty()) {
             return filterDustInput(slices.front(), byteFee);
         }

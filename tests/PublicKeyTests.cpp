@@ -20,13 +20,15 @@ TEST(PublicKeyTests, CreateFromPrivateSecp256k1) {
     auto privateKey = PrivateKey(key);
     auto publicKey = privateKey.getPublicKey(TWPublicKeyTypeSECP256k1);
     EXPECT_EQ(publicKey.bytes.size(), 33);
-    EXPECT_EQ(hex(publicKey.bytes), "0399c6f51ad6f98c9c583f8e92bb7758ab2ca9a04110c0a1126ec43e5453d196c1");
+    EXPECT_EQ(hex(publicKey.bytes),
+              "0399c6f51ad6f98c9c583f8e92bb7758ab2ca9a04110c0a1126ec43e5453d196c1");
     EXPECT_EQ(publicKey.isCompressed(), true);
     EXPECT_TRUE(PublicKey::isValid(publicKey.bytes, TWPublicKeyTypeSECP256k1));
 }
 
 TEST(PublicKeyTests, CreateFromDataSecp256k1) {
-    const Data key = parse_hex("0399c6f51ad6f98c9c583f8e92bb7758ab2ca9a04110c0a1126ec43e5453d196c1");
+    const Data key =
+        parse_hex("0399c6f51ad6f98c9c583f8e92bb7758ab2ca9a04110c0a1126ec43e5453d196c1");
     PublicKey publicKey(key, TWPublicKeyTypeSECP256k1);
     EXPECT_EQ(hex(publicKey.bytes), hex(key));
 }
@@ -49,14 +51,17 @@ TEST(PublicKeyTests, CompressedExtended) {
     EXPECT_EQ(publicKey.bytes.size(), 33);
     EXPECT_EQ(publicKey.isCompressed(), true);
     EXPECT_TRUE(PublicKey::isValid(publicKey.bytes, TWPublicKeyTypeSECP256k1));
-    EXPECT_EQ(hex(publicKey.bytes), std::string("0399c6f51ad6f98c9c583f8e92bb7758ab2ca9a04110c0a1126ec43e5453d196c1"));
+    EXPECT_EQ(hex(publicKey.bytes),
+              std::string("0399c6f51ad6f98c9c583f8e92bb7758ab2ca9a04110c0a1126ec43e5453d196c1"));
 
     auto extended = publicKey.extended();
     EXPECT_EQ(extended.type, TWPublicKeyTypeSECP256k1Extended);
     EXPECT_EQ(extended.bytes.size(), 65);
     EXPECT_EQ(extended.isCompressed(), false);
     EXPECT_TRUE(PublicKey::isValid(extended.bytes, TWPublicKeyTypeSECP256k1Extended));
-    EXPECT_EQ(hex(extended.bytes), std::string("0499c6f51ad6f98c9c583f8e92bb7758ab2ca9a04110c0a1126ec43e5453d196c166b489a4b7c491e7688e6ebea3a71fc3a1a48d60f98d5ce84c93b65e423fde91"));
+    EXPECT_EQ(hex(extended.bytes),
+              std::string("0499c6f51ad6f98c9c583f8e92bb7758ab2ca9a04110c0a1126ec43e5453d196c166b489"
+                          "a4b7c491e7688e6ebea3a71fc3a1a48d60f98d5ce84c93b65e423fde91"));
 
     auto compressed = extended.compressed();
     EXPECT_EQ(compressed.type, TWPublicKeyTypeSECP256k1);
@@ -64,7 +69,8 @@ TEST(PublicKeyTests, CompressedExtended) {
     EXPECT_EQ(compressed.bytes.size(), 33);
     EXPECT_EQ(compressed.isCompressed(), true);
     EXPECT_TRUE(PublicKey::isValid(compressed.bytes, TWPublicKeyTypeSECP256k1));
-    EXPECT_EQ(hex(compressed.bytes), std::string("0399c6f51ad6f98c9c583f8e92bb7758ab2ca9a04110c0a1126ec43e5453d196c1"));
+    EXPECT_EQ(hex(compressed.bytes),
+              std::string("0399c6f51ad6f98c9c583f8e92bb7758ab2ca9a04110c0a1126ec43e5453d196c1"));
 }
 
 TEST(PublicKeyTests, Verify) {
@@ -82,7 +88,8 @@ TEST(PublicKeyTests, Verify) {
 }
 
 TEST(PublicKeyTests, VerifyEd25519) {
-    const auto key = PrivateKey(parse_hex("afeefca74d9a325cf1d6b6911d61a65c32afa8e02bd5e78e2e4ac2910bab45f5"));
+    const auto key =
+        PrivateKey(parse_hex("afeefca74d9a325cf1d6b6911d61a65c32afa8e02bd5e78e2e4ac2910bab45f5"));
     auto privateKey = PrivateKey(key);
 
     const char* message = "Hello";

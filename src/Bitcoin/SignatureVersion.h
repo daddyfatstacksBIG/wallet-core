@@ -9,8 +9,5 @@
 #include <TrustWalletCore/TWBitcoinSigHashType.h>
 
 namespace TW::Bitcoin {
-enum SignatureVersion {
-    BASE,
-    WITNESS_V0
-};
-} // TW::Bitcoin namespace
+enum SignatureVersion { BASE, WITNESS_V0 };
+} // namespace TW::Bitcoin

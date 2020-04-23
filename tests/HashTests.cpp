@@ -20,7 +20,8 @@ TEST(HashTests, Blake2b) {
     auto hashed = Hash::blake2b(content, 64);
     auto result = hex(hashed);
 
-    ASSERT_EQ(result, string("6ff843ba685842aa82031d3f53c48b66326df7639a63d128974c5c14f31a0f33343a8c65551134ed1ae0f2b0dd2bb495dc81039e3eeb0aa1bb0388bbeac29183"));
+    ASSERT_EQ(result, string("6ff843ba685842aa82031d3f53c48b66326df7639a63d128974c5c14f31a0f33343a8"
+                             "c65551134ed1ae0f2b0dd2bb495dc81039e3eeb0aa1bb0388bbeac29183"));
 }
 
 TEST(HashTests, Blake2bPersonal) {
@@ -35,11 +36,14 @@ TEST(HashTests, Blake2bPersonal) {
 
 TEST(HashTests, Sha512_256) {
     auto tests = {
-        make_tuple(string(""), string("c672b8d1ef56ed28ab87c3622c5114069bdd3ad7b8f9737498d0c01ecef0967a")),
-        make_tuple(brownFox, string("dd9d67b371519c339ed8dbd25af90e976a1eeefd4ad3d889005e532fc5bef04d")),
-        make_tuple(brownFoxDot, string("1546741840f8a492b959d9b8b2344b9b0eb51b004bba35c0aebaac86d45264c3")),
+        make_tuple(string(""),
+                   string("c672b8d1ef56ed28ab87c3622c5114069bdd3ad7b8f9737498d0c01ecef0967a")),
+        make_tuple(brownFox,
+                   string("dd9d67b371519c339ed8dbd25af90e976a1eeefd4ad3d889005e532fc5bef04d")),
+        make_tuple(brownFoxDot,
+                   string("1546741840f8a492b959d9b8b2344b9b0eb51b004bba35c0aebaac86d45264c3")),
     };
-    for (auto &test : tests) {
+    for (auto& test : tests) {
         auto hashed = Hash::sha512_256(get<0>(test));
         ASSERT_EQ(hex(hashed), get<1>(test));
     }
@@ -51,7 +55,7 @@ TEST(HashTests, Sha1) {
         make_tuple(brownFox, string("2fd4e1c67a2d28fced849ee1bb76e7391b93eb12")),
         make_tuple(brownFoxDot, string("408d94384216f890ff7a0c3528e8bed1e0b01621")),
     };
-    for (auto &test: tests) {
+    for (auto& test : tests) {
         const auto hash = Hash::sha1(TW::data(get<0>(test)));
         EXPECT_EQ(hex(hash), get<1>(test));
     }

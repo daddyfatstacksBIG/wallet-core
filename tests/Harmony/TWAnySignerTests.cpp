@@ -6,9 +6,9 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "HexCoding.h"
-#include "../interface/TWTestUtilities.h"
 #include "proto/Harmony.pb.h"
 #include "uint256.h"
+#include "../interface/TWTestUtilities.h"
 #include <TrustWalletCore/TWAnySigner.h>
 
 #include <gtest/gtest.h>
@@ -25,7 +25,8 @@ TEST(TWAnySignerHarmony, Sign) {
 
     auto transactionMessage = input.mutable_transaction_message();
     transactionMessage->set_to_address(TEST_RECEIVER);
-    const auto privateKey = parse_hex("4edef2c24995d15b0e25cbd152fb0e2c05d3b79b9c2afd134e6f59f91bf99e48");
+    const auto privateKey =
+        parse_hex("4edef2c24995d15b0e25cbd152fb0e2c05d3b79b9c2afd134e6f59f91bf99e48");
 
     input.set_private_key(privateKey.data(), privateKey.size());
 

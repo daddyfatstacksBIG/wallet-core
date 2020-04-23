@@ -16,13 +16,13 @@ namespace TW::Cardano {
 
 /// A Cardano-Shelley address, V3 or V2.
 class AddressV3 {
-public:
-    enum Discrimination: uint8_t {
+  public:
+    enum Discrimination : uint8_t {
         Discrim_Production = 0,
         Discrim_Test = 1,
     };
 
-    enum Kind: uint8_t {
+    enum Kind : uint8_t {
         Kind_Sentinel_Low = 2,
         Kind_Single = 3,
         Kind_Group = 4,
@@ -50,7 +50,8 @@ public:
     /// Create a single spending key address
     static AddressV3 createSingle(Discrimination discrimination_in, const TW::Data& spendingKey);
     /// Create a group address
-    static AddressV3 createGroup(Discrimination discrimination_in, const TW::Data& spendingKey, const TW::Data& groupKey);
+    static AddressV3 createGroup(Discrimination discrimination_in, const TW::Data& spendingKey,
+                                 const TW::Data& groupKey);
     /// Create an account address
     static AddressV3 createAccount(Discrimination discrimination_in, const TW::Data& accountKey);
 
@@ -80,17 +81,19 @@ public:
     std::string stringBase32() const;
 
     /// Check validity and parse elements of a string address.  Used internally by isValid and ctor.
-    static bool parseAndCheckV3(const std::string& addr, Discrimination& discrimination, Kind& kind, TW::Data& key1, TW::Data& key2);
+    static bool parseAndCheckV3(const std::string& addr, Discrimination& discrimination, Kind& kind,
+                                TW::Data& key1, TW::Data& key2);
 
     /// Return the binary data representation (keys appended, internal format)
     Data data() const;
 
-private:
+  private:
     AddressV3() : legacyAddressV2(nullptr) {}
 };
 
 inline bool operator==(const AddressV3& lhs, const AddressV3& rhs) {
-    return lhs.discrimination == rhs.discrimination && lhs.kind == rhs.kind && lhs.key1 == rhs.key1 && lhs.groupKey == rhs.groupKey;
+    return lhs.discrimination == rhs.discrimination && lhs.kind == rhs.kind &&
+           lhs.key1 == rhs.key1 && lhs.groupKey == rhs.groupKey;
 }
 
 } // namespace TW::Cardano

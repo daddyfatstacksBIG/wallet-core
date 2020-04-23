@@ -19,11 +19,11 @@ namespace TW::EOS {
 
 /// Helper class that performs EOS transaction signing.
 class Signer {
-public:
+  public:
     /// Signs a Proto::SigningInput transaction
     static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
 
-public:
+  public:
     const Data chainID;
 
     /// Initializes a signer with a chain identifier.

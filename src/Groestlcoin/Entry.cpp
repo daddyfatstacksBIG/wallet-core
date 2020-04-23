@@ -7,18 +7,20 @@
 #include "Entry.h"
 
 #include "Address.h"
-#include "../Bitcoin/SegwitAddress.h"
 #include "Signer.h"
+#include "../Bitcoin/SegwitAddress.h"
 
 using namespace TW::Groestlcoin;
 using namespace std;
 
-bool Entry::validateAddress(TWCoinType coin, const string& address, TW::byte p2pkh, TW::byte p2sh, const char* hrp) const {
-    return TW::Bitcoin::SegwitAddress::isValid(address, hrp)
-           || Address::isValid(address, {p2pkh, p2sh});
+bool Entry::validateAddress(TWCoinType coin, const string& address, TW::byte p2pkh, TW::byte p2sh,
+                            const char* hrp) const {
+    return TW::Bitcoin::SegwitAddress::isValid(address, hrp) ||
+           Address::isValid(address, {p2pkh, p2sh});
 }
 
-string Entry::deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte p2pkh, const char* hrp) const {
+string Entry::deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte p2pkh,
+                            const char* hrp) const {
     return TW::Bitcoin::SegwitAddress(publicKey, 0, hrp).string();
 }
 

@@ -19,12 +19,12 @@ Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
     Data signature = Signer::sign(privateKey, transaction);
 
     Proto::SigningOutput output = Proto::SigningOutput();
-    output.set_signature(reinterpret_cast<const char *>(signature.data()), signature.size());
+    output.set_signature(reinterpret_cast<const char*>(signature.data()), signature.size());
     output.set_json(transaction.buildJson(signature).dump());
     return output;
 }
 
-Data Signer::sign(const PrivateKey &privateKey, Transaction &transaction) noexcept {
+Data Signer::sign(const PrivateKey& privateKey, Transaction& transaction) noexcept {
     try {
         auto bytesToSign = transaction.serializeToSign();
         auto signature = privateKey.sign(bytesToSign, TWCurveCurve25519);

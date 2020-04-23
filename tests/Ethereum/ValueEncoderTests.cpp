@@ -64,7 +64,10 @@ TEST(EthereumAbiValueEncoder, encodeUInt256) {
 TEST(EthereumAbiValueEncoder, encodeUInt256BigIntOverflow) {
     Data encoded;
     try {
-        ABI::ValueEncoder::encodeUInt256(uint256_t(int256_t("F123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0")), encoded);
+        ABI::ValueEncoder::encodeUInt256(
+            uint256_t(
+                int256_t("F123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0")),
+            encoded);
     } catch (std::exception& ex) {
         // expected exception
         return;
@@ -90,10 +93,12 @@ TEST(EthereumAbiValueEncoder, encodeBytes) {
     checkLast32BytesEqual(data, "4500000000000000000000000000000000000000000000000000000000000000");
     ABI::ValueEncoder::encodeBytes(parse_hex("5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed"), data);
     checkLast32BytesEqual(data, "5aaeb6053f3e94c9b9a09f33669435e7ef1beaed000000000000000000000000");
-    ABI::ValueEncoder::encodeBytes(parse_hex("000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f"), data);
+    ABI::ValueEncoder::encodeBytes(
+        parse_hex("000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f"), data);
     checkLast32BytesEqual(data, "000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f");
     // too long, truncated
-    ABI::ValueEncoder::encodeBytes(parse_hex("000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f3333"), data);
+    ABI::ValueEncoder::encodeBytes(
+        parse_hex("000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f3333"), data);
     checkLast32BytesEqual(data, "000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f");
 }
 

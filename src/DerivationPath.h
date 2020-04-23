@@ -117,7 +117,8 @@ struct DerivationPath {
 
     DerivationPath() = default;
     explicit DerivationPath(std::initializer_list<DerivationPathIndex> l) : indices(l) {}
-    explicit DerivationPath(std::vector<DerivationPathIndex> indices) : indices(std::move(indices)) {}
+    explicit DerivationPath(std::vector<DerivationPathIndex> indices)
+        : indices(std::move(indices)) {}
 
     /// Creates a `DerivationPath` by BIP44 components.
     DerivationPath(TWPurpose purpose, TWCoinType coin, uint32_t account, uint32_t change,

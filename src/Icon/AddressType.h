@@ -10,7 +10,7 @@ namespace TW::Icon {
 
 /// Icon address types
 enum AddressType {
-    TypeAddress  /* "hx" */,
+    TypeAddress /* "hx" */,
     TypeContract /* "cx" */,
 };
-} // TW::ICON namespace
+} // namespace TW::Icon

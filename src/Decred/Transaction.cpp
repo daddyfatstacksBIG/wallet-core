@@ -83,7 +83,7 @@ Data Transaction::computePrefixHash(const std::vector<TransactionInput>& inputsT
 
     // Commit to the version and hash serialization type.
     encode32LE(static_cast<uint32_t>(version) |
-               (static_cast<uint32_t>(sigHashSerializePrefix) << 16),
+                   (static_cast<uint32_t>(sigHashSerializePrefix) << 16),
                preimage);
 
     // Commit to the relevant transaction inputs.
@@ -94,7 +94,7 @@ Data Transaction::computePrefixHash(const std::vector<TransactionInput>& inputsT
 
         auto sequence = input.sequence;
         if ((TWBitcoinSigHashTypeIsNone(hashType) || TWBitcoinSigHashTypeIsSingle(hashType)) &&
-                i != signIndex) {
+            i != signIndex) {
             sequence = 0;
         }
         encode32LE(sequence, preimage);
@@ -130,7 +130,7 @@ Data Transaction::computeWitnessHash(const std::vector<TransactionInput>& inputs
 
     // Commit to the version and hash serialization type.
     encode32LE(static_cast<uint32_t>(version) |
-               (static_cast<uint32_t>(sigHashSerializeWitness) << 16),
+                   (static_cast<uint32_t>(sigHashSerializeWitness) << 16),
                witnessBuf);
 
     // Commit to the relevant transaction inputs.
@@ -149,7 +149,7 @@ Data Transaction::computeWitnessHash(const std::vector<TransactionInput>& inputs
 Data Transaction::hash() const {
     Data preimage;
     encode32LE(static_cast<uint32_t>(version) |
-               (static_cast<uint32_t>(SerializeType::noWitness) << 16),
+                   (static_cast<uint32_t>(SerializeType::noWitness) << 16),
                preimage);
     encodePrefix(preimage);
     return Hash::blake256(preimage);
@@ -202,7 +202,7 @@ Proto::Transaction Transaction::proto() const {
     for (const auto& input : inputs) {
         auto protoInput = protoTx.add_inputs();
         protoInput->mutable_previousoutput()->set_hash(input.previousOutput.hash.data(),
-                input.previousOutput.hash.size());
+                                                       input.previousOutput.hash.size());
         protoInput->mutable_previousoutput()->set_index(input.previousOutput.index);
         protoInput->set_sequence(input.sequence);
         protoInput->set_script(input.script.bytes.data(), input.script.bytes.size());

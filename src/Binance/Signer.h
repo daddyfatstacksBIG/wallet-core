@@ -15,12 +15,13 @@ namespace TW::Binance {
 
 /// Helper class that performs Binance transaction signing.
 class Signer {
-public:
+  public:
     /// Signs a Proto::SigningInput transaction
     static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
     /// Signs a json Proto::SigningInput with private key
     static std::string signJSON(const std::string& json, const Data& key);
-public:
+
+  public:
     Proto::SigningInput input;
 
     /// Initializes a transaction signer.
@@ -38,7 +39,7 @@ public:
     /// error.
     TW::Data sign() const;
 
-private:
+  private:
     std::string signaturePreimage() const;
     TW::Data encodeTransaction(const TW::Data& signature) const;
     TW::Data encodeOrder() const;

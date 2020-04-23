@@ -28,8 +28,8 @@ struct Transaction {
     ///     | < 500000000    | Block number at which this transaction is unlocked
     ///     | >= 500000000   | UNIX timestamp at which this transaction is unlocked
     ///
-    /// If all inputs have final (`0xffffffff`) sequence numbers then `lockTime` is irrelevant. Otherwise, the
-    /// transaction may not be added to a block until after `lockTime`.
+    /// If all inputs have final (`0xffffffff`) sequence numbers then `lockTime` is irrelevant.
+    /// Otherwise, the transaction may not be added to a block until after `lockTime`.
     uint32_t lockTime = 0;
 
     /// A list of 1 or more transaction inputs or sources for coins
@@ -46,13 +46,11 @@ struct Transaction {
         : version(version), lockTime(lockTime), inputs(), outputs(), hasher(hasher) {}
 
     /// Whether the transaction is empty.
-    bool empty() const {
-        return inputs.empty() && outputs.empty();
-    }
+    bool empty() const { return inputs.empty() && outputs.empty(); }
 
     /// Generates the signature pre-image.
-    std::vector<uint8_t> getPreImage(const Script& scriptCode, size_t index, enum TWBitcoinSigHashType hashType,
-                                     uint64_t amount) const;
+    std::vector<uint8_t> getPreImage(const Script& scriptCode, size_t index,
+                                     enum TWBitcoinSigHashType hashType, uint64_t amount) const;
     std::vector<uint8_t> getPrevoutHash() const;
     std::vector<uint8_t> getSequenceHash() const;
     std::vector<uint8_t> getOutputsHash() const;
@@ -61,23 +59,25 @@ struct Transaction {
     void encode(bool witness, std::vector<uint8_t>& data) const;
 
     /// Generates the signature hash for this transaction.
-    std::vector<uint8_t> getSignatureHash(const Script& scriptCode, size_t index, enum TWBitcoinSigHashType hashType,
-                                          uint64_t amount, enum SignatureVersion version) const;
+    std::vector<uint8_t> getSignatureHash(const Script& scriptCode, size_t index,
+                                          enum TWBitcoinSigHashType hashType, uint64_t amount,
+                                          enum SignatureVersion version) const;
 
-    void serializeInput(size_t subindex, const Script&, size_t index, enum TWBitcoinSigHashType hashType,
-                        std::vector<uint8_t>& data) const;
+    void serializeInput(size_t subindex, const Script&, size_t index,
+                        enum TWBitcoinSigHashType hashType, std::vector<uint8_t>& data) const;
 
     /// Converts to Protobuf model
     Proto::Transaction proto() const;
 
-private:
+  private:
     /// Generates the signature hash for Witness version 0 scripts.
     std::vector<uint8_t> getSignatureHashWitnessV0(const Script& scriptCode, size_t index,
-            enum TWBitcoinSigHashType hashType, uint64_t amount) const;
+                                                   enum TWBitcoinSigHashType hashType,
+                                                   uint64_t amount) const;
 
     /// Generates the signature hash for for scripts other than witness scripts.
     std::vector<uint8_t> getSignatureHashBase(const Script& scriptCode, size_t index,
-            enum TWBitcoinSigHashType hashType) const;
+                                              enum TWBitcoinSigHashType hashType) const;
 };
 
 } // namespace TW::Bitcoin

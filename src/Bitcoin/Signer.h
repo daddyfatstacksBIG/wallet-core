@@ -10,7 +10,7 @@
 namespace TW::Bitcoin {
 
 class Signer {
-public:
+  public:
     Signer() = delete;
 
     /// Returns a transaction plan (utxo selection, fee estimation)

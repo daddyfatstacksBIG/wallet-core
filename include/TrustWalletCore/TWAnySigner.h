@@ -16,14 +16,15 @@ TW_EXTERN_C_BEGIN
 struct TWAnySigner;
 
 /// Signs a transaction.
-extern TWData *_Nonnull TWAnySignerSign(TWData *_Nonnull input, enum TWCoinType coin);
+extern TWData* _Nonnull TWAnySignerSign(TWData* _Nonnull input, enum TWCoinType coin);
 
 /// Signs a json transaction with private key.
-extern TWString *_Nonnull TWAnySignerSignJSON(TWString *_Nonnull json, TWData *_Nonnull key, enum TWCoinType coin);
+extern TWString* _Nonnull TWAnySignerSignJSON(TWString* _Nonnull json, TWData* _Nonnull key,
+                                              enum TWCoinType coin);
 
 extern bool TWAnySignerSupportsJSON(enum TWCoinType coin);
 
 /// Plan a transaction (for UTXO chains).
-extern TWData *_Nonnull TWAnySignerPlan(TWData *_Nonnull input, enum TWCoinType coin);
+extern TWData* _Nonnull TWAnySignerPlan(TWData* _Nonnull input, enum TWCoinType coin);
 
 TW_EXTERN_C_END
