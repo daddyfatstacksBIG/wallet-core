@@ -16,9 +16,9 @@ class TestIotexSigning {
     init {
         System.loadLibrary("TrustWalletCore")
     }
-    
+
     @Test
-    fun testIotexSigningCreate() {   
+    fun testIotexSigningCreate() {
         val input = IoTeX.SigningInput.newBuilder()
             .setVersion(1)
             .setNonce(0)
@@ -33,7 +33,7 @@ class TestIotexSigning {
             autoStake = true
             payload = ByteString.copyFrom("payload".toByteArray())
             }.build()
-        
+
         input.apply {
             stakeCreate = create
         }
@@ -42,7 +42,7 @@ class TestIotexSigning {
         val signBytes = sign.encoded
         assertEquals(signBytes.toByteArray().toHex(), "0x0a4b080118c0843d22023130c2023e0a29696f313964307033616834673877773964376b63786671383779786537666e7238727074683573686a120331303018904e20012a077061796c6f6164124104755ce6d8903f6b3793bddb4ea5d3589d637de2d209ae0ea930815c82db564ee8cc448886f639e8a0c7e94e99a5c1335b583c0bc76ef30dd6a1038ed9da8daf331a412e8bac421bab88dcd99c26ac8ffbf27f11ee57a41e7d2537891bfed5aed8e2e026d46e55d1b856787bc1cd7c1216a6e2534c5b5d1097c3afe8e657aa27cbbb0801")
     }
-    fun testIotexSigningAddDeposit() {   
+    fun testIotexSigningAddDeposit() {
             val input = IoTeX.SigningInput.newBuilder()
                 .setVersion(1)
                 .setNonce(0)
@@ -55,7 +55,7 @@ class TestIotexSigning {
             amount = "10"
             payload = ByteString.copyFrom("payload".toByteArray())
             }.build()
-        
+
         input.apply {
             stakeAddDeposit = adddeposit
         }
@@ -64,7 +64,7 @@ class TestIotexSigning {
         var signBytesAddDeposit = signAddDeposit.encoded
         assertEquals(signBytesAddDeposit.toByteArray().toHex(), "0x0a1c080118c0843d22023130da020f080a120231301a077061796c6f6164124104755ce6d8903f6b3793bddb4ea5d3589d637de2d209ae0ea930815c82db564ee8cc448886f639e8a0c7e94e99a5c1335b583c0bc76ef30dd6a1038ed9da8daf331a41a48ab1feba8181d760de946aefed7d815a89fd9b1ab503d2392bb55e1bb75eec42dddc8bd642f89accc3a37b3cf15a103a95d66695fdf0647b202869fdd66bcb01")
     }
-    fun testIotexSigningUnstake() {   
+    fun testIotexSigningUnstake() {
             val input = IoTeX.SigningInput.newBuilder()
                 .setVersion(1)
                 .setNonce(0)
@@ -76,7 +76,7 @@ class TestIotexSigning {
             bucketIndex = 10
             payload = ByteString.copyFrom("payload".toByteArray())
             }.build()
-        
+
         input.apply {
             stakeUnstake = unstake
         }
@@ -85,7 +85,7 @@ class TestIotexSigning {
         val signBytesUnstake = signUnstake.encoded
         assertEquals(signBytesUnstake.toByteArray().toHex(), "0x0a18080118c0843d22023130ca020b080a12077061796c6f6164124104755ce6d8903f6b3793bddb4ea5d3589d637de2d209ae0ea930815c82db564ee8cc448886f639e8a0c7e94e99a5c1335b583c0bc76ef30dd6a1038ed9da8daf331a4100adee39b48e1d3dbbd65298a57c7889709fc4df39987130da306f6997374a184b7e7c232a42f21e89b06e6e7ceab81303c6b7483152d08d19ac829b22eb81e601")
     }
-    fun testIotexSigningWithdraw() {   
+    fun testIotexSigningWithdraw() {
             val input = IoTeX.SigningInput.newBuilder()
                 .setVersion(1)
                 .setNonce(0)
@@ -97,7 +97,7 @@ class TestIotexSigning {
             bucketIndex = 10
             payload = ByteString.copyFrom("payload".toByteArray())
             }.build()
-        
+
         input.apply {
             stakeWithdraw = withdraw
         }
@@ -106,7 +106,7 @@ class TestIotexSigning {
         val signBytesWithdraw = signWithdraw.encoded
         assertEquals(signBytesWithdraw.toByteArray().toHex(), "0x0a18080118c0843d22023130d2020b080a12077061796c6f6164124104755ce6d8903f6b3793bddb4ea5d3589d637de2d209ae0ea930815c82db564ee8cc448886f639e8a0c7e94e99a5c1335b583c0bc76ef30dd6a1038ed9da8daf331a4152644d102186be6640d46b517331f3402e24424b0d85129595421d28503d75340b2922f5a0d4f667bbd6f576d9816770286b2ce032ba22eaec3952e24da4756b00")
     }
-    fun testIotexSigningRestake() {   
+    fun testIotexSigningRestake() {
             val input = IoTeX.SigningInput.newBuilder()
                 .setVersion(1)
                 .setNonce(0)
@@ -120,7 +120,7 @@ class TestIotexSigning {
             autoStake = true
             payload = ByteString.copyFrom("payload".toByteArray())
             }.build()
-        
+
         input.apply {
             stakeRestake = restake
         }
@@ -129,7 +129,7 @@ class TestIotexSigning {
         val signBytesRestake = signRestake.encoded
         assertEquals(signBytesRestake.toByteArray().toHex(), "0x0a1d080118c0843d22023130e20210080a10e807180122077061796c6f6164124104755ce6d8903f6b3793bddb4ea5d3589d637de2d209ae0ea930815c82db564ee8cc448886f639e8a0c7e94e99a5c1335b583c0bc76ef30dd6a1038ed9da8daf331a41e2e763aed5b1fd1a8601de0f0ae34eb05162e34b0389ae3418eedbf762f64959634a968313a6516dba3a97b34efba4753bbed3a33d409ecbd45ac75007cd8e9101")
     }
-    fun testIotexSigningChangeCandidate() {   
+    fun testIotexSigningChangeCandidate() {
             val input = IoTeX.SigningInput.newBuilder()
                 .setVersion(1)
                 .setNonce(0)
@@ -142,7 +142,7 @@ class TestIotexSigning {
             candidateName = "io1xpq62aw85uqzrccg9y5hnryv8ld2nkpycc3gza"
             payload = ByteString.copyFrom("payload".toByteArray())
             }.build()
-        
+
         input.apply {
             stakeChangeCandidate = changecandidate
         }
@@ -151,7 +151,7 @@ class TestIotexSigning {
         val signBytesChangeCandidate = signChangeCandidate.encoded
         assertEquals(signBytesChangeCandidate.toByteArray().toHex(), "0x0a43080118c0843d22023130ea0236080a1229696f3178707136326177383575717a72636367397935686e727976386c64326e6b7079636333677a611a077061796c6f6164124104755ce6d8903f6b3793bddb4ea5d3589d637de2d209ae0ea930815c82db564ee8cc448886f639e8a0c7e94e99a5c1335b583c0bc76ef30dd6a1038ed9da8daf331a41d519eb3747163b945b862989b7e82a7f8468001e9683757cb88d5ddd95f81895047429e858bd48f7d59a88bfec92de231d216293aeba1e4fbe11461d9c9fc99801")
     }
-    fun testIotexSigningTransferOwnership() {   
+    fun testIotexSigningTransferOwnership() {
             val input = IoTeX.SigningInput.newBuilder()
                 .setVersion(1)
                 .setNonce(0)
@@ -164,7 +164,7 @@ class TestIotexSigning {
             voterAddress = "io1xpq62aw85uqzrccg9y5hnryv8ld2nkpycc3gza"
             payload = ByteString.copyFrom("payload".toByteArray())
             }.build()
-        
+
         input.apply {
             stakeTransferOwnership = transfer
         }
@@ -173,7 +173,7 @@ class TestIotexSigning {
         val signBytesTransferOwnership = signTransferOwnership.encoded
         assertEquals(signBytesTransferOwnership.toByteArray().toHex(), "0x0a43080118c0843d22023130f20236080a1229696f3178707136326177383575717a72636367397935686e727976386c64326e6b7079636333677a611a077061796c6f6164124104755ce6d8903f6b3793bddb4ea5d3589d637de2d209ae0ea930815c82db564ee8cc448886f639e8a0c7e94e99a5c1335b583c0bc76ef30dd6a1038ed9da8daf331a41fa26db427ab87a56a129196c1604f2e22c4dd2a1f99b2217bc916260757d00093d9e6dccdf53e3b0b64e41a69d71c238fbf9281625164694a74dfbeba075d0ce01")
     }
-    fun testIotexSigningCandidateBasicInfo() {   
+    fun testIotexSigningCandidateBasicInfo() {
             val input = IoTeX.SigningInput.newBuilder()
                 .setVersion(1)
                 .setNonce(0)
@@ -186,7 +186,7 @@ class TestIotexSigning {
             operatorAddress = "io1cl6rl2ev5dfa988qmgzg2x4hfazmp9vn2g66ng"
             rewardAddress = "io1juvx5g063eu4ts832nukp4vgcwk2gnc5cu9ayd"
             }.build()
-        
+
         input.apply {
             candidateUpdate = cbi
         }
@@ -195,7 +195,7 @@ class TestIotexSigning {
         val signBytesCandidateBasicInfo = signCandidateBasicInfo.encoded
         assertEquals(signBytesCandidateBasicInfo.toByteArray().toHex(), "0x0a69080118c0843d2202313082035c0a04746573741229696f31636c36726c32657635646661393838716d677a673278346866617a6d7039766e326736366e671a29696f316a757678356730363365753474733833326e756b7034766763776b32676e6335637539617964124104755ce6d8903f6b3793bddb4ea5d3589d637de2d209ae0ea930815c82db564ee8cc448886f639e8a0c7e94e99a5c1335b583c0bc76ef30dd6a1038ed9da8daf331a4101885c9c6684a4a8f2f5bf11f8326f27be48658f292e8f55ec8a11a604bb0c563a11ebf12d995ca1c152e00f8e0f0edf288db711aa10dbdfd5b7d73b4a28e1f701")
     }
-    fun testIotexSigningCandidateRegister() {   
+    fun testIotexSigningCandidateRegister() {
             val input = IoTeX.SigningInput.newBuilder()
                 .setVersion(1)
                 .setNonce(0)
@@ -215,7 +215,7 @@ class TestIotexSigning {
             autoStake = false
             ownerAddress ="io19d0p3ah4g8ww9d7kcxfq87yxe7fnr8rpth5shj"
             payload = ByteString.copyFrom("payload".toByteArray())
-            }.build()   
+            }.build()
         input.apply {
             candidateRegister = cr
         }

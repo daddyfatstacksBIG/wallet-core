@@ -26,7 +26,7 @@ message SigningInput {
 
     // Timestamp on the reference block
     sfixed32 reference_block_time = 3;
-    
+
     // Currency (e.g. "eosio.token")
     string currency = 4;
 

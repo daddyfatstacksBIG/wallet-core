@@ -94,7 +94,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '11.0'
   s.osx.deployment_target = '10.12'
   s.swift_version = '5.1'
-  s.source_files = 
+  s.source_files =
     'swift/Sources/Generated/Enums/*.swift',
     'swift/Sources/Generated/Protobuf/*.swift'
   s.dependency 'SwiftProtobuf'

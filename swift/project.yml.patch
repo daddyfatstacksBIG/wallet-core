@@ -22,7 +22,7 @@ index 0d0db77..49ea836 100644
        INFOPLIST_FILE: 'Info.plist'
        CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION: YES_ERROR
 @@ -53,7 +52,7 @@ targets:
- 
+
    TrustWalletCoreTests:
      type: bundle.unit-test
 -    platform: iOS
@@ -31,7 +31,7 @@ index 0d0db77..49ea836 100644
      dependencies:
        - target: TrustWalletCore
 @@ -61,7 +60,7 @@ targets:
- 
+
    trezor-crypto:
      type: library.static
 -    platform: iOS
@@ -40,7 +40,7 @@ index 0d0db77..49ea836 100644
        - trezor-crypto/src/bignum.c
        - trezor-crypto/src/ecdsa.c
 @@ -125,7 +124,7 @@ targets:
- 
+
    protobuf:
      type: library.static
 -    platform: iOS

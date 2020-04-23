@@ -54,7 +54,7 @@ message TransactionMessage {
 }
 
 message StakingMessage {
-    // StakeMsg 
+    // StakeMsg
     oneof stake_msg {
         DirectiveCreateValidator create_validator_message = 1;
         DirectiveEditValidator edit_validator_message = 2;
@@ -70,7 +70,7 @@ message StakingMessage {
     bytes gas_price = 7;
 
     // Gas limit (256-bit number)
-    bytes gas_limit = 8;   
+    bytes gas_limit = 8;
 }
 
 message Description {

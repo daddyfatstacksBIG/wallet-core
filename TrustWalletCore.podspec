@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Core'
 
   s.subspec 'Types' do |ss|
-    ss.source_files = 
+    ss.source_files =
       'swift/Sources/Generated/Enums/*.swift',
       'swift/Sources/Generated/Protobuf/*.swift'
     ss.dependency 'SwiftProtobuf'

@@ -5,4 +5,3 @@ target 'WalletCoreExample' do
   pod 'TrustWalletCore', '~> 2.0.0'
 
 end
-
