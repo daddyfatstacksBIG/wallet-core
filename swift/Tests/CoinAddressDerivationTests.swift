@@ -127,9 +127,6 @@ class CoinAddressDerivationTests: XCTestCase {
                 case .qtum:
                     let expectedResult = "QhceuaTdeCZtcxmVc6yyEDEJ7Riu5gWFoF"
                     AssetCoinDerivation(coin, expectedResult, derivedAddress, address)
-                case .bravoCoin:
-                    let expectedResult = "BRV8g4c7Uve8NNsqDMeADLqPeFyohMQ7d9MzarSE23KogTS71BaiQ"
-                    AssetCoinDerivation(coin, expectedResult, derivedAddress, address)
                 case .eos:
                     let expectedResult = "EOS6hs8sRvGSzuQtq223zwJipMzqTJpXUVjyvHPvPwBSZWWrJTJkg"
                     AssetCoinDerivation(coin, expectedResult, derivedAddress, address)
@@ -185,11 +182,16 @@ class CoinAddressDerivationTests: XCTestCase {
                     let expectedResult = "kava1drpa0x9ptz0fql3frv562rcrhj2nstuz3pas87"
                     AssetCoinDerivation(coin, expectedResult, derivedAddress, address)
                 case .cardano:
-                    let expectedResult = "Ae2tdPwUPEZJ2TwjFBMCnjz6t43pr4QVnBjCGSW8BMsttrt2WagC1D7LUWa"
+                    let expectedResult = "addr1snpa4z7ntyfszv7ckquprdw75w4qjqh0qmya9jtkpxxlzxghlqyvv7l0yjamh8fxraw06p3ua8sj2g2gv98v4849s43t9g2999kquuu5egnprk"
                     AssetCoinDerivation(coin, expectedResult, derivedAddress, address)
                 case .neo:
                     let expectedResult = "AT6w7PJvwPcSqHvtbNBY2aHPDv12eW5Uuf"
                     AssetCoinDerivation(coin, expectedResult, derivedAddress, address)
+                case .filecoin:
+                    let expectedResult = "f1zzykebxldfcakj5wdb5n3n7priul522fnmjzori"
+                    AssetCoinDerivation(coin, expectedResult, derivedAddress, address)
+                @unknown default:
+                    fatalError()
                 }
             }
         }

@@ -8,10 +8,12 @@
 
 #include "TWFoundationData.h"
 
-TWData *_Nonnull TWDataCreateWithNSData(NSData *data) {
+TWData* _Nonnull TWDataCreateWithNSData(NSData* data) {
     return TWDataCreateWithBytes(data.bytes, data.length);
 }
 
-NSData *_Nonnull TWDataNSData(TWData *_Nonnull data) {
-    return [[NSData alloc] initWithBytes:TWDataBytes(data) length:TWDataSize(data)];
+NSData* _Nonnull TWDataNSData(TWData* _Nonnull data) {
+    NSData* result = [NSData dataWithBytes:TWDataBytes(data) length:TWDataSize(data)];
+    TWDataDelete(data);
+    return result;
 }

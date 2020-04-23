@@ -7,8 +7,8 @@
 #pragma once
 
 #include "Data.h"
-#include "Hash.h"
 #include "DerivationPath.h"
+#include "Hash.h"
 #include "PrivateKey.h"
 #include "PublicKey.h"
 
@@ -18,10 +18,13 @@
 #include <TrustWalletCore/TWHDVersion.h>
 #include <TrustWalletCore/TWPurpose.h>
 
-#include <string>
 #include <set>
+#include <string>
 
 namespace TW {
+
+// Return the set of supported coin types.
+std::set<TWCoinType> getCoinTypes();
 
 /// Validates an address for a particular coin.
 bool validateAddress(TWCoinType coin, const std::string& address);
@@ -73,5 +76,36 @@ byte p2shPrefix(TWCoinType coin);
 
 /// Returns human readable part for a coin type.
 enum TWHRP hrp(TWCoinType coin);
+
+// Note: use output parameter to avoid unneeded copies
+void anyCoinSign(TWCoinType coinType, const Data& dataIn, Data& dataOut);
+
+std::string anySignJSON(TWCoinType coinType, const std::string& json, const Data& key);
+
+bool supportsJSONSigning(TWCoinType coinType);
+
+void anyCoinPlan(TWCoinType coinType, const Data& dataIn, Data& dataOut);
+
+struct CoinInfo {
+    const char* id;
+    const char* name;
+    TWBlockchain blockchain;
+    TWPurpose purpose;
+    TWCurve curve;
+    TWHDVersion xpubVersion;
+    TWHDVersion xprvVersion;
+    DerivationPath derivationPath;
+    TWPublicKeyType publicKeyType;
+    byte staticPrefix;
+    byte p2pkhPrefix;
+    byte p2shPrefix;
+    TWHRP hrp;
+    Hash::Hasher publicKeyHasher;
+    Hash::Hasher base58Hasher;
+    const char* symbol;
+    int decimals;
+    const char* explorerTransactionUrl;
+    const char* explorerAccountUrl;
+};
 
 } // namespace TW

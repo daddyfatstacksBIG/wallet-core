@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'parser'
 require 'test/unit'
 
@@ -22,7 +24,7 @@ class ParserTest < Test::Unit::TestCase
     assert_equal(func.parameters.first.type.name, :data)
   end
 
-   def test_parse_method_align_pointer_center
+  def test_parse_method_align_pointer_center
     parser = Parser.new(path: '', string: 'bool TWPublicKeyIsValid(TWData * _Nonnull data);')
     func = parser.parse_func
 
@@ -30,7 +32,7 @@ class ParserTest < Test::Unit::TestCase
     assert_equal(func.name, 'TWPublicKeyIsValid')
     assert_equal(func.parameters.first.name, 'data')
     assert_equal(func.parameters.first.type.name, :data)
-  end
+ end
 
   def test_parse_invalid_method
     parser = Parser.new(path: '', string: '
@@ -40,6 +42,26 @@ class ParserTest < Test::Unit::TestCase
     assert_raise(RuntimeError) do
       parser.parse
     end
+  end
+
+  def test_parse_method_discardable_result
+    parser = Parser.new(path: '', string: '
+      TW_EXTERN_C_BEGIN
+      struct TWEthereumAbiFunction;
+
+      TW_EXPORT_CLASS
+      struct TWEthereumAbiEncoder;
+      /// Encode function to Eth ABI binary
+      TW_EXPORT_STATIC_METHOD
+      TW_METHOD_DISCARDABLE_RESULT
+      TWData*_Nonnull TWEthereumAbiEncoderEncode(struct TWEthereumAbiFunction *_Nonnull func_in);
+      TW_EXTERN_C_END
+    ')
+    parser.parse
+    method = parser.entity.static_methods[0]
+    assert_equal(method.return_type.name, :data)
+    assert_equal(method.name, 'Encode')
+    assert_equal(method.discardable_result, true)
   end
 
   def test_init

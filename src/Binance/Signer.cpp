@@ -12,6 +12,8 @@
 
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
+#include <google/protobuf/util/json_util.h>
+
 #include <string>
 
 using namespace TW;
@@ -33,6 +35,22 @@ static const auto tokenMintOrderPrefix = Data{0x46, 0x7E, 0x08, 0x29};
 static const auto tokenBurnOrderPrefix = Data{0x7E, 0xD2, 0xD2, 0xA0};
 static const auto tokenFreezeOrderPrefix = Data{0xE7, 0x74, 0xB3, 0x2D};
 static const auto tokenUnfreezeOrderPrefix = Data{0x65, 0x15, 0xFF, 0x0D};
+
+Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
+    auto signer = Signer(input);
+    auto encoded = signer.build();
+    auto output = Proto::SigningOutput();
+    output.set_encoded(encoded.data(), encoded.size());
+    return output;
+}
+
+std::string Signer::signJSON(const std::string& json, const Data& key) {
+    auto input = Proto::SigningInput();
+    google::protobuf::util::JsonStringToMessage(json, &input);
+    input.set_private_key(key.data(), key.size());
+    auto output = Signer::sign(input);
+    return hex(output.encoded());
+}
 
 Data Signer::build() const {
     auto signature = encodeSignature(sign());

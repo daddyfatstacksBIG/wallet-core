@@ -8,5 +8,8 @@
 
 #include <TrustWalletCore/TWData.h>
 
-TWData *_Nonnull TWDataCreateWithNSData(NSData *_Nonnull data);
-NSData *_Nonnull TWDataNSData(TWData *_Nonnull data);
+/// Converts a NSData object to TWData, caller must delete it after use.
+TWData* _Nonnull TWDataCreateWithNSData(NSData* _Nonnull data);
+
+/// Converts a TWData (will be deleted within this call) to a NSData object.
+NSData* _Nonnull TWDataNSData(TWData* _Nonnull data);

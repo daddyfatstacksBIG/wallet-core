@@ -9,17 +9,17 @@
 #include "../Data.h"
 #include "../PublicKey.h"
 
-#include <string>
 #include <optional>
+#include <string>
 
 namespace TW::FIO {
 
 class Address {
-public:
+  public:
     /// Number of bytes in an address, public key size + checksum
     static const size_t size = PublicKey::secp256k1Size + 4;
 
-    /// Address data consisting of a prefix byte followed by the public key
+    /// Address data consisting of checksum (4 bytes) followed by the public key
     /// hash.
     std::array<byte, size> bytes;
 
@@ -38,16 +38,18 @@ public:
     /// Returns a string representation of the FIO address.
     std::string string() const;
 
+    /// Returns the public key of this address
+    PublicKey publicKey() const;
+
     friend bool operator==(const Address& lhs, const Address& rhs);
 
     static std::string prefix() { return "FIO"; }
 
-private:
+  private:
     static uint32_t createChecksum(const Data& bytes);
 
     static std::optional<Data> decodeKeyData(const std::string& string);
 };
-
 
 inline bool operator==(const Address& lhs, const Address& rhs) {
     return lhs.bytes == rhs.bytes;

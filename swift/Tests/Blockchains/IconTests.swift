@@ -13,13 +13,13 @@ class IconTests: XCTestCase {
         XCTAssertNil(AnyAddress(string: "abc", coin: .icon))
         XCTAssertNil(AnyAddress(string: "dshadghasdghsadadsadjsad", coin: .icon))
 
-        XCTAssertFalse(AnyAddress.isValidString(string: "abc", coin: .icon))
-        XCTAssertFalse(AnyAddress.isValidString(string: "0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed", coin: .icon))
+        XCTAssertFalse(AnyAddress.isValid(string: "abc", coin: .icon))
+        XCTAssertFalse(AnyAddress.isValid(string: "0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed", coin: .icon))
     }
 
     func testIsValid() {
-        XCTAssertTrue(AnyAddress.isValidString(string: "hx116f042497e5f34268b1b91e742680f84cf4e9f3", coin: .icon))
-        XCTAssertTrue(AnyAddress.isValidString(string: "cx116f042497e5f34268b1b91e742680f84cf4e9f3", coin: .icon))
+        XCTAssertTrue(AnyAddress.isValid(string: "hx116f042497e5f34268b1b91e742680f84cf4e9f3", coin: .icon))
+        XCTAssertTrue(AnyAddress.isValid(string: "cx116f042497e5f34268b1b91e742680f84cf4e9f3", coin: .icon))
     }
 
     func testFromPrivateKey() {
@@ -45,7 +45,8 @@ class IconTests: XCTestCase {
             $0.privateKey = privateKey.data
             $0.nonce = Data([0x1])
         }
-        let output = IconSigner.sign(input: input)
+        let output: IconSigningOutput = AnySigner.sign(input: input, coin: .icon)
+
         // swiftlint:disable line_length
         let expected = """
 {"from":"hxbe258ceb872e08851f1f59694dac2558708ece11","nid":"0x1","nonce":"0x1","signature":"xR6wKs+IA+7E91bT8966jFKlK5mayutXCvayuSMCrx9KB7670CsWa0B7LQzgsxU0GLXaovlAT2MLs1XuDiSaZQE=","stepLimit":"0x12345","timestamp":"0x563a6cf330136","to":"hx5bfdb090f43a808005ffc27c25b213145e80b7cd","value":"0xde0b6b3a7640000","version":"0x3"}

@@ -11,28 +11,25 @@
 using namespace TW;
 using namespace TW::Nebulas;
 
-Proto::SigningOutput Signer::sign(Proto::SigningInput &input) const noexcept {
-    Transaction tx(Address(input.from_address()),
-        load(input.nonce()),
-        load(input.gas_price()),
-        load(input.gas_limit()),
-        Address(input.to_address()),
-        load(input.amount()),
-        load(input.timestamp()),
-        input.payload()
-    );
-    
-    auto privateKey = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));
-    sign(privateKey, tx);
+Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
+    auto signer = Signer(load(input.chain_id()));
 
-    auto protoOutput = Proto::SigningOutput();
-    protoOutput.set_algorithm(tx.algorithm);
-    protoOutput.set_signature(reinterpret_cast<const char *>(tx.signature.data()), tx.signature.size());
-    protoOutput.set_raw(TW::Base64::encode(tx.raw));
-    return protoOutput;
+    auto tx =
+        Transaction(Address(input.from_address()), load(input.nonce()), load(input.gas_price()),
+                    load(input.gas_limit()), Address(input.to_address()), load(input.amount()),
+                    load(input.timestamp()), input.payload());
+
+    auto privateKey = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));
+    signer.sign(privateKey, tx);
+
+    auto output = Proto::SigningOutput();
+    output.set_algorithm(tx.algorithm);
+    output.set_signature(tx.signature.data(), tx.signature.size());
+    output.set_raw(TW::Base64::encode(tx.raw));
+    return output;
 }
 
-void Signer::sign(const PrivateKey &privateKey, Transaction &transaction) const noexcept {
+void Signer::sign(const PrivateKey& privateKey, Transaction& transaction) const noexcept {
     transaction.hash = this->hash(transaction);
     transaction.chainID = chainID;
     transaction.algorithm = 1;
@@ -40,12 +37,12 @@ void Signer::sign(const PrivateKey &privateKey, Transaction &transaction) const 
     transaction.serializeToRaw();
 }
 
-Data Signer::hash(const Transaction &transaction) const noexcept {
+Data Signer::hash(const Transaction& transaction) const noexcept {
     auto encoded = Data();
     auto payload = Data();
     auto data = Transaction::newPayloadData(transaction.payload);
     payload.resize(data->ByteSize());
-    data->SerializePartialToArray(payload.data(),(int)payload.size());
+    data->SerializePartialToArray(payload.data(), (int)payload.size());
     delete data;
 
     encoded.insert(encoded.end(), transaction.from.bytes.begin(), transaction.from.bytes.end());

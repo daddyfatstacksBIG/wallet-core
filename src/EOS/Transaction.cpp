@@ -4,10 +4,10 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
+#include "Transaction.h"
 #include "../Base58.h"
 #include "../Hash.h"
 #include "../HexCoding.h"
-#include "Transaction.h"
 
 #include <TrezorCrypto/ripemd160.h>
 
@@ -31,7 +31,7 @@ Signature::Signature(Data sig, Type type) : data(sig), type(type) {
 void Signature::serialize(Data& os) const noexcept {
     // type should never be Legacy
     uint32_t typeId = type == Type::ModernK1 ? 0 : 1;
-    Bravo::encodeVarInt32(typeId, os);
+    encodeVarInt32(typeId, os);
     os.insert(os.end(), data.begin(), data.end());
 }
 
@@ -54,7 +54,7 @@ std::string Signature::string() const noexcept {
     // drop the subPrefix and append the checksum to the bufer
     buffer.resize(DataSize);
 
-    for(size_t i = 0; i < ChecksumSize; i++) {
+    for (size_t i = 0; i < ChecksumSize; i++) {
         buffer.push_back(hash[i]);
     }
 
@@ -63,7 +63,7 @@ std::string Signature::string() const noexcept {
 
 void Extension::serialize(Data& os) const noexcept {
     encode16LE(type, os);
-    Bravo::encodeVarInt64(buffer.size(), os);
+    encodeVarInt64(buffer.size(), os);
     append(os, buffer);
 }
 
@@ -85,8 +85,7 @@ void Transaction::setReferenceBlock(const Data& refBlockId) {
     refBlockPrefix = decode32LE(refBlockId.data() + 8);
 }
 
-void Transaction::serialize(Data& os) const noexcept{
-    using namespace Bravo;
+void Transaction::serialize(Data& os) const noexcept {
 
     encode32LE(expiration, os);
     encode16LE(refBlockNumber, os);
@@ -101,7 +100,6 @@ void Transaction::serialize(Data& os) const noexcept{
 }
 
 json Transaction::serialize() const {
-    using namespace Bravo;
 
     // get a formatted date
     char formattedDate[20];

@@ -12,12 +12,13 @@
 #include <TrustWalletCore/TWCoinTypeConfiguration.h>
 #include <gtest/gtest.h>
 
-
 TEST(TWCardanoCoinType, TWCoinType) {
     auto symbol = WRAPS(TWCoinTypeConfigurationGetSymbol(TWCoinTypeCardano));
-    auto txId = TWStringCreateWithUTF8Bytes("b7a6c5cadab0f64bdc89c77ee4a351463aba5c33f2cef6bbd6542a74a90a3af3");
+    auto txId = TWStringCreateWithUTF8Bytes(
+        "b7a6c5cadab0f64bdc89c77ee4a351463aba5c33f2cef6bbd6542a74a90a3af3");
     auto txUrl = WRAPS(TWCoinTypeConfigurationGetTransactionURL(TWCoinTypeCardano, txId));
-    auto accId = TWStringCreateWithUTF8Bytes("DdzFFzCqrhstpwKc8WMvPwwBb5oabcTW9zc5ykA37wJR4tYQucvsR9dXb2kEGNXkFJz2PtrpzfRiZkx8R1iNo8NYqdsukVmv7EAybFwC");
+    auto accId = TWStringCreateWithUTF8Bytes("DdzFFzCqrhstpwKc8WMvPwwBb5oabcTW9zc5ykA37wJR4tYQucvsR"
+                                             "9dXb2kEGNXkFJz2PtrpzfRiZkx8R1iNo8NYqdsukVmv7EAybFwC");
     auto accUrl = WRAPS(TWCoinTypeConfigurationGetAccountURL(TWCoinTypeCardano, accId));
     auto id = WRAPS(TWCoinTypeConfigurationGetID(TWCoinTypeCardano));
     auto name = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeCardano));
@@ -27,8 +28,11 @@ TEST(TWCardanoCoinType, TWCoinType) {
     ASSERT_EQ(0x0, TWCoinTypeP2shPrefix(TWCoinTypeCardano));
     ASSERT_EQ(0x0, TWCoinTypeStaticPrefix(TWCoinTypeCardano));
     assertStringsEqual(symbol, "ADA");
-    assertStringsEqual(txUrl, "https://cardanoexplorer.com/tx/b7a6c5cadab0f64bdc89c77ee4a351463aba5c33f2cef6bbd6542a74a90a3af3");
-    assertStringsEqual(accUrl, "https://cardanoexplorer.com/address/DdzFFzCqrhstpwKc8WMvPwwBb5oabcTW9zc5ykA37wJR4tYQucvsR9dXb2kEGNXkFJz2PtrpzfRiZkx8R1iNo8NYqdsukVmv7EAybFwC");
+    assertStringsEqual(txUrl, "https://shelleyexplorer.cardano.org/tx/"
+                              "b7a6c5cadab0f64bdc89c77ee4a351463aba5c33f2cef6bbd6542a74a90a3af3");
+    assertStringsEqual(accUrl, "https://shelleyexplorer.cardano.org/address/"
+                               "DdzFFzCqrhstpwKc8WMvPwwBb5oabcTW9zc5ykA37wJR4tYQucvsR9dXb2kEGNXkFJz"
+                               "2PtrpzfRiZkx8R1iNo8NYqdsukVmv7EAybFwC");
     assertStringsEqual(id, "cardano");
     assertStringsEqual(name, "Cardano");
 }

@@ -117,7 +117,7 @@ PublicKey PublicKey::extended() const {
     case TWPublicKeyTypeCURVE25519:
     case TWPublicKeyTypeED25519Blake2b:
     case TWPublicKeyTypeED25519Extended:
-       return *this;
+        return *this;
     }
 }
 
@@ -130,12 +130,14 @@ bool PublicKey::verify(const Data& signature, const Data& message) const {
     case TWPublicKeyTypeNIST256p1Extended:
         return ecdsa_verify_digest(&nist256p1, bytes.data(), signature.data(), message.data()) == 0;
     case TWPublicKeyTypeED25519:
-        return ed25519_sign_open(message.data(), message.size(), bytes.data(), signature.data()) == 0;
+        return ed25519_sign_open(message.data(), message.size(), bytes.data(), signature.data()) ==
+               0;
     case TWPublicKeyTypeED25519Blake2b:
-        return ed25519_sign_open_blake2b(message.data(), message.size(), bytes.data(), signature.data()) == 0;
+        return ed25519_sign_open_blake2b(message.data(), message.size(), bytes.data(),
+                                         signature.data()) == 0;
     case TWPublicKeyTypeED25519Extended:
         throw std::logic_error("Not yet implemented");
-        //ed25519_sign_open(message.data(), message.size(), bytes.data(), signature.data()) == 0;
+    // ed25519_sign_open(message.data(), message.size(), bytes.data(), signature.data()) == 0;
     case TWPublicKeyTypeCURVE25519:
         auto ed25519PublicKey = Data();
         ed25519PublicKey.resize(PublicKey::ed25519Size);
@@ -157,10 +159,10 @@ bool PublicKey::verifySchnorr(const Data& signature, const Data& message) const 
     switch (type) {
     case TWPublicKeyTypeSECP256k1:
     case TWPublicKeyTypeSECP256k1Extended:
-        return zil_schnorr_verify(&secp256k1, bytes.data(), signature.data(), message.data(), static_cast<uint32_t>(message.size())) == 0;
+        return zil_schnorr_verify(&secp256k1, bytes.data(), signature.data(), message.data(),
+                                  static_cast<uint32_t>(message.size())) == 0;
     case TWPublicKeyTypeNIST256p1:
     case TWPublicKeyTypeNIST256p1Extended:
-        return false;
     case TWPublicKeyTypeED25519:
     case TWPublicKeyTypeED25519Blake2b:
     case TWPublicKeyTypeED25519Extended:
@@ -172,7 +174,7 @@ bool PublicKey::verifySchnorr(const Data& signature, const Data& message) const 
 
 Data PublicKey::hash(const Data& prefix, Hash::Hasher hasher, bool skipTypeByte) const {
     const auto offset = std::size_t(skipTypeByte ? 1 : 0);
-    const auto hash = hasher(bytes.data() + offset, bytes.data() + bytes.size());
+    const auto hash = hasher(bytes.data() + offset, bytes.size() - offset);
 
     auto result = Data();
     result.reserve(prefix.size() + hash.size());

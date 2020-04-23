@@ -5,8 +5,8 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "Action.h"
+#include "../EOS/Serialization.h"
 #include "../HexCoding.h"
-#include "../Bravo/Serialization.h"
 
 using namespace TW;
 using namespace TW::EOS;
@@ -27,8 +27,8 @@ json PermissionLevel::serialize() const noexcept {
 void Action::serialize(Data& o) const {
     account.serialize(o);
     name.serialize(o);
-    Bravo::encodeCollection(authorization, o);
-    Bravo::encodeVarInt64(data.size(), o);
+    encodeCollection(authorization, o);
+    encodeVarInt64(data.size(), o);
     append(o, data);
 }
 
@@ -36,16 +36,13 @@ json Action::serialize() const noexcept {
     json obj;
     obj["account"] = account.string();
     obj["name"] = name.string();
-    obj["authorizations"] = Bravo::encodeCollection(authorization);
+    obj["authorizations"] = encodeCollection(authorization);
     obj["data"] = hex(data);
     return obj;
 }
 
-TransferAction::TransferAction( const std::string& currency,
-                                const std::string& from, 
-                                const std::string& to, 
-                                const Bravo::Asset& asset, 
-                                const std::string& memo) {
+TransferAction::TransferAction(const std::string& currency, const std::string& from,
+                               const std::string& to, const Asset& asset, const std::string& memo) {
     account = Name(currency);
     name = Name("transfer");
     authorization.push_back(PermissionLevel(Name(from), Name("active")));
@@ -53,7 +50,8 @@ TransferAction::TransferAction( const std::string& currency,
     setData(from, to, asset, memo);
 }
 
-void TransferAction::setData(const std::string& from, const std::string& to, const Bravo::Asset& asset, const std::string& memo) {
+void TransferAction::setData(const std::string& from, const std::string& to, const Asset& asset,
+                             const std::string& memo) {
     if (asset.amount <= 0) {
         throw std::invalid_argument("Amount in a transfer action must be greater than zero.");
     }
@@ -61,5 +59,5 @@ void TransferAction::setData(const std::string& from, const std::string& to, con
     Name(from).serialize(data);
     Name(to).serialize(data);
     asset.serialize(data);
-    Bravo::encodeString(memo, data);
+    encodeString(memo, data);
 }

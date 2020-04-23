@@ -27,9 +27,8 @@ enum TWCoinType {
     TWCoinTypeBinance = 714,
     TWCoinTypeBitcoin = 0,
     TWCoinTypeBitcoinCash = 145,
-    TWCoinTypeBravoCoin = 282,
     TWCoinTypeCallisto = 820,
-    TWCoinTypeCardano = 1815,
+    TWCoinTypeCardano = 1815, // Note: Cardano Shelley testnet uses purpose 1852 (not 44) 1852/1815
     TWCoinTypeCosmos = 118,
     TWCoinTypeDash = 5,
     TWCoinTypeDecred = 42,
@@ -79,6 +78,7 @@ enum TWCoinType {
     TWCoinTypeAlgorand = 283,
     TWCoinTypeKusama = 434,
     TWCoinTypePolkadot = 354,
+    TWCoinTypeFilecoin = 461,
 };
 
 /// Returns the blockchain for a coin type.
@@ -103,21 +103,21 @@ enum TWHDVersion TWCoinTypeXprvVersion(enum TWCoinType coin);
 
 /// Validates an address string.
 TW_EXPORT_METHOD
-bool TWCoinTypeValidate(enum TWCoinType coin, TWString *_Nonnull address);
+bool TWCoinTypeValidate(enum TWCoinType coin, TWString* _Nonnull address);
 
 /// Returns the default derivation path for a particular coin.
 TW_EXPORT_METHOD
-TWString *_Nonnull TWCoinTypeDerivationPath(enum TWCoinType coin);
+TWString* _Nonnull TWCoinTypeDerivationPath(enum TWCoinType coin);
 
 /// Derives the address for a particular coin from the private key.
 TW_EXPORT_METHOD
-TWString *_Nonnull TWCoinTypeDeriveAddress(enum TWCoinType coin,
-                                           struct TWPrivateKey *_Nonnull privateKey);
+TWString* _Nonnull TWCoinTypeDeriveAddress(enum TWCoinType coin,
+                                           struct TWPrivateKey* _Nonnull privateKey);
 
 /// Derives the address for a particular coin from the public key.
 TW_EXPORT_METHOD
-TWString *_Nonnull TWCoinTypeDeriveAddressFromPublicKey(enum TWCoinType coin,
-                                                        struct TWPublicKey *_Nonnull publicKey);
+TWString* _Nonnull TWCoinTypeDeriveAddressFromPublicKey(enum TWCoinType coin,
+                                                        struct TWPublicKey* _Nonnull publicKey);
 
 /// HRP for this coin type
 TW_EXPORT_PROPERTY

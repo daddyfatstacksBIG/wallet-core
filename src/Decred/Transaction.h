@@ -6,13 +6,13 @@
 
 #pragma once
 
+#include "Bitcoin/Script.h"
 #include "TransactionInput.h"
 #include "TransactionOutput.h"
-#include "../Bitcoin/Script.h"
 #include "../Data.h"
 #include "../proto/Decred.pb.h"
 
-#include <TrustWalletCore/TWBitcoinSignatureVersion.h>
+#include "Bitcoin/SignatureVersion.h"
 #include <vector>
 
 namespace TW::Decred {
@@ -40,9 +40,7 @@ struct Transaction {
     /// valid.
     uint32_t expiry = 0;
 
-    Transaction()
-        : inputs()
-        , outputs() {}
+    Transaction() : inputs(), outputs() {}
 
     /// Whether the transaction is empty.
     bool empty() const { return inputs.empty() && outputs.empty(); }
@@ -63,7 +61,8 @@ struct Transaction {
   private:
     Data computePrefixHash(const std::vector<TransactionInput>& inputsToSign,
                            const std::vector<TransactionOutput>& outputsToSign,
-                           std::size_t signIndex, std::size_t index, enum TWBitcoinSigHashType hashType) const;
+                           std::size_t signIndex, std::size_t index,
+                           enum TWBitcoinSigHashType hashType) const;
     Data computeWitnessHash(const std::vector<TransactionInput>& inputsToSign,
                             const Bitcoin::Script& signScript, std::size_t signIndex) const;
 

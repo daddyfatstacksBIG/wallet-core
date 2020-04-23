@@ -39,18 +39,28 @@ TEST(RLP, uint256_t) {
     EXPECT_EQ(hex(RLP::encode(uint256_t(0xffffff))), "83ffffff");
     EXPECT_EQ(hex(RLP::encode(uint256_t(0xffffffffULL))), "84ffffffff");
     EXPECT_EQ(hex(RLP::encode(uint256_t(0xffffffffffffffULL))), "87ffffffffffffff");
-    EXPECT_EQ(
-        hex(RLP::encode(uint256_t("0x102030405060708090a0b0c0d0e0f2"))),
-        "8f102030405060708090a0b0c0d0e0f2"
-    );
+    EXPECT_EQ(hex(RLP::encode(uint256_t("0x102030405060708090a0b0c0d0e0f2"))),
+              "8f102030405060708090a0b0c0d0e0f2");
     EXPECT_EQ(
         hex(RLP::encode(uint256_t("0x0100020003000400050006000700080009000a000b000c000d000e01"))),
-        "9c0100020003000400050006000700080009000a000b000c000d000e01"
-    );
-    EXPECT_EQ(
-        hex(RLP::encode(uint256_t("0x0100000000000000000000000000000000000000000000000000000000000000"))),
-        "a00100000000000000000000000000000000000000000000000000000000000000"
-    );
+        "9c0100020003000400050006000700080009000a000b000c000d000e01");
+    EXPECT_EQ(hex(RLP::encode(
+                  uint256_t("0x0100000000000000000000000000000000000000000000000000000000000000"))),
+              "a00100000000000000000000000000000000000000000000000000000000000000");
+}
+
+TEST(RLP, PutInt) {
+    EXPECT_EQ(hex(RLP::putint(0)), "00");
+    EXPECT_EQ(hex(RLP::putint(1)), "01");
+    EXPECT_EQ(hex(RLP::putint(0x21)), "21");
+    EXPECT_EQ(hex(RLP::putint(0x4321)), "4321");
+    EXPECT_EQ(hex(RLP::putint(0x654321)), "654321");
+    EXPECT_EQ(hex(RLP::putint(0x87654321)), "87654321");
+    EXPECT_EQ(hex(RLP::putint(0xa987654321)), "a987654321");
+    EXPECT_EQ(hex(RLP::putint(0xcba987654321)), "cba987654321");
+    EXPECT_EQ(hex(RLP::putint(0xedcba987654321)), "edcba987654321");
+    EXPECT_EQ(hex(RLP::putint(0x21edcba987654321)), "21edcba987654321");
+    EXPECT_EQ(hex(RLP::putint(0xffffffffffffffff)), "ffffffffffffffff");
 }
 
 TEST(RLP, Lists) {

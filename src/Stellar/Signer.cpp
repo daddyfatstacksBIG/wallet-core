@@ -4,8 +4,8 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include "Base64.h"
 #include "Signer.h"
+#include "Base64.h"
 #include "../BinaryCoding.h"
 #include "../Hash.h"
 #include "../HexCoding.h"
@@ -14,6 +14,13 @@
 
 using namespace TW;
 using namespace TW::Stellar;
+
+Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
+    auto signer = Signer(input);
+    auto output = Proto::SigningOutput();
+    output.set_signature(signer.sign());
+    return output;
+}
 
 std::string Signer::sign() const noexcept {
 

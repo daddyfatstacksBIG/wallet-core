@@ -14,7 +14,13 @@
 namespace TW::Nano {
 /// Helper class that performs Ripple transaction signing.
 class Signer {
-public:
+  public:
+    /// Signs a Proto::SigningInput transaction
+    static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
+    /// Signs a json Proto::SigningInput with private key
+    static std::string signJSON(const std::string& json, const Data& key);
+
+  public:
     const PrivateKey privateKey;
     const PublicKey publicKey;
     const Proto::SigningInput& input;
@@ -32,8 +38,3 @@ public:
 };
 
 } // namespace TW::Nano
-
-/// Wrapper for C interface.
-struct TWNanoSigner {
-    TW::Nano::Signer impl;
-};

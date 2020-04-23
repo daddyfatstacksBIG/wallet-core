@@ -12,25 +12,24 @@ namespace TW::Aeternity {
 
 class Signer {
   public:
+    /// Signs a Proto::SigningInput transaction
+    static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
+
     /// Signs the given transaction.
-    static Proto::SigningOutput sign(const PrivateKey &privateKey, Transaction &transaction);
+    static Proto::SigningOutput sign(const PrivateKey& privateKey, Transaction& transaction);
 
   private:
     static const uint8_t checkSumSize = 4;
 
-    static Data buildRlpTxRaw(Data &txRaw, Data &sigRaw);
+    static Data buildRlpTxRaw(Data& txRaw, Data& sigRaw);
 
-    static Data buildMessageToSign(Data &txRaw);
+    static Data buildMessageToSign(Data& txRaw);
 
-    static Proto::SigningOutput createProtoOutput(std::string &signature, const std::string &signedTx);
+    static Proto::SigningOutput createProtoOutput(std::string& signature,
+                                                  const std::string& signedTx);
 
     /// Encode a byte array into base64 with prefix and a checksum
-    static std::string encodeBase64WithChecksum(const std::string &prefix, const TW::Data &rawTx);
+    static std::string encodeBase64WithChecksum(const std::string& prefix, const TW::Data& rawTx);
 };
 
 } // namespace TW::Aeternity
-
-/// Wrapper for C interface.
-struct TWAeternitySigner {
-    TW::Aeternity::Signer impl;
-};

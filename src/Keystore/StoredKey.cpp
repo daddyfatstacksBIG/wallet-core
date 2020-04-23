@@ -7,6 +7,8 @@
 #include "StoredKey.h"
 
 #include "Coin.h"
+#include "HDWallet.h"
+#include "PrivateKey.h"
 
 #define BOOST_UUID_RANDOM_PROVIDER_FORCE_POSIX 1
 
@@ -16,6 +18,7 @@
 #include <boost/uuid/uuid_io.hpp>
 #include <nlohmann/json.hpp>
 
+#include <cassert>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -24,66 +27,78 @@
 using namespace TW;
 using namespace TW::Keystore;
 
-StoredKey::StoredKey(StoredKeyType type, std::string name, EncryptionParameters payload)
-    : type(type), id(), name(std::move(name)), payload(std::move(payload)), accounts() {
-    boost::uuids::random_generator gen;
-    id = boost::lexical_cast<std::string>(gen());
+StoredKey StoredKey::createWithMnemonic(const std::string& name, const Data& password,
+                                        const std::string& mnemonic) {
+    if (!HDWallet::isValid(mnemonic)) {
+        throw std::invalid_argument("Invalid mnemonic");
+    }
+
+    Data mnemonicData = TW::Data(mnemonic.begin(), mnemonic.end());
+    StoredKey key = StoredKey(StoredKeyType::mnemonicPhrase, name, password, mnemonicData);
+    return key;
 }
 
-StoredKey::StoredKey(StoredKeyType type, std::string name, const std::string& password, Data data)
+StoredKey StoredKey::createWithMnemonicRandom(const std::string& name, const Data& password) {
+    const auto wallet = TW::HDWallet(128, "");
+    const auto& mnemonic = wallet.mnemonic;
+    assert(HDWallet::isValid(mnemonic));
+    Data mnemonicData = TW::Data(mnemonic.begin(), mnemonic.end());
+    StoredKey key = StoredKey(StoredKeyType::mnemonicPhrase, name, password, mnemonicData);
+    return key;
+}
+
+StoredKey StoredKey::createWithMnemonicAddDefaultAddress(const std::string& name,
+                                                         const Data& password,
+                                                         const std::string& mnemonic,
+                                                         TWCoinType coin) {
+    StoredKey key = createWithMnemonic(name, password, mnemonic);
+
+    const auto wallet = HDWallet(mnemonic, "");
+    const auto derivationPath = TW::derivationPath(coin);
+    const auto address = TW::deriveAddress(coin, wallet.getKey(derivationPath));
+    const auto extendedKey =
+        wallet.getExtendedPublicKey(TW::purpose(coin), coin, TW::xpubVersion(coin));
+    key.accounts.emplace_back(address, derivationPath, extendedKey);
+
+    return key;
+}
+
+StoredKey StoredKey::createWithPrivateKey(const std::string& name, const Data& password,
+                                          const Data& privateKeyData) {
+    StoredKey key = StoredKey(StoredKeyType::privateKey, name, password, privateKeyData);
+    return key;
+}
+
+StoredKey StoredKey::createWithPrivateKeyAddDefaultAddress(const std::string& name,
+                                                           const Data& password, TWCoinType coin,
+                                                           const Data& privateKeyData) {
+    const auto curve = TW::curve(coin);
+    if (!PrivateKey::isValid(privateKeyData, curve)) {
+        throw std::invalid_argument("Invalid private key data");
+    }
+
+    StoredKey key = createWithPrivateKey(name, password, privateKeyData);
+
+    const auto derivationPath = TW::derivationPath(coin);
+    const auto address = TW::deriveAddress(coin, PrivateKey(privateKeyData));
+    key.accounts.emplace_back(address, derivationPath);
+
+    return key;
+}
+
+StoredKey::StoredKey(StoredKeyType type, std::string name, const Data& password, Data data)
     : type(type), id(), name(std::move(name)), payload(password, data), accounts() {
     boost::uuids::random_generator gen;
     id = boost::lexical_cast<std::string>(gen());
 }
 
-StoredKey StoredKey::load(const std::string& path) {
-    std::ifstream stream(path);
-    if (!stream.is_open()) {
-        throw std::invalid_argument("Can't open file");
-    }
-    nlohmann::json j;
-    stream >> j;
-
-    StoredKey key(j);
-    return key;
-}
-
-void StoredKey::store(const std::string& path) {
-    auto stream = std::ofstream(path);
-    stream << json();
-}
-
-HDWallet StoredKey::wallet(const std::string& password) {
+const HDWallet StoredKey::wallet(const Data& password) const {
     if (type != StoredKeyType::mnemonicPhrase) {
         throw std::invalid_argument("Invalid account requested.");
     }
     const auto data = payload.decrypt(password);
     const auto mnemonic = std::string(reinterpret_cast<const char*>(data.data()), data.size());
     return HDWallet(mnemonic, "");
-}
-
-const Account* StoredKey::account(TWCoinType coin, const HDWallet* wallet) {
-    for (auto& account : accounts) {
-        if (account.coin() == coin) {
-            if (account.address.empty() && wallet != nullptr) {
-                account.address = wallet->deriveAddress(coin);
-            }
-            return &account;
-        }
-    }
-
-    if (wallet == nullptr) {
-        return nullptr;
-    }
-
-    const auto derivationPath = TW::derivationPath(coin);
-    const auto address = wallet->deriveAddress(coin);
-    
-    const auto version = TW::xpubVersion(coin);
-    const auto extendedPublicKey = wallet->getExtendedPublicKey(derivationPath.purpose(), coin, version);
-
-    accounts.emplace_back(address, derivationPath, extendedPublicKey);
-    return &accounts.back();
 }
 
 const Account* StoredKey::account(TWCoinType coin) const {
@@ -95,15 +110,45 @@ const Account* StoredKey::account(TWCoinType coin) const {
     return nullptr;
 }
 
-void StoredKey::removeAccount(TWCoinType coin) {
-    accounts.erase(std::remove_if(accounts.begin(), accounts.end(), [coin](Account& account) -> bool {
-        return account.coin() == coin;
+const Account* StoredKey::account(TWCoinType coin, const HDWallet* wallet) {
+    if (wallet == nullptr) {
+        return account(coin);
+    }
+    assert(wallet != nullptr);
+
+    for (auto& account : accounts) {
+        if (account.coin() == coin) {
+            if (account.address.empty()) {
+                account.address = wallet->deriveAddress(coin);
+            }
+            return &account;
         }
-    ), accounts.end());
+    }
+
+    const auto derivationPath = TW::derivationPath(coin);
+    const auto address = wallet->deriveAddress(coin);
+
+    const auto version = TW::xpubVersion(coin);
+    const auto extendedPublicKey =
+        wallet->getExtendedPublicKey(derivationPath.purpose(), coin, version);
+
+    accounts.emplace_back(address, derivationPath, extendedPublicKey);
+    return &accounts.back();
 }
 
+void StoredKey::addAccount(const std::string& address, const DerivationPath& derivationPath,
+                           const std::string& extetndedPublicKey) {
+    accounts.emplace_back(address, derivationPath, extetndedPublicKey);
+}
 
-const PrivateKey StoredKey::privateKey(TWCoinType coin, const std::string& password) {
+void StoredKey::removeAccount(TWCoinType coin) {
+    accounts.erase(
+        std::remove_if(accounts.begin(), accounts.end(),
+                       [coin](Account& account) -> bool { return account.coin() == coin; }),
+        accounts.end());
+}
+
+const PrivateKey StoredKey::privateKey(TWCoinType coin, const Data& password) {
     switch (type) {
     case StoredKeyType::mnemonicPhrase: {
         const auto wallet = this->wallet(password);
@@ -115,7 +160,7 @@ const PrivateKey StoredKey::privateKey(TWCoinType coin, const std::string& passw
     }
 }
 
-void StoredKey::fixAddresses(const std::string& password) {
+void StoredKey::fixAddresses(const Data& password) {
     switch (type) {
     case StoredKeyType::mnemonicPhrase: {
         const auto wallet = this->wallet(password);
@@ -127,8 +172,8 @@ void StoredKey::fixAddresses(const std::string& password) {
             const auto key = wallet.getKey(derivationPath);
             account.address = TW::deriveAddress(derivationPath.coin(), key);
         }
-    }
-        break;
+    } break;
+
     case StoredKeyType::privateKey: {
         auto key = PrivateKey(payload.decrypt(password));
         for (auto& account : accounts) {
@@ -137,14 +182,19 @@ void StoredKey::fixAddresses(const std::string& password) {
             }
             account.address = TW::deriveAddress(account.coin(), key);
         }
-    }
-        break;
+    } break;
     }
 }
 
 // -----------------
 // Encoding/Decoding
 // -----------------
+
+StoredKey StoredKey::createWithJson(const nlohmann::json& json) {
+    StoredKey storedKey;
+    storedKey.loadJson(json);
+    return storedKey;
+}
 
 namespace CodingKeys {
 static const auto address = "address";
@@ -166,7 +216,7 @@ static const auto privateKey = "private-key";
 static const auto mnemonic = "mnemonic";
 } // namespace TypeString
 
-StoredKey::StoredKey(const nlohmann::json& json) {
+void StoredKey::loadJson(const nlohmann::json& json) {
     if (json.count(CodingKeys::type) != 0 &&
         json[CodingKeys::type].get<std::string>() == TypeString::mnemonic) {
         type = StoredKeyType::mnemonicPhrase;
@@ -198,7 +248,8 @@ StoredKey::StoredKey(const nlohmann::json& json) {
         }
     }
 
-    if (accounts.empty() && json.count(CodingKeys::address) != 0 && json[CodingKeys::address].is_string()) {
+    if (accounts.empty() && json.count(CodingKeys::address) != 0 &&
+        json[CodingKeys::address].is_string()) {
         TWCoinType coin = TWCoinTypeEthereum;
         if (json.count(CodingKeys::coin) != 0) {
             coin = json[CodingKeys::coin].get<TWCoinType>();
@@ -235,4 +286,22 @@ nlohmann::json StoredKey::json() const {
     j[CodingKeys::activeAccounts] = accountsJSON;
 
     return j;
+}
+
+// File operations
+
+void StoredKey::store(const std::string& path) {
+    auto stream = std::ofstream(path);
+    stream << json();
+}
+
+StoredKey StoredKey::load(const std::string& path) {
+    std::ifstream stream(path);
+    if (!stream.is_open()) {
+        throw std::invalid_argument("Can't open file");
+    }
+    nlohmann::json j;
+    stream >> j;
+
+    return createWithJson(j);
 }

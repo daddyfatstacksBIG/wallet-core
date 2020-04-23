@@ -4,8 +4,8 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include "Icon/Address.h"
 #include "HexCoding.h"
+#include "Icon/Address.h"
 #include "PrivateKey.h"
 
 #include <gtest/gtest.h>
@@ -31,9 +31,10 @@ TEST(IconAddress, String) {
 }
 
 TEST(IconAddress, FromPrivateKey) {
-    const auto privateKey = PrivateKey(parse_hex("94d1a980d5e528067d44bf8a60d646f556e40ca71e17cd4ead2d56f89e4bd20f"));
+    const auto privateKey =
+        PrivateKey(parse_hex("94d1a980d5e528067d44bf8a60d646f556e40ca71e17cd4ead2d56f89e4bd20f"));
     const auto publicKey = PublicKey(privateKey.getPublicKey(TWPublicKeyTypeSECP256k1Extended));
-    const auto address = Address(publicKey, TWIconAddressTypeAddress);
+    const auto address = Address(publicKey, TypeAddress);
 
     ASSERT_EQ(address.string(), "hx98c0832ca5bd8e8bf355ca9491888aa9725c2c48");
 }

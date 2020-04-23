@@ -5,6 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "Signer.h"
+#include "../Base58.h"
 #include <TrezorCrypto/ed25519.h>
 
 #include <algorithm>
@@ -22,9 +23,9 @@ void Signer::sign(const std::vector<PrivateKey>& privateKeys, Transaction& trans
     }
 }
 
-Proto::SigningOutput Signer::signProtobuf(const Proto::SigningInput& input) {
+Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
     auto blockhash = Solana::Hash(input.recent_blockhash());
-    auto key = PrivateKey(input.private_key());
+    auto key = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));
     Message message;
     std::string stakePubkey;
     std::vector<PrivateKey> signerKeys;
@@ -82,7 +83,7 @@ Proto::SigningOutput Signer::signProtobuf(const Proto::SigningInput& input) {
 
     auto protoOutput = Proto::SigningOutput();
     auto encoded = transaction.serialize();
-    protoOutput.set_encoded(encoded.data(), encoded.size());
+    protoOutput.set_encoded(encoded);
 
     return protoOutput;
 }

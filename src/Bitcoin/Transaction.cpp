@@ -4,19 +4,20 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include "SegwitAddress.h"
 #include "Transaction.h"
+#include "SegwitAddress.h"
 #include "../BinaryCoding.h"
 #include "../Hash.h"
 
-#include <TrustWalletCore/TWBitcoinSignatureVersion.h>
+#include "SignatureVersion.h"
 
 #include <cassert>
 
 using namespace TW::Bitcoin;
 
 std::vector<uint8_t> Transaction::getPreImage(const Script& scriptCode, size_t index,
-                                              enum TWBitcoinSigHashType hashType, uint64_t amount) const {
+                                              enum TWBitcoinSigHashType hashType,
+                                              uint64_t amount) const {
     assert(index < inputs.size());
 
     auto data = std::vector<uint8_t>{};
@@ -129,8 +130,9 @@ void Transaction::encode(bool witness, std::vector<uint8_t>& data) const {
 }
 
 std::vector<uint8_t> Transaction::getSignatureHash(const Script& scriptCode, size_t index,
-                                                   enum TWBitcoinSigHashType hashType, uint64_t amount,
-                                                   TWBitcoinSignatureVersion version) const {
+                                                   enum TWBitcoinSigHashType hashType,
+                                                   uint64_t amount,
+                                                   enum SignatureVersion version) const {
     switch (version) {
     case BASE:
         return getSignatureHashBase(scriptCode, index, hashType);
@@ -188,7 +190,8 @@ std::vector<uint8_t> Transaction::getSignatureHashBase(const Script& scriptCode,
 }
 
 void Transaction::serializeInput(size_t subindex, const Script& scriptCode, size_t index,
-                                 enum TWBitcoinSigHashType hashType, std::vector<uint8_t>& data) const {
+                                 enum TWBitcoinSigHashType hashType,
+                                 std::vector<uint8_t>& data) const {
     // In case of SIGHASH_ANYONECANPAY, only the input being signed is
     // serialized
     if ((hashType & TWBitcoinSigHashTypeAnyoneCanPay) != 0) {

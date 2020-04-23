@@ -12,6 +12,7 @@
 #include <nlohmann/json.hpp>
 
 #include <boost/multiprecision/cpp_int.hpp>
+#include <google/protobuf/util/json_util.h>
 
 using namespace TW;
 
@@ -21,10 +22,8 @@ using json = nlohmann::json;
 namespace TW::Nano {
 
 const std::array<byte, 32> kBlockHashPreamble{
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06,
 };
 
 std::array<byte, 16> store(const uint128_t& value) {
@@ -58,28 +57,30 @@ std::array<byte, 32> previousFromInput(const Proto::SigningInput& input) {
 std::array<byte, 32> linkFromInput(const Proto::SigningInput& input, bool emptyParentHash = false) {
     std::array<byte, 32> link = {0};
     switch (input.link_oneof_case()) {
-        case Proto::SigningInput::kLinkBlock: {
-            if (input.link_block().size() != link.size()) {
-                throw std::invalid_argument("Invalid link block hash");
-            }
-            std::copy_n(input.link_block().begin(), link.size(), link.begin());
-            break;
+    case Proto::SigningInput::kLinkBlock: {
+        if (input.link_block().size() != link.size()) {
+            throw std::invalid_argument("Invalid link block hash");
         }
-        case Proto::SigningInput::kLinkRecipient: {
-            if (!emptyParentHash) {
-                auto toAddress = Address(input.link_recipient());
-                std::copy_n(toAddress.bytes.begin(), link.size(), link.begin());
-            }
-            break;
+        std::copy_n(input.link_block().begin(), link.size(), link.begin());
+        break;
+    }
+    case Proto::SigningInput::kLinkRecipient: {
+        if (!emptyParentHash) {
+            auto toAddress = Address(input.link_recipient());
+            std::copy_n(toAddress.bytes.begin(), link.size(), link.begin());
         }
-        case Proto::SigningInput::LINK_ONEOF_NOT_SET: break;
+        break;
+    }
+    case Proto::SigningInput::LINK_ONEOF_NOT_SET:
+        break;
     }
     return link;
 }
 
 std::array<byte, 32> hashBlockData(const PublicKey& publicKey, const Proto::SigningInput& input) {
     std::array<byte, 32> parentHash = previousFromInput(input);
-    bool emptyParentHash = std::all_of(parentHash.begin(), parentHash.end(), [](auto b) { return b == 0; });
+    bool emptyParentHash =
+        std::all_of(parentHash.begin(), parentHash.end(), [](auto b) { return b == 0; });
 
     std::array<byte, 32> repPublicKey = {0};
     auto repAddress = Address(input.representative());
@@ -119,13 +120,29 @@ std::array<byte, 32> hashBlockData(const PublicKey& publicKey, const Proto::Sign
 }
 
 Signer::Signer(const Proto::SigningInput& input)
-  : privateKey(Data(input.private_key().begin(), input.private_key().end())),
-    publicKey(privateKey.getPublicKey(TWPublicKeyTypeED25519Blake2b)),
-    input(input),
-    previous{previousFromInput(input)},
-    link{linkFromInput(input)},
-    blockHash(hashBlockData(publicKey, input))
-{
+    : privateKey(Data(input.private_key().begin(), input.private_key().end()))
+    , publicKey(privateKey.getPublicKey(TWPublicKeyTypeED25519Blake2b))
+    , input(input)
+    , previous{previousFromInput(input)}
+    , link{linkFromInput(input)}
+    , blockHash(hashBlockData(publicKey, input)) {}
+
+Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
+    Proto::SigningOutput output;
+    try {
+        auto signer = Signer(input);
+        output = signer.build();
+    } catch (...) {
+    }
+    return output;
+}
+
+std::string Signer::signJSON(const std::string& json, const Data& key) {
+    auto input = Proto::SigningInput();
+    google::protobuf::util::JsonStringToMessage(json, &input);
+    input.set_private_key(key.data(), key.size());
+    auto output = Signer::sign(input);
+    return output.json();
 }
 
 std::array<byte, 64> Signer::sign() const noexcept {
@@ -151,7 +168,9 @@ Proto::SigningOutput Signer::build() const {
         {"representative", Address(input.representative()).string()},
         {"balance", input.balance()},
         {"link", hex(link)},
-        {"link_as_account", Address(PublicKey(Data(link.begin(), link.end()), TWPublicKeyTypeED25519Blake2b)).string()},
+        {"link_as_account",
+         Address(PublicKey(Data(link.begin(), link.end()), TWPublicKeyTypeED25519Blake2b))
+             .string()},
         {"signature", hex(signature)},
     };
 

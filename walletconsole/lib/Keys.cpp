@@ -6,15 +6,15 @@
 
 #include "Keys.h"
 
-#include "WalletConsole.h"
 #include "Data.h"
-#include "PrivateKey.h"
-#include "HexCoding.h"
 #include "HDWallet.h"
+#include "HexCoding.h"
+#include "PrivateKey.h"
+#include "WalletConsole.h"
 
+#include <cassert>
 #include <iostream>
 #include <vector>
-#include <cassert>
 
 namespace TW::WalletConsole {
 
@@ -40,7 +40,9 @@ bool Keys::newKey(const string& coinid, string& res) {
     // Use coin-specific derivation path, so that PK can be coin-specific (e.g. longer for Cardano)
     // coin
     Coin coin;
-    if (!_coins.findCoin(coinid, coin)) { return false; }
+    if (!_coins.findCoin(coinid, coin)) {
+        return false;
+    }
 
     HDWallet newWallet(256, "");
 
@@ -52,18 +54,21 @@ bool Keys::newKey(const string& coinid, string& res) {
 
 bool Keys::pubPri(const string& coinid, const string& p, string& res) {
     Coin coin;
-    if (!_coins.findCoin(coinid, coin)) { return false; }
+    if (!_coins.findCoin(coinid, coin)) {
+        return false;
+    }
     Data privDat;
     try {
         privDat = parse_hex(p);
         auto priv = PrivateKey(privDat);
         auto pub = priv.getPublicKey((TWPublicKeyType)coin.pubKeyType);
         res = hex(pub.bytes);
-        _out << "Public key created, type " << (int)coin.pubKeyType << ", length " << pub.bytes.size() << endl;
+        _out << "Public key created, type " << (int)coin.pubKeyType << ", length "
+             << pub.bytes.size() << endl;
         return true;
     } catch (exception& ex) {
         _out << "Error: " << ex.what() << endl;
-        return false; 
+        return false;
     }
 }
 
@@ -80,8 +85,9 @@ void Keys::setMnemonic(const vector<string>& param) {
     // concatenate
     string mnem = "";
     for (int i = 1; i < param.size(); ++i) {
-        if (i > 1) mnem += " ";
-        mnem += param[i]; 
+        if (i > 1)
+            mnem += " ";
+        mnem += param[i];
     }
 
     // verify mnemonic
@@ -114,10 +120,7 @@ bool Keys::newMnemonic(const string& param1, string& res) {
 }
 
 bool Keys::dumpSeed(string& res) {
-    if (_currentMnemonic.length() == 0) {
-        _out << "Error: no mnemonic set.  Use setMnemonic." << endl;
-        return false;
-    }
+    assert(_currentMnemonic.length() > 0); // a mnemonic is always set
     HDWallet wallet(_currentMnemonic, "");
     string seedHex = hex(wallet.seed);
     res = seedHex;
@@ -125,17 +128,16 @@ bool Keys::dumpSeed(string& res) {
 }
 
 bool Keys::dumpMnemonic(string& res) {
-    if (_currentMnemonic.length() == 0) {
-        _out << "Error: no mnemonic set.  Use setMnemonic." << endl;
-        return false;
-    }
+    assert(_currentMnemonic.length() > 0); // a mnemonic is always set
     res = _currentMnemonic;
     return true;
 }
 
 bool Keys::dumpDP(const string& coinid, string& res) {
     Coin coin;
-    if (!_coins.findCoin(coinid, coin)) { return false; }
+    if (!_coins.findCoin(coinid, coin)) {
+        return false;
+    }
     res = coin.derivPath;
     return true;
 }
@@ -143,13 +145,12 @@ bool Keys::dumpDP(const string& coinid, string& res) {
 bool Keys::priDP(const string& coinid, const string& dp, string& res) {
     // coin
     Coin coin;
-    if (!_coins.findCoin(coinid, coin)) { return false; }
-
-    // mnemo
-    if (_currentMnemonic.length() == 0) {
-        _out << "Error: no mnemonic set.  Use setMnemonic." << endl;
+    if (!_coins.findCoin(coinid, coin)) {
         return false;
     }
+
+    // mnemo
+    assert(_currentMnemonic.length() > 0); // a mnemonic is always set
 
     // derivation path
     string dp2 = dp;

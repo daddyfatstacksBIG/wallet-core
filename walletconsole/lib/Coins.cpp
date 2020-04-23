@@ -7,17 +7,17 @@
 
 #include "Coins.h"
 
-#include "WalletConsole.h"
 #include "Util.h"
+#include "WalletConsole.h"
 
+#include "Coin.h"
+#include "Data.h"
 #include <TrustWalletCore/TWCoinTypeConfiguration.h>
 #include <TrustWalletCore/TWPublicKeyType.h>
-#include "Data.h"
-#include "Coin.h"
 
+#include <cassert>
 #include <iostream>
 #include <vector>
-#include <cassert>
 
 #define WRAPS(x) std::shared_ptr<TWString>(x, TWStringDelete)
 
@@ -26,7 +26,7 @@ namespace TW::WalletConsole {
 using namespace std;
 
 void Coins::coins() const {
-    for (auto c: _coinsById) {
+    for (auto c : _coinsById) {
         _out << c.second.symbol << " \t " << c.second.id << " \t '" << c.second.name << "'" << endl;
     }
     _out << _coinsById.size() << " coins listed." << endl;
@@ -60,16 +60,15 @@ bool Coins::findCoin(const string& coin, Coin& coin_out) const {
 void Coins::init() {
     // not very nice method: try each ID number, and record the ones that are valid coins
     _out << "Loading coins ... ";
-    scanCoinRange(0, 65536);
-    scanCoinRange(5700000, 5800000);
+    scanCoins();
     _out << _coinsById.size() << " coins loaded." << endl;
 }
 
-void Coins::scanCoinRange(int from, int to) {
-    for (int i = from; i < to; ++i) {
-        TWCoinType c = (TWCoinType)i;
+void Coins::scanCoins() {
+    const auto coins = TW::getCoinTypes();
+    for (auto c : coins) {
         auto symbolTw = WRAPS(TWCoinTypeConfigurationGetSymbol(c));
-        if (TWStringSize(symbolTw.get()) == 0) { continue; }
+        assert(TWStringSize(symbolTw.get()) != 0);
         string id = TWStringUTF8Bytes(WRAPS(TWCoinTypeConfigurationGetID(c)).get());
         Util::toLower(id);
         string symbol = TWStringUTF8Bytes(symbolTw.get());

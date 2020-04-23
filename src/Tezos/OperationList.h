@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Data.h"
 #include "proto/Tezos.pb.h"
+#include "../Data.h"
 #include "../PrivateKey.h"
 #include <string>
 
@@ -22,8 +22,3 @@ class OperationList {
 };
 
 } // namespace TW::Tezos
-
-/// Wrapper for C interface.
-struct TWTezosOperationList {
-  TW::Tezos::OperationList impl;
-};

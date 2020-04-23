@@ -14,7 +14,7 @@ namespace TW::Polkadot {
 
 /// Helper class that performs Polkadot transaction signing.
 class Signer {
-public:
+  public:
     /// Hide default constructor
     Signer() = delete;
 
@@ -23,8 +23,3 @@ public:
 };
 
 } // namespace TW::Polkadot
-
-/// Wrapper for C interface.
-struct TWPolkadotSigner {
-    TW::Polkadot::Signer impl;
-};

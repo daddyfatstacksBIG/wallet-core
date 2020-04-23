@@ -7,23 +7,23 @@
 #pragma once
 
 #include "ParamBase.h"
-#include "Util.h"
+#include "ValueEncoder.h"
 #include "../../Data.h"
 
 namespace TW::Ethereum::ABI {
 
 /// Dynamic array of bytes "bytes"
-class ParamByteArray: public ParamCollection
-{
-private:
+class ParamByteArray : public ParamCollection {
+  private:
     Data _bytes;
-public:
+
+  public:
     ParamByteArray() = default;
     ParamByteArray(const Data& val) : ParamCollection() { setVal(val); }
     void setVal(const Data& val) { _bytes = val; }
     const Data& getVal() const { return _bytes; }
     virtual std::string getType() const { return "bytes"; };
-    virtual size_t getSize() const { return 32 + Util::paddedTo32(_bytes.size()); }
+    virtual size_t getSize() const { return 32 + ValueEncoder::paddedTo32(_bytes.size()); }
     virtual bool isDynamic() const { return true; }
     virtual size_t getCount() const { return _bytes.size(); }
     static void encodeBytes(const Data& bytes, Data& data);
@@ -35,18 +35,20 @@ public:
 };
 
 /// Fixed-size array of bytes, "bytes<N>"
-class ParamByteArrayFix: public ParamCollection
-{
-private:
+class ParamByteArrayFix : public ParamCollection {
+  private:
     size_t _n;
     Data _bytes;
-public:
-    ParamByteArrayFix(size_t n): ParamCollection(), _n(n), _bytes(Data(_n)) {}
-    ParamByteArrayFix(size_t n, const Data& val): ParamCollection(), _n(n), _bytes(Data(_n)) { setVal(val); }
+
+  public:
+    ParamByteArrayFix(size_t n) : ParamCollection(), _n(n), _bytes(Data(_n)) {}
+    ParamByteArrayFix(size_t n, const Data& val) : ParamCollection(), _n(n), _bytes(Data(_n)) {
+        setVal(val);
+    }
     void setVal(const Data& val) { _bytes = val; }
     const std::vector<uint8_t>& getVal() const { return _bytes; }
     virtual std::string getType() const { return "bytes" + std::to_string(_n); };
-    virtual size_t getSize() const { return Util::paddedTo32(_bytes.size()); }
+    virtual size_t getSize() const { return ValueEncoder::paddedTo32(_bytes.size()); }
     virtual bool isDynamic() const { return false; }
     virtual size_t getCount() const { return _bytes.size(); }
     virtual void encode(Data& data) const;
@@ -57,17 +59,17 @@ public:
 };
 
 /// Var-length string parameter
-class ParamString: public ParamCollection
-{
-private:
+class ParamString : public ParamCollection {
+  private:
     std::string _str;
-public:
+
+  public:
     ParamString() = default;
-    ParamString(std::string val): ParamCollection() { setVal(val); }
+    ParamString(std::string val) : ParamCollection() { setVal(val); }
     void setVal(std::string& val) { _str = val; }
     const std::string& getVal() const { return _str; }
     virtual std::string getType() const { return "string"; };
-    virtual size_t getSize() const { return 32 + Util::paddedTo32(_str.size()); }
+    virtual size_t getSize() const { return 32 + ValueEncoder::paddedTo32(_str.size()); }
     virtual bool isDynamic() const { return true; }
     virtual size_t getCount() const { return _str.size(); }
     static void encodeString(const std::string& decoded, Data& data);

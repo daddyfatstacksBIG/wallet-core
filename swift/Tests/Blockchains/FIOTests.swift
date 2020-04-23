@@ -16,10 +16,10 @@ class FIOTests: XCTestCase {
 
         XCTAssertNotNil(address)
         XCTAssertEqual(address?.description, valid)
-        XCTAssertTrue(AnyAddress.isValidString(string: valid, coin: .fio))
+        XCTAssertTrue(AnyAddress.isValid(string: valid, coin: .fio))
 
         XCTAssertNil(AnyAddress(string: invalid, coin: .fio))
-        XCTAssertFalse(AnyAddress.isValidString(string: invalid, coin: .fio))
+        XCTAssertFalse(AnyAddress.isValid(string: invalid, coin: .fio))
     }
 
     func testAddressFromKey() {
@@ -44,7 +44,6 @@ class FIOTests: XCTestCase {
             $0.fioAddress = "adam@fiotestnet"
             $0.ownerFioPublicKey = address.description
             $0.fee = 5000000000
-            $0.tpid = "rewards@wallet"
         }
         let action = FIOAction.with {
             $0.registerFioAddressMessage = regAddrAction
@@ -53,10 +52,11 @@ class FIOTests: XCTestCase {
             $0.expiry = 1579784511
             $0.chainParams = chainParams
             $0.privateKey = privateKey.data
+            $0.tpid = "rewards@wallet"
             $0.action = action
         }
 
-        let out = FIOSigner.sign(input: input)
+        let out: FIOSigningOutput = AnySigner.sign(input: input, coin: .fio)
         XCTAssertEqual(out.error, "")
         let expectedJson: String =
 """
@@ -69,8 +69,6 @@ class FIOTests: XCTestCase {
     func testAddPubAddress() {
         let chainId = Data(hexString: "4e46572250454b796d7296eec9e8896327ea82dd40f2cd74cf1b1d8ba90bcd77")!
         let privateKey = PrivateKey(data: Data(hexString: "ba0828d5734b65e3bcc2c51c93dfc26dd71bd666cc0273adee77d73d9a322035")!)!
-        let publicKey = privateKey.getPublicKeySecp256k1(compressed: false)
-        let address = AnyAddress(publicKey: publicKey, coin: .fio)
 
         let chainParams = FIOChainParams.with {
             $0.chainID = chainId
@@ -80,12 +78,11 @@ class FIOTests: XCTestCase {
         let addAddrAction = FIOAction.AddPubAddress.with {
             $0.fioAddress = "adam@fiotestnet"
             $0.publicAddresses = [
-                FIOPublicAddress.with { $0.tokenCode = "BTC"; $0.address = "bc1qvy4074rggkdr2pzw5vpnn62eg0smzlxwp70d7v" },
-                FIOPublicAddress.with { $0.tokenCode = "ETH"; $0.address = "0xce5cB6c92Da37bbBa91Bd40D4C9D4D724A3a8F51" },
-                FIOPublicAddress.with { $0.tokenCode = "BNB"; $0.address = "bnb1ts3dg54apwlvr9hupv2n0j6e46q54znnusjk9s" }
+                FIOPublicAddress.with { $0.coinSymbol = "BTC"; $0.address = "bc1qvy4074rggkdr2pzw5vpnn62eg0smzlxwp70d7v" },
+                FIOPublicAddress.with { $0.coinSymbol = "ETH"; $0.address = "0xce5cB6c92Da37bbBa91Bd40D4C9D4D724A3a8F51" },
+                FIOPublicAddress.with { $0.coinSymbol = "BNB"; $0.address = "bnb1ts3dg54apwlvr9hupv2n0j6e46q54znnusjk9s" }
             ]
             $0.fee = 0
-            $0.tpid = "rewards@wallet"
         }
         let action = FIOAction.with {
             $0.addPubAddressMessage = addAddrAction
@@ -94,14 +91,15 @@ class FIOTests: XCTestCase {
             $0.expiry = 1579729429
             $0.chainParams = chainParams
             $0.privateKey = privateKey.data
+            $0.tpid = "rewards@wallet"
             $0.action = action
         }
 
-        let out = FIOSigner.sign(input: input)
+        let out: FIOSigningOutput = AnySigner.sign(input: input, coin: .fio)
         XCTAssertEqual(out.error, "")
         let expectedJson: String =
 """
-{"compression":"none","packed_context_free_data":"","packed_trx":"15c2285e2d2d23622eff0000000001003056372503a85b0000c6eaa664523201102b2f46fca756b200000000a8ed3232bd010f6164616d4066696f746573746e657403034254432a626331717679343037347267676b647232707a773576706e6e3632656730736d7a6c7877703730643776034554482a30786365356342366339324461333762624261393142643430443443394434443732344133613846353103424e422a626e6231747333646735346170776c76723968757076326e306a366534367135347a6e6e75736a6b39730000000000000000102b2f46fca756b20e726577617264734077616c6c657400","signatures":["SIG_K1_K85BxXzJwvjPs3mFeKatWSjBHuMXTw634RRtf6ZMytpzLCdpHcJ7CQWPeXJvwm7aoz7XJJKapmoT4jzCLoVBv2cxP149Bx"]}
+{"compression":"none","packed_context_free_data":"","packed_trx":"15c2285e2d2d23622eff0000000001003056372503a85b0000c6eaa664523201102b2f46fca756b200000000a8ed3232c9010f6164616d4066696f746573746e65740303425443034254432a626331717679343037347267676b647232707a773576706e6e3632656730736d7a6c787770373064377603455448034554482a30786365356342366339324461333762624261393142643430443443394434443732344133613846353103424e4203424e422a626e6231747333646735346170776c76723968757076326e306a366534367135347a6e6e75736a6b39730000000000000000102b2f46fca756b20e726577617264734077616c6c657400","signatures":["SIG_K1_K3zimaMKU8cBhVRPw46KM2u7uQWaAKXrnoeYZ7MEbp6sVJcDQmQR2RtdavpUPwkAnYUkd8NqLun8H48tcxZBcTUgkiPGVJ"]}
 """
 
         XCTAssertEqual(out.json, expectedJson)
@@ -110,8 +108,6 @@ class FIOTests: XCTestCase {
     func testTransfer() {
         let chainId = Data(hexString: "4e46572250454b796d7296eec9e8896327ea82dd40f2cd74cf1b1d8ba90bcd77")!
         let privateKey = PrivateKey(data: Data(hexString: "ba0828d5734b65e3bcc2c51c93dfc26dd71bd666cc0273adee77d73d9a322035")!)!
-        let publicKey = privateKey.getPublicKeySecp256k1(compressed: false)
-        let address = AnyAddress(publicKey: publicKey, coin: .fio)
 
         let chainParams = FIOChainParams.with {
             $0.chainID = chainId
@@ -122,7 +118,6 @@ class FIOTests: XCTestCase {
             $0.payeePublicKey = "FIO7uMZoeei5HtXAD24C4yCkpWWbf24bjYtrRNjWdmGCXHZccwuiE"
             $0.amount = 1000000000
             $0.fee = 250000000
-            $0.tpid = "rewards@wallet"
         }
         let action = FIOAction.with {
             $0.transferMessage = transferAction
@@ -131,10 +126,11 @@ class FIOTests: XCTestCase {
             $0.expiry = 1579790000
             $0.chainParams = chainParams
             $0.privateKey = privateKey.data
+            $0.tpid = "rewards@wallet"
             $0.action = action
         }
 
-        let out = FIOSigner.sign(input: input)
+        let out: FIOSigningOutput = AnySigner.sign(input: input, coin: .fio)
         XCTAssertEqual(out.error, "")
         let expectedJson: String =
 """

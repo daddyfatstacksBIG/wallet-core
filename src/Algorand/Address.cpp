@@ -5,9 +5,9 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "Address.h"
-#include "../HexCoding.h"
-#include "../Hash.h"
 #include "../Base32.h"
+#include "../Hash.h"
+#include "../HexCoding.h"
 
 #include <array>
 
@@ -22,7 +22,7 @@ bool Address::isValid(const std::string& string) {
         return false;
     }
     // compute public key hash
-    auto hash = Hash::sha512_256(decoded.data(), decoded.data() + decoded.size() - checksumSize);
+    auto hash = Hash::sha512_256(decoded.data(), decoded.size() - checksumSize);
     // last 4 bytes are checksum
     std::array<byte, checksumSize> checksum;
     std::copy(hash.end() - checksumSize, hash.end(), checksum.data());

@@ -12,13 +12,14 @@ using namespace TW;
 using namespace TW::EOS;
 using json = nlohmann::json;
 
-PackedTransaction::PackedTransaction(const Transaction& transaction, CompressionType type) noexcept : compression(type) {
+PackedTransaction::PackedTransaction(const Transaction& transaction, CompressionType type) noexcept
+    : compression(type) {
     transaction.serialize(packedTrx);
     const Data& cfd = transaction.contextFreeData;
 
     if (cfd.size()) {
         packedCFD.push_back(1);
-        Bravo::encodeVarInt64(cfd.size(), packedCFD);
+        encodeVarInt64(cfd.size(), packedCFD);
         append(packedCFD, cfd);
     }
 
@@ -26,7 +27,6 @@ PackedTransaction::PackedTransaction(const Transaction& transaction, Compression
 }
 
 void PackedTransaction::serialize(Data& os) const noexcept {
-    using namespace TW::Bravo;
     encodeCollection(signatures, os);
     os.push_back(static_cast<uint8_t>(compression));
     encodeVarInt64(packedCFD.size(), os);
@@ -44,7 +44,6 @@ json PackedTransaction::serialize() const noexcept {
 
     json obj;
 
-    using namespace TW::Bravo;
     obj["signatures"] = sigs;
     obj["compression"] = compression;
     obj["packed_context_free_data"] = hex(packedCFD);
