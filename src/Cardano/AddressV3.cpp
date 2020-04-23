@@ -42,29 +42,29 @@ bool AddressV3::parseAndCheckV3(const std::string& addr, Discrimination& discrim
             return false;
         }
         if ((kind == Kind_Group && conv.size() != 65) ||
-            (kind != Kind_Group && conv.size() != 33)) {
+                (kind != Kind_Group && conv.size() != 33)) {
             return false;
         }
 
         switch (kind) {
-            case Kind_Single:
-            case Kind_Account:
-            case Kind_Multisig:
-                assert(conv.size() == 33);
-                key1 = Data(32);
-                std::copy(conv.begin() + 1, conv.begin() + 33, key1.begin());
-                return true;
+        case Kind_Single:
+        case Kind_Account:
+        case Kind_Multisig:
+            assert(conv.size() == 33);
+            key1 = Data(32);
+            std::copy(conv.begin() + 1, conv.begin() + 33, key1.begin());
+            return true;
 
-            case Kind_Group:
-                assert(conv.size() == 65);
-                key1 = Data(32);
-                key2 = Data(32);
-                std::copy(conv.begin() + 1, conv.begin() + 33, key1.begin());
-                std::copy(conv.begin() + 33, conv.begin() + 65, key2.begin());
-                return true;
+        case Kind_Group:
+            assert(conv.size() == 65);
+            key1 = Data(32);
+            key2 = Data(32);
+            std::copy(conv.begin() + 1, conv.begin() + 33, key1.begin());
+            std::copy(conv.begin() + 33, conv.begin() + 65, key2.begin());
+            return true;
 
-            default:
-                return false;
+        default:
+            return false;
         }
     } catch (...) {
         return false;
@@ -145,21 +145,27 @@ AddressV3::AddressV3(const PublicKey& publicKey) : legacyAddressV2(nullptr) {
 
 AddressV3::AddressV3(const Data& data) : legacyAddressV2(nullptr) {
     // min 4 bytes, 2 prefix + 2 len
-    if (data.size() < 4) { throw std::invalid_argument("Address data too short"); }
+    if (data.size() < 4) {
+        throw std::invalid_argument("Address data too short");
+    }
     assert(data.size() >= 4);
     int index = 0;
     discrimination = (Discrimination)data[index++];
     kind = (Kind)data[index++];
     // key1:
     byte len1 = data[index++];
-    if (data.size() < 4 + len1) { throw std::invalid_argument("Address data too short"); }
+    if (data.size() < 4 + len1) {
+        throw std::invalid_argument("Address data too short");
+    }
     assert(data.size() >= 4 + len1);
     key1 = Data(len1);
     std::copy(data.begin() + index, data.begin() + index + len1, key1.begin());
     index += len1;
     // groupKey:
     byte len2 = data[index++];
-    if (data.size() < 4 + len1 + len2) { throw std::invalid_argument("Address data too short"); }
+    if (data.size() < 4 + len1 + len2) {
+        throw std::invalid_argument("Address data too short");
+    }
     assert(data.size() >= 4 + len1 + len2);
     groupKey = Data(len2);
     std::copy(data.begin() + index, data.begin() + index + len2, groupKey.begin());
@@ -176,12 +182,14 @@ AddressV3::AddressV3(const AddressV3& other) :
 string AddressV3::string() const {
     std::string hrp;
     switch (kind) {
-        case Kind_Single:
-        case Kind_Group:
-        case Kind_Account:
-            hrp = stringForHRP(TWHRPCardano); break;
-        default:
-            hrp = ""; break;
+    case Kind_Single:
+    case Kind_Group:
+    case Kind_Account:
+        hrp = stringForHRP(TWHRPCardano);
+        break;
+    default:
+        hrp = "";
+        break;
     }
     return string(hrp);
 }

@@ -17,7 +17,7 @@ namespace TW::Filecoin {
 
 /// Helper class that performs Filecoin transaction signing.
 class Signer {
-  public:
+public:
     Signer() = delete;
 
     /// Signs a Proto::SigningInput transaction.

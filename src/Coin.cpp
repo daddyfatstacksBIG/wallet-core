@@ -57,7 +57,7 @@ using namespace TW;
 using namespace std;
 
 // Map with coin entry dispatchers, key is coin type
-map<TWCoinType, CoinEntry*> dispatchMap = {}; 
+map<TWCoinType, CoinEntry*> dispatchMap = {};
 // List of supported coint types
 set<TWCoinType> coinTypes = {};
 

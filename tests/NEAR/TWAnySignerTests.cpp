@@ -24,7 +24,7 @@ TEST(TWAnySignerNEAR, Sign) {
     input.set_receiver_id("whatever.near");
     input.set_private_key(privateKey.data(), privateKey.size());
     input.set_block_hash(blockHash.data(), blockHash.size());
-    
+
     auto& action = *input.add_actions();
     auto& transfer = *action.mutable_transfer();
     transfer.set_deposit(deposit.data(), deposit.size());

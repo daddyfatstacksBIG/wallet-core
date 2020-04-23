@@ -15,10 +15,10 @@
 namespace TW::Icon {
 
 class Signer {
-  public:
+public:
     /// Signs a Proto::SigningInput transaction
     static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
-  public:
+public:
     const Proto::SigningInput& input;
 
     Signer(const Proto::SigningInput& input) : input(input) {}
@@ -32,7 +32,7 @@ class Signer {
     /// Encodes a signed transaction as JSON.
     std::string encode(const Data& signature) const noexcept;
 
-  private:
+private:
     std::map<std::string, std::string> parameters() const noexcept;
 };
 

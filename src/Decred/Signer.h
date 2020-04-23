@@ -26,38 +26,38 @@ namespace TW::Decred {
 
 /// Helper class that performs Decred transaction signing.
 class Signer {
-  public:
+public:
     /// Returns a transaction plan (utxo selection, fee estimation)
     static Bitcoin::Proto::TransactionPlan plan(const Bitcoin::Proto::SigningInput& input) noexcept;
 
     /// Signs a Proto::SigningInput transaction
     static Proto::SigningOutput sign(const Bitcoin::Proto::SigningInput& input) noexcept;
-  private:
+private:
     /// Private key and redeem script provider for signing.
     Bitcoin::Proto::SigningInput input;
 
-  public:
+public:
     /// Transaction plan.
     Bitcoin::TransactionPlan txPlan;
 
     /// Transaction being signed.
     Transaction transaction;
 
-  private:
+private:
     /// List of signed inputs.
     std::vector<TransactionInput> signedInputs;
 
-  public:
+public:
     /// Initializes a transaction signer.
     Signer() = default;
 
     /// Initializes a transaction signer with signing input.
-    explicit Signer(const Bitcoin::Proto::SigningInput& input) 
-      : input(input) {
+    explicit Signer(const Bitcoin::Proto::SigningInput& input)
+        : input(input) {
         if (input.has_plan()) {
-          txPlan = Bitcoin::TransactionPlan(input.plan());
+            txPlan = Bitcoin::TransactionPlan(input.plan());
         } else {
-          txPlan = TransactionBuilder::plan(input);
+            txPlan = TransactionBuilder::plan(input);
         }
         transaction = TransactionBuilder::build(txPlan, input.to_address(), input.change_address());
     }
@@ -72,7 +72,7 @@ class Signer {
     /// \returns the signed transaction script.
     Result<Bitcoin::Script> sign(Bitcoin::Script script, size_t index);
 
-  private:
+private:
     Result<std::vector<Data>> signStep(Bitcoin::Script script, size_t index);
     Data createSignature(const Transaction& transaction, const Bitcoin::Script& script,
                          const Data& key, size_t index);

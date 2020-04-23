@@ -61,7 +61,7 @@ Asset Asset::fromString(std::string assetString) {
     if (dotPosition != string::npos) {
         decimals = static_cast<uint8_t>(amountString.size() - dotPosition - 1);
     }
-                           
+
     int64_t precision = static_cast<uint64_t>(pow(10, static_cast<double>(decimals)));
 
     // Parse amount
@@ -110,10 +110,10 @@ std::string Asset::string() const {
 
     auto decimals = getDecimals();
 
-    int charsWritten = snprintf(buffer, maxBufferSize, "%.*f %s", 
-                            decimals, 
-                            static_cast<double>(amount) / precision,
-                            getSymbol().c_str());
+    int charsWritten = snprintf(buffer, maxBufferSize, "%.*f %s",
+                                decimals,
+                                static_cast<double>(amount) / precision,
+                                getSymbol().c_str());
 
     if (charsWritten < 0 || charsWritten > maxBufferSize) {
         throw std::runtime_error("Failed to create string representation of asset!");

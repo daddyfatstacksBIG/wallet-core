@@ -46,7 +46,9 @@ struct Transaction {
         : version(version), lockTime(lockTime), inputs(), outputs(), hasher(hasher) {}
 
     /// Whether the transaction is empty.
-    bool empty() const { return inputs.empty() && outputs.empty(); }
+    bool empty() const {
+        return inputs.empty() && outputs.empty();
+    }
 
     /// Generates the signature pre-image.
     std::vector<uint8_t> getPreImage(const Script& scriptCode, size_t index, enum TWBitcoinSigHashType hashType,
@@ -68,14 +70,14 @@ struct Transaction {
     /// Converts to Protobuf model
     Proto::Transaction proto() const;
 
-  private:
+private:
     /// Generates the signature hash for Witness version 0 scripts.
     std::vector<uint8_t> getSignatureHashWitnessV0(const Script& scriptCode, size_t index,
-                                                   enum TWBitcoinSigHashType hashType, uint64_t amount) const;
+            enum TWBitcoinSigHashType hashType, uint64_t amount) const;
 
     /// Generates the signature hash for for scripts other than witness scripts.
     std::vector<uint8_t> getSignatureHashBase(const Script& scriptCode, size_t index,
-                                              enum TWBitcoinSigHashType hashType) const;
+            enum TWBitcoinSigHashType hashType) const;
 };
 
 } // namespace TW::Bitcoin

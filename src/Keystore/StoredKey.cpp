@@ -31,7 +31,7 @@ StoredKey StoredKey::createWithMnemonic(const std::string& name, const Data& pas
     if (!HDWallet::isValid(mnemonic)) {
         throw std::invalid_argument("Invalid mnemonic");
     }
-    
+
     Data mnemonicData = TW::Data(mnemonic.begin(), mnemonic.end());
     StoredKey key = StoredKey(StoredKeyType::mnemonicPhrase, name, password, mnemonicData);
     return key;
@@ -119,7 +119,7 @@ const Account* StoredKey::account(TWCoinType coin, const HDWallet* wallet) {
 
     const auto derivationPath = TW::derivationPath(coin);
     const auto address = wallet->deriveAddress(coin);
-    
+
     const auto version = TW::xpubVersion(coin);
     const auto extendedPublicKey = wallet->getExtendedPublicKey(derivationPath.purpose(), coin, version);
 
@@ -134,8 +134,8 @@ void StoredKey::addAccount(const std::string& address, const DerivationPath& der
 void StoredKey::removeAccount(TWCoinType coin) {
     accounts.erase(std::remove_if(accounts.begin(), accounts.end(), [coin](Account& account) -> bool {
         return account.coin() == coin;
-        }
-    ), accounts.end());
+    }
+                                 ), accounts.end());
 }
 
 
@@ -153,29 +153,29 @@ const PrivateKey StoredKey::privateKey(TWCoinType coin, const Data& password) {
 
 void StoredKey::fixAddresses(const Data& password) {
     switch (type) {
-        case StoredKeyType::mnemonicPhrase: {
-                const auto wallet = this->wallet(password);
-                for (auto& account : accounts) {
-                    if (!account.address.empty() && TW::validateAddress(account.coin(), account.address)) {
-                        continue;
-                    }
-                    const auto& derivationPath = account.derivationPath;
-                    const auto key = wallet.getKey(derivationPath);
-                    account.address = TW::deriveAddress(derivationPath.coin(), key);
-                }
+    case StoredKeyType::mnemonicPhrase: {
+        const auto wallet = this->wallet(password);
+        for (auto& account : accounts) {
+            if (!account.address.empty() && TW::validateAddress(account.coin(), account.address)) {
+                continue;
             }
-            break;
+            const auto& derivationPath = account.derivationPath;
+            const auto key = wallet.getKey(derivationPath);
+            account.address = TW::deriveAddress(derivationPath.coin(), key);
+        }
+    }
+    break;
 
-        case StoredKeyType::privateKey: {
-                auto key = PrivateKey(payload.decrypt(password));
-                for (auto& account : accounts) {
-                    if (!account.address.empty() && TW::validateAddress(account.coin(), account.address)) {
-                        continue;
-                    }
-                    account.address = TW::deriveAddress(account.coin(), key);
-                }
+    case StoredKeyType::privateKey: {
+        auto key = PrivateKey(payload.decrypt(password));
+        for (auto& account : accounts) {
+            if (!account.address.empty() && TW::validateAddress(account.coin(), account.address)) {
+                continue;
             }
-            break;
+            account.address = TW::deriveAddress(account.coin(), key);
+        }
+    }
+    break;
     }
 }
 
@@ -212,7 +212,7 @@ static const auto mnemonic = "mnemonic";
 
 void StoredKey::loadJson(const nlohmann::json& json) {
     if (json.count(CodingKeys::type) != 0 &&
-        json[CodingKeys::type].get<std::string>() == TypeString::mnemonic) {
+            json[CodingKeys::type].get<std::string>() == TypeString::mnemonic) {
         type = StoredKeyType::mnemonicPhrase;
     } else {
         type = StoredKeyType::privateKey;
@@ -236,7 +236,7 @@ void StoredKey::loadJson(const nlohmann::json& json) {
     }
 
     if (json.count(CodingKeys::activeAccounts) != 0 &&
-        json[CodingKeys::activeAccounts].is_array()) {
+            json[CodingKeys::activeAccounts].is_array()) {
         for (auto& accountJSON : json[CodingKeys::activeAccounts]) {
             accounts.emplace_back(accountJSON);
         }

@@ -19,9 +19,9 @@ using namespace TW;
 
 TEST(NEO, ExtendedKeys) {
     auto wallet = WRAP(TWHDWallet, TWHDWalletCreateWithMnemonic(
-        STRING("client recycle grass verb guitar battle abstract table they swamp accuse athlete recall ski light").get(),
-        STRING("NEO").get()
-    ));
+                           STRING("client recycle grass verb guitar battle abstract table they swamp accuse athlete recall ski light").get(),
+                           STRING("NEO").get()
+                       ));
 
     auto xpub = WRAPS(TWHDWalletGetExtendedPublicKey(wallet.get(), TWPurposeBIP44, TWCoinTypeNEO, TWHDVersionXPUB));
     auto xprv = WRAPS(TWHDWalletGetExtendedPrivateKey(wallet.get(), TWPurposeBIP44, TWCoinTypeNEO, TWHDVersionXPRV));

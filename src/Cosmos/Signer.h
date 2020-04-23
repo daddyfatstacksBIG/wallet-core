@@ -13,7 +13,7 @@ namespace TW::Cosmos {
 
 /// Helper class that performs Cosmos transaction signing.
 class Signer {
-  public:
+public:
     /// Signs a Proto::SigningInput transaction
     static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
     /// Signs a json Proto::SigningInput with private key

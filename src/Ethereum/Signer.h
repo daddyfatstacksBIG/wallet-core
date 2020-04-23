@@ -23,13 +23,13 @@ namespace TW::Ethereum {
 
 /// Helper class that performs Ethereum transaction signing.
 class Signer {
-  public:
+public:
     /// Signs a Proto::SigningInput transaction
     static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
     /// Signs a json Proto::SigningInput with private key
     static std::string signJSON(const std::string& json, const Data& key);
 
-  public:
+public:
     uint256_t chainID;
 
     /// Initializes a signer with a chain identifier.
@@ -38,7 +38,7 @@ class Signer {
     /// Signs the given transaction.
     void sign(const PrivateKey &privateKey, Transaction &transaction) const noexcept;
 
-  public:
+public:
     /// build Transaction from signing input
     static Transaction build(const Proto::SigningInput &input);
 
@@ -52,9 +52,9 @@ class Signer {
     ///
     /// @returns the r, s, and v values of the transaction signature
     static std::tuple<uint256_t, uint256_t, uint256_t> values(const uint256_t &chainID,
-                                                              const Data &signature) noexcept;
+            const Data &signature) noexcept;
 
-  protected:
+protected:
     /// Computes the transaction hash.
     Data hash(const Transaction &transaction) const noexcept;
 };

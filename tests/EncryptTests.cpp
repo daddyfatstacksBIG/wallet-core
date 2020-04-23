@@ -41,7 +41,7 @@ TEST(Encrypt, paddingSize) {
 }
 
 TEST(Encrypt, AESCBCEncrypt) {
-	auto iv = parse_hex("000102030405060708090A0B0C0D0E0F");
+    auto iv = parse_hex("000102030405060708090A0B0C0D0E0F");
     auto data = parse_hex("6bc1bee22e409f96e93d7e117393172a");
 
     auto encryptResult = AESCBCEncrypt(key, data, iv);
@@ -52,20 +52,20 @@ TEST(Encrypt, AESCBCEncryptWithPadding) {
     const Data key = parse_hex("bf6cfdd852f79460981062f551f1dc3215b5e26609bc2a275d5b2da21798b489");
     const Data message = TW::data("secret message");
     {
-        Data iv = parse_hex("f300888ca4f512cebdc0020ff0f7224c");        
+        Data iv = parse_hex("f300888ca4f512cebdc0020ff0f7224c");
         Data encrypted = AESCBCEncrypt(key, message, iv, PadWithPaddingSize);
         assertHexEqual(encrypted, "7f896315e90e172bed65d005138f224d");
     }
     {
         // with no padding
-        Data iv = parse_hex("f300888ca4f512cebdc0020ff0f7224c");        
+        Data iv = parse_hex("f300888ca4f512cebdc0020ff0f7224c");
         Data encrypted = AESCBCEncrypt(key, message, iv, PadWithZeros);
         assertHexEqual(encrypted, "11bcbfebb2db19fb5a5cbf458e0f699e");
     }
 }
 
 TEST(Encrypt, AESCBCDecrypt) {
-	auto iv = parse_hex("000102030405060708090A0B0C0D0E0F");
+    auto iv = parse_hex("000102030405060708090A0B0C0D0E0F");
     auto cipher = parse_hex("f58c4c04d6e5f1ba779eabfb5f7bfbd6");
 
     auto decryptResult = AESCBCDecrypt(key, cipher, iv);
@@ -76,14 +76,14 @@ TEST(Encrypt, AESCBCDecryptWithPadding) {
     const Data key = parse_hex("bf6cfdd852f79460981062f551f1dc3215b5e26609bc2a275d5b2da21798b489");
     {
         const Data encryptedPadded = parse_hex("7f896315e90e172bed65d005138f224d");
-        Data iv = parse_hex("f300888ca4f512cebdc0020ff0f7224c");        
+        Data iv = parse_hex("f300888ca4f512cebdc0020ff0f7224c");
         Data encrypted = AESCBCDecrypt(key, encryptedPadded, iv, PadWithPaddingSize);
         assertHexEqual(encrypted, hex(TW::data("secret message")).c_str());
     }
     {
         // with no padding
         const Data encryptedNotPadded = parse_hex("11bcbfebb2db19fb5a5cbf458e0f699e");
-        Data iv = parse_hex("f300888ca4f512cebdc0020ff0f7224c");        
+        Data iv = parse_hex("f300888ca4f512cebdc0020ff0f7224c");
         Data encrypted = AESCBCDecrypt(key, encryptedNotPadded, iv);
         Data expected = TW::data("secret message");
         TW::append(expected, 0);
@@ -93,7 +93,7 @@ TEST(Encrypt, AESCBCDecryptWithPadding) {
 }
 
 TEST(Encrypt, AESCTREncrypt) {
-	auto iv = parse_hex("f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff");
+    auto iv = parse_hex("f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff");
     auto data = parse_hex("6bc1bee22e409f96e93d7e117393172a");
 
     auto encryptResult = AESCTREncrypt(key, data, iv);
@@ -101,7 +101,7 @@ TEST(Encrypt, AESCTREncrypt) {
 }
 
 TEST(Encrypt, AESCTRDecrypt) {
-	auto iv = parse_hex("f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff");
+    auto iv = parse_hex("f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff");
     auto cipher = parse_hex("601ec313775789a5b7a7f504bbf3d228");
 
     auto decryptResult = AESCTRDecrypt(key, cipher, iv);

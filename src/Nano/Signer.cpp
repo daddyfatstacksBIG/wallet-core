@@ -59,28 +59,31 @@ std::array<byte, 32> previousFromInput(const Proto::SigningInput& input) {
 std::array<byte, 32> linkFromInput(const Proto::SigningInput& input, bool emptyParentHash = false) {
     std::array<byte, 32> link = {0};
     switch (input.link_oneof_case()) {
-        case Proto::SigningInput::kLinkBlock: {
-            if (input.link_block().size() != link.size()) {
-                throw std::invalid_argument("Invalid link block hash");
-            }
-            std::copy_n(input.link_block().begin(), link.size(), link.begin());
-            break;
+    case Proto::SigningInput::kLinkBlock: {
+        if (input.link_block().size() != link.size()) {
+            throw std::invalid_argument("Invalid link block hash");
         }
-        case Proto::SigningInput::kLinkRecipient: {
-            if (!emptyParentHash) {
-                auto toAddress = Address(input.link_recipient());
-                std::copy_n(toAddress.bytes.begin(), link.size(), link.begin());
-            }
-            break;
+        std::copy_n(input.link_block().begin(), link.size(), link.begin());
+        break;
+    }
+    case Proto::SigningInput::kLinkRecipient: {
+        if (!emptyParentHash) {
+            auto toAddress = Address(input.link_recipient());
+            std::copy_n(toAddress.bytes.begin(), link.size(), link.begin());
         }
-        case Proto::SigningInput::LINK_ONEOF_NOT_SET: break;
+        break;
+    }
+    case Proto::SigningInput::LINK_ONEOF_NOT_SET:
+        break;
     }
     return link;
 }
 
 std::array<byte, 32> hashBlockData(const PublicKey& publicKey, const Proto::SigningInput& input) {
     std::array<byte, 32> parentHash = previousFromInput(input);
-    bool emptyParentHash = std::all_of(parentHash.begin(), parentHash.end(), [](auto b) { return b == 0; });
+    bool emptyParentHash = std::all_of(parentHash.begin(), parentHash.end(), [](auto b) {
+        return b == 0;
+    });
 
     std::array<byte, 32> repPublicKey = {0};
     auto repAddress = Address(input.representative());
@@ -99,7 +102,9 @@ std::array<byte, 32> hashBlockData(const PublicKey& publicKey, const Proto::Sign
     }
 
     std::array<byte, 32> link = linkFromInput(input, emptyParentHash);
-    bool emptyLink = std::all_of(link.begin(), link.end(), [](auto b) { return b == 0; });
+    bool emptyLink = std::all_of(link.begin(), link.end(), [](auto b) {
+        return b == 0;
+    });
     if (emptyParentHash && emptyLink) {
         throw std::invalid_argument("Missing link block hash");
     }
@@ -120,12 +125,12 @@ std::array<byte, 32> hashBlockData(const PublicKey& publicKey, const Proto::Sign
 }
 
 Signer::Signer(const Proto::SigningInput& input)
-  : privateKey(Data(input.private_key().begin(), input.private_key().end())),
-    publicKey(privateKey.getPublicKey(TWPublicKeyTypeED25519Blake2b)),
-    input(input),
-    previous{previousFromInput(input)},
-    link{linkFromInput(input)},
-    blockHash(hashBlockData(publicKey, input)) {}
+    : privateKey(Data(input.private_key().begin(), input.private_key().end())),
+      publicKey(privateKey.getPublicKey(TWPublicKeyTypeED25519Blake2b)),
+      input(input),
+      previous{previousFromInput(input)},
+      link{linkFromInput(input)},
+      blockHash(hashBlockData(publicKey, input)) {}
 
 
 Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {

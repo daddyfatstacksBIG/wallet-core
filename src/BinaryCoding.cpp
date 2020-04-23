@@ -26,13 +26,13 @@ void encode64LE(uint64_t val, vector<uint8_t>& data) {
 uint64_t decode64LE(const uint8_t* _Nonnull src) {
     // clang-format off
     return static_cast<uint64_t>(src[0])
-        | (static_cast<uint64_t>(src[1]) << 8)
-        | (static_cast<uint64_t>(src[2]) << 16)
-        | (static_cast<uint64_t>(src[3]) << 24)
-        | (static_cast<uint64_t>(src[4]) << 32)
-        | (static_cast<uint64_t>(src[5]) << 40)
-        | (static_cast<uint64_t>(src[6]) << 48)
-        | (static_cast<uint64_t>(src[7]) << 56);
+           | (static_cast<uint64_t>(src[1]) << 8)
+           | (static_cast<uint64_t>(src[2]) << 16)
+           | (static_cast<uint64_t>(src[3]) << 24)
+           | (static_cast<uint64_t>(src[4]) << 32)
+           | (static_cast<uint64_t>(src[5]) << 40)
+           | (static_cast<uint64_t>(src[6]) << 48)
+           | (static_cast<uint64_t>(src[7]) << 56);
     // clang-format on
 }
 
@@ -88,10 +88,18 @@ tuple<bool, uint64_t> decodeVarInt(const Data& in, size_t& indexInOut) {
     uint8_t size = 0;
     const auto firstByte = in[indexInOut];
     switch (firstByte) {
-        case 0xfd: size = 2; break;
-        case 0xfe: size = 4; break;
-        case 0xff: size = 8; break;
-        default: size = 0; break; // one-byte case is one byte, with not discriminator
+    case 0xfd:
+        size = 2;
+        break;
+    case 0xfe:
+        size = 4;
+        break;
+    case 0xff:
+        size = 8;
+        break;
+    default:
+        size = 0;
+        break; // one-byte case is one byte, with not discriminator
     }
     ++indexInOut;
     assert(size == 0 || size == 2 || size == 4 || size == 8);
@@ -102,11 +110,19 @@ tuple<bool, uint64_t> decodeVarInt(const Data& in, size_t& indexInOut) {
 
     uint64_t number = 0;
     switch (size) {
-        default:
-        case 0: number = firstByte; break;
-        case 2: number = decode16LE(in.data() + indexInOut); break;
-        case 4: number = decode32LE(in.data() + indexInOut); break;
-        case 8: number = decode64LE(in.data() + indexInOut); break;
+    default:
+    case 0:
+        number = firstByte;
+        break;
+    case 2:
+        number = decode16LE(in.data() + indexInOut);
+        break;
+    case 4:
+        number = decode32LE(in.data() + indexInOut);
+        break;
+    case 8:
+        number = decode64LE(in.data() + indexInOut);
+        break;
     }
     indexInOut += size;
     return make_tuple(true, number);
@@ -126,13 +142,13 @@ void encode64BE(uint64_t val, vector<uint8_t>& data) {
 uint64_t decode64BE(const uint8_t* _Nonnull src) {
     // clang-format off
     return static_cast<uint64_t>(src[7])
-        | (static_cast<uint64_t>(src[6]) << 8)
-        | (static_cast<uint64_t>(src[5]) << 16)
-        | (static_cast<uint64_t>(src[4]) << 24)
-        | (static_cast<uint64_t>(src[3]) << 32)
-        | (static_cast<uint64_t>(src[2]) << 40)
-        | (static_cast<uint64_t>(src[1]) << 48)
-        | (static_cast<uint64_t>(src[0]) << 56);
+           | (static_cast<uint64_t>(src[6]) << 8)
+           | (static_cast<uint64_t>(src[5]) << 16)
+           | (static_cast<uint64_t>(src[4]) << 24)
+           | (static_cast<uint64_t>(src[3]) << 32)
+           | (static_cast<uint64_t>(src[2]) << 40)
+           | (static_cast<uint64_t>(src[1]) << 48)
+           | (static_cast<uint64_t>(src[0]) << 56);
     // clang-format on
 }
 
@@ -142,13 +158,17 @@ void encodeString(const string& str, vector<uint8_t>& data) {
     data.insert(data.end(), str.data(), str.data() + size);
 }
 
-/// Decodes an ASCII string prefixed by its length (varInt) 
+/// Decodes an ASCII string prefixed by its length (varInt)
 tuple<bool, string>  decodeString(const Data& in, size_t& indexInOut) {
     const auto lenTup = decodeVarInt(in, indexInOut);
-    if (!get<0>(lenTup)) { return make_tuple(false, ""); }
+    if (!get<0>(lenTup)) {
+        return make_tuple(false, "");
+    }
     const auto len = get<1>(lenTup);
     // read bytes into string
-    if (in.size() < indexInOut + len) { return make_tuple(false, ""); }
+    if (in.size() < indexInOut + len) {
+        return make_tuple(false, "");
+    }
     string result(in.data() + indexInOut, in.data() + indexInOut + len);
     indexInOut += len;
     return make_tuple(true, result);

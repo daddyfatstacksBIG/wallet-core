@@ -38,7 +38,9 @@ void ValueEncoder::encodeInt256(const int256_t& value, Data& inout) {
 
 inline Data paddedOnLeft(const Data& inout) {
     int paddingSize = (int)(ValueEncoder::encodedIntSize - inout.size());
-    if (paddingSize <= 0) { return inout; }
+    if (paddingSize <= 0) {
+        return inout;
+    }
     assert(inout.size() < ValueEncoder::encodedIntSize);
     Data res(paddingSize); // padding on left
     append(res, inout);
@@ -84,12 +86,16 @@ void ValueEncoder::encodeBytesDyn(const Data& value, Data& inout) {
 
 int256_t ValueEncoder::int256FromUint256(uint256_t x) {
     static const uint256_t maxNeg = uint256_t(1) << 255;
-    if (x <= maxNeg) { return static_cast<int256_t>(x); }
+    if (x <= maxNeg) {
+        return static_cast<int256_t>(x);
+    }
     return -(static_cast<int256_t>(~x)) - 1;
 }
 
 uint256_t ValueEncoder::uint256FromInt256(int256_t x) {
-    if (x >= 0) { return static_cast<uint256_t>(x); }
+    if (x >= 0) {
+        return static_cast<uint256_t>(x);
+    }
     return ~static_cast<uint256_t>(-(x + 1));
 }
 

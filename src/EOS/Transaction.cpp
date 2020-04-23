@@ -85,7 +85,7 @@ void Transaction::setReferenceBlock(const Data& refBlockId) {
     refBlockPrefix = decode32LE(refBlockId.data() + 8);
 }
 
-void Transaction::serialize(Data& os) const noexcept{
+void Transaction::serialize(Data& os) const noexcept {
 
     encode32LE(expiration, os);
     encode16LE(refBlockNumber, os);

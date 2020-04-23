@@ -25,16 +25,24 @@ public:
     virtual std::vector<TWCoinType> coinTypes() const = 0;
     virtual bool validateAddress(TWCoinType coin, const std::string& address, TW::byte p2pkh, TW::byte p2sh, const char* hrp) const = 0;
     // normalizeAddress is optional, it may leave this default, no-change implementation
-    virtual std::string normalizeAddress(TWCoinType coin, const std::string& address) const { return address; }
+    virtual std::string normalizeAddress(TWCoinType coin, const std::string& address) const {
+        return address;
+    }
     virtual std::string deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte p2pkh, const char* hrp) const = 0;
     // Signing
     virtual void sign(TWCoinType coin, const Data& dataIn, Data& dataOut) const = 0;
-    virtual bool supportsJSONSigning() const { return false; }
+    virtual bool supportsJSONSigning() const {
+        return false;
+    }
     // It is optional, Signing JSON input with private key
-    virtual std::string signJSON(TWCoinType coin, const std::string& json, const Data& key) const { return ""; }
+    virtual std::string signJSON(TWCoinType coin, const std::string& json, const Data& key) const {
+        return "";
+    }
     // Planning, for UTXO chains, in preparation for signing
     // It is optional, only UTXO chains need it, default impl. leaves empty result.
-    virtual void plan(TWCoinType coin, const Data& dataIn, Data& dataOut) const { return; }
+    virtual void plan(TWCoinType coin, const Data& dataIn, Data& dataOut) const {
+        return;
+    }
 };
 
 // In each coin's Entry.cpp the specific types of the coin are used, this template enforces the Signer implement:

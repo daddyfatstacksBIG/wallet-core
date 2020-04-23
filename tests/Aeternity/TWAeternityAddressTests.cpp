@@ -16,9 +16,9 @@ TEST(TWAeternityAddress, HDWallet) {
     auto passphrase = "";
 
     auto wallet = WRAP(TWHDWallet, TWHDWalletCreateWithMnemonic(
-            STRING(mnemonic).get(),
-            STRING(passphrase).get()
-    ));
+                           STRING(mnemonic).get(),
+                           STRING(passphrase).get()
+                       ));
 
     auto privateKey = TWHDWalletGetKey(wallet.get(), TWCoinTypeDerivationPath(TWCoinTypeAeternity));
     auto publicKey = TWPrivateKeyGetPublicKeyEd25519(privateKey);

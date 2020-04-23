@@ -112,25 +112,25 @@ TEST(StoredKey, AccountGetCreate) {
     // not exists, wallet nonnull, create
     const Account* acc3 = key.account(coinTypeBc, &wallet);
     EXPECT_TRUE(acc3 != nullptr);
-    EXPECT_EQ(acc3->coin(), coinTypeBc); 
+    EXPECT_EQ(acc3->coin(), coinTypeBc);
     EXPECT_EQ(key.accounts.size(), 1);
 
     // exists
     const Account* acc4 = key.account(coinTypeBc);
     EXPECT_TRUE(acc4 != nullptr);
-    EXPECT_EQ(acc4->coin(), coinTypeBc); 
+    EXPECT_EQ(acc4->coin(), coinTypeBc);
     EXPECT_EQ(key.accounts.size(), 1);
 
     // exists, wallet nonnull, not create
     const Account* acc5 = key.account(coinTypeBc, &wallet);
     EXPECT_TRUE(acc5 != nullptr);
-    EXPECT_EQ(acc5->coin(), coinTypeBc); 
+    EXPECT_EQ(acc5->coin(), coinTypeBc);
     EXPECT_EQ(key.accounts.size(), 1);
 
     // exists, wallet null, not create
     const Account* acc6 = key.account(coinTypeBc, nullptr);
     EXPECT_TRUE(acc6 != nullptr);
-    EXPECT_EQ(acc6->coin(), coinTypeBc); 
+    EXPECT_EQ(acc6->coin(), coinTypeBc);
     EXPECT_EQ(key.accounts.size(), 1);
 }
 
@@ -282,14 +282,14 @@ TEST(StoredKey, CreateAccounts) {
     string mnemonicPhrase = "team engine square letter hero song dizzy scrub tornado fabric divert saddle";
     auto key = StoredKey::createWithMnemonic("name", password, mnemonicPhrase);
     const auto wallet = key.wallet(password);
-    
+
     EXPECT_EQ(key.account(TWCoinTypeEthereum, &wallet)->address, "0x494f60cb6Ac2c8F5E1393aD9FdBdF4Ad589507F7");
     EXPECT_EQ(key.account(TWCoinTypeEthereum, &wallet)->extendedPublicKey, "");
 
     EXPECT_EQ(key.account(coinTypeBc, &wallet)->address, "bc1qturc268v0f2srjh4r2zu4t6zk4gdutqd5a6zny");
     EXPECT_EQ(key.account(coinTypeBc, &wallet)->extendedPublicKey, "zpub6qbsWdbcKW9sC6shTKK4VEhfWvDCoWpfLnnVfYKHLHt31wKYUwH3aFDz4WLjZvjHZ5W4qVEyk37cRwzTbfrrT1Gnu8SgXawASnkdQ994atn");
 }
-    
+
 TEST(StoredKey, DecodingEthereumAddress) {
     const auto key = StoredKey::load(TESTS_ROOT + "/Keystore/Data/key.json");
 
@@ -301,7 +301,7 @@ TEST(StoredKey, DecodingBitcoinAddress) {
 
     EXPECT_EQ(key.accounts[0].address, "3PWazDi9n1Hfyq9gXFxDxzADNL8RNYyK2y");
 }
-    
+
 TEST(StoredKey, RemoveAccount) {
     auto key = StoredKey::load(TESTS_ROOT + "/Keystore/Data/legacy-mnemonic.json");
     EXPECT_EQ(key.accounts.size(), 2);

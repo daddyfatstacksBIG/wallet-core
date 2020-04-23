@@ -131,7 +131,7 @@ struct CompiledInstruction {
 };
 
 class Hash {
-  public:
+public:
     static const size_t size = 32;
     /// Hash data
     std::array<uint8_t, size> bytes;
@@ -143,7 +143,7 @@ class Hash {
 };
 
 class Signature {
-  public:
+public:
     static const size_t size = 64;
     /// Signature data
     std::array<uint8_t, size> bytes;
@@ -152,8 +152,12 @@ class Signature {
         const auto data = Base58::bitcoin.decode(string);
         std::copy(data.begin(), data.end(), this->bytes.begin());
     }
-    Signature(const std::array<uint8_t, 64>& bytes) { this->bytes = bytes; }
-    Signature(const Data& bytes) { std::copy(bytes.begin(), bytes.end(), this->bytes.begin()); }
+    Signature(const std::array<uint8_t, 64>& bytes) {
+        this->bytes = bytes;
+    }
+    Signature(const Data& bytes) {
+        std::copy(bytes.begin(), bytes.end(), this->bytes.begin());
+    }
 
     bool operator==(const Signature& v) const;
 };
@@ -172,7 +176,7 @@ struct MessageHeader {
 };
 
 class Message {
-  public:
+public:
     // The message header, identifying signed and credit-only `accountKeys`
     MessageHeader header;
     // All the account keys used by this transaction
@@ -183,7 +187,7 @@ class Message {
     // transaction if all succeed.
     std::vector<CompiledInstruction> instructions;
 
-    Message() : recentBlockhash(Hash("11111111111111111111111111111111")){};
+    Message() : recentBlockhash(Hash("11111111111111111111111111111111")) {};
 
     Message(MessageHeader header, std::vector<Address> accountKeys, Hash recentBlockhash,
             std::vector<CompiledInstruction> instructions)
@@ -220,7 +224,8 @@ class Message {
         auto stakeProgramId = Address(STAKE_ADDRESS);
         std::vector<Address> accountKeys = {signer,          stakeAddress,  sysvarRentId,
                                             voteAddress,     sysvarClockId, stakeConfigId,
-                                            systemProgramId, stakeProgramId};
+                                            systemProgramId, stakeProgramId
+                                           };
         this->accountKeys = accountKeys;
 
         std::vector<CompiledInstruction> instructions;
@@ -265,7 +270,8 @@ class Message {
         auto sysvarStakeHistoryId = Address("SysvarStakeHistory1111111111111111111111111");
         auto programId = Address("Stake11111111111111111111111111111111111111");
         std::vector<Address> accountKeys = {signer, stakeAddress, sysvarClockId,
-                                            sysvarStakeHistoryId, programId};
+                                            sysvarStakeHistoryId, programId
+                                           };
         this->accountKeys = accountKeys;
         std::vector<CompiledInstruction> instructions;
         auto instruction = CompiledInstruction(4, Withdraw, value);
@@ -275,7 +281,7 @@ class Message {
 };
 
 class Transaction {
-  public:
+public:
     // Signatures
     std::vector<Signature> signatures;
     // The message to sign
@@ -291,12 +297,12 @@ class Transaction {
         this->signatures.resize(1, Signature(defaultSignature));
     }
 
-  public:
+public:
     std::string serialize() const;
     std::vector<uint8_t> messageData() const;
     uint8_t getAccountIndex(Address publicKey);
 
-  private:
+private:
     std::array<uint8_t, 64> defaultSignature;
 };
 

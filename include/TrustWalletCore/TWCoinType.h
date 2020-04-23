@@ -112,12 +112,12 @@ TWString *_Nonnull TWCoinTypeDerivationPath(enum TWCoinType coin);
 /// Derives the address for a particular coin from the private key.
 TW_EXPORT_METHOD
 TWString *_Nonnull TWCoinTypeDeriveAddress(enum TWCoinType coin,
-                                           struct TWPrivateKey *_Nonnull privateKey);
+        struct TWPrivateKey *_Nonnull privateKey);
 
 /// Derives the address for a particular coin from the public key.
 TW_EXPORT_METHOD
 TWString *_Nonnull TWCoinTypeDeriveAddressFromPublicKey(enum TWCoinType coin,
-                                                        struct TWPublicKey *_Nonnull publicKey);
+        struct TWPublicKey *_Nonnull publicKey);
 
 /// HRP for this coin type
 TW_EXPORT_PROPERTY

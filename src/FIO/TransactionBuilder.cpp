@@ -33,8 +33,10 @@ ChainParams getChainParams(const Proto::SigningInput& input) {
 }
 
 bool TransactionBuilder::expirySetDefaultIfNeeded(uint32_t& expiryTime) {
-    if (expiryTime != 0) { return false; } // no change
-    // fill based on current time 
+    if (expiryTime != 0) {
+        return false;    // no change
+    }
+    // fill based on current time
     expiryTime = (uint32_t)time(nullptr) + ExpirySeconds;
     return true;
 }
@@ -43,13 +45,13 @@ string TransactionBuilder::sign(Proto::SigningInput in) {
     PrivateKey privateKey(in.private_key());
     PublicKey publicKey = privateKey.getPublicKey(TWPublicKeyTypeSECP256k1);
     Address owner(publicKey);
-    
+
     string json;
     if (in.action().has_register_fio_address_message()) {
         const auto action = in.action().register_fio_address_message();
-        json = TransactionBuilder::createRegisterFioAddress(owner, privateKey, 
-            in.action().register_fio_address_message().fio_address(),
-            getChainParams(in), action.fee(), in.tpid(), in.expiry());
+        json = TransactionBuilder::createRegisterFioAddress(owner, privateKey,
+                in.action().register_fio_address_message().fio_address(),
+                getChainParams(in), action.fee(), in.tpid(), in.expiry());
     } else if (in.action().has_add_pub_address_message()) {
         const auto action = in.action().add_pub_address_message();
         // process addresses
@@ -58,32 +60,32 @@ string TransactionBuilder::sign(Proto::SigningInput in) {
             addresses.push_back(std::make_pair(action.public_addresses(i).coin_symbol(), action.public_addresses(i).address()));
         }
         json = TransactionBuilder::createAddPubAddress(owner, privateKey,
-            action.fio_address(), addresses, 
-            getChainParams(in), action.fee(), in.tpid(), in.expiry());
+                action.fio_address(), addresses,
+                getChainParams(in), action.fee(), in.tpid(), in.expiry());
     } else if (in.action().has_transfer_message()) {
         const auto action = in.action().transfer_message();
         json = TransactionBuilder::createTransfer(owner, privateKey,
-            action.payee_public_key(), action.amount(),
-            getChainParams(in), action.fee(), in.tpid(), in.expiry());
+                action.payee_public_key(), action.amount(),
+                getChainParams(in), action.fee(), in.tpid(), in.expiry());
     } else if (in.action().has_renew_fio_address_message()) {
         const auto action = in.action().renew_fio_address_message();
         json = TransactionBuilder::createRenewFioAddress(owner, privateKey,
-            action.fio_address(),
-            getChainParams(in), action.fee(), in.tpid(), in.expiry());
+                action.fio_address(),
+                getChainParams(in), action.fee(), in.tpid(), in.expiry());
     } else if (in.action().has_new_funds_request_message()) {
         const auto action = in.action().new_funds_request_message();
         const auto content = action.content();
         json = TransactionBuilder::createNewFundsRequest(owner, privateKey,
-            action.payer_fio_name(), action.payer_fio_address(), action.payee_fio_name(), content.payee_public_address(),
-            content.amount(), content.coin_symbol(), content.memo(), content.hash(), content.offline_url(),
-            getChainParams(in), action.fee(), in.tpid(), in.expiry(), Data());
+                action.payer_fio_name(), action.payer_fio_address(), action.payee_fio_name(), content.payee_public_address(),
+                content.amount(), content.coin_symbol(), content.memo(), content.hash(), content.offline_url(),
+                getChainParams(in), action.fee(), in.tpid(), in.expiry(), Data());
     }
     return json;
 }
 
-string TransactionBuilder::createRegisterFioAddress(const Address& address, const PrivateKey& privateKey, 
-    const string& fioName,
-    const ChainParams& chainParams, uint64_t fee, const string& walletTpId, uint32_t expiryTime) {
+string TransactionBuilder::createRegisterFioAddress(const Address& address, const PrivateKey& privateKey,
+        const string& fioName,
+        const ChainParams& chainParams, uint64_t fee, const string& walletTpId, uint32_t expiryTime) {
 
     const auto apiName = "regaddress";
 
@@ -91,7 +93,7 @@ string TransactionBuilder::createRegisterFioAddress(const Address& address, cons
     RegisterFioAddressData raData(fioName, address.string(), fee, walletTpId, actor);
     Data serData;
     raData.serialize(serData);
-    
+
     Action action;
     action.account = ContractAddress;
     action.name = apiName;
@@ -109,8 +111,8 @@ string TransactionBuilder::createRegisterFioAddress(const Address& address, cons
 }
 
 string TransactionBuilder::createAddPubAddress(const Address& address, const PrivateKey& privateKey, const string& fioName,
-    const vector<pair<string, string>>& pubAddresses,
-    const ChainParams& chainParams, uint64_t fee, const string& walletTpId, uint32_t expiryTime) {
+        const vector<pair<string, string>>& pubAddresses,
+        const ChainParams& chainParams, uint64_t fee, const string& walletTpId, uint32_t expiryTime) {
 
     const auto apiName = "addaddress";
 
@@ -123,7 +125,7 @@ string TransactionBuilder::createAddPubAddress(const Address& address, const Pri
     AddPubAddressData aaData(fioName, pubAddresses2, fee, walletTpId, actor);
     Data serData;
     aaData.serialize(serData);
-    
+
     Action action;
     action.account = ContractAddress;
     action.name = apiName;
@@ -140,7 +142,7 @@ string TransactionBuilder::createAddPubAddress(const Address& address, const Pri
     return signAdnBuildTx(chainParams.chainId, serTx, privateKey);
 }
 
-string TransactionBuilder::createTransfer(const Address& address, const PrivateKey& privateKey, 
+string TransactionBuilder::createTransfer(const Address& address, const PrivateKey& privateKey,
         const string& payeePublicKey, uint64_t amount,
         const ChainParams& chainParams, uint64_t fee, const string& walletTpId, uint32_t expiryTime) {
 
@@ -150,7 +152,7 @@ string TransactionBuilder::createTransfer(const Address& address, const PrivateK
     TransferData ttData(payeePublicKey, amount, fee, walletTpId, actor);
     Data serData;
     ttData.serialize(serData);
-    
+
     Action action;
     action.account = ContractToken;
     action.name = apiName;
@@ -167,9 +169,9 @@ string TransactionBuilder::createTransfer(const Address& address, const PrivateK
     return signAdnBuildTx(chainParams.chainId, serTx, privateKey);
 }
 
-string TransactionBuilder::createRenewFioAddress(const Address& address, const PrivateKey& privateKey, 
-    const string& fioName,
-    const ChainParams& chainParams, uint64_t fee, const string& walletTpId, uint32_t expiryTime) {
+string TransactionBuilder::createRenewFioAddress(const Address& address, const PrivateKey& privateKey,
+        const string& fioName,
+        const ChainParams& chainParams, uint64_t fee, const string& walletTpId, uint32_t expiryTime) {
 
     const auto apiName = "renewaddress";
 
@@ -177,7 +179,7 @@ string TransactionBuilder::createRenewFioAddress(const Address& address, const P
     RenewFioAddressData raData(fioName, fee, walletTpId, actor);
     Data serData;
     raData.serialize(serData);
-    
+
     Action action;
     action.account = ContractAddress;
     action.name = apiName;
@@ -195,7 +197,7 @@ string TransactionBuilder::createRenewFioAddress(const Address& address, const P
 }
 
 string TransactionBuilder::createNewFundsRequest(const Address& address, const PrivateKey& privateKey,
-        const string& payerFioName, const string& payerFioAddress, const string& payeeFioName, const string& payeePublicAddress, 
+        const string& payerFioName, const string& payerFioAddress, const string& payeeFioName, const string& payeePublicAddress,
         const string& amount, const string& coinSymbol, const string& memo, const string& hash, const string& offlineUrl,
         const ChainParams& chainParams, uint64_t fee, const string& walletTpId, uint32_t expiryTime,
         const Data& iv) {
@@ -217,7 +219,7 @@ string TransactionBuilder::createNewFundsRequest(const Address& address, const P
     NewFundsRequestData nfData(payerFioName, payeeFioName, encodedEncryptedContent, fee, walletTpId, actor);
     Data serData;
     nfData.serialize(serData);
-    
+
     Action action;
     action.account = ContractPayRequest;
     action.name = apiName;

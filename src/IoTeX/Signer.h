@@ -14,15 +14,17 @@ namespace TW::IoTeX {
 
 /// Helper class that performs IoTeX transaction signing
 class Signer {
-  public:
+public:
     /// Signs a Proto::SigningInput transaction
     static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
-  public:
+public:
     Proto::SigningInput input;
     Proto::ActionCore action;
 
     /// Initializes a transaction signer
-    Signer(const Proto::SigningInput& input) : input(input) { toActionCore(); }
+    Signer(const Proto::SigningInput& input) : input(input) {
+        toActionCore();
+    }
 
     /// Signs the transaction
     ///
@@ -37,7 +39,7 @@ class Signer {
     /// Computes the transaction hash
     Data hash() const;
 
-  protected:
+protected:
     /// Converts to proto ActionCore from transaction input
     void toActionCore();
 };

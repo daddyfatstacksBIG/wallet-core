@@ -93,7 +93,7 @@ public:
     std::string actor;
 
     AddPubAddressData(const std::string& fioAddress, std::vector<PublicAddress> addresses,
-        uint64_t fee, const std::string& tpid, const std::string& actor) :
+                      uint64_t fee, const std::string& tpid, const std::string& actor) :
         fioAddress(fioAddress), addresses(addresses),
         fee(fee), tpid(tpid), actor(actor) {}
     void serialize(Data& out) const;
@@ -109,7 +109,7 @@ public:
     std::string actor;
 
     RegisterFioAddressData(const std::string& fioAddress, const std::string& ownerPublicKey,
-        uint64_t fee, const std::string& tpid, const std::string& actor) :
+                           uint64_t fee, const std::string& tpid, const std::string& actor) :
         fioAddress(fioAddress), ownerPublicKey(ownerPublicKey),
         fee(fee), tpid(tpid), actor(actor) {}
     void serialize(Data& out) const;

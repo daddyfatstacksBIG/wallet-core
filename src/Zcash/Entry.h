@@ -14,7 +14,9 @@ namespace TW::Zcash {
 /// Note: do not put the implementation here (no matter how simple), to avoid having coin-specific includes in this file
 class Entry: public CoinEntry {
 public:
-    virtual std::vector<TWCoinType> coinTypes() const { return {TWCoinTypeZcash, TWCoinTypeZelcash}; }
+    virtual std::vector<TWCoinType> coinTypes() const {
+        return {TWCoinTypeZcash, TWCoinTypeZelcash};
+    }
     virtual bool validateAddress(TWCoinType coin, const std::string& address, TW::byte p2pkh, TW::byte p2sh, const char* hrp) const;
     // normalizeAddress is not used
     virtual std::string deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte p2pkh, const char* hrp) const;

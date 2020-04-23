@@ -15,7 +15,7 @@
 TEST(TWFilecoinCoinType, TWCoinType) {
     auto symbol = WRAPS(TWCoinTypeConfigurationGetSymbol(TWCoinTypeFilecoin));
     auto txId = TWStringCreateWithUTF8Bytes(
-        "bafy2bzacecbm3ofxjjzcl2rg32ninphza34mm3ijr55zjsamwfqmz4ib63mqe");
+                    "bafy2bzacecbm3ofxjjzcl2rg32ninphza34mm3ijr55zjsamwfqmz4ib63mqe");
     auto txUrl = WRAPS(TWCoinTypeConfigurationGetTransactionURL(TWCoinTypeFilecoin, txId));
     auto accId = TWStringCreateWithUTF8Bytes("t1nbb73vhk5dtmnsgeaetbo76daepqjtrfoccn74i");
     auto accUrl = WRAPS(TWCoinTypeConfigurationGetAccountURL(TWCoinTypeFilecoin, accId));

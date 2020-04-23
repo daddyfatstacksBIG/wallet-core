@@ -41,10 +41,12 @@ bool TWAnyAddressIsValid(TWString* _Nonnull string, enum TWCoinType coin) {
 }
 
 struct TWAnyAddress* _Nullable TWAnyAddressCreateWithString(TWString* _Nonnull string,
-                                                            enum TWCoinType coin) {
+        enum TWCoinType coin) {
     auto& address = *reinterpret_cast<const std::string*>(string);
     auto normalized = TW::normalizeAddress(coin, address);
-    if (normalized.empty()) { return nullptr; }
+    if (normalized.empty()) {
+        return nullptr;
+    }
     return new TWAnyAddress{TWStringCreateWithUTF8Bytes(normalized.c_str()), coin};
 }
 
@@ -184,7 +186,8 @@ TWData* _Nonnull TWAnyAddressData(struct TWAnyAddress* _Nonnull address) {
         data = Data(addr.bytes.begin(), addr.bytes.end());
         break;
     }
-    default: break;
+    default:
+        break;
     }
     return TWDataCreateWithBytes(data.data(), data.size());
 }

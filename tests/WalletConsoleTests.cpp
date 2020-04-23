@@ -20,7 +20,10 @@ using namespace std;
 
 static stringstream outputss;
 static CommandExecutor cmd(outputss);
-static int staticInit() { cmd.init(); return 0; }
+static int staticInit() {
+    cmd.init();
+    return 0;
+}
 static int dummyStatic = staticInit();
 static const string mnemonic1 = "edge defense waste choose enrich upon flee junk siren film clown finish luggage leader kid quick brick print evidence swap drill paddle truly occur";
 
@@ -437,7 +440,7 @@ TEST(WalletConsole, fileWriteRead) {
     catch(...)
     {
     }
-    
+
     auto pos4 = outputss.str().length();
     cmd.executeLine("fileR __NO_SUCH_FILE__");
     string res4 = outputss.str().substr(pos4);

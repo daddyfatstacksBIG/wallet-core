@@ -27,7 +27,7 @@ TEST(TWIoTeXStaking, Create) {
 
     auto stake = stakingCreate(candidate, amount, 10000, true, payload);
     ASSERT_EQ(hex(stake), "0a29696f313964307033616834673877773964376b63786671383779786537666e723872"
-                          "7074683573686a120331303018904e20012a077061796c6f6164");
+              "7074683573686a120331303018904e20012a077061796c6f6164");
 }
 
 TEST(TWIoTeXStaking, AddDeposit) {
@@ -77,7 +77,7 @@ TEST(TWIoTeXStaking, ChangeCandidate) {
     auto stake = stakingChangeCandidate(10, candidate, payload);
 
     ASSERT_EQ(hex(stake), "080a1229696f3178707136326177383575717a72636367397935686e727976386c"
-                          "64326e6b7079636333677a611a077061796c6f6164");
+              "64326e6b7079636333677a611a077061796c6f6164");
 }
 
 TEST(TWIoTeXStaking, Transfer) {
@@ -89,7 +89,7 @@ TEST(TWIoTeXStaking, Transfer) {
     auto stake = stakingTransfer(10, candidate, payload);
 
     ASSERT_EQ(hex(stake), "080a1229696f3178707136326177383575717a72636367397935686e727976386c6432"
-                          "6e6b7079636333677a611a077061796c6f6164");
+              "6e6b7079636333677a611a077061796c6f6164");
 }
 
 TEST(TWIoTeXStaking, CandidateRegister) {
@@ -127,8 +127,8 @@ TEST(TWIoTeXStaking, CandidateUpdate) {
     auto stake = candidateUpdate(name, operatorAddress, reward);
 
     ASSERT_EQ(hex(stake), "0a04746573741229696f31636c36726c32657635646661393838716d677a6732783468"
-                          "66617a6d7039766e326736366e671a29696f316a757678356730363365753474733833"
-                          "326e756b7034766763776b32676e6335637539617964");
+              "66617a6d7039766e326736366e671a29696f316a757678356730363365753474733833"
+              "326e756b7034766763776b32676e6335637539617964");
 }
 
 TEST(TWIoTeXStaking, SignAll) {
@@ -141,7 +141,7 @@ TEST(TWIoTeXStaking, SignAll) {
     input.set_privatekey(keyhex.data(), keyhex.size());
     Proto::SigningOutput output;
 
-    { // sign stakecreate
+    {   // sign stakecreate
         auto action = input.mutable_stakecreate();
         action->set_candidatename("io19d0p3ah4g8ww9d7kcxfq87yxe7fnr8rpth5shj");
         action->set_stakedamount("100");
@@ -166,7 +166,7 @@ TEST(TWIoTeXStaking, SignAll) {
         output.release_encoded();
         output.release_hash();
     }
-    { // sign stakeadddeposit
+    {   // sign stakeadddeposit
         auto action = input.mutable_stakeadddeposit();
         action->set_bucketindex(10);
         action->set_amount("10");
@@ -185,7 +185,7 @@ TEST(TWIoTeXStaking, SignAll) {
         output.release_encoded();
         output.release_hash();
     }
-    { // sign stakeunstake
+    {   // sign stakeunstake
         auto action = input.mutable_stakeunstake();
         action->set_bucketindex(10);
         action->set_payload("payload");
@@ -203,7 +203,7 @@ TEST(TWIoTeXStaking, SignAll) {
         output.release_encoded();
         output.release_hash();
     }
-    { // sign stakewithdraw
+    {   // sign stakewithdraw
         auto action = input.mutable_stakewithdraw();
         action->set_bucketindex(10);
         action->set_payload("payload");
@@ -221,7 +221,7 @@ TEST(TWIoTeXStaking, SignAll) {
         output.release_encoded();
         output.release_hash();
     }
-    { // sign stakerestake
+    {   // sign stakerestake
         auto action = input.mutable_stakerestake();
         action->set_bucketindex(10);
         action->set_stakedduration(1000);
@@ -241,7 +241,7 @@ TEST(TWIoTeXStaking, SignAll) {
         output.release_encoded();
         output.release_hash();
     }
-    { // sign stakechangecandidate
+    {   // sign stakechangecandidate
         auto action = input.mutable_stakechangecandidate();
         action->set_bucketindex(10);
         action->set_candidatename("io1xpq62aw85uqzrccg9y5hnryv8ld2nkpycc3gza");
@@ -261,7 +261,7 @@ TEST(TWIoTeXStaking, SignAll) {
         output.release_encoded();
         output.release_hash();
     }
-    { // sign staketransfer
+    {   // sign staketransfer
         auto action = input.mutable_staketransferownership();
         action->set_bucketindex(10);
         action->set_voteraddress("io1xpq62aw85uqzrccg9y5hnryv8ld2nkpycc3gza");
@@ -281,7 +281,7 @@ TEST(TWIoTeXStaking, SignAll) {
         output.release_encoded();
         output.release_hash();
     }
-    { // sign candidateupdate
+    {   // sign candidateupdate
         auto action = input.mutable_candidateupdate();
         action->set_name("test");
         action->set_operatoraddress("io1cl6rl2ev5dfa988qmgzg2x4hfazmp9vn2g66ng");
@@ -302,7 +302,7 @@ TEST(TWIoTeXStaking, SignAll) {
         output.release_encoded();
         output.release_hash();
     }
-    { // sign candidateregister
+    {   // sign candidateregister
         input.set_gasprice("1000");
         auto cbi = input.mutable_candidateregister()->mutable_candidate();
         cbi->set_name("test");

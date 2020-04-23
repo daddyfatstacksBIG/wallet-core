@@ -53,8 +53,8 @@ int main() {
         // coin type: we use Ethereum
         const TWCoinType coinType = TWCoinType::TWCoinTypeEthereum; // TWCoinTypeBitcoin, TWCoinTypeEthereum
         cout << "Working with coin: " <<
-            TWStringUTF8Bytes(TWCoinTypeConfigurationGetName(coinType)) << " " <<
-            TWStringUTF8Bytes(TWCoinTypeConfigurationGetSymbol(coinType)) << endl;
+             TWStringUTF8Bytes(TWCoinTypeConfigurationGetName(coinType)) << " " <<
+             TWStringUTF8Bytes(TWCoinTypeConfigurationGetSymbol(coinType)) << endl;
 
         // Derive default address.
         cout << "Obtaining default address ... ";
@@ -97,11 +97,11 @@ int main() {
         string gasLimitB64 = "Ugg=";       // base64(parse_hex("5208")) decimal 21000
         string amountB64 = "A0i8paFgAA=="; // base64(parse_hex("0348bca5a160"))  924400000000000
         string transaction = "{"
-            "\"chainId\":\"" + chainIdB64 +
-            "\",\"gasPrice\":\"" + gasPriceB64 +
-            "\",\"gasLimit\":\"" + gasLimitB64 +
-            "\",\"toAddress\":\"" + dummyReceiverAddress +
-            "\",\"amount\":\"" + amountB64 + "\"}";
+                             "\"chainId\":\"" + chainIdB64 +
+                             "\",\"gasPrice\":\"" + gasPriceB64 +
+                             "\",\"gasLimit\":\"" + gasLimitB64 +
+                             "\",\"toAddress\":\"" + dummyReceiverAddress +
+                             "\",\"amount\":\"" + amountB64 + "\"}";
         cout << "transaction: " << transaction << endl;
 
         cout << "signing transaction ... ";

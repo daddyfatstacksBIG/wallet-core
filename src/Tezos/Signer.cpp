@@ -20,7 +20,7 @@ using namespace TW::Tezos;
 Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
     auto operationList = Tezos::OperationList(input.operation_list().branch());
     for (Proto::Operation operation : input.operation_list().operations()) {
-      operationList.addOperation(operation);
+        operationList.addOperation(operation);
     }
 
     auto signer = Signer();

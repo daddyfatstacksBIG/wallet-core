@@ -22,10 +22,10 @@ namespace TW::Wanchain {
 
 /// Helper class that performs Wanchain transaction signing.
 class Signer {
-  public:
+public:
     /// Signs a Proto::SigningInput transaction
     static Ethereum::Proto::SigningOutput sign(const Ethereum::Proto::SigningInput& input) noexcept;
-  public:
+public:
     boost::multiprecision::uint256_t chainID;
 
     /// Initializes a signer with a chain identifier.
@@ -37,7 +37,7 @@ class Signer {
     /// Encodes a transaction.
     Data encode(const Ethereum::Transaction &transaction) const noexcept;
 
-  protected:
+protected:
     /// Computes the transaction hash.
     Data hash(const Ethereum::Transaction &transaction) const noexcept;
 };

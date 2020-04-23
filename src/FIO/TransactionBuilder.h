@@ -48,9 +48,9 @@ public:
     /// @fee Max fee to spend, can be obtained using get_fee API.
     /// @walletTpId The FIO name of the originating wallet (project-wide constant)
     /// @expiryTime Expiry for this message, can be 0, then it is taken from current time with default expiry
-    static std::string createRegisterFioAddress(const Address& address, const PrivateKey& privateKey, 
-        const std::string& fioName,
-        const ChainParams& chainParams, uint64_t fee, const std::string& walletTpId, uint32_t expiryTime);
+    static std::string createRegisterFioAddress(const Address& address, const PrivateKey& privateKey,
+            const std::string& fioName,
+            const ChainParams& chainParams, uint64_t fee, const std::string& walletTpId, uint32_t expiryTime);
 
     /// Create a signed AddAddress transaction, returned as json string (double quote delimited), suitable for add_pub_address RPC call
     /// @address The owners' FIO address
@@ -63,8 +63,8 @@ public:
     /// @expiryTime Expiry for this message, can be 0, then it is taken from current time with default expiry
     /// Note: fee is usually 0 for add_pub_address.
     static std::string createAddPubAddress(const Address& address, const PrivateKey& privateKey, const std::string& fioName,
-        const std::vector<std::pair<std::string, std::string>>& pubAddresses,
-        const ChainParams& chainParams, uint64_t fee, const std::string& walletTpId, uint32_t expiryTime);
+                                           const std::vector<std::pair<std::string, std::string>>& pubAddresses,
+                                           const ChainParams& chainParams, uint64_t fee, const std::string& walletTpId, uint32_t expiryTime);
 
     /// Create a signed TransferTokens transaction, returned as json string (double quote delimited), suitable for transfer_tokens_pub_key RPC call
     /// @address The owners' FIO address
@@ -75,9 +75,9 @@ public:
     /// @fee Max fee to spend, can be obtained using get_fee API.
     /// @walletTpId The FIO name of the originating wallet (project-wide constant)
     /// @expiryTime Expiry for this message, can be 0, then it is taken from current time with default expiry
-    static std::string createTransfer(const Address& address, const PrivateKey& privateKey, 
-        const std::string& payeePublicKey, uint64_t amount,
-        const ChainParams& chainParams, uint64_t fee, const std::string& walletTpId, uint32_t expiryTime);
+    static std::string createTransfer(const Address& address, const PrivateKey& privateKey,
+                                      const std::string& payeePublicKey, uint64_t amount,
+                                      const ChainParams& chainParams, uint64_t fee, const std::string& walletTpId, uint32_t expiryTime);
 
     /// Create a signed RenewFioAddress transaction, returned as json string (double quote delimited), suitable for register_fio_address RPC call
     /// @address The owners' FIO address. Ex.: "FIO6m1fMdTpRkRBnedvYshXCxLFiC5suRU8KDfx8xxtXp2hntxpnf"
@@ -87,9 +87,9 @@ public:
     /// @fee Max fee to spend, can be obtained using get_fee API.
     /// @walletTpId The FIO name of the originating wallet (project-wide constant)
     /// @expiryTime Expiry for this message, can be 0, then it is taken from current time with default expiry
-    static std::string createRenewFioAddress(const Address& address, const PrivateKey& privateKey, 
-        const std::string& fioName,
-        const ChainParams& chainParams, uint64_t fee, const std::string& walletTpId, uint32_t expiryTime);
+    static std::string createRenewFioAddress(const Address& address, const PrivateKey& privateKey,
+            const std::string& fioName,
+            const ChainParams& chainParams, uint64_t fee, const std::string& walletTpId, uint32_t expiryTime);
 
     /// Create a signed NewFundsRequest transaction, returned as json string (double quote delimited), suitable for new_funds_request RPC call
     /// @address The owners' FIO address. Ex.: "FIO6m1fMdTpRkRBnedvYshXCxLFiC5suRU8KDfx8xxtXp2hntxpnf"
@@ -110,10 +110,10 @@ public:
     /// @iv Optional initial values for encryption, should be empty.  Can be set for testability (16 bytes).
     /// Note: as of FIO testnet v0.9.0, this transaction is not accepted; see https://github.com/trustwallet/wallet-core/issues/850
     static std::string createNewFundsRequest(const Address& address, const PrivateKey& privateKey,
-        const std::string& payerFioName, const std::string& payerFioAddress, const std::string& payeeFioName, const std::string& payeePublicAddress,
-        const std::string& amount, const std::string& coinSymbol, const std::string& memo, const std::string& hash, const std::string& offlineUrl,
-        const ChainParams& chainParams, uint64_t fee, const std::string& walletTpId, uint32_t expiryTime,
-        const Data& iv);
+            const std::string& payerFioName, const std::string& payerFioAddress, const std::string& payeeFioName, const std::string& payeePublicAddress,
+            const std::string& amount, const std::string& coinSymbol, const std::string& memo, const std::string& hash, const std::string& offlineUrl,
+            const ChainParams& chainParams, uint64_t fee, const std::string& walletTpId, uint32_t expiryTime,
+            const Data& iv);
 
     /// Used internally.  Creates signatures and json with transaction.
     static std::string signAdnBuildTx(const Data& chainId, const Data& packedTx, const PrivateKey& privateKey);

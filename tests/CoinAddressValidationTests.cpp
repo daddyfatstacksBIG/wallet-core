@@ -102,7 +102,7 @@ TEST(Coin, validateAddressZcash) {
     EXPECT_FALSE(validateAddress(TWCoinTypeZcash, "1Ma2DrB78K7jmAwaomqZNRMCvgQrNjE2QC"));
 }
 
-TEST(Coin, validateAddressOntology){
+TEST(Coin, validateAddressOntology) {
     EXPECT_TRUE(validateAddress(TWCoinTypeOntology, "AW2f6d82p7dC3jFMrzR5x5GhyTWSB5pxVz"));
     EXPECT_FALSE(validateAddress(TWCoinTypeOntology,"BW2f6d82p7dC3jFMrzR5x5GhyTWSB5pxVz"));
     EXPECT_FALSE(validateAddress(TWCoinTypeOntology,"4646464646464646464646464646464646464646464646464646464646464646"));
@@ -113,7 +113,7 @@ TEST(Coin, ValidateAddressIoTeX) {
     EXPECT_FALSE(validateAddress(TWCoinTypeIoTeX, "io187wzp08vnhjbpkydnr97qlh8kh0dpkkytfam8j"));
 }
 
-TEST(Coin, validateAddressGroestlcoin){
+TEST(Coin, validateAddressGroestlcoin) {
     EXPECT_TRUE(validateAddress(TWCoinTypeGroestlcoin, "Fj62rBJi8LvbmWu2jzkaUX1NFXLEqDLoZM"));
     EXPECT_FALSE(validateAddress(TWCoinTypeGroestlcoin,"Fj62rBJi8LvbmWu2jzkaUX1NFXLEsNpjgw")); // sha256d checksum instead of groestl512d
     EXPECT_FALSE(validateAddress(TWCoinTypeGroestlcoin,"mvbu1Gdy8SUjTenqerxUaZyYjmvedc787y")); // valid checksum, but testnet prefix
@@ -124,7 +124,7 @@ TEST(Coin, validateAddressGroestlcoin){
     EXPECT_FALSE(validateAddress(TWCoinTypeGroestlcoin,"bc1qhkfq3zahaqkkzx5mjnamwjsfpq2jk7z00ppggv"));
 }
 
-TEST(Coin, validateAddressNULS){
+TEST(Coin, validateAddressNULS) {
     EXPECT_TRUE(validateAddress(TWCoinTypeNULS, "NULSd6HgbwcM8wz48f6UkFYHLVriT1L81X9z2"));
     EXPECT_FALSE(validateAddress(TWCoinTypeNULS, "NULSd6HgUxmcJWc88iELEJ7RH9XHsazBQqnJd"));
 }
@@ -155,11 +155,11 @@ TEST(Coin, ValidateAddressNano) {
     EXPECT_FALSE(validateAddress(TWCoinTypeNano, "fake_1nanode8ngaakzbck8smq6ru9bethqwyehomf79sae1k7xd47dkidjqzffeg"));
 }
 
-TEST(Coin, ValidateAddressDGB){
+TEST(Coin, ValidateAddressDGB) {
     EXPECT_TRUE(validateAddress(TWCoinTypeDigiByte, "DBfCffUdSbhqKZhjuvrJ6AgvJofT4E2kp4"));
     EXPECT_TRUE(validateAddress(TWCoinTypeDigiByte, "dgb1q3p2nf26ac6qtdrv4czh5nmp2eshfj9wyn9vv3d"));
-    EXPECT_TRUE(validateAddress(TWCoinTypeDigiByte, "SUngTA1vaC2E62mbnc81Mdos3TcvZHwsVo")); 
-    
+    EXPECT_TRUE(validateAddress(TWCoinTypeDigiByte, "SUngTA1vaC2E62mbnc81Mdos3TcvZHwsVo"));
+
     // bad address
     EXPECT_FALSE(validateAddress(TWCoinTypeDigiByte, "XBfCffUdSbhqKZhjuvrJ6AgvJofT4E2kp4"));
     // bad bech32 address

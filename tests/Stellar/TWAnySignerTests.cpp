@@ -25,7 +25,7 @@ TEST(TWAnySingerStellar, Sign) {
     input.set_sequence(2);
     input.set_destination("GDCYBNRRPIHLHG7X7TKPUPAZ7WVUXCN3VO7WCCK64RIFV5XM5V5K4A52");
     input.set_private_key(key.data(), key.size());
-    input.set_operation_type(Proto::SigningInput_OperationType_PAYMENT);   
+    input.set_operation_type(Proto::SigningInput_OperationType_PAYMENT);
     auto& memoText = *input.mutable_memo_text();
     memoText.set_text("Hello, world!");
 

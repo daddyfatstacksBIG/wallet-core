@@ -17,7 +17,7 @@ using namespace TW::Theta;
 
 TEST(TWAnySignerTheta, Sign) {
     auto privateKey = parse_hex("93a90ea508331dfdf27fb79757d4250b4e84954927ba0073cd67454ac432c737");
-    
+
     Proto::SigningInput input;
     input.set_chain_id("privatenet");
     input.set_to_address("0x9F1233798E905E173560071255140b4A8aBd3Ec6");

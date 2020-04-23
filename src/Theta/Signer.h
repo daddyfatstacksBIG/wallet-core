@@ -17,11 +17,11 @@ namespace TW::Theta {
 
 /// Helper class that performs Theta transaction signing
 class Signer {
-  public:
+public:
     /// Signs a Proto::SigningInput transaction
     static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
 
-  public:
+public:
     std::string chainID;
 
     Signer() = default;
@@ -32,7 +32,7 @@ class Signer {
     /// Signs the given transaction
     Data sign(const PrivateKey& privateKey, const Transaction& transaction) noexcept;
 
-  private:
+private:
     Data encode(const Transaction& transaction) noexcept;
 };
 

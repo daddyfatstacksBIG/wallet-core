@@ -26,6 +26,6 @@ void Entry::sign(TWCoinType coin, const TW::Data& dataIn, TW::Data& dataOut) con
     signTemplate<Signer, Proto::SigningInput>(dataIn, dataOut);
 }
 
-string Entry::signJSON(TWCoinType coin, const std::string& json, const Data& key) const { 
+string Entry::signJSON(TWCoinType coin, const std::string& json, const Data& key) const {
     return Signer::signJSON(json, key);
 }

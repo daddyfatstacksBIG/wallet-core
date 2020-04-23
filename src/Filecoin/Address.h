@@ -16,7 +16,7 @@
 namespace TW::Filecoin {
 
 class Address {
-  public:
+public:
     enum class Type : uint8_t {
         ID = 0,
         SECP256K1 = 1,
@@ -47,12 +47,14 @@ class Address {
     [[nodiscard]] std::string string() const;
 
     /// Returns the type of an address.
-    Type type() const { return getType(bytes[0]); }
+    Type type() const {
+        return getType(bytes[0]);
+    }
 
     /// Address prefix
     static constexpr char PREFIX = 'f';
 
-  public:
+public:
     /// Attempts to get the type by number.
     static Type getType(uint8_t raw) {
         switch (raw) {
@@ -79,7 +81,9 @@ class Address {
     }
 
     /// Returns ASCII character of type
-    static char typeAscii(Type t) { return '0' + static_cast<char>(t); }
+    static char typeAscii(Type t) {
+        return '0' + static_cast<char>(t);
+    }
 
     // Returns the payload size (excluding any prefixes) of an address type.
     // If the payload size is undefined/variable (e.g. ID)

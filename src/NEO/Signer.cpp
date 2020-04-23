@@ -67,7 +67,7 @@ Proto::TransactionPlan Signer::plan(const Proto::SigningInput& input) {
             }
 
             if (input.inputs(i).asset_id() != input.gas_asset_id() &&
-                required[input.inputs(i).asset_id()] < available[input.inputs(i).asset_id()]) {
+                    required[input.inputs(i).asset_id()] < available[input.inputs(i).asset_id()]) {
                 continue;
             }
 
@@ -80,7 +80,7 @@ Proto::TransactionPlan Signer::plan(const Proto::SigningInput& input) {
             auto outputPlan = plan.add_outputs();
 
             if (available.find(input.inputs(i).asset_id()) == available.end() ||
-                available[input.outputs(i).asset_id()] < input.outputs(i).amount()) {
+                    available[input.outputs(i).asset_id()] < input.outputs(i).amount()) {
                 throw "Input balance for asset too low";
             }
 
@@ -115,7 +115,7 @@ Proto::TransactionPlan Signer::plan(const Proto::SigningInput& input) {
             existGASTransfer = plan.outputs_size() - 1;
 
             if (available.find(input.gas_asset_id()) == available.end() ||
-                available[input.gas_asset_id()] < 1024) {
+                    available[input.gas_asset_id()] < 1024) {
                 throw "Transaction too big, fee in GAS needed or try send by parts";
             }
 
@@ -150,7 +150,7 @@ Proto::TransactionPlan Signer::plan(const Proto::SigningInput& input) {
 }
 
 Transaction Signer::prepareUnsignedTransaction(const Proto::SigningInput& input,
-                                               const Proto::TransactionPlan& plan, bool validate) {
+        const Proto::TransactionPlan& plan, bool validate) {
     try {
         auto transaction = Transaction();
         transaction.type = TransactionType::TT_ContractTransaction;
@@ -169,7 +169,7 @@ Transaction Signer::prepareUnsignedTransaction(const Proto::SigningInput& input,
         for (int i = 0; i < plan.outputs_size(); i++) {
             if (plan.outputs(i).asset_id() == input.gas_asset_id()) {
                 if (validate && plan.outputs(i).amount() + plan.outputs(i).change() + plan.fee() !=
-                                    plan.outputs(i).available_amount()) {
+                        plan.outputs(i).available_amount()) {
                     throw "Wrong fee";
                 }
             }

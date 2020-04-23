@@ -49,7 +49,7 @@ Result<Transaction> TransactionSigner<Transaction, TransactionBuilder>::sign() {
 
 template <typename Transaction, typename TransactionBuilder>
 Result<void> TransactionSigner<Transaction, TransactionBuilder>::sign(Script script, size_t index,
-                                                  const Bitcoin::Proto::UnspentTransaction& utxo) {
+        const Bitcoin::Proto::UnspentTransaction& utxo) {
     Script redeemScript;
     std::vector<Data> results;
     std::vector<Data> witnessStack;
@@ -60,7 +60,8 @@ Result<void> TransactionSigner<Transaction, TransactionBuilder>::sign(Script scr
         } else {
             return BASE;
         }
-    }();
+    }
+    ();
     auto result = signStep(script, index, utxo, signatureVersion);
     if (result) {
         results = result.payload();
@@ -118,7 +119,7 @@ Result<void> TransactionSigner<Transaction, TransactionBuilder>::sign(Script scr
 
 template <typename Transaction, typename TransactionBuilder>
 Result<std::vector<Data>> TransactionSigner<Transaction, TransactionBuilder>::signStep(
-    Script script, size_t index, const Bitcoin::Proto::UnspentTransaction& utxo, uint32_t version) {
+Script script, size_t index, const Bitcoin::Proto::UnspentTransaction& utxo, uint32_t version) {
     Transaction transactionToSign(transaction);
     transactionToSign.inputs = signedInputs;
     transactionToSign.outputs = transaction.outputs;
@@ -148,7 +149,7 @@ Result<std::vector<Data>> TransactionSigner<Transaction, TransactionBuilder>::si
         // Error: Invalid sutput script
         return Result<std::vector<Data>>::failure("Invalid output script.");
     } else if (script.matchMultisig(keys, required)) {
-        auto results = std::vector<Data>{{}}; // workaround CHECKMULTISIG bug
+        auto results = std::vector<Data> {{}}; // workaround CHECKMULTISIG bug
         for (auto& pubKey : keys) {
             if (results.size() >= required + 1) {
                 break;
@@ -206,11 +207,11 @@ Result<std::vector<Data>> TransactionSigner<Transaction, TransactionBuilder>::si
 
 template <typename Transaction, typename TransactionBuilder>
 Data TransactionSigner<Transaction, TransactionBuilder>::createSignature(const Transaction& transaction,
-                                                     const Script& script, const Data& key,
-                                                     size_t index, Amount amount,
-                                                     uint32_t version) {
+        const Script& script, const Data& key,
+        size_t index, Amount amount,
+        uint32_t version) {
     auto sighash = transaction.getSignatureHash(script, index, static_cast<TWBitcoinSigHashType>(input.hash_type()), amount,
-                                                static_cast<SignatureVersion>(version));
+                   static_cast<SignatureVersion>(version));
     auto pk = PrivateKey(key);
     auto sig = pk.signAsDER(Data(begin(sighash), end(sighash)), TWCurveSECP256k1);
     if (sig.empty()) {

@@ -16,63 +16,63 @@ using namespace std;
 
 bool Entry::validateAddress(TWCoinType coin, const string& address, TW::byte p2pkh, TW::byte p2sh, const char* hrp) const {
     switch (coin) {
-        case TWCoinTypeBitcoin:
-        case TWCoinTypeDigiByte:
-        case TWCoinTypeLitecoin:
-        case TWCoinTypeMonacoin:
-        case TWCoinTypeQtum:
-        case TWCoinTypeViacoin:
-            return SegwitAddress::isValid(address, hrp)
-                || Address::isValid(address, {{p2pkh}, {p2sh}});
+    case TWCoinTypeBitcoin:
+    case TWCoinTypeDigiByte:
+    case TWCoinTypeLitecoin:
+    case TWCoinTypeMonacoin:
+    case TWCoinTypeQtum:
+    case TWCoinTypeViacoin:
+        return SegwitAddress::isValid(address, hrp)
+        || Address::isValid(address, {{p2pkh}, {p2sh}});
 
-        case TWCoinTypeBitcoinCash:
-            return CashAddress::isValid(address)
-                || Address::isValid(address, {{p2pkh}, {p2sh}});
+    case TWCoinTypeBitcoinCash:
+        return CashAddress::isValid(address)
+        || Address::isValid(address, {{p2pkh}, {p2sh}});
 
-        case TWCoinTypeDash:
-        case TWCoinTypeDogecoin:
-        case TWCoinTypeRavencoin:
-        case TWCoinTypeZcoin:
-        default:
-            return Address::isValid(address, {{p2pkh}, {p2sh}});
+    case TWCoinTypeDash:
+    case TWCoinTypeDogecoin:
+    case TWCoinTypeRavencoin:
+    case TWCoinTypeZcoin:
+    default:
+        return Address::isValid(address, {{p2pkh}, {p2sh}});
     }
 }
 
 string Entry::normalizeAddress(TWCoinType coin, const string& address) const {
     switch (coin) {
-        case TWCoinTypeBitcoinCash:
-            // normalized with bitcoincash: prefix
-            if (CashAddress::isValid(address)) {
-                return CashAddress(address).string();
-            } else {
-                return std::string(address);
-            }
+    case TWCoinTypeBitcoinCash:
+        // normalized with bitcoincash: prefix
+        if (CashAddress::isValid(address)) {
+            return CashAddress(address).string();
+        } else {
+            return std::string(address);
+        }
 
-        default:
-            // no change
-            return address;
+    default:
+        // no change
+        return address;
     }
 }
 
 string Entry::deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte p2pkh, const char* hrp) const {
     switch (coin) {
-        case TWCoinTypeBitcoin:
-        case TWCoinTypeDigiByte:
-        case TWCoinTypeLitecoin:
-        case TWCoinTypeViacoin:
-            return SegwitAddress(publicKey, 0, hrp).string();
+    case TWCoinTypeBitcoin:
+    case TWCoinTypeDigiByte:
+    case TWCoinTypeLitecoin:
+    case TWCoinTypeViacoin:
+        return SegwitAddress(publicKey, 0, hrp).string();
 
-        case TWCoinTypeBitcoinCash:
-            return CashAddress(publicKey).string();
+    case TWCoinTypeBitcoinCash:
+        return CashAddress(publicKey).string();
 
-        case TWCoinTypeDash:
-        case TWCoinTypeDogecoin:
-        case TWCoinTypeMonacoin:
-        case TWCoinTypeQtum:
-        case TWCoinTypeRavencoin:
-        case TWCoinTypeZcoin:
-        default:
-            return Address(publicKey, p2pkh).string();
+    case TWCoinTypeDash:
+    case TWCoinTypeDogecoin:
+    case TWCoinTypeMonacoin:
+    case TWCoinTypeQtum:
+    case TWCoinTypeRavencoin:
+    case TWCoinTypeZcoin:
+    default:
+        return Address(publicKey, p2pkh).string();
     }
 }
 

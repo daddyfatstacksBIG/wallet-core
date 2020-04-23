@@ -111,7 +111,7 @@ Data Hash::xxhash64(const byte* data, size_t size, uint64_t seed)
     const auto hash = XXHash64::hash(data, size, seed);
     Data result;
     encode64LE(hash, result);
-    return result; 
+    return result;
 }
 
 Data Hash::xxhash64concat(const byte* data, size_t size)

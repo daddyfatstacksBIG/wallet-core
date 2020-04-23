@@ -19,11 +19,15 @@ public:
     static const size_t bits = bytes * 8;
     ParamAddress(): ParamUIntN(bits) {}
     ParamAddress(const Data& val): ParamUIntN(bits, TW::load(val)) {}
-    virtual std::string getType() const { return "address"; };
+    virtual std::string getType() const {
+        return "address";
+    };
     // get the value as (20-byte) byte array (as opposed to uint256_t)
     Data getData() const {
         Data data = TW::store(getVal());
-        if (data.size() >= bytes) { return data; }
+        if (data.size() >= bytes) {
+            return data;
+        }
         // need to pad
         Data padded(bytes - data.size());
         TW::append(padded, data);

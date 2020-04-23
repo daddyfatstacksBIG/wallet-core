@@ -15,7 +15,7 @@ using FeeCalculator = std::function<int64_t(int64_t, int64_t, int64_t)>;
 using SingleInputFeeCalculator = std::function<int64_t(int64_t)>;
 
 class UnspentCalculator {
-  public:
+public:
     static UnspentCalculator getCalculator(TWCoinType coinType);
 
     FeeCalculator calculate;
@@ -28,7 +28,7 @@ class UnspentCalculator {
                       SingleInputFeeCalculator calculateSingleInputFee)
         : calculate(std::move(calculateFee)), calculateSingleInput(std::move(calculateSingleInputFee)) {}
 
-  private:
+private:
     static int64_t calculateFee(int64_t inputs, int64_t outputs = 2, int64_t byteFee = 1);
     static int64_t calculateSingleInputFee(int64_t byteFee);
 };

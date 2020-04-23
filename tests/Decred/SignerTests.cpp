@@ -34,7 +34,7 @@ TEST(DecredSigner, Sign) {
     auto originTx = Transaction();
 
     auto txInOrigin = TransactionInput();
-    txInOrigin.previousOutput = OutPoint(std::array<byte, 32>{}, UINT32_MAX, 0);
+    txInOrigin.previousOutput = OutPoint(std::array<byte, 32> {}, UINT32_MAX, 0);
     txInOrigin.valueIn = 100'000'000;
     txInOrigin.script = Bitcoin::Script(Data{OP_0, OP_0});
     originTx.inputs.push_back(txInOrigin);
@@ -66,7 +66,7 @@ TEST(DecredSigner, Sign) {
     utxo0->mutable_out_point()->set_index(0);
 
 
-	// Create the transaction to redeem the fake transaction.
+    // Create the transaction to redeem the fake transaction.
     auto redeemTx = Transaction();
 
     auto txIn = TransactionInput();
@@ -88,28 +88,28 @@ TEST(DecredSigner, Sign) {
     ASSERT_TRUE(result);
 
     const auto expectedSignature = "47304402201ac7bdf56a9d12f3bc09cf7b47cdfafc1348628f659e37b455d497cb6e7a748802202b3630eedee1bbc9248424e4a1b8671e14631a069f36ac8860dee0bb9ea1541f0121"
-        "02a673638cb9587cb68ea08dbef685c6f2d2a751a8b3c6f2a7e9a4999e6e4bfaf5";
+                                   "02a673638cb9587cb68ea08dbef685c6f2d2a751a8b3c6f2a7e9a4999e6e4bfaf5";
     EXPECT_EQ(hex(result.payload().inputs[0].script.bytes), expectedSignature);
 
     const auto expectedEncoded =
         "0100" // Serialize type
         "0000" // Version
         "01"   // Inputs
-            "0ff6ff7c6774a56ccc51598b11724c9c441cadc52978ddb5f08f3511a0cc777a" // Hash
-            "00000000" // Index
-            "00" // Tree
-            "ffffffff" // Sequence
+        "0ff6ff7c6774a56ccc51598b11724c9c441cadc52978ddb5f08f3511a0cc777a" // Hash
+        "00000000" // Index
+        "00" // Tree
+        "ffffffff" // Sequence
         "01"   // Outputs
-            "0000000000000000" // Value
-            "0000" // Version
-            "00" // Script
+        "0000000000000000" // Value
+        "0000" // Version
+        "00" // Script
         "00000000" // Lock time
         "00000000" // Expiry
         "01"
-            "00e1f50500000000" // Value
-            "00000000" // Block height
-            "ffffffff" // Block index
-            "6a47304402201ac7bdf56a9d12f3bc09cf7b47cdfafc1348628f659e37b455d497cb6e7a748802202b3630eedee1bbc9248424e4a1b8671e14631a069f36ac8860dee0bb9ea1541f012102a673638cb9587cb68ea08dbef685c6f2d2a751a8b3c6f2a7e9a4999e6e4bfaf5";
+        "00e1f50500000000" // Value
+        "00000000" // Block height
+        "ffffffff" // Block index
+        "6a47304402201ac7bdf56a9d12f3bc09cf7b47cdfafc1348628f659e37b455d497cb6e7a748802202b3630eedee1bbc9248424e4a1b8671e14631a069f36ac8860dee0bb9ea1541f012102a673638cb9587cb68ea08dbef685c6f2d2a751a8b3c6f2a7e9a4999e6e4bfaf5";
     auto encoded = Data();
     result.payload().encode(encoded);
     EXPECT_EQ(hex(encoded), expectedEncoded);

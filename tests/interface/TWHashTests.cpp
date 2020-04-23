@@ -181,10 +181,10 @@ TEST(TWHashTests, XXHash64) {
         make_tuple(string(""), string("99e9d85137db46ef"), 0),
         make_tuple(brownFox, string("bc71da1f362d240b"), 0),
         make_tuple(brownFoxDot, string("73ad51577033ad44"), 0),
-        make_tuple(string("123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF"), 
-            string("fd84b6962fcb8d09"), 0),
-        make_tuple(string("123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF"), 
-            string("7ea0f7af4b4f9cf4"), 1),
+        make_tuple(string("123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF"),
+                   string("fd84b6962fcb8d09"), 0),
+        make_tuple(string("123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF123456789ABCDEF"),
+                   string("7ea0f7af4b4f9cf4"), 1),
     };
     for (auto &test: tests) {
         const auto inData = WRAPD(TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(get<0>(test).c_str()), get<0>(test).length()));

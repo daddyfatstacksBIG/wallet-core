@@ -17,7 +17,7 @@ using namespace TW::Aeternity;
 
 TEST(TWAnySignerAeternity, Sign) {
     auto privateKey = parse_hex("4646464646464646464646464646464646464646464646464646464646464646");
-    
+
     Proto::SigningInput input;
     input.set_from_address("ak_2p5878zbFhxnrm7meL7TmqwtvBaqcBddyp5eGzZbovZ5FeVfcw");
     input.set_to_address("ak_Egp9yVdpxmvAfQ7vsXGvpnyfNq71msbdUpkMNYGTeTe8kPL3v");

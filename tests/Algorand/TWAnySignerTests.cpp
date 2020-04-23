@@ -19,7 +19,7 @@ TEST(TWAnySignerAlgorand, Sign) {
     auto privateKey = parse_hex("d5b43d706ef0cb641081d45a2ec213b5d8281f439f2425d1af54e2afdaabf55b");
     auto note = parse_hex("68656c6c6f");
     auto genesisHash = Base64::decode("wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8=");
-    
+
     Proto::SigningInput input;
     auto &transaction = *input.mutable_transaction_pay();
     transaction.set_to_address("CRLADAHJZEW2GFY2UPEHENLOGCUOU74WYSTUXQLVLJUJFHEUZOHYZNWYR4");

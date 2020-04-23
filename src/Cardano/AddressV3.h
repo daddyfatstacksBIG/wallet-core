@@ -16,7 +16,7 @@ namespace TW::Cardano {
 
 /// A Cardano-Shelley address, V3 or V2.
 class AddressV3 {
-  public:
+public:
     enum Discrimination: uint8_t {
         Discrim_Production = 0,
         Discrim_Test = 1,

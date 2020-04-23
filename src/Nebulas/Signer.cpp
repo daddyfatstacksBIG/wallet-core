@@ -15,15 +15,15 @@ Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
     auto signer = Signer(load(input.chain_id()));
 
     auto tx = Transaction(Address(input.from_address()),
-        load(input.nonce()),
-        load(input.gas_price()),
-        load(input.gas_limit()),
-        Address(input.to_address()),
-        load(input.amount()),
-        load(input.timestamp()),
-        input.payload()
-    );
-    
+                          load(input.nonce()),
+                          load(input.gas_price()),
+                          load(input.gas_limit()),
+                          Address(input.to_address()),
+                          load(input.amount()),
+                          load(input.timestamp()),
+                          input.payload()
+                         );
+
     auto privateKey = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));
     signer.sign(privateKey, tx);
 

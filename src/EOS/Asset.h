@@ -30,8 +30,10 @@ public:
     static Asset fromString(std::string assetString);
 
     std::string getSymbol() const noexcept;
-    inline uint8_t getDecimals() const noexcept { return symbol & 0xFF; }
-    inline uint64_t getPrecision() const noexcept { 
+    inline uint8_t getDecimals() const noexcept {
+        return symbol & 0xFF;
+    }
+    inline uint64_t getPrecision() const noexcept {
         int i = getDecimals();
         uint64_t p = 1;
         while(i--) p *= 10;

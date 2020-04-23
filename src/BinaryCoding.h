@@ -38,9 +38,9 @@ inline void encode32LE(uint32_t val, std::vector<uint8_t>& data) {
 inline uint32_t decode32LE(const uint8_t* _Nonnull src) {
     // clang-format off
     return static_cast<uint32_t>(src[0])
-        | (static_cast<uint32_t>(src[1]) << 8)
-        | (static_cast<uint32_t>(src[2]) << 16)
-        | (static_cast<uint32_t>(src[3]) << 24);
+           | (static_cast<uint32_t>(src[1]) << 8)
+           | (static_cast<uint32_t>(src[2]) << 16)
+           | (static_cast<uint32_t>(src[3]) << 24);
     // clang-format on
 }
 
@@ -92,9 +92,9 @@ inline void encode32BE(uint32_t val, std::vector<uint8_t>& data) {
 inline uint32_t decode32BE(const uint8_t* _Nonnull src) {
     // clang-format off
     return static_cast<uint32_t>(src[3])
-        | (static_cast<uint32_t>(src[2]) << 8)
-        | (static_cast<uint32_t>(src[1]) << 16)
-        | (static_cast<uint32_t>(src[0]) << 24);
+           | (static_cast<uint32_t>(src[2]) << 8)
+           | (static_cast<uint32_t>(src[1]) << 16)
+           | (static_cast<uint32_t>(src[0]) << 24);
     // clang-format on
 }
 
@@ -107,7 +107,7 @@ uint64_t decode64BE(const uint8_t* _Nonnull src);
 /// Encodes an ASCII string prefixed by the length (varInt)
 void encodeString(const std::string& str, std::vector<uint8_t>& data);
 
-/// Decodes an ASCII string prefixed by its length (varInt) 
+/// Decodes an ASCII string prefixed by its length (varInt)
 /// @returns a tuple with a success indicator and the decoded string.
 std::tuple<bool, std::string> decodeString(const Data& in, size_t& indexInOut);
 

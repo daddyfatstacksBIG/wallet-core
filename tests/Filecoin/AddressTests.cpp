@@ -67,9 +67,9 @@ static const std::string invalidAddresses[] = {
 TEST(FilecoinAddress, IsValid) {
     for (const auto& test : validAddresses) {
         ASSERT_TRUE(Address::isValid(test.encoded))
-            << "is_valid() != true: " << test.encoded << std::endl;
+                << "is_valid() != true: " << test.encoded << std::endl;
         ASSERT_TRUE(Address::isValid(parse_hex(test.hex)))
-            << "is_valid() != true: " << test.hex << std::endl;
+                << "is_valid() != true: " << test.hex << std::endl;
     }
     for (const auto& address : invalidAddresses)
         ASSERT_FALSE(Address::isValid(address)) << "is_valid() != false: " << address << std::endl;

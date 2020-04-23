@@ -16,7 +16,7 @@ namespace TW::Hash {
 typedef TW::Data (*HasherSimpleType)(const TW::byte*, size_t);
 using Hasher = std::function<Data(const byte*, size_t)>;
 
-// Digest size constants, duplicating constants from underlying lib 
+// Digest size constants, duplicating constants from underlying lib
 /// Number of bytes in a SHA1 hash.
 static const size_t sha1Size = 20;
 

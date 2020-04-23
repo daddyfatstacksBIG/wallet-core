@@ -35,7 +35,7 @@ TEST(TWAnySignerNebulas, Sign) {
     input.set_private_key(privateKey.data(), privateKey.size());
     auto chainid = store(uint256_t(1));
     input.set_chain_id(chainid.data(), chainid.size());
-    
+
     Proto::SigningOutput output;
     ANY_SIGN(input, TWCoinTypeNebulas);
 

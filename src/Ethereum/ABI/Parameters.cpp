@@ -13,19 +13,23 @@
 using namespace TW::Ethereum::ABI;
 
 ParamSet::~ParamSet() {
-   _params.clear();
+    _params.clear();
 }
 
 /// Returns the index of the parameter
 int ParamSet::addParam(const std::shared_ptr<ParamBase>& param) {
     assert(param.get() != nullptr);
-    if (param.get() == nullptr) { return -1; }
+    if (param.get() == nullptr) {
+        return -1;
+    }
     _params.push_back(param);
     return static_cast<int>(_params.size() - 1);
 }
 
 void ParamSet::addParams(const std::vector<std::shared_ptr<ParamBase>>& params) {
-    for (auto p: params) { addParam(p); }
+    for (auto p: params) {
+        addParam(p);
+    }
 }
 
 bool ParamSet::getParam(int paramIndex, std::shared_ptr<ParamBase>& param_out) const {
@@ -96,7 +100,7 @@ void ParamSet::encode(Data& data) const {
             // encode small data
             p->encode(data);
         }
-    }        
+    }
 
     // pass 2: dynamic values
     for(auto p: _params) {
@@ -104,7 +108,7 @@ void ParamSet::encode(Data& data) const {
             // encode large data
             p->encode(data);
         }
-    }        
+    }
 }
 
 bool ParamSet::decode(const Data& encoded, size_t& offset_inout) {
@@ -112,16 +116,22 @@ bool ParamSet::decode(const Data& encoded, size_t& offset_inout) {
     for(auto p: _params) {
         if (p->isDynamic()) {
             uint256_t index;
-            if (!ABI::decode(encoded, index, offset_inout)) { return false; }
+            if (!ABI::decode(encoded, index, offset_inout)) {
+                return false;
+            }
             // index is read but not used
         } else {
-            if (!p->decode(encoded, offset_inout)) { return false; }
+            if (!p->decode(encoded, offset_inout)) {
+                return false;
+            }
         }
     }
-    // pass2: large values    
+    // pass2: large values
     for(auto p: _params) {
         if (p->isDynamic()) {
-            if (!p->decode(encoded, offset_inout)) { return false; }
+            if (!p->decode(encoded, offset_inout)) {
+                return false;
+            }
         }
     }
     return true;

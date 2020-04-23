@@ -143,7 +143,7 @@ Result<std::vector<Data>> Signer::signStep(Bitcoin::Script script, size_t index)
         }
         return Result<std::vector<Data>>::success({redeemScript});
     } else if (script.matchMultisig(keys, required)) {
-        auto results = std::vector<Data>{{}};
+        auto results = std::vector<Data> {{}};
         for (auto& pubKey : keys) {
             if (results.size() >= required + 1) {
                 break;

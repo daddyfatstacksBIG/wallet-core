@@ -69,8 +69,8 @@ TEST(RLP, PutInt) {
 
 TEST(RLP, Lists) {
     EXPECT_EQ(hex(RLP::encodeList(std::vector<int>())), "c0");
-    EXPECT_EQ(hex(RLP::encodeList(std::vector<int>{1, 2, 3})), "c3010203");
-    EXPECT_EQ(hex(RLP::encodeList(std::vector<std::string>{"cat", "dog"})), "c88363617483646f67");
+    EXPECT_EQ(hex(RLP::encodeList(std::vector<int> {1, 2, 3})), "c3010203");
+    EXPECT_EQ(hex(RLP::encodeList(std::vector<std::string> {"cat", "dog"})), "c88363617483646f67");
     const auto encoded = RLP::encodeList(std::vector<int>(1024));
     const auto prefix = std::string("f90400");
     ASSERT_TRUE(std::equal(prefix.begin(), prefix.end(), hex(encoded).begin()));
@@ -78,5 +78,5 @@ TEST(RLP, Lists) {
 
 TEST(RLP, Invalid) {
     ASSERT_TRUE(RLP::encode(-1).empty());
-    ASSERT_TRUE(RLP::encodeList(std::vector<int>{0, -1}).empty());
+    ASSERT_TRUE(RLP::encodeList(std::vector<int> {0, -1}).empty());
 }

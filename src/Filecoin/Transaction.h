@@ -15,7 +15,7 @@
 namespace TW::Filecoin {
 
 class Transaction {
-  public:
+public:
     // Recipient address
     Address to;
     // Sender address
@@ -42,7 +42,7 @@ class Transaction {
         , gasLimit(std::move(glimit))
         , method(0) {}
 
-  public:
+public:
     // message returns the CBOR encoding of the Filecoin Message to be signed.
     Cbor::Encode message() const;
 

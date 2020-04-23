@@ -35,7 +35,7 @@ struct TWStoredKey *_Nonnull createAStoredKey(TWCoinType coin, TWData* password)
 struct TWStoredKey *_Nonnull createDefaultStoredKey() {
     const auto passwordString = WRAPS(TWStringCreateWithUTF8Bytes("password"));
     const auto password = WRAPD(TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(TWStringUTF8Bytes(passwordString.get())), TWStringSize(passwordString.get())));
-    
+
     return createAStoredKey(TWCoinTypeBitcoin, password.get());
 }
 
@@ -75,7 +75,7 @@ TEST(TWStoredKey, importPrivateKey) {
     const auto key = TWStoredKeyImportPrivateKey(privateKey.get(), name.get(), password.get(), coin);
     const auto privateKey2 = WRAPD(TWStoredKeyDecryptPrivateKey(key, password.get()));
     EXPECT_EQ(hex(data(TWDataBytes(privateKey2.get()), TWDataSize(privateKey2.get()))), privateKeyHex);
-    
+
     const auto privateKey3 = TWStoredKeyPrivateKey(key, coin, password.get());
     const auto pkData3 = WRAPD(TWPrivateKeyData(privateKey3));
     EXPECT_EQ(hex(data(TWDataBytes(pkData3.get()), TWDataSize(pkData3.get()))), privateKeyHex);
@@ -125,9 +125,9 @@ TEST(TWStoredKey, addressAddRemove) {
     const auto extPubKeyAdd = "zpub6qbsWdbcKW9sC6shTKK4VEhfWvDCoWpfLnnVfYKHLHt31wKYUwH3aFDz4WLjZvjHZ5W4qVEyk37cRwzTbfrrT1Gnu8SgXawASnkdQ994atn";
 
     TWStoredKeyAddAccount(key,
-        WRAPS(TWStringCreateWithUTF8Bytes(addressAdd)).get(),
-        WRAPS(TWStringCreateWithUTF8Bytes(derivationPath)).get(),
-        WRAPS(TWStringCreateWithUTF8Bytes(extPubKeyAdd)).get());
+                          WRAPS(TWStringCreateWithUTF8Bytes(addressAdd)).get(),
+                          WRAPS(TWStringCreateWithUTF8Bytes(derivationPath)).get(),
+                          WRAPS(TWStringCreateWithUTF8Bytes(extPubKeyAdd)).get());
     EXPECT_EQ(TWStoredKeyAccountCount(key), 1);
 
     // invalid account index
@@ -151,7 +151,7 @@ TEST(TWStoredKey, storeAndImportJSON) {
     const auto outFileNameStr = WRAPS(TWStringCreateWithUTF8Bytes(outFileName.c_str()));
     EXPECT_TRUE(TWStoredKeyStore(key, outFileNameStr.get()));
     //EXPECT_TRUE(filesystem::exists(outFileName));  // some linker issues with filesystem
-    
+
     // read contents of file
     ifstream ifs(outFileName);
     // get length of file:
@@ -162,8 +162,11 @@ TEST(TWStoredKey, storeAndImportJSON) {
 
     Data json(length);
     size_t idx = 0;
-    // read the slow way, ifs.read gave some false warnings with codacy 
-    while (!ifs.eof() && idx < length) { char c = ifs.get(); json[idx++] = (uint8_t)c; }
+    // read the slow way, ifs.read gave some false warnings with codacy
+    while (!ifs.eof() && idx < length) {
+        char c = ifs.get();
+        json[idx++] = (uint8_t)c;
+    }
 
     const auto key2 = TWStoredKeyImportJSON(TWDataCreateWithData(&json));
     const auto name2 = WRAPS(TWStoredKeyName(key2));
@@ -180,7 +183,7 @@ TEST(TWStoredKey, importJsonInvalid) {
 TEST(TWStoredKey, fixAddresses) {
     const auto passwordString = WRAPS(TWStringCreateWithUTF8Bytes("password"));
     const auto password = WRAPD(TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(TWStringUTF8Bytes(passwordString.get())), TWStringSize(passwordString.get())));
-    
+
     const auto key = createAStoredKey(TWCoinTypeBitcoin, password.get());
     EXPECT_TRUE(TWStoredKeyFixAddresses(key, password.get()));
     TWStoredKeyDelete(key);
@@ -204,19 +207,19 @@ TEST(TWStoredKey, importInvalidKey) {
 TEST(TWStoredKey, removeAccountForCoin) {
     const auto passwordString = WRAPS(TWStringCreateWithUTF8Bytes("password"));
     const auto password = WRAPD(TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(TWStringUTF8Bytes(passwordString.get())), TWStringSize(passwordString.get())));
-    
+
     auto key = TWStoredKeyCreate("Test KeyStore", password.get());
     auto wallet = TWStoredKeyWallet(key, password.get());
-    
+
     ASSERT_NE(TWStoredKeyAccountForCoin(key, TWCoinTypeEthereum, wallet), nullptr);
     ASSERT_NE(TWStoredKeyAccountForCoin(key, TWCoinTypeBitcoin, wallet), nullptr);
-    
+
     ASSERT_EQ(TWStoredKeyAccountCount(key), 2);
-    
+
     TWStoredKeyRemoveAccountForCoin(key, TWCoinTypeBitcoin);
-    
+
     ASSERT_EQ(TWStoredKeyAccountCount(key), 1);
-    
+
     ASSERT_NE(TWStoredKeyAccountForCoin(key, TWCoinTypeEthereum, nullptr), nullptr);
     ASSERT_EQ(TWStoredKeyAccountForCoin(key, TWCoinTypeBitcoin, nullptr), nullptr);
 }
@@ -225,10 +228,10 @@ TEST(TWStoredKey, getWalletPasswordInvalid) {
     const auto name = WRAPS(TWStringCreateWithUTF8Bytes("name"));
     const auto passwordString = WRAPS(TWStringCreateWithUTF8Bytes("password"));
     const auto password = WRAPD(TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(TWStringUTF8Bytes(passwordString.get())), TWStringSize(passwordString.get())));
-    
+
     const auto invalidString = WRAPS(TWStringCreateWithUTF8Bytes("_THIS_IS_INVALID_PASSWORD_"));
     const auto passwordInvalid = WRAPD(TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(TWStringUTF8Bytes(invalidString.get())), TWStringSize(invalidString.get())));
-    
+
     auto key = TWStoredKeyCreate (name.get(), password.get());
     ASSERT_NE(TWStoredKeyWallet(key, password.get()), nullptr);
     ASSERT_EQ(TWStoredKeyWallet(key, passwordInvalid.get()), nullptr);

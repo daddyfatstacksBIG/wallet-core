@@ -16,7 +16,7 @@ using namespace TW::Nimiq;
 
 TEST(TWAnySignerNimiq, Sign) {
     auto privateKey = parse_hex("e3cc33575834add098f8487123cd4bca543ee859b3e8cfe624e7e6a97202b756");
-    
+
     Proto::SigningInput input;
 
     input.set_destination("NQ86 2H8F YGU5 RM77 QSN9 LYLH C56A CYYR 0MLA");

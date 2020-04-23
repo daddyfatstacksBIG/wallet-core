@@ -83,7 +83,7 @@ Data AESCBCDecrypt(const Data& key, const Data& data, Data& iv, PaddingMode padd
 }
 
 Data AESCTREncrypt(const Data& key, const Data& data, Data& iv) {
-	aes_encrypt_ctx ctx;
+    aes_encrypt_ctx ctx;
     if (aes_encrypt_key(key.data(), static_cast<int>(key.size()), &ctx) != EXIT_SUCCESS) {
         throw std::invalid_argument("Invalid key");
     }

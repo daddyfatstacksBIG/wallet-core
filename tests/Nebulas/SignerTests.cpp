@@ -14,7 +14,7 @@
 namespace TW::Nebulas {
 
 class SignerExposed : public Signer {
-  public:
+public:
     SignerExposed(boost::multiprecision::uint256_t chainID) : Signer(chainID) {}
     using Signer::hash;
 };
@@ -23,14 +23,14 @@ TEST(NebulasSigner, Hash) {
     auto from = Address("n1V5bB2tbaM3FUiL4eRwpBLgEredS5C2wLY");
     auto to = Address("n1SAeQRVn33bamxN4ehWUT7JGdxipwn8b17");
     auto transaction = Transaction(
-        /* to: */ from,
-        /* nonce: */ 7,
-        /* gasPrice: */ 1000000,
-        /* gasLimit: */ 200000,
-        /* to: */ to,
-        /* amount: */ 11000000000000000000ULL,
-        /* timestamp: */ 1560052938,
-        /* payload: */ std::string());
+                           /* to: */ from,
+                           /* nonce: */ 7,
+                           /* gasPrice: */ 1000000,
+                           /* gasLimit: */ 200000,
+                           /* to: */ to,
+                           /* amount: */ 11000000000000000000ULL,
+                           /* timestamp: */ 1560052938,
+                           /* payload: */ std::string());
     auto signer = SignerExposed(1);
     auto hash = signer.hash(transaction);
 

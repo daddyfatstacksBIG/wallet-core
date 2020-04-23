@@ -88,7 +88,7 @@ Data Signer::sign() const {
     encode16LE(static_cast<uint16_t>(tx.type()), dataRet);
     // Timestamp
     encode32LE(tx.timestamp(), dataRet);
-     // Remark
+    // Remark
     std::string remark = tx.remark();
     serializerRemark(remark, dataRet);
     // txData
@@ -105,7 +105,7 @@ Data Signer::sign() const {
 
     // Calc transaction hash
     Data txHash = calcTransactionDigest(dataRet);
-   
+
     Data privKey = data(input.private_key());
     auto priv = PrivateKey(privKey);
     auto transactionSignature = makeTransactionSignature(priv, txHash);
@@ -117,7 +117,7 @@ Data Signer::sign() const {
 
 uint32_t Signer::CalculatorTransactionSize(uint32_t inputCount, uint32_t outputCount, uint32_t remarkSize) const {
     uint32_t size = TRANSACTION_FIX_SIZE + TRANSACTION_SIG_MAX_SIZE + TRANSACTION_INPUT_SIZE * inputCount +
-                        TRANSACTION_OUTPUT_SIZE * outputCount + remarkSize;
+                    TRANSACTION_OUTPUT_SIZE * outputCount + remarkSize;
     return size;
 }
 

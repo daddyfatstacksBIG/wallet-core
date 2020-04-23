@@ -17,7 +17,7 @@
 namespace TW::Bitcoin {
 
 class Script {
-  public:
+public:
     /// Script raw bytes.
     Data bytes;
 
@@ -32,7 +32,9 @@ class Script {
     explicit Script(Data&& bytes) : bytes(bytes) {}
 
     /// Whether the script is empty.
-    bool empty() const { return bytes.empty(); }
+    bool empty() const {
+        return bytes.empty();
+    }
 
     /// Returns the script's script hash.
     Data hash() const;
@@ -96,7 +98,7 @@ class Script {
         return OP_1 + uint8_t(n - 1);
     }
 
-  private:
+private:
     /// Extracts a single opcode at the given index including its operand.
     ///
     /// \param index [in/out] index where the operation starts, on return the

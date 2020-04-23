@@ -15,6 +15,8 @@ using namespace std;
 string getTestTempDir(void) {
     // In general, tests should not use hardcoded "/tmp", but TEST_TMPDIR env var.
     const char* fromEnvironment = getenv("TEST_TMPDIR");
-    if (fromEnvironment == NULL || fromEnvironment[0] == '\0') { return "/tmp"; }
+    if (fromEnvironment == NULL || fromEnvironment[0] == '\0') {
+        return "/tmp";
+    }
     return string(fromEnvironment);
 }

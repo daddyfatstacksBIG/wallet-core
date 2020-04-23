@@ -17,7 +17,7 @@ using Data = TW::Data;
 namespace TW::EOS {
 
 class PermissionLevel {
-  public:
+public:
     Name actor, permission;
 
     PermissionLevel(const Name& actor, const Name& permission) : actor(actor), permission(permission) { }
@@ -28,7 +28,7 @@ class PermissionLevel {
 };
 
 class Action {
-  public:
+public:
     Name account, name;
     std::vector<PermissionLevel> authorization;
     Data data;
@@ -40,9 +40,9 @@ class Action {
 };
 
 class TransferAction: public Action {
-  public:
+public:
     TransferAction(const std::string& currency, const std::string& from, const std::string& to, const Asset& asset, const std::string& memo);
-  private:
+private:
     void setData(const std::string& from, const std::string& to, const Asset& asset, const std::string& memo);
 };
 

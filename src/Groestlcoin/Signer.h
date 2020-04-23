@@ -14,7 +14,7 @@ using SigningOutput = Bitcoin::Proto::SigningOutput;
 using TransactionPlan = Bitcoin::Proto::TransactionPlan;
 
 class Signer {
-  public:
+public:
     Signer() = delete;
 
     /// Returns a transaction plan (utxo selection, fee estimation)

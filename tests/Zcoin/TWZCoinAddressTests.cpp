@@ -26,9 +26,9 @@ TEST(TWZCoin, Address) {
 
 TEST(TWZCoin, ExtendedKeys) {
     auto wallet = WRAP(TWHDWallet, TWHDWalletCreateWithMnemonic(
-        STRING("ripple scissors kick mammal hire column oak again sun offer wealth tomorrow wagon turn fatal").get(),
-        STRING("TREZOR").get()
-    ));
+                           STRING("ripple scissors kick mammal hire column oak again sun offer wealth tomorrow wagon turn fatal").get(),
+                           STRING("TREZOR").get()
+                       ));
 
     auto xpub = WRAPS(TWHDWalletGetExtendedPublicKey(wallet.get(), TWPurposeBIP44, TWCoinTypeZcoin, TWHDVersionXPUB));
     auto xprv = WRAPS(TWHDWalletGetExtendedPrivateKey(wallet.get(), TWPurposeBIP44, TWCoinTypeZcoin, TWHDVersionXPRV));

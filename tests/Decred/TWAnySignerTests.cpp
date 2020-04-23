@@ -38,7 +38,7 @@ Bitcoin::Proto::SigningInput createInput() {
 
     utxo.set_amount(utxoValue);
     utxo.set_script(script.data(), script.size());
-    
+
     auto& outpoint = *utxo.mutable_out_point();
     outpoint.set_hash(hash.data(), hash.size());
     outpoint.set_index(0);
@@ -95,7 +95,7 @@ TEST(TWAnySignerDecred, PlanAndSign) {
     EXPECT_EQ(plan.change(), 29899746);
     EXPECT_EQ(plan.utxos_size(), 1);
     EXPECT_EQ(plan.branch_id(), "");
-    
+
     // copy over plan fields
     *input.mutable_plan() = plan;
 
