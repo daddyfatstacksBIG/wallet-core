@@ -92,13 +92,13 @@ class Parser
       break if type.name == :void && @buffer.scan(/\)/)
 
       name = ''
-      if type.name == :data && !type.size.nil?
-        name = 'result'
-      elsif type.name == :string && !type.size.nil?
-        name = 'result'
-      else
-        name = @buffer.scan(/\w+/)
-      end
+      name = if type.name == :data && !type.size.nil?
+               'result'
+             elsif type.name == :string && !type.size.nil?
+               'result'
+             else
+               @buffer.scan(/\w+/)
+             end
       param = Parameter.new(name: name, type: type)
       func.parameters << param
       @buffer.skip(/\s*,\s*/)
@@ -110,7 +110,7 @@ class Parser
 
   def parse_discardable_result
     @buffer.skip(/\s*/)
-    @buffer.scan(/TW_METHOD_DISCARDABLE_RESULT(\s*)/) != nil
+    !@buffer.scan(/TW_METHOD_DISCARDABLE_RESULT(\s*)/).nil?
   end
 
   def handle_class
@@ -175,24 +175,14 @@ class Parser
     method.discardable_result = discardable
 
     # Remove prefix
-    unless method.name.start_with? "TW#{@entity.name}"
-      report_error 'Method name needs to start with class/struct name'
-    end
+    report_error 'Method name needs to start with class/struct name' unless method.name.start_with? "TW#{@entity.name}"
     method.name.slice! "TW#{@entity.name}"
 
     # Check first parameter
-    if method.parameters.count.zero? || @entity.name != method.parameters.first.type.name
-      report_error 'First parameter on a method needs to be the struct or class the method belongs to'
-    end
-    if @entity.struct? && method.parameters.first.type.is_class
-      report_error 'First parameter on a struct method needs to be the struct'
-    end
-    if @entity.class? && !method.parameters.first.type.is_class
-      report_error 'First parameter on a class method needs to be the class'
-    end
-    if @entity.enum? && !method.parameters.first.type.is_enum
-      report_error 'Only parameter on a enum method needs to be the enum'
-    end
+    report_error 'First parameter on a method needs to be the struct or class the method belongs to' if method.parameters.count.zero? || @entity.name != method.parameters.first.type.name
+    report_error 'First parameter on a struct method needs to be the struct' if @entity.struct? && method.parameters.first.type.is_class
+    report_error 'First parameter on a class method needs to be the class' if @entity.class? && !method.parameters.first.type.is_class
+    report_error 'Only parameter on a enum method needs to be the enum' if @entity.enum? && !method.parameters.first.type.is_enum
 
     @entity.methods << method
   end
@@ -202,30 +192,16 @@ class Parser
     method = parse_func
 
     # Remove prefix
-    unless method.name.start_with? "TW#{@entity.name}"
-      report_error 'Method name needs to start with class/struct name'
-    end
+    report_error 'Method name needs to start with class/struct name' unless method.name.start_with? "TW#{@entity.name}"
     method.name.slice! "TW#{@entity.name}"
 
     # Check first parameter
-    if method.parameters.count < 1 || @entity.name != method.parameters.first.type.name
-      report_error 'Only parameter on a property needs to be the struct or class the property belongs to'
-    end
-    if method.parameters.count == 2 && method.parameters[1].type.name != :data
-      report_error "A property's second parameter can only be result data"
-    end
-    if method.parameters.count > 2
-      report_error 'Only parameter on a property needs to be the struct or class the property belongs to'
-    end
-    if @entity.struct? && method.parameters.first.type.is_class
-      report_error 'Only parameter on a struct property needs to be the struct'
-    end
-    if @entity.class? && !method.parameters.first.type.is_class
-      report_error 'Only parameter on a class property needs to be the class'
-    end
-    if @entity.enum? && !method.parameters.first.type.is_enum
-      report_error 'Only parameter on a enum property needs to be the enum'
-    end
+    report_error 'Only parameter on a property needs to be the struct or class the property belongs to' if method.parameters.count < 1 || @entity.name != method.parameters.first.type.name
+    report_error "A property's second parameter can only be result data" if method.parameters.count == 2 && method.parameters[1].type.name != :data
+    report_error 'Only parameter on a property needs to be the struct or class the property belongs to' if method.parameters.count > 2
+    report_error 'Only parameter on a struct property needs to be the struct' if @entity.struct? && method.parameters.first.type.is_class
+    report_error 'Only parameter on a class property needs to be the class' if @entity.class? && !method.parameters.first.type.is_class
+    report_error 'Only parameter on a enum property needs to be the enum' if @entity.enum? && !method.parameters.first.type.is_enum
 
     @entity.properties << method
   end
@@ -238,9 +214,7 @@ class Parser
     method.discardable_result = discardable
 
     # Remove prefix
-    unless method.name.start_with? "TW#{@entity.name}"
-      report_error "Static method name needs to start with class/struct name. Method name #{method.name} does not start with TW#{@entity.name}."
-    end
+    report_error "Static method name needs to start with class/struct name. Method name #{method.name} does not start with TW#{@entity.name}." unless method.name.start_with? "TW#{@entity.name}"
     method.name.slice! "TW#{@entity.name}"
 
     @entity.static_methods << method
@@ -252,14 +226,10 @@ class Parser
     method.static = true
 
     # Remove prefix
-    unless method.name.start_with? "TW#{@entity.name}"
-      report_error 'Method name needs to start with class/struct name'
-    end
+    report_error 'Method name needs to start with class/struct name' unless method.name.start_with? "TW#{@entity.name}"
     method.name.slice! "TW#{@entity.name}"
 
-    unless method.parameters.count.zero?
-      report_error 'Static properties can have no parameters'
-    end
+    report_error 'Static properties can have no parameters' unless method.parameters.count.zero?
 
     @entity.static_properties << method
   end

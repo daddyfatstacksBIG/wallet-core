@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'parser'
 require 'test/unit'
 
@@ -22,7 +24,7 @@ class ParserTest < Test::Unit::TestCase
     assert_equal(func.parameters.first.type.name, :data)
   end
 
-   def test_parse_method_align_pointer_center
+  def test_parse_method_align_pointer_center
     parser = Parser.new(path: '', string: 'bool TWPublicKeyIsValid(TWData * _Nonnull data);')
     func = parser.parse_func
 
@@ -30,7 +32,7 @@ class ParserTest < Test::Unit::TestCase
     assert_equal(func.name, 'TWPublicKeyIsValid')
     assert_equal(func.parameters.first.name, 'data')
     assert_equal(func.parameters.first.type.name, :data)
-  end
+ end
 
   def test_parse_invalid_method
     parser = Parser.new(path: '', string: '

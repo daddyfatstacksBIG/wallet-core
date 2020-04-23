@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 CurrentDir = File.dirname(__FILE__)
 
@@ -61,15 +62,7 @@ Dir.foreach(options.input) do |item|
 end
 
 generator = CodeGenerator.new(entities: entities, files: files, output_folder: options.output)
-if options.swift
-  generator.render_swift
-end
-if options.java
-  generator.render_java
-end
-if options.jni_h
-  generator.render_jni_h
-end
-if options.jni_c
-  generator.render_jni_c
-end
+generator.render_swift if options.swift
+generator.render_java if options.java
+generator.render_jni_h if options.jni_h
+generator.render_jni_c if options.jni_c

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Helper for creating/updating CoinType unit tests, based on the coins.json file
 
 require 'erb'
@@ -7,30 +9,28 @@ require 'json'
 class CoinTestGen
   attr_accessor :templateFile
 
-  def initialize()
+  def initialize
     @templateFile = 'TWCoinTypeTests.cpp.erb'
   end
 
   # Transforms a coin name to a C++ name
   def format_name(n)
     formatted = n
-    #formatted = formatted.sub(/^([a-z]+)/, &:upcase)
+    # formatted = formatted.sub(/^([a-z]+)/, &:upcase)
     formatted = formatted.sub(/\s/, '')
     formatted
   end
 
   # Transforms number to hex
   def to_hex(i)
-    hex = i.to_i().to_s(16)
+    hex = i.to_i.to_s(16)
     hex
   end
 
   # Display name, or name if not specified
   def display_name(coin)
     name = coin['displayName']
-    if name == nil
-      name = coin['name']
-    end
+    name = coin['name'] if name.nil?
     name
   end
 
@@ -42,19 +42,22 @@ class CoinTestGen
   def explorer_tx_url(c)
     path = c['explorer']['url'].to_s + c['explorer']['txPath'].to_s
   end
+
   def explorer_account_url(c)
     path = c['explorer']['url'].to_s + c['explorer']['accountPath'].to_s
   end
+
   def explorer_sample_tx(c)
     if c['explorer']['sampleTx'].nil?
-      "t123"
+      't123'
     else
       c['explorer']['sampleTx']
     end
   end
+
   def explorer_sample_account(c)
     if c['explorer']['sampleAccount'].nil?
-      "a12"
+      'a12'
     else
       c['explorer']['sampleAccount']
     end
@@ -70,6 +73,6 @@ class CoinTestGen
     FileUtils.mkdir_p folder
     path = File.join(folder, file)
     File.write(path, result)
-    puts "Generated file " + path
+    puts 'Generated file ' + path
   end
 end
