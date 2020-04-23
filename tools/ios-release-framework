@@ -7,7 +7,7 @@ set -e
 
 VERSION=$1
 if [ -z "$VERSION" ]; then
-    VERSION=`git describe --long --tags | cut -f 1 -d "-"`
+  VERSION=$(git describe --long --tags | cut -f 1 -d "-")
 fi
 echo Build version "$VERSION"
 
@@ -19,24 +19,24 @@ S3_BUCKET=wallet-core
 tools/ios-build-framework
 
 function releaseXCFramework() {
-    FRAMEWORK_FILE=TrustWalletCore.xcframework
-    ZIP_FILENAME="TrustWalletCore.xcframework-$VERSION.zip"
+  FRAMEWORK_FILE=TrustWalletCore.xcframework
+  ZIP_FILENAME="TrustWalletCore.xcframework-$VERSION.zip"
 
-    PODSPEC_NAME=WalletCoreFW
-    PODSPEC_FILE="$BUILD_FOLDER/$PODSPEC_NAME.podspec"
+  PODSPEC_NAME=WalletCoreFW
+  PODSPEC_FILE="$BUILD_FOLDER/$PODSPEC_NAME.podspec"
 
-    # Archive
-    echo Zip "$ZIP_FILENAME"
-    pushd "$BUILD_FOLDER"
-    rm -rf "$ZIP_FILENAME"
-    zip --symlinks -r "$ZIP_FILENAME" "$FRAMEWORK_FILE"
-    popd
+  # Archive
+  echo Zip "$ZIP_FILENAME"
+  pushd "$BUILD_FOLDER"
+  rm -rf "$ZIP_FILENAME"
+  zip --symlinks -r "$ZIP_FILENAME" "$FRAMEWORK_FILE"
+  popd
 
-    # Upload to S3
-    echo Upload "$ZIP_FILENAME" to S3
-    aws s3 cp "$BUILD_FOLDER/$ZIP_FILENAME" s3://"$S3_BUCKET"/ --acl public-read
+  # Upload to S3
+  echo Upload "$ZIP_FILENAME" to S3
+  aws s3 cp "$BUILD_FOLDER/$ZIP_FILENAME" s3://"$S3_BUCKET"/ --acl public-read
 
-    cat << EOF > "$PODSPEC_FILE"
+  cat <<EOF >"$PODSPEC_FILE"
 Pod::Spec.new do |s|
   s.name             = '$PODSPEC_NAME'
   s.version          = '$VERSION'
@@ -56,29 +56,29 @@ Pod::Spec.new do |s|
   s.dependency 'SwiftProtobuf'
 end
 EOF
-    # Upload to Cocoapod
-    echo "Done. running 'pod trunk push --allow-warnings $PODSPEC_FILE'"
-    pod trunk push --allow-warnings "$PODSPEC_FILE"
+  # Upload to Cocoapod
+  echo "Done. running 'pod trunk push --allow-warnings $PODSPEC_FILE'"
+  pod trunk push --allow-warnings "$PODSPEC_FILE"
 }
 
 function releaseTypes() {
 
-    ZIP_FILENAME="TrustWalletCoreTypes-$VERSION.zip"
+  ZIP_FILENAME="TrustWalletCoreTypes-$VERSION.zip"
 
-    PODSPEC_NAME=WalletCoreTypes
-    PODSPEC_FILE="$BUILD_FOLDER/$PODSPEC_NAME.podspec"
+  PODSPEC_NAME=WalletCoreTypes
+  PODSPEC_FILE="$BUILD_FOLDER/$PODSPEC_NAME.podspec"
 
-    # Archive
-    echo Zip "$ZIP_FILENAME"
-    rm -rf "$BUILD_FOLDER/$ZIP_FILENAME"
-    zip "$ZIP_FILENAME" swift/Sources/Generated/Enums/*.swift swift/Sources/Generated/Protobuf/*.swift
-    mv "$ZIP_FILENAME" "$BUILD_FOLDER"
+  # Archive
+  echo Zip "$ZIP_FILENAME"
+  rm -rf "$BUILD_FOLDER/$ZIP_FILENAME"
+  zip "$ZIP_FILENAME" swift/Sources/Generated/Enums/*.swift swift/Sources/Generated/Protobuf/*.swift
+  mv "$ZIP_FILENAME" "$BUILD_FOLDER"
 
-    # Upload to S3
-    echo Upload "$ZIP_FILENAME" to S3
-    aws s3 cp "$BUILD_FOLDER/$ZIP_FILENAME" s3://"$S3_BUCKET"/ --acl public-read
+  # Upload to S3
+  echo Upload "$ZIP_FILENAME" to S3
+  aws s3 cp "$BUILD_FOLDER/$ZIP_FILENAME" s3://"$S3_BUCKET"/ --acl public-read
 
-    cat << EOF > "$PODSPEC_FILE"
+  cat <<EOF >"$PODSPEC_FILE"
 Pod::Spec.new do |s|
   s.name             = '$PODSPEC_NAME'
   s.version          = '$VERSION'
@@ -100,9 +100,9 @@ Pod::Spec.new do |s|
   s.dependency 'SwiftProtobuf'
 end
 EOF
-    # Upload to Cocoapod
-    echo "Done. running 'pod trunk push --allow-warnings $PODSPEC_FILE'"
-    pod trunk push --allow-warnings "$PODSPEC_FILE"
+  # Upload to Cocoapod
+  echo "Done. running 'pod trunk push --allow-warnings $PODSPEC_FILE'"
+  pod trunk push --allow-warnings "$PODSPEC_FILE"
 }
 
 releaseXCFramework
