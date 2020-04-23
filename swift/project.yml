@@ -25,11 +25,11 @@ targets:
       - path: wallet-core
         headerVisibility: project
         excludes:
-        - ".vscode"
-        - "proto/*.proto"
-        - "Tron/Protobuf/*.proto"
-        - "Zilliqa/Protobuf/*.proto"
-        - "TON/*.md"
+          - ".vscode"
+          - "proto/*.proto"
+          - "Tron/Protobuf/*.proto"
+          - "Zilliqa/Protobuf/*.proto"
+          - "TON/*.md"
       - Sources
     dependencies:
       - target: trezor-crypto
@@ -45,7 +45,7 @@ targets:
       SKIP_INSTALL: false
       SUPPORTS_MACCATALYST: true
       BUILD_LIBRARY_FOR_DISTRIBUTION: true
-      INFOPLIST_FILE: 'Info.plist'
+      INFOPLIST_FILE: "Info.plist"
       CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION: YES_ERROR
     postCompileScripts:
       - script: ${PODS_ROOT}/SwiftLint/swiftlint --config ../.swiftlint.yml
