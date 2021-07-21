@@ -1,9 +1,10 @@
-// Copyright © 2017-2020 Trust Wallet.
+// Copyright © 2017-2021 Trust Wallet.
 //
 // This file is part of Trust. The full Trust copyright notice, including
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
+#include <TrustWalletCore/TWCoinType.h>
 #include <TrustWalletCore/TWAnyAddress.h>
 #include <TrustWalletCore/TWPublicKey.h>
 #include <TrezorCrypto/cash_addr.h>
@@ -78,6 +79,8 @@ TWData* _Nonnull TWAnyAddressData(struct TWAnyAddress* _Nonnull address) {
     case TWCoinTypeKava:
     case TWCoinTypeTerra:
     case TWCoinTypeBandChain:
+    case TWCoinTypeTHORChain:
+    case TWCoinTypeBluzelle:
     case TWCoinTypeIoTeX: {
         Cosmos::Address addr;
         if (!Cosmos::Address::decode(string, addr)) {
@@ -147,6 +150,9 @@ TWData* _Nonnull TWAnyAddressData(struct TWAnyAddress* _Nonnull address) {
     case TWCoinTypeSmartChainLegacy:
     case TWCoinTypeSmartChain:
     case TWCoinTypePolygon:
+    case TWCoinTypeOptimism:
+    case TWCoinTypeArbitrum:
+    case TWCoinTypeECOChain:
         data = parse_hex(string);
         break;
 
