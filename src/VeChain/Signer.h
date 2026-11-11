@@ -1,18 +1,15 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #pragma once
 
 #include "Transaction.h"
 
-#include "../Data.h"
+#include "Data.h"
 #include "../Hash.h"
 #include "../PrivateKey.h"
 
-#include <boost/multiprecision/cpp_int.hpp>
 #include <cstdint>
 #include <tuple>
 #include <vector>
@@ -25,15 +22,14 @@ class Signer {
     Signer() = delete;
 
     /// Signs a Proto::SigningInput transaction
-    static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
+    static Proto::SigningOutput sign(const Proto::SigningInput& input);
+
+    static Data buildUnsignedTx(const Proto::SigningInput& input) noexcept;
+
+    static Data buildSignedTx(const Proto::SigningInput& input, const Data& signature) noexcept;
 
     /// Signs the given transaction.
-    static Data sign(const PrivateKey& privateKey, Transaction& transaction) noexcept;
+    static Data sign(const PrivateKey& privateKey, Transaction& transaction);
 };
 
 } // namespace TW::VeChain
-
-/// Wrapper for C interface.
-struct TWVeChainSigner {
-    TW::VeChain::Signer impl;
-};

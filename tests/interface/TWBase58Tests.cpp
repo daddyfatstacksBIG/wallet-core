@@ -1,10 +1,8 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
-#include "TWTestUtilities.h"
+#include "TestUtilities.h"
 
 #include <TrustWalletCore/TWBase58.h>
 
@@ -42,8 +40,8 @@ TEST(TWBase58, DecodeNoCheck) {
 
 TEST(TWBase58, Decode_WrongChecksum) {
     const auto input = STRING("1Bp9U1ogV3A14FMvKbRJms7ctyso5FdSz2");
-    auto result = WRAPD(TWBase58Decode(input.get()));
-    ASSERT_EQ(result.get(), nullptr);
+    auto result = TWBase58Decode(input.get());
+    ASSERT_EQ(result, nullptr);
 }
 
 TEST(TWBase58, DecodeNoCheck_WrongChecksum) {
@@ -56,13 +54,13 @@ TEST(TWBase58, DecodeNoCheck_WrongChecksum) {
 TEST(TWBase58, Decode_InvalidChar) {
     // 0 is invalid
     const auto input = STRING("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tc0");
-    auto result = WRAPD(TWBase58Decode(input.get()));
-    ASSERT_EQ(result.get(), nullptr);
+    auto result = TWBase58Decode(input.get());
+    ASSERT_EQ(result, nullptr);
 }
 
 TEST(TWBase58, DecodeNoCheck_InvalidChar) {
     // 0 is invalid
     const auto input = STRING("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tc0");
-    auto result = WRAPD(TWBase58DecodeNoCheck(input.get()));
-    ASSERT_EQ(result.get(), nullptr);
+    auto result = TWBase58DecodeNoCheck(input.get());
+    ASSERT_EQ(result, nullptr);
 }

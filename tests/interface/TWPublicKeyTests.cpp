@@ -1,10 +1,8 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
-#include "TWTestUtilities.h"
+#include "TestUtilities.h"
 
 #include "PublicKey.h"
 #include "PrivateKey.h"
@@ -49,26 +47,26 @@ TEST(TWPublicKeyTests, CompressedExtended) {
     const auto privateKey = WRAP(TWPrivateKey, new TWPrivateKey{ key });
     auto publicKey = WRAP(TWPublicKey, TWPrivateKeyGetPublicKeySecp256k1(privateKey.get(), true));
     EXPECT_EQ(TWPublicKeyKeyType(publicKey.get()), TWPublicKeyTypeSECP256k1);
-    EXPECT_EQ(publicKey.get()->impl.bytes.size(), 33);
+    EXPECT_EQ(publicKey.get()->impl.bytes.size(), 33ul);
     EXPECT_EQ(TWPublicKeyIsCompressed(publicKey.get()), true);
     EXPECT_TRUE(TWPublicKeyIsValid(publicKey.get(), TWPublicKeyTypeSECP256k1));
 
     auto extended = WRAP(TWPublicKey, TWPublicKeyUncompressed(publicKey.get()));
     EXPECT_EQ(TWPublicKeyKeyType(extended.get()), TWPublicKeyTypeSECP256k1Extended);
-    EXPECT_EQ(extended.get()->impl.bytes.size(), 65);
+    EXPECT_EQ(extended.get()->impl.bytes.size(), 65ul);
     EXPECT_EQ(TWPublicKeyIsCompressed(extended.get()), false);
     EXPECT_TRUE(TWPublicKeyIsValid(extended.get(), TWPublicKeyTypeSECP256k1Extended));
 
     auto compressed = WRAP(TWPublicKey, TWPublicKeyCompressed(extended.get()));
     //EXPECT_TRUE(compressed == publicKey.get());
     EXPECT_EQ(TWPublicKeyKeyType(compressed.get()), TWPublicKeyTypeSECP256k1);
-    EXPECT_EQ(compressed.get()->impl.bytes.size(), 33);
+    EXPECT_EQ(compressed.get()->impl.bytes.size(), 33ul);
     EXPECT_EQ(TWPublicKeyIsCompressed(compressed.get()), true);
     EXPECT_TRUE(TWPublicKeyIsValid(compressed.get(), TWPublicKeyTypeSECP256k1));
 }
 
 TEST(TWPublicKeyTests, Verify) {
-    const PrivateKey key(parse_hex("afeefca74d9a325cf1d6b6911d61a65c32afa8e02bd5e78e2e4ac2910bab45f5"));
+    const PrivateKey key(parse_hex("afeefca74d9a325cf1d6b6911d61a65c32afa8e02bd5e78e2e4ac2910bab45f5"), TWCurveSECP256k1);
     const auto privateKey = WRAP(TWPrivateKey, new TWPrivateKey{ key });
 
     const char* message = "Hello";
@@ -79,6 +77,61 @@ TEST(TWPublicKeyTests, Verify) {
 
     auto publicKey = WRAP(TWPublicKey, TWPrivateKeyGetPublicKeySecp256k1(privateKey.get(), false));
     ASSERT_TRUE(TWPublicKeyVerify(publicKey.get(), signature.get(), digest.get()));
+}
+
+TEST(TWPublicKeyTests, VerifyInvalidLength) {
+    const PrivateKey key(parse_hex("afeefca74d9a325cf1d6b6911d61a65c32afa8e02bd5e78e2e4ac2910bab45f5"), TWCurveSECP256k1);
+    const auto privateKey = WRAP(TWPrivateKey, new TWPrivateKey{ key });
+
+    const auto message = DATA("de4e9524586d6fce45667f9ff12f661e79870c4105fa0fb58af976619bb11432");
+    // 63 bytes instead of 64 or 65.
+    const auto signature = DATA("0000000000000000000000000000000000000000000000000000000000020123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef80");
+
+    auto publicKey = WRAP(TWPublicKey, TWPrivateKeyGetPublicKeySecp256k1(privateKey.get(), false));
+    ASSERT_FALSE(TWPublicKeyVerify(publicKey.get(), signature.get(), message.get()));
+}
+
+TEST(TWPublicKeyTests, VerifyInvalidMessageLength) {
+    const PrivateKey key(parse_hex("afeefca74d9a325cf1d6b6911d61a65c32afa8e02bd5e78e2e4ac2910bab45f5"), TWCurveSECP256k1);
+    const auto privateKey = WRAP(TWPrivateKey, new TWPrivateKey{ key });
+
+    // Invalid message length - 31 bytes instead of 32
+    const auto invalidMessage = DATA("de4e9524586d6fce45667f9ff12f661e79870c4105fa0fb58af976619bb114");
+    // Valid 64-byte signature
+    const auto signature = DATA("00000000000000000000000000000000000000000000000000000000000000020123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef80");
+
+    auto publicKey = WRAP(TWPublicKey, TWPrivateKeyGetPublicKeySecp256k1(privateKey.get(), false));
+    ASSERT_FALSE(TWPublicKeyVerify(publicKey.get(), signature.get(), invalidMessage.get()));
+}
+
+TEST(TWPublicKeyTests, VerifyAsDER) {
+    const PrivateKey key = PrivateKey(parse_hex("afeefca74d9a325cf1d6b6911d61a65c32afa8e02bd5e78e2e4ac2910bab45f5"), TWCurveSECP256k1);
+    const auto privateKey = WRAP(TWPrivateKey, new TWPrivateKey{ key });
+
+    const char* message = "Hello";
+    auto messageData = WRAPD(TWDataCreateWithBytes((const uint8_t*)message, strlen(message)));
+    auto digest = WRAPD(TWHashKeccak256(messageData.get()));
+
+    auto signature = WRAPD(TWPrivateKeySignAsDER(privateKey.get(), digest.get()));
+
+    auto publicKey = WRAP(TWPublicKey, TWPrivateKeyGetPublicKeySecp256k1(privateKey.get(), false));
+
+    ASSERT_TRUE(TWPublicKeyVerifyAsDER(publicKey.get(), signature.get(), digest.get()));
+
+    ASSERT_FALSE(TWPublicKeyVerify(publicKey.get(), signature.get(), digest.get()));
+}
+
+TEST(TWPublicKeyTests, VerifyAsDERInvalidMessageLength) {
+    const PrivateKey key = PrivateKey(parse_hex("afeefca74d9a325cf1d6b6911d61a65c32afa8e02bd5e78e2e4ac2910bab45f5"), TWCurveSECP256k1);
+    const auto privateKey = WRAP(TWPrivateKey, new TWPrivateKey{ key });
+
+    // Invalid message length - 31 bytes instead of 32
+    const auto invalidMessage = DATA("de4e9524586d6fce45667f9ff12f661e79870c4105fa0fb58af976619bb114");
+    // Valid 64-byte signature
+    const auto signature = DATA("00000000000000000000000000000000000000000000000000000000000000020123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef80");
+
+    auto publicKey = WRAP(TWPublicKey, TWPrivateKeyGetPublicKeySecp256k1(privateKey.get(), false));
+    ASSERT_FALSE(TWPublicKeyVerifyAsDER(publicKey.get(), signature.get(), invalidMessage.get()));
 }
 
 TEST(TWPublicKeyTests, VerifyEd25519) {

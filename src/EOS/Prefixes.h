@@ -1,11 +1,10 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #pragma once
 
+#include <stdexcept>
 #include <string>
 
 namespace TW::EOS {
@@ -48,6 +47,7 @@ inline std::string pubPrefixForType(Type t) {
     case Type::ModernR1:
         return Modern::R1::fullPubPrefix;
     }
+    throw std::invalid_argument("Unknown EOS key type");
 }
 
 inline std::string sigPrefixForType(Type t) {
@@ -61,5 +61,6 @@ inline std::string sigPrefixForType(Type t) {
     case Type::ModernR1:
         return Modern::R1::fullSigPrefix;
     }
+    throw std::invalid_argument("Unknown EOS key type");
 }
 } // namespace TW::EOS

@@ -1,11 +1,10 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #include <TrustWalletCore/TWData.h>
 #include <TrustWalletCore/TWString.h>
+#include <TrezorCrypto/memzero.h>
 #include "Data.h"
 #include "HexCoding.h"
 #include <algorithm>
@@ -14,20 +13,20 @@
 using namespace TW;
 
 TWData *_Nonnull TWDataCreateWithBytes(const uint8_t *_Nonnull bytes, size_t size) {
-    auto data = new std::vector<uint8_t>();
+    auto* data = new Data();
     data->reserve(size);
     std::copy(bytes, bytes + size, std::back_inserter(*data));
     return data;
 }
 
 TWData *_Nonnull TWDataCreateWithSize(size_t size) {
-    auto data = new std::vector<uint8_t>(size, 0);
+    auto* data = new Data(size, 0);
     return data;
 }
 
 TWData *_Nonnull TWDataCreateWithData(TWData *_Nonnull data) {
-    auto other = reinterpret_cast<const std::vector<uint8_t>*>(data);
-    auto copy = new std::vector<uint8_t>(*other);
+    auto* other = reinterpret_cast<const Data*>(data);
+    auto* copy = new Data(*other);
     return copy;
 }
 
@@ -40,69 +39,83 @@ TWData* TWDataCreateWithHexString(const TWString* hex) {
 }
 
 size_t TWDataSize(TWData *_Nonnull data) {
-    auto v = reinterpret_cast<const std::vector<uint8_t>*>(data);
+    auto* v = reinterpret_cast<const Data*>(data);
     return v->size();
 }
 
 uint8_t *_Nonnull TWDataBytes(TWData *_Nonnull data) {
-    auto v = const_cast<std::vector<uint8_t>*>(reinterpret_cast<const std::vector<uint8_t>*>(data));
+    auto* v = const_cast<Data*>(reinterpret_cast<const Data*>(data));
     return v->data();
 }
 
-uint8_t TWDataGet(TWData *_Nonnull data, size_t index) {
-    auto v = reinterpret_cast<const std::vector<uint8_t>*>(data);
-    return (*v)[index];
-}
-
 void TWDataSet(TWData *_Nonnull data, size_t index, uint8_t byte) {
-    auto v = const_cast<std::vector<uint8_t>*>(reinterpret_cast<const std::vector<uint8_t>*>(data));
+    auto* v = const_cast<Data*>(reinterpret_cast<const Data*>(data));
+    if (v->size() <= index) {
+        return;
+    }
     (*v)[index] = byte;
 }
 
-void TWDataCopyBytes(TWData *_Nonnull data, size_t start, size_t size, uint8_t *_Nonnull output) {
-    auto v = reinterpret_cast<const std::vector<uint8_t>*>(data);
+int TWDataCopyBytes(TWData *_Nonnull data, size_t start, size_t size, uint8_t *_Nonnull output) {
+    auto* v = reinterpret_cast<const Data*>(data);
+    // Check for overflow and bounds
+    if (start >= v->size() || size == 0 || size > v->size() - start) {
+        return -1;
+    }
     std::copy(std::begin(*v) + start, std::begin(*v) + start + size, output);
+    return 0;
 }
 
-void TWDataReplaceBytes(TWData *_Nonnull data, size_t start, size_t size, const uint8_t *_Nonnull bytes) {
-    auto v = const_cast<std::vector<uint8_t>*>(reinterpret_cast<const std::vector<uint8_t>*>(data));
+int TWDataReplaceBytes(TWData *_Nonnull data, size_t start, size_t size, const uint8_t *_Nonnull bytes) {
+    auto* v = const_cast<Data*>(reinterpret_cast<const Data*>(data));
+    // Check for overflow and bounds
+    if (start >= v->size() || size == 0 || size > v->size() - start) {
+        return -1;
+    }
     std::copy(bytes, bytes + size, std::begin(*v) + start);
+    return 0;
 }
 
 void TWDataAppendBytes(TWData *_Nonnull data, const uint8_t *_Nonnull bytes, size_t size) {
-    auto v = const_cast<std::vector<uint8_t>*>(reinterpret_cast<const std::vector<uint8_t>*>(data));
-    for (auto i = 0; i < size; i += 1)
+    auto* v = const_cast<Data*>(reinterpret_cast<const Data*>(data));
+    for (auto i = 0ul; i < size; i += 1)
         v->push_back(bytes[i]);
 }
 
 void TWDataAppendByte(TWData *_Nonnull data, uint8_t byte) {
-    auto v = const_cast<std::vector<uint8_t>*>(reinterpret_cast<const std::vector<uint8_t>*>(data));
+    auto* v = const_cast<Data*>(reinterpret_cast<const Data*>(data));
     v->push_back(byte);
 }
 
 void TWDataAppendData(TWData *_Nonnull data, TWData *_Nonnull append) {
-    auto v = const_cast<std::vector<uint8_t>*>(reinterpret_cast<const std::vector<uint8_t>*>(data));
-    auto av = reinterpret_cast<const std::vector<uint8_t>*>(append);
+    auto* v = const_cast<Data*>(reinterpret_cast<const Data*>(data));
+    auto* av = reinterpret_cast<const Data*>(append);
     std::copy(av->begin(), av->end(), std::back_inserter(*v));
 }
 
 void TWDataReverse(TWData *_Nonnull data) {
-    auto v = const_cast<std::vector<uint8_t>*>(reinterpret_cast<const std::vector<uint8_t>*>(data));
+    auto* v = const_cast<Data*>(reinterpret_cast<const Data*>(data));
     std::reverse(std::begin(*v), std::end(*v));
 }
 
 void TWDataReset(TWData *_Nonnull data) {
-    auto v = const_cast<std::vector<uint8_t>*>(reinterpret_cast<const std::vector<uint8_t>*>(data));
+    auto* v = const_cast<Data*>(reinterpret_cast<const Data*>(data));
     std::fill(std::begin(*v), std::end(*v), 0);
 }
 
 void TWDataDelete(TWData *_Nonnull data) {
-    auto v = reinterpret_cast<const std::vector<uint8_t>*>(data);
-    delete v;
+    auto* vConst = reinterpret_cast<const Data*>(data);
+    if (!vConst->empty()) {
+        // `const_cast` is safe here despite that the pointer to the data is const
+        // but `Data` is not a constant value.
+        auto *v = const_cast<Data*>(vConst);
+        memzero(v->data(), v->size());
+    }
+    delete vConst;
 }
 
 bool TWDataEqual(TWData *_Nonnull lhs, TWData *_Nonnull rhs) {
-    auto lv = reinterpret_cast<const std::vector<uint8_t>*>(lhs);
-    auto rv = reinterpret_cast<const std::vector<uint8_t>*>(rhs);
+    auto* lv = reinterpret_cast<const Data*>(lhs);
+    auto* rv = reinterpret_cast<const Data*>(rhs);
     return *lv == *rv;
 }

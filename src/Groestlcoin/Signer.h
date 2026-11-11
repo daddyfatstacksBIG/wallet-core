@@ -1,27 +1,34 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #pragma once
 #include "../proto/Bitcoin.pb.h"
+#include "Data.h"
+
+#include <vector>
+#include <optional>
+#include <utility>
 
 namespace TW::Groestlcoin {
 
 using SigningInput = Bitcoin::Proto::SigningInput;
 using SigningOutput = Bitcoin::Proto::SigningOutput;
 using TransactionPlan = Bitcoin::Proto::TransactionPlan;
+using PreSigningOutput = Bitcoin::Proto::PreSigningOutput;
 
 class Signer {
   public:
     Signer() = delete;
 
     /// Returns a transaction plan (utxo selection, fee estimation)
-    static TransactionPlan plan(const SigningInput& input) noexcept;
+    static TransactionPlan plan(const SigningInput& input);
 
-    /// Signs a Proto::SigningInput transaction
-    static SigningOutput sign(const SigningInput& input) noexcept;
+    /// Signs a SigningInput transaction
+    static SigningOutput sign(const SigningInput& input, std::optional<SignaturePubkeyList> optionalExternalSigs = {});
+
+    /// Collect pre-image hashes to be signed
+    static PreSigningOutput preImageHashes(const SigningInput& input);
 };
 
 } // namespace TW::Groestlcoin

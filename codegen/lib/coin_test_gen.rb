@@ -1,4 +1,4 @@
-# Helper for creating/updating CoinType unit tests, based on the coins.json file
+# Helper for creating/updating CoinType unit tests, based on the registry.json file
 
 require 'erb'
 require 'fileutils'
@@ -14,8 +14,10 @@ class CoinTestGen
   # Transforms a coin name to a C++ name
   def format_name(n)
     formatted = n
-    #formatted = formatted.sub(/^([a-z]+)/, &:upcase)
-    formatted = formatted.sub(/\s/, '')
+
+    # Remove whitespaces
+    formatted.gsub!(/\s+/, '')
+
     formatted
   end
 
@@ -30,6 +32,15 @@ class CoinTestGen
     name = coin['displayName']
     if name == nil
       name = coin['name']
+    end
+    name
+  end
+
+  # Native token name, or display name if not specified
+  def native_token_name(coin)
+    name = coin['nativeTokenName']
+    if name == nil
+      name = display_name(coin)
     end
     name
   end
@@ -56,16 +67,24 @@ class CoinTestGen
     end
   end
 
-  def generate_coin_test_file(coin, templateFile)
+  def generate_coin_test_file(coin, templateFile, overwriteExisting = true)
     path = File.expand_path(templateFile, File.join(File.dirname(__FILE__), '..', 'lib', 'templates'))
-    template = ERB.new(File.read(path), nil, '-')
+    template = ERB.new(File.read(path), trim_mode: '-')
     result = template.result(binding)
 
-    folder = 'tests/' + format_name(coin['name'])
+    folder = 'tests/chains/'
+    if coin.key?('testFolderName')
+      folder += format_name(coin['testFolderName'])
+    else
+      folder += format_name(coin['name'])
+    end
+
     file = 'TWCoinTypeTests.cpp'
     FileUtils.mkdir_p folder
     path = File.join(folder, file)
-    File.write(path, result)
-    puts "Generated file " + path
+    if not File.exist?(path) or overwriteExisting
+      File.write(path, result)
+      puts "Generated file " + path
+    end
   end
 end

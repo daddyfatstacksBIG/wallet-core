@@ -1,15 +1,16 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #pragma once
 
 #include "Data.h"
 
+#include <stdexcept>
 #include <string>
 #include <memory>
+#include <vector>
+#include <map>
 
 namespace TW::Cbor {
 
@@ -37,9 +38,13 @@ public:
     /// encode an array of elements (of different types)
     static Encode array(const std::vector<Encode>& elems);
     /// encode a map
-    static Encode map(const std::vector<std::pair<Encode, Encode>>& elems);
+    static Encode map(const std::map<Encode, Encode>& elems);
     /// encode a tag and following element
     static Encode tag(uint64_t value, const Encode& elem);
+    /// encode a null value (special)
+    static Encode null();
+    /// encode a version
+    static Encode version(uint64_t value);
 
     /// Stateful building (for indefinite length)
     /// Start an indefinite-length array
@@ -51,21 +56,27 @@ public:
 
     /// Create from raw content, must be valid CBOR data, may throw
     static Encode fromRaw(const TW::Data& rawData);
+    const Data& getDataInternal() const { return _data; }
 
 private:
     Encode() {}
-    Encode(const TW::Data& rawData) : data(rawData) {}
+    Encode(const TW::Data& rawData) : _data(rawData) {}
     /// Append types + value, on variable number of bytes (1..8). Return object to support chain syntax.
     Encode appendValue(byte majorType, uint64_t value);
-    inline Encode append(const TW::Data& data) { TW::append(this->data, data); return *this; }
+    inline Encode append(const TW::Data& data) { TW::append(_data, data); return *this; }
     void appendIndefinite(byte majorType);
 
 private:
     /// Encoded data is stored here, always well-formed, but my be partial.
-    TW::Data data;
+    TW::Data _data;
     /// number of currently open indefinite buildingds (0, 1, or more for nested)
     int openIndefCount = 0;
 };
+
+/// Comparator, needed for map keys
+inline bool operator<(const Encode& lhs, const Encode& rhs) {
+    return lhs.getDataInternal() < rhs.getDataInternal();
+}
 
 /// CBOR Decoder and container for data for decoding.  Contains reference to read-only CBOR data.
 /// See CborTests.cpp for usage.
@@ -74,29 +85,7 @@ public:
     /// Constructor, create from CBOR byte stream
     Decode(const Data& input);
 
-public: // decoding
-    /// Check if contains a valid CBOR byte stream.
-    bool isValid() const;
-    /// Get the value of a simple type
-    uint64_t getValue() const;
-    /// Get the value of a string/bytes as string
-    std::string getString() const;
-    /// Get the value of a string/bytes as Data
-    TW::Data getBytes() const;
-    /// Get all elements of array
-    std::vector<Decode> getArrayElements() const { return getCompoundElements(1, MT_array); }
-    /// Get all elements of map
-    std::vector<std::pair<Decode, Decode>> getMapElements() const;
-    /// Get the tag number
-    uint64_t getTagValue() const;
-    /// Get the tag element
-    Decode getTagElement() const;
-    /// Dump to a JSON-like string (debugging)
-    std::string dumpToString() const;
-    uint32_t length() const { return subLen; }
-    /// Return encoded form (useful e.g for parsed out sub-parts)
-    Data encoded() const;
-
+public:
     enum MajorType {
         MT_uint = 0,
         MT_negint = 1,
@@ -107,6 +96,32 @@ public: // decoding
         MT_tag = 6,
         MT_special = 7,
     };
+
+    using MapElements = std::vector<std::pair<Decode, Decode>>;
+
+    /// Check if contains a valid CBOR byte stream.
+    bool isValid() const;
+    // Get the major type
+    MajorType getMajorType() const;
+    /// Get the value of a simple type
+    uint64_t getValue() const;
+    /// Get the value of a string/bytes as string
+    std::string getString() const;
+    /// Get the value of a string/bytes as Data
+    TW::Data getBytes() const;
+    /// Get all elements of array
+    std::vector<Decode> getArrayElements() const { return getCompoundElements(1, MT_array); }
+    /// Get all elements of map
+    MapElements getMapElements() const;
+    /// Get the tag number
+    uint64_t getTagValue() const;
+    /// Get the tag element
+    Decode getTagElement() const;
+    /// Dump to a JSON-like string (debugging)
+    std::string dumpToString() const;
+    uint32_t length() const { return subLen; }
+    /// Return encoded form (useful e.g for parsed out sub-parts)
+    Data encoded() const;
     
 private:
     /// Struct used to keep reference to original data

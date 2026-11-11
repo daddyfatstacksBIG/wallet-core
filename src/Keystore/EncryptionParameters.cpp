@@ -1,23 +1,24 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #include "EncryptionParameters.h"
 
+#include "memory/memzero_wrapper.h"
 #include "../Hash.h"
-#include "../HexCoding.h"
 
 #include <TrezorCrypto/aes.h>
 #include <TrezorCrypto/pbkdf2.h>
 #include <TrezorCrypto/scrypt.h>
-
-#include <boost/variant/get.hpp>
 #include <cassert>
+#include <cerrno>
+#include <sstream>
+#include <stdexcept>
+#include <system_error>
 
 using namespace TW;
-using namespace TW::Keystore;
+
+namespace TW::Keystore {
 
 template <typename Iter>
 static Data computeMAC(Iter begin, Iter end, const Data& key) {
@@ -26,79 +27,6 @@ static Data computeMAC(Iter begin, Iter end, const Data& key) {
     data.insert(data.end(), begin, end);
     append(data, key);
     return Hash::keccak256(data);
-}
-
-EncryptionParameters::EncryptionParameters(const Data& password, const Data& data) : mac() {
-    auto scryptParams = boost::get<ScryptParameters>(kdfParams);
-    auto derivedKey = Data(scryptParams.desiredKeyLength);
-    scrypt(reinterpret_cast<const byte*>(password.data()), password.size(), scryptParams.salt.data(),
-           scryptParams.salt.size(), scryptParams.n, scryptParams.r, scryptParams.p, derivedKey.data(),
-           scryptParams.desiredKeyLength);
-
-    aes_encrypt_ctx ctx;
-    auto result = aes_encrypt_key128(derivedKey.data(), &ctx);
-    assert(result == EXIT_SUCCESS);
-    if (result == EXIT_SUCCESS) {
-        Data iv = cipherParams.iv;
-        encrypted = Data(data.size());
-        aes_ctr_encrypt(data.data(), encrypted.data(), static_cast<int>(data.size()), iv.data(), aes_ctr_cbuf_inc, &ctx);
-
-        mac = computeMAC(derivedKey.end() - 16, derivedKey.end(), encrypted);
-    }
-}
-
-EncryptionParameters::~EncryptionParameters() {
-    std::fill(encrypted.begin(), encrypted.end(), 0);
-}
-
-Data EncryptionParameters::decrypt(const Data& password) const {
-    auto derivedKey = Data();
-    auto mac = Data();
-
-    if (kdfParams.which() == 0) {
-        auto scryptParams = boost::get<ScryptParameters>(kdfParams);
-        derivedKey.resize(scryptParams.defaultDesiredKeyLength);
-        scrypt(password.data(), password.size(), scryptParams.salt.data(),
-            scryptParams.salt.size(), scryptParams.n, scryptParams.r, scryptParams.p, derivedKey.data(),
-            scryptParams.defaultDesiredKeyLength);
-        mac = computeMAC(derivedKey.end() - 16, derivedKey.end(), encrypted);
-    } else if (kdfParams.which() == 1) {
-        auto pbkdf2Params = boost::get<PBKDF2Parameters>(kdfParams);
-        derivedKey.resize(pbkdf2Params.defaultDesiredKeyLength);
-        pbkdf2_hmac_sha256(password.data(), static_cast<int>(password.size()), pbkdf2Params.salt.data(),
-            static_cast<int>(pbkdf2Params.salt.size()), pbkdf2Params.iterations, derivedKey.data(),
-            pbkdf2Params.defaultDesiredKeyLength);
-        mac = computeMAC(derivedKey.end() - 16, derivedKey.end(), encrypted);
-    } else {
-        throw DecryptionError::unsupportedKDF;
-    }
-
-    if (mac != this->mac) {
-        throw DecryptionError::invalidPassword;
-    }
-
-    Data decrypted(encrypted.size());
-    Data iv = cipherParams.iv;
-    if (cipher == "aes-128-ctr") {
-        aes_encrypt_ctx ctx;
-        auto result = aes_encrypt_key(derivedKey.data(), 16, &ctx);
-        assert(result != EXIT_FAILURE);
-
-        aes_ctr_decrypt(encrypted.data(), decrypted.data(), static_cast<int>(encrypted.size()), iv.data(),
-                        aes_ctr_cbuf_inc, &ctx);
-    } else if (cipher == "aes-128-cbc") {
-        aes_decrypt_ctx ctx;
-        auto result = aes_decrypt_key(derivedKey.data(), 16, &ctx);
-        assert(result != EXIT_FAILURE);
-
-        for (auto i = 0; i < encrypted.size(); i += 16) {
-            aes_cbc_decrypt(encrypted.data() + i, decrypted.data() + i, 16, iv.data(), &ctx);
-        }
-    } else {
-        throw DecryptionError::unsupportedCipher;
-    }
-
-    return decrypted;
 }
 
 // -----------------
@@ -115,36 +43,247 @@ static const auto mac = "mac";
 } // namespace CodingKeys
 
 EncryptionParameters::EncryptionParameters(const nlohmann::json& json) {
-    encrypted = parse_hex(json[CodingKeys::encrypted].get<std::string>());
-    cipher = json[CodingKeys::cipher].get<std::string>();
-    cipherParams = AESParameters(json[CodingKeys::cipherParams]);
-    mac = parse_hex(json[CodingKeys::mac].get<std::string>());
+    if (json.count(CodingKeys::cipher) == 0 || !json[CodingKeys::cipher].is_string()) {
+        throw std::invalid_argument("Missing cipher");
+    }
+    if (json.count(CodingKeys::kdf) == 0 || !json[CodingKeys::kdf].is_string()) {
+        throw std::invalid_argument("Missing kdf");
+    }
+    if (json.count(CodingKeys::cipherParams) == 0 || !json[CodingKeys::cipherParams].is_object()) {
+        throw std::invalid_argument("Missing cipher params");
+    }
+    if (json.count(CodingKeys::kdfParams) == 0 || !json[CodingKeys::kdfParams].is_object()) {
+        throw std::invalid_argument("Missing kdf params");
+    }
+
+    auto cipher = json[CodingKeys::cipher].get<std::string>();
+    cipherParams = AESParameters::AESParametersFromJson(json[CodingKeys::cipherParams], cipher);
+    if (const auto error = cipherParams.validate(); error.has_value()) {
+        std::stringstream ss;
+        ss << "Invalid cipher params: " << toString(*error);
+        throw std::invalid_argument(ss.str());
+    }
 
     auto kdf = json[CodingKeys::kdf].get<std::string>();
     if (kdf == "scrypt") {
         kdfParams = ScryptParameters(json[CodingKeys::kdfParams]);
     } else if (kdf == "pbkdf2") {
         kdfParams = PBKDF2Parameters(json[CodingKeys::kdfParams]);
+    } else {
+        throw std::invalid_argument("Unsupported kdf: " + kdf);
     }
 }
 
 nlohmann::json EncryptionParameters::json() const {
     nlohmann::json j;
-    j[CodingKeys::encrypted] = hex(encrypted);
-    j[CodingKeys::cipher] = cipher;
+    j[CodingKeys::cipher] = cipher();
     j[CodingKeys::cipherParams] = cipherParams.json();
-    j[CodingKeys::mac] = hex(mac);
 
-    if (kdfParams.which() == 0) {
-        auto scryptParams = boost::get<ScryptParameters>(kdfParams);
+    if (auto* scryptParams = std::get_if<ScryptParameters>(&kdfParams); scryptParams) {
         j[CodingKeys::kdf] = "scrypt";
-        j[CodingKeys::kdfParams] = scryptParams.json();
-    } else if (kdfParams.which() == 1) {
-        auto pbkdf2Params = boost::get<PBKDF2Parameters>(kdfParams);
+        j[CodingKeys::kdfParams] = scryptParams->json();
+    } else if (auto* pbkdf2Params = std::get_if<PBKDF2Parameters>(&kdfParams); pbkdf2Params) {
         j[CodingKeys::kdf] = "pbkdf2";
-        j[CodingKeys::kdfParams] = pbkdf2Params.json();
-
+        j[CodingKeys::kdfParams] = pbkdf2Params->json();
     }
 
     return j;
 }
+
+bool EncryptionParameters::shouldFix() const {
+    if (std::holds_alternative<ScryptParameters>(kdfParams)) {
+        return std::get<ScryptParameters>(kdfParams).shouldFix();
+    }
+
+    // Note: re-encryption is currently supported for Scrypt only.
+    return false;
+}
+
+EncryptedPayload::EncryptedPayload(const Data& password, const Data& data, const AESParameters& cipherParams, const ScryptParameters& scryptParams) {
+    if (const auto error = cipherParams.validate(); error.has_value()) {
+        std::stringstream ss;
+        ss << "Invalid cipher params: " << toString(*error);
+        throw std::invalid_argument(ss.str());
+    }
+
+    // The `ScryptParameters` fields are public, so a caller can pass values that never went through
+    // `validate()`: only the value constructor and the JSON constructor enforce it, a plain copy or
+    // assignment does not. Re-validate here, before the derived-key buffer is allocated. This is
+    // what refuses a `desiredKeyLength` other than 32, which used to undersize the buffer that the
+    // AES key schedule and `computeMAC` read with fixed offsets of up to 32 bytes, and it reports a
+    // bad `n`, `r` or `p` as an invalid argument instead of letting it reach scrypt(), where the
+    // same failure would be indistinguishable from an allocation failure.
+    if (const auto error = scryptParams.validate(); error.has_value()) {
+        std::stringstream ss;
+        ss << "Invalid scrypt params: " << toString(*error);
+        throw std::invalid_argument(ss.str());
+    }
+
+    // Derive exactly `defaultDesiredKeyLength` bytes, the same constant `decrypt()` uses, so that the
+    // buffer size never depends on caller-controlled state.
+    auto derivedKey = Data(ScryptParameters::defaultDesiredKeyLength);
+    // scrypt() returns non-zero (with errno set) on a parameter or allocation failure, leaving the
+    // buffer all zeros; proceeding would encrypt the payload under an all-zero key. On one late path
+    // (munmap failing after derivation) the buffer already holds the real key, so wipe it either way
+    // before the throw frees it. Parameters were validated above, so what remains is a resource
+    // failure; it is thrown as std::system_error carrying errno.
+    if (scrypt(reinterpret_cast<const byte*>(password.data()), password.size(), scryptParams.salt.data(),
+               scryptParams.salt.size(), scryptParams.n, scryptParams.r, scryptParams.p, derivedKey.data(),
+               ScryptParameters::defaultDesiredKeyLength) != 0) {
+        const auto scryptErrno = errno;
+        memzero(derivedKey.data(), derivedKey.size());
+        throw std::system_error(scryptErrno, std::generic_category(), "scrypt key derivation failed");
+    }
+
+    aes_encrypt_ctx ctx;
+    auto result = 0;
+    switch(cipherParams.mCipherEncryption) {
+    case TWStoredKeyEncryptionAes128Ctr:
+        result = aes_encrypt_key128(derivedKey.data(), &ctx);
+        break;
+    case TWStoredKeyEncryptionAes192Ctr:
+        result = aes_encrypt_key192(derivedKey.data(), &ctx);
+        break;
+    case TWStoredKeyEncryptionAes256Ctr:
+        result = aes_encrypt_key256(derivedKey.data(), &ctx);
+        break;
+    }
+    assert(result == EXIT_SUCCESS);
+    if (result == EXIT_SUCCESS) {
+        Data iv = cipherParams.iv;
+        // iv size should have been validated in `AESParameters::isValid()`.
+        assert(iv.size() == gBlockSize);
+
+        params = { cipherParams, scryptParams };
+        encrypted = Data(data.size());
+        aes_ctr_encrypt(data.data(), encrypted.data(), static_cast<int>(data.size()), iv.data(), aes_ctr_cbuf_inc, &ctx);
+        _mac = computeMAC(derivedKey.end() - params.getKeyBytesSize(), derivedKey.end(), encrypted);
+    }
+
+    memzero(&ctx, sizeof(ctx));
+    memzero(derivedKey.data(), derivedKey.size());
+}
+
+EncryptedPayload& EncryptedPayload::operator=(EncryptedPayload&& other) noexcept {
+    if (this != &other) {
+        memzero(encrypted.data(), encrypted.size());
+        memzero(_mac.data(), _mac.size());
+
+        params = std::move(other.params);
+        encrypted = std::move(other.encrypted);
+        _mac = std::move(other._mac);
+    }
+    return *this;
+}
+
+EncryptedPayload::~EncryptedPayload() {
+    memzero(encrypted.data(), encrypted.size());
+    memzero(_mac.data(), _mac.size());
+}
+
+Data EncryptedPayload::decrypt(const Data& password) const {
+    auto derivedKey = Data();
+    auto mac = Data();
+
+    if (auto* scryptParams = std::get_if<ScryptParameters>(&params.kdfParams); scryptParams) {
+        derivedKey.resize(ScryptParameters::defaultDesiredKeyLength);
+        if (scrypt(password.data(), password.size(), scryptParams->salt.data(),
+                   scryptParams->salt.size(), scryptParams->n, scryptParams->r, scryptParams->p, derivedKey.data(),
+                   ScryptParameters::defaultDesiredKeyLength) != 0) {
+            // Usually nothing was derived, but on one late path (munmap failing after derivation)
+            // the buffer already holds the real key. Wipe it either way before the throw frees it.
+            memzero(derivedKey.data(), derivedKey.size());
+            throw DecryptionError::derivationFailed;
+        }
+        mac = computeMAC(derivedKey.end() - params.getKeyBytesSize(), derivedKey.end(), encrypted);
+    } else if (auto* pbkdf2Params = std::get_if<PBKDF2Parameters>(&params.kdfParams); pbkdf2Params) {
+        derivedKey.resize(PBKDF2Parameters::defaultDesiredKeyLength);
+        pbkdf2_hmac_sha256(password.data(), static_cast<int>(password.size()), pbkdf2Params->salt.data(),
+                           static_cast<int>(pbkdf2Params->salt.size()), pbkdf2Params->iterations, derivedKey.data(),
+                           PBKDF2Parameters::defaultDesiredKeyLength);
+        mac = computeMAC(derivedKey.end() - params.getKeyBytesSize(), derivedKey.end(), encrypted);
+    } else {
+        throw DecryptionError::unsupportedKDF;
+    }
+
+    if (!isEqualConstantTime(mac, _mac)) {
+        memzero(derivedKey.data(), derivedKey.size());
+        throw DecryptionError::invalidPassword;
+    }
+
+    // Even though the cipher params should have been validated in `EncryptedPayload` constructor,
+    // double check them here.
+    if (params.cipherParams.validate().has_value()) {
+        throw DecryptionError::invalidCipher;
+    }
+    assert(params.cipherParams.iv.size() == gBlockSize);
+
+    Data decrypted(encrypted.size());
+    Data iv = params.cipherParams.iv;
+    const auto encryption = params.cipherParams.mCipherEncryption;
+    if (encryption == TWStoredKeyEncryptionAes128Ctr
+        || encryption == TWStoredKeyEncryptionAes192Ctr
+        || encryption == TWStoredKeyEncryptionAes256Ctr) {
+        aes_encrypt_ctx ctx;
+        [[maybe_unused]] auto result = aes_encrypt_key(derivedKey.data(), params.getKeyBytesSize(), &ctx);
+        assert(result != EXIT_FAILURE);
+
+        aes_ctr_decrypt(encrypted.data(), decrypted.data(), static_cast<int>(encrypted.size()), iv.data(),
+                        aes_ctr_cbuf_inc, &ctx);
+        memzero(&ctx, sizeof(ctx));
+        memzero(derivedKey.data(), derivedKey.size());
+    } else {
+        memzero(derivedKey.data(), derivedKey.size());
+        throw DecryptionError::unsupportedCipher;
+    }
+
+    return decrypted;
+}
+
+EncryptedPayload EncryptedPayload::regenerateWithRecommendedParams(const Data& password) const {
+    // IMPORTANT: `EncryptedPayload` constructor supports Scrypt encryption ONLY.
+    // Hence, we can't regenerate PBKDF2 and re-encrypt a payload. Do nothing in that case.
+    if (!std::holds_alternative<ScryptParameters>(params.kdfParams)) {
+        return *this;
+    }
+
+    const auto decryptedData = ZeroizingData(decrypt(password));
+
+    // Regenerate only necessary Scrypt parameters, while leaving other settings as is.
+    const auto fixedScryptParams = std::get<ScryptParameters>(params.kdfParams).regenerateWithRecommendedParams();
+    const auto cipherParams = params.cipherParams.copyWithNewIv();
+
+    auto reEncryptedPayload = EncryptedPayload(password, decryptedData.get(), cipherParams, fixedScryptParams);
+
+    // Try to decrypt the new payload to verify the full backward compatibility, before returning it.
+    {
+        auto reDecryptedData = ZeroizingData(reEncryptedPayload.decrypt(password));
+        if (!isEqualConstantTime(decryptedData.get(), reDecryptedData.get())) {
+            throw DecryptionError::invalidKeyFile;
+        }
+    }
+
+    return reEncryptedPayload;
+}
+
+EncryptedPayload::EncryptedPayload(const nlohmann::json& json) {
+    if (json.count(CodingKeys::encrypted) == 0 || !json[CodingKeys::encrypted].is_string()) {
+        throw std::invalid_argument("Missing encrypted data");
+    }
+    if (json.count(CodingKeys::mac) == 0 || !json[CodingKeys::mac].is_string()) {
+        throw std::invalid_argument("Missing mac");
+    }
+
+    params = EncryptionParameters(json);
+    encrypted = parse_hex(json[CodingKeys::encrypted].get<std::string>());
+    _mac = parse_hex(json[CodingKeys::mac].get<std::string>());
+}
+
+nlohmann::json EncryptedPayload::json() const {
+    nlohmann::json j = params.json();
+    j[CodingKeys::encrypted] = hex(encrypted);
+    j[CodingKeys::mac] = hex(_mac);
+    return j;
+}
+
+} // namespace TW::Keystore

@@ -1,35 +1,36 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #include "Signer.h"
 
 #include "../Hash.h"
 
 using namespace TW;
-using namespace TW::Waves;
 
-Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
-    auto privateKey = PrivateKey(Data(input.private_key().begin(), input.private_key().end()));
+namespace TW::Waves {
+
+Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) {
+    auto privateKey = PrivateKey(input.private_key(), TWCurveCurve25519);
     auto publicKey = privateKey.getPublicKey(TWPublicKeyTypeCURVE25519);
     auto transaction = Transaction(input, publicKey.bytes);
 
     Data signature = Signer::sign(privateKey, transaction);
 
     Proto::SigningOutput output = Proto::SigningOutput();
-    output.set_signature(reinterpret_cast<const char *>(signature.data()), signature.size());
+    output.set_signature(reinterpret_cast<const char*>(signature.data()), signature.size());
     output.set_json(transaction.buildJson(signature).dump());
     return output;
 }
 
-Data Signer::sign(const PrivateKey &privateKey, Transaction &transaction) noexcept {
+Data Signer::sign(const PrivateKey& privateKey, Transaction& transaction) {
     try {
         auto bytesToSign = transaction.serializeToSign();
-        auto signature = privateKey.sign(bytesToSign, TWCurveCurve25519);
+        auto signature = privateKey.sign(bytesToSign);
         return signature;
     } catch (...) {
         return Data();
     }
 }
+
+} // namespace TW::Waves

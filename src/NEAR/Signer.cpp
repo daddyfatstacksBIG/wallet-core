@@ -1,8 +1,6 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #include "Signer.h"
 #include "Serialization.h"
@@ -10,16 +8,56 @@
 #include "../Hash.h"
 #include "../PrivateKey.h"
 
-using namespace TW;
-using namespace TW::NEAR;
+namespace TW::NEAR {
 
-Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
-    auto transaction = transactionData(input);
-    auto key = PrivateKey(input.private_key());
+Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) {
+    auto txResult = transactionData(input);
+    if (!txResult) {
+        Proto::SigningOutput output;
+        output.set_error(txResult.error());
+        output.set_error_message(Common::Proto::SigningError_Name(txResult.error()));
+        return output;
+    }
+    auto transaction = txResult.payload();
+    auto key = PrivateKey(input.private_key(), TWCurveED25519);
     auto hash = Hash::sha256(transaction);
-    auto signature = key.sign(hash, TWCurveED25519);
+    auto signature = key.sign(hash);
     auto output = Proto::SigningOutput();
     auto signedTransaction = signedTransactionData(transaction, signature);
     output.set_signed_transaction(signedTransaction.data(), signedTransaction.size());
+    output.set_hash(hash.data(), hash.size());
     return output;
 }
+
+Result<Data, Common::Proto::SigningError> Signer::signaturePreimage() const {
+    return TW::NEAR::transactionDataWithPublicKey(input);
+}
+
+Proto::SigningOutput Signer::compile(const Data& signature, const PublicKey& publicKey) const {
+    if (publicKey.type != TWPublicKeyTypeED25519) {
+        Proto::SigningOutput output;
+        output.set_error(Common::Proto::Error_invalid_params);
+        output.set_error_message("Invalid public key type: expected ED25519");
+        return output;
+    }
+    auto preImageResult = signaturePreimage();
+    if (!preImageResult) {
+        Proto::SigningOutput output;
+        output.set_error(preImageResult.error());
+        output.set_error_message(Common::Proto::SigningError_Name(preImageResult.error()));
+        return output;
+    }
+    auto preImage = preImageResult.payload();
+    auto hash = Hash::sha256(preImage);
+    if (!publicKey.verify(signature, hash)) {
+        Proto::SigningOutput output;
+        output.set_error(Common::Proto::Error_signing);
+        output.set_error_message("Invalid signature/hash/publickey combination");
+        return output;
+    }
+    auto signedPreImage = TW::NEAR::signedTransactionData(preImage, signature);
+    auto output = Proto::SigningOutput();
+    output.set_signed_transaction(signedPreImage.data(), signedPreImage.size());
+    return output;
+}
+} // namespace TW::NEAR

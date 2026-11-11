@@ -1,12 +1,11 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #include "BinaryCoding.h"
 
 #include <cassert>
+#include <tuple>
 
 namespace TW {
 
@@ -148,7 +147,9 @@ tuple<bool, string>  decodeString(const Data& in, size_t& indexInOut) {
     if (!get<0>(lenTup)) { return make_tuple(false, ""); }
     const auto len = get<1>(lenTup);
     // read bytes into string
-    if (in.size() < indexInOut + len) { return make_tuple(false, ""); }
+    if (in.size() < indexInOut || in.size() - indexInOut < len) {
+        return make_tuple(false, "");
+    }
     string result(in.data() + indexInOut, in.data() + indexInOut + len);
     indexInOut += len;
     return make_tuple(true, result);

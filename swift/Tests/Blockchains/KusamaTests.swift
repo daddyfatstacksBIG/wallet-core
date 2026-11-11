@@ -1,8 +1,6 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 import WalletCore
 import XCTest
@@ -32,11 +30,11 @@ class KusamaTests: XCTestCase {
         XCTAssertEqual(address.data.hexString, pubkey.data.hexString)
     }
 
-    func testSigningTransfer() {
+    func testSigningTransfer() throws {
         // https://kusama.subscan.io/extrinsic/0x9211b8f6500c78f4771d18289c6187ec59c2b1fb28e8324ee32a1f9a3303be7e
         // real key in 1p test
         let wallet = HDWallet.test
-        let key = wallet.getKey(coin: .kusama, derivationPath: "m/44'/434'/0'")
+        let key = try XCTUnwrap(wallet.getKey(coin: .kusama, derivationPath: "m/44'/434'/0'"))
 
         let genesisHash = Data(hexString: "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe")!
         let input = PolkadotSigningInput.with {
@@ -51,7 +49,7 @@ class KusamaTests: XCTestCase {
                     $0.value = Data(hexString: "0x02540be400")!
                 }
             }
-            $0.network = .kusama
+            $0.network = CoinType.kusama.ss58Prefix
             $0.transactionVersion = 2
             $0.privateKey = key.data
         }

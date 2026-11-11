@@ -1,20 +1,16 @@
 PODS:
-  - SwiftLint (0.41.0)
-  - SwiftProtobuf (1.13.0)
+  - WalletCoreSwiftProtobuf (1.29.0)
 
 DEPENDENCIES:
-  - SwiftLint
-  - SwiftProtobuf
+  - WalletCoreSwiftProtobuf
 
 SPEC REPOS:
   trunk:
-    - SwiftLint
-    - SwiftProtobuf
+    - WalletCoreSwiftProtobuf
 
 SPEC CHECKSUMS:
-  SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
-  SwiftProtobuf: fd4693388a96c8c2df35d3b063272b0e7c499d00
+  WalletCoreSwiftProtobuf: a4798576a2d309511fc45f81843d348732ec571d
 
-PODFILE CHECKSUM: 159625a957d599dfe52b30d250815212818070a7
+PODFILE CHECKSUM: 9e281ff23fe7701c6fd20f0123c14dea73e221e5
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.16.2

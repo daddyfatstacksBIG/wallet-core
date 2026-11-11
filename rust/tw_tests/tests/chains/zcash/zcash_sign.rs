@@ -1,0 +1,436 @@
+// SPDX-License-Identifier: Apache-2.0
+//
+// Copyright © 2017 Trust Wallet.
+
+use crate::chains::common::bitcoin::{
+    dust_threshold, input, output, plan, psbt_sign, sign, transaction_psbt_b64, TransactionOneof,
+    DUST, SIGHASH_ALL,
+};
+use crate::chains::zcash::{
+    zcash_extra_data, zec_info, NU6_3_BRANCH_ID, NU6_BRANCH_ID, SAPLING_BRANCH_ID,
+};
+use tw_any_coin::test_utils::sign_utils::AnySignerHelper;
+use tw_coin_registry::coin_type::CoinType;
+use tw_encoding::hex::DecodeHex;
+use tw_proto::BitcoinV2::Proto;
+use tw_proto::Common::Proto::SigningError;
+use tw_proto::Zcash::Proto as ZcashProto;
+
+/// Successfully broadcasted:
+/// https://explorer.zcha.in/transactions/ec9033381c1cc53ada837ef9981c03ead1c7c41700ff3a954389cfaddc949256
+#[test]
+fn test_zcash_sign_sapling_era() {
+    const PRIVATE_KEY: &str = "a9684f5bebd0e1208aae2e02bc9e9163bd1965ad23d8538644e1df8b99b99559";
+    const SENDER_ADDRESS: &str = "t1gWVE2uyrET2CxSmCaBiKzmWxQdHhnvMSz";
+    const TO_ADDRESS: &str = "t1QahNjDdibyE4EdYkawUSKBBcVTSqv64CS";
+
+    // Create transaction with P2PKH as input and output.
+    let txid = "3a19dd44032dfed61bfca5ba5751aab8a107b30609cbd5d70dc5ef09885b6853";
+    let tx1 = Proto::Input {
+        out_point: input::out_point(txid, 0),
+        value: 494_000,
+        sighash_type: SIGHASH_ALL,
+        claiming_script: input::receiver_address(SENDER_ADDRESS),
+        ..Default::default()
+    };
+
+    let out1 = Proto::Output {
+        value: 488_000,
+        to_recipient: output::to_address(TO_ADDRESS),
+    };
+
+    let extra_data = ZcashProto::TransactionBuilderExtraData {
+        branch_id: SAPLING_BRANCH_ID.into(),
+        zip_0317: false,
+        expiry_height: 0,
+        tx_version: ZcashProto::TransactionVersion::V4,
+    };
+
+    let builder = Proto::TransactionBuilder {
+        version: Proto::TransactionVersion::UseDefault,
+        inputs: vec![tx1],
+        outputs: vec![out1],
+        input_selector: Proto::InputSelector::UseAll,
+        dust_policy: dust_threshold(DUST),
+        chain_specific: zcash_extra_data(extra_data),
+        ..Default::default()
+    };
+
+    let signing = Proto::SigningInput {
+        private_keys: vec![PRIVATE_KEY.decode_hex().unwrap().into()],
+        chain_info: zec_info(),
+        transaction: TransactionOneof::builder(builder),
+        ..Default::default()
+    };
+
+    plan::BitcoinPlanHelper::new(&signing)
+        .coin(CoinType::Zcash)
+        .plan(plan::Expected {
+            inputs: vec![494_000],
+            outputs: vec![488_000],
+            // Estimated size is 1 byte greater than the final transaction.
+            // That's because the final DER.1 serialized signature becomes more compact.
+            vsize_estimate: 212,
+            fee_estimate: 6_000,
+            // Change output has been omitted.
+            change: 0,
+        });
+
+    sign::BitcoinSignHelper::new(&signing)
+        .coin(CoinType::Zcash)
+        .sign(sign::Expected {
+            encoded: "0400008085202f890153685b8809efc50dd7d5cb0906b307a1b8aa5157baa5fc1bd6fe2d0344dd193a000000006b483045022100ca0be9f37a4975432a52bb65b25e483f6f93d577955290bb7fb0060a93bfc92002203e0627dff004d3c72a957dc9f8e4e0e696e69d125e4d8e275d119001924d3b48012103b243171fae5516d1dc15f9178cfcc5fdc67b0a883055c117b01ba8af29b953f6ffffffff0140720700000000001976a91449964a736f3713d64283fd0018626ba50091c7e988ac00000000000000000000000000000000000000",
+            txid: "ec9033381c1cc53ada837ef9981c03ead1c7c41700ff3a954389cfaddc949256",
+            inputs: vec![494_000],
+            outputs: vec![488_000],
+            // `vsize` is different from the estimated value due to the signatures der serialization.
+            vsize: 211,
+            weight: 211 * 4,
+            fee: 6_000,
+        });
+}
+
+/// Successfully broadcasted:
+/// https://blockchair.com/zcash/transaction/e5f4d0c28f96c80caace4052aed4645a78badedc00cd3b071322d63c264b2885
+#[test]
+fn test_zcash_send_to_tex_address() {
+    const PRIVATE_KEY: &str = "cfa0c168cce0d041119b216f60aed343b93fde0a8736ea0bcd6254cfef0a3c79";
+    const SENDER_ADDRESS: &str = "t1a6Do9CH4umduHKtoufDDMQMypd7VYLqhH";
+    const TO_ADDRESS: &str = "tex1auz6gx89x2wcku6gswdvaz2nf9x3seex6px6v0";
+
+    // Create transaction with P2PKH as input and output.
+    let txid = "d0da6ed2f89de9936ca3429110bc60a02f6e797665b8714d646fc25b45210ef2";
+    let tx1 = Proto::Input {
+        out_point: input::out_point(txid, 0),
+        // 0.02
+        value: 2_000_000,
+        sighash_type: SIGHASH_ALL,
+        claiming_script: input::receiver_address(SENDER_ADDRESS),
+        ..Default::default()
+    };
+
+    let out1 = Proto::Output {
+        // 0.002
+        value: 200_000,
+        to_recipient: output::to_address(TO_ADDRESS),
+    };
+    let change_out = Proto::Output {
+        to_recipient: output::to_address(SENDER_ADDRESS),
+        ..Proto::Output::default()
+    };
+
+    let extra_data = ZcashProto::TransactionBuilderExtraData {
+        branch_id: NU6_BRANCH_ID.into(),
+        zip_0317: true,
+        expiry_height: 0,
+        tx_version: ZcashProto::TransactionVersion::V4,
+    };
+
+    let builder = Proto::TransactionBuilder {
+        version: Proto::TransactionVersion::UseDefault,
+        inputs: vec![tx1],
+        outputs: vec![out1],
+        change_output: Some(change_out),
+        input_selector: Proto::InputSelector::UseAll,
+        dust_policy: dust_threshold(DUST),
+        chain_specific: zcash_extra_data(extra_data),
+        ..Default::default()
+    };
+
+    let signing = Proto::SigningInput {
+        private_keys: vec![PRIVATE_KEY.decode_hex().unwrap().into()],
+        chain_info: zec_info(),
+        transaction: TransactionOneof::builder(builder),
+        ..Default::default()
+    };
+
+    plan::BitcoinPlanHelper::new(&signing)
+        .coin(CoinType::Zcash)
+        .plan(plan::Expected {
+            inputs: vec![2_000_000],
+            outputs: vec![200_000, 1_790_000],
+            // Estimated size is 1 byte greater than the final transaction.
+            // That's because the final DER.1 serialized signature becomes more compact.
+            vsize_estimate: 246,
+            fee_estimate: 10_000,
+            // Change output has been omitted.
+            change: 1_790_000,
+        });
+
+    sign::BitcoinSignHelper::new(&signing)
+        .coin(CoinType::Zcash)
+        .sign(sign::Expected {
+            encoded: "0400008085202f8901f20e21455bc26f644d71b86576796e2fa060bc109142a36c93e99df8d26edad0000000006b483045022100850a98be0d1a432f900bb3c34347d16ea839d4a59de288c17838f1d2ee6ec390022007e5fd53c8c31d75ca6d79b3d2874e6dd8e685e60758874e4884ace9d26eea4501210340643a2a4ea0777ce0b2529be566a3caea5598fef56c44579dadf96b586bed50ffffffff02400d0300000000001976a914ef05a418e5329d8b7348839ace8953494d18672688ac30501b00000000001976a914b1e4e13f836a6e7a33cbb20817a62da829d543e988ac00000000000000000000000000000000000000",
+            txid: "e5f4d0c28f96c80caace4052aed4645a78badedc00cd3b071322d63c264b2885",
+            inputs: vec![2_000_000],
+            outputs: vec![200_000, 1_790_000],
+            // `vsize` is different from the estimated value due to the signatures der serialization.
+            vsize: 245,
+            weight: 245 * 4,
+            fee: 10_000,
+        });
+}
+
+#[test]
+fn test_zcash_sign_pczt() {
+    const PRIVATE_KEY: &str = "c9d84f11d992c1a527293b468ba67f739f8098c333748493da45b9cf53844ec4";
+    const PSBT: &str = "UENaVAEAAAAEhcG8yQjVoJzHDAEAz+i/AYUBgwACD/xF9t6uGgnrn6HPk4TTxoTB42mxjfZ2E8dQ7UzfodcAAf////8PAAAAgIl6GXapFFWjZeeDsUiGjDI8hm1k+WCt0MtqiKwAAAEAAAAAAACg+XQ96jWHJsJWFA3/kk+6ZaHhUI5wi57Hf3ZM6xQzRQEB/////w8AAAC1lhgZdqkUVaNl54OxSIaMMjyGbWT5YK3Qy2qIrAAAAQAAAAAAAALD8X4ZdqkUkFFaBL/xtThv5Hnc0F1hHGFf2sSIrAAAASN0MVgyZ21OUVJxd1dpR2luY0syVXRZd1piV2c3aXhZRkVLcgDCwxEZdqkUVaNl54OxSIaMMjyGbWT5YK3Qy2qIrAAAASN0MVJnUkJqam54WFNnMXB0TERya2FNTmlWNHRKVlh1N2RXVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==";
+
+    let signing = Proto::SigningInput {
+        private_keys: vec![PRIVATE_KEY.decode_hex().unwrap().into()],
+        chain_info: zec_info(),
+        transaction: transaction_psbt_b64(PSBT),
+        ..Default::default()
+    };
+
+    // Successfully broadcasted tx:
+    // https://blockchair.com/zcash/transaction/5055198cfba7109a23de0406885298939e3ea8ce5c160737b4cdf02360a8d10b
+    psbt_sign::BitcoinPsbtSignHelper::new(&signing)
+        .coin(CoinType::Zcash)
+        .sign_psbt(psbt_sign::Expected {
+            psbt: "50435a54010000000485c1bcc908d5a09cc70c0100cfe8bf0185018300020ffc45f6deae1a09eb9fa1cf9384d3c684c1e369b18df67613c750ed4cdfa1d70001ffffffff0f0000016b4830450221008ec23495bc2a7e7ccab7b7c6f7b1f9ee2f77a048bc4d2f4b5299fc1ab08b607e0220175453b2e2f25462abc1b5bff30d0c9e01fba60beab1d5a8460260612507e0d0012103f395d296aca81ab1d54a0eab0349333478c83591e6de81b9979cb63aef97c9ad80897a1976a91455a365e783b148868c323c866d64f960add0cb6a88ac000001000000000000a0f9743dea358726c256140dff924fba65a1e1508e708b9ec77f764ceb1433450101ffffffff0f0000016a473044022022d1eb63d66f868228439e6e18d21df262d8e05fce380ab3b21aa84f064ca614022063e87e73110b1829d4c8eb747d7ca8cc43e28e0a4f7d287aa42ed84048ba3cd4012103f395d296aca81ab1d54a0eab0349333478c83591e6de81b9979cb63aef97c9adb596181976a91455a365e783b148868c323c866d64f960add0cb6a88ac00000100000000000002c3f17e1976a91490515a04bff1b5386fe479dcd05d611c615fdac488ac0000012374315832676d4e51527177576947696e634b32557459775a6257673769785946454b7200c2c3111976a91455a365e783b148868c323c866d64f960add0cb6a88ac000001237431526752426a6a6e785853673170744c44726b614d4e695634744a56587537645756000000000000000000000000000000000000000000000000000000000000000000000000000003000100000000000000000000000000000000000000000000000000000000000000000000",
+            encoded: "0400008085202f89020ffc45f6deae1a09eb9fa1cf9384d3c684c1e369b18df67613c750ed4cdfa1d7000000006b4830450221008ec23495bc2a7e7ccab7b7c6f7b1f9ee2f77a048bc4d2f4b5299fc1ab08b607e0220175453b2e2f25462abc1b5bff30d0c9e01fba60beab1d5a8460260612507e0d0012103f395d296aca81ab1d54a0eab0349333478c83591e6de81b9979cb63aef97c9adffffffffa0f9743dea358726c256140dff924fba65a1e1508e708b9ec77f764ceb143345010000006a473044022022d1eb63d66f868228439e6e18d21df262d8e05fce380ab3b21aa84f064ca614022063e87e73110b1829d4c8eb747d7ca8cc43e28e0a4f7d287aa42ed84048ba3cd4012103f395d296aca81ab1d54a0eab0349333478c83591e6de81b9979cb63aef97c9adffffffff02c3b81f00000000001976a91490515a04bff1b5386fe479dcd05d611c615fdac488acc2610400000000001976a91455a365e783b148868c323c866d64f960add0cb6a88ac000000004ff42f000000000000000000000000",
+            txid: "5055198cfba7109a23de0406885298939e3ea8ce5c160737b4cdf02360a8d10b",
+            vsize: 392,
+            weight: 1568,
+            fee: 30000,
+        });
+}
+
+#[test]
+fn test_zcash_sign_both_outputs_and_max_amount_error() {
+    const PRIVATE_KEY: &str = "a9684f5bebd0e1208aae2e02bc9e9163bd1965ad23d8538644e1df8b99b99559";
+    const SENDER_ADDRESS: &str = "t1gWVE2uyrET2CxSmCaBiKzmWxQdHhnvMSz";
+    const TO_ADDRESS: &str = "t1QahNjDdibyE4EdYkawUSKBBcVTSqv64CS";
+
+    let txid = "3a19dd44032dfed61bfca5ba5751aab8a107b30609cbd5d70dc5ef09885b6853";
+    let tx1 = Proto::Input {
+        out_point: input::out_point(txid, 0),
+        value: 494_000,
+        sighash_type: SIGHASH_ALL,
+        claiming_script: input::receiver_address(SENDER_ADDRESS),
+        ..Default::default()
+    };
+
+    let out = Proto::Output {
+        value: 100_000,
+        to_recipient: output::to_address(TO_ADDRESS),
+    };
+    let change_out = Proto::Output {
+        to_recipient: output::to_address(SENDER_ADDRESS),
+        ..Default::default()
+    };
+    let max_out = Proto::Output {
+        to_recipient: output::to_address(SENDER_ADDRESS),
+        ..Default::default()
+    };
+
+    let extra_data = ZcashProto::TransactionBuilderExtraData {
+        branch_id: SAPLING_BRANCH_ID.into(),
+        zip_0317: false,
+        expiry_height: 0,
+        tx_version: ZcashProto::TransactionVersion::V4,
+    };
+
+    // First, create transaction with both outputs and max amount set.
+    let builder = Proto::TransactionBuilder {
+        version: Proto::TransactionVersion::UseDefault,
+        inputs: vec![tx1.clone()],
+        outputs: vec![out.clone()],
+        max_amount_output: Some(max_out.clone()),
+        input_selector: Proto::InputSelector::UseAll,
+        dust_policy: dust_threshold(DUST),
+        chain_specific: zcash_extra_data(extra_data.clone()),
+        ..Default::default()
+    };
+
+    let signing = Proto::SigningInput {
+        private_keys: vec![PRIVATE_KEY.decode_hex().unwrap().into()],
+        chain_info: zec_info(),
+        transaction: TransactionOneof::builder(builder),
+        ..Default::default()
+    };
+
+    let mut signer = AnySignerHelper::<Proto::SigningOutput>::default();
+    let output = signer.sign(CoinType::Zcash, signing);
+    assert_eq!(output.error, SigningError::Error_invalid_params);
+
+    // Secondly, create transaction with change output and max amount set.
+    let builder = Proto::TransactionBuilder {
+        version: Proto::TransactionVersion::UseDefault,
+        inputs: vec![tx1.clone()],
+        change_output: Some(change_out.clone()),
+        max_amount_output: Some(max_out.clone()),
+        input_selector: Proto::InputSelector::UseAll,
+        dust_policy: dust_threshold(DUST),
+        chain_specific: zcash_extra_data(extra_data.clone()),
+        ..Default::default()
+    };
+
+    let signing = Proto::SigningInput {
+        private_keys: vec![PRIVATE_KEY.decode_hex().unwrap().into()],
+        chain_info: zec_info(),
+        transaction: TransactionOneof::builder(builder),
+        ..Default::default()
+    };
+
+    let mut signer = AnySignerHelper::<Proto::SigningOutput>::default();
+    let output = signer.sign(CoinType::Zcash, signing);
+    assert_eq!(output.error, SigningError::Error_invalid_params);
+
+    // Lastly, create transaction with all change output, outputs and max amount set.
+    let builder = Proto::TransactionBuilder {
+        version: Proto::TransactionVersion::UseDefault,
+        inputs: vec![tx1],
+        outputs: vec![out],
+        change_output: Some(change_out),
+        max_amount_output: Some(max_out),
+        input_selector: Proto::InputSelector::UseAll,
+        dust_policy: dust_threshold(DUST),
+        chain_specific: zcash_extra_data(extra_data),
+        ..Default::default()
+    };
+
+    let signing = Proto::SigningInput {
+        private_keys: vec![PRIVATE_KEY.decode_hex().unwrap().into()],
+        chain_info: zec_info(),
+        transaction: TransactionOneof::builder(builder),
+        ..Default::default()
+    };
+
+    let mut signer = AnySignerHelper::<Proto::SigningOutput>::default();
+    let output = signer.sign(CoinType::Zcash, signing);
+    assert_eq!(output.error, SigningError::Error_invalid_params);
+}
+
+#[test]
+fn test_zcash_sign_pczt_v5() {
+    const PRIVATE_KEY: &str = "c9d84f11d992c1a527293b468ba67f739f8098c333748493da45b9cf53844ec4";
+    // PCZT with a v5 (NU5) transaction.
+    const PSBT: &str = "UENaVAEAAAAFis6ctQLVoJzHDAEA4ua/AYUBgwABFRZQRxlNqLSGFmGot6F/FeWgAGC2IUW5epyMH5ttEEQAAf////8PAAAAoMuYARl2qRRVo2Xng7FIhowyPIZtZPlgrdDLaoisAAABAAAAAAAAAsPxfhl2qRQthdKs2GnpfCJRan162hFZgsQNXoisAAABI3QxTjJKajlkRG9ZUUVtRVdBQlZ4TmF6YndzR3VVcko0UDREALWWGBl2qRRVo2Xng7FIhowyPIZtZPlgrdDLaoisAAABI3QxUmdSQmpqbnhYU2cxcHRMRHJrYU1OaVY0dEpWWHU3ZFdWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+
+    let signing = Proto::SigningInput {
+        private_keys: vec![PRIVATE_KEY.decode_hex().unwrap().into()],
+        chain_info: zec_info(),
+        transaction: transaction_psbt_b64(PSBT),
+        ..Default::default()
+    };
+
+    psbt_sign::BitcoinPsbtSignHelper::new(&signing)
+        .coin(CoinType::Zcash)
+        .sign_psbt(psbt_sign::Expected {
+            psbt: "50435a5401000000058ace9cb502d5a09cc70c0100e2e6bf01850183000115165047194da8b4861661a8b7a17f15e5a00060b62145b97a9c8c1f9b6d10440001ffffffff0f0000016b483045022100bf85e7bc5dda644c6e4b03550b76eb233459f73d80e21451742d677446d74caf022039801ce63dd073b310e8ed0499c40814f728d0c223a93553bbabf1407f1ddf19012103f395d296aca81ab1d54a0eab0349333478c83591e6de81b9979cb63aef97c9ada0cb98011976a91455a365e783b148868c323c866d64f960add0cb6a88ac00000100000000000002c3f17e1976a9142d85d2acd869e97c22516a7d7ada115982c40d5e88ac0000012374314e324a6a3964446f5951456d4557414256784e617a627773477555724a3450344400b596181976a91455a365e783b148868c323c866d64f960add0cb6a88ac000001237431526752426a6a6e785853673170744c44726b614d4e695634744a56587537645756000000000000000000000000000000000000000000000000000000000000000000000000000003000100000000000000000000000000000000000000000000000000000000000000000000",
+            encoded: "050000800a27a7265510e7c80000000062f32f000115165047194da8b4861661a8b7a17f15e5a00060b62145b97a9c8c1f9b6d1044000000006b483045022100bf85e7bc5dda644c6e4b03550b76eb233459f73d80e21451742d677446d74caf022039801ce63dd073b310e8ed0499c40814f728d0c223a93553bbabf1407f1ddf19012103f395d296aca81ab1d54a0eab0349333478c83591e6de81b9979cb63aef97c9adffffffff02c3b81f00000000001976a9142d85d2acd869e97c22516a7d7ada115982c40d5e88ac350b0600000000001976a91455a365e783b148868c323c866d64f960add0cb6a88ac000000",
+            txid: "8a80fa2e239ca9154f09ef5170d632cfadda0b63c57aad569a882cb4fb5f5cc7",
+            vsize: 241,
+            weight: 964,
+            fee: 25000,
+        });
+}
+
+/// Successfully broadcasted (Zcash mainnet, NU6.3, v5 transaction, block 3542747):
+/// https://blockchair.com/zcash/transaction/228adfd085406159b848a0370bb25716e3b731d67532a5c0aed1f146f6c4433d
+#[test]
+fn test_zcash_sign_pczt_v5_mainnet() {
+    const PRIVATE_KEY: &str = "ddc453138b8a482aebdc0d8e606b8ebe84c45160387aad58680e8bbae6e524ad";
+    // Unsigned PCZT with a transparent-only v5 transaction:
+    // 1 P2PKH input (389000 zats) -> 100000 zats to t1gUuvGGo2HvZbxTbjyucHCZHrWfaSZrfeS
+    // and 279000 zats change to t1NiBn6r7FrgzL63yF34qJBb3FW8su1qYCF.
+    const PSBT: &str = "UENaVAEAAAAFis6ctQLbrJS9AwEAkJ7YAYUBgwABrpRasmKy2cK4JqsuOSvJPBqfQN+crUtTBH4QeEgQ+mwAAf////8PAAAAiN8XGXapFDUQqR1RESEmdRRGpjnm3+hBROfLiKwAAAEAAAAAAAACoI0GGXapFPgAR0+icJw+6TMPxPhaiZbW+yGKiKwAAAEjdDFnVXV2R0dvMkh2WmJ4VGJqeXVjSENaSHJXZmFTWnJmZVMA2IMRGXapFDUQqR1RESEmdRRGpjnm3+hBROfLiKwAAAEjdDFOaUJuNnI3RnJnekw2M3lGMzRxSkJiM0ZXOHN1MXFZQ0YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+
+    let signing = Proto::SigningInput {
+        private_keys: vec![PRIVATE_KEY.decode_hex().unwrap().into()],
+        chain_info: zec_info(),
+        transaction: transaction_psbt_b64(PSBT),
+        ..Default::default()
+    };
+
+    psbt_sign::BitcoinPsbtSignHelper::new(&signing)
+        .coin(CoinType::Zcash)
+        .sign_psbt(psbt_sign::Expected {
+            psbt: "50435a5401000000058ace9cb502dbac94bd030100909ed8018501830001ae945ab262b2d9c2b826ab2e392bc93c1a9f40df9cad4b53047e10784810fa6c0001ffffffff0f0000016a47304402200aa3f8f04234d87846179a20346805f43171bc28c2a9124a1e18d69abdc6a0f00220331c4a2a82d5fa2dc627fb9f22cc43cb31149009721eca1e7762f5b37d923d50012102950ef6f2aab593a487101a47b35fc2b3a6f2f9323afa024f15e5225b365d63fe88df171976a9143510a91d51112126751446a639e6dfe84144e7cb88ac00000100000000000002a08d061976a914f800474fa2709c3ee9330fc4f85a8996d6fb218a88ac0000012374316755757647476f3248765a627854626a79756348435a4872576661535a7266655300d883111976a9143510a91d51112126751446a639e6dfe84144e7cb88ac0000012374314e69426e3672374672677a4c363379463334714a42623346573873753171594346000000000000000000000000000000000000000000000000000000000000000000000000000003000100000000000000000000000000000000000000000000000000000000000000000000",
+            encoded: "050000800a27a7265b16a53700000000100f360001ae945ab262b2d9c2b826ab2e392bc93c1a9f40df9cad4b53047e10784810fa6c000000006a47304402200aa3f8f04234d87846179a20346805f43171bc28c2a9124a1e18d69abdc6a0f00220331c4a2a82d5fa2dc627fb9f22cc43cb31149009721eca1e7762f5b37d923d50012102950ef6f2aab593a487101a47b35fc2b3a6f2f9323afa024f15e5225b365d63feffffffff02a0860100000000001976a914f800474fa2709c3ee9330fc4f85a8996d6fb218a88acd8410400000000001976a9143510a91d51112126751446a639e6dfe84144e7cb88ac000000",
+            txid: "228adfd085406159b848a0370bb25716e3b731d67532a5c0aed1f146f6c4433d",
+            vsize: 240,
+            weight: 960,
+            fee: 10000,
+        });
+}
+
+/// Successfully broadcasted (Zcash mainnet, NU6.3, v5 transaction):
+/// https://blockchair.com/zcash/transaction/f98b289fa014fa21fb3542f59eddc1140895e8f31575b47a5c4482abf8a82565
+#[test]
+fn test_zcash_sign_v5() {
+    const PRIVATE_KEY: &str = "ddc453138b8a482aebdc0d8e606b8ebe84c45160387aad58680e8bbae6e524ad";
+    const SENDER_ADDRESS: &str = "t1NiBn6r7FrgzL63yF34qJBb3FW8su1qYCF";
+    const TO_ADDRESS: &str = "t1gUuvGGo2HvZbxTbjyucHCZHrWfaSZrfeS";
+
+    let txid = "228adfd085406159b848a0370bb25716e3b731d67532a5c0aed1f146f6c4433d";
+    let tx1 = Proto::Input {
+        out_point: input::out_point(txid, 1),
+        value: 279_000,
+        sighash_type: SIGHASH_ALL,
+        claiming_script: input::receiver_address(SENDER_ADDRESS),
+        ..Default::default()
+    };
+
+    let out1 = Proto::Output {
+        value: 100_000,
+        to_recipient: output::to_address(TO_ADDRESS),
+    };
+    let change_output = Proto::Output {
+        value: 0,
+        to_recipient: output::to_address(SENDER_ADDRESS),
+    };
+
+    let extra_data = ZcashProto::TransactionBuilderExtraData {
+        branch_id: NU6_3_BRANCH_ID.into(),
+        zip_0317: true,
+        expiry_height: 3_542_813,
+        // Version 5 is used by default.
+        ..Default::default()
+    };
+
+    let builder = Proto::TransactionBuilder {
+        version: Proto::TransactionVersion::UseDefault,
+        inputs: vec![tx1],
+        outputs: vec![out1],
+        change_output: Some(change_output),
+        input_selector: Proto::InputSelector::UseAll,
+        dust_policy: dust_threshold(DUST),
+        chain_specific: zcash_extra_data(extra_data),
+        ..Default::default()
+    };
+
+    let signing = Proto::SigningInput {
+        private_keys: vec![PRIVATE_KEY.decode_hex().unwrap().into()],
+        chain_info: zec_info(),
+        transaction: TransactionOneof::builder(builder),
+        ..Default::default()
+    };
+
+    plan::BitcoinPlanHelper::new(&signing)
+        .coin(CoinType::Zcash)
+        .plan(plan::Expected {
+            inputs: vec![279_000],
+            outputs: vec![100_000, 169_000],
+            // Estimated size is 2 bytes greater than the final transaction
+            // because of the DER signature serialization.
+            vsize_estimate: 242,
+            // ZIP-317: 2 logical actions.
+            fee_estimate: 10_000,
+            change: 169_000,
+        });
+
+    sign::BitcoinSignHelper::new(&signing)
+        .coin(CoinType::Zcash)
+        .sign(sign::Expected {
+            encoded: "050000800a27a7265b16a537000000001d0f3600013d43c4f646f1d1aec0a53275d631b7e31657b20b37a048b859614085d0df8a22010000006a47304402203672aa890ade97ff91335b490b84584ebc488e35562a247547dc39806156a08a02200bb32dd446123fcb8833c115ef4ec151a5a0991dc429a1f9d02d8dbf19430056012102950ef6f2aab593a487101a47b35fc2b3a6f2f9323afa024f15e5225b365d63feffffffff02a0860100000000001976a914f800474fa2709c3ee9330fc4f85a8996d6fb218a88ac28940200000000001976a9143510a91d51112126751446a639e6dfe84144e7cb88ac000000",
+            txid: "f98b289fa014fa21fb3542f59eddc1140895e8f31575b47a5c4482abf8a82565",
+            inputs: vec![279_000],
+            outputs: vec![100_000, 169_000],
+            vsize: 240,
+            weight: 240 * 4,
+            fee: 10_000,
+        });
+}

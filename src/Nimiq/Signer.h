@@ -1,13 +1,11 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #pragma once
 
 #include "Transaction.h"
-#include "../Data.h"
+#include "Data.h"
 #include "../Hash.h"
 #include "../PrivateKey.h"
 #include "../proto/Nimiq.pb.h"
@@ -18,10 +16,10 @@ namespace TW::Nimiq {
 class Signer {
   public:
     /// Signs a Proto::SigningInput transaction
-    static Proto::SigningOutput sign(const Proto::SigningInput& input) noexcept;
+    static Proto::SigningOutput sign(const Proto::SigningInput& input);
   public:
     /// Signs the given transaction.
-    void sign(const PrivateKey& privateKey, Transaction& transaction) const noexcept;
+    void sign(const PrivateKey& privateKey, Transaction& transaction) const;
 
     template <typename T>
     static PublicKey publicKeyFromBytes(const T& data) {

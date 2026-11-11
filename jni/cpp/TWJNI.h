@@ -1,8 +1,6 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #pragma once
 
@@ -21,3 +19,36 @@
 #include <jni.h>
 #include "TWJNIData.h"
 #include "TWJNIString.h"
+
+#define JNI_CHECK_NULL_AND_RETURN_VOID(env, param, paramName) \
+    do { \
+        if (param == NULL) { \
+            jclass exceptionClass = (*env)->FindClass(env, "java/lang/IllegalArgumentException"); \
+            if (exceptionClass != NULL) { \
+                (*env)->ThrowNew(env, exceptionClass, paramName " parameter cannot be null"); \
+            } \
+            return; \
+        } \
+    } while(0)
+
+#define JNI_CHECK_NULL_AND_RETURN_ZERO(env, param, paramName) \
+    do { \
+        if (param == NULL) { \
+            jclass exceptionClass = (*env)->FindClass(env, "java/lang/IllegalArgumentException"); \
+            if (exceptionClass != NULL) { \
+                (*env)->ThrowNew(env, exceptionClass, paramName " parameter cannot be null"); \
+            } \
+            return 0; \
+        } \
+    } while(0)
+
+#define JNI_CHECK_NULL_AND_RETURN_NULL(env, param, paramName) \
+    do { \
+        if (param == NULL) { \
+            jclass exceptionClass = (*env)->FindClass(env, "java/lang/IllegalArgumentException"); \
+            if (exceptionClass != NULL) { \
+                (*env)->ThrowNew(env, exceptionClass, paramName " parameter cannot be null"); \
+            } \
+            return NULL; \
+        } \
+    } while(0)

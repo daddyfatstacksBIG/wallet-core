@@ -1,27 +1,44 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #include "Entry.h"
+#include "Base58.h"
+#include "Coin.h"
+#include "HexCoding.h"
+#include "proto/Solana.pb.h"
 
-#include "Address.h"
-#include "Signer.h"
-
-using namespace TW::Solana;
+using namespace TW;
 using namespace std;
 
-// Note: avoid business logic from here, rather just call into classes like Address, Signer, etc.
+namespace TW::Solana {
 
-bool Entry::validateAddress(TWCoinType coin, const string& address, TW::byte, TW::byte, const char*) const {
-    return Address::isValid(address);
+string Entry::signJSON(TWCoinType coin, const std::string& json, const Data& key) const {
+    return signJSONHelper<Proto::SigningInput, Proto::SigningOutput>(
+        coin,
+        json,
+        key,
+        [](const Proto::SigningOutput& output) { return output.encoded(); }
+    );
 }
 
-string Entry::deriveAddress(TWCoinType coin, const PublicKey& publicKey, TW::byte, const char*) const {
-    return Address(publicKey).string();
+PrivateKey Entry::decodePrivateKey(TWCoinType coin, const std::string& privateKey) const {
+    auto data = Base58::decode(privateKey);
+    if (data.size() == 64) {
+        const auto privateKeyData = subData(data, 0, 32);
+        const auto publicKeyData = subData(data, 32, 32);
+        auto privKey = PrivateKey(privateKeyData, TW::curve(coin));
+        auto publicKey = privKey.getPublicKey(TWPublicKeyType::TWPublicKeyTypeED25519);
+        if (publicKey.bytes != publicKeyData) {
+            throw std::invalid_argument("Invalid private key");
+        }
+        return privKey;
+    } else if (data.size() == 32) {
+        return PrivateKey(data, TW::curve(coin));
+    } else {
+        auto hexData = parse_hex(privateKey);
+        return PrivateKey(hexData, TW::curve(coin));
+    }
 }
 
-void Entry::sign(TWCoinType coin, const TW::Data& dataIn, TW::Data& dataOut) const {
-    signTemplate<Signer, Proto::SigningInput>(dataIn, dataOut);
-}
+} // namespace TW::Solana

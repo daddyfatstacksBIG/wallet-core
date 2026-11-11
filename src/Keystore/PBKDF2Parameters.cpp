@@ -1,18 +1,18 @@
-// Copyright © 2017-2020 Trust Wallet.
+// SPDX-License-Identifier: Apache-2.0
 //
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
+// Copyright © 2017 Trust Wallet.
 
 #include "PBKDF2Parameters.h"
+#include "JsonParsing.h"
 
 #include <TrezorCrypto/rand.h>
-#include <limits>
 
 using namespace TW;
-using namespace TW::Keystore;
 
-PBKDF2Parameters::PBKDF2Parameters() : salt(32) {
+namespace TW::Keystore {
+
+PBKDF2Parameters::PBKDF2Parameters()
+    : salt(32) {
     random_buffer(salt.data(), salt.size());
 }
 
@@ -27,10 +27,20 @@ static const auto iterations = "c";
 } // namespace CodingKeys
 
 PBKDF2Parameters::PBKDF2Parameters(const nlohmann::json& json) {
+    if (json.count(CodingKeys::salt) == 0 || !json[CodingKeys::salt].is_string()) {
+        throw std::invalid_argument("Missing salt");
+    }
+    if (json.count(CodingKeys::desiredKeyLength) == 0 || !json[CodingKeys::desiredKeyLength].is_number_unsigned()) {
+        throw std::invalid_argument("Missing desired key length");
+    }
+
     salt = parse_hex(json[CodingKeys::salt].get<std::string>());
     desiredKeyLength = json[CodingKeys::desiredKeyLength];
-    if (json.count(CodingKeys::iterations) != 0)
-        iterations = json[CodingKeys::iterations];
+    if (json.count(CodingKeys::iterations) != 0) {
+        // Range-checked: assigning the JSON value straight into `uint32_t` silently wrapped, so
+        // `"c": 4294967296` loaded as zero iterations.
+        iterations = internal::parseU32(json[CodingKeys::iterations], "Invalid PBKDF2 parameters: ", CodingKeys::iterations);
+    }
 }
 
 /// Saves `this` as a JSON object.
@@ -41,3 +51,5 @@ nlohmann::json PBKDF2Parameters::json() const {
     j[CodingKeys::iterations] = iterations;
     return j;
 }
+
+} // namespace TW::Keystore
